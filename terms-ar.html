@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شروط الاستخدام – كالك وايز</title>
+<meta name="description" content="شروط الاستخدام لموقع كالك وايز. اقرأ الشروط والأحكام الخاصة باستخدام آلاتنا الحاسبة المجانية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f; --surface: #13131a; --surface2: #1c1c27;
+  --border: #2a2a3d; --border2: #363650; --text: #e8e8f0;
+  --muted: #7070a0; --muted2: #9090b8; --accent: #6c63ff;
+  --accent2: #8b84ff; --green: #22d3a0; --orange: #ff8c42;
+  --radius: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', sans-serif; background: var(--bg);
+  color: var(--text); line-height: 1.9; min-height: 100vh;
+  direction: rtl; text-align: right;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0;
+  background-image: linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px; pointer-events: none;
+}
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border); padding: 0 2rem;
+}
+.nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; height: 60px; gap: 1rem; }
+.logo { font-family: 'Cairo', sans-serif; font-size: 1.4rem; color: var(--text); text-decoration: none; font-weight: 800; }
+.logo span { color: var(--accent); }
+.nav-links { margin-right: auto; display: flex; gap: 0.5rem; }
+.nav-link { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 1rem; color: var(--muted2); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; font-family: 'Cairo', sans-serif; }
+.nav-link:hover { border-color: var(--border2); color: var(--text); }
+.page-hero { position: relative; z-index: 1; text-align: center; padding: 4rem 2rem 3rem; border-bottom: 1px solid var(--border); }
+.page-hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 500px; height: 300px; background: radial-gradient(ellipse, rgba(108,99,255,0.12) 0%, transparent 70%); pointer-events: none; }
+.page-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border2); background: var(--surface); padding: 0.35rem 1.2rem; border-radius: 100px; font-size: 0.85rem; color: var(--muted2); margin-bottom: 1.5rem; font-family: 'Cairo', sans-serif; }
+.page-hero h1 { font-family: 'Amiri', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.3; margin-bottom: 1rem; }
+.page-hero h1 em { font-style: italic; color: var(--accent2); }
+.page-hero p { color: var(--muted2); font-size: 1rem; font-family: 'Cairo', sans-serif; }
+.updated-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34,211,160,0.1); border: 1px solid rgba(34,211,160,0.3); border-radius: 100px; padding: 0.3rem 1rem; font-size: 0.82rem; color: var(--green); margin-top: 1rem; font-family: 'Cairo', sans-serif; }
+.content-wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 220px; gap: 3rem; align-items: start; }
+.toc { position: sticky; top: 80px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+.toc h3 { font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 1rem; font-family: 'Cairo', sans-serif; }
+.toc ul { list-style: none; }
+.toc ul a { color: var(--muted2); text-decoration: none; font-size: 0.85rem; padding: 0.3rem 0.6rem; border-radius: 6px; display: block; transition: all 0.2s; font-family: 'Cairo', sans-serif; }
+.toc ul a:hover { color: var(--text); background: var(--surface2); }
+.policy { min-width: 0; }
+.policy-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+.policy-section:last-child { border-bottom: none; }
+.section-number { font-size: 0.78rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; display: inline-block; background: rgba(108,99,255,0.1); padding: 0.2rem 0.75rem; border-radius: 100px; font-family: 'Cairo', sans-serif; }
+.policy-section h2 { font-family: 'Amiri', serif; font-size: 1.7rem; margin-bottom: 1.25rem; line-height: 1.4; }
+.policy-section p { color: var(--muted2); font-size: 0.95rem; margin-bottom: 1rem; line-height: 2; font-family: 'Cairo', sans-serif; }
+.policy-section p:last-child { margin-bottom: 0; }
+.policy-section strong { color: var(--text); font-weight: 700; }
+.highlight-box { background: var(--surface); border: 1px solid var(--border2); border-right: 3px solid var(--accent); border-left: none; border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.highlight-box p { margin: 0; font-size: 0.92rem; color: var(--muted2); font-family: 'Cairo', sans-serif; }
+.highlight-box strong { color: var(--accent2); }
+.warning-box { background: rgba(255,140,66,0.06); border: 1px solid rgba(255,140,66,0.25); border-right: 3px solid var(--orange); border-left: none; border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.warning-box p { margin: 0; font-size: 0.92rem; color: var(--muted2); font-family: 'Cairo', sans-serif; }
+.warning-box strong { color: var(--orange); }
+.policy-list { list-style: none; margin: 1rem 0; }
+.policy-list li { display: flex; gap: 0.75rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; color: var(--muted2); align-items: flex-start; flex-direction: row-reverse; font-family: 'Cairo', sans-serif; }
+.policy-list li:last-child { border-bottom: none; }
+.policy-list li::before { content: '←'; color: var(--accent); flex-shrink: 0; margin-top: 0.1rem; }
+.contact-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; flex-direction: row-reverse; }
+.contact-icon { width: 48px; height: 48px; background: var(--surface2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.contact-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; font-family: 'Cairo', sans-serif; }
+.contact-card p { font-size: 0.85rem; color: var(--muted2); margin: 0; font-family: 'Cairo', sans-serif; line-height: 1.8; }
+.contact-card a { color: var(--accent2); text-decoration: none; }
+footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: var(--surface); padding: 2rem; text-align: center; }
+.footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.footer-links a { color: var(--muted2); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; font-family: 'Cairo', sans-serif; }
+.footer-links a:hover { color: var(--text); }
+footer p { font-size: 0.82rem; color: var(--muted); font-family: 'Cairo', sans-serif; }
+@media (max-width: 768px) { .content-wrap { grid-template-columns: 1fr; } .toc { display: none; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index-ar.html" class="logo">Calc<span>Wise</span></a>
+    <div class="nav-links">
+      <a href="terms.html" class="nav-link">EN</a>
+      <a href="index-ar.html" class="nav-link">→ الرئيسية</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-badge">📋 وثيقة قانونية</div>
+  <h1>شروط <em>الاستخدام</em></h1>
+  <p>قواعد استخدام موقع كالك وايز — بلغة بسيطة وواضحة.</p>
+  <div class="updated-badge">✓ آخر تحديث: ١ يونيو ٢٠٢٥</div>
+</div>
+
+<div class="content-wrap">
+  <div class="policy">
+
+    <div class="policy-section" id="acceptance">
+      <div class="section-number">القسم الأول</div>
+      <h2>قبول الشروط</h2>
+      <p>بالوصول إلى موقع كالك وايز على <strong>calcwises.com</strong> أو استخدامه ("الموقع")، فإنك توافق على الالتزام بشروط الاستخدام هذه ("الشروط"). إذا كنت لا توافق على هذه الشروط، يُرجى عدم استخدام الموقع.</p>
+      <p>تُطبَّق هذه الشروط على جميع زوار الموقع ومستخدميه. نحتفظ بالحق في تحديث هذه الشروط في أي وقت. استمرارك في استخدام الموقع بعد نشر التغييرات يُعدّ موافقةً منك على الشروط المعدَّلة.</p>
+    </div>
+
+    <div class="policy-section" id="description">
+      <div class="section-number">القسم الثاني</div>
+      <h2>وصف الخدمة</h2>
+      <p>كالك وايز هو موقع آلات حاسبة مجاني يعمل عبر المتصفح، ويوفر مساعدة في الحسابات عبر فئات متعددة تشمل التمويل والصحة والرياضيات والأدوات اليومية. يقدم الموقع حالياً أكثر من ٣٦ آلة حاسبة.</p>
+      <div class="highlight-box">
+        <p><strong>تتم جميع العمليات الحسابية محلياً في متصفحك.</strong> لا تُرسَل أي بيانات إلى خوادمنا. لا يلزم إنشاء حساب أو التسجيل لاستخدام أي آلة حاسبة على كالك وايز.</p>
+      </div>
+      <p>يُقدَّم كالك وايز مجاناً ويُموَّل من خلال عائدات الإعلانات عبر Google AdSense.</p>
+    </div>
+
+    <div class="policy-section" id="use">
+      <div class="section-number">القسم الثالث</div>
+      <h2>الاستخدام المقبول</h2>
+      <p>توافق على استخدام كالك وايز للأغراض المشروعة فقط وبطريقة لا تنتهك حقوق الآخرين. توافق على عدم القيام بما يلي:</p>
+      <ul class="policy-list">
+        <li>استخدام الموقع لأي غرض غير مشروع أو احتيالي</li>
+        <li>محاولة الوصول غير المصرح به إلى أي جزء من الموقع</li>
+        <li>التدخل في خوادم الموقع أو شبكاته أو تعطيلها</li>
+        <li>استخدام أدوات آلية لاستخراج البيانات أو زحف الموقع</li>
+        <li>إعادة إنتاج أي جزء من الموقع أو بيعه بدون إذن</li>
+        <li>نقل أي محتوى ضار أو مسيء من خلال الموقع</li>
+        <li>محاولة عكس هندسة أي برنامج مستخدم في الموقع</li>
+      </ul>
+      <p>نحتفظ بالحق في إنهاء وصول أي شخص ينتهك هذه الشروط.</p>
+    </div>
+
+    <div class="policy-section" id="accuracy">
+      <div class="section-number">القسم الرابع</div>
+      <h2>دقة النتائج</h2>
+      <div class="warning-box">
+        <p><strong>تنبيه مهم:</strong> آلات حاسبة كالك وايز مخصصة للأغراض الإعلامية والتعليمية فقط. لا ينبغي الاعتماد على النتائج وحدها لاتخاذ قرارات مالية أو طبية أو قانونية أو أي قرارات مهنية أخرى.</p>
+      </div>
+      <p>رغم سعينا لتوفير حسابات دقيقة، لا يضمن كالك وايز أن تكون نتائج الآلات الحاسبة مكتملة أو دقيقة أو محدَّثة. من العوامل التي قد تؤثر على الدقة:</p>
+      <ul class="policy-list">
+        <li>تغير أسعار الفائدة أو القوانين الضريبية أو اللوائح غير المنعكسة في آلاتنا الحاسبة</li>
+        <li>الظروف الفردية التي لا يمكن لصيغة عامة استيعابها</li>
+        <li>فروق التقريب في الحسابات المالية أو العلمية</li>
+        <li>أخطاء إدخال المستخدم</li>
+      </ul>
+      <p>استشر دائماً متخصصاً مؤهلاً — كمستشار مالي أو طبيب أو محامٍ — قبل اتخاذ قرارات مهمة بناءً على نتائج الآلة الحاسبة.</p>
+    </div>
+
+    <div class="policy-section" id="intellectual">
+      <div class="section-number">القسم الخامس</div>
+      <h2>الملكية الفكرية</h2>
+      <p>جميع محتويات كالك وايز — بما في ذلك على سبيل المثال لا الحصر التصميم والتخطيط والكود والنصوص والرسومات والشعارات ووظائف الآلة الحاسبة — هي ملك لكالك وايز ومحمية بموجب قوانين حقوق الطبع والنشر والملكية الفكرية المعمول بها.</p>
+      <p>يجوز لك استخدام الآلات الحاسبة للأغراض الشخصية غير التجارية. لا يجوز لك:</p>
+      <ul class="policy-list">
+        <li>نسخ أي جزء من الموقع أو إعادة نشره دون إذن كتابي</li>
+        <li>إنشاء أعمال مشتقة من محتوى الموقع أو كوده</li>
+        <li>استخدام اسم أو شعار كالك وايز دون إذن كتابي صريح</li>
+        <li>تأطير الموقع أو تضمينه في موقع آخر دون إذن</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="disclaimer">
+      <div class="section-number">القسم السادس</div>
+      <h2>إخلاء مسؤولية الضمانات</h2>
+      <p>يُقدَّم كالك وايز على أساس <strong>"كما هو"</strong> و<strong>"كما هو متاح"</strong> دون أي ضمانات من أي نوع، صريحة كانت أم ضمنية.</p>
+      <p>لا نضمن ما يلي:</p>
+      <ul class="policy-list">
+        <li>أن يكون الموقع متاحاً دون انقطاع أو خالياً من الأخطاء أو آمناً</li>
+        <li>أن تكون النتائج المحصَّلة من الموقع دقيقة أو موثوقة</li>
+        <li>أن يلبي الموقع متطلباتك الخاصة</li>
+        <li>أن يتم تصحيح العيوب في الموقع</li>
+      </ul>
+      <p>استخدامك لكالك وايز يكون بالكامل على مسؤوليتك الخاصة.</p>
+    </div>
+
+    <div class="policy-section" id="liability">
+      <div class="section-number">القسم السابع</div>
+      <h2>تحديد المسؤولية</h2>
+      <p>إلى أقصى حد يسمح به القانون، لن يكون كالك وايز ومالكوه ومشغلوه وموظفوه وشركاؤه مسؤولين عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو خاصة أو تبعية أو عقابية ناجمة عن:</p>
+      <ul class="policy-list">
+        <li>استخدامك للموقع أو عدم قدرتك على استخدامه</li>
+        <li>أي أخطاء أو عدم دقة في نتائج الآلة الحاسبة</li>
+        <li>القرارات المتخذة بناءً على المعلومات التي يوفرها الموقع</li>
+        <li>الوصول غير المصرح به إلى بياناتك أو تغييرها</li>
+        <li>أي مسألة أخرى تتعلق بالموقع</li>
+      </ul>
+      <p>لن تتجاوز المسؤولية الإجمالية لكالك وايز في أي حال المبلغ الذي دفعته للوصول إلى الموقع، وهو في معظم الحالات صفر لأن الموقع مجاني.</p>
+    </div>
+
+    <div class="policy-section" id="advertising">
+      <div class="section-number">القسم الثامن</div>
+      <h2>الإعلانات</h2>
+      <p>يعرض كالك وايز إعلانات تخدمها <strong>Google AdSense</strong>. تساعدنا هذه الإعلانات في إبقاء الخدمة مجانية للجميع.</p>
+      <p>باستخدامك لكالك وايز، تُقرّ بما يلي:</p>
+      <ul class="policy-list">
+        <li>الإعلانات المعروضة تخدمها Google وتخضع لسياسات إعلانات Google</li>
+        <li>لا نُوصي بالمنتجات أو الخدمات المُعلَن عنها في الموقع</li>
+        <li>قد تستخدم Google ملفات تعريف الارتباط لتقديم إعلانات مخصصة بناءً على سجل التصفح</li>
+        <li>يمكنك إلغاء الاشتراك في الإعلانات المخصصة على aboutads.info</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="changes">
+      <div class="section-number">القسم التاسع</div>
+      <h2>التغييرات على الشروط</h2>
+      <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. عند إجراء التغييرات، سنقوم بتحديث تاريخ <strong>"آخر تحديث"</strong> في أعلى هذه الصفحة.</p>
+      <p>استمرارك في استخدام كالك وايز بعد أي تغييرات على هذه الشروط يُشكّل موافقتك على الشروط الجديدة. نشجعك على مراجعة هذه الصفحة بشكل دوري.</p>
+    </div>
+
+    <div class="policy-section" id="governing">
+      <div class="section-number">القسم العاشر</div>
+      <h2>القانون الحاكم</h2>
+      <p>تُفسَّر هذه الشروط وتُطبَّق وفقاً للقوانين المعمول بها. ستخضع أي نزاعات تنشأ عن هذه الشروط أو استخدامك لكالك وايز للاختصاص القضائي الحصري للمحاكم المختصة.</p>
+      <p>إذا وُجد أي حكم من أحكام هذه الشروط غير قابل للتنفيذ، تستمر الأحكام المتبقية بكامل قوتها ومفعولها.</p>
+    </div>
+
+    <div class="policy-section" id="contact">
+      <div class="section-number">القسم الحادي عشر</div>
+      <h2>تواصل معنا</h2>
+      <p>إذا كانت لديك أي أسئلة حول شروط الاستخدام هذه، يُرجى التواصل معنا:</p>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>فريق كالك وايز القانوني</h4>
+          <p>الموقع: <a href="https://calcwises.com">calcwises.com</a><br>
+          البريد الإلكتروني: <a href="mailto:legal@calcwises.com">legal@calcwises.com</a><br>
+          نهدف إلى الرد على جميع الاستفسارات خلال ٥ أيام عمل.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="toc">
+    <h3>محتويات الصفحة</h3>
+    <ul>
+      <li><a href="#acceptance">١. قبول الشروط</a></li>
+      <li><a href="#description">٢. وصف الخدمة</a></li>
+      <li><a href="#use">٣. الاستخدام المقبول</a></li>
+      <li><a href="#accuracy">٤. دقة النتائج</a></li>
+      <li><a href="#intellectual">٥. الملكية الفكرية</a></li>
+      <li><a href="#disclaimer">٦. إخلاء مسؤولية الضمانات</a></li>
+      <li><a href="#liability">٧. تحديد المسؤولية</a></li>
+      <li><a href="#advertising">٨. الإعلانات</a></li>
+      <li><a href="#changes">٩. التغييرات على الشروط</a></li>
+      <li><a href="#governing">١٠. القانون الحاكم</a></li>
+      <li><a href="#contact">١١. تواصل معنا</a></li>
+    </ul>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index-ar.html">الرئيسية</a>
+    <a href="privacy-ar.html">سياسة الخصوصية</a>
+    <a href="terms-ar.html">شروط الاستخدام</a>
+    <a href="about-ar.html">عن الموقع</a>
+  </div>
+  <p>© ٢٠٢٥ كالك وايز · calcwises.com · جميع الحقوق محفوظة</p>
+</footer>
+</body>
+</html>

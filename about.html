@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About CalcWise – Free Online Calculators</title>
+<meta name="description" content="Learn about CalcWise — a free, privacy-first calculator site with 36+ tools for finance, health, math, and everyday life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f; --surface: #13131a; --surface2: #1c1c27;
+  --border: #2a2a3d; --border2: #363650; --text: #e8e8f0;
+  --muted: #7070a0; --muted2: #9090b8; --accent: #6c63ff;
+  --accent2: #8b84ff; --green: #22d3a0; --orange: #ff8c42;
+  --pink: #ff6b9d; --blue: #4da6ff; --yellow: #ffd166;
+  --radius: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; z-index: 0; background-image: linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
+.nav-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; height: 60px; gap: 1rem; }
+.logo { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: var(--text); text-decoration: none; }
+.logo span { color: var(--accent); }
+.nav-links { margin-left: auto; display: flex; gap: 0.5rem; }
+.nav-link { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 1rem; color: var(--muted2); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+.nav-link:hover { border-color: var(--border2); color: var(--text); }
+.about-hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 4rem; overflow: hidden; }
+.about-hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(108,99,255,0.15) 0%, transparent 70%); pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border2); background: var(--surface); padding: 0.35rem 1rem; border-radius: 100px; font-size: 0.8rem; color: var(--muted2); margin-bottom: 1.75rem; }
+.about-hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.about-hero h1 em { font-style: italic; color: var(--accent2); }
+.about-hero p { font-size: 1.1rem; color: var(--muted2); max-width: 580px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
+.stats-strip { position: relative; z-index: 1; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem; }
+.stats-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.stat-box { text-align: center; padding: 1rem; }
+.stat-box-num { font-family: 'Instrument Serif', serif; font-size: 2.5rem; color: var(--accent2); display: block; line-height: 1; margin-bottom: 0.4rem; }
+.stat-box-label { font-size: 0.85rem; color: var(--muted2); }
+.about-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
+.about-section { margin-bottom: 5rem; }
+.about-section h2 { font-family: 'Instrument Serif', serif; font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+.about-section h2 em { font-style: italic; color: var(--accent2); }
+.about-section p { color: var(--muted2); font-size: 0.97rem; line-height: 1.9; margin-bottom: 1rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.col-visual { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.value-card { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--surface2); border-radius: 12px; }
+.value-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.value-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+.value-card p { font-size: 0.82rem; color: var(--muted2); margin: 0; line-height: 1.6; }
+.cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.cat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; transition: all 0.2s; }
+.cat-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.cat-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.cat-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+.cat-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin: 0; }
+.cat-count { display: inline-block; background: var(--surface2); border-radius: 100px; padding: 0.15rem 0.5rem; font-size: 0.72rem; color: var(--muted2); margin-top: 0.4rem; }
+.mission-box { background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(108,99,255,0.03)); border: 1px solid rgba(108,99,255,0.3); border-radius: 20px; padding: 3rem; text-align: center; margin: 3rem 0; }
+.mission-box h3 { font-family: 'Instrument Serif', serif; font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
+.mission-box p { color: var(--muted2); font-size: 1rem; max-width: 540px; margin: 0 auto; line-height: 1.9; }
+.team-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; display: flex; gap: 2rem; align-items: flex-start; }
+.team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+.team-info h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; margin-bottom: 0.3rem; }
+.team-info .role { font-size: 0.82rem; color: var(--accent2); font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.team-info p { font-size: 0.9rem; color: var(--muted2); line-height: 1.8; margin: 0; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.contact-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; text-decoration: none; transition: all 0.2s; display: block; }
+.contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+.contact-item-icon { font-size: 1.75rem; margin-bottom: 0.75rem; display: block; }
+.contact-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--text); }
+.contact-item p { font-size: 0.8rem; color: var(--muted2); margin: 0; }
+footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: var(--surface); padding: 2rem; text-align: center; }
+.footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.footer-links a { color: var(--muted2); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
+footer p { font-size: 0.8rem; color: var(--muted); }
+@media (max-width: 768px) { .two-col, .stats-inner, .contact-grid, .cat-grid { grid-template-columns: 1fr; } .team-card { flex-direction: column; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Calc<span>Wise</span></a>
+    <div class="nav-links">
+      <a href="about-ar.html" class="nav-link">عربي</a>
+      <a href="index.html" class="nav-link">← Back to Calculators</a>
+    </div>
+  </div>
+</nav>
+
+<section class="about-hero">
+  <div class="hero-badge">👋 Nice to meet you</div>
+  <h1>Built for <em>Everyone</em><br>Who Needs to Calculate</h1>
+  <p>CalcWise is a free, fast, and private calculator tool built to give everyone access to professional-grade calculations — with zero signup, zero cost, and zero data collection.</p>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-box"><span class="stat-box-num">36+</span><span class="stat-box-label">Free Calculators</span></div>
+    <div class="stat-box"><span class="stat-box-num">4</span><span class="stat-box-label">Categories</span></div>
+    <div class="stat-box"><span class="stat-box-num">2</span><span class="stat-box-label">Languages</span></div>
+    <div class="stat-box"><span class="stat-box-num">0</span><span class="stat-box-label">Data Collected</span></div>
+  </div>
+</div>
+
+<div class="about-content">
+
+  <div class="mission-box">
+    <h3>Our Mission</h3>
+    <p>To make professional-grade calculations accessible to everyone — whether you're planning a mortgage in Texas, tracking calories in Riyadh, or solving equations in a classroom anywhere in the world. Free, instant, and private.</p>
+  </div>
+
+  <div class="about-section">
+    <div class="two-col">
+      <div>
+        <h2>What is <em>CalcWise?</em></h2>
+        <p>CalcWise is a free browser-based calculator platform featuring over 36 tools across finance, health, mathematics, and everyday life. Every calculation runs entirely inside your browser — we never see your numbers.</p>
+        <p>We built CalcWise because most online calculators are slow, cluttered with ads that block your results, or require you to sign up just to use basic tools. CalcWise is different: instant, clean, and completely free.</p>
+        <p>Available in both <strong>English and Arabic</strong> — one of the few calculator platforms designed specifically with Arabic-speaking users in mind, with full RTL support and localized units.</p>
+      </div>
+      <div class="col-visual">
+        <div class="value-card">
+          <div class="value-icon" style="background:rgba(108,99,255,0.15)">⚡</div>
+          <div><h4>Instant Results</h4><p>No loading, no waiting. Results appear the moment you type.</p></div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" style="background:rgba(34,211,160,0.15)">🔒</div>
+          <div><h4>Private by Design</h4><p>All calculations happen in your browser. We never see your inputs.</p></div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" style="background:rgba(255,209,102,0.15)">🌍</div>
+          <div><h4>Bilingual</h4><p>Full English and Arabic support with proper RTL layout.</p></div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" style="background:rgba(255,107,157,0.15)">💸</div>
+          <div><h4>100% Free</h4><p>No premium plans, no paywalls. Every calculator, always free.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h2>What Can You <em>Calculate?</em></h2>
+    <p>CalcWise covers the calculations that matter most in real life — from planning your finances to tracking your health.</p>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-card-icon">💰</div>
+        <h4>Finance & Money</h4>
+        <p>Mortgage payments, loan calculator, compound interest, salary converter, ROI, credit card payoff, tax, and more.</p>
+        <span class="cat-count">12 calculators</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-icon">❤️</div>
+        <h4>Health & Fitness</h4>
+        <p>BMI, calories, macros, body fat, running pace, water intake, sleep cycles, pregnancy due date, and heart rate zones.</p>
+        <span class="cat-count">10 calculators</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-icon">📐</div>
+        <h4>Math & Science</h4>
+        <p>Scientific calculator, unit converter, GPA, quadratic equations, probability, geometry, and number base converter.</p>
+        <span class="cat-count">8 calculators</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-icon">🌟</div>
+        <h4>Everyday Life</h4>
+        <p>Age calculator, date difference, time zone converter, fuel cost, cooking measurements, and random number generator.</p>
+        <span class="cat-count">6 calculators</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h2>Privacy <em>First</em></h2>
+    <p>We built CalcWise on a simple principle: a calculator doesn't need to know your salary to calculate your tax. Your inputs are yours. Period.</p>
+    <p>When you type numbers into CalcWise, those numbers never leave your device. Everything runs in JavaScript, entirely in your browser — no server ever processes your mortgage inputs or your health data.</p>
+    <p>We do use Google Analytics to understand general traffic patterns and Google AdSense to serve ads that keep the site free. Read our full <a href="privacy.html" style="color:var(--accent2)">Privacy Policy</a> for details.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Who's <em>Behind CalcWise?</em></h2>
+    <p>CalcWise is an independent project built and maintained by a small team passionate about making useful tools accessible to everyone.</p>
+    <div class="team-card" style="margin-top:1.5rem;">
+      <div class="team-avatar">🧮</div>
+      <div class="team-info">
+        <h3>The CalcWise Team</h3>
+        <div class="role">Independent Developers</div>
+        <p>We're a small independent team who built CalcWise because we were tired of calculator sites covered in pop-ups that require you to sign up just to use basic tools. We wanted something fast, clean, and genuinely useful — so we built it. CalcWise is available in English and Arabic because we believe useful tools should be accessible regardless of language.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h2>Get in <em>Touch</em></h2>
+    <p>Have a suggestion for a new calculator? Found a bug? We'd love to hear from you.</p>
+    <div class="contact-grid">
+      <a href="mailto:hello@calcwises.com" class="contact-item">
+        <span class="contact-item-icon">✉️</span>
+        <h4>General Inquiries</h4>
+        <p>hello@calcwises.com</p>
+      </a>
+      <a href="mailto:privacy@calcwises.com" class="contact-item">
+        <span class="contact-item-icon">🔒</span>
+        <h4>Privacy Questions</h4>
+        <p>privacy@calcwises.com</p>
+      </a>
+      <a href="mailto:legal@calcwises.com" class="contact-item">
+        <span class="contact-item-icon">📋</span>
+        <h4>Legal & Terms</h4>
+        <p>legal@calcwises.com</p>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="about.html">About</a>
+  </div>
+  <p>© 2025 CalcWise · calcwises.com · All rights reserved.</p>
+</footer>
+</body>
+</html>
