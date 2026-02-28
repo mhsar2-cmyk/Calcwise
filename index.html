@@ -478,11 +478,57 @@ footer ul a:hover { color: var(--text); }
 .calc-card:nth-child(4) { animation-delay: 0.2s; }
 .calc-card:nth-child(5) { animation-delay: 0.25s; }
 .calc-card:nth-child(6) { animation-delay: 0.3s; }
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle {
+  position: fixed; top: 50%; right: 0;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: flex; flex-direction: column;
+  border-radius: 12px 0 0 12px;
+  overflow: hidden;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+}
+.lang-toggle a {
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 46px;
+  text-decoration: none;
+  font-size: 0.8rem; font-weight: 700;
+  transition: all 0.2s; letter-spacing: 0.04em;
+}
+.lang-toggle a.lang-en {
+  background: #6c63ff; color: white;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.lang-toggle a.lang-en:hover { background: #8b84ff; }
+.lang-toggle a.lang-ar {
+  background: #1c1c27; color: #9090b8;
+  font-family: 'Cairo', sans-serif;
+}
+.lang-toggle a.lang-ar:hover { background: #2a2a3d; color: #e8e8f0; }
+.lang-toggle a::after {
+  content: attr(data-tooltip);
+  position: absolute; right: 56px;
+  background: #1c1c27; border: 1px solid #363650;
+  color: #e8e8f0; font-size: 0.75rem;
+  padding: 0.3rem 0.7rem; border-radius: 6px;
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+}
+.lang-toggle a:hover::after { opacity: 1; }
+@media (max-width: 600px) {
+  .lang-toggle { top: auto; bottom: 1.5rem; transform: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ═══ LANGUAGE TOGGLE ═══ -->
+<div class="lang-toggle">
+  <a href="index.html"    class="lang-en" data-tooltip="English (current)">EN</a>
+  <a href="index-ar.html" class="lang-ar" data-tooltip="العربية" style="font-family:'Cairo',sans-serif;">ع</a>
+</div>
+
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">Calc<span class="logo-dot">Wise</span></a>

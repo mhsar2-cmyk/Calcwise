@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كالك وايز – آلات حاسبة مجانية للمال والصحة والرياضيات</title>
+<meta name="description" content="آلات حاسبة مجانية للتمويل والصحة واللياقة البدنية والرياضيات. نتائج فورية بدون تسجيل. حاسبة الرهن العقاري، مؤشر كتلة الجسم، القروض، السعرات الحرارية، وأكثر من ٣٦ آلة حاسبة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════════════
+     LANGUAGE TOGGLE WIDGET
+════════════════════════════════════════════ -->
+<style>
+.lang-toggle {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 0 12px 12px 0;
+  overflow: hidden;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+}
+.lang-toggle a {
+  display: flex; align-items: center; justify-content: center;
+  width: 52px; height: 48px;
+  text-decoration: none;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.82rem; font-weight: 700;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+  border: none; outline: none;
+}
+.lang-toggle a.lang-en {
+  background: #1c1c27;
+  color: #9090b8;
+  border-bottom: 1px solid #2a2a3d;
+}
+.lang-toggle a.lang-en:hover { background: #2a2a3d; color: #e8e8f0; }
+.lang-toggle a.lang-ar {
+  background: #6c63ff;
+  color: white;
+}
+.lang-toggle a.lang-ar:hover { background: #8b84ff; }
+.lang-toggle a.active-lang {
+  cursor: default;
+}
+.lang-toggle a .flag {
+  font-size: 1.1rem;
+  display: block;
+}
+
+/* Tooltip on hover */
+.lang-toggle a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 60px;
+  background: #1c1c27;
+  border: 1px solid #363650;
+  color: #e8e8f0;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+  font-family: 'Cairo', sans-serif;
+}
+.lang-toggle a:hover::after { opacity: 1; }
+</style>
+
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface2: #1c1c27;
+  --border: #2a2a3d;
+  --border2: #363650;
+  --text: #e8e8f0;
+  --muted: #7070a0;
+  --muted2: #9090b8;
+  --accent: #6c63ff;
+  --accent2: #8b84ff;
+  --accent3: #b3aeff;
+  --green: #22d3a0;
+  --orange: #ff8c42;
+  --pink: #ff6b9d;
+  --blue: #4da6ff;
+  --yellow: #ffd166;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.logo {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5rem; color: var(--text);
+  text-decoration: none; letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 0.4rem;
+  font-family: 'Cairo', sans-serif; font-weight: 800;
+}
+.logo-dot { color: var(--accent); }
+
+.nav-search {
+  display: flex; align-items: center;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 100px; padding: 0.4rem 1rem;
+  gap: 0.5rem; width: 280px;
+  transition: border-color 0.2s;
+  flex-direction: row-reverse;
+}
+.nav-search:focus-within { border-color: var(--accent); }
+.nav-search input {
+  background: none; border: none; outline: none;
+  color: var(--text); font-family: 'Cairo', sans-serif;
+  font-size: 0.875rem; width: 100%;
+  text-align: right; direction: rtl;
+}
+.nav-search input::placeholder { color: var(--muted); }
+
+.nav-cats {
+  display: flex; gap: 0.25rem; list-style: none;
+  flex-direction: row-reverse;
+}
+.nav-cats button {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  padding: 0.35rem 0.85rem; border-radius: 100px;
+  transition: all 0.2s;
+}
+.nav-cats button:hover, .nav-cats button.active {
+  background: var(--surface2); color: var(--text);
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 5rem 2rem 3.5rem;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute; top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(108,99,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  padding: 0.35rem 1.2rem; border-radius: 100px;
+  font-size: 0.85rem; color: var(--muted2);
+  margin-bottom: 1.75rem;
+  font-family: 'Cairo', sans-serif;
+}
+.hero-eyebrow span { color: var(--accent2); }
+.hero h1 {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+.hero h1 em { font-style: italic; color: var(--accent2); }
+.hero p {
+  font-size: 1.05rem; color: var(--muted2);
+  max-width: 560px; margin: 0 auto 2.5rem;
+  font-weight: 400; line-height: 1.9;
+  font-family: 'Cairo', sans-serif;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 3rem;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Amiri', serif;
+  font-size: 2rem; color: var(--text);
+  display: block;
+}
+.stat-label { font-size: 0.85rem; color: var(--muted); font-family: 'Cairo', sans-serif; }
+
+/* ── AD BANNER ── */
+.ad-wrap {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 2rem;
+}
+.ad-unit {
+  background: var(--surface);
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  font-family: 'Cairo', sans-serif;
+}
+.ad-unit.leaderboard { height: 90px; margin: 1.5rem 0; }
+.ad-unit.sidebar { height: 600px; width: 160px; }
+
+/* ── MAIN LAYOUT ── */
+.main-wrap {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.main-content { min-width: 0; }
+.sidebar-col { position: sticky; top: 80px; }
+
+/* ── CATEGORY TABS ── */
+.cat-tabs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.cat-tab {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 100px; padding: 0.45rem 1rem;
+  cursor: pointer; font-family: 'Cairo', sans-serif;
+  font-size: 0.88rem; font-weight: 600; color: var(--muted2);
+  transition: all 0.2s;
+}
+.cat-tab:hover { border-color: var(--border2); color: var(--text); }
+.cat-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+.cat-tab .tab-icon { font-size: 1rem; }
+
+/* ── CALCULATOR GRID ── */
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.calc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
+  position: relative; overflow: hidden;
+  text-align: right;
+}
+.calc-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--card-color, var(--accent)));
+  opacity: 0; transition: opacity 0.2s;
+}
+.calc-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: var(--shadow); }
+.calc-card:hover::before { opacity: 1; }
+.card-icon {
+  width: 44px; height: 44px;
+  background: var(--surface2); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 0.9rem;
+  margin-right: 0; margin-left: auto;
+}
+.calc-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; font-family: 'Cairo', sans-serif; }
+.calc-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; font-family: 'Cairo', sans-serif; }
+.card-tag {
+  position: absolute; top: 1rem; left: 1rem;
+  background: var(--card-color, var(--accent));
+  color: white; font-size: 0.65rem;
+  font-weight: 700; padding: 0.2rem 0.5rem;
+  border-radius: 4px; opacity: 0.9;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ── SECTION HEADER ── */
+.section-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.section-head h2 { font-family: 'Amiri', serif; font-size: 1.5rem; }
+.section-badge {
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 100px; padding: 0.2rem 0.7rem;
+  font-size: 0.75rem; color: var(--muted2); font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 20px; width: 100%; max-width: 680px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+  direction: rtl; text-align: right;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--border);
+  flex-direction: row-reverse;
+}
+.modal-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.modal-header h2 { font-family: 'Amiri', serif; font-size: 1.5rem; }
+.modal-header p { font-size: 0.85rem; color: var(--muted2); margin-top: 0.15rem; font-family: 'Cairo', sans-serif; }
+.modal-close {
+  margin-right: auto; margin-left: 0;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; width: 36px; height: 36px;
+  cursor: pointer; color: var(--muted2); font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.modal-close:hover { border-color: var(--border2); color: var(--text); }
+.modal-body { padding: 1.75rem; }
+
+/* ── FORM ELEMENTS ── */
+.field-group { margin-bottom: 1.25rem; }
+.field-group label {
+  display: block; font-size: 0.82rem; font-weight: 700;
+  color: var(--muted2); margin-bottom: 0.4rem;
+  font-family: 'Cairo', sans-serif;
+}
+.input-wrap { position: relative; }
+.input-prefix, .input-suffix {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  color: var(--muted); font-size: 0.9rem; pointer-events: none;
+}
+.input-prefix { right: 0.9rem; left: auto; }
+.input-suffix { left: 0.9rem; right: auto; }
+
+input[type="number"], input[type="text"], input[type="password"], input[type="date"], select {
+  width: 100%; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem; font-family: 'Cairo', sans-serif;
+  font-size: 0.95rem; color: var(--text); outline: none;
+  transition: border-color 0.2s; direction: rtl; text-align: right;
+}
+input[type="number"]:focus, input[type="text"]:focus, select:focus { border-color: var(--accent); }
+.has-prefix input { padding-right: 2rem; }
+.has-suffix input { padding-left: 2.5rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+.calc-btn {
+  width: 100%; background: var(--accent); border: none;
+  border-radius: var(--radius-sm); padding: 0.85rem;
+  color: white; font-family: 'Cairo', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
+}
+.calc-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+/* ── RESULTS ── */
+.results {
+  display: none; margin-top: 1.5rem;
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.results.show { display: block; }
+.results h3 {
+  font-size: 0.8rem; font-weight: 700; color: var(--muted);
+  margin-bottom: 1rem; font-family: 'Cairo', sans-serif;
+}
+.result-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+}
+.result-item { text-align: center; }
+.result-value {
+  font-family: 'Amiri', serif; font-size: 1.8rem;
+  color: var(--accent2); display: block; line-height: 1.1;
+}
+.result-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; font-family: 'Cairo', sans-serif; }
+.result-highlight {
+  background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(108,99,255,0.05));
+  border: 1px solid rgba(108,99,255,0.3);
+  border-radius: 10px; padding: 1rem; text-align: center; margin-bottom: 1rem;
+}
+.result-highlight .result-value { font-size: 2.4rem; }
+.result-note {
+  font-size: 0.82rem; color: var(--muted); margin-top: 1rem;
+  padding-top: 1rem; border-top: 1px solid var(--border);
+  line-height: 1.8; font-family: 'Cairo', sans-serif;
+}
+.result-bar { margin-top: 1rem; }
+.bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; font-size: 0.82rem; flex-direction: row-reverse; }
+.bar-label { width: 130px; color: var(--muted2); flex-shrink: 0; text-align: right; font-family: 'Cairo', sans-serif; }
+.bar-track { flex: 1; background: var(--surface); border-radius: 100px; height: 8px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 100px; transition: width 0.6s ease; }
+.bar-val { width: 80px; color: var(--text); font-weight: 600; text-align: left; font-family: 'Cairo', sans-serif; }
+
+.modal-ad {
+  background: var(--bg); border: 1px dashed var(--border);
+  border-radius: var(--radius-sm); margin-top: 1.5rem;
+  height: 90px; display: flex; align-items: center;
+  justify-content: center; color: var(--muted);
+  font-size: 0.7rem; font-family: 'Cairo', sans-serif;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  background: var(--surface); padding: 3rem 2rem 2rem;
+  margin-top: 4rem;
+}
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem; margin-bottom: 2.5rem;
+}
+.footer-brand .logo { font-size: 1.25rem; margin-bottom: 0.75rem; display: inline-block; }
+.footer-brand p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; max-width: 280px; font-family: 'Cairo', sans-serif; }
+footer h4 { font-size: 0.85rem; font-weight: 800; color: var(--muted); margin-bottom: 1rem; font-family: 'Cairo', sans-serif; }
+footer ul { list-style: none; }
+footer ul li { margin-bottom: 0.6rem; }
+footer ul a { color: var(--muted2); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; font-family: 'Cairo', sans-serif; }
+footer ul a:hover { color: var(--text); }
+.footer-bottom {
+  max-width: 1280px; margin: 0 auto;
+  padding-top: 1.5rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ── MISC ── */
+.calc-card.hidden { display: none; }
+.no-results { grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--muted); font-family: 'Cairo', sans-serif; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .main-wrap { grid-template-columns: 1fr; }
+  .sidebar-col { display: none; }
+  .nav-cats { display: none; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .lang-toggle { top: auto; bottom: 1.5rem; left: 0; transform: none; flex-direction: row; border-radius: 0 12px 12px 0; }
+  .lang-toggle a { width: 48px; height: 44px; }
+}
+@media (max-width: 600px) {
+  .field-row, .field-row-3 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.5rem; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.calc-card { animation: fadeUp 0.4s ease both; }
+.calc-card:nth-child(1){animation-delay:.05s}.calc-card:nth-child(2){animation-delay:.1s}
+.calc-card:nth-child(3){animation-delay:.15s}.calc-card:nth-child(4){animation-delay:.2s}
+.calc-card:nth-child(5){animation-delay:.25s}.calc-card:nth-child(6){animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- ═══ LANGUAGE TOGGLE ═══ -->
+<div class="lang-toggle">
+  <a href="index.html" class="lang-en" data-tooltip="English">EN</a>
+  <a href="index-ar.html" class="lang-ar active-lang" data-tooltip="العربية">ع</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index-ar.html" class="logo">Calc<span class="logo-dot">Wise</span></a>
+    <div class="nav-search">
+      <span style="color:var(--muted);font-size:0.9rem;">⌕</span>
+      <input type="text" id="global-search" placeholder="ابحث عن آلة حاسبة..." oninput="searchCalcs(this.value)">
+    </div>
+    <ul class="nav-cats">
+      <li><button onclick="filterCat('all')" class="active" id="nav-all">الكل</button></li>
+      <li><button onclick="filterCat('finance')" id="nav-finance">المال</button></li>
+      <li><button onclick="filterCat('health')" id="nav-health">الصحة</button></li>
+      <li><button onclick="filterCat('math')" id="nav-math">الرياضيات</button></li>
+      <li><button onclick="filterCat('everyday')" id="nav-everyday">يومي</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow"><span>✦</span> مجاني · فوري · خاص <span>✦</span></div>
+  <h1>كل آلة حاسبة<br>ستحتاجها <em>يوماً ما</em></h1>
+  <p>أكثر من ٣٦ آلة حاسبة مجانية للمال والصحة والرياضيات والحياة اليومية. نتائج فورية بدون إعلانات مزعجة، بدون تسجيل، بدون تعقيد.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">٣٦+</span><span class="stat-label">آلة حاسبة</span></div>
+    <div class="stat"><span class="stat-num">١٠٠٪</span><span class="stat-label">مجاني للأبد</span></div>
+    <div class="stat"><span class="stat-num">صفر</span><span class="stat-label">بيانات مجمعة</span></div>
+  </div>
+</section>
+
+<!-- TOP AD -->
+<div class="ad-wrap">
+  <div class="ad-unit leaderboard">إعلان · 728×90</div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- SIDEBAR (LEFT in RTL) -->
+  <div class="sidebar-col">
+    <div class="ad-unit sidebar">إعلان · 160×600</div>
+  </div>
+
+  <div class="main-content">
+
+    <!-- CATEGORY TABS -->
+    <div class="cat-tabs">
+      <button class="cat-tab active" onclick="filterCat('all')" id="tab-all"><span class="tab-icon">⚡</span> كل الآلات</button>
+      <button class="cat-tab" onclick="filterCat('finance')" id="tab-finance"><span class="tab-icon">💰</span> المال</button>
+      <button class="cat-tab" onclick="filterCat('health')" id="tab-health"><span class="tab-icon">❤️</span> الصحة واللياقة</button>
+      <button class="cat-tab" onclick="filterCat('math')" id="tab-math"><span class="tab-icon">📐</span> الرياضيات</button>
+      <button class="cat-tab" onclick="filterCat('everyday')" id="tab-everyday"><span class="tab-icon">🌟</span> يومي</button>
+    </div>
+
+    <!-- ══ FINANCE ══ -->
+    <div id="section-finance" class="calc-section">
+      <div class="section-head">
+        <h2>💰 المال والتمويل</h2>
+        <span class="section-badge">١٢ آلة حاسبة</span>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-card" style="--card-color:var(--green)" data-cat="finance" data-name="رهن عقاري قرض منزل دفعة شهرية" onclick="openCalc('mortgage')">
+          <div class="card-icon">🏠</div><h3>حاسبة الرهن العقاري</h3>
+          <p>الدفعات الشهرية والفوائد الإجمالية وجدول الإهلاك الكامل.</p>
+          <span class="card-tag" style="background:var(--green)">الأكثر طلباً</span>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="finance" data-name="قرض شخصي سيارة دفعة شهرية" onclick="openCalc('loan')">
+          <div class="card-icon">💳</div><h3>حاسبة القروض</h3>
+          <p>احسب الدفعات الشهرية لأي قرض شخصي أو قرض سيارة.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--yellow)" data-cat="finance" data-name="فائدة مركبة ادخار استثمار نمو" onclick="openCalc('compound')">
+          <div class="card-icon">📈</div><h3>الفائدة المركبة</h3>
+          <p>شاهد كيف تنمو مدخراتك أو استثماراتك مع مرور الوقت.</p>
+          <span class="card-tag" style="background:var(--yellow);color:#000">رائج</span>
+        </div>
+        <div class="calc-card" style="--card-color:var(--orange)" data-cat="finance" data-name="بطاقة ائتمان ديون سداد فوائد" onclick="openCalc('creditcard')">
+          <div class="card-icon">💳</div><h3>سداد بطاقة الائتمان</h3>
+          <p>كم من الوقت يستغرق سداد رصيدك والفوائد الإجمالية.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--accent)" data-cat="finance" data-name="راتب أجر ساعي شهري سنوي" onclick="openCalc('salary')">
+          <div class="card-icon">💼</div><h3>حاسبة الراتب</h3>
+          <p>حوّل بين الأجر بالساعة والأسبوعي والشهري والسنوي.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--pink)" data-cat="finance" data-name="بقشيش مطعم فاتورة تقسيم" onclick="openCalc('tip')">
+          <div class="card-icon">🍽️</div><h3>حاسبة البقشيش</h3>
+          <p>قسّم فاتورة المطعم واحسب البقشيش لكل شخص فوراً.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--green)" data-cat="finance" data-name="عائد استثمار ربح خسارة نسبة" onclick="openCalc('roi')">
+          <div class="card-icon">📊</div><h3>حاسبة العائد على الاستثمار</h3>
+          <p>احسب نسبة العائد والربح من أي استثمار.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="finance" data-name="نسبة مئوية خصم تخفيض سعر" onclick="openCalc('percentage')">
+          <div class="card-icon">%</div><h3>حاسبة النسبة المئوية</h3>
+          <p>ما هو X٪ من Y؟ التغيير والزيادة والنقصان بالنسبة المئوية.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--yellow)" data-cat="finance" data-name="ضريبة القيمة المضافة VAT ضريبة المبيعات" onclick="openCalc('tax')">
+          <div class="card-icon">🧾</div><h3>حاسبة ضريبة القيمة المضافة</h3>
+          <p>أضف أو استخرج الضريبة من أي سعر فوراً.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--orange)" data-cat="finance" data-name="تقاعد ادخار مدخرات مستقبل" onclick="openCalc('retirement')">
+          <div class="card-icon">🏖️</div><h3>حاسبة مدخرات التقاعد</h3>
+          <p>كم تحتاج أن توفر شهرياً لتتقاعد براحة.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--accent)" data-cat="finance" data-name="عملة صرف دولار ريال يورو" onclick="openCalc('currency')">
+          <div class="card-icon">💱</div><h3>محول العملات</h3>
+          <p>حوّل بين عملات العالم الرئيسية بأسعار محدّثة.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--pink)" data-cat="finance" data-name="تضخم قوة شرائية أسعار" onclick="openCalc('inflation')">
+          <div class="card-icon">📉</div><h3>حاسبة التضخم</h3>
+          <p>شاهد كيف يؤثر التضخم على قيمة المال مع الوقت.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MID AD -->
+    <div class="ad-unit leaderboard" style="margin:2rem 0">إعلان · 728×90</div>
+
+    <!-- ══ HEALTH ══ -->
+    <div id="section-health" class="calc-section">
+      <div class="section-head">
+        <h2>❤️ الصحة واللياقة</h2>
+        <span class="section-badge">١٠ آلات حاسبة</span>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-card" style="--card-color:var(--pink)" data-cat="health" data-name="مؤشر كتلة الجسم وزن طول BMI" onclick="openCalc('bmi')">
+          <div class="card-icon">⚖️</div><h3>حاسبة مؤشر كتلة الجسم</h3>
+          <p>مؤشر كتلة الجسم مع نطاق الوزن الصحي والتصنيف.</p>
+          <span class="card-tag" style="background:var(--pink)">الأكثر طلباً</span>
+        </div>
+        <div class="calc-card" style="--card-color:var(--orange)" data-cat="health" data-name="سعرات حرارية TDEE حمية تخسيس وزن" onclick="openCalc('calories')">
+          <div class="card-icon">🔥</div><h3>حاسبة السعرات الحرارية</h3>
+          <p>الاحتياج اليومي من السعرات بناءً على هدفك: إنقاص أو ثبات أو زيادة.</p>
+          <span class="card-tag" style="background:var(--orange)">رائج</span>
+        </div>
+        <div class="calc-card" style="--card-color:var(--green)" data-cat="health" data-name="بروتين كربوهيدرات دهون ماكرو نظام غذائي" onclick="openCalc('macros')">
+          <div class="card-icon">🥩</div><h3>حاسبة الماكرو</h3>
+          <p>احتياجاتك من البروتين والكربوهيدرات والدهون حسب هدفك.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="health" data-name="نسبة الدهون في الجسم قياسات" onclick="openCalc('bodyfat')">
+          <div class="card-icon">💪</div><h3>حاسبة نسبة الدهون</h3>
+          <p>تقدير نسبة الدهون في الجسم من خلال القياسات.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--yellow)" data-cat="health" data-name="سرعة جري إيقاع كيلومتر وقت" onclick="openCalc('pace')">
+          <div class="card-icon">🏃</div><h3>حاسبة إيقاع الجري</h3>
+          <p>احسب الإيقاع أو وقت الإنهاء أو المسافة لأي سباق.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--accent)" data-cat="health" data-name="ماء شرب ترطيب يومي" onclick="openCalc('water')">
+          <div class="card-icon">💧</div><h3>حاسبة شرب الماء</h3>
+          <p>كمية الماء اليومية التي تحتاجها بناءً على وزنك ونشاطك.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--pink)" data-cat="health" data-name="نوم ساعات موعد نوم استيقاظ" onclick="openCalc('sleep')">
+          <div class="card-icon">😴</div><h3>حاسبة النوم</h3>
+          <p>أفضل وقت للنوم بناءً على دورات النوم ووقت الاستيقاظ.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--green)" data-cat="health" data-name="حمل ولادة موعد الولادة أسابيع" onclick="openCalc('pregnancy')">
+          <div class="card-icon">🤰</div><h3>حاسبة موعد الولادة</h3>
+          <p>احسب الموعد المتوقع للولادة من آخر دورة شهرية.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--orange)" data-cat="health" data-name="معدل ضربات القلب كارديو حرق دهون" onclick="openCalc('heartrate')">
+          <div class="card-icon">❤️</div><h3>مناطق معدل ضربات القلب</h3>
+          <p>مناطق معدل ضربات القلب المستهدفة لحرق الدهون والكارديو.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="health" data-name="الوزن المثالي صحي طول هيكل" onclick="openCalc('idealweight')">
+          <div class="card-icon">🎯</div><h3>حاسبة الوزن المثالي</h3>
+          <p>نطاق الوزن الصحي المناسب لطولك وهيكلك العظمي.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MID AD 2 -->
+    <div class="ad-unit leaderboard" style="margin:2rem 0">إعلان · 728×90</div>
+
+    <!-- ══ MATH ══ -->
+    <div id="section-math" class="calc-section">
+      <div class="section-head">
+        <h2>📐 الرياضيات والعلوم</h2>
+        <span class="section-badge">٨ آلات حاسبة</span>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-card" style="--card-color:var(--accent)" data-cat="math" data-name="آلة حاسبة علمية رياضيات" onclick="openCalc('scientific')">
+          <div class="card-icon">🔢</div><h3>الآلة الحاسبة العلمية</h3>
+          <p>آلة حاسبة علمية كاملة مع دوال المثلثات واللوغاريتم.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="math" data-name="محول وحدات طول وزن حرارة حجم سرعة" onclick="openCalc('units')">
+          <div class="card-icon">📏</div><h3>محول الوحدات</h3>
+          <p>الطول والوزن والحجم ودرجة الحرارة والسرعة وغيرها.</p>
+          <span class="card-tag">الأكثر طلباً</span>
+        </div>
+        <div class="calc-card" style="--card-color:var(--green)" data-cat="math" data-name="معدل تراكمي GPA درجات جامعة" onclick="openCalc('gpa')">
+          <div class="card-icon">🎓</div><h3>حاسبة المعدل التراكمي GPA</h3>
+          <p>احسب معدلك التراكمي من درجات المواد والساعات الدراسية.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--yellow)" data-cat="math" data-name="معادلة تربيعية جذور حل" onclick="openCalc('quadratic')">
+          <div class="card-icon">📊</div><h3>حل المعادلة التربيعية</h3>
+          <p>حل معادلات من صيغة ax² + bx + c = 0 بسهولة.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--orange)" data-cat="math" data-name="احتمالية إحصاء توافيق تبديلات" onclick="openCalc('probability')">
+          <div class="card-icon">🎲</div><h3>حاسبة الاحتمالات</h3>
+          <p>التوافيق والتبديلات واحتمالات الأحداث.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--pink)" data-cat="math" data-name="هندسة مساحة محيط حجم أشكال" onclick="openCalc('geometry')">
+          <div class="card-icon">📐</div><h3>حاسبة الهندسة</h3>
+          <p>المساحة والمحيط والحجم للدوائر والمثلثات والمستطيلات.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--accent)" data-cat="math" data-name="سرعة مسافة زمن حركة" onclick="openCalc('speed')">
+          <div class="card-icon">⚡</div><h3>السرعة والمسافة والزمن</h3>
+          <p>احسب أياً من الثلاثة إذا عرفت القيمتين الأخريين.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="math" data-name="تحويل أنظمة عد ثنائي سداسي عشري" onclick="openCalc('base')">
+          <div class="card-icon">💻</div><h3>محول أنظمة الأعداد</h3>
+          <p>حوّل بين النظام الثنائي والثماني والعشري والسداسي عشر.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ EVERYDAY ══ -->
+    <div id="section-everyday" class="calc-section">
+      <div class="section-head" style="margin-top:2rem;">
+        <h2>🌟 الحياة اليومية</h2>
+        <span class="section-badge">٦ آلات حاسبة</span>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-card" style="--card-color:var(--yellow)" data-cat="everyday" data-name="عمر عيد ميلاد تاريخ ميلاد" onclick="openCalc('age')">
+          <div class="card-icon">🎂</div><h3>حاسبة العمر</h3>
+          <p>احسب عمرك بالسنوات والأشهر والأيام من تاريخ ميلادك.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--green)" data-cat="everyday" data-name="فرق تاريخ أيام بين تاريخين" onclick="openCalc('datediff')">
+          <div class="card-icon">📅</div><h3>الفرق بين تاريخين</h3>
+          <p>عدد الأيام والأسابيع والأشهر بين أي تاريخين.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--pink)" data-cat="everyday" data-name="منطقة زمنية توقيت دول عالم" onclick="openCalc('timezone')">
+          <div class="card-icon">🌍</div><h3>محول المناطق الزمنية</h3>
+          <p>حوّل الوقت بين المناطق الزمنية الرئيسية حول العالم.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--orange)" data-cat="everyday" data-name="وقود بنزين تكلفة رحلة كيلومتر" onclick="openCalc('fuel')">
+          <div class="card-icon">⛽</div><h3>حاسبة تكلفة الوقود</h3>
+          <p>تقدير تكلفة وقود الرحلة بناءً على المسافة واستهلاك الوقود.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--blue)" data-cat="everyday" data-name="طبخ قياس وصفة تحويل كوب ملعقة" onclick="openCalc('cooking')">
+          <div class="card-icon">👨‍🍳</div><h3>محول قياسات الطبخ</h3>
+          <p>حوّل بين الأكواب والملاعق والمل والأونصة.</p>
+        </div>
+        <div class="calc-card" style="--card-color:var(--accent)" data-cat="everyday" data-name="رقم عشوائي قرعة حظ" onclick="openCalc('random')">
+          <div class="card-icon">🎲</div><h3>مولّد الأرقام العشوائية</h3>
+          <p>ولّد أرقاماً عشوائية ضمن أي نطاق تحدده.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div id="no-results" class="no-results" style="display:none;">
+      <div style="font-size:3rem;margin-bottom:0.5rem;">🔍</div>
+      <p>لا توجد آلات حاسبة لـ "<span id="no-results-term"></span>"</p>
+    </div>
+
+  </div><!-- end main-content -->
+</div><!-- end main-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index-ar.html" class="logo">Calc<span class="logo-dot">Wise</span></a>
+      <p>آلات حاسبة مجانية للمال والصحة والرياضيات والحياة اليومية. جميع العمليات تتم في متصفحك — لا نخزن بياناتك أبداً.</p>
+    </div>
+    <div>
+      <h4>المال والتمويل</h4>
+      <ul>
+        <li><a href="#" onclick="openCalc('mortgage')">حاسبة الرهن العقاري</a></li>
+        <li><a href="#" onclick="openCalc('loan')">حاسبة القروض</a></li>
+        <li><a href="#" onclick="openCalc('compound')">الفائدة المركبة</a></li>
+        <li><a href="#" onclick="openCalc('tip')">حاسبة البقشيش</a></li>
+        <li><a href="#" onclick="openCalc('percentage')">حاسبة النسبة</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>الصحة</h4>
+      <ul>
+        <li><a href="#" onclick="openCalc('bmi')">مؤشر كتلة الجسم</a></li>
+        <li><a href="#" onclick="openCalc('calories')">السعرات الحرارية</a></li>
+        <li><a href="#" onclick="openCalc('macros')">الماكرو</a></li>
+        <li><a href="#" onclick="openCalc('bodyfat')">نسبة الدهون</a></li>
+        <li><a href="#" onclick="openCalc('pace')">إيقاع الجري</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>الموقع</h4>
+      <ul>
+        <li><a href="privacy-ar.html">سياسة الخصوصية</a></li>
+        <li><a href="terms.html">شروط الاستخدام</a></li>
+        <li><a href="about.html">عن الموقع</a></li>
+        <li><a href="index.html">English Version</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© ٢٠٢٥ كالك وايز · calcwises.com · جميع الحقوق محفوظة</span>
+    <span>النتائج لأغراض إعلامية فقط.</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-icon" id="modal-icon">🔢</div>
+      <div>
+        <h2 id="modal-title">آلة حاسبة</h2>
+        <p id="modal-desc">احسب نتيجتك فوراً.</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+//  SEARCH & FILTER
+// ═══════════════════════════════════════════
+function searchCalcs(q) {
+  q = q.toLowerCase().trim();
+  const cards = document.querySelectorAll('.calc-card');
+  const sections = document.querySelectorAll('.calc-section');
+  let anyVisible = false;
+  cards.forEach(c => {
+    const name = c.dataset.name || '';
+    const title = c.querySelector('h3').textContent;
+    const match = !q || name.includes(q) || title.includes(q);
+    c.classList.toggle('hidden', !match);
+    if (match) anyVisible = true;
+  });
+  sections.forEach(s => {
+    const visible = s.querySelectorAll('.calc-card:not(.hidden)').length > 0;
+    s.style.display = (q && !visible) ? 'none' : '';
+  });
+  const noR = document.getElementById('no-results');
+  noR.style.display = (q && !anyVisible) ? 'block' : 'none';
+  if (!anyVisible && q) document.getElementById('no-results-term').textContent = q;
+}
+
+function filterCat(cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-cats button').forEach(b => b.classList.remove('active'));
+  const tab = document.getElementById('tab-' + cat);
+  const navBtn = document.getElementById('nav-' + cat);
+  if (tab) tab.classList.add('active');
+  if (navBtn) navBtn.classList.add('active');
+  const cards = document.querySelectorAll('.calc-card');
+  const sections = document.querySelectorAll('.calc-section');
+  cards.forEach(c => c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat));
+  sections.forEach(s => {
+    if (cat === 'all') { s.style.display = ''; return; }
+    s.style.display = s.id.replace('section-', '') === cat ? '' : 'none';
+  });
+  document.getElementById('global-search').value = '';
+}
+
+// ═══════════════════════════════════════════
+//  CALCULATORS DATA (Arabic UI)
+// ═══════════════════════════════════════════
+const calculators = {
+  mortgage: {
+    icon:'🏠', title:'حاسبة الرهن العقاري', desc:'احسب الدفعات الشهرية والفوائد الإجمالية وتكلفة القرض.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>سعر المنزل</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="m-price" value="350000" min="0"></div></div>
+        <div class="field-group"><label>الدفعة المقدمة</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="m-down" value="70000" min="0"></div></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>معدل الفائدة</label><div class="input-wrap has-suffix"><input type="number" id="m-rate" value="6.8" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
+        <div class="field-group"><label>مدة القرض</label><select id="m-term"><option value="30">٣٠ سنة</option><option value="20">٢٠ سنة</option><option value="15">١٥ سنة</option><option value="10">١٠ سنوات</option></select></div>
+      </div>
+      <button class="calc-btn" onclick="calcMortgage()">احسب الدفعة</button>
+      <div class="results" id="r-mortgage">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-m-monthly">$0</span><div class="result-label">الدفعة الشهرية</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-m-total">$0</span><div class="result-label">إجمالي المدفوعات</div></div>
+          <div class="result-item"><span class="result-value" id="r-m-interest">$0</span><div class="result-label">إجمالي الفوائد</div></div>
+          <div class="result-item"><span class="result-value" id="r-m-loan">$0</span><div class="result-label">مبلغ القرض</div></div>
+        </div>
+        <div class="result-bar" id="r-m-bar"></div>
+        <p class="result-note">هذا التقدير يشمل أصل الدين والفوائد فقط. أضف ضريبة الملكية (~١.٢٪) وتأمين المالك وPMI إذا كانت الدفعة المقدمة أقل من ٢٠٪.</p>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  loan: {
+    icon:'💳', title:'حاسبة القروض', desc:'الدفعات الشهرية والتكلفة الإجمالية لأي قرض.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>مبلغ القرض</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="l-amount" value="15000" min="0"></div></div>
+        <div class="field-group"><label>معدل الفائدة السنوي</label><div class="input-wrap has-suffix"><input type="number" id="l-rate" value="8.5" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>مدة القرض</label>
+        <select id="l-term">
+          <option value="12">سنة واحدة</option><option value="24">سنتان</option>
+          <option value="36">٣ سنوات</option><option value="48">٤ سنوات</option>
+          <option value="60" selected>٥ سنوات</option><option value="72">٦ سنوات</option>
+          <option value="84">٧ سنوات</option>
+        </select>
+      </div>
+      <button class="calc-btn" onclick="calcLoan()">احسب</button>
+      <div class="results" id="r-loan">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-l-monthly">$0</span><div class="result-label">الدفعة الشهرية</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-l-total">$0</span><div class="result-label">إجمالي المسدَّد</div></div>
+          <div class="result-item"><span class="result-value" id="r-l-interest">$0</span><div class="result-label">إجمالي الفوائد</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  compound: {
+    icon:'📈', title:'حاسبة الفائدة المركبة', desc:'شاهد كيف تنمو مدخراتك بقوة الفائدة المركبة.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>المبلغ الأساسي</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ci-principal" value="10000" min="0"></div></div>
+        <div class="field-group"><label>معدل الفائدة السنوي</label><div class="input-wrap has-suffix"><input type="number" id="ci-rate" value="7" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>المدة (بالسنوات)</label><input type="number" id="ci-years" value="10" min="1"></div>
+        <div class="field-group"><label>تكرار الاحتساب</label>
+          <select id="ci-freq">
+            <option value="1">سنوياً</option><option value="4">ربع سنوي</option>
+            <option value="12" selected>شهرياً</option><option value="365">يومياً</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group"><label>مساهمة شهرية إضافية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ci-contrib" value="200" min="0"></div></div>
+      <button class="calc-btn" onclick="calcCompound()">احسب النمو</button>
+      <div class="results" id="r-compound">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-ci-final">$0</span><div class="result-label">الرصيد النهائي</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-ci-contributed">$0</span><div class="result-label">إجمالي ما أودعته</div></div>
+          <div class="result-item"><span class="result-value" id="r-ci-earned">$0</span><div class="result-label">الفوائد المكتسبة</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  tip: {
+    icon:'🍽️', title:'حاسبة البقشيش', desc:'قسّم الفاتورة واحسب البقشيش لكل شخص.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>مبلغ الفاتورة</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="t-bill" value="85.50" step="0.01" min="0"></div></div>
+        <div class="field-group"><label>نسبة البقشيش</label><div class="input-wrap has-suffix"><input type="number" id="t-tip" value="18" min="0"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>عدد الأشخاص</label><input type="number" id="t-people" value="4" min="1"></div>
+      <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <button onclick="document.getElementById('t-tip').value=10;calcTip()" style="flex:1;padding:0.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.88rem;">١٠٪</button>
+        <button onclick="document.getElementById('t-tip').value=15;calcTip()" style="flex:1;padding:0.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.88rem;">١٥٪</button>
+        <button onclick="document.getElementById('t-tip').value=18;calcTip()" style="flex:1;padding:0.5rem;background:var(--accent);border:none;border-radius:8px;color:white;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.88rem;font-weight:700;">١٨٪</button>
+        <button onclick="document.getElementById('t-tip').value=20;calcTip()" style="flex:1;padding:0.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.88rem;">٢٠٪</button>
+        <button onclick="document.getElementById('t-tip').value=25;calcTip()" style="flex:1;padding:0.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.88rem;">٢٥٪</button>
+      </div>
+      <button class="calc-btn" onclick="calcTip()">احسب</button>
+      <div class="results" id="r-tip">
+        <h3>النتائج</h3>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-t-tip">$0</span><div class="result-label">مبلغ البقشيش</div></div>
+          <div class="result-item"><span class="result-value" id="r-t-total">$0</span><div class="result-label">إجمالي الفاتورة</div></div>
+          <div class="result-item"><span class="result-value" id="r-t-per">$0</span><div class="result-label">نصيب كل شخص</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  bmi: {
+    icon:'⚖️', title:'حاسبة مؤشر كتلة الجسم', desc:'مؤشر كتلة الجسم مع نطاق الوزن الصحي والتصنيف.',
+    html:`
+      <div class="field-group"><label>نظام القياس</label>
+        <select id="bmi-unit" onchange="updateBmiFields()">
+          <option value="imperial">إمبراطوري (رطل، بوصة)</option>
+          <option value="metric">متري (كيلوجرام، سم)</option>
+        </select>
+      </div>
+      <div class="field-row" id="bmi-imperial-fields">
+        <div class="field-group"><label>الوزن</label><div class="input-wrap has-suffix"><input type="number" id="bmi-lbs" value="165" min="0"><span class="input-suffix">lb</span></div></div>
+        <div class="field-group"><label>الطول</label><div class="input-wrap has-suffix"><input type="number" id="bmi-inches" value="68" min="0"><span class="input-suffix">in</span></div></div>
+      </div>
+      <div class="field-row" id="bmi-metric-fields" style="display:none">
+        <div class="field-group"><label>الوزن</label><div class="input-wrap has-suffix"><input type="number" id="bmi-kg" value="75" min="0"><span class="input-suffix">كجم</span></div></div>
+        <div class="field-group"><label>الطول</label><div class="input-wrap has-suffix"><input type="number" id="bmi-cm" value="173" min="0"><span class="input-suffix">سم</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcBMI()">احسب مؤشر كتلة الجسم</button>
+      <div class="results" id="r-bmi">
+        <h3>النتائج</h3>
+        <div class="result-highlight">
+          <span class="result-value" id="r-bmi-val">0</span>
+          <div class="result-label">مؤشر كتلة الجسم</div>
+          <div id="r-bmi-cat" style="margin-top:0.5rem;font-weight:800;font-size:1.1rem;font-family:'Cairo',sans-serif;"></div>
+        </div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-bmi-low">0</span><div class="result-label">الحد الأدنى الصحي</div></div>
+          <div class="result-item"><span class="result-value" id="r-bmi-high">0</span><div class="result-label">الحد الأقصى الصحي</div></div>
+        </div>
+        <p class="result-note">مؤشر كتلة الجسم أداة فحص وليس تشخيصاً طبياً. قد يكون لدى الرياضيين وذوي الكتلة العضلية العالية مؤشر مرتفع رغم صحة تركيبة الجسم.</p>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  calories: {
+    icon:'🔥', title:'حاسبة السعرات الحرارية', desc:'احتياجك اليومي من السعرات بناءً على جسمك وهدفك.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>العمر</label><div class="input-wrap has-suffix"><input type="number" id="cal-age" value="30" min="1" max="120"><span class="input-suffix">سنة</span></div></div>
+        <div class="field-group"><label>الجنس</label><select id="cal-sex"><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>الوزن</label><div class="input-wrap has-suffix"><input type="number" id="cal-weight" value="165" min="0"><span class="input-suffix">رطل</span></div></div>
+        <div class="field-group"><label>الطول</label><div class="input-wrap has-suffix"><input type="number" id="cal-height" value="68" min="0"><span class="input-suffix">بوصة</span></div></div>
+      </div>
+      <div class="field-group"><label>مستوى النشاط</label>
+        <select id="cal-activity">
+          <option value="1.2">خامل (بدون رياضة تقريباً)</option>
+          <option value="1.375">خفيف (١-٣ أيام/أسبوع)</option>
+          <option value="1.55" selected>متوسط (٣-٥ أيام/أسبوع)</option>
+          <option value="1.725">نشط (٦-٧ أيام/أسبوع)</option>
+          <option value="1.9">نشط جداً (عمل بدني أو تدريب مزدوج)</option>
+        </select>
+      </div>
+      <div class="field-group"><label>الهدف</label>
+        <select id="cal-goal">
+          <option value="-500">إنقاص الوزن (سعرات - ٥٠٠)</option>
+          <option value="0" selected>الحفاظ على الوزن</option>
+          <option value="500">زيادة الوزن (سعرات + ٥٠٠)</option>
+        </select>
+      </div>
+      <button class="calc-btn" onclick="calcCalories()">احسب</button>
+      <div class="results" id="r-calories">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-cal-target">0</span><div class="result-label">هدف السعرات اليومي</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-cal-bmr">0</span><div class="result-label">معدل الأيض الأساسي</div></div>
+          <div class="result-item"><span class="result-value" id="r-cal-tdee">0</span><div class="result-label">TDEE (الصيانة)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  macros: {
+    icon:'🥩', title:'حاسبة الماكرو', desc:'أهداف البروتين والكربوهيدرات والدهون لهدفك.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>السعرات اليومية</label><input type="number" id="mac-cal" value="2200" min="0"></div>
+        <div class="field-group"><label>الهدف</label>
+          <select id="mac-goal">
+            <option value="cut">تخفيف (بروتين عالٍ)</option>
+            <option value="maintain" selected>صيانة (متوازن)</option>
+            <option value="bulk">بناء عضلي (كربوهيدرات أعلى)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcMacros()">احسب الماكرو</button>
+      <div class="results" id="r-macros">
+        <h3>النتائج</h3>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-mac-protein" style="color:var(--pink)">0g</span><div class="result-label">بروتين</div></div>
+          <div class="result-item"><span class="result-value" id="r-mac-carbs" style="color:var(--yellow)">0g</span><div class="result-label">كربوهيدرات</div></div>
+          <div class="result-item"><span class="result-value" id="r-mac-fat" style="color:var(--orange)">0g</span><div class="result-label">دهون</div></div>
+        </div>
+        <div class="result-bar" id="r-mac-bar"></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  salary: {
+    icon:'💼', title:'حاسبة الراتب', desc:'حوّل بين الأجر بالساعة واليومي والأسبوعي والشهري والسنوي.',
+    html:`
+      <div class="field-group"><label>أدخل راتبك</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="sal-amount" value="75000" min="0"></div></div>
+      <div class="field-row">
+        <div class="field-group"><label>فترة الدفع</label>
+          <select id="sal-period">
+            <option value="hour">بالساعة</option><option value="day">يومياً</option>
+            <option value="week">أسبوعياً</option><option value="month">شهرياً</option>
+            <option value="year" selected>سنوياً</option>
+          </select>
+        </div>
+        <div class="field-group"><label>ساعات العمل أسبوعياً</label><input type="number" id="sal-hours" value="40" min="1"></div>
+      </div>
+      <button class="calc-btn" onclick="calcSalary()">حوّل</button>
+      <div class="results" id="r-salary">
+        <h3>جميع فترات الدفع</h3>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-sal-hour">$0</span><div class="result-label">بالساعة</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-day">$0</span><div class="result-label">يومياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-week">$0</span><div class="result-label">أسبوعياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-month">$0</span><div class="result-label">شهرياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-year">$0</span><div class="result-label">سنوياً</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  percentage: {
+    icon:'%', title:'حاسبة النسبة المئوية', desc:'ثلاث طرق لحساب النسب المئوية فوراً.',
+    html:`
+      <div style="margin-bottom:1.5rem;">
+        <div style="font-size:0.82rem;color:var(--muted2);font-weight:700;margin-bottom:0.75rem;font-family:'Cairo',sans-serif;">ما هو X٪ من Y؟</div>
+        <div class="field-row">
+          <div class="field-group"><input type="number" id="p1-x" value="15" placeholder="X٪"></div>
+          <div class="field-group"><div class="input-wrap has-suffix"><span class="input-suffix">%</span><input type="number" id="p1-y" value="200" placeholder="من Y"></div></div>
+        </div>
+        <button onclick="calcPct1()" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.5rem 1.25rem;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;">= <span id="r-p1" style="color:var(--accent2);font-weight:700;">30</span></button>
+      </div>
+      <div style="margin-bottom:1.5rem;">
+        <div style="font-size:0.82rem;color:var(--muted2);font-weight:700;margin-bottom:0.75rem;font-family:'Cairo',sans-serif;">X هو كم٪ من Y؟</div>
+        <div class="field-row">
+          <div class="field-group"><input type="number" id="p2-x" value="30" placeholder="X"></div>
+          <div class="field-group"><input type="number" id="p2-y" value="200" placeholder="Y"></div>
+        </div>
+        <button onclick="calcPct2()" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.5rem 1.25rem;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;">= <span id="r-p2" style="color:var(--accent2);font-weight:700;">15٪</span></button>
+      </div>
+      <div>
+        <div style="font-size:0.82rem;color:var(--muted2);font-weight:700;margin-bottom:0.75rem;font-family:'Cairo',sans-serif;">نسبة التغيير من X إلى Y</div>
+        <div class="field-row">
+          <div class="field-group"><input type="number" id="p3-x" value="80" placeholder="من"></div>
+          <div class="field-group"><input type="number" id="p3-y" value="100" placeholder="إلى"></div>
+        </div>
+        <button onclick="calcPct3()" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.5rem 1.25rem;color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;">= <span id="r-p3" style="color:var(--green);font-weight:700;">+٢٥٪</span></button>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  tax: {
+    icon:'🧾', title:'حاسبة ضريبة القيمة المضافة', desc:'أضف أو استخرج الضريبة من أي سعر.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>السعر</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="stax-price" value="100" step="0.01" min="0"></div></div>
+        <div class="field-group"><label>نسبة الضريبة</label><div class="input-wrap has-suffix"><input type="number" id="stax-rate" value="15" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>الوضع</label>
+        <select id="stax-mode">
+          <option value="add">إضافة الضريبة إلى السعر</option>
+          <option value="remove">استخراج الضريبة من السعر (عكسي)</option>
+        </select>
+      </div>
+      <button class="calc-btn" onclick="calcTax()">احسب</button>
+      <div class="results" id="r-tax">
+        <h3>النتائج</h3>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-tax-pre">$0</span><div class="result-label">السعر قبل الضريبة</div></div>
+          <div class="result-item"><span class="result-value" id="r-tax-amount">$0</span><div class="result-label">مبلغ الضريبة</div></div>
+          <div class="result-item"><span class="result-value" id="r-tax-total">$0</span><div class="result-label">السعر الإجمالي</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  roi: {
+    icon:'📊', title:'حاسبة العائد على الاستثمار', desc:'احسب نسبة العائد والربح من أي استثمار.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>قيمة الاستثمار الأولية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="roi-invest" value="10000" min="0"></div></div>
+        <div class="field-group"><label>القيمة النهائية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="roi-final" value="13500" min="0"></div></div>
+      </div>
+      <div class="field-group"><label>المدة الزمنية (بالسنوات)</label><input type="number" id="roi-years" value="3" min="0"></div>
+      <button class="calc-btn" onclick="calcROI()">احسب العائد</button>
+      <div class="results" id="r-roi">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-roi-pct">0٪</span><div class="result-label">إجمالي العائد على الاستثمار</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-roi-profit">$0</span><div class="result-label">صافي الربح</div></div>
+          <div class="result-item"><span class="result-value" id="r-roi-annual">0٪</span><div class="result-label">العائد السنوي</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  creditcard: {
+    icon:'💳', title:'حاسبة سداد بطاقة الائتمان', desc:'كم يستغرق سداد رصيدك وإجمالي الفوائد.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>الرصيد الحالي</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="cc-balance" value="5000" min="0"></div></div>
+        <div class="field-group"><label>نسبة الفائدة السنوية APR</label><div class="input-wrap has-suffix"><input type="number" id="cc-apr" value="21.5" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>الدفعة الشهرية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="cc-payment" value="200" min="0"></div></div>
+      <button class="calc-btn" onclick="calcCreditCard()">احسب موعد السداد</button>
+      <div class="results" id="r-cc">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-cc-months">0 شهر</span><div class="result-label">مدة السداد</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-cc-interest">$0</span><div class="result-label">إجمالي الفوائد المدفوعة</div></div>
+          <div class="result-item"><span class="result-value" id="r-cc-total">$0</span><div class="result-label">إجمالي المدفوع</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  age: {
+    icon:'🎂', title:'حاسبة العمر', desc:'عمرك الدقيق بالسنوات والأشهر والأيام من تاريخ ميلادك.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>تاريخ الميلاد</label><input type="date" id="age-dob" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'Cairo',sans-serif;font-size:0.95rem;color:var(--text);outline:none;direction:ltr;text-align:left;"></div>
+        <div class="field-group"><label>حتى تاريخ</label><input type="date" id="age-today" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'Cairo',sans-serif;font-size:0.95rem;color:var(--text);outline:none;direction:ltr;text-align:left;"></div>
+      </div>
+      <button class="calc-btn" onclick="calcAge()">احسب العمر</button>
+      <div class="results" id="r-age">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-age-years">0</span><div class="result-label">سنة</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-age-months">0</span><div class="result-label">إجمالي الأشهر</div></div>
+          <div class="result-item"><span class="result-value" id="r-age-days">0</span><div class="result-label">إجمالي الأيام</div></div>
+          <div class="result-item"><span class="result-value" id="r-age-next">0</span><div class="result-label">أيام حتى عيد الميلاد</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  gpa: {
+    icon:'🎓', title:'حاسبة المعدل التراكمي GPA', desc:'احسب معدلك التراكمي من درجات المواد والساعات الدراسية.',
+    html:`
+      <div id="gpa-courses">
+        <div style="display:grid;grid-template-columns:1fr 110px 80px;gap:0.5rem;margin-bottom:0.5rem;">
+          <div style="font-size:0.78rem;color:var(--muted);font-family:'Cairo',sans-serif;">المادة</div>
+          <div style="font-size:0.78rem;color:var(--muted);font-family:'Cairo',sans-serif;">الدرجة</div>
+          <div style="font-size:0.78rem;color:var(--muted);font-family:'Cairo',sans-serif;">الساعات</div>
+        </div>
+        <div id="gpa-rows"></div>
+      </div>
+      <button onclick="addGpaRow()" style="background:none;border:1px dashed var(--border2);border-radius:8px;padding:0.5rem 1rem;color:var(--muted2);cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.88rem;width:100%;margin-bottom:1rem;">+ إضافة مادة</button>
+      <button class="calc-btn" onclick="calcGPA()">احسب المعدل</button>
+      <div class="results" id="r-gpa">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-gpa-val">0.00</span><div class="result-label">المعدل التراكمي (مقياس 4.0)</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-gpa-credits">0</span><div class="result-label">إجمالي الساعات</div></div>
+          <div class="result-item"><span class="result-value" id="r-gpa-letter">—</span><div class="result-label">التقدير الحرفي</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  fuel: {
+    icon:'⛽', title:'حاسبة تكلفة الوقود', desc:'كم ستكلفك رحلتك في الوقود؟',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>مسافة الرحلة</label><div class="input-wrap has-suffix"><input type="number" id="fuel-dist" value="300" min="0"><span class="input-suffix">كم</span></div></div>
+        <div class="field-group"><label>استهلاك الوقود</label><div class="input-wrap has-suffix"><input type="number" id="fuel-mpg" value="12" min="0"><span class="input-suffix">لتر/١٠٠كم</span></div></div>
+      </div>
+      <div class="field-group"><label>سعر الوقود للتر</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="fuel-price" value="2.18" step="0.01" min="0"></div></div>
+      <button class="calc-btn" onclick="calcFuelAR()">احسب التكلفة</button>
+      <div class="results" id="r-fuel">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-fuel-cost">0</span><div class="result-label">إجمالي تكلفة الوقود (ر.س)</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-fuel-liters">0</span><div class="result-label">لترات مطلوبة</div></div>
+          <div class="result-item"><span class="result-value" id="r-fuel-per100">0</span><div class="result-label">تكلفة كل ١٠٠ كم</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  water: {
+    icon:'💧', title:'حاسبة شرب الماء', desc:'كم لتراً من الماء تحتاج يومياً؟',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>الوزن</label><div class="input-wrap has-suffix"><input type="number" id="wat-weight" value="75" min="0"><span class="input-suffix">كجم</span></div></div>
+        <div class="field-group"><label>مستوى النشاط</label>
+          <select id="wat-activity">
+            <option value="1">خامل</option>
+            <option value="1.2" selected>متوسط النشاط</option>
+            <option value="1.4">نشط جداً</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcWaterAR()">احسب</button>
+      <div class="results" id="r-water">
+        <h3>الاحتياج اليومي من الماء</h3>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-wat-liters">0 لتر</span><div class="result-label">لترات</div></div>
+          <div class="result-item"><span class="result-value" id="r-wat-cups">0</span><div class="result-label">أكواب (240مل)</div></div>
+          <div class="result-item"><span class="result-value" id="r-wat-ml">0 مل</span><div class="result-label">مليلتر</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  datediff: {
+    icon:'📅', title:'الفرق بين تاريخين', desc:'عدد الأيام والأسابيع والأشهر بين أي تاريخين.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>تاريخ البداية</label><input type="date" id="dd-start" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'Cairo',sans-serif;font-size:0.95rem;color:var(--text);outline:none;direction:ltr;text-align:left;"></div>
+        <div class="field-group"><label>تاريخ النهاية</label><input type="date" id="dd-end" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'Cairo',sans-serif;font-size:0.95rem;color:var(--text);outline:none;direction:ltr;text-align:left;"></div>
+      </div>
+      <button class="calc-btn" onclick="calcDateDiff()">احسب الفرق</button>
+      <div class="results" id="r-datediff">
+        <h3>النتائج</h3>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="r-dd-days">0</span><div class="result-label">يوم</div></div>
+          <div class="result-item"><span class="result-value" id="r-dd-weeks">0</span><div class="result-label">أسبوع</div></div>
+          <div class="result-item"><span class="result-value" id="r-dd-months">0</span><div class="result-label">شهر</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  random: {
+    icon:'🎲', title:'مولّد الأرقام العشوائية', desc:'ولّد أرقاماً عشوائية ضمن أي نطاق تحدده.',
+    html:`
+      <div class="field-row">
+        <div class="field-group"><label>الحد الأدنى</label><input type="number" id="rng-min" value="1"></div>
+        <div class="field-group"><label>الحد الأقصى</label><input type="number" id="rng-max" value="100"></div>
+      </div>
+      <div class="field-group"><label>عدد الأرقام</label><input type="number" id="rng-count" value="1" min="1" max="50"></div>
+      <button class="calc-btn" onclick="calcRandom()">🎲 ولّد الآن</button>
+      <div class="results" id="r-random">
+        <h3>النتائج</h3>
+        <div id="r-rng-numbers" style="font-family:'Amiri',serif;font-size:2rem;color:var(--accent2);text-align:center;letter-spacing:0.1em;line-height:1.6;"></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  scientific: {
+    icon:'🔢', title:'الآلة الحاسبة العلمية', desc:'آلة حاسبة علمية كاملة مع دوال المثلثات واللوغاريتم.',
+    html:`
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:1rem;">
+        <div id="sci-expr" style="font-size:0.8rem;color:var(--muted);text-align:left;min-height:1rem;margin-bottom:0.25rem;direction:ltr;"></div>
+        <div id="sci-display" style="font-family:'Amiri',serif;font-size:2rem;text-align:left;color:var(--accent2);min-height:2.5rem;direction:ltr;word-break:break-all;">0</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem;">
+        ${[['sin','cos','tan','log','ln'],['(',')','π','e','√'],['7','8','9','÷','x²'],['4','5','6','×','^'],['1','2','3','-','1/x'],['±','0','.','+',' '],['C','CE','⌫','=','']].map(row=>row.map(k=>k?`<button onclick="sciKey('${k}')" style="padding:0.6rem 0;background:${['='].includes(k)?'var(--accent)':['C','CE','⌫'].includes(k)?'var(--surface)':'var(--surface2)'};border:1px solid var(--border);border-radius:8px;color:${['='].includes(k)?'white':'var(--text)'};cursor:pointer;font-family:inherit;font-size:${['sin','cos','tan','log','ln','1/x'].includes(k)?'0.72':'0.9'}rem;font-weight:${['=','+','-','×','÷'].includes(k)?600:400};">${k}</button>`:'<div></div>').join('')).join('')}
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  units: {
+    icon:'📏', title:'محول الوحدات', desc:'حوّل بين وحدات الطول والوزن ودرجة الحرارة وغيرها.',
+    html:`
+      <div class="field-group"><label>الفئة</label>
+        <select id="unit-cat" onchange="updateUnitOptions()">
+          <option value="length">الطول</option><option value="weight">الوزن / الكتلة</option>
+          <option value="temp">درجة الحرارة</option><option value="volume">الحجم</option>
+          <option value="speed">السرعة</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>من</label><select id="unit-from"></select></div>
+        <div class="field-group"><label>إلى</label><select id="unit-to"></select></div>
+      </div>
+      <div class="field-group"><label>القيمة</label><input type="number" id="unit-val" value="1" oninput="calcUnits()"></div>
+      <div class="results show" id="r-units">
+        <div class="result-highlight"><span class="result-value" id="r-unit-result">0</span><div class="result-label" id="r-unit-label">النتيجة</div></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  },
+  pace: {
+    icon:'🏃', title:'حاسبة إيقاع الجري', desc:'احسب الإيقاع أو وقت الإنهاء أو المسافة.',
+    html:`
+      <div class="field-group"><label>احسب</label>
+        <select id="pace-solve" onchange="updatePaceFields()">
+          <option value="pace">الإيقاع (بمعرفة المسافة والوقت)</option>
+          <option value="time">وقت الإنهاء (بمعرفة المسافة والإيقاع)</option>
+          <option value="distance">المسافة (بمعرفة الوقت والإيقاع)</option>
+        </select>
+      </div>
+      <div class="field-row" id="pace-dist-field">
+        <div class="field-group"><label>المسافة</label><div class="input-wrap has-suffix"><input type="number" id="pace-dist" value="5" min="0" step="0.1"><span class="input-suffix">كم</span></div></div>
+      </div>
+      <div class="field-row" id="pace-time-field">
+        <div class="field-group"><label>ساعات</label><input type="number" id="pace-h" value="0" min="0"></div>
+        <div class="field-group"><label>دقائق</label><input type="number" id="pace-m" value="28" min="0"></div>
+        <div class="field-group"><label>ثواني</label><input type="number" id="pace-s" value="0" min="0"></div>
+      </div>
+      <div class="field-group" id="pace-pace-field" style="display:none">
+        <label>الإيقاع (دقيقة/كم)</label>
+        <div class="field-row">
+          <input type="number" id="pace-min" value="5" min="0">
+          <input type="number" id="pace-sec" value="30" min="0" max="59">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcPace()">احسب</button>
+      <div class="results" id="r-pace">
+        <h3>النتيجة</h3>
+        <div class="result-highlight"><span class="result-value" id="r-pace-result">—</span><div class="result-label" id="r-pace-label">الإيقاع</div></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+  }
+};
+
+// ═══════════════════════════════════════════
+//  MODAL OPEN/CLOSE
+// ═══════════════════════════════════════════
+function openCalc(id) {
+  const c = calculators[id];
+  if (!c) { alert('هذه الآلة الحاسبة قريباً!'); return; }
+  document.getElementById('modal-icon').textContent = c.icon;
+  document.getElementById('modal-title').textContent = c.title;
+  document.getElementById('modal-desc').textContent = c.desc;
+  document.getElementById('modal-body').innerHTML = c.html;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (id === 'age') {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('age-today').value = today;
+    const dob = new Date(); dob.setFullYear(dob.getFullYear()-30);
+    document.getElementById('age-dob').value = dob.toISOString().split('T')[0];
+  }
+  if (id === 'datediff') {
+    const t = new Date();
+    document.getElementById('dd-end').value = t.toISOString().split('T')[0];
+    t.setMonth(t.getMonth()-3);
+    document.getElementById('dd-start').value = t.toISOString().split('T')[0];
+  }
+  if (id === 'gpa') initGPA();
+  if (id === 'units') updateUnitOptions();
+  if (id === 'scientific') { sciExpr=''; sciDisplay('0'); }
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
+function closeModalOutside(e) { if (e.target===document.getElementById('modal-overlay')) closeModal(); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// ═══════════════════════════════════════════
+//  CALCULATION LOGIC (same as English)
+// ═══════════════════════════════════════════
+const fmt  = (n,d=0) => n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtM = n => '$'+fmt(n,0);
+
+function calcMortgage(){const price=parseFloat(document.getElementById('m-price').value)||0,down=parseFloat(document.getElementById('m-down').value)||0,rate=parseFloat(document.getElementById('m-rate').value)||0,term=parseInt(document.getElementById('m-term').value),loan=price-down,r=rate/100/12,n=term*12,monthly=r===0?loan/n:loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=monthly*n,interest=total-loan;document.getElementById('r-m-monthly').textContent=fmtM(monthly);document.getElementById('r-m-total').textContent=fmtM(total);document.getElementById('r-m-interest').textContent=fmtM(interest);document.getElementById('r-m-loan').textContent=fmtM(loan);const pct=interest/total*100;document.getElementById('r-m-bar').innerHTML=`<div class="bar-row"><span class="bar-label">أصل الدين</span><div class="bar-track"><div class="bar-fill" style="width:${100-pct}%;background:var(--accent)"></div></div><span class="bar-val">${fmtM(loan)}</span></div><div class="bar-row"><span class="bar-label">إجمالي الفوائد</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:var(--orange)"></div></div><span class="bar-val">${fmtM(interest)}</span></div>`;document.getElementById('r-mortgage').classList.add('show');}
+function calcLoan(){const amt=parseFloat(document.getElementById('l-amount').value)||0,rate=parseFloat(document.getElementById('l-rate').value)||0,n=parseInt(document.getElementById('l-term').value),r=rate/100/12,monthly=r===0?amt/n:amt*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=monthly*n;document.getElementById('r-l-monthly').textContent=fmtM(monthly);document.getElementById('r-l-total').textContent=fmtM(total);document.getElementById('r-l-interest').textContent=fmtM(total-amt);document.getElementById('r-loan').classList.add('show');}
+function calcCompound(){const p=parseFloat(document.getElementById('ci-principal').value)||0,r=parseFloat(document.getElementById('ci-rate').value)/100,t=parseFloat(document.getElementById('ci-years').value)||0,n=parseInt(document.getElementById('ci-freq').value),contrib=parseFloat(document.getElementById('ci-contrib').value)||0,fv=p*Math.pow(1+r/n,n*t),fvC=contrib*((Math.pow(1+r/n,n*t)-1)/(r/n)),total=fv+fvC,contributed=p+contrib*12*t;document.getElementById('r-ci-final').textContent=fmtM(total);document.getElementById('r-ci-contributed').textContent=fmtM(contributed);document.getElementById('r-ci-earned').textContent=fmtM(total-contributed);document.getElementById('r-compound').classList.add('show');}
+function calcTip(){const bill=parseFloat(document.getElementById('t-bill').value)||0,tipPct=parseFloat(document.getElementById('t-tip').value)||0,people=parseInt(document.getElementById('t-people').value)||1,tip=bill*tipPct/100,total=bill+tip;document.getElementById('r-t-tip').textContent=fmtM(tip);document.getElementById('r-t-total').textContent=fmtM(total);document.getElementById('r-t-per').textContent=fmtM(total/people);document.getElementById('r-tip').classList.add('show');}
+function updateBmiFields(){const u=document.getElementById('bmi-unit').value;document.getElementById('bmi-imperial-fields').style.display=u==='imperial'?'':'none';document.getElementById('bmi-metric-fields').style.display=u==='metric'?'':'none';}
+function calcBMI(){const u=document.getElementById('bmi-unit').value;let bmi;if(u==='imperial'){const lbs=parseFloat(document.getElementById('bmi-lbs').value)||0,h=parseFloat(document.getElementById('bmi-inches').value)||1;bmi=(lbs/(h*h))*703;const low=18.5*h*h/703,high=24.9*h*h/703;document.getElementById('r-bmi-low').textContent=fmt(low,0);document.getElementById('r-bmi-high').textContent=fmt(high,0);}else{const kg=parseFloat(document.getElementById('bmi-kg').value)||0,cm=parseFloat(document.getElementById('bmi-cm').value)||1,hm=cm/100;bmi=kg/(hm*hm);document.getElementById('r-bmi-low').textContent=fmt(18.5*hm*hm,1)+' كجم';document.getElementById('r-bmi-high').textContent=fmt(24.9*hm*hm,1)+' كجم';}document.getElementById('r-bmi-val').textContent=fmt(bmi,1);const cats=[[18.5,'نحافة','var(--blue)'],[25,'وزن طبيعي ✓','var(--green)'],[30,'زيادة وزن','var(--yellow)'],[Infinity,'سمنة','var(--pink)']];const cat=cats.find(c=>bmi<c[0]);const el=document.getElementById('r-bmi-cat');el.textContent=cat[1];el.style.color=cat[2];document.getElementById('r-bmi').classList.add('show');}
+function calcCalories(){const age=parseFloat(document.getElementById('cal-age').value)||0,sex=document.getElementById('cal-sex').value,wt=parseFloat(document.getElementById('cal-weight').value)||0,ht=parseFloat(document.getElementById('cal-height').value)||0,act=parseFloat(document.getElementById('cal-activity').value),goal=parseInt(document.getElementById('cal-goal').value),kg=wt*0.453592,cm=ht*2.54,bmr=sex==='male'?10*kg+6.25*cm-5*age+5:10*kg+6.25*cm-5*age-161,tdee=bmr*act,target=tdee+goal;document.getElementById('r-cal-bmr').textContent=fmt(bmr,0)+' سعرة';document.getElementById('r-cal-tdee').textContent=fmt(tdee,0)+' سعرة';document.getElementById('r-cal-target').textContent=fmt(target,0);document.getElementById('r-calories').classList.add('show');}
+function calcMacros(){const cals=parseFloat(document.getElementById('mac-cal').value)||2000,goal=document.getElementById('mac-goal').value,splits={cut:[0.4,0.35,0.25],maintain:[0.3,0.4,0.3],bulk:[0.25,0.5,0.25]},[p,c,f]=splits[goal],protein=cals*p/4,carbs=cals*c/4,fat=cals*f/9;document.getElementById('r-mac-protein').textContent=fmt(protein,0)+'g';document.getElementById('r-mac-carbs').textContent=fmt(carbs,0)+'g';document.getElementById('r-mac-fat').textContent=fmt(fat,0)+'g';document.getElementById('r-mac-bar').innerHTML=`<div class="bar-row"><span class="bar-label">بروتين</span><div class="bar-track"><div class="bar-fill" style="width:${p*100}%;background:var(--pink)"></div></div><span class="bar-val">${(p*100).toFixed(0)}٪</span></div><div class="bar-row"><span class="bar-label">كربوهيدرات</span><div class="bar-track"><div class="bar-fill" style="width:${c*100}%;background:var(--yellow)"></div></div><span class="bar-val">${(c*100).toFixed(0)}٪</span></div><div class="bar-row"><span class="bar-label">دهون</span><div class="bar-track"><div class="bar-fill" style="width:${f*100}%;background:var(--orange)"></div></div><span class="bar-val">${(f*100).toFixed(0)}٪</span></div>`;document.getElementById('r-macros').classList.add('show');}
+function calcSalary(){const amt=parseFloat(document.getElementById('sal-amount').value)||0,period=document.getElementById('sal-period').value,hrs=parseFloat(document.getElementById('sal-hours').value)||40;let annual;if(period==='hour')annual=amt*hrs*52;else if(period==='day')annual=amt*5*52;else if(period==='week')annual=amt*52;else if(period==='month')annual=amt*12;else annual=amt;document.getElementById('r-sal-hour').textContent=fmtM(annual/52/hrs);document.getElementById('r-sal-day').textContent=fmtM(annual/260);document.getElementById('r-sal-week').textContent=fmtM(annual/52);document.getElementById('r-sal-month').textContent=fmtM(annual/12);document.getElementById('r-sal-year').textContent=fmtM(annual);document.getElementById('r-salary').classList.add('show');}
+function calcPct1(){document.getElementById('r-p1').textContent=fmt((parseFloat(document.getElementById('p1-x').value)||0)/100*(parseFloat(document.getElementById('p1-y').value)||0),2);}
+function calcPct2(){document.getElementById('r-p2').textContent=fmt((parseFloat(document.getElementById('p2-x').value)||0)/(parseFloat(document.getElementById('p2-y').value)||1)*100,2)+'٪';}
+function calcPct3(){const x=parseFloat(document.getElementById('p3-x').value)||0,y=parseFloat(document.getElementById('p3-y').value)||0,pct=(y-x)/Math.abs(x||1)*100;const el=document.getElementById('r-p3');el.textContent=(pct>=0?'+':'')+fmt(pct,2)+'٪';el.style.color=pct>=0?'var(--green)':'var(--pink)';}
+function calcAge(){const dob=new Date(document.getElementById('age-dob').value),ref=new Date(document.getElementById('age-today').value);let years=ref.getFullYear()-dob.getFullYear(),months=ref.getMonth()-dob.getMonth();if(months<0||(months===0&&ref.getDate()<dob.getDate())){years--;months+=12;}const days=Math.floor((ref-dob)/86400000);const next=new Date(ref.getFullYear(),dob.getMonth(),dob.getDate());if(next<=ref)next.setFullYear(next.getFullYear()+1);const daysToB=Math.floor((next-ref)/86400000);document.getElementById('r-age-years').textContent=years;document.getElementById('r-age-months').textContent=fmt(years*12+months,0);document.getElementById('r-age-days').textContent=fmt(days,0);document.getElementById('r-age-next').textContent=daysToB===0?'🎉 اليوم!':daysToB;document.getElementById('r-age').classList.add('show');}
+function initGPA(){document.getElementById('gpa-rows').innerHTML='';for(let i=0;i<4;i++)addGpaRow();}
+function addGpaRow(){const d=document.createElement('div');d.style.cssText='display:grid;grid-template-columns:1fr 110px 80px;gap:0.5rem;margin-bottom:0.5rem;';d.innerHTML=`<input type="text" placeholder="اسم المادة" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.55rem 0.75rem;font-family:'Cairo',sans-serif;font-size:0.9rem;color:var(--text);outline:none;text-align:right;"><select style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.55rem;font-family:'Cairo',sans-serif;font-size:0.88rem;color:var(--text);outline:none;"><option value="4">A (4.0)</option><option value="3.7">A- (3.7)</option><option value="3.3">B+ (3.3)</option><option value="3">B (3.0)</option><option value="2.7">B- (2.7)</option><option value="2.3">C+ (2.3)</option><option value="2">C (2.0)</option><option value="1">D (1.0)</option><option value="0">F (0.0)</option></select><input type="number" value="3" min="0" max="6" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.55rem;font-family:'Cairo',sans-serif;font-size:0.9rem;color:var(--text);outline:none;">`;document.getElementById('gpa-rows').appendChild(d);}
+function calcGPA(){const rows=document.getElementById('gpa-rows').children;let pts=0,creds=0;for(const row of rows){const grade=parseFloat(row.querySelector('select').value),credits=parseFloat(row.querySelectorAll('input[type=number]')[0]?.value||3);if(isNaN(grade)||isNaN(credits))continue;pts+=grade*credits;creds+=credits;}const gpa=creds>0?pts/creds:0;document.getElementById('r-gpa-val').textContent=gpa.toFixed(2);document.getElementById('r-gpa-credits').textContent=creds;const letter=gpa>=3.7?'A+':gpa>=3.3?'A':gpa>=3?'A-':gpa>=2.7?'B+':gpa>=2.3?'B':gpa>=2?'B-':gpa>=1.7?'C+':gpa>=1?'C':'F';document.getElementById('r-gpa-letter').textContent=letter;document.getElementById('r-gpa').classList.add('show');}
+function calcFuelAR(){const dist=parseFloat(document.getElementById('fuel-dist').value)||0,l100=parseFloat(document.getElementById('fuel-mpg').value)||1,price=parseFloat(document.getElementById('fuel-price').value)||0,liters=dist*l100/100,cost=liters*price;document.getElementById('r-fuel-cost').textContent=fmt(cost,2);document.getElementById('r-fuel-liters').textContent=fmt(liters,1)+' لتر';document.getElementById('r-fuel-per100').textContent=fmt(l100*price,2)+' ر.س';document.getElementById('r-fuel').classList.add('show');}
+function calcWaterAR(){const kg=parseFloat(document.getElementById('wat-weight').value)||0,act=parseFloat(document.getElementById('wat-activity').value),ml=kg*35*act;document.getElementById('r-wat-liters').textContent=fmt(ml/1000,1)+' لتر';document.getElementById('r-wat-cups').textContent=fmt(ml/240,1);document.getElementById('r-wat-ml').textContent=fmt(ml,0)+' مل';document.getElementById('r-water').classList.add('show');}
+function calcTax(){const price=parseFloat(document.getElementById('stax-price').value)||0,rate=parseFloat(document.getElementById('stax-rate').value)||0,mode=document.getElementById('stax-mode').value;let pre,taxAmt,total;if(mode==='add'){pre=price;taxAmt=price*rate/100;total=pre+taxAmt;}else{total=price;pre=price/(1+rate/100);taxAmt=total-pre;}document.getElementById('r-tax-pre').textContent=fmtM(pre);document.getElementById('r-tax-amount').textContent=fmtM(taxAmt);document.getElementById('r-tax-total').textContent=fmtM(total);document.getElementById('r-tax').classList.add('show');}
+function calcROI(){const invest=parseFloat(document.getElementById('roi-invest').value)||1,final=parseFloat(document.getElementById('roi-final').value)||0,years=parseFloat(document.getElementById('roi-years').value)||1,profit=final-invest,roi=profit/invest*100,annualRoi=(Math.pow(final/invest,1/years)-1)*100;const el=document.getElementById('r-roi-pct');el.textContent=(roi>=0?'+':'')+fmt(roi,1)+'٪';el.style.color=roi>=0?'var(--green)':'var(--pink)';document.getElementById('r-roi-profit').textContent=(profit>=0?'':'-')+'$'+fmt(Math.abs(profit),0);document.getElementById('r-roi-annual').textContent=(annualRoi>=0?'+':'')+fmt(annualRoi,1)+'٪';document.getElementById('r-roi').classList.add('show');}
+function calcCreditCard(){const balance=parseFloat(document.getElementById('cc-balance').value)||0,apr=parseFloat(document.getElementById('cc-apr').value)||0,payment=parseFloat(document.getElementById('cc-payment').value)||0,r=apr/100/12;if(payment<=balance*r){document.getElementById('r-cc-months').textContent='∞ (الدفعة منخفضة جداً)';document.getElementById('r-cc-interest').textContent='∞';document.getElementById('r-cc-total').textContent='∞';document.getElementById('r-cc').classList.add('show');return;}const months=Math.ceil(-Math.log(1-(r*balance/payment))/Math.log(1+r)),totalPaid=payment*months;document.getElementById('r-cc-months').textContent=months<12?months+' شهر':(months/12).toFixed(1)+' سنوات';document.getElementById('r-cc-interest').textContent=fmtM(totalPaid-balance);document.getElementById('r-cc-total').textContent=fmtM(totalPaid);document.getElementById('r-cc').classList.add('show');}
+function calcDateDiff(){const start=new Date(document.getElementById('dd-start').value),end=new Date(document.getElementById('dd-end').value),days=Math.floor(Math.abs(end-start)/86400000);document.getElementById('r-dd-days').textContent=fmt(days,0);document.getElementById('r-dd-weeks').textContent=fmt(days/7,1);document.getElementById('r-dd-months').textContent=fmt(days/30.44,1);document.getElementById('r-datediff').classList.add('show');}
+function calcRandom(){const min=parseInt(document.getElementById('rng-min').value)||0,max=parseInt(document.getElementById('rng-max').value)||100,count=Math.min(parseInt(document.getElementById('rng-count').value)||1,50),nums=Array.from({length:count},()=>Math.floor(Math.random()*(max-min+1))+min);document.getElementById('r-rng-numbers').innerHTML=nums.join('  ·  ');document.getElementById('r-random').classList.add('show');}
+function updatePaceFields(){const s=document.getElementById('pace-solve').value;document.getElementById('pace-pace-field').style.display=s==='pace'?'none':'';}
+function calcPace(){const solve=document.getElementById('pace-solve').value,dist=parseFloat(document.getElementById('pace-dist').value)||0,h=parseInt(document.getElementById('pace-h').value)||0,m=parseInt(document.getElementById('pace-m').value)||0,s=parseInt(document.getElementById('pace-s').value)||0,totalSec=h*3600+m*60+s,pMin=parseInt(document.getElementById('pace-min')?.value||0),pSec=parseInt(document.getElementById('pace-sec')?.value||0);let result,label;if(solve==='pace'){const spk=totalSec/dist;result=Math.floor(spk/60)+':'+String(Math.round(spk%60)).padStart(2,'0')+' /كم';label='الإيقاع';}else if(solve==='time'){const ps=pMin*60+pSec,tt=ps*dist;result=Math.floor(tt/3600)+'س '+Math.floor((tt%3600)/60)+'د '+Math.round(tt%60)+'ث';label='وقت الإنهاء';}else{result=fmt(totalSec/(pMin*60+pSec),2)+' كم';label='المسافة';}document.getElementById('r-pace-result').textContent=result;document.getElementById('r-pace-label').textContent=label;document.getElementById('r-pace').classList.add('show');}
+
+// UNIT CONVERTER
+const unitData={length:{units:['مليمتر','سنتيمتر','متر','كيلومتر','بوصة','قدم','ياردة','ميل'],toBase:[0.001,0.01,1,1000,0.0254,0.3048,0.9144,1609.344]},weight:{units:['ملليجرام','جرام','كيلوجرام','طن','أونصة','رطل','ستون'],toBase:[0.000001,0.001,1,1000,0.0283495,0.453592,6.35029]},temp:{units:['مئوية','فهرنهايت','كلفن'],toBase:null},volume:{units:['مليلتر','لتر','كوب','أونصة سائلة','باينت','كوارت','جالون'],toBase:[0.001,1,0.236588,0.0295735,0.473176,0.946353,3.78541]},speed:{units:['م/ث','كم/س','ميل/س','عقدة'],toBase:[1,0.277778,0.44704,0.514444]}};
+function updateUnitOptions(){const cat=document.getElementById('unit-cat').value,data=unitData[cat],fromSel=document.getElementById('unit-from'),toSel=document.getElementById('unit-to');fromSel.innerHTML=data.units.map((u,i)=>`<option value="${i}">${u}</option>`).join('');toSel.innerHTML=data.units.map((u,i)=>`<option value="${i}">${u}</option>`).join('');toSel.selectedIndex=1;calcUnits();}
+function calcUnits(){if(!document.getElementById('unit-cat'))return;const cat=document.getElementById('unit-cat').value,fromI=parseInt(document.getElementById('unit-from').value),toI=parseInt(document.getElementById('unit-to').value),val=parseFloat(document.getElementById('unit-val').value)||0,data=unitData[cat];let result;if(cat==='temp'){let c;if(fromI===0)c=val;else if(fromI===1)c=(val-32)*5/9;else c=val-273.15;if(toI===0)result=c;else if(toI===1)result=c*9/5+32;else result=c+273.15;}else{result=(val*data.toBase[fromI])/data.toBase[toI];}const el=document.getElementById('r-unit-result');if(el){el.textContent=Math.abs(result)<0.001||Math.abs(result)>1e7?result.toExponential(4):fmt(result,4).replace(/\.?0+$/,'');document.getElementById('r-unit-label').textContent=`${data.units[fromI]} ← ${data.units[toI]}`;}}
+
+// SCIENTIFIC CALCULATOR
+let sciExpr='',sciResult=null;
+function sciDisplay(val){if(document.getElementById('sci-display'))document.getElementById('sci-display').textContent=val;}
+function sciKey(k){if(k==='C'){sciExpr='';sciResult=null;sciDisplay('0');if(document.getElementById('sci-expr'))document.getElementById('sci-expr').textContent='';return;}if(k==='CE'||k==='⌫'){sciExpr=sciExpr.slice(0,-1);sciDisplay(sciExpr||'0');return;}if(k==='='){try{let expr=sciExpr.replace(/÷/g,'/').replace(/×/g,'*').replace(/π/g,'Math.PI').replace(/e(?!xp)/g,'Math.E').replace(/sin\(/g,'Math.sin(').replace(/cos\(/g,'Math.cos(').replace(/tan\(/g,'Math.tan(').replace(/log\(/g,'Math.log10(').replace(/ln\(/g,'Math.log(').replace(/√\(/g,'Math.sqrt(').replace(/x²/g,'**2').replace(/\^/g,'**');const res=Function('"use strict";return('+expr+')')();if(document.getElementById('sci-expr'))document.getElementById('sci-expr').textContent=sciExpr+' =';sciExpr=String(parseFloat(res.toFixed(10)));sciDisplay(sciExpr);}catch(e){sciDisplay('خطأ');sciExpr='';}return;}const funcs=['sin','cos','tan','log','ln'];if(funcs.includes(k)){sciExpr+=k+'(';}else{sciExpr+=k;}sciDisplay(sciExpr);}
+
+document.getElementById('global-search').addEventListener('keydown',e=>{if(e.key==='Escape'){e.target.value='';searchCalcs('');}});
+</script>
+</body>
+</html>
