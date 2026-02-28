@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – CalcWise</title>
+<meta name="description" content="Privacy Policy for CalcWise. Learn how we handle your data when you use our free online calculators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface2: #1c1c27;
+  --border: #2a2a3d;
+  --border2: #363650;
+  --text: #e8e8f0;
+  --muted: #7070a0;
+  --muted2: #9090b8;
+  --accent: #6c63ff;
+  --accent2: #8b84ff;
+  --green: #22d3a0;
+  --radius: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+.nav-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center;
+  height: 60px; gap: 1rem;
+}
+.logo {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.4rem; color: var(--text);
+  text-decoration: none;
+}
+.logo span { color: var(--accent); }
+.nav-back {
+  margin-left: auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.4rem 1rem;
+  color: var(--muted2); text-decoration: none;
+  font-size: 0.85rem; font-weight: 500;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.nav-back:hover { border-color: var(--border2); color: var(--text); }
+
+/* HERO */
+.page-hero {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero::before {
+  content: '';
+  position: absolute; top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse, rgba(108,99,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.page-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  padding: 0.35rem 1rem; border-radius: 100px;
+  font-size: 0.8rem; color: var(--muted2);
+  margin-bottom: 1.5rem;
+}
+.page-hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.03em; line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.page-hero h1 em { font-style: italic; color: var(--accent2); }
+.page-hero p { color: var(--muted2); font-size: 0.95rem; }
+.updated-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(34,211,160,0.1); border: 1px solid rgba(34,211,160,0.3);
+  border-radius: 100px; padding: 0.3rem 0.9rem;
+  font-size: 0.8rem; color: var(--green);
+  margin-top: 1rem;
+}
+
+/* MAIN CONTENT */
+.content-wrap {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* TABLE OF CONTENTS */
+.toc {
+  position: sticky; top: 80px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+.toc h3 {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); margin-bottom: 1rem;
+}
+.toc ul { list-style: none; }
+.toc ul li { margin-bottom: 0.1rem; }
+.toc ul a {
+  color: var(--muted2); text-decoration: none;
+  font-size: 0.83rem; padding: 0.3rem 0.5rem;
+  border-radius: 6px; display: block;
+  transition: all 0.2s;
+}
+.toc ul a:hover { color: var(--text); background: var(--surface2); }
+
+/* POLICY CONTENT */
+.policy {
+  min-width: 0;
+}
+
+/* SECTION */
+.policy-section {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.policy-section:last-child { border-bottom: none; }
+
+.section-number {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent); margin-bottom: 0.5rem;
+}
+.policy-section h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.6rem; letter-spacing: -0.02em;
+  margin-bottom: 1.25rem; line-height: 1.2;
+}
+.policy-section p {
+  color: var(--muted2); font-size: 0.95rem;
+  margin-bottom: 1rem; line-height: 1.8;
+}
+.policy-section p:last-child { margin-bottom: 0; }
+.policy-section strong { color: var(--text); font-weight: 600; }
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.highlight-box p {
+  margin: 0; font-size: 0.9rem;
+  color: var(--muted2);
+}
+.highlight-box strong { color: var(--accent2); }
+
+/* GREEN HIGHLIGHT */
+.green-box {
+  background: rgba(34,211,160,0.06);
+  border: 1px solid rgba(34,211,160,0.2);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.green-box p { margin: 0; font-size: 0.9rem; color: var(--muted2); }
+.green-box strong { color: var(--green); }
+
+/* LIST */
+.policy-list {
+  list-style: none;
+  margin: 1rem 0;
+}
+.policy-list li {
+  display: flex; gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem; color: var(--muted2);
+  align-items: flex-start;
+}
+.policy-list li:last-child { border-bottom: none; }
+.policy-list li::before {
+  content: '→';
+  color: var(--accent); flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+/* DATA TABLE */
+.data-table {
+  width: 100%; border-collapse: collapse;
+  margin: 1.5rem 0; font-size: 0.88rem;
+}
+.data-table th {
+  background: var(--surface2);
+  padding: 0.75rem 1rem; text-align: left;
+  font-weight: 600; font-size: 0.78rem;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); border-bottom: 1px solid var(--border2);
+}
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted2); vertical-align: top;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface); }
+
+/* CONTACT CARD */
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.contact-icon {
+  width: 48px; height: 48px;
+  background: var(--surface2); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.contact-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+.contact-card p { font-size: 0.85rem; color: var(--muted2); margin: 0; }
+.contact-card a { color: var(--accent2); text-decoration: none; }
+.contact-card a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2rem;
+  text-align: center;
+}
+.footer-links {
+  display: flex; justify-content: center; gap: 2rem;
+  flex-wrap: wrap; margin-bottom: 1rem;
+}
+.footer-links a {
+  color: var(--muted2); text-decoration: none;
+  font-size: 0.85rem; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text); }
+footer p { font-size: 0.8rem; color: var(--muted); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .content-wrap { grid-template-columns: 1fr; }
+  .toc { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Calc<span>Wise</span></a>
+    <a href="index.html" class="nav-back">← Back to Calculators</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-badge">📄 Legal Document</div>
+  <h1>Privacy <em>Policy</em></h1>
+  <p>How CalcWise handles your information — in plain English.</p>
+  <div class="updated-badge">✓ Last updated: June 1, 2025</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- TABLE OF CONTENTS -->
+  <aside class="toc">
+    <h3>Contents</h3>
+    <ul>
+      <li><a href="#overview">1. Overview</a></li>
+      <li><a href="#information">2. Information We Collect</a></li>
+      <li><a href="#how-we-use">3. How We Use Information</a></li>
+      <li><a href="#cookies">4. Cookies</a></li>
+      <li><a href="#advertising">5. Advertising</a></li>
+      <li><a href="#third-party">6. Third-Party Services</a></li>
+      <li><a href="#children">7. Children's Privacy</a></li>
+      <li><a href="#your-rights">8. Your Rights</a></li>
+      <li><a href="#data-security">9. Data Security</a></li>
+      <li><a href="#changes">10. Changes to Policy</a></li>
+      <li><a href="#contact">11. Contact Us</a></li>
+    </ul>
+  </aside>
+
+  <!-- POLICY -->
+  <div class="policy">
+
+    <!-- 1. OVERVIEW -->
+    <div class="policy-section" id="overview">
+      <div class="section-number">Section 01</div>
+      <h2>Overview</h2>
+      <div class="green-box">
+        <p><strong>The short version:</strong> CalcWise does not collect, store, or sell your personal data. All calculations happen directly in your browser. We never see your numbers, inputs, or results.</p>
+      </div>
+      <p>This Privacy Policy describes how CalcWise ("we," "us," or "our") handles information when you visit <strong>calcwises.com</strong> (the "Site"). We are committed to protecting your privacy and being fully transparent about our data practices.</p>
+      <p>By using CalcWise, you agree to the terms described in this Privacy Policy. If you do not agree, please discontinue use of the Site.</p>
+    </div>
+
+    <!-- 2. INFORMATION WE COLLECT -->
+    <div class="policy-section" id="information">
+      <div class="section-number">Section 02</div>
+      <h2>Information We Collect</h2>
+      <p>CalcWise is a client-side web application. This means all calculations are processed locally in your browser — your inputs are never transmitted to our servers.</p>
+
+      <p><strong>Information we do NOT collect:</strong></p>
+      <ul class="policy-list">
+        <li>Calculator inputs or results (these never leave your device)</li>
+        <li>Personal information such as name, email, or address</li>
+        <li>Financial data, health data, or any calculation data</li>
+        <li>Account credentials (we have no accounts or login system)</li>
+        <li>Payment information</li>
+      </ul>
+
+      <p><strong>Information that may be automatically collected:</strong></p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>What It Is</th>
+            <th>Why It's Collected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>IP Address</strong></td>
+            <td>Your internet connection's address</td>
+            <td>Standard server logs, fraud prevention</td>
+          </tr>
+          <tr>
+            <td><strong>Browser Type</strong></td>
+            <td>e.g., Chrome, Safari, Firefox</td>
+            <td>Analytics and site optimization</td>
+          </tr>
+          <tr>
+            <td><strong>Pages Visited</strong></td>
+            <td>Which pages you view on CalcWise</td>
+            <td>Understanding popular calculators</td>
+          </tr>
+          <tr>
+            <td><strong>Referring URL</strong></td>
+            <td>The site you came from</td>
+            <td>Understanding traffic sources</td>
+          </tr>
+          <tr>
+            <td><strong>Device Type</strong></td>
+            <td>Mobile, tablet, or desktop</td>
+            <td>Improving mobile experience</td>
+          </tr>
+          <tr>
+            <td><strong>Country / Region</strong></td>
+            <td>General geographic location</td>
+            <td>Localization and analytics</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>This technical data is collected automatically by web servers and analytics tools. It does not identify you personally.</p>
+    </div>
+
+    <!-- 3. HOW WE USE INFORMATION -->
+    <div class="policy-section" id="how-we-use">
+      <div class="section-number">Section 03</div>
+      <h2>How We Use Information</h2>
+      <p>The limited technical data we collect is used solely for the following purposes:</p>
+      <ul class="policy-list">
+        <li>Operating and maintaining the CalcWise website</li>
+        <li>Understanding which calculators are most useful to visitors</li>
+        <li>Improving site performance, speed, and user experience</li>
+        <li>Detecting and preventing fraudulent or abusive traffic</li>
+        <li>Complying with legal obligations</li>
+        <li>Measuring the effectiveness of our advertising (via Google AdSense)</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>We never sell your data.</strong> We do not sell, trade, rent, or otherwise transfer any information about our visitors to third parties for their marketing purposes.</p>
+      </div>
+    </div>
+
+    <!-- 4. COOKIES -->
+    <div class="policy-section" id="cookies">
+      <div class="section-number">Section 04</div>
+      <h2>Cookies</h2>
+      <p>Cookies are small text files stored on your device by your browser. CalcWise uses cookies in the following ways:</p>
+
+      <p><strong>Essential Cookies</strong> — Required for the site to function. These cannot be disabled.</p>
+      <p><strong>Analytics Cookies</strong> — Google Analytics uses cookies to help us understand how visitors use the site. Data collected is aggregated and anonymous.</p>
+      <p><strong>Advertising Cookies</strong> — Google AdSense uses cookies to serve relevant advertisements. These cookies may track your browsing behavior across websites to show personalized ads.</p>
+
+      <p>You can control cookies through your browser settings. Most browsers allow you to refuse cookies or delete existing ones. Note that disabling cookies may affect site functionality.</p>
+
+      <p>To opt out of Google's advertising cookies, visit <strong>google.com/settings/ads</strong> or install the Google Analytics Opt-out Browser Add-on.</p>
+    </div>
+
+    <!-- 5. ADVERTISING -->
+    <div class="policy-section" id="advertising">
+      <div class="section-number">Section 05</div>
+      <h2>Advertising</h2>
+      <p>CalcWise uses <strong>Google AdSense</strong> to display advertisements. This is how we keep the site free for everyone.</p>
+      <p>Google AdSense may use cookies and web beacons to collect data about your visits to this and other websites in order to provide relevant advertisements. The types of data Google may collect include:</p>
+      <ul class="policy-list">
+        <li>Pages and sites you have visited</li>
+        <li>Your approximate geographic location</li>
+        <li>Your browser type and device information</li>
+        <li>Interaction with ads (clicks, impressions)</li>
+      </ul>
+      <p>Google's use of advertising cookies enables it and its partners to serve ads based on your visit to CalcWise and other sites on the internet. You may opt out of personalized advertising at <strong>aboutads.info</strong>.</p>
+      <div class="highlight-box">
+        <p>CalcWise has no access to or control over cookies placed by Google AdSense. Google's privacy policy governs their data practices: <strong>policies.google.com/privacy</strong></p>
+      </div>
+    </div>
+
+    <!-- 6. THIRD-PARTY SERVICES -->
+    <div class="policy-section" id="third-party">
+      <div class="section-number">Section 06</div>
+      <h2>Third-Party Services</h2>
+      <p>CalcWise uses the following third-party services. Each has its own privacy policy that governs their data collection:</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Purpose</th>
+            <th>Privacy Policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Google Analytics</strong></td>
+            <td>Website traffic analytics</td>
+            <td>policies.google.com/privacy</td>
+          </tr>
+          <tr>
+            <td><strong>Google AdSense</strong></td>
+            <td>Display advertising</td>
+            <td>policies.google.com/privacy</td>
+          </tr>
+          <tr>
+            <td><strong>Google Fonts</strong></td>
+            <td>Typography (Outfit, Instrument Serif)</td>
+            <td>policies.google.com/privacy</td>
+          </tr>
+          <tr>
+            <td><strong>Vercel</strong></td>
+            <td>Website hosting and delivery</td>
+            <td>vercel.com/legal/privacy-policy</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>We are not responsible for the privacy practices of these third-party services. We encourage you to review their privacy policies.</p>
+    </div>
+
+    <!-- 7. CHILDREN'S PRIVACY -->
+    <div class="policy-section" id="children">
+      <div class="section-number">Section 07</div>
+      <h2>Children's Privacy</h2>
+      <p>CalcWise is intended for general audiences and does not knowingly collect personal information from children under the age of 13 (or under 16 in the European Union).</p>
+      <p>Since we do not collect personal information from any users, we do not knowingly collect it from children either. Our calculators are educational tools suitable for all ages.</p>
+      <p>If you are a parent or guardian and believe your child has provided personal information to us, please contact us immediately and we will take steps to remove that information.</p>
+    </div>
+
+    <!-- 8. YOUR RIGHTS -->
+    <div class="policy-section" id="your-rights">
+      <div class="section-number">Section 08</div>
+      <h2>Your Rights</h2>
+      <p>Depending on your location, you may have the following rights regarding your data:</p>
+      <ul class="policy-list">
+        <li><strong>Right to Access</strong> — Request a copy of any personal data we hold about you</li>
+        <li><strong>Right to Deletion</strong> — Request deletion of your personal data</li>
+        <li><strong>Right to Correction</strong> — Request correction of inaccurate data</li>
+        <li><strong>Right to Object</strong> — Object to processing of your data for certain purposes</li>
+        <li><strong>Right to Portability</strong> — Request your data in a portable format</li>
+        <li><strong>Right to Opt Out</strong> — Opt out of personalized advertising at any time</li>
+      </ul>
+      <p>Because CalcWise does not collect personal data beyond standard server logs, there is typically no personal data to access, delete, or correct. To exercise any of these rights or for questions, contact us using the information in Section 11.</p>
+      <div class="green-box">
+        <p><strong>California Residents (CCPA):</strong> We do not sell personal information. You have the right to know what data is collected and to opt out of its sale. Since we do not sell data, no opt-out is necessary.</p>
+      </div>
+      <p><strong>European Residents (GDPR):</strong> Our legal basis for processing technical data is our legitimate interest in operating and improving the Site. You may contact us to exercise your GDPR rights at any time.</p>
+    </div>
+
+    <!-- 9. DATA SECURITY -->
+    <div class="policy-section" id="data-security">
+      <div class="section-number">Section 09</div>
+      <h2>Data Security</h2>
+      <p>We take reasonable measures to protect any information associated with your use of CalcWise:</p>
+      <ul class="policy-list">
+        <li>All traffic is encrypted via HTTPS / SSL (the padlock in your browser)</li>
+        <li>Calculator inputs are processed entirely in your browser and never transmitted</li>
+        <li>We do not store financial, health, or personal calculation data on any server</li>
+        <li>Our hosting provider (Vercel) maintains industry-standard security practices</li>
+      </ul>
+      <p>While we implement these safeguards, no method of internet transmission is 100% secure. We cannot guarantee absolute security of information transmitted to or from our Site.</p>
+    </div>
+
+    <!-- 10. CHANGES -->
+    <div class="policy-section" id="changes">
+      <div class="section-number">Section 10</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors.</p>
+      <p>When we make changes, we will update the <strong>"Last updated"</strong> date at the top of this page. We encourage you to review this page periodically to stay informed about how we protect your information.</p>
+      <p>Continued use of CalcWise after any changes constitutes your acceptance of the updated Privacy Policy.</p>
+    </div>
+
+    <!-- 11. CONTACT -->
+    <div class="policy-section" id="contact">
+      <div class="section-number">Section 11</div>
+      <h2>Contact Us</h2>
+      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>CalcWise Privacy Team</h4>
+          <p>Website: <a href="https://calcwises.com">calcwises.com</a><br>
+          Email: <a href="mailto:mhsar.2@gmail.com">privacy@calcwises.com</a><br>
+          We aim to respond to all inquiries within 5 business days.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem;">This Privacy Policy was written to be clear and understandable. If anything is unclear, please reach out and we will explain it in plain English.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="about.html">About</a>
+  </div>
+  <p>© 2025 CalcWise · calcwises.com · All rights reserved.</p>
+</footer>
+
+</body>
+</html>
