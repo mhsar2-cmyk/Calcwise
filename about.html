@@ -35,7 +35,7 @@ body::before {
 }
 nav { position: sticky; top: 0; z-index: 100; background: rgba(7,7,26,0.6); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.07); padding: 0 2rem; }
 .nav-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; height: 60px; gap: 1rem; }
-.logo { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: var(--text); text-decoration: none; }
+.logo { font-family: 'Outfit', sans-serif; font-size: 1.4rem; color: var(--text); text-decoration: none; }
 .logo span { color: var(--accent); }
 .nav-links { margin-left: auto; display: flex; gap: 0.5rem; }
 .nav-link { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 1rem; color: var(--muted2); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
@@ -43,17 +43,17 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(7,7,26,0.6); back
 .about-hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 4rem; overflow: hidden; }
 .about-hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(108,99,255,0.15) 0%, transparent 70%); pointer-events: none; }
 .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); padding: 0.35rem 1rem; border-radius: 100px; font-size: 0.8rem; color: var(--muted2); margin-bottom: 1.75rem; }
-.about-hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.about-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
 .about-hero h1 em { font-style: italic; color: var(--accent2); }
 .about-hero p { font-size: 1.1rem; color: var(--muted2); max-width: 580px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
 .stats-strip { position: relative; z-index: 1; background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); padding: 2.5rem 2rem; }
 .stats-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 .stat-box { text-align: center; padding: 1rem; }
-.stat-box-num { font-family: 'Instrument Serif', serif; font-size: 2.5rem; color: var(--accent2); display: block; line-height: 1; margin-bottom: 0.4rem; }
+.stat-box-num { font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: var(--accent2); display: block; line-height: 1; margin-bottom: 0.4rem; }
 .stat-box-label { font-size: 0.85rem; color: var(--muted2); }
 .about-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
 .about-section { margin-bottom: 5rem; }
-.about-section h2 { font-family: 'Instrument Serif', serif; font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+.about-section h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
 .about-section h2 em { font-style: italic; color: var(--accent2); }
 .about-section p { color: var(--muted2); font-size: 0.97rem; line-height: 1.9; margin-bottom: 1rem; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
@@ -70,11 +70,11 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(7,7,26,0.6); back
 .cat-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin: 0; }
 .cat-count { display: inline-block; background: var(--surface2); border-radius: 100px; padding: 0.15rem 0.5rem; font-size: 0.72rem; color: var(--muted2); margin-top: 0.4rem; }
 .mission-box { background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(108,99,255,0.03)); border: 1px solid rgba(108,99,255,0.3); border-radius: 20px; padding: 3rem; text-align: center; margin: 3rem 0; }
-.mission-box h3 { font-family: 'Instrument Serif', serif; font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
+.mission-box h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
 .mission-box p { color: var(--muted2); font-size: 1rem; max-width: 540px; margin: 0 auto; line-height: 1.9; }
 .team-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 2.5rem; display: flex; gap: 2rem; align-items: flex-start; }
 .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
-.team-info h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; margin-bottom: 0.3rem; }
+.team-info h3 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 0.3rem; }
 .team-info .role { font-size: 0.82rem; color: var(--accent2); font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
 .team-info p { font-size: 0.9rem; color: var(--muted2); line-height: 1.8; margin: 0; }
 .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }

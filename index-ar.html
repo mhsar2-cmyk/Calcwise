@@ -184,7 +184,8 @@
     }
 
     .logo {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: 1.5rem;
       color: var(--text);
       text-decoration: none;
@@ -1040,6 +1041,35 @@
 
       .footer-inner {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @keyframes heartbeatPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      15% {
+        transform: scale(1.12);
+        opacity: 0.8;
+      }
+
+      30% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      45% {
+        transform: scale(1.08);
+        opacity: 0.6;
+      }
+
+      60% {
+        transform: scale(1);
+        opacity: 0.4;
       }
     }
 
@@ -2020,6 +2050,29 @@
           <div class="result-item"><span class="result-value" id="r-preg-trimester">—</span><div class="result-label">الثلث</div></div>
           <div class="result-item"><span class="result-value" id="r-preg-conception">—</span><div class="result-label">تاريخ الحمل التقريبي</div></div>
         </div>
+        <!-- Fetus Visualization -->
+        <div id="preg-fetus-viz" style="margin-top:1.5rem;background:linear-gradient(135deg, rgba(108,99,255,0.08), rgba(255,107,157,0.08));border:1px solid rgba(108,99,255,0.15);border-radius:16px;padding:1.5rem;text-align:center;display:none;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;">
+            <div id="preg-fetus-svg" style="position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;">
+              <div id="preg-heartbeat-ring" style="position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid rgba(255,107,157,0.3);animation:heartbeatPulse 1.2s ease-in-out infinite;"></div>
+              <div id="preg-fetus-icon" style="font-size:4rem;z-index:1;transition:font-size 0.6s cubic-bezier(0.34,1.56,0.64,1);"></div>
+            </div>
+            <div style="text-align:right;flex:1;min-width:180px;">
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">مقارنة الحجم</div>
+              <div id="preg-size-compare" style="font-size:1.3rem;font-weight:700;color:var(--accent2);margin-bottom:0.6rem;"></div>
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">الطول والوزن</div>
+              <div id="preg-size-detail" style="font-size:0.95rem;color:var(--text);margin-bottom:0.6rem;direction:ltr;text-align:right;"></div>
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">التطور</div>
+              <div id="preg-dev-note" style="font-size:0.88rem;color:var(--muted2);line-height:1.4;"></div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;direction:ltr;">
+            <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-bottom:0.3rem;"><span style="font-family:'IBM Plex Sans Arabic',sans-serif;">الأسبوع ٠</span><span id="preg-progress-week" style="font-family:'IBM Plex Sans Arabic',sans-serif;">الأسبوع ٠</span><span style="font-family:'IBM Plex Sans Arabic',sans-serif;">الأسبوع ٤٠</span></div>
+            <div style="width:100%;height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;">
+              <div id="preg-progress-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--pink));border-radius:99px;transition:width 1s cubic-bezier(0.34,1.56,0.64,1);"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
       },
@@ -2805,6 +2858,74 @@
       document.getElementById('r-preg-trimester').textContent = trimester;
       document.getElementById('r-preg-conception').textContent = conception.toLocaleDateString('ar-SA', opts);
 
+
+      // ── Fetus visualization (AR) ──
+      const fetusData = [
+        ['🔬', 'مجهري', '< 0.1 مم', '—', 'البويضة المخصبة تبدأ بالانقسام'],
+        ['🔬', 'مجهري', '< 0.1 مم', '—', 'الخلايا تستمر بالانقسام السريع'],
+        ['🔬', 'مجهري', '0.1 مم', '—', 'الكيسة الأريمية تنغرس في الرحم'],
+        ['🔬', 'مجهري', '0.2 مم', '—', 'يبدأ تكوّن الجنين والأنبوب العصبي'],
+        ['🌰', 'بذرة خشخاش', '1 مم', '< 1 غ', 'يبدأ القلب بالنبض والدماغ بالتشكّل'],
+        ['🫘', 'بذرة سمسم', '2 مم', '< 1 غ', 'تظهر براعم الذراعين والساقين'],
+        ['🫐', 'حبة عدس', '5 مم', '< 1 غ', 'يتشكل الأنف والفم والأذنان'],
+        ['🫐', 'حبة توت', '1.3 سم', '< 1 غ', 'تبدأ الأصابع بالتكوّن'],
+        ['🍇', 'حبة توت كبيرة', '1.6 سم', '1 غ', 'جميع الأعضاء الرئيسية تتشكّل'],
+        ['🫒', 'زيتونة', '2.3 سم', '2 غ', 'العظام تبدأ بالتصلّب'],
+        ['🍓', 'فراولة', '3.1 سم', '4 غ', 'الأظافر تنمو ويبدأ بالفواق'],
+        ['🍋', 'ليمونة خضراء', '4.1 سم', '7 غ', 'الحبال الصوتية تتشكّل'],
+        ['🍋', 'ليمونة', '5.4 سم', '14 غ', 'البصمات تتشكّل'],
+        ['🍊', 'برتقالة', '7.4 سم', '23 غ', 'يستشعر الضوء وينمو الشعر'],
+        ['🍎', 'تفاحة', '8.7 سم', '42 غ', 'يسمع الأصوات وبراعم التذوق تنشط'],
+        ['🍐', 'أفوكادو', '10.1 سم', '70 غ', 'الهيكل يتصلّب ويمكنه عمل تعابير'],
+        ['🫑', 'كمثرى', '11.6 سم', '100 غ', 'يتثاءب ويتمدد'],
+        ['🥭', 'مانجو', '13.2 سم', '140 غ', 'الجهاز العصبي ينضج'],
+        ['🥭', 'مانجو', '14.2 سم', '190 غ', 'الشعر ينمو على الرأس'],
+        ['🍌', 'موزة', '15.3 سم', '240 غ', 'يبتلع السائل الأمنيوسي بانتظام'],
+        ['🥕', 'جزرة', '16.7 سم', '300 غ', 'دورات النوم والاستيقاظ تبدأ'],
+        ['🥕', 'قرعة صغيرة', '19.2 سم', '350 غ', 'الجفون تنفتح والرئتان تتطوران'],
+        ['🌽', 'كوز ذرة', '21.6 سم', '430 غ', 'يستجيب للأصوات والموسيقى'],
+        ['🌽', 'كوز ذرة كبير', '22.0 سم', '500 غ', 'الدماغ ينمو بسرعة'],
+        ['🥒', 'كوسة', '23.0 سم', '570 غ', 'حاسة التوازن تتطوّر'],
+        ['🥦', 'قرنبيط', '24.0 سم', '660 غ', 'العيون تنفتح والرئتان تنتجان مادة السرفاكتانت'],
+        ['🥦', 'رأس خس', '25.0 سم', '760 غ', 'يحلم (نوم حركة العين السريعة)'],
+        ['🍆', 'باذنجان', '27.0 سم', '875 غ', 'الحواس الخمس مكتملة'],
+        ['🍆', 'قرع عسلي', '28.0 سم', '1.0 كغ', 'يكتسب وزناً بسرعة'],
+        ['🥥', 'جوز هند', '30.0 سم', '1.2 كغ', 'العظام مكتملة (لا تزال لينة)'],
+        ['🥥', 'جوز هند', '32.0 سم', '1.5 كغ', 'يدير رأسه يميناً ويساراً'],
+        ['🍍', 'أناناس', '34.0 سم', '1.7 كغ', 'طبقة الدهون تتراكم'],
+        ['🍍', 'أناناس', '35.0 سم', '1.9 كغ', 'الجهاز المناعي يقوى'],
+        ['🍍', 'شمّام', '37.0 سم', '2.1 كغ', 'الرئتان شبه ناضجتين'],
+        ['🎃', 'كانتالوب', '38.0 سم', '2.4 كغ', 'روابط الدماغ تزداد بسرعة'],
+        ['🎃', 'كانتالوب', '40.0 سم', '2.6 كغ', 'الرأس للأسفل مستعد للنزول'],
+        ['🍉', 'شمّام كبير', '43.0 سم', '2.9 كغ', 'الرئتان ناضجتان تماماً'],
+        ['🍉', 'بطيخ صغير', '46.0 سم', '3.1 كغ', 'اكتمال النمو! جاهز للولادة'],
+        ['🍉', 'بطيخ', '48.0 سم', '3.3 كغ', 'الحركة قد تكون أقل'],
+        ['🍉', 'بطيخ', '50.0 سم', '3.5 كغ', 'طفلك جاهز تماماً!'],
+        ['🍉', 'بطيخ كبير', '51.0 سم', '3.6 كغ', 'أسبوع الولادة — مرحباً بالمولود!']
+      ];
+
+      const weeks = currentDays >= 0 ? Math.min(Math.floor(currentDays / 7), 40) : 0;
+      const viz = document.getElementById('preg-fetus-viz');
+
+      if (currentDays >= 0 && currentDays <= adjustedDays + 14) {
+        const data = fetusData[weeks] || fetusData[40];
+        viz.style.display = 'block';
+
+        const iconSize = Math.max(2.5, Math.min(6, 2.5 + (weeks / 40) * 3.5));
+        const icon = document.getElementById('preg-fetus-icon');
+        icon.textContent = data[0];
+        icon.style.fontSize = iconSize + 'rem';
+
+        document.getElementById('preg-size-compare').textContent = `${data[0]} بحجم ${data[1]} تقريباً`;
+        document.getElementById('preg-size-detail').textContent = `${data[2]} طول · ${data[3]}`;
+        document.getElementById('preg-dev-note').textContent = data[4];
+
+        const pctProgress = Math.min(100, (weeks / 40) * 100);
+        document.getElementById('preg-progress-bar').style.width = pctProgress + '%';
+        document.getElementById('preg-progress-week').textContent = `الأسبوع ${weeks}`;
+      } else {
+        viz.style.display = 'none';
+      }
 
       document.getElementById('r-pregnancy').classList.add('show');
     }

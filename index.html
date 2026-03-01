@@ -101,7 +101,8 @@
     }
 
     .logo {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: 1.5rem;
       color: var(--text);
       text-decoration: none;
@@ -215,7 +216,8 @@
     }
 
     .hero h1 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: clamp(2.8rem, 7vw, 5rem);
       line-height: 1.08;
       letter-spacing: -0.03em;
@@ -248,7 +250,8 @@
     }
 
     .stat-num {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: 2rem;
       color: var(--text);
       display: block;
@@ -518,7 +521,8 @@
     }
 
     .modal-header h2 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: 1.5rem;
       letter-spacing: -0.02em;
     }
@@ -700,7 +704,8 @@
     }
 
     .result-value {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: 1.8rem;
       color: var(--accent2);
       display: block;
@@ -802,7 +807,8 @@
     }
 
     .section-head h2 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       font-size: 1.4rem;
       letter-spacing: -0.02em;
     }
@@ -949,6 +955,35 @@
     }
 
     /* ── ANIMATIONS ── */
+    @keyframes heartbeatPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      15% {
+        transform: scale(1.12);
+        opacity: 0.8;
+      }
+
+      30% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      45% {
+        transform: scale(1.08);
+        opacity: 0.6;
+      }
+
+      60% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+    }
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -2384,6 +2419,32 @@
           <div class="result-item"><span class="result-value" id="r-preg-trimester">—</span><div class="result-label">Trimester</div></div>
           <div class="result-item"><span class="result-value" id="r-preg-conception">—</span><div class="result-label">Est. Conception</div></div>
         </div>
+        <!-- Fetus Visualization -->
+        <div id="preg-fetus-viz" style="margin-top:1.5rem;background:linear-gradient(135deg, rgba(108,99,255,0.08), rgba(255,107,157,0.08));border:1px solid rgba(108,99,255,0.15);border-radius:16px;padding:1.5rem;text-align:center;display:none;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;">
+            <!-- Animated Fetus SVG -->
+            <div id="preg-fetus-svg" style="position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;">
+              <div id="preg-heartbeat-ring" style="position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid rgba(255,107,157,0.3);animation:heartbeatPulse 1.2s ease-in-out infinite;"></div>
+              <div id="preg-fetus-icon" style="font-size:4rem;z-index:1;transition:font-size 0.6s cubic-bezier(0.34,1.56,0.64,1);"></div>
+            </div>
+            <!-- Info Panel -->
+            <div style="text-align:left;flex:1;min-width:180px;">
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">Size Comparison</div>
+              <div id="preg-size-compare" style="font-size:1.3rem;font-weight:700;color:var(--accent2);margin-bottom:0.6rem;"></div>
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">Length & Weight</div>
+              <div id="preg-size-detail" style="font-size:0.95rem;color:var(--text);margin-bottom:0.6rem;"></div>
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">Development</div>
+              <div id="preg-dev-note" style="font-size:0.88rem;color:var(--muted2);line-height:1.4;"></div>
+            </div>
+          </div>
+          <!-- Progress bar -->
+          <div style="margin-top:1rem;">
+            <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-bottom:0.3rem;"><span>Week 0</span><span id="preg-progress-week">Week 0</span><span>Week 40</span></div>
+            <div style="width:100%;height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;">
+              <div id="preg-progress-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--pink));border-radius:99px;transition:width 1s cubic-bezier(0.34,1.56,0.64,1);"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-ad">Advertisement · 728×90</div>`
       },
@@ -3096,6 +3157,77 @@
       document.getElementById('r-preg-week').textContent = weekDayStr;
       document.getElementById('r-preg-trimester').textContent = trimester;
       document.getElementById('r-preg-conception').textContent = conception.toLocaleDateString('en-US', opts);
+
+      // ── Fetus visualization ──
+      const fetusData = [
+        // [emoji, sizeComparison, length, weight, developmentNote]  — per week (index 0 = week 0)
+        ['🔬', 'Microscopic', '< 0.1 mm', '—', 'Fertilized egg begins dividing'],
+        ['🔬', 'Microscopic', '< 0.1 mm', '—', 'Cells continue rapid division'],
+        ['🔬', 'Microscopic', '0.1 mm', '—', 'Blastocyst implants in uterus'],
+        ['🔬', 'Microscopic', '0.2 mm', '—', 'Embryo begins forming; neural tube develops'],
+        ['🌰', 'Poppy Seed', '1 mm', '< 1 g', 'Heart begins to beat; brain forming'],
+        ['🫘', 'Sesame Seed', '2 mm', '< 1 g', 'Arm and leg buds appear'],
+        ['🫐', 'Lentil', '5 mm', '< 1 g', 'Nose, mouth & ears forming'],
+        ['🫐', 'Blueberry', '1.3 cm', '< 1 g', 'Fingers and toes begin forming'],
+        ['🍇', 'Raspberry', '1.6 cm', '1 g', 'All major organs forming; can move'],
+        ['🫒', 'Olive', '2.3 cm', '2 g', 'Bones begin hardening; tiny teeth buds'],
+        ['🍓', 'Strawberry', '3.1 cm', '4 g', 'Fingernails developing; can hiccup'],
+        ['🍋', 'Lime', '4.1 cm', '7 g', 'Vocal cords forming; reflexes developing'],
+        ['🍋', 'Lemon', '5.4 cm', '14 g', 'Fingerprints forming; can squint'],
+        ['🍊', 'Navel Orange', '7.4 cm', '23 g', 'Can sense light; lanugo hair grows'],
+        ['🍎', 'Apple', '8.7 cm', '42 g', 'Can hear sounds; taste buds active'],
+        ['🍐', 'Avocado', '10.1 cm', '70 g', 'Skeleton hardening; can make faces'],
+        ['🫑', 'Pear', '11.6 cm', '100 g', 'Can yawn and stretch'],
+        ['🥭', 'Mango', '13.2 cm', '140 g', 'Nervous system maturing; vernix forms'],
+        ['🥭', 'Mango', '14.2 cm', '190 g', 'Hair growing on head; can grip'],
+        ['🍌', 'Banana', '15.3 cm', '240 g', 'Swallowing amniotic fluid regularly'],
+        ['🥕', 'Carrot', '16.7 cm', '300 g', 'Sleep-wake cycles beginning'],
+        ['🥕', 'Spaghetti Squash', '19.2 cm', '350 g', 'Eyelids can open; lungs developing'],
+        ['🌽', 'Corn Cob', '21.6 cm', '430 g', 'Responds to sound and music'],
+        ['🌽', 'Ear of Corn', '22.0 cm', '500 g', 'Brain growing rapidly; viable if born'],
+        ['🥒', 'Zucchini', '23.0 cm', '570 g', 'Developing sense of balance'],
+        ['🥦', 'Cauliflower', '24.0 cm', '660 g', 'Can open eyes; lungs producing surfactant'],
+        ['🥦', 'Head of Lettuce', '25.0 cm', '760 g', 'Can dream (REM sleep detected!)'],
+        ['🍆', 'Eggplant', '27.0 cm', '875 g', 'Five senses fully developed'],
+        ['🍆', 'Butternut Squash', '28.0 cm', '1.0 kg', 'Gaining weight rapidly now'],
+        ['🥥', 'Coconut', '30.0 cm', '1.2 kg', 'Bones fully developed (still soft)'],
+        ['🥥', 'Coconut', '32.0 cm', '1.5 kg', 'Can turn head side to side'],
+        ['🍍', 'Pineapple', '34.0 cm', '1.7 kg', 'Fat layer building; skin smoothing'],
+        ['🍍', 'Pineapple', '35.0 cm', '1.9 kg', 'Immune system strengthening'],
+        ['🍍', 'Honeydew Melon', '37.0 cm', '2.1 kg', 'Lungs nearly mature'],
+        ['🎃', 'Cantaloupe', '38.0 cm', '2.4 kg', 'Brain connections increasing rapidly'],
+        ['🎃', 'Cantaloupe', '40.0 cm', '2.6 kg', 'Baby is head-down, ready to drop'],
+        ['🍉', 'Honeydew Melon', '43.0 cm', '2.9 kg', 'Lungs mature; gaining 30g/day'],
+        ['🍉', 'Winter Melon', '46.0 cm', '3.1 kg', 'Full term! Ready for birth'],
+        ['🍉', 'Small Watermelon', '48.0 cm', '3.3 kg', 'Movements may feel tighter'],
+        ['🍉', 'Watermelon', '50.0 cm', '3.5 kg', 'Your baby is fully ready!'],
+        ['🍉', 'Watermelon', '51.0 cm', '3.6 kg', 'Due date week — welcome baby!']
+      ];
+
+      const weeks = currentDays >= 0 ? Math.min(Math.floor(currentDays / 7), 40) : 0;
+      const viz = document.getElementById('preg-fetus-viz');
+
+      if (currentDays >= 0 && currentDays <= adjustedDays + 14) {
+        const data = fetusData[weeks] || fetusData[40];
+        viz.style.display = 'block';
+
+        // Animated icon scaling (smaller early, bigger later)
+        const iconSize = Math.max(2.5, Math.min(6, 2.5 + (weeks / 40) * 3.5));
+        const icon = document.getElementById('preg-fetus-icon');
+        icon.textContent = data[0];
+        icon.style.fontSize = iconSize + 'rem';
+
+        document.getElementById('preg-size-compare').textContent = `${data[0]} About the size of a ${data[1]}`;
+        document.getElementById('preg-size-detail').textContent = `${data[2]} long · ${data[3]}`;
+        document.getElementById('preg-dev-note').textContent = data[4];
+
+        // Progress bar
+        const pctProgress = Math.min(100, (weeks / 40) * 100);
+        document.getElementById('preg-progress-bar').style.width = pctProgress + '%';
+        document.getElementById('preg-progress-week').textContent = `Week ${weeks}`;
+      } else {
+        viz.style.display = 'none';
+      }
 
       document.getElementById('r-pregnancy').classList.add('show');
     }
