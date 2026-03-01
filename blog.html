@@ -338,39 +338,39 @@
     
     /* Neumorphic Light Mode Redesign */
     [data-theme="light"] {
-      --bg: #EBECF0;
-      --surface: #EBECF0;
-      --surface2: #EBECF0;
+      --bg: #EEF2FF;
+      --surface: #EEF2FF;
+      --surface2: #EEF2FF;
       --border: transparent;
       --border2: transparent;
-      --text: #2D3748;
-      --text-muted: #718096;
-      --muted: #A0AEC0;
-      --muted2: #CBD5E0;
-      --accent: #6C63FF;
-      --accent-hover: #5A52D5;
+      --text: #312E81;
+      --text-muted: #4F46E5;
+      --muted: #A5B4FC;
+      --muted2: #C7D2FE;
+      --accent: #EC4899;
+      --accent-hover: #DB2777;
       
       --neu-light: #ffffff;
-      --neu-dark: #babecc;
-      --accent-shadow: 6px 6px 12px rgba(186, 190, 204, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.9);
-      --card-shadow: 8px 8px 16px rgba(186, 190, 204, 0.5), -8px -8px 16px rgba(255, 255, 255, 0.8);
-      --card-hover-shadow: inset 4px 4px 8px rgba(186, 190, 204, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
-      --neu-inset: inset 5px 5px 10px rgba(186, 190, 204, 0.45), inset -5px -5px 10px rgba(255, 255, 255, 0.8);
-      --neu-pressed: inset 7px 7px 14px rgba(186, 190, 204, 0.6), inset -7px -7px 14px rgba(255, 255, 255, 0.9);
+      --neu-dark: #C7D2FE;
+      --accent-shadow: 6px 6px 12px rgba(199, 210, 254, 0.6), -6px -6px 12px rgba(255, 255, 255, 0.9);
+      --card-shadow: 8px 8px 16px rgba(199, 210, 254, 0.65), -8px -8px 16px rgba(255, 255, 255, 0.9);
+      --card-hover-shadow: inset 4px 4px 8px rgba(199, 210, 254, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+      --neu-inset: inset 5px 5px 10px rgba(199, 210, 254, 0.6), inset -5px -5px 10px rgba(255, 255, 255, 0.9);
+      --neu-pressed: inset 7px 7px 14px rgba(199, 210, 254, 0.8), inset -7px -7px 14px rgba(255, 255, 255, 0.95);
       
       --success: #10B981;
       --warning: #F59E0B;
       --error: #EF4444;
       --info: #3B82F6;
 
-      /* Neutralize dark-mode leaky variables */
-      --accent2: #6C63FF;
-      --accent3: #8B84FF;
+      /* Neutralize dark-mode leaky variables but add colorful touches */
+      --accent2: #8B5CF6;
+      --accent3: #6366F1;
       --blue: #3B82F6;
       --pink: #EC4899;
       --green: #10B981;
-      --glow: none;
-      --card-glow: none;
+      --glow: 0 0 20px rgba(236, 72, 153, 0.15);
+      --card-glow: 0 0 30px rgba(99, 102, 241, 0.1);
     }
 
     html[data-theme="light"] body {
@@ -395,7 +395,7 @@
       color: var(--text) !important;
       letter-spacing: -0.01em;
       font-weight: 600;
-      text-shadow: 2px 2px 5px rgba(186, 190, 204, 0.4), -2px -2px 5px rgba(255, 255, 255, 0.8) !important;
+      text-shadow: 2px 2px 5px rgba(199, 210, 254, 0.6), -2px -2px 5px rgba(255, 255, 255, 0.9) !important;
     }
 
     html[data-theme="light"] .logo .logo-dot {
@@ -407,7 +407,7 @@
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
       border: none !important;
-      box-shadow: 0 4px 10px rgba(186, 190, 204, 0.3) !important;
+      box-shadow: 0 4px 10px rgba(199, 210, 254, 0.4) !important;
     }
 
     html[data-theme="light"] .nav-search {
@@ -455,6 +455,7 @@
       background: var(--surface) !important;
       border: none !important;
       box-shadow: var(--card-shadow) !important;
+      color: var(--accent) !important;
     }
 
     html[data-theme="light"] .calc-card:hover .card-icon {
@@ -464,7 +465,7 @@
     html[data-theme="light"] .modal-content, html[data-theme="light"] .modal {
       background: var(--surface) !important;
       border: none !important;
-      box-shadow: 12px 12px 24px rgba(186, 190, 204, 0.6), -12px -12px 24px rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 12px 12px 24px rgba(199, 210, 254, 0.7), -12px -12px 24px rgba(255, 255, 255, 0.9) !important;
       backdrop-filter: none !important;
       border-radius: 24px !important;
     }
@@ -506,11 +507,11 @@
     html[data-theme="light"] footer {
       background: var(--surface) !important;
       border-top: none !important;
-      box-shadow: inset 0 10px 10px -10px rgba(186, 190, 204, 0.5) !important;
+      box-shadow: inset 0 10px 10px -10px rgba(199, 210, 254, 0.6) !important;
     }
     
     html[data-theme="light"] .data-table th, html[data-theme="light"] .data-table td {
-      border-color: rgba(186, 190, 204, 0.3) !important;
+      border-color: rgba(199, 210, 254, 0.5) !important;
     }
 
     html[data-theme="light"] .fav-chip {
