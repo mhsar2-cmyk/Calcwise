@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcWise Blog – Calculator Tips, Guides & Financial Advice</title>
+    <meta name="description"
+        content="Learn how to calculate your mortgage, track your BMI, manage your budget, and more. Free guides and tips from CalcWise.">
+    <meta name="keywords"
+        content="mortgage tips, BMI guide, financial calculator guide, calorie counting tips, compound interest explained">
+
+    <link rel="canonical" href="https://calcwises.com/blog.html">
+    <link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html">
+    <link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CalcWise Blog – Tips & Guides">
+    <meta property="og:description"
+        content="Learn how to calculate your mortgage, track your BMI, manage your budget, and more.">
+    <meta property="og:url" content="https://calcwises.com/blog.html">
+    <meta property="og:image" content="https://calcwises.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CalcWise Blog – Tips & Guides">
+    <meta name="twitter:image" content="https://calcwises.com/og-image.png">
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "CalcWise Blog",
+    "url": "https://calcwises.com/blog.html",
+    "description": "Calculator tips, financial guides, and health advice.",
+    "publisher": { "@type": "Organization", "name": "CalcWise", "url": "https://calcwises.com" },
+    "inLanguage": "en"
+  }
+  </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface2: #1a1a2e;
+            --border: #2a2a3e;
+            --text: #e8e8f0;
+            --muted: #8888a0;
+            --muted2: #a0a0b8;
+            --accent: #6C63FF;
+            --accent2: #8B83FF;
+            --pink: #FF6B9D;
+            --green: #00D4AA;
+            --orange: #FF8A65;
+            --yellow: #FFD93D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--pink);
+        }
+
+        /* NAV */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--muted2);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* HERO */
+        .blog-hero {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(180deg, rgba(108, 99, 255, 0.06), transparent);
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-hero h1 em {
+            color: var(--accent2);
+            font-style: normal;
+        }
+
+        .blog-hero p {
+            color: var(--muted2);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ARTICLES GRID */
+        .blog-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.12);
+        }
+
+        .article-card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            margin-bottom: 1rem;
+        }
+
+        .tag-finance {
+            background: rgba(108, 99, 255, 0.15);
+            color: var(--accent2);
+        }
+
+        .tag-health {
+            background: rgba(0, 212, 170, 0.15);
+            color: var(--green);
+        }
+
+        .tag-math {
+            background: rgba(255, 217, 61, 0.15);
+            color: var(--yellow);
+        }
+
+        .tag-lifestyle {
+            background: rgba(255, 107, 157, 0.15);
+            color: var(--pink);
+        }
+
+        .article-card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .article-card p {
+            font-size: 0.9rem;
+            color: var(--muted2);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* EXPANDED ARTICLE */
+        .article-full {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-full.open {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .article-full h3 {
+            font-size: 1.05rem;
+            color: var(--accent2);
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .article-full p,
+        .article-full li {
+            font-size: 0.9rem;
+            color: var(--muted2);
+            line-height: 1.7;
+        }
+
+        .article-full ul {
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .article-full li {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-full .tip-box {
+            background: rgba(108, 99, 255, 0.08);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        .article-full .tip-box strong {
+            color: var(--accent2);
+        }
+
+        .article-full .cta-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .article-full .cta-btn:hover {
+            background: var(--accent2);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FOOTER */
+        .blog-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+        }
+    
+    /* Neumorphic Light Mode Redesign */
+    [data-theme="light"] {
+      --bg: #E0E5EC;
+      --surface: #E0E5EC;
+      --surface2: #E0E5EC;
+      --border: transparent;
+      --border2: transparent;
+      --text: #274578;
+      --text-muted: #718096;
+      --muted: #A0AEC0;
+      --muted2: #CBD5E0;
+      --accent: #6C63FF;
+      --accent-hover: #5A52D5;
+      
+      --neu-light: #ffffff;
+      --neu-dark: #a3b1c6;
+      --accent-shadow: 6px 6px 16px rgba(163, 177, 198, 0.4), -6px -6px 16px rgba(255, 255, 255, 0.8);
+      --card-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+      --card-hover-shadow: inset 6px 6px 10px rgba(163, 177, 198, 0.5), inset -6px -6px 10px rgba(255, 255, 255, 0.5);
+      --neu-inset: inset 4px 4px 8px rgba(163, 177, 198, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+      --neu-pressed: inset 6px 6px 10px rgba(163, 177, 198, 0.6), inset -6px -6px 10px rgba(255, 255, 255, 0.8);
+    }
+
+    html[data-theme="light"] body {
+      background: var(--bg) !important;
+      color: var(--text-muted);
+    }
+    
+    html[data-theme="light"] h1, html[data-theme="light"] h2, html[data-theme="light"] h3, html[data-theme="light"] h4, html[data-theme="light"] .logo {
+      color: var(--text) !important;
+      text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.5), -2px -2px 4px rgba(255, 255, 255, 0.6) !important;
+    }
+
+    html[data-theme="light"] nav, html[data-theme="light"] header, html[data-theme="light"] footer, html[data-theme="light"] .stats-strip, html[data-theme="light"] .navbar {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: 0 4px 10px rgba(163, 177, 198, 0.3) !important;
+    }
+
+    html[data-theme="light"] .col-visual, html[data-theme="light"] .value-card, html[data-theme="light"] .cat-card, html[data-theme="light"] .team-card, html[data-theme="light"] .contact-item, html[data-theme="light"] .article-card, html[data-theme="light"] .highlight-box, html[data-theme="light"] .green-box, html[data-theme="light"] .toc, html[data-theme="light"] .contact-card {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow) !important;
+    }
+
+    html[data-theme="light"] .cat-card:hover, html[data-theme="light"] .contact-item:hover, html[data-theme="light"] .article-card:hover {
+      box-shadow: var(--card-hover-shadow) !important;
+      transform: translateY(-2px);
+    }
+
+    html[data-theme="light"] body::before, html[data-theme="light"] .about-hero::before, html[data-theme="light"] .page-hero::before {
+      display: none !important;
+    }
+    
+    html[data-theme="light"] .data-table th, html[data-theme="light"] .data-table td {
+      border-color: rgba(163, 177, 198, 0.3) !important;
+    }
+    
+    html[data-theme="light"] .nav-back, html[data-theme="light"] .nav-link, html[data-theme="light"] .article-card .tag {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow);
+    }
+    html[data-theme="light"] .nav-back:hover, html[data-theme="light"] .nav-link:hover {
+      box-shadow: var(--neu-pressed);
+    }
+
+</style>
+
+  <!-- THEME SCRIPT -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('cw-theme');
+      if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Calc<span>Wise</span></a>
+        <div class="nav-links">
+            <a href="index.html">Calculators</a>
+            <a href="about.html">About</a>
+            <a href="blog.html" style="color:var(--accent2);">Blog</a>
+            <a href="blog-ar.html">العربية</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="blog-hero">
+        <h1>Tips & <em>Guides</em></h1>
+        <p>Short, actionable articles to help you make smarter financial, health, and math decisions using our
+            calculators.</p>
+    </section>
+
+    <!-- ARTICLES -->
+    <main class="blog-container">
+        <div class="articles-grid">
+
+            <!-- ARTICLE 1 -->
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-finance">💰 Finance</span>
+                <h2>How to Calculate Your Mortgage Payment (and Save Thousands)</h2>
+                <p>Understand the math behind your monthly payment, how to reduce interest, and what the 28% rule really
+                    means.</p>
+                <div class="article-meta">
+                    <span class="read-time">📖 4 min read</span>
+                    <span>Mar 2026</span>
+                </div>
+                <div class="article-full">
+                    <h3>The Formula</h3>
+                    <p>Your monthly mortgage payment is calculated using: <strong>M = P × [r(1+r)ⁿ] / [(1+r)ⁿ –
+                            1]</strong>, where P = principal loan amount, r = monthly interest rate, and n = number of
+                        payments.</p>
+                    <h3>5 Ways to Save on Your Mortgage</h3>
+                    <ul>
+                        <li><strong>Put 20% down</strong> to avoid PMI (Private Mortgage Insurance), saving
+                            $100–300/month</li>
+                        <li><strong>Shop for rates</strong> — even 0.25% lower saves thousands over 30 years</li>
+                        <li><strong>Choose a 15-year term</strong> — higher monthly payment but dramatically less
+                            interest</li>
+                        <li><strong>Make one extra payment per year</strong> — reduces a 30-year loan by ~4 years</li>
+                        <li><strong>Refinance when rates drop</strong> — re-run our calculator to see if it's worth it
+                        </li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 The 28% Rule:</strong> Your monthly mortgage payment shouldn't exceed 28% of your
+                        gross monthly income. Use our Salary Calculator + Mortgage Calculator together to check.
+                    </div>
+                    <a href="index.html" class="cta-btn">Try the Mortgage Calculator →</a>
+                </div>
+            </article>
+
+            <!-- ARTICLE 2 -->
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-health">🏃 Health</span>
+                <h2>What Your BMI Really Tells You (And What It Doesn't)</h2>
+                <p>BMI is a useful starting point, but it has limitations. Here's how to interpret your results
+                    correctly.</p>
+                <div class="article-meta">
+                    <span class="read-time">📖 3 min read</span>
+                    <span>Mar 2026</span>
+                </div>
+                <div class="article-full">
+                    <h3>Understanding BMI Categories</h3>
+                    <ul>
+                        <li><strong>Under 18.5:</strong> Underweight — may indicate nutritional deficiencies</li>
+                        <li><strong>18.5–24.9:</strong> Normal — lowest health risk range</li>
+                        <li><strong>25–29.9:</strong> Overweight — increased risk for chronic diseases</li>
+                        <li><strong>30+:</strong> Obese — significantly elevated health risks</li>
+                    </ul>
+                    <h3>What BMI Misses</h3>
+                    <p>BMI doesn't account for <strong>muscle mass</strong> (athletes may show as "overweight"),
+                        <strong>body fat distribution</strong> (belly fat is more dangerous), or <strong>age and gender
+                            differences</strong>. For a fuller picture, use our Body Fat Calculator alongside BMI.</p>
+                    <div class="tip-box">
+                        <strong>💡 Pro Tip:</strong> Combine BMI with waist circumference. Men over 40 inches and women
+                        over 35 inches are at higher risk regardless of BMI.
+                    </div>
+                    <a href="index.html" class="cta-btn">Try the BMI Calculator →</a>
+                </div>
+            </article>
+
+            <!-- ARTICLE 3 -->
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-finance">💰 Finance</span>
+                <h2>Compound Interest: The Most Powerful Force in Finance</h2>
+                <p>Einstein may not have actually called it the "8th wonder of the world" — but the math is undeniably
+                    powerful.</p>
+                <div class="article-meta">
+                    <span class="read-time">📖 5 min read</span>
+                    <span>Mar 2026</span>
+                </div>
+                <div class="article-full">
+                    <h3>The Rule of 72</h3>
+                    <p>Divide 72 by your annual return rate to estimate how many years it takes to double your money. At
+                        8% return: <strong>72 ÷ 8 = 9 years</strong> to double.</p>
+                    <h3>Why Starting Early Matters</h3>
+                    <p>Investing $200/month at age 25 vs age 35 (at 8% return):</p>
+                    <ul>
+                        <li><strong>Starting at 25:</strong> $622,000 by age 65</li>
+                        <li><strong>Starting at 35:</strong> $298,000 by age 65</li>
+                    </ul>
+                    <p>That 10-year head start more than doubles your final balance — with the same monthly
+                        contribution.</p>
+                    <div class="tip-box">
+                        <strong>💡 Try This:</strong> Plug your numbers into our Compound Interest calculator. Change
+                        the "years" slider and watch exponential growth in action.
+                    </div>
+                    <a href="index.html" class="cta-btn">Try the Compound Interest Calculator →</a>
+                </div>
+            </article>
+
+            <!-- ARTICLE 4 -->
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-health">🏃 Health</span>
+                <h2>How Many Calories Should You Really Eat?</h2>
+                <p>Calorie calculators give estimates, but here's how to fine-tune for your real-world goals.</p>
+                <div class="article-meta">
+                    <span class="read-time">📖 4 min read</span>
+                    <span>Mar 2026</span>
+                </div>
+                <div class="article-full">
+                    <h3>The TDEE Approach</h3>
+                    <p>Your Total Daily Energy Expenditure = BMR × Activity Factor. Our Calorie Calculator uses the
+                        Mifflin-St Jeor equation, the most accurate BMR formula available.</p>
+                    <h3>Adjusting for Goals</h3>
+                    <ul>
+                        <li><strong>Lose weight:</strong> Eat 300–500 calories below TDEE (no more — extreme deficits
+                            cause muscle loss)</li>
+                        <li><strong>Maintain:</strong> Eat at TDEE</li>
+                        <li><strong>Build muscle:</strong> Eat 200–300 above TDEE with adequate protein (1g per lb
+                            bodyweight)</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 Pair With Macros:</strong> Use our Macros Calculator to split those calories into the
+                        right protein, carb, and fat ratios for your goal.
+                    </div>
+                    <a href="index.html" class="cta-btn">Try the Calorie Calculator →</a>
+                </div>
+            </article>
+
+            <!-- ARTICLE 5 -->
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-lifestyle">🌙 Lifestyle</span>
+                <h2>Sleep Cycles Explained: Why 7.5 Hours Beats 8</h2>
+                <p>It's not about how long you sleep — it's about waking at the right point in your sleep cycle.</p>
+                <div class="article-meta">
+                    <span class="read-time">📖 3 min read</span>
+                    <span>Mar 2026</span>
+                </div>
+                <div class="article-full">
+                    <h3>How Sleep Cycles Work</h3>
+                    <p>Each sleep cycle lasts ~90 minutes and includes: light sleep → deep sleep → REM (dreaming). You
+                        go through <strong>4–6 cycles</strong> per night.</p>
+                    <h3>Why Timing Matters</h3>
+                    <p>Waking during deep sleep causes grogginess ("sleep inertia"). Waking at the end of a complete
+                        cycle — even with less total sleep — leaves you feeling refreshed.</p>
+                    <ul>
+                        <li><strong>6 hours</strong> = 4 complete cycles ✅</li>
+                        <li><strong>7.5 hours</strong> = 5 complete cycles ✅ (optimal for most people)</li>
+                        <li><strong>8 hours</strong> = mid-cycle interruption ⚠️ (may feel groggy)</li>
+                        <li><strong>9 hours</strong> = 6 complete cycles ✅</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 Use Our Calculator:</strong> Enter your wake-up time and our Sleep Calculator shows
+                        the ideal bedtimes aligned to full cycle completion.
+                    </div>
+                    <a href="index.html" class="cta-btn">Try the Sleep Calculator →</a>
+                </div>
+            </article>
+
+            <!-- ARTICLE 6 -->
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-math">📐 Math</span>
+                <h2>Quick Mental Math Tricks You'll Use Every Day</h2>
+                <p>Calculate tips, percentages, and discounts in your head without reaching for your phone.</p>
+                <div class="article-meta">
+                    <span class="read-time">📖 3 min read</span>
+                    <span>Mar 2026</span>
+                </div>
+                <div class="article-full">
+                    <h3>The 10% Trick</h3>
+                    <p>To find any percentage: first find 10% (move the decimal point left), then multiply or add.</p>
+                    <ul>
+                        <li><strong>15% tip on $64:</strong> 10% = $6.40, half of that = $3.20, total = $9.60</li>
+                        <li><strong>20% tip on $85:</strong> 10% = $8.50 × 2 = $17.00</li>
+                        <li><strong>25% off $120:</strong> 25% = quarter = $30. Sale price = $90</li>
+                    </ul>
+                    <h3>The "Rule of 5" for Multiplication</h3>
+                    <p>To multiply any number by 5: multiply by 10, then divide by 2. Example: 47 × 5 = 470 ÷ 2 = 235.
+                    </p>
+                    <div class="tip-box">
+                        <strong>💡 Verify Your Math:</strong> Use our Percentage Calculator and Tip Calculator to verify
+                        your mental math skills!
+                    </div>
+                    <a href="index.html" class="cta-btn">Try the Percentage Calculator →</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="blog-footer">
+        <p>© 2026 CalcWise · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a
+                href="index.html">All Calculators</a></p>
+    </footer>
+
+    <script>
+        function toggleArticle(card) {
+            const full = card.querySelector('.article-full');
+            if (!full) return;
+            const isOpen = full.classList.contains('open');
+            // Close all first
+            document.querySelectorAll('.article-full.open').forEach(a => a.classList.remove('open'));
+            if (!isOpen) {
+                full.classList.add('open');
+                setTimeout(() => full.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+            }
+        }
+    </script>
+</body>
+
+</html>

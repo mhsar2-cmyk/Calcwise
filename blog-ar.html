@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونة كالك وايز – نصائح وإرشادات للآلات الحاسبة</title>
+    <meta name="description"
+        content="تعلم كيف تحسب الرهن العقاري، تتبع مؤشر كتلة الجسم، تدير ميزانيتك، والمزيد. أدلة ونصائح مجانية من كالك وايز.">
+
+    <link rel="canonical" href="https://calcwises.com/blog-ar.html">
+    <link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html">
+    <link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="مدونة كالك وايز – نصائح وإرشادات">
+    <meta property="og:description"
+        content="تعلم كيف تحسب الرهن العقاري، تتبع مؤشر كتلة الجسم، تدير ميزانيتك، والمزيد.">
+    <meta property="og:url" content="https://calcwises.com/blog-ar.html">
+    <meta property="og:image" content="https://calcwises.com/og-image.png">
+    <meta property="og:locale" content="ar_SA">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="مدونة كالك وايز – نصائح وإرشادات">
+    <meta name="twitter:image" content="https://calcwises.com/og-image.png">
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "مدونة كالك وايز",
+    "url": "https://calcwises.com/blog-ar.html",
+    "description": "نصائح وإرشادات للآلات الحاسبة المالية والصحية.",
+    "publisher": { "@type": "Organization", "name": "CalcWise", "url": "https://calcwises.com" },
+    "inLanguage": "ar"
+  }
+  </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface2: #1a1a2e;
+            --border: #2a2a3e;
+            --text: #e8e8f0;
+            --muted: #8888a0;
+            --muted2: #a0a0b8;
+            --accent: #6C63FF;
+            --accent2: #8B83FF;
+            --pink: #FF6B9D;
+            --green: #00D4AA;
+            --orange: #FF8A65;
+            --yellow: #FFD93D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--accent2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--pink);
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Outfit', 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--muted2);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .blog-hero {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(180deg, rgba(108, 99, 255, 0.06), transparent);
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-hero h1 em {
+            color: var(--accent2);
+            font-style: normal;
+        }
+
+        .blog-hero p {
+            color: var(--muted2);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.12);
+        }
+
+        .article-card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            margin-bottom: 1rem;
+        }
+
+        .tag-finance {
+            background: rgba(108, 99, 255, 0.15);
+            color: var(--accent2);
+        }
+
+        .tag-health {
+            background: rgba(0, 212, 170, 0.15);
+            color: var(--green);
+        }
+
+        .tag-math {
+            background: rgba(255, 217, 61, 0.15);
+            color: var(--yellow);
+        }
+
+        .tag-lifestyle {
+            background: rgba(255, 107, 157, 0.15);
+            color: var(--pink);
+        }
+
+        .article-card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .article-card p {
+            font-size: 0.9rem;
+            color: var(--muted2);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .article-full {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-full.open {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .article-full h3 {
+            font-size: 1.05rem;
+            color: var(--accent2);
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .article-full p,
+        .article-full li {
+            font-size: 0.9rem;
+            color: var(--muted2);
+            line-height: 1.8;
+        }
+
+        .article-full ul {
+            padding-right: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .article-full li {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-full .tip-box {
+            background: rgba(108, 99, 255, 0.08);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        .article-full .tip-box strong {
+            color: var(--accent2);
+        }
+
+        .article-full .cta-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .article-full .cta-btn:hover {
+            background: var(--accent2);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+        }
+    
+    /* Neumorphic Light Mode Redesign */
+    [data-theme="light"] {
+      --bg: #E0E5EC;
+      --surface: #E0E5EC;
+      --surface2: #E0E5EC;
+      --border: transparent;
+      --border2: transparent;
+      --text: #274578;
+      --text-muted: #718096;
+      --muted: #A0AEC0;
+      --muted2: #CBD5E0;
+      --accent: #6C63FF;
+      --accent-hover: #5A52D5;
+      
+      --neu-light: #ffffff;
+      --neu-dark: #a3b1c6;
+      --accent-shadow: 6px 6px 16px rgba(163, 177, 198, 0.4), -6px -6px 16px rgba(255, 255, 255, 0.8);
+      --card-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+      --card-hover-shadow: inset 6px 6px 10px rgba(163, 177, 198, 0.5), inset -6px -6px 10px rgba(255, 255, 255, 0.5);
+      --neu-inset: inset 4px 4px 8px rgba(163, 177, 198, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+      --neu-pressed: inset 6px 6px 10px rgba(163, 177, 198, 0.6), inset -6px -6px 10px rgba(255, 255, 255, 0.8);
+    }
+
+    html[data-theme="light"] body {
+      background: var(--bg) !important;
+      color: var(--text-muted);
+    }
+    
+    html[data-theme="light"] h1, html[data-theme="light"] h2, html[data-theme="light"] h3, html[data-theme="light"] h4, html[data-theme="light"] .logo {
+      color: var(--text) !important;
+      text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.5), -2px -2px 4px rgba(255, 255, 255, 0.6) !important;
+    }
+
+    html[data-theme="light"] nav, html[data-theme="light"] header, html[data-theme="light"] footer, html[data-theme="light"] .stats-strip, html[data-theme="light"] .navbar {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: 0 4px 10px rgba(163, 177, 198, 0.3) !important;
+    }
+
+    html[data-theme="light"] .col-visual, html[data-theme="light"] .value-card, html[data-theme="light"] .cat-card, html[data-theme="light"] .team-card, html[data-theme="light"] .contact-item, html[data-theme="light"] .article-card, html[data-theme="light"] .highlight-box, html[data-theme="light"] .green-box, html[data-theme="light"] .toc, html[data-theme="light"] .contact-card {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow) !important;
+    }
+
+    html[data-theme="light"] .cat-card:hover, html[data-theme="light"] .contact-item:hover, html[data-theme="light"] .article-card:hover {
+      box-shadow: var(--card-hover-shadow) !important;
+      transform: translateY(-2px);
+    }
+
+    html[data-theme="light"] body::before, html[data-theme="light"] .about-hero::before, html[data-theme="light"] .page-hero::before {
+      display: none !important;
+    }
+    
+    html[data-theme="light"] .data-table th, html[data-theme="light"] .data-table td {
+      border-color: rgba(163, 177, 198, 0.3) !important;
+    }
+    
+    html[data-theme="light"] .nav-back, html[data-theme="light"] .nav-link, html[data-theme="light"] .article-card .tag {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow);
+    }
+    html[data-theme="light"] .nav-back:hover, html[data-theme="light"] .nav-link:hover {
+      box-shadow: var(--neu-pressed);
+    }
+
+</style>
+
+  <!-- THEME SCRIPT -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('cw-theme');
+      if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index-ar.html" class="logo">Calc<span>Wise</span></a>
+        <div class="nav-links">
+            <a href="index-ar.html">الآلات الحاسبة</a>
+            <a href="about-ar.html">عن الموقع</a>
+            <a href="blog-ar.html" style="color:var(--accent2);">المدونة</a>
+            <a href="blog.html">English</a>
+        </div>
+    </nav>
+
+    <section class="blog-hero">
+        <h1>نصائح و<em>إرشادات</em></h1>
+        <p>مقالات قصيرة وعملية لمساعدتك على اتخاذ قرارات مالية وصحية ورياضية أفضل.</p>
+    </section>
+
+    <main class="blog-container">
+        <div class="articles-grid">
+
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-finance">💰 مالية</span>
+                <h2>كيف تحسب دفعة الرهن العقاري (وتوفر الآلاف)</h2>
+                <p>افهم الرياضيات وراء دفعتك الشهرية، وكيف تقلل الفوائد، وماذا تعني قاعدة الـ ٢٨٪.</p>
+                <div class="article-meta">
+                    <span>📖 ٤ دقائق قراءة</span>
+                    <span>مارس ٢٠٢٦</span>
+                </div>
+                <div class="article-full">
+                    <h3>المعادلة</h3>
+                    <p>يتم حساب الدفعة الشهرية باستخدام: <strong>الدفعة = المبلغ × [ف(١+ف)ⁿ] / [(١+ف)ⁿ – ١]</strong>،
+                        حيث ف = معدل الفائدة الشهري و ن = عدد الدفعات.</p>
+                    <h3>٥ طرق للتوفير في الرهن العقاري</h3>
+                    <ul>
+                        <li><strong>ادفع ٢٠٪ مقدمة</strong> لتجنب تأمين الرهن العقاري الخاص</li>
+                        <li><strong>قارن بين المعدلات</strong> — حتى فرق ٠.٢٥٪ يوفر آلافاً على مدى ٣٠ سنة</li>
+                        <li><strong>اختر مدة ١٥ سنة</strong> — دفعة أعلى لكن فوائد أقل بكثير</li>
+                        <li><strong>ادفع دفعة إضافية واحدة سنوياً</strong> — تقصر القرض بـ ٤ سنوات تقريباً</li>
+                        <li><strong>أعد التمويل عند انخفاض المعدلات</strong></li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 قاعدة الـ ٢٨٪:</strong> لا ينبغي أن تتجاوز دفعة الرهن الشهرية ٢٨٪ من دخلك الإجمالي
+                        الشهري.
+                    </div>
+                    <a href="index-ar.html" class="cta-btn">جرب حاسبة الرهن العقاري ←</a>
+                </div>
+            </article>
+
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-health">🏃 صحة</span>
+                <h2>ما الذي يخبرك به مؤشر كتلة الجسم حقاً (وما لا يخبرك)</h2>
+                <p>مؤشر كتلة الجسم نقطة بداية مفيدة، لكن له حدود. إليك كيف تفسر نتائجك بشكل صحيح.</p>
+                <div class="article-meta">
+                    <span>📖 ٣ دقائق قراءة</span>
+                    <span>مارس ٢٠٢٦</span>
+                </div>
+                <div class="article-full">
+                    <h3>فهم فئات مؤشر كتلة الجسم</h3>
+                    <ul>
+                        <li><strong>أقل من ١٨.٥:</strong> نقص الوزن</li>
+                        <li><strong>١٨.٥ – ٢٤.٩:</strong> طبيعي — أقل مخاطر صحية</li>
+                        <li><strong>٢٥ – ٢٩.٩:</strong> زيادة الوزن</li>
+                        <li><strong>٣٠+:</strong> سمنة — مخاطر صحية مرتفعة</li>
+                    </ul>
+                    <h3>ما يفتقده مؤشر كتلة الجسم</h3>
+                    <p>لا يأخذ في الاعتبار <strong>الكتلة العضلية</strong> (الرياضيون قد يظهرون كـ "زائدي الوزن")، أو
+                        <strong>توزيع الدهون</strong>. لصورة أكمل، استخدم حاسبة نسبة الدهون.</p>
+                    <div class="tip-box">
+                        <strong>💡 نصيحة:</strong> اجمع بين مؤشر كتلة الجسم ومحيط الخصر. الرجال فوق ١٠٢ سم والنساء فوق
+                        ٨٨ سم في خطر أعلى.
+                    </div>
+                    <a href="index-ar.html" class="cta-btn">جرب حاسبة مؤشر كتلة الجسم ←</a>
+                </div>
+            </article>
+
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-finance">💰 مالية</span>
+                <h2>الفائدة المركبة: أقوى قوة في التمويل</h2>
+                <p>ربما لم يسمها أينشتاين "العجيبة الثامنة" فعلاً — لكن الرياضيات قوية بلا شك.</p>
+                <div class="article-meta">
+                    <span>📖 ٥ دقائق قراءة</span>
+                    <span>مارس ٢٠٢٦</span>
+                </div>
+                <div class="article-full">
+                    <h3>قاعدة الـ ٧٢</h3>
+                    <p>اقسم ٧٢ على معدل العائد السنوي لتقدير عدد السنوات لمضاعفة أموالك. عند عائد ٨٪: <strong>٧٢ ÷ ٨ = ٩
+                            سنوات</strong> للمضاعفة.</p>
+                    <h3>لماذا البداية المبكرة مهمة</h3>
+                    <p>استثمار ٧٥٠ ر.س شهرياً عند سن ٢٥ مقابل ٣٥ (بعائد ٨٪):</p>
+                    <ul>
+                        <li><strong>البداية عند ٢٥:</strong> ٢,٣٣٣,٠٠٠ ر.س عند سن ٦٥</li>
+                        <li><strong>البداية عند ٣٥:</strong> ١,١١٧,٠٠٠ ر.س عند سن ٦٥</li>
+                    </ul>
+                    <p>بداية أبكر بـ ١٠ سنوات تضاعف رصيدك النهائي — بنفس المساهمة الشهرية.</p>
+                    <div class="tip-box">
+                        <strong>💡 جرب هذا:</strong> أدخل أرقامك في حاسبة الفائدة المركبة وشاهد النمو الأسي.
+                    </div>
+                    <a href="index-ar.html" class="cta-btn">جرب حاسبة الفائدة المركبة ←</a>
+                </div>
+            </article>
+
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-health">🏃 صحة</span>
+                <h2>كم عدد السعرات الحرارية التي يجب أن تأكلها فعلاً؟</h2>
+                <p>حاسبات السعرات تعطي تقديرات، لكن إليك كيف تضبطها لأهدافك الحقيقية.</p>
+                <div class="article-meta">
+                    <span>📖 ٤ دقائق قراءة</span>
+                    <span>مارس ٢٠٢٦</span>
+                </div>
+                <div class="article-full">
+                    <h3>ضبط الأهداف</h3>
+                    <ul>
+                        <li><strong>فقدان الوزن:</strong> كل ٣٠٠–٥٠٠ سعرة أقل من الاحتياج اليومي</li>
+                        <li><strong>الحفاظ على الوزن:</strong> كل عند الاحتياج اليومي</li>
+                        <li><strong>بناء العضلات:</strong> كل ٢٠٠–٣٠٠ فوق الاحتياج مع بروتين كافٍ</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 اجمع مع الماكروز:</strong> استخدم حاسبة الماكروز لتقسيم السعرات إلى بروتين
+                        وكربوهيدرات ودهون.
+                    </div>
+                    <a href="index-ar.html" class="cta-btn">جرب حاسبة السعرات ←</a>
+                </div>
+            </article>
+
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-lifestyle">🌙 نمط الحياة</span>
+                <h2>دورات النوم: لماذا ٧.٥ ساعات أفضل من ٨</h2>
+                <p>ليس المهم كم تنام — المهم أن تستيقظ في اللحظة الصحيحة من دورة نومك.</p>
+                <div class="article-meta">
+                    <span>📖 ٣ دقائق قراءة</span>
+                    <span>مارس ٢٠٢٦</span>
+                </div>
+                <div class="article-full">
+                    <h3>كيف تعمل دورات النوم</h3>
+                    <p>كل دورة نوم تستمر ~٩٠ دقيقة. الاستيقاظ في منتصف نوم عميق يسبب الخمول.</p>
+                    <ul>
+                        <li><strong>٦ ساعات</strong> = ٤ دورات كاملة ✅</li>
+                        <li><strong>٧.٥ ساعات</strong> = ٥ دورات كاملة ✅ (الأمثل)</li>
+                        <li><strong>٨ ساعات</strong> = انقطاع في منتصف دورة ⚠️</li>
+                        <li><strong>٩ ساعات</strong> = ٦ دورات كاملة ✅</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 استخدم حاسبتنا:</strong> أدخل وقت استيقاظك وستظهر لك حاسبة النوم أوقات النوم
+                        المثالية.
+                    </div>
+                    <a href="index-ar.html" class="cta-btn">جرب حاسبة النوم ←</a>
+                </div>
+            </article>
+
+            <article class="article-card" onclick="toggleArticle(this)">
+                <span class="tag tag-math">📐 رياضيات</span>
+                <h2>حيل حساب ذهني ستستخدمها كل يوم</h2>
+                <p>احسب الإكراميات والنسب المئوية والخصومات في رأسك بدون الهاتف.</p>
+                <div class="article-meta">
+                    <span>📖 ٣ دقائق قراءة</span>
+                    <span>مارس ٢٠٢٦</span>
+                </div>
+                <div class="article-full">
+                    <h3>حيلة الـ ١٠٪</h3>
+                    <p>لإيجاد أي نسبة مئوية: أوجد ١٠٪ أولاً (حرك النقطة العشرية لليسار) ثم اضرب أو اجمع.</p>
+                    <ul>
+                        <li><strong>١٥٪ من ٢٤٠ ر.س:</strong> ١٠٪ = ٢٤ + نصفها ١٢ = ٣٦ ر.س</li>
+                        <li><strong>٢٠٪ من ٣٢٠ ر.س:</strong> ١٠٪ = ٣٢ × ٢ = ٦٤ ر.س</li>
+                        <li><strong>خصم ٢٥٪ من ٤٠٠ ر.س:</strong> ٢٥٪ = ربع = ١٠٠. السعر = ٣٠٠ ر.س</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>💡 تحقق من حسابك:</strong> استخدم حاسبة النسبة المئوية للتحقق من مهاراتك!
+                    </div>
+                    <a href="index-ar.html" class="cta-btn">جرب حاسبة النسبة المئوية ←</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="blog-footer">
+        <p>© ٢٠٢٦ كالك وايز · <a href="privacy-ar.html">الخصوصية</a> · <a href="terms-ar.html">الشروط</a> · <a
+                href="index-ar.html">جميع الآلات الحاسبة</a></p>
+    </footer>
+
+    <script>
+        function toggleArticle(card) {
+            const full = card.querySelector('.article-full');
+            if (!full) return;
+            const isOpen = full.classList.contains('open');
+            document.querySelectorAll('.article-full.open').forEach(a => a.classList.remove('open'));
+            if (!isOpen) {
+                full.classList.add('open');
+                setTimeout(() => full.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -82,4 +82,24 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- ═══ BLOG PAGES ═══ -->
+
+  <url>
+    <loc>https://calcwises.com/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://calcwises.com/blog-ar.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

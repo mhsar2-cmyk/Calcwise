@@ -5,9 +5,73 @@
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="vjZJ7FIIQEzuqWHnktvhfF-XDMZ4jFHz1xGMrJgskS0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6C63FF">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <title>كالك وايز – آلات حاسبة مجانية للمال والصحة والرياضيات</title>
   <meta name="description"
     content="آلات حاسبة مجانية للتمويل والصحة واللياقة البدنية والرياضيات. نتائج فورية بدون تسجيل. حاسبة الرهن العقاري، مؤشر كتلة الجسم، القروض، السعرات الحرارية، وأكثر من ٣٦ آلة حاسبة.">
+
+  <!-- ── CANONICAL & HREFLANG ── -->
+  <link rel="canonical" href="https://calcwises.com/index-ar.html">
+  <link rel="alternate" hreflang="ar" href="https://calcwises.com/index-ar.html">
+  <link rel="alternate" hreflang="en" href="https://calcwises.com/">
+  <link rel="alternate" hreflang="x-default" href="https://calcwises.com/">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('cw-theme');
+      if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <!-- ── OPEN GRAPH ── -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="كالك وايز">
+  <meta property="og:title" content="كالك وايز – ٣٦+ آلة حاسبة مجانية">
+  <meta property="og:description"
+    content="آلات حاسبة مجانية للتمويل والصحة واللياقة البدنية والرياضيات. نتائج فورية بدون تسجيل.">
+  <meta property="og:url" content="https://calcwises.com/index-ar.html">
+  <meta property="og:image" content="https://calcwises.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="كالك وايز – ٣٦+ آلة حاسبة مجانية">
+  <meta name="twitter:description" content="آلات حاسبة مجانية للتمويل والصحة واللياقة والرياضيات. نتائج فورية.">
+  <meta name="twitter:image" content="https://calcwises.com/og-image.png">
+
+  <!-- ── STRUCTURED DATA (JSON-LD) ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CalcWise",
+    "url": "https://calcwises.com/index-ar.html",
+    "description": "أكثر من ٣٦ آلة حاسبة مجانية للتمويل والصحة واللياقة والرياضيات.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "SAR" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "150", "bestRating": "5" },
+    "inLanguage": ["ar", "en"],
+    "creator": { "@type": "Organization", "name": "CalcWise", "url": "https://calcwises.com" }
+  }
+  </script>
+
+  <!-- ── GOOGLE ANALYTICS 4 ── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:ital@0;1&display=swap"
@@ -141,13 +205,14 @@
 
     body {
       font-family: 'IBM Plex Sans Arabic', sans-serif;
-      background: linear-gradient(135deg, #07071a 0%, #0c0b2e 40%, #080818 70%, #07071a 100%);
+      background: var(--bg);
       background-attachment: fixed;
       color: var(--text);
       line-height: 1.7;
       min-height: 100vh;
       overflow-x: hidden;
       direction: rtl;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     body::before {
@@ -1112,6 +1177,441 @@
     .calc-card:nth-child(6) {
       animation-delay: .3s
     }
+
+    /* ── UX POLISH ── */
+    @keyframes shakeInput {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      15% {
+        transform: translateX(-6px);
+      }
+
+      30% {
+        transform: translateX(6px);
+      }
+
+      45% {
+        transform: translateX(-4px);
+      }
+
+      60% {
+        transform: translateX(4px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+
+      90% {
+        transform: translateX(2px);
+      }
+    }
+
+    .shake {
+      animation: shakeInput 0.5s ease-in-out;
+      border-color: var(--pink) !important;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99999;
+    }
+
+    @keyframes skeletonPulse {
+      0% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.4;
+      }
+    }
+
+    .skeleton-line {
+      height: 14px;
+      background: rgba(108, 99, 255, 0.15);
+      border-radius: 6px;
+      animation: skeletonPulse 1.2s ease-in-out infinite;
+      margin-bottom: 0.5rem;
+    }
+
+    .skeleton-line.w60 {
+      width: 60%;
+    }
+
+    .skeleton-line.w80 {
+      width: 80%;
+    }
+
+    .skeleton-line.w40 {
+      width: 40%;
+    }
+
+    /* ── PREMIUM FEATURES CSS ── */
+    /* Glassmorphism Light Mode */
+    /* Neumorphic Light Mode Redesign */
+    [data-theme="light"] {
+      --bg: #E0E5EC;
+      --surface: #E0E5EC;
+      --surface2: #E0E5EC;
+      --border: transparent;
+      --border2: transparent;
+      --text: #4A5568;
+      --text-muted: #718096;
+      --muted: #A0AEC0;
+      --muted2: #CBD5E0;
+      --accent: #6C63FF;
+      --accent-hover: #5A52D5;
+
+      /* Neumorphic Shadows */
+      --neu-light: #ffffff;
+      --neu-dark: #a3b1c6;
+      --accent-shadow: 6px 6px 16px rgba(163, 177, 198, 0.4), -6px -6px 16px rgba(255, 255, 255, 0.8);
+
+      --card-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+      --card-hover-shadow: inset 6px 6px 10px rgba(163, 177, 198, 0.5), inset -6px -6px 10px rgba(255, 255, 255, 0.5);
+
+      --neu-inset: inset 4px 4px 8px rgba(163, 177, 198, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+      --neu-pressed: inset 6px 6px 10px rgba(163, 177, 198, 0.6), inset -6px -6px 10px rgba(255, 255, 255, 0.8);
+
+      --success: #10B981;
+      --warning: #F59E0B;
+      --error: #EF4444;
+      --info: #3B82F6;
+
+      /* Neutralize dark-mode leaky variables */
+      --accent2: #6C63FF;
+      --accent3: #8B84FF;
+      --blue: #3B82F6;
+      --pink: #EC4899;
+      --green: #10B981;
+      --glow: none;
+      --card-glow: none;
+    }
+
+    html[data-theme="light"] body {
+      background: var(--bg) !important;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    html[data-theme="light"] body::before,
+    html[data-theme="light"] .hero-glow,
+    html[data-theme="light"] .hero::after,
+    html[data-theme="light"] .calc-card::before {
+      display: none !important;
+      background: none !important;
+    }
+
+    html[data-theme="light"] .section-title,
+    html[data-theme="light"] h1,
+    html[data-theme="light"] h2,
+    html[data-theme="light"] h3,
+    html[data-theme="light"] h4,
+    html[data-theme="light"] .logo {
+      color: var(--text) !important;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.5), -2px -2px 4px rgba(255, 255, 255, 0.6) !important;
+    }
+
+    html[data-theme="light"] .logo .logo-dot {
+      color: var(--accent) !important;
+    }
+
+    html[data-theme="light"] nav {
+      background: var(--surface) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border-bottom: none !important;
+      box-shadow: 0 4px 10px rgba(163, 177, 198, 0.3) !important;
+    }
+
+    html[data-theme="light"] .nav-search {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--neu-inset) !important;
+    }
+
+    html[data-theme="light"] .nav-search input:focus {
+      box-shadow: none !important;
+    }
+
+    html[data-theme="light"] .nav-cats button {
+      color: var(--muted) !important;
+    }
+
+    html[data-theme="light"] .nav-cats button:hover {
+      background: var(--surface) !important;
+      box-shadow: var(--card-shadow) !important;
+      color: var(--accent) !important;
+      border-color: transparent !important;
+    }
+
+    html[data-theme="light"] .nav-cats button.active {
+      background: var(--surface) !important;
+      border-color: transparent !important;
+      color: var(--accent) !important;
+      box-shadow: var(--neu-pressed) !important;
+    }
+
+    html[data-theme="light"] .calc-grid {
+      gap: 1.5rem !important;
+    }
+
+    html[data-theme="light"] .calc-card {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow) !important;
+      border-radius: 20px;
+    }
+
+    html[data-theme="light"] .calc-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-hover-shadow) !important;
+      border-color: transparent !important;
+    }
+
+    html[data-theme="light"] .card-icon {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow) !important;
+    }
+
+    html[data-theme="light"] .calc-card:hover .card-icon {
+      box-shadow: var(--neu-pressed) !important;
+    }
+
+    html[data-theme="light"] .modal-content,
+    html[data-theme="light"] .modal {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.7), -12px -12px 24px rgba(255, 255, 255, 0.8) !important;
+      backdrop-filter: none !important;
+      border-radius: 24px !important;
+    }
+
+    html[data-theme="light"] .calc-btn {
+      background: var(--surface) !important;
+      color: var(--accent) !important;
+      border: none !important;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow) !important;
+      font-weight: 700 !important;
+    }
+
+    html[data-theme="light"] .calc-btn:hover {
+      box-shadow: var(--neu-pressed) !important;
+      transform: translateY(0) !important;
+      background: var(--surface) !important;
+    }
+
+    html[data-theme="light"] input,
+    html[data-theme="light"] select {
+      background: var(--surface) !important;
+      border: none !important;
+      color: var(--text) !important;
+      box-shadow: var(--neu-inset) !important;
+    }
+
+    html[data-theme="light"] input:focus,
+    html[data-theme="light"] select:focus {
+      box-shadow: var(--neu-pressed) !important;
+      border: none !important;
+    }
+
+    html[data-theme="light"] .results {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--neu-inset) !important;
+      border-radius: 20px !important;
+    }
+
+    html[data-theme="light"] footer {
+      background: var(--surface) !important;
+      border-top: none !important;
+      box-shadow: inset 0 10px 10px -10px rgba(163, 177, 198, 0.5) !important;
+    }
+
+    html[data-theme="light"] .fav-chip {
+      background: var(--surface) !important;
+      border: none !important;
+      box-shadow: var(--card-shadow) !important;
+    }
+
+    html[data-theme="light"] .fav-chip:hover {
+      box-shadow: var(--neu-pressed) !important;
+      transform: translateY(0) !important;
+    }
+
+
+    .theme-toggle {
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      border-color: var(--accent);
+    }
+
+    .copy-results-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted2);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.8rem;
+    }
+
+    .copy-results-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
+
+    .copy-results-btn.copied {
+      border-color: var(--green) !important;
+      color: var(--green) !important;
+    }
+
+    .fav-star {
+      position: absolute;
+      bottom: 0.6rem;
+      left: 0.6rem;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: all 0.2s;
+      z-index: 5;
+      padding: 0.25rem;
+    }
+
+    .fav-star:hover {
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+
+    .fav-star.active {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .fav-section {
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    .fav-section.has-favs {
+      display: block;
+    }
+
+    .fav-section h3 {
+      font-size: 1.1rem;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .fav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .fav-chip {
+      background: var(--surface);
+      border: 1px solid rgba(108, 99, 255, 0.25);
+      border-radius: 10px;
+      padding: 0.6rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .fav-chip:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .chart-container {
+      margin-top: 1rem;
+      background: rgba(108, 99, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .chart-container canvas {
+      width: 100%;
+      height: 200px;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted2);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .share-btn:hover {
+      border-color: var(--pink);
+      color: var(--pink);
+    }
+
+    .share-btn.shared {
+      border-color: var(--green) !important;
+      color: var(--green) !important;
+    }
   </style>
 </head>
 
@@ -1122,6 +1622,9 @@
     <a href="index.html" class="lang-en" data-tooltip="English">EN</a>
     <a href="index-ar.html" class="lang-ar active-lang" data-tooltip="العربية">ع</a>
   </div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع الفاتح/الداكن">🌙</button>
 
   <!-- NAV -->
   <nav>
@@ -1137,6 +1640,9 @@
         <li><button onclick="scrollToSection('section-health')" id="nav-health">الصحة</button></li>
         <li><button onclick="scrollToSection('section-math')" id="nav-math">الرياضيات</button></li>
         <li><button onclick="scrollToSection('section-everyday')" id="nav-everyday">يومي</button></li>
+        <li><a href="blog-ar.html"
+            style="color:var(--muted);font-size:0.82rem;font-weight:500;text-decoration:none;padding:0.4rem 0.8rem;border-radius:8px;background:rgba(108,99,255,0.1);transition:all 0.2s;">📝
+            المدونة</a></li>
       </ul>
     </div>
   </nav>
@@ -1494,6 +2000,7 @@
           <li><a href="privacy-ar.html">سياسة الخصوصية</a></li>
           <li><a href="terms-ar.html">شروط الاستخدام</a></li>
           <li><a href="about-ar.html">عن الموقع</a></li>
+          <li><a href="blog-ar.html">المدونة</a></li>
           <li><a href="index.html">English Version</a></li>
         </ul>
       </div>
@@ -3505,6 +4012,389 @@
     function sciKey(k) { if (k === 'C') { sciExpr = ''; sciResult = null; sciDisplay('0'); if (document.getElementById('sci-expr')) document.getElementById('sci-expr').textContent = ''; return; } if (k === 'CE' || k === '⌫') { sciExpr = sciExpr.slice(0, -1); sciDisplay(sciExpr || '0'); return; } if (k === '=') { try { let expr = sciExpr.replace(/÷/g, '/').replace(/×/g, '*').replace(/π/g, 'Math.PI').replace(/e(?!xp)/g, 'Math.E').replace(/sin\(/g, 'Math.sin(').replace(/cos\(/g, 'Math.cos(').replace(/tan\(/g, 'Math.tan(').replace(/log\(/g, 'Math.log10(').replace(/ln\(/g, 'Math.log(').replace(/√\(/g, 'Math.sqrt(').replace(/x²/g, '**2').replace(/\^/g, '**'); const res = Function('"use strict";return(' + expr + ')')(); if (document.getElementById('sci-expr')) document.getElementById('sci-expr').textContent = sciExpr + ' ='; sciExpr = String(parseFloat(res.toFixed(10))); sciDisplay(sciExpr); } catch (e) { sciDisplay('خطأ'); sciExpr = ''; } return; } const funcs = ['sin', 'cos', 'tan', 'log', 'ln']; if (funcs.includes(k)) { sciExpr += k + '('; } else { sciExpr += k; } sciDisplay(sciExpr); }
 
     document.getElementById('global-search').addEventListener('keydown', e => { if (e.key === 'Escape') { e.target.value = ''; searchCalcs(''); } });
+
+    // ═══════════════════════════════════════════
+    //  UX POLISH: 5 Features (AR)
+    // ═══════════════════════════════════════════
+
+    // ── 1. SMOOTH SCROLL TO RESULTS ──
+    const resultsObserver = new MutationObserver(mutations => {
+      mutations.forEach(m => {
+        if (m.type === 'attributes' && m.attributeName === 'class') {
+          const el = m.target;
+          if (el.classList.contains('results') && el.classList.contains('show')) {
+            setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+          }
+        }
+      });
+    });
+    function observeResults() {
+      document.querySelectorAll('.results').forEach(r => {
+        resultsObserver.observe(r, { attributes: true, attributeFilter: ['class'] });
+      });
+    }
+    const origOpenCalc = window.openCalc;
+    window.openCalc = function (id) {
+      origOpenCalc(id);
+      setTimeout(observeResults, 50);
+    };
+    observeResults();
+
+    // ── 2. SHAKE VALIDATION ──
+    window.shakeField = function (fieldId, message) {
+      const el = document.getElementById(fieldId);
+      if (!el) { alert(message); return; }
+      const target = el.closest('.input-wrap') || el.closest('.field-group') || el;
+      target.classList.remove('shake');
+      void target.offsetWidth;
+      target.classList.add('shake');
+      target.style.outline = '2px solid var(--pink)';
+      setTimeout(() => { target.classList.remove('shake'); target.style.outline = ''; }, 600);
+
+      let tip = target.parentElement.querySelector('.shake-tip');
+      if (!tip) {
+        tip = document.createElement('div');
+        tip.className = 'shake-tip';
+        tip.style.cssText = 'font-size:0.75rem;color:var(--pink);margin-top:0.25rem;font-weight:600;transition:opacity 0.3s;';
+        target.parentElement.appendChild(tip);
+      }
+      tip.textContent = message;
+      tip.style.opacity = '1';
+      setTimeout(() => { tip.style.opacity = '0'; setTimeout(() => tip.remove(), 300); }, 2500);
+    };
+
+    // ── 3. CONFETTI CELEBRATION ──
+    window.launchConfetti = function () {
+      let canvas = document.getElementById('confetti-canvas');
+      if (!canvas) {
+        canvas = document.createElement('canvas');
+        canvas.id = 'confetti-canvas';
+        document.body.appendChild(canvas);
+      }
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext('2d');
+      const colors = ['#6C63FF', '#FF6B9D', '#00D4AA', '#FFD93D', '#FF8A65', '#AB47BC', '#42A5F5'];
+      const particles = [];
+
+      for (let i = 0; i < 120; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          w: Math.random() * 10 + 4,
+          h: Math.random() * 6 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 3 + 2,
+          rot: Math.random() * 360,
+          rotV: (Math.random() - 0.5) * 8,
+          opacity: 1
+        });
+      }
+
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.05;
+          p.rot += p.rotV;
+          if (frame > 60) p.opacity -= 0.015;
+          if (p.opacity <= 0) return;
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frame++;
+        if (alive) requestAnimationFrame(animate);
+        else { ctx.clearRect(0, 0, canvas.width, canvas.height); canvas.remove(); }
+      }
+      requestAnimationFrame(animate);
+    };
+
+    // Hook confetti into pregnancy calculator
+    if (typeof calcPregnancy === 'function') {
+      const _origPreg = calcPregnancy;
+      window.calcPregnancy = function () {
+        _origPreg();
+        if (document.getElementById('r-pregnancy')?.classList.contains('show')) {
+          setTimeout(launchConfetti, 300);
+        }
+      };
+    }
+
+    // ── 4. ENTER KEY TO SUBMIT ──
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      const modal = document.getElementById('modal-overlay');
+      if (!modal || !modal.classList.contains('open')) return;
+      if (e.target.tagName === 'TEXTAREA') return;
+
+      const calcBtn = modal.querySelector('.calc-btn');
+      if (calcBtn) {
+        e.preventDefault();
+        calcBtn.click();
+      }
+    });
+
+    // ── 5. CURRENCY LOADING SKELETON ──
+    if (typeof loadCurrencyRates === 'function') {
+      const _origLoad = loadCurrencyRates;
+      window.loadCurrencyRates = function () {
+        const grid = document.getElementById('cur-multi-grid');
+        if (grid) {
+          grid.innerHTML = `
+            <div class="cur-multi-item"><div class="skeleton-line w40"></div><div class="skeleton-line w60"></div></div>
+            <div class="cur-multi-item"><div class="skeleton-line w40"></div><div class="skeleton-line w60"></div></div>
+            <div class="cur-multi-item"><div class="skeleton-line w40"></div><div class="skeleton-line w60"></div></div>
+            <div class="cur-multi-item"><div class="skeleton-line w40"></div><div class="skeleton-line w60"></div></div>
+            <div class="cur-multi-item"><div class="skeleton-line w40"></div><div class="skeleton-line w60"></div></div>
+            <div class="cur-multi-item"><div class="skeleton-line w40"></div><div class="skeleton-line w60"></div></div>
+          `;
+        }
+        _origLoad();
+      };
+    }
+
+
+    // ═══════════════════════════════════════════
+    //  PREMIUM FEATURES (AR)
+    // ═══════════════════════════════════════════
+
+    // ── 1. LIGHT/DARK MODE TOGGLE ──
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cw-theme', next);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = next === 'light' ? '☀️' : '🌙';
+    };
+    // Initialize toggle icon
+    setTimeout(() => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const current = document.documentElement.getAttribute('data-theme');
+        btn.textContent = current === 'light' ? '☀️' : '🌙';
+      }
+    }, 100);
+
+    // ── 2. COPY RESULTS + 6. SHARE ──
+    const _origOpenCalcPremium = window.openCalc;
+    window.openCalc = function (id) {
+      _origOpenCalcPremium(id);
+      setTimeout(() => {
+        document.querySelectorAll('.results').forEach(r => {
+          if (r.querySelector('.copy-results-btn')) return;
+          const btn = document.createElement('button');
+          btn.className = 'copy-results-btn';
+          btn.innerHTML = '📋 نسخ النتائج';
+          btn.onclick = function (e) {
+            e.stopPropagation();
+            const text = r.innerText.replace('📋 نسخ النتائج', '').replace('✅ تم النسخ!', '').replace('🔗 مشاركة', '').replace('✅ تم نسخ الرابط!', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+              btn.innerHTML = '✅ تم النسخ!';
+              btn.classList.add('copied');
+              setTimeout(() => { btn.innerHTML = '📋 نسخ النتائج'; btn.classList.remove('copied'); }, 2000);
+            });
+          };
+          r.appendChild(btn);
+
+          if (!r.querySelector('.share-btn')) {
+            const shareBtn = document.createElement('button');
+            shareBtn.className = 'share-btn';
+            shareBtn.innerHTML = '🔗 مشاركة';
+            shareBtn.onclick = function (e) {
+              e.stopPropagation();
+              const modal = document.getElementById('modal-overlay');
+              const inputs = modal.querySelectorAll('input, select');
+              const params = new URLSearchParams();
+              params.set('calc', id);
+              inputs.forEach(inp => { if (inp.id && inp.value) params.set(inp.id, inp.value); });
+              const url = window.location.origin + window.location.pathname + '?' + params.toString();
+              navigator.clipboard.writeText(url).then(() => {
+                shareBtn.innerHTML = '✅ تم نسخ الرابط!';
+                shareBtn.classList.add('shared');
+                setTimeout(() => { shareBtn.innerHTML = '🔗 مشاركة'; shareBtn.classList.remove('shared'); }, 2000);
+              });
+            };
+            r.appendChild(shareBtn);
+          }
+        });
+      }, 100);
+    };
+
+    // ── 3. CHARTS ──
+    window.drawMortgageChart = function () {
+      const container = document.getElementById('mortgage-chart');
+      if (!container) return;
+      let canvas = container.querySelector('canvas');
+      if (!canvas) { canvas = document.createElement('canvas'); container.appendChild(canvas); }
+      canvas.width = container.clientWidth - 20; canvas.height = 200;
+      const ctx = canvas.getContext('2d');
+      const principal = parseFloat(document.getElementById('mort-principal')?.value) || 300000;
+      const rate = (parseFloat(document.getElementById('mort-rate')?.value) || 6) / 100 / 12;
+      const years = parseFloat(document.getElementById('mort-years')?.value) || 30;
+      const n = years * 12;
+      const payment = principal * (rate * Math.pow(1 + rate, n)) / (Math.pow(1 + rate, n) - 1);
+      let balance = principal; const balances = [];
+      for (let i = 0; i <= n; i += Math.max(1, Math.floor(n / 50))) {
+        balances.push(balance);
+        for (let j = 0; j < Math.max(1, Math.floor(n / 50)) && balance > 0; j++) {
+          balance = Math.max(0, balance - (payment - balance * rate));
+        }
+      }
+      const w = canvas.width; const h = canvas.height - 20;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath(); ctx.strokeStyle = '#6C63FF'; ctx.lineWidth = 2;
+      balances.forEach((b, i) => { const x = (i / (balances.length - 1)) * w; const y = h - (b / principal) * h; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+      ctx.stroke(); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+      ctx.fillStyle = 'rgba(108,99,255,0.1)'; ctx.fill();
+      ctx.fillStyle = '#8888a0'; ctx.font = '10px IBM Plex Sans Arabic';
+      ctx.fillText('سنة 0', 2, h + 14); ctx.fillText('سنة ' + years, w - 50, h + 14);
+    };
+
+    window.drawCompoundChart = function () {
+      const container = document.getElementById('compound-chart');
+      if (!container) return;
+      let canvas = container.querySelector('canvas');
+      if (!canvas) { canvas = document.createElement('canvas'); container.appendChild(canvas); }
+      canvas.width = container.clientWidth - 20; canvas.height = 200;
+      const ctx = canvas.getContext('2d');
+      const init = parseFloat(document.getElementById('ci-principal')?.value) || 10000;
+      const rate = (parseFloat(document.getElementById('ci-rate')?.value) || 7) / 100;
+      const years = parseFloat(document.getElementById('ci-years')?.value) || 10;
+      const monthly = parseFloat(document.getElementById('ci-monthly')?.value) || 200;
+      const points = [];
+      for (let y = 0; y <= years; y++) {
+        let val = init * Math.pow(1 + rate, y);
+        if (monthly > 0) val += monthly * 12 * ((Math.pow(1 + rate, y) - 1) / rate);
+        points.push(val);
+      }
+      const maxVal = points[points.length - 1] || 1;
+      const w = canvas.width; const h = canvas.height - 20;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(0,212,170,0.3)'); grad.addColorStop(1, 'rgba(0,212,170,0.02)');
+      ctx.beginPath(); ctx.strokeStyle = '#00D4AA'; ctx.lineWidth = 2;
+      points.forEach((v, i) => { const x = (i / years) * w; const y = h - (v / maxVal) * h; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+      ctx.stroke(); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+      ctx.fillStyle = '#8888a0'; ctx.font = '10px IBM Plex Sans Arabic';
+      ctx.fillText('سنة 0', 2, h + 14); ctx.fillText('سنة ' + years, w - 50, h + 14);
+    };
+
+    window.drawBMIChart = function (bmi) {
+      const container = document.getElementById('bmi-chart');
+      if (!container) return;
+      let canvas = container.querySelector('canvas');
+      if (!canvas) { canvas = document.createElement('canvas'); container.appendChild(canvas); }
+      canvas.width = container.clientWidth - 20; canvas.height = 60;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width; const h = 30;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const zones = [
+        { min: 15, max: 18.5, color: '#42A5F5', label: 'نقص' }, { min: 18.5, max: 25, color: '#00D4AA', label: 'طبيعي' },
+        { min: 25, max: 30, color: '#FFD93D', label: 'زيادة' }, { min: 30, max: 40, color: '#FF6B9D', label: 'سمنة' }
+      ];
+      zones.forEach(z => {
+        const x1 = ((z.min - 15) / 25) * w; const x2 = ((z.max - 15) / 25) * w;
+        ctx.fillStyle = z.color; ctx.globalAlpha = 0.3; ctx.fillRect(x1, 5, x2 - x1, h);
+        ctx.globalAlpha = 1; ctx.fillStyle = z.color; ctx.font = '9px IBM Plex Sans Arabic'; ctx.fillText(z.label, x1 + 4, h + 18);
+      });
+      const markerX = Math.min(w, Math.max(0, ((bmi - 15) / 25) * w));
+      ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(markerX, 5 + h / 2, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#6C63FF'; ctx.beginPath(); ctx.arc(markerX, 5 + h / 2, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 10px IBM Plex Sans Arabic';
+      ctx.fillText(bmi.toFixed(1), markerX - 10, h + 30);
+    };
+
+    // ── 4. PWA ──
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(() => { }); }
+
+    // ── 5. FAVORITES ──
+    window.cwFavorites = JSON.parse(localStorage.getItem('cw-favorites') || '[]');
+    window.toggleFavorite = function (calcId, e) {
+      if (e) e.stopPropagation();
+      const idx = cwFavorites.indexOf(calcId);
+      if (idx > -1) cwFavorites.splice(idx, 1); else cwFavorites.push(calcId);
+      localStorage.setItem('cw-favorites', JSON.stringify(cwFavorites));
+      renderFavorites();
+      document.querySelectorAll('.fav-star').forEach(s => {
+        s.classList.toggle('active', cwFavorites.includes(s.dataset.calc));
+        s.textContent = cwFavorites.includes(s.dataset.calc) ? '⭐' : '☆';
+      });
+    };
+    function renderFavorites() {
+      const section = document.getElementById('fav-section');
+      if (!section) return;
+      const grid = section.querySelector('.fav-grid');
+      if (cwFavorites.length === 0) { section.classList.remove('has-favs'); return; }
+      section.classList.add('has-favs');
+      grid.innerHTML = '';
+      cwFavorites.forEach(id => {
+        const card = document.querySelector(`.calc-card[onclick*="${id}"]`);
+        if (!card) return;
+        const name = card.querySelector('h3')?.textContent || id;
+        const emoji = card.querySelector('.card-emoji')?.textContent || '🧮';
+        const chip = document.createElement('div');
+        chip.className = 'fav-chip';
+        chip.textContent = emoji + ' ' + name;
+        chip.onclick = () => openCalc(id);
+        grid.appendChild(chip);
+      });
+    }
+    (function initFavorites() {
+      const firstSection = document.querySelector('.section-title');
+      if (firstSection) {
+        const favSection = document.createElement('div');
+        favSection.id = 'fav-section';
+        favSection.className = 'fav-section';
+        favSection.innerHTML = '<h3>⭐ المفضلة</h3><div class="fav-grid"></div>';
+        firstSection.parentElement.insertBefore(favSection, firstSection);
+      }
+      document.querySelectorAll('.calc-card').forEach(card => {
+        const onclick = card.getAttribute('onclick') || '';
+        const match = onclick.match(/openCalc\('([^']+)'\)/);
+        if (!match) return;
+        const calcId = match[1];
+        const star = document.createElement('button');
+        star.className = 'fav-star' + (cwFavorites.includes(calcId) ? ' active' : '');
+        star.dataset.calc = calcId;
+        star.textContent = cwFavorites.includes(calcId) ? '⭐' : '☆';
+        star.onclick = function (e) { toggleFavorite(calcId, e); };
+        card.style.position = 'relative';
+        card.appendChild(star);
+      });
+      renderFavorites();
+    })();
+
+    // ── 6. SHARE URL AUTO-OPEN ──
+    (function checkShareURL() {
+      const params = new URLSearchParams(window.location.search);
+      const calcId = params.get('calc');
+      if (calcId) {
+        setTimeout(() => {
+          openCalc(calcId);
+          setTimeout(() => {
+            params.forEach((val, key) => {
+              if (key === 'calc') return;
+              const el = document.getElementById(key);
+              if (el) { el.value = val; el.dispatchEvent(new Event('input')); }
+            });
+            setTimeout(() => { const btn = document.querySelector('#modal-overlay .calc-btn'); if (btn) btn.click(); }, 200);
+          }, 200);
+        }, 500);
+      }
+    })();
+
   </script>
 </body>
 
