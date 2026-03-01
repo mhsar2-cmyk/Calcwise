@@ -9,6 +9,33 @@ files_to_process = [
     "terms.html", "terms-ar.html"
 ]
 
+master_root_css = """:root {
+      --bg: #07071a;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface2: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.09);
+      --border2: rgba(108, 99, 255, 0.45);
+      --text: #e8e8f0;
+      --muted: #7070a0;
+      --muted2: #9090b8;
+      --accent: #6c63ff;
+      --accent2: #8b84ff;
+      --accent3: #b3aeff;
+      --green: #22d3a0;
+      --orange: #ff8c42;
+      --pink: #ff6b9d;
+      --blue: #4da6ff;
+      --yellow: #ffd166;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.6);
+      --glow: 0 0 60px rgba(108, 99, 255, 0.25);
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.09);
+      --glass-blur: blur(20px) saturate(160%);
+    }"""
+
 refined_theme_css = """    /* Neumorphic Light Mode Redesign */
     [data-theme="light"] {
       --bg: #EEF2FF;
@@ -204,6 +231,9 @@ for fname in files_to_process:
     with open(fname, 'r') as f:
         content = f.read()
     
+    # 0. Standardize the master :root (Dark mode base)
+    content = re.sub(r':root\s*\{[^}]+\}', master_root_css, content, count=1)
+
     # 1. Update the CSS Theme
     start_str = "    /* Neumorphic Light Mode Redesign */"
     end_str_index = "    /* Theme toggle button */"
