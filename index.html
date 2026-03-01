@@ -18,11 +18,11 @@
     crossorigin="anonymous"></script>
   <style>
     :root {
-      --bg: #0a0a0f;
-      --surface: #13131a;
-      --surface2: #1c1c27;
-      --border: #2a2a3d;
-      --border2: #363650;
+      --bg: #07071a;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface2: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.09);
+      --border2: rgba(108, 99, 255, 0.45);
       --text: #e8e8f0;
       --muted: #7070a0;
       --muted2: #9090b8;
@@ -34,11 +34,14 @@
       --pink: #ff6b9d;
       --blue: #4da6ff;
       --yellow: #ffd166;
-      --radius: 14px;
-      --radius-sm: 8px;
-      --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.5);
-      --glow: 0 0 40px rgba(108, 99, 255, 0.15);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.6);
+      --glow: 0 0 60px rgba(108, 99, 255, 0.25);
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.09);
+      --glass-blur: blur(20px) saturate(160%);
     }
 
     *,
@@ -55,24 +58,25 @@
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: var(--bg);
+      background: linear-gradient(135deg, #07071a 0%, #0c0b2e 40%, #080818 70%, #07071a 100%);
+      background-attachment: fixed;
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Background grid pattern */
+    /* Ambient orbs */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       z-index: 0;
-      background-image:
-        linear-gradient(rgba(108, 99, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(108, 99, 255, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
       pointer-events: none;
+      background:
+        radial-gradient(ellipse 700px 500px at 15% 10%, rgba(108, 99, 255, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 400px at 85% 5%, rgba(77, 166, 255, 0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 400px at 50% 95%, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
     }
 
     /* ── NAV ── */
@@ -80,9 +84,10 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10, 10, 15, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(7, 7, 26, 0.6);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       padding: 0 2rem;
     }
 
@@ -113,18 +118,20 @@
     .nav-search {
       display: flex;
       align-items: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 100px;
       padding: 0.3rem 0.75rem;
       gap: 0.4rem;
       width: 200px;
-      transition: border-color 0.2s, width 0.2s;
+      transition: border-color 0.25s, width 0.25s, box-shadow 0.25s;
+      backdrop-filter: blur(10px);
     }
 
     .nav-search:focus-within {
-      border-color: var(--accent);
+      border-color: rgba(108, 99, 255, 0.6);
       width: 230px;
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
     }
 
     .nav-search input {
@@ -162,7 +169,8 @@
 
     .nav-cats button:hover,
     .nav-cats button.active {
-      background: var(--surface2);
+      background: rgba(108, 99, 255, 0.18);
+      border: 1px solid rgba(108, 99, 255, 0.35);
       color: var(--text);
     }
 
@@ -190,8 +198,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      border: 1px solid var(--border2);
-      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
       padding: 0.35rem 1rem;
       border-radius: 100px;
       font-size: 0.8rem;
@@ -322,8 +331,8 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 100px;
       padding: 0.45rem 1rem;
       cursor: pointer;
@@ -331,18 +340,21 @@
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--muted2);
-      transition: all 0.2s;
+      transition: all 0.25s;
+      backdrop-filter: blur(10px);
     }
 
     .cat-tab:hover {
-      border-color: var(--border2);
+      border-color: rgba(108, 99, 255, 0.35);
+      background: rgba(108, 99, 255, 0.08);
       color: var(--text);
     }
 
     .cat-tab.active {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: rgba(108, 99, 255, 0.25);
+      border-color: rgba(108, 99, 255, 0.55);
       color: white;
+      box-shadow: 0 0 20px rgba(108, 99, 255, 0.25);
     }
 
     .cat-tab .tab-icon {
@@ -358,14 +370,17 @@
     }
 
     .calc-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
       padding: 1.5rem;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
+      transition: all 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
     .calc-card::before {
@@ -374,16 +389,17 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--card-color, var(--accent)), transparent);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--card-color, var(--accent)), transparent);
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s;
     }
 
     .calc-card:hover {
-      border-color: var(--border2);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(108, 99, 255, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(108, 99, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .calc-card:hover::before {
@@ -393,18 +409,20 @@
     .card-icon {
       width: 44px;
       height: 44px;
-      background: var(--surface2);
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.3rem;
       margin-bottom: 0.9rem;
-      transition: background 0.2s;
+      transition: all 0.25s;
     }
 
     .calc-card:hover .card-icon {
-      background: color-mix(in srgb, var(--card-color, var(--accent)) 15%, var(--surface2));
+      background: color-mix(in srgb, var(--card-color, var(--accent)) 20%, rgba(255, 255, 255, 0.07));
+      border-color: color-mix(in srgb, var(--card-color, var(--accent)) 40%, transparent);
     }
 
     .calc-card h3 {
@@ -439,8 +457,9 @@
       position: fixed;
       inset: 0;
       z-index: 200;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
+      background: rgba(4, 4, 18, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -452,14 +471,16 @@
     }
 
     .modal {
-      background: var(--surface);
-      border: 1px solid var(--border2);
-      border-radius: 20px;
+      background: rgba(10, 10, 30, 0.75);
+      backdrop-filter: blur(36px) saturate(180%);
+      -webkit-backdrop-filter: blur(36px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
       width: 100%;
       max-width: 680px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(108, 99, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
       animation: modalIn 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
     }
 
@@ -486,8 +507,9 @@
     .modal-icon {
       width: 52px;
       height: 52px;
-      border-radius: 12px;
-      background: var(--surface2);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -509,8 +531,8 @@
 
     .modal-close {
       margin-left: auto;
-      background: var(--surface2);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       width: 36px;
       height: 36px;
@@ -525,7 +547,8 @@
     }
 
     .modal-close:hover {
-      border-color: var(--border2);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(108, 99, 255, 0.4);
       color: var(--text);
     }
 
@@ -575,22 +598,24 @@
     input[type="text"],
     select {
       width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-sm);
       padding: 0.7rem 0.9rem;
       font-family: inherit;
       font-size: 0.95rem;
       color: var(--text);
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.25s, box-shadow 0.25s;
       appearance: none;
+      backdrop-filter: blur(8px);
     }
 
     input[type="number"]:focus,
     input[type="text"]:focus,
     select:focus {
-      border-color: var(--accent);
+      border-color: rgba(108, 99, 255, 0.6);
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
     }
 
     .has-prefix input {
@@ -619,8 +644,8 @@
 
     .calc-btn {
       width: 100%;
-      background: var(--accent);
-      border: none;
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.8), rgba(139, 132, 255, 0.7));
+      border: 1px solid rgba(108, 99, 255, 0.5);
       border-radius: var(--radius-sm);
       padding: 0.85rem;
       color: white;
@@ -628,23 +653,27 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s;
       margin-top: 0.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
     }
 
     .calc-btn:hover {
-      background: var(--accent2);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, rgba(108, 99, 255, 1), rgba(139, 132, 255, 0.9));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(108, 99, 255, 0.45);
     }
 
     /* ── RESULTS ── */
     .results {
       display: none;
       margin-top: 1.5rem;
-      background: var(--surface2);
-      border: 1px solid var(--border2);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(108, 99, 255, 0.2);
       border-radius: var(--radius);
       padding: 1.5rem;
+      backdrop-filter: blur(16px);
     }
 
     .results.show {
@@ -686,12 +715,13 @@
     }
 
     .result-highlight {
-      background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(108, 99, 255, 0.05));
-      border: 1px solid rgba(108, 99, 255, 0.3);
-      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(108, 99, 255, 0.07));
+      border: 1px solid rgba(108, 99, 255, 0.35);
+      border-radius: 12px;
       padding: 1rem;
       text-align: center;
       margin-bottom: 1rem;
+      box-shadow: 0 0 30px rgba(108, 99, 255, 0.12);
     }
 
     .result-highlight .result-value {
@@ -729,7 +759,7 @@
 
     .bar-track {
       flex: 1;
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 100px;
       height: 8px;
       overflow: hidden;
@@ -778,12 +808,12 @@
     }
 
     .section-badge {
-      background: var(--surface2);
-      border: 1px solid var(--border2);
+      background: rgba(108, 99, 255, 0.12);
+      border: 1px solid rgba(108, 99, 255, 0.25);
       border-radius: 100px;
       padding: 0.2rem 0.6rem;
       font-size: 0.72rem;
-      color: var(--muted2);
+      color: var(--accent3);
       font-weight: 600;
     }
 
@@ -791,8 +821,9 @@
     footer {
       position: relative;
       z-index: 1;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(7, 7, 26, 0.6);
+      backdrop-filter: blur(20px);
       padding: 3rem 2rem 2rem;
       margin-top: 4rem;
     }
@@ -2103,6 +2134,85 @@
         </div>
       </div>
       <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      retirement: {
+        icon: '🏖️', title: 'Retirement Savings Calculator',
+        desc: 'Find out how much you need to save monthly to retire comfortably.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Current Age</label><div class="input-wrap has-suffix"><input type="number" id="ret-age" value="30" min="18" max="80"><span class="input-suffix">yrs</span></div></div>
+        <div class="field-group"><label>Retirement Age</label><div class="input-wrap has-suffix"><input type="number" id="ret-retire" value="65" min="40" max="90"><span class="input-suffix">yrs</span></div></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Current Savings</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ret-current" value="10000" min="0"></div></div>
+        <div class="field-group"><label>Monthly Contribution</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ret-contrib" value="500" min="0"></div></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Annual Return Rate</label><div class="input-wrap has-suffix"><input type="number" id="ret-return" value="7" step="0.1" min="0" max="30"><span class="input-suffix">%</span></div></div>
+        <div class="field-group"><label>Inflation Rate</label><div class="input-wrap has-suffix"><input type="number" id="ret-inflation" value="3" step="0.1" min="0" max="20"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>Desired Monthly Income in Retirement</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ret-goal" value="4000" min="0"></div></div>
+      <button class="calc-btn" onclick="calcRetirement()">Calculate Retirement Plan</button>
+      <div class="results" id="r-retirement">
+        <h3>Results</h3>
+        <div class="result-highlight"><span class="result-value" id="ret-r-nest">$0</span><div class="result-label">Projected Nest Egg at Retirement</div></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-value" id="ret-r-needed">$0</span><div class="result-label">Nest Egg Needed</div></div>
+          <div class="result-item"><span class="result-value" id="ret-r-income">$0</span><div class="result-label">Monthly Income (Inflation-Adj.)</div></div>
+          <div class="result-item"><span class="result-value" id="ret-r-monthly">$0</span><div class="result-label">Recommended Monthly Savings</div></div>
+          <div class="result-item"><span class="result-value" id="ret-r-years">0</span><div class="result-label">Years to Retirement</div></div>
+        </div>
+        <div id="ret-r-verdict" style="margin-top:1rem;padding:1rem;border-radius:10px;text-align:center;font-weight:600;font-size:0.95rem;"></div>
+        <p class="result-note">Assumes a <strong>4% safe withdrawal rate</strong> in retirement. Returns are pre-tax approximations. Actual results depend on market performance, tax treatment, and inflation. Consult a financial advisor for personalized guidance.</p>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      currency: {
+        icon: '💱', title: 'Currency Converter',
+        desc: 'Convert between 30+ currencies with live exchange rates.',
+        html: `
+      <style>
+        .cur-swap-btn { background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.35); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; color: var(--accent2); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+        .cur-swap-btn:hover { background: rgba(108,99,255,0.3); transform: rotate(180deg); }
+        .cur-row { display: flex; align-items: flex-end; gap: 0.75rem; }
+        .cur-row .field-group { flex: 1; }
+        .cur-rate-tag { font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; }
+        .cur-rate-tag span { color: var(--accent2); font-weight: 600; }
+        .cur-multi { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; margin-top: 0.75rem; }
+        .cur-multi-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.6rem 0.75rem; }
+        .cur-multi-item .cur-code { font-size: 0.72rem; color: var(--muted); font-weight: 700; letter-spacing: 0.04em; }
+        .cur-multi-item .cur-val { font-size: 1rem; font-weight: 700; color: var(--text); margin-top: 0.1rem; }
+        .cur-status { font-size: 0.75rem; margin-bottom: 0.75rem; }
+        .cur-status.live { color: var(--green); } .cur-status.cached { color: var(--yellow); } .cur-status.offline { color: var(--muted); }
+      </style>
+      <div class="cur-status" id="cur-status">⏳ Loading live rates…</div>
+      <div class="cur-row">
+        <div class="field-group">
+          <label>Amount</label>
+          <input type="number" id="cur-amount" value="100" min="0" step="any">
+        </div>
+        <div class="field-group">
+          <label>From</label>
+          <select id="cur-from"></select>
+        </div>
+        <button class="cur-swap-btn" onclick="swapCurrency()" title="Swap">⇄</button>
+        <div class="field-group">
+          <label>To</label>
+          <select id="cur-to"></select>
+        </div>
+      </div>
+      <p class="cur-rate-tag" id="cur-rate-tag">1 USD = <span id="cur-rate-display">—</span></p>
+      <button class="calc-btn" onclick="convertCurrency()" style="margin-top:0.75rem">Convert</button>
+      <div class="results" id="r-currency">
+        <h3>Results</h3>
+        <div class="result-highlight"><span class="result-value" id="cur-r-main">—</span><div class="result-label" id="cur-r-label">Result</div></div>
+        <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem;margin-bottom:0.75rem">Also converts to popular currencies:</p>
+        <div class="cur-multi" id="cur-multi-grid"></div>
+        <p class="result-note">Rates provided by <strong>Frankfurter (ECB data)</strong> and updated daily on business days. Not suitable for financial transactions.</p>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
       }
     };
 
@@ -2136,7 +2246,9 @@
       if (id === 'gpa') { initGPA(); }
       if (id === 'units') { updateUnitOptions(); }
       if (id === 'scientific') { sciExpr = ''; sciDisplay('0'); }
+      if (id === 'currency') { curPopulate(); loadCurrencyRates(); }
     }
+
 
     function closeModal() {
       document.getElementById('modal-overlay').classList.remove('open');
@@ -2451,6 +2563,175 @@
       document.getElementById('r-tax-amount').textContent = fmtM(taxAmt);
       document.getElementById('r-tax-total').textContent = fmtM(total);
       document.getElementById('r-tax').classList.add('show');
+    }
+
+    // RETIREMENT
+    function calcRetirement() {
+      const currentAge = parseFloat(document.getElementById('ret-age').value) || 30;
+      const retireAge = parseFloat(document.getElementById('ret-retire').value) || 65;
+      const currentSav = parseFloat(document.getElementById('ret-current').value) || 0;
+      const monthlyContr = parseFloat(document.getElementById('ret-contrib').value) || 0;
+      const annualReturn = parseFloat(document.getElementById('ret-return').value) / 100 || 0.07;
+      const inflation = parseFloat(document.getElementById('ret-inflation').value) / 100 || 0.03;
+      const monthlyGoal = parseFloat(document.getElementById('ret-goal').value) || 4000;
+
+      const years = Math.max(retireAge - currentAge, 1);
+      const months = years * 12;
+      const r = annualReturn / 12; // monthly rate
+
+      // Future value of current savings
+      const fvCurrent = currentSav * Math.pow(1 + r, months);
+
+      // Future value of monthly contributions (annuity)
+      const fvContrib = r > 0
+        ? monthlyContr * ((Math.pow(1 + r, months) - 1) / r)
+        : monthlyContr * months;
+
+      const projectedNestEgg = fvCurrent + fvContrib;
+
+      // Inflation-adjust the monthly goal to retirement date (today's dollars shown)
+      const inflatedGoal = monthlyGoal * Math.pow(1 + inflation, years);
+      // Nest egg needed: 4% safe withdrawal (annual = monthlyGoal*12, so nest egg = goal*12/0.04 = goal*300)
+      const neededNestEgg = inflatedGoal * 12 / 0.04;
+
+      // Monthly income the projected nest egg supports (inflation-adjusted, in today's dollars)
+      const supportedMonthlyInflated = projectedNestEgg * 0.04 / 12;
+      const supportedMonthlyToday = supportedMonthlyInflated / Math.pow(1 + inflation, years);
+
+      // Monthly savings needed to hit the target (if there's a gap)
+      const gap = neededNestEgg - fvCurrent; // what contributions need to cover
+      let recommendedMonthly = r > 0
+        ? gap * r / (Math.pow(1 + r, months) - 1)
+        : gap / months;
+      recommendedMonthly = Math.max(0, recommendedMonthly);
+
+      // Render
+      document.getElementById('ret-r-nest').textContent = fmtM(projectedNestEgg);
+      document.getElementById('ret-r-needed').textContent = fmtM(neededNestEgg);
+      document.getElementById('ret-r-income').textContent = fmtM(supportedMonthlyToday) + '/mo';
+      document.getElementById('ret-r-monthly').textContent = fmtM(recommendedMonthly) + '/mo';
+      document.getElementById('ret-r-years').textContent = years + ' yrs';
+
+      // Verdict
+      const verdict = document.getElementById('ret-r-verdict');
+      if (projectedNestEgg >= neededNestEgg) {
+        verdict.style.background = 'rgba(34,211,160,0.12)';
+        verdict.style.border = '1px solid rgba(34,211,160,0.3)';
+        verdict.style.color = '#22d3a0';
+        const surplus = projectedNestEgg - neededNestEgg;
+        verdict.textContent = `✅ You're on track! Your plan projects a surplus of ${fmtM(surplus)} above your goal.`;
+      } else {
+        const shortfall = neededNestEgg - projectedNestEgg;
+        verdict.style.background = 'rgba(255,140,66,0.1)';
+        verdict.style.border = '1px solid rgba(255,140,66,0.3)';
+        verdict.style.color = '#ff8c42';
+        verdict.textContent = `⚠️ Shortfall of ${fmtM(shortfall)}. Increase monthly savings to ${fmtM(recommendedMonthly)}/mo to reach your goal.`;
+      }
+      document.getElementById('r-retirement').classList.add('show');
+    }
+
+
+    // CURRENCY CONVERTER
+    const CURRENCY_LIST = [
+      ['USD', '$ US Dollar'], ['EUR', '€ Euro'], ['GBP', '£ British Pound'], ['SAR', 'ر.س Saudi Riyal'],
+      ['AED', 'د.إ UAE Dirham'], ['JPY', '¥ Japanese Yen'], ['CNY', '¥ Chinese Yuan'], ['INR', '₹ Indian Rupee'],
+      ['KWD', 'د.ك Kuwaiti Dinar'], ['QAR', 'ر.ق Qatari Riyal'], ['BHD', 'BD Bahraini Dinar'], ['OMR', 'ر.ع Omani Rial'],
+      ['EGP', 'ج.م Egyptian Pound'], ['JOD', 'د.ا Jordanian Dinar'], ['TRY', '₺ Turkish Lira'],
+      ['CAD', 'C$ Canadian Dollar'], ['AUD', 'A$ Australian Dollar'], ['CHF', 'Fr Swiss Franc'],
+      ['SEK', 'kr Swedish Krona'], ['NOK', 'kr Norwegian Krone'], ['DKK', 'kr Danish Krone'],
+      ['HKD', 'HK$ Hong Kong Dollar'], ['SGD', 'S$ Singapore Dollar'], ['KRW', '₩ South Korean Won'],
+      ['MYR', 'RM Malaysian Ringgit'], ['THB', '฿ Thai Baht'], ['IDR', 'Rp Indonesian Rupiah'],
+      ['PKR', '₨ Pakistani Rupee'], ['BDT', '৳ Bangladeshi Taka'], ['NGN', '₦ Nigerian Naira'],
+      ['ZAR', 'R South African Rand'], ['BRL', 'R$ Brazilian Real'], ['MXN', '$ Mexican Peso'],
+    ];
+    // Base: USD fallback rates (approximate, updated Feb 2026)
+    const CUR_FALLBACK = {
+      USD: 1, EUR: 0.924, GBP: 0.791, SAR: 3.751, AED: 3.673, JPY: 149.5, CNY: 7.24,
+      INR: 83.1, KWD: 0.307, QAR: 3.641, BHD: 0.377, OMR: 0.385, EGP: 30.9, JOD: 0.709,
+      TRY: 32.5, CAD: 1.356, AUD: 1.535, CHF: 0.878, SEK: 10.45, NOK: 10.58, DKK: 6.9,
+      HKD: 7.824, SGD: 1.344, KRW: 1327, MYR: 4.74, THB: 35.5, IDR: 15700, PKR: 278,
+      BDT: 110, NGN: 1580, ZAR: 18.8, BRL: 4.98, MXN: 17.15,
+    };
+    let curRates = null; // will be {base:'USD', rates:{...}}
+    const POPULAR_TARGETS = ['USD', 'EUR', 'GBP', 'SAR', 'AED', 'JPY', 'CAD', 'AUD', 'CHF', 'INR'];
+
+    function curPopulate() {
+      const fromSel = document.getElementById('cur-from');
+      const toSel = document.getElementById('cur-to');
+      if (!fromSel || !toSel) return;
+      fromSel.innerHTML = '';
+      toSel.innerHTML = '';
+      CURRENCY_LIST.forEach(([code, label]) => {
+        const o1 = `<option value="${code}" ${code === 'USD' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
+        const o2 = `<option value="${code}" ${code === 'SAR' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
+        fromSel.insertAdjacentHTML('beforeend', o1);
+        toSel.insertAdjacentHTML('beforeend', o2);
+      });
+      fromSel.addEventListener('change', updateRateTag);
+      toSel.addEventListener('change', updateRateTag);
+    }
+
+    function getRate(from, to) {
+      if (!curRates) return CUR_FALLBACK[to] / CUR_FALLBACK[from];
+      // curRates.rates are relative to EUR base from Frankfurter
+      const base = curRates.rates;
+      const fromUSD = from === 'EUR' ? 1 : base[from];
+      const toUSD = to === 'EUR' ? 1 : base[to];
+      return toUSD / fromUSD;
+    }
+
+    function updateRateTag() {
+      const from = document.getElementById('cur-from')?.value;
+      const to = document.getElementById('cur-to')?.value;
+      if (!from || !to) return;
+      const rate = getRate(from, to);
+      const rateEl = document.getElementById('cur-rate-display');
+      const tagEl = document.getElementById('cur-rate-tag');
+      if (rateEl) rateEl.textContent = rate.toFixed(rate < 0.01 ? 6 : rate < 1 ? 4 : 4) + ' ' + to;
+      if (tagEl) tagEl.firstChild.textContent = '1 ' + from + ' = ';
+    }
+
+    function swapCurrency() {
+      const f = document.getElementById('cur-from');
+      const t = document.getElementById('cur-to');
+      if (!f || !t) return;
+      [f.value, t.value] = [t.value, f.value];
+      updateRateTag();
+    }
+
+    function convertCurrency() {
+      const amount = parseFloat(document.getElementById('cur-amount').value) || 0;
+      const from = document.getElementById('cur-from').value;
+      const to = document.getElementById('cur-to').value;
+      const rate = getRate(from, to);
+      const result = amount * rate;
+      const dp = result < 0.1 ? 6 : result < 1 ? 4 : 2;
+      document.getElementById('cur-r-main').textContent = result.toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp }) + ' ' + to;
+      document.getElementById('cur-r-label').textContent = `${amount.toLocaleString()} ${from} →`;
+
+      // Multi grid
+      const grid = document.getElementById('cur-multi-grid');
+      grid.innerHTML = POPULAR_TARGETS.filter(c => c !== to).slice(0, 8).map(c => {
+        const r = getRate(from, c);
+        const v = (amount * r);
+        const d = v < 1 ? 4 : 2;
+        return `<div class="cur-multi-item"><div class="cur-code">${c}</div><div class="cur-val">${v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d })}</div></div>`;
+      }).join('');
+      document.getElementById('r-currency').classList.add('show');
+    }
+
+    async function loadCurrencyRates() {
+      const statusEl = document.getElementById('cur-status');
+      try {
+        const res = await fetch('https://api.frankfurter.app/latest?base=EUR&symbols=USD,GBP,SAR,AED,JPY,CNY,INR,KWD,QAR,BHD,OMR,EGP,JOD,TRY,CAD,AUD,CHF,SEK,NOK,DKK,HKD,SGD,KRW,MYR,THB,IDR,PKR,BDT,NGN,ZAR,BRL,MXN');
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        curRates = { base: 'EUR', rates: { ...data.rates, EUR: 1 } };
+        if (statusEl) { statusEl.textContent = '🟢 Live rates · ' + data.date; statusEl.className = 'cur-status live'; }
+        updateRateTag();
+      } catch (e) {
+        if (statusEl) { statusEl.textContent = '⚪ Offline mode — using approximate rates (Feb 2026)'; statusEl.className = 'cur-status offline'; }
+      }
     }
 
     // RANDOM

@@ -11,45 +11,39 @@
      crossorigin="anonymous"></script>
 <style>
 :root {
-  --bg: #0a0a0f;
-  --surface: #13131a;
-  --surface2: #1c1c27;
-  --border: #2a2a3d;
-  --border2: #363650;
-  --text: #e8e8f0;
-  --muted: #7070a0;
-  --muted2: #9090b8;
-  --accent: #6c63ff;
-  --accent2: #8b84ff;
-  --green: #22d3a0;
-  --radius: 14px;
+  --bg: #07071a; --surface: rgba(255,255,255,0.04); --surface2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.09); --border2: rgba(108,99,255,0.45); --text: #e8e8f0;
+  --muted: #7070a0; --muted2: #9090b8; --accent: #6c63ff;
+  --accent2: #8b84ff; --accent3: #b3aeff; --green: #22d3a0; --orange: #ff8c42;
+  --pink: #ff6b9d; --blue: #4da6ff; --yellow: #ffd166;
+  --radius: 16px; --radius-sm: 10px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.5); --shadow-lg: 0 24px 80px rgba(0,0,0,0.6);
+  --glow: 0 0 60px rgba(108,99,255,0.25);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Outfit', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  min-height: 100vh;
+  background: linear-gradient(135deg, #07071a 0%, #0c0b2e 40%, #080818 70%, #07071a 100%);
+  background-attachment: fixed;
+  color: var(--text); line-height: 1.7; min-height: 100vh;
 }
 body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0;
-  background-image:
-    linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 700px 500px at 15% 10%, rgba(108,99,255,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 85% 5%, rgba(77,166,255,0.13) 0%, transparent 65%),
+    radial-gradient(ellipse 600px 400px at 50% 95%, rgba(255,107,157,0.1) 0%, transparent 70%);
 }
 
 /* NAV */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(10,10,15,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(7,7,26,0.6);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
   padding: 0 2rem;
 }
 .nav-inner {
@@ -79,7 +73,7 @@ nav {
   position: relative; z-index: 1;
   text-align: center;
   padding: 4rem 2rem 3rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 .page-hero::before {
   content: '';
@@ -179,8 +173,8 @@ nav {
 
 /* HIGHLIGHT BOX */
 .highlight-box {
-  background: var(--surface);
-  border: 1px solid var(--border2);
+  background: rgba(108,99,255,0.08);
+  border: 1px solid rgba(108,99,255,0.25);
   border-left: 3px solid var(--accent);
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
@@ -229,7 +223,7 @@ nav {
   margin: 1.5rem 0; font-size: 0.88rem;
 }
 .data-table th {
-  background: var(--surface2);
+  background: rgba(255,255,255,0.06);
   padding: 0.75rem 1rem; text-align: left;
   font-weight: 600; font-size: 0.78rem;
   text-transform: uppercase; letter-spacing: 0.06em;
@@ -241,12 +235,13 @@ nav {
   color: var(--muted2); vertical-align: top;
 }
 .data-table tr:last-child td { border-bottom: none; }
-.data-table tr:hover td { background: var(--surface); }
+.data-table tr:hover td { background: rgba(255,255,255,0.04); }
 
 /* CONTACT CARD */
 .contact-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(108,99,255,0.2);
   border-radius: var(--radius);
   padding: 1.5rem;
   margin-top: 1.5rem;
@@ -254,7 +249,7 @@ nav {
 }
 .contact-icon {
   width: 48px; height: 48px;
-  background: var(--surface2); border-radius: 10px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.3rem; flex-shrink: 0;
 }
@@ -266,8 +261,8 @@ nav {
 /* FOOTER */
 footer {
   position: relative; z-index: 1;
-  border-top: 1px solid var(--border);
-  background: var(--surface);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  background: rgba(7,7,26,0.6); backdrop-filter: blur(20px);
   padding: 2rem;
   text-align: center;
 }
