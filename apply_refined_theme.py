@@ -204,9 +204,7 @@ for fname in files_to_process:
     with open(fname, 'r') as f:
         content = f.read()
     
-    # We want to replace everything from "    /* Neumorphic Light Mode Redesign */"
-    # to the start of "    /* Theme toggle button */" (for index.html) or "</style>" (for rest)
-    
+    # 1. Update the CSS Theme
     start_str = "    /* Neumorphic Light Mode Redesign */"
     end_str_index = "    /* Theme toggle button */"
     end_str_index_ar = "    .theme-toggle {"
@@ -234,9 +232,81 @@ for fname in files_to_process:
                 content = content[:start_idx] + refined_theme_css + "\n" + content[end_idx:]
             else:
                 print(f"Warning: end string not found in {fname}")
-                
-        with open(fname, 'w') as f:
-            f.write(content)
-        print(f"Refined {fname}")
     else:
         print(f"Could not find Neumorphic block in {fname}")
+
+    # 2. Inject Theme Toggle Button if it doesn't exist
+    button_html = """
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+"""
+    if 'id="theme-toggle"' not in content:
+        # Add after <nav> or <body>
+        if "<nav" in content:
+            content = re.sub(r'(<nav[^>]*>)', button_html + r'\1', content, count=1)
+        elif "<body>" in content:
+            content = content.replace("<body>", "<body>" + button_html)
+    
+    # 3. Inject Toggle Theme JS if it doesn't exist
+    js_logic = """
+    // ── LIGHT/DARK MODE TOGGLE ──
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cw-theme', next);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = next === 'light' ? '☀️' : '🌙';
+    };
+    // Initialize toggle icon
+    setTimeout(() => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const current = document.documentElement.getAttribute('data-theme');
+        btn.textContent = current === 'light' ? '☀️' : '🌙';
+      }
+    }, 100);
+"""
+    if "window.toggleTheme = function" not in content:
+        if "</body>" in content:
+            # Check if there is already a script tag near the end
+            if "<script>" in content:
+                 content = content.replace("</script>\n</body>", js_logic + "</script>\n</body>")
+                 content = content.replace("</script>\n</html>", js_logic + "</script>\n</html>")
+            else:
+                 content = content.replace("</body>", "<script>" + js_logic + "</script>\n</body>")
+
+    # 4. Inject Theme Toggle CSS if missing (for non-index pages)
+    css_logic = """
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 9999;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      border-color: var(--accent);
+    }
+"""
+    if ".theme-toggle {" not in content:
+        content = content.replace("</style>", css_logic + "</style>")
+
+    with open(fname, 'w') as f:
+        f.write(content)
+    print(f"Refined {fname}")

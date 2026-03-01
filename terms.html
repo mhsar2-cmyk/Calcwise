@@ -315,6 +315,31 @@ footer p { font-size: 0.8rem; color: var(--muted); }
       box-shadow: var(--neu-pressed) !important;
       transform: translateY(0) !important;
     }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 9999;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      border-color: var(--accent);
+    }
 </style>
 
   <!-- THEME SCRIPT -->
@@ -329,6 +354,9 @@ footer p { font-size: 0.8rem; color: var(--muted); }
 
 </head>
 <body>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">Calc<span>Wise</span></a>
