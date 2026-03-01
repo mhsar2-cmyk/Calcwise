@@ -1552,8 +1552,8 @@
         icon: '🏠', title: 'حاسبة الرهن العقاري', desc: 'احسب الدفعات الشهرية والفوائد الإجمالية وتكلفة القرض.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>سعر المنزل</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="m-price" value="350000" min="0"></div></div>
-        <div class="field-group"><label>الدفعة المقدمة</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="m-down" value="70000" min="0"></div></div>
+        <div class="field-group"><label>سعر المنزل</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="m-price" value="350000" min="0"></div></div>
+        <div class="field-group"><label>الدفعة المقدمة</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="m-down" value="70000" min="0"></div></div>
       </div>
       <div class="field-row">
         <div class="field-group"><label>معدل الفائدة</label><div class="input-wrap has-suffix"><input type="number" id="m-rate" value="6.8" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
@@ -1562,11 +1562,11 @@
       <button class="calc-btn" onclick="calcMortgage()">احسب الدفعة</button>
       <div class="results" id="r-mortgage">
         <h3>النتائج</h3>
-        <div class="result-highlight"><span class="result-value" id="r-m-monthly">$0</span><div class="result-label">الدفعة الشهرية</div></div>
+        <div class="result-highlight"><span class="result-value" id="r-m-monthly">0</span><div class="result-label">الدفعة الشهرية</div></div>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-m-total">$0</span><div class="result-label">إجمالي المدفوعات</div></div>
-          <div class="result-item"><span class="result-value" id="r-m-interest">$0</span><div class="result-label">إجمالي الفوائد</div></div>
-          <div class="result-item"><span class="result-value" id="r-m-loan">$0</span><div class="result-label">مبلغ القرض</div></div>
+          <div class="result-item"><span class="result-value" id="r-m-total">0</span><div class="result-label">إجمالي المدفوعات</div></div>
+          <div class="result-item"><span class="result-value" id="r-m-interest">0</span><div class="result-label">إجمالي الفوائد</div></div>
+          <div class="result-item"><span class="result-value" id="r-m-loan">0</span><div class="result-label">مبلغ القرض</div></div>
         </div>
         <div class="result-bar" id="r-m-bar"></div>
         <p class="result-note">هذا التقدير يشمل أصل الدين والفوائد فقط. أضف ضريبة الملكية (~١.٢٪) وتأمين المالك وPMI إذا كانت الدفعة المقدمة أقل من ٢٠٪.</p>
@@ -1577,7 +1577,7 @@
         icon: '💳', title: 'حاسبة القروض', desc: 'الدفعات الشهرية والتكلفة الإجمالية لأي قرض.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>مبلغ القرض</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="l-amount" value="15000" min="0"></div></div>
+        <div class="field-group"><label>مبلغ القرض</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="l-amount" value="15000" min="0"></div></div>
         <div class="field-group"><label>معدل الفائدة السنوي</label><div class="input-wrap has-suffix"><input type="number" id="l-rate" value="8.5" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
       </div>
       <div class="field-group"><label>مدة القرض</label>
@@ -1591,10 +1591,10 @@
       <button class="calc-btn" onclick="calcLoan()">احسب</button>
       <div class="results" id="r-loan">
         <h3>النتائج</h3>
-        <div class="result-highlight"><span class="result-value" id="r-l-monthly">$0</span><div class="result-label">الدفعة الشهرية</div></div>
+        <div class="result-highlight"><span class="result-value" id="r-l-monthly">0</span><div class="result-label">الدفعة الشهرية</div></div>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-l-total">$0</span><div class="result-label">إجمالي المسدَّد</div></div>
-          <div class="result-item"><span class="result-value" id="r-l-interest">$0</span><div class="result-label">إجمالي الفوائد</div></div>
+          <div class="result-item"><span class="result-value" id="r-l-total">0</span><div class="result-label">إجمالي المسدَّد</div></div>
+          <div class="result-item"><span class="result-value" id="r-l-interest">0</span><div class="result-label">إجمالي الفوائد</div></div>
         </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
@@ -1603,7 +1603,7 @@
         icon: '📈', title: 'حاسبة الفائدة المركبة', desc: 'شاهد كيف تنمو مدخراتك بقوة الفائدة المركبة.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>المبلغ الأساسي</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ci-principal" value="10000" min="0"></div></div>
+        <div class="field-group"><label>المبلغ الأساسي</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="ci-principal" value="10000" min="0"></div></div>
         <div class="field-group"><label>معدل الفائدة السنوي</label><div class="input-wrap has-suffix"><input type="number" id="ci-rate" value="7" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
       </div>
       <div class="field-row">
@@ -1615,14 +1615,14 @@
           </select>
         </div>
       </div>
-      <div class="field-group"><label>مساهمة شهرية إضافية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ci-contrib" value="200" min="0"></div></div>
+      <div class="field-group"><label>مساهمة شهرية إضافية</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="ci-contrib" value="200" min="0"></div></div>
       <button class="calc-btn" onclick="calcCompound()">احسب النمو</button>
       <div class="results" id="r-compound">
         <h3>النتائج</h3>
-        <div class="result-highlight"><span class="result-value" id="r-ci-final">$0</span><div class="result-label">الرصيد النهائي</div></div>
+        <div class="result-highlight"><span class="result-value" id="r-ci-final">0</span><div class="result-label">الرصيد النهائي</div></div>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-ci-contributed">$0</span><div class="result-label">إجمالي ما أودعته</div></div>
-          <div class="result-item"><span class="result-value" id="r-ci-earned">$0</span><div class="result-label">الفوائد المكتسبة</div></div>
+          <div class="result-item"><span class="result-value" id="r-ci-contributed">0</span><div class="result-label">إجمالي ما أودعته</div></div>
+          <div class="result-item"><span class="result-value" id="r-ci-earned">0</span><div class="result-label">الفوائد المكتسبة</div></div>
         </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
@@ -1631,7 +1631,7 @@
         icon: '🍽️', title: 'حاسبة البقشيش', desc: 'قسّم الفاتورة واحسب البقشيش لكل شخص.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>مبلغ الفاتورة</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="t-bill" value="85.50" step="0.01" min="0"></div></div>
+        <div class="field-group"><label>مبلغ الفاتورة</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="t-bill" value="85.50" step="0.01" min="0"></div></div>
         <div class="field-group"><label>نسبة البقشيش</label><div class="input-wrap has-suffix"><input type="number" id="t-tip" value="18" min="0"><span class="input-suffix">%</span></div></div>
       </div>
       <div class="field-group"><label>عدد الأشخاص</label><input type="number" id="t-people" value="4" min="1"></div>
@@ -1646,9 +1646,9 @@
       <div class="results" id="r-tip">
         <h3>النتائج</h3>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-t-tip">$0</span><div class="result-label">مبلغ البقشيش</div></div>
-          <div class="result-item"><span class="result-value" id="r-t-total">$0</span><div class="result-label">إجمالي الفاتورة</div></div>
-          <div class="result-item"><span class="result-value" id="r-t-per">$0</span><div class="result-label">نصيب كل شخص</div></div>
+          <div class="result-item"><span class="result-value" id="r-t-tip">0</span><div class="result-label">مبلغ البقشيش</div></div>
+          <div class="result-item"><span class="result-value" id="r-t-total">0</span><div class="result-label">إجمالي الفاتورة</div></div>
+          <div class="result-item"><span class="result-value" id="r-t-per">0</span><div class="result-label">نصيب كل شخص</div></div>
         </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
@@ -1719,7 +1719,7 @@
         <div class="result-highlight"><span class="result-value" id="r-cal-target">0</span><div class="result-label">هدف السعرات اليومي</div></div>
         <div class="result-grid">
           <div class="result-item"><span class="result-value" id="r-cal-bmr">0</span><div class="result-label">معدل الأيض الأساسي</div></div>
-          <div class="result-item"><span class="result-value" id="r-cal-tdee">0</span><div class="result-label">TDEE (الصيانة)</div></div>
+          <div class="result-item"><span class="result-value" id="r-cal-tdee">0</span><div class="result-label">TDEE (المحافظه)</div></div>
         </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
@@ -1732,7 +1732,7 @@
         <div class="field-group"><label>الهدف</label>
           <select id="mac-goal">
             <option value="cut">تخفيف (بروتين عالٍ)</option>
-            <option value="maintain" selected>صيانة (متوازن)</option>
+            <option value="maintain" selected>محافظه (متوازن)</option>
             <option value="bulk">بناء عضلي (كربوهيدرات أعلى)</option>
           </select>
         </div>
@@ -1749,10 +1749,41 @@
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
       },
+      bodyfat: {
+        icon: '💪', title: 'حاسبة نسبة الدهون',
+        desc: 'تقدير نسبة الدهون في الجسم باستخدام طريقة البحرية الأمريكية.',
+        html: `
+      <div class="field-group"><label>الجنس</label>
+        <select id="bf-gender" onchange="document.getElementById('bf-hip-group').style.display = this.value === 'female' ? 'block' : 'none'">
+          <option value="male" selected>ذكر</option>
+          <option value="female">أنثى</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>الوزن</label><div class="input-wrap has-suffix"><input type="number" id="bf-weight" value="75"><span class="input-suffix">كجم</span></div></div>
+        <div class="field-group"><label>الطول</label><div class="input-wrap has-suffix"><input type="number" id="bf-height" value="175"><span class="input-suffix">سم</span></div></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>محيط الرقبة</label><div class="input-wrap has-suffix"><input type="number" id="bf-neck" value="38"><span class="input-suffix">سم</span></div></div>
+        <div class="field-group"><label>محيط الخصر (при السرة)</label><div class="input-wrap has-suffix"><input type="number" id="bf-waist" value="85"><span class="input-suffix">سم</span></div></div>
+      </div>
+      <div class="field-group" id="bf-hip-group" style="display:none;"><label>محيط الأرداف (أعرض جزء)</label><div class="input-wrap has-suffix"><input type="number" id="bf-hip" value="95"><span class="input-suffix">سم</span></div></div>
+      <button class="calc-btn" onclick="calcBodyFat()">احسب</button>
+      <div class="results" id="r-bodyfat">
+        <h3>النتائج المقدرة</h3>
+        <div class="result-highlight"><span class="result-value" id="r-bf-pct">—</span><div class="result-label">نسبة الدهون في الجسم</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-bf-category">—</span><div class="result-label" style="color:var(--accent2)">الفئة</div></div>
+          <div class="result-item"><span class="result-value" id="r-bf-fatmass">—</span><div class="result-label">كتلة الدهون</div></div>
+          <div class="result-item"><span class="result-value" id="r-bf-leanmass">—</span><div class="result-label">الكتلة اللادُهنية</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
       salary: {
         icon: '💼', title: 'حاسبة الراتب', desc: 'حوّل بين الأجر بالساعة واليومي والأسبوعي والشهري والسنوي.',
         html: `
-      <div class="field-group"><label>أدخل راتبك</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="sal-amount" value="75000" min="0"></div></div>
+      <div class="field-group"><label>أدخل راتبك</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="sal-amount" value="75000" min="0"></div></div>
       <div class="field-row">
         <div class="field-group"><label>فترة الدفع</label>
           <select id="sal-period">
@@ -1767,11 +1798,11 @@
       <div class="results" id="r-salary">
         <h3>جميع فترات الدفع</h3>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-sal-hour">$0</span><div class="result-label">بالساعة</div></div>
-          <div class="result-item"><span class="result-value" id="r-sal-day">$0</span><div class="result-label">يومياً</div></div>
-          <div class="result-item"><span class="result-value" id="r-sal-week">$0</span><div class="result-label">أسبوعياً</div></div>
-          <div class="result-item"><span class="result-value" id="r-sal-month">$0</span><div class="result-label">شهرياً</div></div>
-          <div class="result-item"><span class="result-value" id="r-sal-year">$0</span><div class="result-label">سنوياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-hour">0</span><div class="result-label">بالساعة</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-day">0</span><div class="result-label">يومياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-week">0</span><div class="result-label">أسبوعياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-month">0</span><div class="result-label">شهرياً</div></div>
+          <div class="result-item"><span class="result-value" id="r-sal-year">0</span><div class="result-label">سنوياً</div></div>
         </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
@@ -1809,7 +1840,7 @@
         icon: '🧾', title: 'حاسبة ضريبة القيمة المضافة', desc: 'أضف أو استخرج الضريبة من أي سعر.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>السعر</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="stax-price" value="100" step="0.01" min="0"></div></div>
+        <div class="field-group"><label>السعر</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="stax-price" value="100" step="0.01" min="0"></div></div>
         <div class="field-group"><label>نسبة الضريبة</label><div class="input-wrap has-suffix"><input type="number" id="stax-rate" value="15" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
       </div>
       <div class="field-group"><label>الوضع</label>
@@ -1822,10 +1853,31 @@
       <div class="results" id="r-tax">
         <h3>النتائج</h3>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-tax-pre">$0</span><div class="result-label">السعر قبل الضريبة</div></div>
-          <div class="result-item"><span class="result-value" id="r-tax-amount">$0</span><div class="result-label">مبلغ الضريبة</div></div>
-          <div class="result-item"><span class="result-value" id="r-tax-total">$0</span><div class="result-label">السعر الإجمالي</div></div>
+          <div class="result-item"><span class="result-value" id="r-tax-pre">0</span><div class="result-label">السعر قبل الضريبة</div></div>
+          <div class="result-item"><span class="result-value" id="r-tax-amount">0</span><div class="result-label">مبلغ الضريبة</div></div>
+          <div class="result-item"><span class="result-value" id="r-tax-total">0</span><div class="result-label">السعر الإجمالي</div></div>
         </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      inflation: {
+        icon: '🛒', title: 'حاسبة التضخم',
+        desc: 'اكتشف كيف يؤدي التضخم إلى تآكل القوة الشرائية بمرور الوقت.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>المبلغ الحالي</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="inf-amount" value="1000" min="0"></div></div>
+        <div class="field-group"><label>معدل التضخم المتوقع</label><div class="input-wrap has-suffix"><input type="number" id="inf-rate" value="3.0" step="0.1"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>السنوات</label><div class="input-wrap has-suffix"><input type="number" id="inf-years" value="10" min="1" max="100"><span class="input-suffix">سنة</span></div></div>
+      <button class="calc-btn" onclick="calcInflation()">احسب</button>
+      <div class="results" id="r-inflation">
+        <h3>نتائج القوة الشرائية</h3>
+        <div class="result-highlight"><span class="result-value" id="r-inf-value">—</span><div class="result-label">القيمة المستقبلية المعادلة</div></div>
+        <div class="result-grid" style="margin-top:1rem">
+          <div class="result-item"><span class="result-value" id="r-inf-cumulative">—</span><div class="result-label">التضخم التراكمي</div></div>
+          <div class="result-item"><span class="result-value" id="r-inf-lost">—</span><div class="result-label">فقدان القوة الشرائية</div></div>
+        </div>
+        <p class="result-note" style="margin-top:1rem">لشراء ما تشتريه <span id="r-inf-amount-note">1,000</span> ر.س اليوم، ستحتاج إلى <strong id="r-inf-future-need" style="color:var(--accent2)">—</strong> في عام <span id="r-inf-future-year"></span>.</p>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
       },
@@ -1833,8 +1885,8 @@
         icon: '📊', title: 'حاسبة العائد على الاستثمار', desc: 'احسب نسبة العائد والربح من أي استثمار.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>قيمة الاستثمار الأولية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="roi-invest" value="10000" min="0"></div></div>
-        <div class="field-group"><label>القيمة النهائية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="roi-final" value="13500" min="0"></div></div>
+        <div class="field-group"><label>قيمة الاستثمار الأولية</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="roi-invest" value="10000" min="0"></div></div>
+        <div class="field-group"><label>القيمة النهائية</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="roi-final" value="13500" min="0"></div></div>
       </div>
       <div class="field-group"><label>المدة الزمنية (بالسنوات)</label><input type="number" id="roi-years" value="3" min="0"></div>
       <button class="calc-btn" onclick="calcROI()">احسب العائد</button>
@@ -1842,7 +1894,7 @@
         <h3>النتائج</h3>
         <div class="result-highlight"><span class="result-value" id="r-roi-pct">0٪</span><div class="result-label">إجمالي العائد على الاستثمار</div></div>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-roi-profit">$0</span><div class="result-label">صافي الربح</div></div>
+          <div class="result-item"><span class="result-value" id="r-roi-profit">0</span><div class="result-label">صافي الربح</div></div>
           <div class="result-item"><span class="result-value" id="r-roi-annual">0٪</span><div class="result-label">العائد السنوي</div></div>
         </div>
       </div>
@@ -1852,17 +1904,17 @@
         icon: '💳', title: 'حاسبة سداد بطاقة الائتمان', desc: 'كم يستغرق سداد رصيدك وإجمالي الفوائد.',
         html: `
       <div class="field-row">
-        <div class="field-group"><label>الرصيد الحالي</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="cc-balance" value="5000" min="0"></div></div>
+        <div class="field-group"><label>الرصيد الحالي</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="cc-balance" value="5000" min="0"></div></div>
         <div class="field-group"><label>نسبة الفائدة السنوية APR</label><div class="input-wrap has-suffix"><input type="number" id="cc-apr" value="21.5" step="0.1" min="0"><span class="input-suffix">%</span></div></div>
       </div>
-      <div class="field-group"><label>الدفعة الشهرية</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="cc-payment" value="200" min="0"></div></div>
+      <div class="field-group"><label>الدفعة الشهرية</label><div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="cc-payment" value="200" min="0"></div></div>
       <button class="calc-btn" onclick="calcCreditCard()">احسب موعد السداد</button>
       <div class="results" id="r-cc">
         <h3>النتائج</h3>
         <div class="result-highlight"><span class="result-value" id="r-cc-months">0 شهر</span><div class="result-label">مدة السداد</div></div>
         <div class="result-grid">
-          <div class="result-item"><span class="result-value" id="r-cc-interest">$0</span><div class="result-label">إجمالي الفوائد المدفوعة</div></div>
-          <div class="result-item"><span class="result-value" id="r-cc-total">$0</span><div class="result-label">إجمالي المدفوع</div></div>
+          <div class="result-item"><span class="result-value" id="r-cc-interest">0</span><div class="result-label">إجمالي الفوائد المدفوعة</div></div>
+          <div class="result-item"><span class="result-value" id="r-cc-total">0</span><div class="result-label">إجمالي المدفوع</div></div>
         </div>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
@@ -1952,6 +2004,102 @@
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
       },
+      pregnancy: {
+        icon: '🤰', title: 'حاسبة موعد الولادة', desc: 'حساب موعد الولادة المتوقع بناءً على آخر دورة شهرية.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>اليوم الأول من آخر دورة</label><input type="date" id="preg-lmp" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:0.95rem;color:var(--text);outline:none;direction:ltr;text-align:left;"></div>
+        <div class="field-group"><label>متوسط طول الدورة</label><div class="input-wrap has-suffix"><input type="number" id="preg-cycle" value="28" min="20" max="45"><span class="input-suffix">يوم</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcPregnancy()">احسب موعد الولادة</button>
+      <div class="results" id="r-pregnancy">
+        <h3>الموعد المتوقع للولادة</h3>
+        <div class="result-highlight"><span class="result-value" id="r-preg-edd">—</span><div class="result-label" id="r-preg-days-left">متبقي</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-preg-week">—</span><div class="result-label">التقدم الحالي</div></div>
+          <div class="result-item"><span class="result-value" id="r-preg-trimester">—</span><div class="result-label">الثلث</div></div>
+          <div class="result-item"><span class="result-value" id="r-preg-conception">—</span><div class="result-label">تاريخ الحمل التقريبي</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      heartrate: {
+        icon: '❤️', title: 'مناطق معدل ضربات القلب', desc: 'مناطق معدل ضربات القلب المستهدفة لحرق الدهون وتمارين الكارديو.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>العمر</label><div class="input-wrap has-suffix"><input type="number" id="hr-age" value="30" min="10" max="100"><span class="input-suffix">سنة</span></div></div>
+        <div class="field-group"><label>معدل نبضات القلب وقت الراحة</label><div class="input-wrap has-suffix"><input type="number" id="hr-rest" value="60" min="30" max="120"><span class="input-suffix">نبضة/د</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcHeartRate()">احسب المناطق</button>
+      <div class="results" id="r-heartrate">
+        <h3>مناطق التدريب (طريقة كارفونين)</h3>
+        <div class="result-highlight"><span class="result-value" id="r-hr-max">—</span><div class="result-label">الحد الأقصى لمعدل ضربات القلب</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-hr-z1" style="color:var(--blue)">—</span><div class="result-label">إحماء (50-60%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z2" style="color:var(--green)">—</span><div class="result-label">حرق الدهون (60-70%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z3" style="color:var(--yellow)">—</span><div class="result-label">هوائي (70-80%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z4" style="color:var(--orange)">—</span><div class="result-label">لاهوائي (80-90%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z5" style="color:var(--pink)">—</span><div class="result-label">الحد الأقصى (90-100%)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      idealweight: {
+        icon: '🎯', title: 'الوزن المثالي', desc: 'تقدير نطاق الوزن الصحي المناسب لطولك وبنية جسمك.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>الجنس</label>
+          <select id="iw-gender">
+            <option value="male" selected>ذكر</option>
+            <option value="female">أنثى</option>
+          </select>
+        </div>
+        <div class="field-group"><label>حجم بنية الجسم</label>
+          <select id="iw-frame">
+            <option value="small">صغير (طرح 10%)</option>
+            <option value="medium" selected>متوسط</option>
+            <option value="large">كبير (إضافة 10%)</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>الطول</label><div class="input-wrap has-suffix"><input type="number" id="iw-height" value="175" min="100" max="250"><span class="input-suffix">سم</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcIdealWeight()">احسب الوزن المثالي</button>
+      <div class="results" id="r-idealweight">
+        <h3>تقديرات الوزن الصحي</h3>
+        <div class="result-highlight"><span class="result-value" id="r-iw-primary">—</span><div class="result-label">النطاق الموصى به</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-iw-robinson">—</span><div class="result-label">معادلة روبنسون</div></div>
+          <div class="result-item"><span class="result-value" id="r-iw-miller">—</span><div class="result-label">معادلة ميلر</div></div>
+          <div class="result-item"><span class="result-value" id="r-iw-devine">—</span><div class="result-label">معادلة ديفاين</div></div>
+        </div>
+        <p class="result-note" style="margin-top:1rem;">هذه تقديرات بناءً على المعادلات الطبية القياسية ولا تأخذ في الاعتبار الكتلة العضلية.</p>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      sleep: {
+        icon: '🌙', title: 'حاسبة دورات النوم', desc: 'أفضل وقت للاستيقاظ أو النوم بناءً على دورات النوم (90 دقيقة).',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>أريد حساب:</label>
+          <select id="slp-mode" onchange="document.getElementById('slp-time-label').textContent = this.value === 'wake' ? 'الوقت الذي أريد الاستيقاظ فيه' : 'الوقت الذي سأذهب فيه للنوم'">
+            <option value="wake" selected>متى يجب أن أنام؟</option>
+            <option value="bed">متى يجب أن أستيقظ؟</option>
+          </select>
+        </div>
+        <div class="field-group"><label id="slp-time-label">الوقت الذي أريد الاستيقاظ فيه</label>
+          <input type="time" id="slp-time" value="07:00" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:0.95rem;color:var(--text);outline:none;">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSleep()">احسب الأوقات المثالية</button>
+      <div class="results" id="r-sleep">
+        <h3>دورات النوم المثالية</h3>
+        <p class="result-note" style="margin-bottom:1rem;">يستغرق الشخص العادي 15 دقيقة ليغفو. تم أخذ ذلك في الاعتبار. اهدف إلى 5-6 دورات (7.5 - 9 ساعات).</p>
+        <div class="result-grid" id="r-slp-cycles"></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
       datediff: {
         icon: '📅', title: 'الفرق بين تاريخين', desc: 'عدد الأيام والأسابيع والأشهر بين أي تاريخين.',
         html: `
@@ -1982,6 +2130,288 @@
       <div class="results" id="r-random">
         <h3>النتائج</h3>
         <div id="r-rng-numbers" style="font-family:'Amiri',serif;font-size:2rem;color:var(--accent2);text-align:center;letter-spacing:0.1em;line-height:1.6;"></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      quadratic: {
+        icon: '📈', title: 'حاسبة المعادلة التربيعية', desc: 'إيجاد الجذور للمعادلات بصيغة أ س² + ب س + ج = 0.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>أ (س²)</label><input type="number" id="quad-a" value="1"></div>
+        <div class="field-group"><label>ب (س)</label><input type="number" id="quad-b" value="-5"></div>
+        <div class="field-group"><label>ج (ثابت)</label><input type="number" id="quad-c" value="6"></div>
+      </div>
+      <button class="calc-btn" onclick="calcQuadratic()">احل المعادلة</button>
+      <div class="results" id="r-quadratic">
+        <h3>الجذور (قيم س)</h3>
+        <div class="result-highlight"><span class="result-value" id="r-quad-roots" style="font-size:1.8rem;direction:ltr">—</span><div class="result-label" id="r-quad-type">طبيعة الجذور</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-quad-x1" style="direction:ltr">—</span><div class="result-label">س₁ (x₁)</div></div>
+          <div class="result-item"><span class="result-value" id="r-quad-x2" style="direction:ltr">—</span><div class="result-label">س₂ (x₂)</div></div>
+          <div class="result-item"><span class="result-value" id="r-quad-disc" style="direction:ltr">—</span><div class="result-label">المُميِّز (Δ)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      probability: {
+        icon: '🎲', title: 'حاسبة الاحتمالات', desc: 'حساب التوافيق والتباديل واحتمالات الأحداث.',
+        html: `
+      <div class="field-group"><label>نوع الحساب</label>
+        <select id="prob-type" onchange="updateProbFields()">
+          <option value="basic" selected>احتمال حدث بسيط</option>
+          <option value="comb">التوافيق (nCr)</option>
+          <option value="perm">التباديل (nPr)</option>
+        </select>
+      </div>
+      
+      <!-- Basic Event Fields -->
+      <div id="prob-basic-fields">
+        <div class="field-row">
+          <div class="field-group"><label>عدد النتائج المطلوبة (الناجحة)</label><input type="number" id="prob-fav" value="1" min="0"></div>
+          <div class="field-group"><label>إجمالي النتائج الممكنة</label><input type="number" id="prob-total" value="6" min="1"></div>
+        </div>
+      </div>
+      
+      <!-- Comb/Perm Fields -->
+      <div id="prob-cp-fields" style="display:none;">
+        <div class="field-row">
+          <div class="field-group"><label>إجمالي العناصر (n)</label><input type="number" id="prob-n" value="5" min="0"></div>
+          <div class="field-group"><label>العناصر المختارة (r)</label><input type="number" id="prob-r" value="3" min="0"></div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calcProbability()">احسب الاحتمال</button>
+      <div class="results" id="r-probability">
+        <h3>النتائج</h3>
+        <div class="result-highlight"><span class="result-value" id="r-prob-main" style="direction:ltr">—</span><div class="result-label" id="r-prob-label">الاحتمال</div></div>
+        
+        <div class="result-grid" id="r-prob-extras" style="margin-top:1rem; display:none;">
+          <div class="result-item"><span class="result-value" id="r-prob-pct" style="direction:ltr">—</span><div class="result-label">النسبة المئوية</div></div>
+          <div class="result-item"><span class="result-value" id="r-prob-odds" style="direction:ltr">—</span><div class="result-label">الفرص (Odds)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      geometry: {
+        icon: '📐', title: 'حاسبة الهندسة', desc: 'حساب المساحة والمحيط للأشكال الأساسية ثنائية الأبعاد.',
+        html: `
+      <div class="field-group"><label>الشكل الهندسي</label>
+        <select id="geo-shape" onchange="updateGeoFields()">
+          <option value="circle" selected>دائرة</option>
+          <option value="rectangle">مستطيل</option>
+          <option value="triangle">مثلث</option>
+        </select>
+      </div>
+      
+      <!-- Circle Fields -->
+      <div id="geo-circle-fields">
+        <div class="field-row">
+          <div class="field-group"><label>نصف القطر (نق)</label><input type="number" id="geo-r" value="5" min="0"></div>
+        </div>
+      </div>
+
+      <!-- Rectangle Fields -->
+      <div id="geo-rect-fields" style="display:none;">
+        <div class="field-row">
+          <div class="field-group"><label>الطول</label><input type="number" id="geo-l" value="10" min="0"></div>
+          <div class="field-group"><label>العرض</label><input type="number" id="geo-w" value="5" min="0"></div>
+        </div>
+      </div>
+      
+      <!-- Triangle Fields -->
+      <div id="geo-tri-fields" style="display:none;">
+        <div class="field-row">
+          <div class="field-group"><label>القاعدة</label><input type="number" id="geo-b" value="6" min="0"></div>
+          <div class="field-group"><label>الارتفاع</label><input type="number" id="geo-h" value="4" min="0"></div>
+        </div>
+        <p class="result-note" style="margin-top:-0.5rem; margin-bottom:1rem;">حساب المحيط يفترض أن المثلث متساوي الساقين بناءً على الارتفاع والقاعدة.</p>
+      </div>
+
+      <button class="calc-btn" onclick="calcGeometry()">احسب</button>
+      <div class="results" id="r-geometry">
+        <h3>النتائج الهندسية</h3>
+        <div class="result-highlight"><span class="result-value" id="r-geo-area" style="direction:ltr">—</span><div class="result-label">المساحة</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-geo-perim" style="direction:ltr">—</span><div class="result-label" id="r-geo-perim-lbl">المحيط</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      base: {
+        icon: '💻', title: 'محول أنظمة الأعداد', desc: 'تحويل الأرقام بين الأنظمة الثنائية والثمانية والعشرية والست عشرية.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>القيمة</label><input type="text" id="base-val" value="255" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:1rem;color:var(--text);outline:none;direction:ltr;text-align:left;"></div>
+        <div class="field-group"><label>النظام الحالي</label>
+          <select id="base-from">
+            <option value="10" selected>عشري (10)</option>
+            <option value="2">ثنائي (2)</option>
+            <option value="8">ثماني (8)</option>
+            <option value="16">سداسي عشري (16)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcBase()">تحويل القيمة</button>
+      <div class="results" id="r-base">
+        <h3>القيم المحولة</h3>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-base-dec" style="direction:ltr">—</span><div class="result-label">عشري (10)</div></div>
+          <div class="result-item"><span class="result-value" id="r-base-bin" style="direction:ltr;word-break:break-all">—</span><div class="result-label">ثنائي (2)</div></div>
+          <div class="result-item"><span class="result-value" id="r-base-oct" style="direction:ltr">—</span><div class="result-label">ثماني (8)</div></div>
+          <div class="result-item"><span class="result-value" id="r-base-hex" style="direction:ltr;text-transform:uppercase">—</span><div class="result-label">سداسي عشري (16)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      speed: {
+        icon: '⚡', title: 'حاسبة السرعة والمسافة والزمن', desc: 'إيجاد السرعة أو المسافة أو الزمن بمعلومية القيمتين الأخريين.',
+        html: `
+      <div class="field-group"><label>أريد حساب:</label>
+        <select id="spd-solve" onchange="updateSpeedFields()">
+          <option value="speed" selected>السرعة</option>
+          <option value="distance">المسافة</option>
+          <option value="time">الزمن</option>
+        </select>
+      </div>
+
+      <div class="field-row" id="spd-inputs">
+        <div class="field-group" id="spd-dist-field"><label>المسافة</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="spd-dist" value="100" min="0">
+            <select id="spd-dist-unit" class="input-suffix standalone" style="width:70px; border:none; background:transparent;">
+              <option value="km" selected>كم</option>
+              <option value="mi">ميل</option>
+              <option value="m">متر</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="field-group" id="spd-time-field"><label>الزمن</label>
+          <div style="display:flex; gap:0.5rem; direction:ltr;">
+            <div class="input-wrap has-suffix" style="flex:1;"><input type="number" id="spd-h" value="1" min="0" placeholder="0"><span class="input-suffix">ساعة</span></div>
+            <div class="input-wrap has-suffix" style="flex:1;"><input type="number" id="spd-m" value="30" min="0" max="59" placeholder="0"><span class="input-suffix">دقيقة</span></div>
+          </div>
+        </div>
+
+        <div class="field-group" id="spd-speed-field" style="display:none;"><label>السرعة</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="spd-speed" value="60" min="0">
+            <select id="spd-speed-unit" class="input-suffix standalone" style="width:85px; border:none; background:transparent;">
+              <option value="kph" selected>كم/س</option>
+              <option value="mph">ميل/س</option>
+              <option value="mps">م/ث</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calcSpeed()">احسب</button>
+      <div class="results" id="r-speed">
+        <h3>النتيجة</h3>
+        <div class="result-highlight"><span class="result-value" id="r-spd-val" style="direction:ltr;font-size:1.8rem;">—</span><div class="result-label" id="r-spd-lbl">السرعة</div></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      timezone: {
+        icon: '🌍', title: 'محول المناطق الزمنية', desc: 'تحويل الوقت بين المدن العالمية الكبرى على الفور.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>الوقت</label>
+          <input type="time" id="tz-time" value="12:00">
+        </div>
+        <div class="field-group"><label>من المنطقة</label>
+          <select id="tz-from">
+            <option value="-8">توقيت المحيط الهادئ (PT) UTC-8</option>
+            <option value="-5">التوقيت الشرقي (ET) UTC-5</option>
+            <option value="0" selected>لندن (GMT) UTC+0</option>
+            <option value="1">باريس/برلين (CET) UTC+1</option>
+            <option value="3">الرياض/موسكو (AST/MSK) UTC+3</option>
+            <option value="4">دبي (GST) UTC+4</option>
+            <option value="5.5">الهند (IST) UTC+5:30</option>
+            <option value="8">بكين/سنغافورة (CST/SGT) UTC+8</option>
+            <option value="9">طوكيو (JST) UTC+9</option>
+            <option value="11">سيدني (AEDT) UTC+11</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="field-group"><label>إلى المنطقة</label>
+        <select id="tz-to">
+          <option value="-8">توقيت المحيط الهادئ (PT) UTC-8</option>
+          <option value="-5" selected>التوقيت الشرقي (ET) UTC-5</option>
+          <option value="0">لندن (GMT) UTC+0</option>
+          <option value="1">باريس/برلين (CET) UTC+1</option>
+          <option value="3">الرياض/موسكو (AST/MSK) UTC+3</option>
+          <option value="4">دبي (GST) UTC+4</option>
+          <option value="5.5">الهند (IST) UTC+5:30</option>
+          <option value="8">بكين/سنغافورة (CST/SGT) UTC+8</option>
+          <option value="9">طوكيو (JST) UTC+9</option>
+          <option value="11">سيدني (AEDT) UTC+11</option>
+        </select>
+      </div>
+
+      <button class="calc-btn" onclick="calcTimezone()">تحويل الوقت</button>
+      <div class="results" id="r-timezone">
+        <h3>الوقت المحول</h3>
+        <div class="result-highlight"><span class="result-value" id="r-tz-val" style="direction:ltr">—</span><div class="result-label" id="r-tz-diff">فرق التوقيت</div></div>
+      </div>
+      <div class="modal-ad">إعلان · 728×90</div>`
+      },
+      cooking: {
+        icon: '🍳', title: 'محول أدوات الطبخ', desc: 'التحويل السريع بين الأكواب والملاعق والأونصات والمليلترات.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>الكمية</label>
+          <input type="number" id="cook-val" value="1" min="0">
+        </div>
+        <div class="field-group"><label>من وحدة</label>
+          <select id="cook-from">
+            <optgroup label="الحجم (أمريكي)">
+              <option value="cup" selected>كوب (Cup)</option>
+              <option value="tbsp">ملعقة طعام (tbsp)</option>
+              <option value="tsp">ملعقة شاي (tsp)</option>
+              <option value="floz">أونصة سائلة (fl oz)</option>
+            </optgroup>
+            <optgroup label="الحجم (متري)">
+              <option value="ml">مليلتر (ml)</option>
+              <option value="l">لتر (L)</option>
+            </optgroup>
+            <optgroup label="الوزن">
+              <option value="oz">أونصة (oz)</option>
+              <option value="lb">رطل (lb)</option>
+              <option value="g">جرام (g)</option>
+              <option value="kg">كيلوجرام (kg)</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group"><label>إلى وحدة</label>
+        <select id="cook-to">
+          <optgroup label="الحجم (أمريكي)">
+            <option value="cup">كوب (Cup)</option>
+            <option value="tbsp" selected>ملعقة طعام (tbsp)</option>
+            <option value="tsp">ملعقة شاي (tsp)</option>
+            <option value="floz">أونصة سائلة (fl oz)</option>
+          </optgroup>
+          <optgroup label="الحجم (متري)">
+            <option value="ml">مليلتر (ml)</option>
+            <option value="l">لتر (L)</option>
+          </optgroup>
+          <optgroup label="الوزن">
+            <option value="oz">أونصة (oz)</option>
+            <option value="lb">رطل (lb)</option>
+            <option value="g">جرام (g)</option>
+            <option value="kg">كيلوجرام (kg)</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <button class="calc-btn" onclick="calcCooking()">تحويل القياس</button>
+      <div class="results" id="r-cooking">
+        <h3>الكمية المحولة</h3>
+        <div class="result-highlight"><span class="result-value" id="r-cook-val" style="direction:ltr">—</span><div class="result-label" id="r-cook-lbl">النتيجة</div></div>
+        <p class="result-note" style="margin-top:1rem;font-size:0.85rem;">ملاحظة: التحويل بين الحجم (كوب/مل) والوزن (جرام/أونصة) يعتمد على كثافة المكون. هذه الحاسبة تقوم بالتحويلات الصارمة من حجم إلى حجم أو من وزن إلى وزن.</p>
       </div>
       <div class="modal-ad">إعلان · 728×90</div>`
       },
@@ -2167,7 +2597,7 @@
     //  CALCULATION LOGIC (same as English)
     // ═══════════════════════════════════════════
     const fmt = (n, d = 0) => n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
-    const fmtM = n => '$' + fmt(n, 0);
+    const fmtM = n => fmt(n, 2) + ' ر.س';
 
     function calcMortgage() { const price = parseFloat(document.getElementById('m-price').value) || 0, down = parseFloat(document.getElementById('m-down').value) || 0, rate = parseFloat(document.getElementById('m-rate').value) || 0, term = parseInt(document.getElementById('m-term').value), loan = price - down, r = rate / 100 / 12, n = term * 12, monthly = r === 0 ? loan / n : loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1), total = monthly * n, interest = total - loan; document.getElementById('r-m-monthly').textContent = fmtM(monthly); document.getElementById('r-m-total').textContent = fmtM(total); document.getElementById('r-m-interest').textContent = fmtM(interest); document.getElementById('r-m-loan').textContent = fmtM(loan); const pct = interest / total * 100; document.getElementById('r-m-bar').innerHTML = `<div class="bar-row"><span class="bar-label">أصل الدين</span><div class="bar-track"><div class="bar-fill" style="width:${100 - pct}%;background:var(--accent)"></div></div><span class="bar-val">${fmtM(loan)}</span></div><div class="bar-row"><span class="bar-label">إجمالي الفوائد</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:var(--orange)"></div></div><span class="bar-val">${fmtM(interest)}</span></div>`; document.getElementById('r-mortgage').classList.add('show'); }
     function calcLoan() { const amt = parseFloat(document.getElementById('l-amount').value) || 0, rate = parseFloat(document.getElementById('l-rate').value) || 0, n = parseInt(document.getElementById('l-term').value), r = rate / 100 / 12, monthly = r === 0 ? amt / n : amt * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1), total = monthly * n; document.getElementById('r-l-monthly').textContent = fmtM(monthly); document.getElementById('r-l-total').textContent = fmtM(total); document.getElementById('r-l-interest').textContent = fmtM(total - amt); document.getElementById('r-loan').classList.add('show'); }
@@ -2177,6 +2607,55 @@
     function calcBMI() { const u = document.getElementById('bmi-unit').value; let bmi; if (u === 'imperial') { const lbs = parseFloat(document.getElementById('bmi-lbs').value) || 0, h = parseFloat(document.getElementById('bmi-inches').value) || 1; bmi = (lbs / (h * h)) * 703; const low = 18.5 * h * h / 703, high = 24.9 * h * h / 703; document.getElementById('r-bmi-low').textContent = fmt(low, 0); document.getElementById('r-bmi-high').textContent = fmt(high, 0); } else { const kg = parseFloat(document.getElementById('bmi-kg').value) || 0, cm = parseFloat(document.getElementById('bmi-cm').value) || 1, hm = cm / 100; bmi = kg / (hm * hm); document.getElementById('r-bmi-low').textContent = fmt(18.5 * hm * hm, 1) + ' كجم'; document.getElementById('r-bmi-high').textContent = fmt(24.9 * hm * hm, 1) + ' كجم'; } document.getElementById('r-bmi-val').textContent = fmt(bmi, 1); const cats = [[18.5, 'نحافة', 'var(--blue)'], [25, 'وزن طبيعي ✓', 'var(--green)'], [30, 'زيادة وزن', 'var(--yellow)'], [Infinity, 'سمنة', 'var(--pink)']]; const cat = cats.find(c => bmi < c[0]); const el = document.getElementById('r-bmi-cat'); el.textContent = cat[1]; el.style.color = cat[2]; document.getElementById('r-bmi').classList.add('show'); }
     function calcCalories() { const age = parseFloat(document.getElementById('cal-age').value) || 0, sex = document.getElementById('cal-sex').value, wt = parseFloat(document.getElementById('cal-weight').value) || 0, ht = parseFloat(document.getElementById('cal-height').value) || 0, act = parseFloat(document.getElementById('cal-activity').value), goal = parseInt(document.getElementById('cal-goal').value), kg = wt * 0.453592, cm = ht * 2.54, bmr = sex === 'male' ? 10 * kg + 6.25 * cm - 5 * age + 5 : 10 * kg + 6.25 * cm - 5 * age - 161, tdee = bmr * act, target = tdee + goal; document.getElementById('r-cal-bmr').textContent = fmt(bmr, 0) + ' سعرة'; document.getElementById('r-cal-tdee').textContent = fmt(tdee, 0) + ' سعرة'; document.getElementById('r-cal-target').textContent = fmt(target, 0); document.getElementById('r-calories').classList.add('show'); }
     function calcMacros() { const cals = parseFloat(document.getElementById('mac-cal').value) || 2000, goal = document.getElementById('mac-goal').value, splits = { cut: [0.4, 0.35, 0.25], maintain: [0.3, 0.4, 0.3], bulk: [0.25, 0.5, 0.25] }, [p, c, f] = splits[goal], protein = cals * p / 4, carbs = cals * c / 4, fat = cals * f / 9; document.getElementById('r-mac-protein').textContent = fmt(protein, 0) + 'g'; document.getElementById('r-mac-carbs').textContent = fmt(carbs, 0) + 'g'; document.getElementById('r-mac-fat').textContent = fmt(fat, 0) + 'g'; document.getElementById('r-mac-bar').innerHTML = `<div class="bar-row"><span class="bar-label">بروتين</span><div class="bar-track"><div class="bar-fill" style="width:${p * 100}%;background:var(--pink)"></div></div><span class="bar-val">${(p * 100).toFixed(0)}٪</span></div><div class="bar-row"><span class="bar-label">كربوهيدرات</span><div class="bar-track"><div class="bar-fill" style="width:${c * 100}%;background:var(--yellow)"></div></div><span class="bar-val">${(c * 100).toFixed(0)}٪</span></div><div class="bar-row"><span class="bar-label">دهون</span><div class="bar-track"><div class="bar-fill" style="width:${f * 100}%;background:var(--orange)"></div></div><span class="bar-val">${(f * 100).toFixed(0)}٪</span></div>`; document.getElementById('r-macros').classList.add('show'); }
+
+    // BODY FAT (AR)
+    function calcBodyFat() {
+      const g = document.getElementById('bf-gender').value;
+      const w = parseFloat(document.getElementById('bf-weight').value) || 0;
+      const h = parseFloat(document.getElementById('bf-height').value) || 0;
+      const n = parseFloat(document.getElementById('bf-neck').value) || 0;
+      const wa = parseFloat(document.getElementById('bf-waist').value) || 0;
+      const hip = parseFloat(document.getElementById('bf-hip').value) || 0;
+      if (!w || !h || !n || !wa || (g === 'female' && !hip)) return;
+
+      let bf = 0;
+      if (g === 'male') {
+        const val = wa - n;
+        if (val > 0) bf = 495 / (1.0324 - 0.19077 * Math.log10(val) + 0.15456 * Math.log10(h)) - 450;
+      } else {
+        const val = wa + hip - n;
+        if (val > 0) bf = 495 / (1.29579 - 0.35004 * Math.log10(val) + 0.22100 * Math.log10(h)) - 450;
+      }
+
+      if (isNaN(bf) || bf < 1 || bf > 80) bf = 0;
+
+      const fm = w * (bf / 100);
+      const lm = w - fm;
+
+      let cat = '—';
+      if (bf > 0) {
+        if (g === 'male') {
+          if (bf < 6) cat = 'دهون أساسية';
+          else if (bf < 14) cat = 'رياضيون';
+          else if (bf < 18) cat = 'لياقة';
+          else if (bf < 25) cat = 'متوسط';
+          else cat = 'سمنة';
+        } else {
+          if (bf < 14) cat = 'دهون أساسية';
+          else if (bf < 21) cat = 'رياضيون';
+          else if (bf < 25) cat = 'لياقة';
+          else if (bf < 32) cat = 'متوسط';
+          else cat = 'سمنة';
+        }
+      }
+
+      document.getElementById('r-bf-pct').textContent = bf > 0 ? fmt(bf, 1) + '٪' : 'قياسات غير صالحة';
+      document.getElementById('r-bf-category').textContent = cat;
+      document.getElementById('r-bf-fatmass').textContent = bf > 0 ? fmt(fm, 1) + ' كجم' : '—';
+      document.getElementById('r-bf-leanmass').textContent = bf > 0 ? fmt(lm, 1) + ' كجم' : '—';
+
+      document.getElementById('r-bodyfat').classList.add('show');
+    }
     function calcSalary() { const amt = parseFloat(document.getElementById('sal-amount').value) || 0, period = document.getElementById('sal-period').value, hrs = parseFloat(document.getElementById('sal-hours').value) || 40; let annual; if (period === 'hour') annual = amt * hrs * 52; else if (period === 'day') annual = amt * 5 * 52; else if (period === 'week') annual = amt * 52; else if (period === 'month') annual = amt * 12; else annual = amt; document.getElementById('r-sal-hour').textContent = fmtM(annual / 52 / hrs); document.getElementById('r-sal-day').textContent = fmtM(annual / 260); document.getElementById('r-sal-week').textContent = fmtM(annual / 52); document.getElementById('r-sal-month').textContent = fmtM(annual / 12); document.getElementById('r-sal-year').textContent = fmtM(annual); document.getElementById('r-salary').classList.add('show'); }
     function calcPct1() { document.getElementById('r-p1').textContent = fmt((parseFloat(document.getElementById('p1-x').value) || 0) / 100 * (parseFloat(document.getElementById('p1-y').value) || 0), 2); }
     function calcPct2() { document.getElementById('r-p2').textContent = fmt((parseFloat(document.getElementById('p2-x').value) || 0) / (parseFloat(document.getElementById('p2-y').value) || 1) * 100, 2) + '٪'; }
@@ -2188,6 +2667,33 @@
     function calcFuelAR() { const dist = parseFloat(document.getElementById('fuel-dist').value) || 0, l100 = parseFloat(document.getElementById('fuel-mpg').value) || 1, price = parseFloat(document.getElementById('fuel-price').value) || 0, liters = dist * l100 / 100, cost = liters * price; document.getElementById('r-fuel-cost').textContent = fmt(cost, 2); document.getElementById('r-fuel-liters').textContent = fmt(liters, 1) + ' لتر'; document.getElementById('r-fuel-per100').textContent = fmt(l100 * price, 2) + ' ر.س'; document.getElementById('r-fuel').classList.add('show'); }
     function calcWaterAR() { const kg = parseFloat(document.getElementById('wat-weight').value) || 0, act = parseFloat(document.getElementById('wat-activity').value), ml = kg * 35 * act; document.getElementById('r-wat-liters').textContent = fmt(ml / 1000, 1) + ' لتر'; document.getElementById('r-wat-cups').textContent = fmt(ml / 240, 1); document.getElementById('r-wat-ml').textContent = fmt(ml, 0) + ' مل'; document.getElementById('r-water').classList.add('show'); }
     function calcTax() { const price = parseFloat(document.getElementById('stax-price').value) || 0, rate = parseFloat(document.getElementById('stax-rate').value) || 0, mode = document.getElementById('stax-mode').value; let pre, taxAmt, total; if (mode === 'add') { pre = price; taxAmt = price * rate / 100; total = pre + taxAmt; } else { total = price; pre = price / (1 + rate / 100); taxAmt = total - pre; } document.getElementById('r-tax-pre').textContent = fmtM(pre); document.getElementById('r-tax-amount').textContent = fmtM(taxAmt); document.getElementById('r-tax-total').textContent = fmtM(total); document.getElementById('r-tax').classList.add('show'); }
+
+    // INFLATION (AR)
+    function calcInflation() {
+      const amount = parseFloat(document.getElementById('inf-amount').value) || 0;
+      const rate = parseFloat(document.getElementById('inf-rate').value) / 100 || 0;
+      const years = parseInt(document.getElementById('inf-years').value) || 0;
+      const futureNeed = amount * Math.pow(1 + rate, years);
+      const futureValue = amount / Math.pow(1 + rate, years);
+      const lost = amount - futureValue;
+      const cumulative = (Math.pow(1 + rate, years) - 1) * 100;
+      const futureYear = new Date().getFullYear() + years;
+
+      document.getElementById('r-inf-value').textContent = fmtM(futureValue);
+      document.getElementById('r-inf-cumulative').textContent = fmt(cumulative, 1) + '٪';
+      document.getElementById('r-inf-lost').textContent = fmtM(lost);
+
+      const noteAmountEl = document.getElementById('r-inf-amount-note');
+      if (noteAmountEl) noteAmountEl.textContent = amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+
+      const noteNeedEl = document.getElementById('r-inf-future-need');
+      if (noteNeedEl) noteNeedEl.textContent = fmtM(futureNeed);
+
+      const yearEl = document.getElementById('r-inf-future-year');
+      if (yearEl) yearEl.textContent = futureYear;
+
+      document.getElementById('r-inflation').classList.add('show');
+    }
 
     // RETIREMENT (AR)
     function calcRetirement() {
@@ -2246,8 +2752,154 @@
       document.getElementById('r-retirement').classList.add('show');
     }
 
-    function calcROI() { const invest = parseFloat(document.getElementById('roi-invest').value) || 1, final = parseFloat(document.getElementById('roi-final').value) || 0, years = parseFloat(document.getElementById('roi-years').value) || 1, profit = final - invest, roi = profit / invest * 100, annualRoi = (Math.pow(final / invest, 1 / years) - 1) * 100; const el = document.getElementById('r-roi-pct'); el.textContent = (roi >= 0 ? '+' : '') + fmt(roi, 1) + '٪'; el.style.color = roi >= 0 ? 'var(--green)' : 'var(--pink)'; document.getElementById('r-roi-profit').textContent = (profit >= 0 ? '' : '-') + '$' + fmt(Math.abs(profit), 0); document.getElementById('r-roi-annual').textContent = (annualRoi >= 0 ? '+' : '') + fmt(annualRoi, 1) + '٪'; document.getElementById('r-roi').classList.add('show'); }
+    function calcROI() { const invest = parseFloat(document.getElementById('roi-invest').value) || 1, final = parseFloat(document.getElementById('roi-final').value) || 0, years = parseFloat(document.getElementById('roi-years').value) || 1, profit = final - invest, roi = profit / invest * 100, annualRoi = (Math.pow(final / invest, 1 / years) - 1) * 100; const el = document.getElementById('r-roi-pct'); el.textContent = (roi >= 0 ? '+' : '') + fmt(roi, 1) + '٪'; el.style.color = roi >= 0 ? 'var(--green)' : 'var(--pink)'; document.getElementById('r-roi-profit').textContent = (profit >= 0 ? '' : '-') + fmt(Math.abs(profit), 2) + ' ر.س'; document.getElementById('r-roi-annual').textContent = (annualRoi >= 0 ? '+' : '') + fmt(annualRoi, 1) + '٪'; document.getElementById('r-roi').classList.add('show'); }
     function calcCreditCard() { const balance = parseFloat(document.getElementById('cc-balance').value) || 0, apr = parseFloat(document.getElementById('cc-apr').value) || 0, payment = parseFloat(document.getElementById('cc-payment').value) || 0, r = apr / 100 / 12; if (payment <= balance * r) { document.getElementById('r-cc-months').textContent = '∞ (الدفعة منخفضة جداً)'; document.getElementById('r-cc-interest').textContent = '∞'; document.getElementById('r-cc-total').textContent = '∞'; document.getElementById('r-cc').classList.add('show'); return; } const months = Math.ceil(-Math.log(1 - (r * balance / payment)) / Math.log(1 + r)), totalPaid = payment * months; document.getElementById('r-cc-months').textContent = months < 12 ? months + ' شهر' : (months / 12).toFixed(1) + ' سنوات'; document.getElementById('r-cc-interest').textContent = fmtM(totalPaid - balance); document.getElementById('r-cc-total').textContent = fmtM(totalPaid); document.getElementById('r-cc').classList.add('show'); }
+    // PREGNANCY (AR)
+    function calcPregnancy() {
+      const lmpVal = document.getElementById('preg-lmp').value;
+      if (!lmpVal) { alert('الرجاء اختيار اليوم الأول من آخر دورة شهرية.'); return; }
+      const lmpDate = new Date(lmpVal);
+      lmpDate.setHours(0, 0, 0, 0);
+
+      const cycleLen = parseInt(document.getElementById('preg-cycle').value) || 28;
+      const adjustedDays = 280 + (cycleLen - 28);
+
+      const edd = new Date(lmpDate);
+      edd.setDate(edd.getDate() + adjustedDays);
+
+      const conception = new Date(edd);
+      conception.setDate(conception.getDate() - 266);
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const diffMs = today - lmpDate;
+      const currentDays = Math.floor(diffMs / 86400000);
+
+      let weekDayStr = '—';
+      let trimester = '—';
+      let remaining = '—';
+
+      if (currentDays >= 0 && currentDays <= adjustedDays) {
+        const weeks = Math.floor(currentDays / 7);
+        const days = currentDays % 7;
+        weekDayStr = `الأسبوع ${weeks}، اليوم ${days}`;
+
+        if (weeks < 13) trimester = 'الأول (١-١٢ أسبوع)';
+        else if (weeks < 27) trimester = 'الثاني (١٣-٢٦ أسبوع)';
+        else trimester = 'الثالث (٢٧-٤٠+ أسبوع)';
+
+        remaining = (adjustedDays - currentDays) + ' يوم';
+      } else if (currentDays > adjustedDays) {
+        weekDayStr = 'تجاوزت الموعد';
+        remaining = '٠ يوم';
+        trimester = 'الثالث (متأخرة)';
+      } else {
+        weekDayStr = 'تم اختيار تاريخ مستقبلي';
+      }
+
+      const opts = { month: 'long', day: 'numeric', year: 'numeric' };
+      document.getElementById('r-preg-edd').textContent = edd.toLocaleDateString('ar-SA', opts);
+      document.getElementById('r-preg-days-left').textContent = remaining;
+      document.getElementById('r-preg-week').textContent = weekDayStr;
+      document.getElementById('r-preg-trimester').textContent = trimester;
+      document.getElementById('r-preg-conception').textContent = conception.toLocaleDateString('ar-SA', opts);
+
+
+      document.getElementById('r-pregnancy').classList.add('show');
+    }
+
+    // HEART RATE ZONES (AR)
+    function calcHeartRate() {
+      const age = parseInt(document.getElementById('hr-age').value) || 30;
+      const rest = parseInt(document.getElementById('hr-rest').value) || 60;
+
+      const maxHr = 220 - age;
+      const hrr = maxHr - rest;
+
+      const calcZone = (pct) => Math.round(rest + (hrr * pct));
+
+      document.getElementById('r-hr-max').textContent = maxHr;
+      document.getElementById('r-hr-z1').textContent = `${calcZone(0.50)} - ${calcZone(0.60)}`;
+      document.getElementById('r-hr-z2').textContent = `${calcZone(0.60)} - ${calcZone(0.70)}`;
+      document.getElementById('r-hr-z3').textContent = `${calcZone(0.70)} - ${calcZone(0.80)}`;
+      document.getElementById('r-hr-z4').textContent = `${calcZone(0.80)} - ${calcZone(0.90)}`;
+      document.getElementById('r-hr-z5').textContent = `${calcZone(0.90)} - ${calcZone(1.00)}`;
+
+      document.getElementById('r-heartrate').classList.add('show');
+    }
+
+    // IDEAL WEIGHT (AR)
+    function calcIdealWeight() {
+      const g = document.getElementById('iw-gender').value;
+      const hCm = parseFloat(document.getElementById('iw-height').value) || 0;
+      const frame = document.getElementById('iw-frame').value;
+
+      if (hCm < 100 || hCm > 250) { alert('الرجاء إدخال طول صحيح (100-250 سم).'); return; }
+
+      const hInches = hCm / 2.54;
+      const over5Ft = Math.max(0, hInches - 60);
+
+      let robinson = g === 'male' ? 52 + (1.9 * over5Ft) : 49 + (1.7 * over5Ft);
+      let miller = g === 'male' ? 56.2 + (1.41 * over5Ft) : 53.1 + (1.36 * over5Ft);
+      let devine = g === 'male' ? 50 + (2.3 * over5Ft) : 45.5 + (2.3 * over5Ft);
+
+      const adj = frame === 'small' ? 0.9 : (frame === 'large' ? 1.1 : 1);
+      robinson *= adj;
+      miller *= adj;
+      devine *= adj;
+
+      const avg = (robinson + miller + devine) / 3;
+      const low = avg * 0.9;
+      const high = avg * 1.1;
+
+      document.getElementById('r-iw-primary').textContent = `${fmt(low, 1)} - ${fmt(high, 1)} كجم`;
+      document.getElementById('r-iw-robinson').textContent = `${fmt(robinson, 1)} كجم`;
+      document.getElementById('r-iw-miller').textContent = `${fmt(miller, 1)} كجم`;
+      document.getElementById('r-iw-devine').textContent = `${fmt(devine, 1)} كجم`;
+
+      document.getElementById('r-idealweight').classList.add('show');
+    }
+
+    // SLEEP CALCULATOR (AR)
+    function calcSleep() {
+      const mode = document.getElementById('slp-mode').value;
+      const timeVal = document.getElementById('slp-time').value;
+      if (!timeVal) { alert('الرجاء اختيار الوقت.'); return; }
+
+      const [h, m] = timeVal.split(':').map(Number);
+      const baseDate = new Date();
+      baseDate.setHours(h, m, 0, 0);
+
+      const cycles = [6, 5, 4, 3];
+      const resultsHTML = [];
+
+      for (let c of cycles) {
+        const target = new Date(baseDate);
+        if (mode === 'wake') {
+          target.setTime(target.getTime() - (c * 5400000) - 900000);
+        } else {
+          target.setTime(target.getTime() + 900000 + (c * 5400000));
+        }
+
+        const timeStr = target.toLocaleTimeString('ar-SA', { hour: 'numeric', minute: '2-digit' });
+        const hours = (c * 90) / 60;
+
+        const color = (c === 5 || c === 6) ? 'var(--green)' : (c === 4 ? 'var(--yellow)' : 'var(--orange)');
+
+        resultsHTML.push(`
+          <div class="result-item">
+            <span class="result-value" style="color:${color}">${timeStr}</span>
+            <div class="result-label">${c} دورات (${hours} ساعات)</div>
+          </div>
+        `);
+      }
+
+      document.getElementById('r-slp-cycles').innerHTML = resultsHTML.join('');
+      document.getElementById('r-sleep').classList.add('show');
+    }
+
+
     function calcDateDiff() { const start = new Date(document.getElementById('dd-start').value), end = new Date(document.getElementById('dd-end').value), days = Math.floor(Math.abs(end - start) / 86400000); document.getElementById('r-dd-days').textContent = fmt(days, 0); document.getElementById('r-dd-weeks').textContent = fmt(days / 7, 1); document.getElementById('r-dd-months').textContent = fmt(days / 30.44, 1); document.getElementById('r-datediff').classList.add('show'); }
     function calcRandom() { const min = parseInt(document.getElementById('rng-min').value) || 0, max = parseInt(document.getElementById('rng-max').value) || 100, count = Math.min(parseInt(document.getElementById('rng-count').value) || 1, 50), nums = Array.from({ length: count }, () => Math.floor(Math.random() * (max - min + 1)) + min); document.getElementById('r-rng-numbers').innerHTML = nums.join('  ·  '); document.getElementById('r-random').classList.add('show'); }
     function updatePaceFields() { const s = document.getElementById('pace-solve').value; document.getElementById('pace-pace-field').style.display = s === 'pace' ? 'none' : ''; }
@@ -2284,8 +2936,8 @@
       fromSel.innerHTML = '';
       toSel.innerHTML = '';
       CURRENCY_LIST.forEach(([code, label]) => {
-        const o1 = `<option value="${code}" ${code === 'USD' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
-        const o2 = `<option value="${code}" ${code === 'SAR' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
+        const o1 = `<option value="${code}" ${code === 'SAR' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
+        const o2 = `<option value="${code}" ${code === 'USD' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
         fromSel.insertAdjacentHTML('beforeend', o1);
         toSel.insertAdjacentHTML('beforeend', o2);
       });
@@ -2372,6 +3024,359 @@
     const unitData = { length: { units: ['مليمتر', 'سنتيمتر', 'متر', 'كيلومتر', 'بوصة', 'قدم', 'ياردة', 'ميل'], toBase: [0.001, 0.01, 1, 1000, 0.0254, 0.3048, 0.9144, 1609.344] }, weight: { units: ['ملليجرام', 'جرام', 'كيلوجرام', 'طن', 'أونصة', 'رطل', 'ستون'], toBase: [0.000001, 0.001, 1, 1000, 0.0283495, 0.453592, 6.35029] }, temp: { units: ['مئوية', 'فهرنهايت', 'كلفن'], toBase: null }, volume: { units: ['مليلتر', 'لتر', 'كوب', 'أونصة سائلة', 'باينت', 'كوارت', 'جالون'], toBase: [0.001, 1, 0.236588, 0.0295735, 0.473176, 0.946353, 3.78541] }, speed: { units: ['م/ث', 'كم/س', 'ميل/س', 'عقدة'], toBase: [1, 0.277778, 0.44704, 0.514444] } };
     function updateUnitOptions() { const cat = document.getElementById('unit-cat').value, data = unitData[cat], fromSel = document.getElementById('unit-from'), toSel = document.getElementById('unit-to'); fromSel.innerHTML = data.units.map((u, i) => `<option value="${i}">${u}</option>`).join(''); toSel.innerHTML = data.units.map((u, i) => `<option value="${i}">${u}</option>`).join(''); toSel.selectedIndex = 1; calcUnits(); }
     function calcUnits() { if (!document.getElementById('unit-cat')) return; const cat = document.getElementById('unit-cat').value, fromI = parseInt(document.getElementById('unit-from').value), toI = parseInt(document.getElementById('unit-to').value), val = parseFloat(document.getElementById('unit-val').value) || 0, data = unitData[cat]; let result; if (cat === 'temp') { let c; if (fromI === 0) c = val; else if (fromI === 1) c = (val - 32) * 5 / 9; else c = val - 273.15; if (toI === 0) result = c; else if (toI === 1) result = c * 9 / 5 + 32; else result = c + 273.15; } else { result = (val * data.toBase[fromI]) / data.toBase[toI]; } const el = document.getElementById('r-unit-result'); if (el) { el.textContent = Math.abs(result) < 0.001 || Math.abs(result) > 1e7 ? result.toExponential(4) : fmt(result, 4).replace(/\.?0+$/, ''); document.getElementById('r-unit-label').textContent = `${data.units[fromI]} ← ${data.units[toI]}`; } }
+
+    // GEOMETRY (AR)
+    function updateGeoFields() {
+      const shape = document.getElementById('geo-shape').value;
+      document.getElementById('geo-circle-fields').style.display = shape === 'circle' ? 'block' : 'none';
+      document.getElementById('geo-rect-fields').style.display = shape === 'rectangle' ? 'block' : 'none';
+      document.getElementById('geo-tri-fields').style.display = shape === 'triangle' ? 'block' : 'none';
+      document.getElementById('r-geo-perim-lbl').textContent = shape === 'circle' ? 'المحيط (الدائرة)' : 'المحيط';
+    }
+
+    function calcGeometry() {
+      const shape = document.getElementById('geo-shape').value;
+      let area = 0, perim = 0;
+
+      if (shape === 'circle') {
+        const r = parseFloat(document.getElementById('geo-r').value) || 0;
+        if (r < 0) { alert('لا يمكن أن يكون نصف القطر سالباً.'); return; }
+        area = Math.PI * r * r;
+        perim = 2 * Math.PI * r;
+      } else if (shape === 'rectangle') {
+        const l = parseFloat(document.getElementById('geo-l').value) || 0;
+        const w = parseFloat(document.getElementById('geo-w').value) || 0;
+        if (l < 0 || w < 0) { alert('لا يمكن أن يكون الطول والعرض سالبين.'); return; }
+        area = l * w;
+        perim = 2 * (l + w);
+      } else if (shape === 'triangle') {
+        const b = parseFloat(document.getElementById('geo-b').value) || 0;
+        const h = parseFloat(document.getElementById('geo-h').value) || 0;
+        if (b < 0 || h < 0) { alert('لا يمكن أن تكون القاعدة والارتفاع سالبين.'); return; }
+        area = (b * h) / 2;
+        const side = Math.sqrt((b / 2) ** 2 + h ** 2);
+        perim = b + (2 * side);
+      }
+
+      document.getElementById('r-geo-area').textContent = fmt(area, 2);
+      document.getElementById('r-geo-perim').textContent = fmt(perim, 2);
+
+      document.getElementById('r-geometry').classList.add('show');
+    }
+
+    // PROBABILITY (AR)
+    function calcProbability() {
+      document.getElementById('prob-basic-fields').style.display = type === 'basic' ? 'block' : 'none';
+      document.getElementById('prob-cp-fields').style.display = type !== 'basic' ? 'block' : 'none';
+      document.getElementById('r-prob-extras').style.display = type === 'basic' ? 'grid' : 'none';
+    }
+
+    function calcProbability() {
+      const type = document.getElementById('prob-type').value;
+      const fact = (n) => {
+        if (n < 0) return 0;
+        if (n === 0 || n === 1) return 1;
+        let r = 1;
+        for (let i = 2; i <= n; i++) r *= i;
+        return r;
+      };
+
+      if (type === 'basic') {
+        const fav = parseFloat(document.getElementById('prob-fav').value) || 0;
+        const total = parseFloat(document.getElementById('prob-total').value) || 0;
+
+        if (total === 0 || fav < 0 || total < 0 || fav > total) {
+          alert('إدخال غير صالح. يجب أن يكون الإجمالي > 0 والنتائج المطلوبة لا يمكن أن تتجاوز الإجمالي.');
+          return;
+        }
+
+        const prob = fav / total;
+        document.getElementById('r-prob-main').textContent = `${fav} من ${total}`;
+        document.getElementById('r-prob-label').textContent = 'الاحتمال (كسر)';
+
+        document.getElementById('r-prob-pct').textContent = `${fmt(prob * 100, 2)}%`;
+
+        const unfav = total - fav;
+        if (fav === 0) {
+          document.getElementById('r-prob-odds').textContent = '0 إلى ' + unfav;
+        } else {
+          document.getElementById('r-prob-odds').textContent = `${fav} إلى ${unfav}`;
+        }
+        document.getElementById('r-prob-extras').style.display = 'grid';
+
+      } else {
+        const n = parseInt(document.getElementById('prob-n').value) || 0;
+        const r = parseInt(document.getElementById('prob-r').value) || 0;
+
+        if (n < 0 || r < 0 || r > n) {
+          alert('إدخال غير صالح. يجب أن يكون n و r >= 0، ولا يمكن أن يتجاوز r قيمة n.');
+          return;
+        }
+
+        if (type === 'comb') {
+          const c = fact(n) / (fact(r) * fact(n - r));
+          document.getElementById('r-prob-main').textContent = c.toLocaleString('en-US');
+          document.getElementById('r-prob-label').textContent = `التوافيق (${n}C${r})`;
+        } else if (type === 'perm') {
+          const p = fact(n) / fact(n - r);
+          document.getElementById('r-prob-main').textContent = p.toLocaleString('en-US');
+          document.getElementById('r-prob-label').textContent = `التباديل (${n}P${r})`;
+        }
+        document.getElementById('r-prob-extras').style.display = 'none';
+      }
+
+      document.getElementById('r-probability').classList.add('show');
+    }
+
+    // QUADRATIC EQUATION (AR)
+    function calcQuadratic() {
+      const a = parseFloat(document.getElementById('quad-a').value);
+      const b = parseFloat(document.getElementById('quad-b').value) || 0;
+      const c = parseFloat(document.getElementById('quad-c').value) || 0;
+
+      if (isNaN(a) || a === 0) {
+        alert("المعامل 'أ' لا يمكن أن يكون صفراً في المعادلة التربيعية.");
+        return;
+      }
+
+      const disc = (b * b) - (4 * a * c);
+      let rootsStr = '';
+      let typeStr = '';
+      let x1 = '—', x2 = '—';
+
+      if (disc > 0) {
+        typeStr = 'جذران حقيقيان';
+        const root1 = (-b + Math.sqrt(disc)) / (2 * a);
+        const root2 = (-b - Math.sqrt(disc)) / (2 * a);
+        x1 = fmt(root1, 4);
+        x2 = fmt(root2, 4);
+        rootsStr = `س = ${x1} ، س = ${x2}`;
+      } else if (disc === 0) {
+        typeStr = 'جذر حقيقي واحد (مكرر)';
+        const root = -b / (2 * a);
+        x1 = fmt(root, 4);
+        x2 = x1;
+        rootsStr = `س = ${x1}`;
+      } else {
+        typeStr = 'جذور تخيلية / مركبة';
+        const real = -b / (2 * a);
+        const img = Math.sqrt(-disc) / (2 * a);
+        const rm = fmt(real, 4);
+        const im = fmt(Math.abs(img), 4);
+
+        x1 = `${rm} + ${im}i`;
+        x2 = `${rm} - ${im}i`;
+        rootsStr = `س = ${x1} ، س = ${x2}`;
+      }
+
+      document.getElementById('r-quad-type').textContent = typeStr;
+      document.getElementById('r-quad-roots').textContent = rootsStr;
+      document.getElementById('r-quad-disc').textContent = fmt(disc, 4);
+      document.getElementById('r-quad-x1').textContent = x1;
+      document.getElementById('r-quad-x2').textContent = x2;
+
+      document.getElementById('r-quadratic').classList.add('show');
+    }
+
+    // BASE CONVERTER (AR)
+    function calcBase() {
+      const val = document.getElementById('base-val').value.trim();
+      const fromBase = parseInt(document.getElementById('base-from').value);
+
+      if (!val) { alert('الرجاء إدخال قيمة.'); return; }
+
+      // Parse the input value using the selected base
+      const num = parseInt(val, fromBase);
+      if (isNaN(num)) {
+        alert('رقم غير صالح للنظام المحدد.');
+        return;
+      }
+
+      // Convert to requested bases and update UI
+      document.getElementById('r-base-dec').textContent = num.toString(10);
+      document.getElementById('r-base-bin').textContent = num.toString(2);
+      document.getElementById('r-base-oct').textContent = num.toString(8);
+      document.getElementById('r-base-hex').textContent = num.toString(16).toUpperCase();
+
+      document.getElementById('r-base').classList.add('show');
+    }
+
+    // SPEED DISTANCE TIME (AR)
+    function updateSpeedFields() {
+      const solveFor = document.getElementById('spd-solve').value;
+      document.getElementById('spd-dist-field').style.display = solveFor === 'distance' ? 'none' : 'block';
+      document.getElementById('spd-time-field').style.display = solveFor === 'time' ? 'none' : 'block';
+      document.getElementById('spd-speed-field').style.display = solveFor === 'speed' ? 'none' : 'block';
+    }
+
+    function calcSpeed() {
+      const solveFor = document.getElementById('spd-solve').value;
+
+      const getDistKm = () => {
+        const d = parseFloat(document.getElementById('spd-dist').value) || 0;
+        const u = document.getElementById('spd-dist-unit').value;
+        if (u === 'mi') return d * 1.60934;
+        if (u === 'm') return d / 1000;
+        return d;
+      };
+
+      const getTimeHr = () => {
+        const h = parseFloat(document.getElementById('spd-h').value) || 0;
+        const m = parseFloat(document.getElementById('spd-m').value) || 0;
+        return h + (m / 60);
+      };
+
+      const getSpeedKph = () => {
+        const s = parseFloat(document.getElementById('spd-speed').value) || 0;
+        const u = document.getElementById('spd-speed-unit').value;
+        if (u === 'mph') return s * 1.60934;
+        if (u === 'mps') return s * 3.6;
+        return s;
+      };
+
+      let resultLbl = '';
+      let formatted = '';
+
+      if (solveFor === 'speed') {
+        const d = getDistKm();
+        const t = getTimeHr();
+        if (t <= 0) { alert('يجب أن يكون الزمن أكبر من الصفر.'); return; }
+
+        const speedKph = d / t;
+        resultLbl = 'السرعة';
+
+        const mph = speedKph / 1.60934;
+        const mps = speedKph / 3.6;
+        formatted = `${fmt(speedKph, 2)} كم/س<br><span style="font-size:1rem;color:var(--muted)">${fmt(mph, 2)} ميل/س<br>${fmt(mps, 2)} م/ث</span>`;
+
+      } else if (solveFor === 'distance') {
+        const s = getSpeedKph();
+        const t = getTimeHr();
+
+        const distKm = s * t;
+        resultLbl = 'المسافة';
+
+        const mi = distKm / 1.60934;
+        const m = distKm * 1000;
+        formatted = `${fmt(distKm, 2)} كم<br><span style="font-size:1rem;color:var(--muted)">${fmt(mi, 2)} ميل<br>${fmt(m, 2)} متر</span>`;
+
+      } else if (solveFor === 'time') {
+        const d = getDistKm();
+        const s = getSpeedKph();
+        if (s <= 0) { alert('يجب أن تكون السرعة أكبر من الصفر.'); return; }
+
+        const timeHr = d / s;
+        resultLbl = 'الزمن';
+
+        const totalMin = timeHr * 60;
+        const hrs = Math.floor(totalMin / 60);
+        const mins = Math.round(totalMin % 60);
+        formatted = `${hrs > 0 ? hrs + ' ساعة و ' : ''}${mins} دقيقة<br><span style="font-size:1rem;color:var(--muted)">${fmt(timeHr, 2)} ساعات عشرية</span>`;
+      }
+
+      document.getElementById('r-spd-val').innerHTML = formatted;
+      document.getElementById('r-spd-lbl').textContent = resultLbl;
+      document.getElementById('r-speed').classList.add('show');
+    }
+
+    // TIMEZONE (AR)
+    function calcTimezone() {
+      const timeVal = document.getElementById('tz-time').value;
+      const fromOffset = parseFloat(document.getElementById('tz-from').value);
+      const toOffset = parseFloat(document.getElementById('tz-to').value);
+
+      if (!timeVal) { alert('الرجاء إدخال وقت.'); return; }
+
+      // Parse input time
+      const [hours, mins] = timeVal.split(':').map(Number);
+
+      // Calculate minutes from midnight in the FROM zone
+      let totalMins = (hours * 60) + mins;
+
+      // Difference in hours
+      const diffHours = toOffset - fromOffset;
+      const diffMins = diffHours * 60;
+
+      // Apply offset
+      totalMins += diffMins;
+
+      let dayOffset = '';
+      if (totalMins < 0) {
+        totalMins += (24 * 60);
+        dayOffset = ' (اليوم السابق)';
+      } else if (totalMins >= (24 * 60)) {
+        totalMins -= (24 * 60);
+        dayOffset = ' (اليوم التالي)';
+      }
+
+      // Format back to HH:MM
+      const finalH = Math.floor(totalMins / 60);
+      const finalM = Math.round(totalMins % 60);
+
+      const pad = (n) => n.toString().padStart(2, '0');
+      const formattedTime = `${pad(finalH)}:${pad(finalM)}` + dayOffset;
+
+      // Difference string
+      const sign = diffHours > 0 ? '+' : '';
+      const diffStr = diffHours === 0 ? 'نفس المنطقة الزمنية' : `${sign}${diffHours} ساعة/ساعات`;
+
+      document.getElementById('r-tz-val').textContent = formattedTime;
+      document.getElementById('r-tz-diff').textContent = `فرق التوقيت: ${diffStr}`;
+
+      document.getElementById('r-timezone').classList.add('show');
+    }
+
+    // COOKING CONVERTER (AR)
+    function calcCooking() {
+      const val = parseFloat(document.getElementById('cook-val').value) || 0;
+      const fromUnit = document.getElementById('cook-from').value;
+      const toUnit = document.getElementById('cook-to').value;
+
+      if (val < 0) { alert('الكمية لا يمكن أن تكون سالبة.'); return; }
+
+      // Define bases
+      // Volume: base is ML
+      const volUnits = {
+        'ml': 1,
+        'l': 1000,
+        'tsp': 4.92892,
+        'tbsp': 14.7868,
+        'floz': 29.5735,
+        'cup': 236.588
+      };
+
+      // Weight: base is Grams
+      const wtUnits = {
+        'g': 1,
+        'kg': 1000,
+        'oz': 28.3495,
+        'lb': 453.592
+      };
+
+      const isVolFrom = volUnits.hasOwnProperty(fromUnit);
+      const isVolTo = volUnits.hasOwnProperty(toUnit);
+
+      if (isVolFrom !== isVolTo) {
+        alert('لا يمكن التحويل المباشر بين الحجم والوزن بدون معرفة كثافة المكون.');
+        return;
+      }
+
+      let result = 0;
+      if (isVolFrom) {
+        const inMl = val * volUnits[fromUnit];
+        result = inMl / volUnits[toUnit];
+      } else {
+        const inG = val * wtUnits[fromUnit];
+        result = inG / wtUnits[toUnit];
+      }
+
+      const selTo = document.getElementById('cook-to');
+      let lblText = selTo.options[selTo.selectedIndex].text;
+
+      document.getElementById('r-cook-val').textContent = fmt(result, 2);
+      document.getElementById('r-cook-lbl').textContent = lblText;
+      document.getElementById('r-cooking').classList.add('show');
+    }
 
     // SCIENTIFIC CALCULATOR
     let sciExpr = '', sciResult = null;

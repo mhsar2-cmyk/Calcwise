@@ -1794,6 +1794,38 @@
       <div class="modal-ad">Advertisement · 728×90</div>`
       },
 
+      bodyfat: {
+        icon: '💪', title: 'Body Fat Calculator',
+        desc: 'Estimate body fat percentage using the US Navy method.',
+        html: `
+      <div class="field-group"><label>Gender</label>
+        <select id="bf-gender" onchange="document.getElementById('bf-hip-group').style.display = this.value === 'female' ? 'block' : 'none'">
+          <option value="male" selected>Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Weight</label><div class="input-wrap has-suffix"><input type="number" id="bf-weight" value="75"><span class="input-suffix">kg</span></div></div>
+        <div class="field-group"><label>Height</label><div class="input-wrap has-suffix"><input type="number" id="bf-height" value="175"><span class="input-suffix">cm</span></div></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Neck</label><div class="input-wrap has-suffix"><input type="number" id="bf-neck" value="38"><span class="input-suffix">cm</span></div></div>
+        <div class="field-group"><label>Waist (at navel)</label><div class="input-wrap has-suffix"><input type="number" id="bf-waist" value="85"><span class="input-suffix">cm</span></div></div>
+      </div>
+      <div class="field-group" id="bf-hip-group" style="display:none;"><label>Hips (widest)</label><div class="input-wrap has-suffix"><input type="number" id="bf-hip" value="95"><span class="input-suffix">cm</span></div></div>
+      <button class="calc-btn" onclick="calcBodyFat()">Calculate</button>
+      <div class="results" id="r-bodyfat">
+        <h3>Estimated Results</h3>
+        <div class="result-highlight"><span class="result-value" id="r-bf-pct">—</span><div class="result-label">Body Fat Percentage</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-bf-category">—</span><div class="result-label" style="color:var(--accent2)">Category</div></div>
+          <div class="result-item"><span class="result-value" id="r-bf-fatmass">—</span><div class="result-label">Fat Mass</div></div>
+          <div class="result-item"><span class="result-value" id="r-bf-leanmass">—</span><div class="result-label">Lean Body Mass</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
       salary: {
         icon: '💼', title: 'Salary Calculator',
         desc: 'Convert between hourly, daily, weekly, monthly, and annual salary.',
@@ -1944,6 +1976,303 @@
       <div class="modal-ad">Advertisement · 728×90</div>`
       },
 
+      quadratic: {
+        icon: '📈', title: 'Quadratic Equation solver',
+        desc: 'Find roots for equations in the form ax² + bx + c = 0.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>a (x²)</label><input type="number" id="quad-a" value="1"></div>
+        <div class="field-group"><label>b (x)</label><input type="number" id="quad-b" value="-5"></div>
+        <div class="field-group"><label>c (constant)</label><input type="number" id="quad-c" value="6"></div>
+      </div>
+      <button class="calc-btn" onclick="calcQuadratic()">Solve Equation</button>
+      <div class="results" id="r-quadratic">
+        <h3>Roots (x values)</h3>
+        <div class="result-highlight"><span class="result-value" id="r-quad-roots" style="font-size:1.8rem">—</span><div class="result-label" id="r-quad-type">Nature of Roots</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-quad-x1">—</span><div class="result-label">x₁</div></div>
+          <div class="result-item"><span class="result-value" id="r-quad-x2">—</span><div class="result-label">x₂</div></div>
+          <div class="result-item"><span class="result-value" id="r-quad-disc">—</span><div class="result-label">Discriminant (Δ)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      probability: {
+        icon: '🎲', title: 'Probability Calculator',
+        desc: 'Calculate combinations, permutations, and event probabilities.',
+        html: `
+      <div class="field-group"><label>Calculation Type</label>
+        <select id="prob-type" onchange="updateProbFields()">
+          <option value="basic" selected>Basic Event Probability</option>
+          <option value="comb">Combinations (nCr)</option>
+          <option value="perm">Permutations (nPr)</option>
+        </select>
+      </div>
+      
+      <!-- Basic Event Fields -->
+      <div id="prob-basic-fields">
+        <div class="field-row">
+          <div class="field-group"><label>Number of Favorable Outcomes</label><input type="number" id="prob-fav" value="1" min="0"></div>
+          <div class="field-group"><label>Total Possible Outcomes</label><input type="number" id="prob-total" value="6" min="1"></div>
+        </div>
+      </div>
+      
+      <!-- Comb/Perm Fields -->
+      <div id="prob-cp-fields" style="display:none;">
+        <div class="field-row">
+          <div class="field-group"><label>Total Items (n)</label><input type="number" id="prob-n" value="5" min="0"></div>
+          <div class="field-group"><label>Items Chosen (r)</label><input type="number" id="prob-r" value="3" min="0"></div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calcProbability()">Calculate Probability</button>
+      <div class="results" id="r-probability">
+        <h3>Results</h3>
+        <div class="result-highlight"><span class="result-value" id="r-prob-main">—</span><div class="result-label" id="r-prob-label">Probability</div></div>
+        
+        <div class="result-grid" id="r-prob-extras" style="margin-top:1rem; display:none;">
+          <div class="result-item"><span class="result-value" id="r-prob-pct">—</span><div class="result-label">Percentage</div></div>
+          <div class="result-item"><span class="result-value" id="r-prob-odds">—</span><div class="result-label">Odds (Chances)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      geometry: {
+        icon: '📐', title: 'Geometry Calculator',
+        desc: 'Calculate area and perimeter for basic 2D shapes.',
+        html: `
+      <div class="field-group"><label>Shape</label>
+        <select id="geo-shape" onchange="updateGeoFields()">
+          <option value="circle" selected>Circle</option>
+          <option value="rectangle">Rectangle</option>
+          <option value="triangle">Triangle</option>
+        </select>
+      </div>
+      
+      <!-- Circle Fields -->
+      <div id="geo-circle-fields">
+        <div class="field-row">
+          <div class="field-group"><label>Radius (r)</label><input type="number" id="geo-r" value="5" min="0"></div>
+        </div>
+      </div>
+
+      <!-- Rectangle Fields -->
+      <div id="geo-rect-fields" style="display:none;">
+        <div class="field-row">
+          <div class="field-group"><label>Length (l)</label><input type="number" id="geo-l" value="10" min="0"></div>
+          <div class="field-group"><label>Width (w)</label><input type="number" id="geo-w" value="5" min="0"></div>
+        </div>
+      </div>
+      
+      <!-- Triangle Fields -->
+      <div id="geo-tri-fields" style="display:none;">
+        <div class="field-row">
+          <div class="field-group"><label>Base (b)</label><input type="number" id="geo-b" value="6" min="0"></div>
+          <div class="field-group"><label>Height (h)</label><input type="number" id="geo-h" value="4" min="0"></div>
+        </div>
+        <p class="result-note" style="margin-top:-0.5rem; margin-bottom:1rem;">Perimeter calculation assumes an isosceles triangle based on the provided height and base.</p>
+      </div>
+
+      <button class="calc-btn" onclick="calcGeometry()">Calculate</button>
+      <div class="results" id="r-geometry">
+        <h3>Geometric Results</h3>
+        <div class="result-highlight"><span class="result-value" id="r-geo-area">—</span><div class="result-label">Area</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-geo-perim">—</span><div class="result-label" id="r-geo-perim-lbl">Perimeter</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      base: {
+        icon: '💻', title: 'Number Base Converter',
+        desc: 'Convert numbers between binary, octal, decimal, and hexadecimal.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Value</label><input type="text" id="base-val" value="255" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:inherit;font-size:1rem;color:var(--text);outline:none;"></div>
+        <div class="field-group"><label>From Base</label>
+          <select id="base-from">
+            <option value="10" selected>Decimal (Base 10)</option>
+            <option value="2">Binary (Base 2)</option>
+            <option value="8">Octal (Base 8)</option>
+            <option value="16">Hexadecimal (Base 16)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcBase()">Convert</button>
+      <div class="results" id="r-base">
+        <h3>Converted Values</h3>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-base-dec">—</span><div class="result-label">Decimal (10)</div></div>
+          <div class="result-item"><span class="result-value" id="r-base-bin" style="word-break:break-all">—</span><div class="result-label">Binary (2)</div></div>
+          <div class="result-item"><span class="result-value" id="r-base-oct">—</span><div class="result-label">Octal (8)</div></div>
+          <div class="result-item"><span class="result-value" id="r-base-hex" style="text-transform:uppercase">—</span><div class="result-label">Hexadecimal (16)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      speed: {
+        icon: '⚡', title: 'Speed Distance Time',
+        desc: 'Solve for speed, distance, or time given the other two values.',
+        html: `
+      <div class="field-group"><label>I want to calculate:</label>
+        <select id="spd-solve" onchange="updateSpeedFields()">
+          <option value="speed" selected>Speed</option>
+          <option value="distance">Distance</option>
+          <option value="time">Time</option>
+        </select>
+      </div>
+
+      <div class="field-row" id="spd-inputs">
+        <!-- These fields will be toggled dynamically -->
+        <div class="field-group" id="spd-dist-field"><label>Distance</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="spd-dist" value="100" min="0">
+            <select id="spd-dist-unit" class="input-suffix standalone" style="width:70px; border:none; background:transparent;">
+              <option value="km" selected>km</option>
+              <option value="mi">mi</option>
+              <option value="m">m</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="field-group" id="spd-time-field"><label>Time</label>
+          <div style="display:flex; gap:0.5rem;">
+            <div class="input-wrap has-suffix" style="flex:1;"><input type="number" id="spd-h" value="1" min="0" placeholder="0"><span class="input-suffix">hr</span></div>
+            <div class="input-wrap has-suffix" style="flex:1;"><input type="number" id="spd-m" value="30" min="0" max="59" placeholder="0"><span class="input-suffix">m</span></div>
+          </div>
+        </div>
+
+        <div class="field-group" id="spd-speed-field" style="display:none;"><label>Speed</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="spd-speed" value="60" min="0">
+            <select id="spd-speed-unit" class="input-suffix standalone" style="width:85px; border:none; background:transparent;">
+              <option value="kph" selected>km/h</option>
+              <option value="mph">mph</option>
+              <option value="mps">m/s</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calcSpeed()">Calculate</button>
+      <div class="results" id="r-speed">
+        <h3>Result</h3>
+        <div class="result-highlight"><span class="result-value" id="r-spd-val">—</span><div class="result-label" id="r-spd-lbl">Speed</div></div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      timezone: {
+        icon: '🌍', title: 'Time Zone Converter',
+        desc: 'Convert time between major world cities instantly.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Time</label>
+          <input type="time" id="tz-time" value="12:00">
+        </div>
+        <div class="field-group"><label>From Zone</label>
+          <select id="tz-from">
+            <option value="-8">Pacific Time (PT) UTC-8</option>
+            <option value="-5">Eastern Time (ET) UTC-5</option>
+            <option value="0" selected>London (GMT) UTC+0</option>
+            <option value="1">Paris/Berlin (CET) UTC+1</option>
+            <option value="3">Riyadh/Moscow (AST/MSK) UTC+3</option>
+            <option value="4">Dubai (GST) UTC+4</option>
+            <option value="5.5">India (IST) UTC+5:30</option>
+            <option value="8">Beijing/Singapore (CST/SGT) UTC+8</option>
+            <option value="9">Tokyo (JST) UTC+9</option>
+            <option value="11">Sydney (AEDT) UTC+11</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="field-group"><label>To Zone</label>
+        <select id="tz-to">
+          <option value="-8">Pacific Time (PT) UTC-8</option>
+          <option value="-5" selected>Eastern Time (ET) UTC-5</option>
+          <option value="0">London (GMT) UTC+0</option>
+          <option value="1">Paris/Berlin (CET) UTC+1</option>
+          <option value="3">Riyadh/Moscow (AST/MSK) UTC+3</option>
+          <option value="4">Dubai (GST) UTC+4</option>
+          <option value="5.5">India (IST) UTC+5:30</option>
+          <option value="8">Beijing/Singapore (CST/SGT) UTC+8</option>
+          <option value="9">Tokyo (JST) UTC+9</option>
+          <option value="11">Sydney (AEDT) UTC+11</option>
+        </select>
+      </div>
+
+      <button class="calc-btn" onclick="calcTimezone()">Convert Time</button>
+      <div class="results" id="r-timezone">
+        <h3>Converted Time</h3>
+        <div class="result-highlight"><span class="result-value" id="r-tz-val">—</span><div class="result-label" id="r-tz-diff">Time Difference</div></div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      cooking: {
+        icon: '🍳', title: 'Cooking Converter',
+        desc: 'Quickly convert between cups, spoons, fluid ounces, and milliliters.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Amount</label>
+          <input type="number" id="cook-val" value="1" min="0">
+        </div>
+        <div class="field-group"><label>From Unit</label>
+          <select id="cook-from">
+            <optgroup label="Volume (US)">
+              <option value="cup" selected>Cups</option>
+              <option value="tbsp">Tablespoons (tbsp)</option>
+              <option value="tsp">Teaspoons (tsp)</option>
+              <option value="floz">Fluid Ounces (fl oz)</option>
+            </optgroup>
+            <optgroup label="Volume (Metric)">
+              <option value="ml">Milliliters (ml)</option>
+              <option value="l">Liters (L)</option>
+            </optgroup>
+            <optgroup label="Weight">
+              <option value="oz">Ounces (oz)</option>
+              <option value="lb">Pounds (lb)</option>
+              <option value="g">Grams (g)</option>
+              <option value="kg">Kilograms (kg)</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group"><label>To Unit</label>
+        <select id="cook-to">
+          <optgroup label="Volume (US)">
+            <option value="cup">Cups</option>
+            <option value="tbsp" selected>Tablespoons (tbsp)</option>
+            <option value="tsp">Teaspoons (tsp)</option>
+            <option value="floz">Fluid Ounces (fl oz)</option>
+          </optgroup>
+          <optgroup label="Volume (Metric)">
+            <option value="ml">Milliliters (ml)</option>
+            <option value="l">Liters (L)</option>
+          </optgroup>
+          <optgroup label="Weight">
+            <option value="oz">Ounces (oz)</option>
+            <option value="lb">Pounds (lb)</option>
+            <option value="g">Grams (g)</option>
+            <option value="kg">Kilograms (kg)</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <button class="calc-btn" onclick="calcCooking()">Convert Measurement</button>
+      <div class="results" id="r-cooking">
+        <h3>Converted Amount</h3>
+        <div class="result-highlight"><span class="result-value" id="r-cook-val">—</span><div class="result-label" id="r-cook-lbl">Result</div></div>
+        <p class="result-note" style="margin-top:1rem;font-size:0.85rem;">Note: Converting between volume (cups/ml) and weight (g/oz) depends on the ingredient's density. This calculator performs strict volume-to-volume or weight-to-weight conversions.</p>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
       scientific: {
         icon: '🔢', title: 'Scientific Calculator',
         desc: 'Full scientific calculator with trig and log functions.',
@@ -2034,6 +2363,110 @@
           <div class="result-item"><span class="result-value" id="r-wat-cups">0</span><div class="result-label">Cups</div></div>
           <div class="result-item"><span class="result-value" id="r-wat-liters">0 L</span><div class="result-label">Liters</div></div>
         </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      pregnancy: {
+        icon: '🤰', title: 'Pregnancy Due Date',
+        desc: 'Calculate expected due date from last menstrual period.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>First Day of Last Period</label><input type="date" id="preg-lmp" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:inherit;font-size:0.95rem;color:var(--text);outline:none;"></div>
+        <div class="field-group"><label>Average Cycle Length</label><div class="input-wrap has-suffix"><input type="number" id="preg-cycle" value="28" min="20" max="45"><span class="input-suffix">days</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcPregnancy()">Calculate Due Date</button>
+      <div class="results" id="r-pregnancy">
+        <h3>Estimated Due Date</h3>
+        <div class="result-highlight"><span class="result-value" id="r-preg-edd">—</span><div class="result-label" id="r-preg-days-left">Remaining</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-preg-week">—</span><div class="result-label">Current Progress</div></div>
+          <div class="result-item"><span class="result-value" id="r-preg-trimester">—</span><div class="result-label">Trimester</div></div>
+          <div class="result-item"><span class="result-value" id="r-preg-conception">—</span><div class="result-label">Est. Conception</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      heartrate: {
+        icon: '❤️', title: 'Heart Rate Zones',
+        desc: 'Target heart rate zones for fat burn and cardio training.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Age</label><div class="input-wrap has-suffix"><input type="number" id="hr-age" value="30" min="10" max="100"><span class="input-suffix">yrs</span></div></div>
+        <div class="field-group"><label>Resting Heart Rate</label><div class="input-wrap has-suffix"><input type="number" id="hr-rest" value="60" min="30" max="120"><span class="input-suffix">bpm</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcHeartRate()">Calculate Zones</button>
+      <div class="results" id="r-heartrate">
+        <h3>Training Zones (Karvonen Method)</h3>
+        <div class="result-highlight"><span class="result-value" id="r-hr-max">—</span><div class="result-label">Maximum Heart Rate (BPM)</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-hr-z1" style="color:var(--blue)">—</span><div class="result-label">Warm Up (50-60%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z2" style="color:var(--green)">—</span><div class="result-label">Fat Burn (60-70%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z3" style="color:var(--yellow)">—</span><div class="result-label">Aerobic (70-80%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z4" style="color:var(--orange)">—</span><div class="result-label">Anaerobic (80-90%)</div></div>
+          <div class="result-item"><span class="result-value" id="r-hr-z5" style="color:var(--pink)">—</span><div class="result-label">Maximum (90-100%)</div></div>
+        </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      idealweight: {
+        icon: '🎯', title: 'Ideal Weight Calculator',
+        desc: 'Estimate healthy weight range for your height and frame.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Gender</label>
+          <select id="iw-gender">
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="field-group"><label>Body Frame Size</label>
+          <select id="iw-frame">
+            <option value="small">Small (subtract 10%)</option>
+            <option value="medium" selected>Medium (standard)</option>
+            <option value="large">Large (add 10%)</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Height (cm)</label><div class="input-wrap has-suffix"><input type="number" id="iw-height" value="175" min="100" max="250"><span class="input-suffix">cm</span></div></div>
+      </div>
+      <button class="calc-btn" onclick="calcIdealWeight()">Calculate Ideal Weight</button>
+      <div class="results" id="r-idealweight">
+        <h3>Healthy Weight Estimates</h3>
+        <div class="result-highlight"><span class="result-value" id="r-iw-primary">—</span><div class="result-label">Recommended Range</div></div>
+        <div class="result-grid" style="margin-top:1rem;">
+          <div class="result-item"><span class="result-value" id="r-iw-robinson">—</span><div class="result-label">Robinson Formula</div></div>
+          <div class="result-item"><span class="result-value" id="r-iw-miller">—</span><div class="result-label">Miller Formula</div></div>
+          <div class="result-item"><span class="result-value" id="r-iw-devine">—</span><div class="result-label">Devine Formula</div></div>
+        </div>
+        <p class="result-note" style="margin-top:1rem;">These are estimates based on standard clinical formulas. Muscle mass is not accounted for.</p>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      sleep: {
+        icon: '🌙', title: 'Sleep Cycle Calculator',
+        desc: 'Find the best bedtime or wake time based on 90-minute sleep cycles.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>I want to calculate:</label>
+          <select id="slp-mode" onchange="document.getElementById('slp-time-label').textContent = this.value === 'wake' ? 'Time I need to wake up' : 'Time I want to go to bed'">
+            <option value="wake" selected>When to go to bed</option>
+            <option value="bed">When to wake up</option>
+          </select>
+        </div>
+        <div class="field-group"><label id="slp-time-label">Time I need to wake up</label>
+          <input type="time" id="slp-time" value="07:00" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:inherit;font-size:0.95rem;color:var(--text);outline:none;">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSleep()">Calculate Optimal Times</button>
+      <div class="results" id="r-sleep">
+        <h3>Optimal Sleep Cycles</h3>
+        <p class="result-note" style="margin-bottom:1rem;">It takes the average person 15 minutes to fall asleep. We've factored this into the times below. Aim for 5-6 cycles (7.5-9 hours).</p>
+        <div class="result-grid" id="r-slp-cycles"></div>
       </div>
       <div class="modal-ad">Advertisement · 728×90</div>`
       },
@@ -2132,6 +2565,28 @@
           <div class="result-item"><span class="result-value" id="r-tax-amount">$0</span><div class="result-label">Tax Amount</div></div>
           <div class="result-item"><span class="result-value" id="r-tax-total">$0</span><div class="result-label">Total Price</div></div>
         </div>
+      </div>
+      <div class="modal-ad">Advertisement · 728×90</div>`
+      },
+
+      inflation: {
+        icon: '🛒', title: 'Inflation Calculator',
+        desc: 'See how inflation erodes purchasing power over time.',
+        html: `
+      <div class="field-row">
+        <div class="field-group"><label>Current Amount</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="inf-amount" value="1000" min="0"></div></div>
+        <div class="field-group"><label>Expected Inflation Rate</label><div class="input-wrap has-suffix"><input type="number" id="inf-rate" value="3.0" step="0.1"><span class="input-suffix">%</span></div></div>
+      </div>
+      <div class="field-group"><label>Years</label><div class="input-wrap has-suffix"><input type="number" id="inf-years" value="10" min="1" max="100"><span class="input-suffix">yrs</span></div></div>
+      <button class="calc-btn" onclick="calcInflation()">Calculate</button>
+      <div class="results" id="r-inflation">
+        <h3>Purchasing Power Results</h3>
+        <div class="result-highlight"><span class="result-value" id="r-inf-value">—</span><div class="result-label">Future Value Equivalent</div></div>
+        <div class="result-grid" style="margin-top:1rem">
+          <div class="result-item"><span class="result-value" id="r-inf-cumulative">—</span><div class="result-label">Cumulative Inflation</div></div>
+          <div class="result-item"><span class="result-value" id="r-inf-lost">—</span><div class="result-label">Purchasing Power Lost</div></div>
+        </div>
+        <p class="result-note" style="margin-top:1rem">To buy what $<span id="r-inf-amount-note">1,000</span> buys today, you will need <strong id="r-inf-future-need" style="color:var(--accent2)">—</strong> in <span id="r-inf-future-year"></span>.</p>
       </div>
       <div class="modal-ad">Advertisement · 728×90</div>`
       },
@@ -2399,6 +2854,55 @@
       document.getElementById('r-macros').classList.add('show');
     }
 
+    // BODY FAT
+    function calcBodyFat() {
+      const g = document.getElementById('bf-gender').value;
+      const w = parseFloat(document.getElementById('bf-weight').value) || 0;
+      const h = parseFloat(document.getElementById('bf-height').value) || 0;
+      const n = parseFloat(document.getElementById('bf-neck').value) || 0;
+      const wa = parseFloat(document.getElementById('bf-waist').value) || 0;
+      const hip = parseFloat(document.getElementById('bf-hip').value) || 0;
+      if (!w || !h || !n || !wa || (g === 'female' && !hip)) return;
+
+      let bf = 0;
+      if (g === 'male') {
+        const val = wa - n;
+        if (val > 0) bf = 495 / (1.0324 - 0.19077 * Math.log10(val) + 0.15456 * Math.log10(h)) - 450;
+      } else {
+        const val = wa + hip - n;
+        if (val > 0) bf = 495 / (1.29579 - 0.35004 * Math.log10(val) + 0.22100 * Math.log10(h)) - 450;
+      }
+
+      if (isNaN(bf) || bf < 1 || bf > 80) bf = 0; // fallback
+
+      const fm = w * (bf / 100);
+      const lm = w - fm;
+
+      let cat = '—';
+      if (bf > 0) {
+        if (g === 'male') {
+          if (bf < 6) cat = 'Essential Fat';
+          else if (bf < 14) cat = 'Athletes';
+          else if (bf < 18) cat = 'Fitness';
+          else if (bf < 25) cat = 'Average';
+          else cat = 'Obese';
+        } else {
+          if (bf < 14) cat = 'Essential Fat';
+          else if (bf < 21) cat = 'Athletes';
+          else if (bf < 25) cat = 'Fitness';
+          else if (bf < 32) cat = 'Average';
+          else cat = 'Obese';
+        }
+      }
+
+      document.getElementById('r-bf-pct').textContent = bf > 0 ? fmt(bf, 1) + '%' : 'Invalid metrics';
+      document.getElementById('r-bf-category').textContent = cat;
+      document.getElementById('r-bf-fatmass').textContent = bf > 0 ? fmt(fm, 1) + ' kg' : '—';
+      document.getElementById('r-bf-leanmass').textContent = bf > 0 ? fmt(lm, 1) + ' kg' : '—';
+
+      document.getElementById('r-bodyfat').classList.add('show');
+    }
+
     // SALARY
     function calcSalary() {
       const amt = parseFloat(document.getElementById('sal-amount').value) || 0;
@@ -2539,6 +3043,165 @@
       document.getElementById('r-water').classList.add('show');
     }
 
+    // PREGNANCY
+    function calcPregnancy() {
+      const lmpVal = document.getElementById('preg-lmp').value;
+      if (!lmpVal) { alert('Please select your Last Menstrual Period date.'); return; }
+      const lmpDate = new Date(lmpVal);
+      // Ensure the time component doesn't mess with day calculation (set to midnight local time)
+      lmpDate.setHours(0, 0, 0, 0);
+
+      const cycleLen = parseInt(document.getElementById('preg-cycle').value) || 28;
+
+      // Naegele's rule: LMP + 280 days + (cycleLength - 28)
+      const adjustedDays = 280 + (cycleLen - 28);
+
+      const edd = new Date(lmpDate);
+      edd.setDate(edd.getDate() + adjustedDays);
+
+      const conception = new Date(edd);
+      conception.setDate(conception.getDate() - 266);
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const diffMs = today - lmpDate;
+      const currentDays = Math.floor(diffMs / 86400000);
+
+      let weekDayStr = '—';
+      let trimester = '—';
+      let remaining = '—';
+
+      if (currentDays >= 0 && currentDays <= adjustedDays) {
+        const weeks = Math.floor(currentDays / 7);
+        const days = currentDays % 7;
+        weekDayStr = `Week ${weeks}, Day ${days}`;
+
+        if (weeks < 13) trimester = '1st (1-12 weeks)';
+        else if (weeks < 27) trimester = '2nd (13-26 weeks)';
+        else trimester = '3rd (27-40+ weeks)';
+
+        remaining = (adjustedDays - currentDays) + ' days';
+      } else if (currentDays > adjustedDays) {
+        weekDayStr = 'Overdue';
+        remaining = '0 days';
+        trimester = '3rd (Overdue)';
+      } else {
+        weekDayStr = 'Future Date Selected';
+      }
+
+      const opts = { month: 'short', day: 'numeric', year: 'numeric' };
+      document.getElementById('r-preg-edd').textContent = edd.toLocaleDateString('en-US', opts);
+      document.getElementById('r-preg-days-left').textContent = remaining + ' left';
+      document.getElementById('r-preg-week').textContent = weekDayStr;
+      document.getElementById('r-preg-trimester').textContent = trimester;
+      document.getElementById('r-preg-conception').textContent = conception.toLocaleDateString('en-US', opts);
+
+      document.getElementById('r-pregnancy').classList.add('show');
+    }
+
+    // HEART RATE ZONES
+    function calcHeartRate() {
+      const age = parseInt(document.getElementById('hr-age').value) || 30;
+      const rest = parseInt(document.getElementById('hr-rest').value) || 60;
+
+      const maxHr = 220 - age;
+      const hrr = maxHr - rest; // Heart Rate Reserve (Karvonen)
+
+      const calcZone = (pct) => Math.round(rest + (hrr * pct));
+
+      document.getElementById('r-hr-max').textContent = maxHr;
+      document.getElementById('r-hr-z1').textContent = `${calcZone(0.50)} - ${calcZone(0.60)}`;
+      document.getElementById('r-hr-z2').textContent = `${calcZone(0.60)} - ${calcZone(0.70)}`;
+      document.getElementById('r-hr-z3').textContent = `${calcZone(0.70)} - ${calcZone(0.80)}`;
+      document.getElementById('r-hr-z4').textContent = `${calcZone(0.80)} - ${calcZone(0.90)}`;
+      document.getElementById('r-hr-z5').textContent = `${calcZone(0.90)} - ${calcZone(1.00)}`;
+
+      document.getElementById('r-heartrate').classList.add('show');
+    }
+
+    // IDEAL WEIGHT
+    function calcIdealWeight() {
+      const g = document.getElementById('iw-gender').value;
+      const hCm = parseFloat(document.getElementById('iw-height').value) || 0;
+      const frame = document.getElementById('iw-frame').value;
+
+      if (hCm < 100 || hCm > 250) { alert('Please enter a valid height (100-250cm).'); return; }
+
+      const hInches = hCm / 2.54;
+      const over5Ft = Math.max(0, hInches - 60); // inches over 5 feet
+
+      // J.D. Robinson (1983)
+      let robinson = g === 'male' ? 52 + (1.9 * over5Ft) : 49 + (1.7 * over5Ft);
+
+      // D.R. Miller (1983)
+      let miller = g === 'male' ? 56.2 + (1.41 * over5Ft) : 53.1 + (1.36 * over5Ft);
+
+      // B.J. Devine (1974)
+      let devine = g === 'male' ? 50 + (2.3 * over5Ft) : 45.5 + (2.3 * over5Ft);
+
+      // Apply frame adjustment (+/- 10%)
+      const adj = frame === 'small' ? 0.9 : (frame === 'large' ? 1.1 : 1);
+      robinson *= adj;
+      miller *= adj;
+      devine *= adj;
+
+      // Primary range: +/- 10% from the average of the three formulas
+      const avg = (robinson + miller + devine) / 3;
+      const low = avg * 0.9;
+      const high = avg * 1.1;
+
+      document.getElementById('r-iw-primary').textContent = `${fmt(low, 1)} - ${fmt(high, 1)} kg`;
+      document.getElementById('r-iw-robinson').textContent = `${fmt(robinson, 1)} kg`;
+      document.getElementById('r-iw-miller').textContent = `${fmt(miller, 1)} kg`;
+      document.getElementById('r-iw-devine').textContent = `${fmt(devine, 1)} kg`;
+
+      document.getElementById('r-idealweight').classList.add('show');
+    }
+
+    // SLEEP CALCULATOR
+    function calcSleep() {
+      const mode = document.getElementById('slp-mode').value;
+      const timeVal = document.getElementById('slp-time').value;
+      if (!timeVal) { alert('Please select a time.'); return; }
+
+      const [h, m] = timeVal.split(':').map(Number);
+      const baseDate = new Date();
+      baseDate.setHours(h, m, 0, 0);
+
+      const cycles = [6, 5, 4, 3]; // 9h, 7.5h, 6h, 4.5h
+      const resultsHTML = [];
+
+      for (let c of cycles) {
+        const target = new Date(baseDate);
+        // 1 cycle = 90 mins = 5400000 ms. Fall asleep time = 15 mins = 900000 ms.
+        if (mode === 'wake') {
+          // Time to go to bed = Wake time - (cycles * 90) - 15 mins to fall asleep
+          target.setTime(target.getTime() - (c * 5400000) - 900000);
+        } else {
+          // Time to wake up = Bed time + 15 mins to fall asleep + (cycles * 90)
+          target.setTime(target.getTime() + 900000 + (c * 5400000));
+        }
+
+        const timeStr = target.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        const hours = (c * 90) / 60;
+
+        // Highlight 5 and 6 cycles as optimal
+        const color = (c === 5 || c === 6) ? 'var(--green)' : (c === 4 ? 'var(--yellow)' : 'var(--orange)');
+
+        resultsHTML.push(`
+          <div class="result-item">
+            <span class="result-value" style="color:${color}">${timeStr}</span>
+            <div class="result-label">${c} Cycles (${hours} Hours)</div>
+          </div>
+        `);
+      }
+
+      document.getElementById('r-slp-cycles').innerHTML = resultsHTML.join('');
+      document.getElementById('r-sleep').classList.add('show');
+    }
+
+
     // DATE DIFF
     function calcDateDiff() {
       const start = new Date(document.getElementById('dd-start').value);
@@ -2563,6 +3226,40 @@
       document.getElementById('r-tax-amount').textContent = fmtM(taxAmt);
       document.getElementById('r-tax-total').textContent = fmtM(total);
       document.getElementById('r-tax').classList.add('show');
+    }
+
+    // INFLATION
+    function calcInflation() {
+      const amount = parseFloat(document.getElementById('inf-amount').value) || 0;
+      const rate = parseFloat(document.getElementById('inf-rate').value) / 100 || 0;
+      const years = parseInt(document.getElementById('inf-years').value) || 0;
+
+      // Future Need = amount * (1 + rate)^years 
+      // How much money you will need in the future to have the same buying power as 'amount' today
+      const futureNeed = amount * Math.pow(1 + rate, years);
+
+      // Future Value (Purchasing Power) = amount / (1 + rate)^years
+      // What 'amount' today will feel like it's worth in the future
+      const futureValue = amount / Math.pow(1 + rate, years);
+
+      const lost = amount - futureValue;
+      const cumulative = (Math.pow(1 + rate, years) - 1) * 100;
+      const futureYear = new Date().getFullYear() + years;
+
+      document.getElementById('r-inf-value').textContent = fmtM(futureValue);
+      document.getElementById('r-inf-cumulative').textContent = fmt(cumulative, 1) + '%';
+      document.getElementById('r-inf-lost').textContent = fmtM(lost);
+
+      const noteAmountEl = document.getElementById('r-inf-amount-note');
+      if (noteAmountEl) noteAmountEl.textContent = amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+
+      const noteNeedEl = document.getElementById('r-inf-future-need');
+      if (noteNeedEl) noteNeedEl.textContent = fmtM(futureNeed);
+
+      const yearEl = document.getElementById('r-inf-future-year');
+      if (yearEl) yearEl.textContent = futureYear;
+
+      document.getElementById('r-inflation').classList.add('show');
     }
 
     // RETIREMENT
@@ -2832,6 +3529,364 @@
         el.textContent = Math.abs(result) < 0.001 || Math.abs(result) > 1e7 ? result.toExponential(4) : fmt(result, 4).replace(/\.?0+$/, '');
         document.getElementById('r-unit-label').textContent = `${data.units[fromI]} → ${data.units[toI]}`;
       }
+    }
+
+    // GEOMETRY
+    function updateGeoFields() {
+      const shape = document.getElementById('geo-shape').value;
+      document.getElementById('geo-circle-fields').style.display = shape === 'circle' ? 'block' : 'none';
+      document.getElementById('geo-rect-fields').style.display = shape === 'rectangle' ? 'block' : 'none';
+      document.getElementById('geo-tri-fields').style.display = shape === 'triangle' ? 'block' : 'none';
+      document.getElementById('r-geo-perim-lbl').textContent = shape === 'circle' ? 'Circumference' : 'Perimeter';
+    }
+
+    function calcGeometry() {
+      const shape = document.getElementById('geo-shape').value;
+      let area = 0, perim = 0;
+
+      if (shape === 'circle') {
+        const r = parseFloat(document.getElementById('geo-r').value) || 0;
+        if (r < 0) { alert('Radius cannot be negative.'); return; }
+        area = Math.PI * r * r;
+        perim = 2 * Math.PI * r;
+      } else if (shape === 'rectangle') {
+        const l = parseFloat(document.getElementById('geo-l').value) || 0;
+        const w = parseFloat(document.getElementById('geo-w').value) || 0;
+        if (l < 0 || w < 0) { alert('Length and Width cannot be negative.'); return; }
+        area = l * w;
+        perim = 2 * (l + w);
+      } else if (shape === 'triangle') {
+        const b = parseFloat(document.getElementById('geo-b').value) || 0;
+        const h = parseFloat(document.getElementById('geo-h').value) || 0;
+        if (b < 0 || h < 0) { alert('Base and Height cannot be negative.'); return; }
+        area = (b * h) / 2;
+        // Assume isosceles for perimeter
+        const side = Math.sqrt((b / 2) ** 2 + h ** 2);
+        perim = b + (2 * side);
+      }
+
+      document.getElementById('r-geo-area').textContent = fmt(area, 2);
+      document.getElementById('r-geo-perim').textContent = fmt(perim, 2);
+
+      document.getElementById('r-geometry').classList.add('show');
+    }
+
+    // PROBABILITY
+    function updateProbFields() {
+      const type = document.getElementById('prob-type').value;
+      document.getElementById('prob-basic-fields').style.display = type === 'basic' ? 'block' : 'none';
+      document.getElementById('prob-cp-fields').style.display = type !== 'basic' ? 'block' : 'none';
+      document.getElementById('r-prob-extras').style.display = type === 'basic' ? 'grid' : 'none';
+    }
+
+    function calcProbability() {
+      const type = document.getElementById('prob-type').value;
+      const fact = (n) => {
+        if (n < 0) return 0;
+        if (n === 0 || n === 1) return 1;
+        let r = 1;
+        for (let i = 2; i <= n; i++) r *= i;
+        return r;
+      };
+
+      if (type === 'basic') {
+        const fav = parseFloat(document.getElementById('prob-fav').value) || 0;
+        const total = parseFloat(document.getElementById('prob-total').value) || 0;
+
+        if (total === 0 || fav < 0 || total < 0 || fav > total) {
+          alert('Invalid input. Total must be > 0 and Favorable cannot exceed Total.');
+          return;
+        }
+
+        const prob = fav / total;
+        document.getElementById('r-prob-main').textContent = `${fav} in ${total}`;
+        document.getElementById('r-prob-label').textContent = 'Probability (as fraction)';
+
+        document.getElementById('r-prob-pct').textContent = `${fmt(prob * 100, 2)}%`;
+
+        const unfav = total - fav;
+        if (fav === 0) {
+          document.getElementById('r-prob-odds').textContent = '0 to ' + unfav;
+        } else {
+          // Simplify odds roughly
+          document.getElementById('r-prob-odds').textContent = `${fav} to ${unfav}`;
+        }
+        document.getElementById('r-prob-extras').style.display = 'grid';
+
+      } else {
+        const n = parseInt(document.getElementById('prob-n').value) || 0;
+        const r = parseInt(document.getElementById('prob-r').value) || 0;
+
+        if (n < 0 || r < 0 || r > n) {
+          alert('Invalid input. n and r must be >= 0, and r cannot exceed n.');
+          return;
+        }
+
+        if (type === 'comb') {
+          const c = fact(n) / (fact(r) * fact(n - r));
+          document.getElementById('r-prob-main').textContent = c.toLocaleString();
+          document.getElementById('r-prob-label').textContent = `Combinations (${n}C${r})`;
+        } else if (type === 'perm') {
+          const p = fact(n) / fact(n - r);
+          document.getElementById('r-prob-main').textContent = p.toLocaleString();
+          document.getElementById('r-prob-label').textContent = `Permutations (${n}P${r})`;
+        }
+        document.getElementById('r-prob-extras').style.display = 'none';
+      }
+
+      document.getElementById('r-probability').classList.add('show');
+    }
+
+    // QUADRATIC EQUATION
+    function calcQuadratic() {
+      const a = parseFloat(document.getElementById('quad-a').value);
+      const b = parseFloat(document.getElementById('quad-b').value) || 0;
+      const c = parseFloat(document.getElementById('quad-c').value) || 0;
+
+      if (isNaN(a) || a === 0) {
+        alert("Coefficient 'a' cannot be 0 for a quadratic equation.");
+        return;
+      }
+
+      const disc = (b * b) - (4 * a * c);
+      let rootsStr = '';
+      let typeStr = '';
+      let x1 = '—', x2 = '—';
+
+      if (disc > 0) {
+        typeStr = 'Two Real Roots';
+        const root1 = (-b + Math.sqrt(disc)) / (2 * a);
+        const root2 = (-b - Math.sqrt(disc)) / (2 * a);
+        x1 = fmt(root1, 4);
+        x2 = fmt(root2, 4);
+        rootsStr = `x = ${x1}, x = ${x2}`;
+      } else if (disc === 0) {
+        typeStr = 'One Real Root (Repeated)';
+        const root = -b / (2 * a);
+        x1 = fmt(root, 4);
+        x2 = x1;
+        rootsStr = `x = ${x1}`;
+      } else {
+        typeStr = 'Complex/Imaginary Roots';
+        const real = -b / (2 * a);
+        const img = Math.sqrt(-disc) / (2 * a);
+        const rm = fmt(real, 4);
+        const im = fmt(Math.abs(img), 4);
+
+        x1 = `${rm} + ${im}i`;
+        x2 = `${rm} - ${im}i`;
+        rootsStr = `x = ${x1}, x = ${x2}`;
+      }
+
+      document.getElementById('r-quad-type').textContent = typeStr;
+      document.getElementById('r-quad-roots').textContent = rootsStr;
+      document.getElementById('r-quad-disc').textContent = fmt(disc, 4);
+      document.getElementById('r-quad-x1').textContent = x1;
+      document.getElementById('r-quad-x2').textContent = x2;
+
+      document.getElementById('r-quadratic').classList.add('show');
+    }
+
+    // BASE CONVERTER
+    function calcBase() {
+      const val = document.getElementById('base-val').value.trim();
+      const fromBase = parseInt(document.getElementById('base-from').value);
+
+      if (!val) { alert('Please enter a value.'); return; }
+
+      // Parse the input value using the selected base
+      const num = parseInt(val, fromBase);
+      if (isNaN(num)) {
+        alert('Invalid number for the selected base.');
+        return;
+      }
+
+      // Convert to requested bases and update UI
+      document.getElementById('r-base-dec').textContent = num.toString(10);
+      document.getElementById('r-base-bin').textContent = num.toString(2);
+      document.getElementById('r-base-oct').textContent = num.toString(8);
+      document.getElementById('r-base-hex').textContent = num.toString(16).toUpperCase();
+
+      document.getElementById('r-base').classList.add('show');
+    }
+
+    // SPEED DISTANCE TIME
+    function updateSpeedFields() {
+      const solveFor = document.getElementById('spd-solve').value;
+      document.getElementById('spd-dist-field').style.display = solveFor === 'distance' ? 'none' : 'block';
+      document.getElementById('spd-time-field').style.display = solveFor === 'time' ? 'none' : 'block';
+      document.getElementById('spd-speed-field').style.display = solveFor === 'speed' ? 'none' : 'block';
+    }
+
+    function calcSpeed() {
+      const solveFor = document.getElementById('spd-solve').value;
+
+      const getDistKm = () => {
+        const d = parseFloat(document.getElementById('spd-dist').value) || 0;
+        const u = document.getElementById('spd-dist-unit').value;
+        if (u === 'mi') return d * 1.60934;
+        if (u === 'm') return d / 1000;
+        return d;
+      };
+
+      const getTimeHr = () => {
+        const h = parseFloat(document.getElementById('spd-h').value) || 0;
+        const m = parseFloat(document.getElementById('spd-m').value) || 0;
+        return h + (m / 60);
+      };
+
+      const getSpeedKph = () => {
+        const s = parseFloat(document.getElementById('spd-speed').value) || 0;
+        const u = document.getElementById('spd-speed-unit').value;
+        if (u === 'mph') return s * 1.60934;
+        if (u === 'mps') return s * 3.6;
+        return s;
+      };
+
+      let resultVal = 0;
+      let resultLbl = '';
+      let formatted = '';
+
+      if (solveFor === 'speed') {
+        const d = getDistKm();
+        const t = getTimeHr();
+        if (t <= 0) { alert('Time must be greater than zero.'); return; }
+
+        const speedKph = d / t;
+        resultLbl = 'Speed';
+
+        // Output in all 3 formats for convenience
+        const mph = speedKph / 1.60934;
+        const mps = speedKph / 3.6;
+        formatted = `${fmt(speedKph, 2)} km/h<br><span style="font-size:1rem;color:var(--muted)">${fmt(mph, 2)} mph<br>${fmt(mps, 2)} m/s</span>`;
+
+      } else if (solveFor === 'distance') {
+        const s = getSpeedKph();
+        const t = getTimeHr();
+
+        const distKm = s * t;
+        resultLbl = 'Distance';
+
+        const mi = distKm / 1.60934;
+        const m = distKm * 1000;
+        formatted = `${fmt(distKm, 2)} km<br><span style="font-size:1rem;color:var(--muted)">${fmt(mi, 2)} mi<br>${fmt(m, 2)} m</span>`;
+
+      } else if (solveFor === 'time') {
+        const d = getDistKm();
+        const s = getSpeedKph();
+        if (s <= 0) { alert('Speed must be greater than zero.'); return; }
+
+        const timeHr = d / s;
+        resultLbl = 'Time';
+
+        const totalMin = timeHr * 60;
+        const hrs = Math.floor(totalMin / 60);
+        const mins = Math.round(totalMin % 60);
+        formatted = `${hrs > 0 ? hrs + ' hr ' : ''}${mins} min<br><span style="font-size:1rem;color:var(--muted)">${fmt(timeHr, 2)} decimal hours</span>`;
+      }
+
+      document.getElementById('r-spd-val').innerHTML = formatted;
+      document.getElementById('r-spd-lbl').textContent = resultLbl;
+      document.getElementById('r-speed').classList.add('show');
+    }
+
+    // TIMEZONE
+    function calcTimezone() {
+      const timeVal = document.getElementById('tz-time').value;
+      const fromOffset = parseFloat(document.getElementById('tz-from').value);
+      const toOffset = parseFloat(document.getElementById('tz-to').value);
+
+      if (!timeVal) { alert('Please enter a time.'); return; }
+
+      // Parse input time
+      const [hours, mins] = timeVal.split(':').map(Number);
+
+      // Calculate minutes from midnight in the FROM zone
+      let totalMins = (hours * 60) + mins;
+
+      // Difference in hours
+      const diffHours = toOffset - fromOffset;
+      const diffMins = diffHours * 60;
+
+      // Apply offset
+      totalMins += diffMins;
+
+      let dayOffset = '';
+      if (totalMins < 0) {
+        totalMins += (24 * 60);
+        dayOffset = ' (Previous Day)';
+      } else if (totalMins >= (24 * 60)) {
+        totalMins -= (24 * 60);
+        dayOffset = ' (Next Day)';
+      }
+
+      // Format back to HH:MM
+      const finalH = Math.floor(totalMins / 60);
+      const finalM = Math.round(totalMins % 60);
+
+      const pad = (n) => n.toString().padStart(2, '0');
+      const formattedTime = `${pad(finalH)}:${pad(finalM)}` + dayOffset;
+
+      // Difference string
+      const sign = diffHours > 0 ? '+' : '';
+      const diffStr = diffHours === 0 ? 'Same Zone' : `${sign}${diffHours} Hours`;
+
+      document.getElementById('r-tz-val').textContent = formattedTime;
+      document.getElementById('r-tz-diff').textContent = `Time Difference: ${diffStr}`;
+
+      document.getElementById('r-timezone').classList.add('show');
+    }
+
+    // COOKING CONVERTER
+    function calcCooking() {
+      const val = parseFloat(document.getElementById('cook-val').value) || 0;
+      const fromUnit = document.getElementById('cook-from').value;
+      const toUnit = document.getElementById('cook-to').value;
+
+      if (val < 0) { alert('Amount cannot be negative.'); return; }
+
+      // Define bases
+      // Volume: base is ML
+      const volUnits = {
+        'ml': 1,
+        'l': 1000,
+        'tsp': 4.92892,
+        'tbsp': 14.7868,
+        'floz': 29.5735,
+        'cup': 236.588
+      };
+
+      // Weight: base is Grams
+      const wtUnits = {
+        'g': 1,
+        'kg': 1000,
+        'oz': 28.3495,
+        'lb': 453.592
+      };
+
+      const isVolFrom = volUnits.hasOwnProperty(fromUnit);
+      const isVolTo = volUnits.hasOwnProperty(toUnit);
+
+      if (isVolFrom !== isVolTo) {
+        alert('Cannot directly convert between volume and weight without knowing the ingredient density.');
+        return;
+      }
+
+      let result = 0;
+      if (isVolFrom) {
+        const inMl = val * volUnits[fromUnit];
+        result = inMl / volUnits[toUnit];
+      } else {
+        const inG = val * wtUnits[fromUnit];
+        result = inG / wtUnits[toUnit];
+      }
+
+      const selTo = document.getElementById('cook-to');
+      let lblText = selTo.options[selTo.selectedIndex].text;
+
+      document.getElementById('r-cook-val').textContent = fmt(result, 2);
+      document.getElementById('r-cook-lbl').textContent = lblText;
+      document.getElementById('r-cooking').classList.add('show');
     }
 
     // ── SCIENTIFIC CALCULATOR ──
