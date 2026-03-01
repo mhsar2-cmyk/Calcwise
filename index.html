@@ -2667,17 +2667,31 @@
         fromSel.insertAdjacentHTML('beforeend', o1);
         toSel.insertAdjacentHTML('beforeend', o2);
       });
-      fromSel.addEventListener('change', updateRateTag);
-      toSel.addEventListener('change', updateRateTag);
+
+      const triggerCalc = () => { updateRateTag(); convertCurrency(); };
+      fromSel.addEventListener('change', triggerCalc);
+      toSel.addEventListener('change', triggerCalc);
+      document.getElementById('cur-amount').addEventListener('input', convertCurrency);
     }
 
     function getRate(from, to) {
       if (!curRates) return CUR_FALLBACK[to] / CUR_FALLBACK[from];
-      // curRates.rates are relative to EUR base from Frankfurter
       const base = curRates.rates;
-      const fromUSD = from === 'EUR' ? 1 : base[from];
-      const toUSD = to === 'EUR' ? 1 : base[to];
-      return toUSD / fromUSD;
+      // The API base is EUR.
+      // If a currency is missing from the API (like SAR, AED), we anchor it to the live USD rate.
+      // E.g., if live EUR->USD is 1.08, and fallback USD->SAR is 3.75, live EUR->SAR = 1.08 * 3.75 = 4.05
+      const liveUSD = base['USD'] || (1 / CUR_FALLBACK['EUR']);
+
+      const getRateToBase = (c) => {
+        if (c === 'EUR') return 1;
+        if (base[c]) return base[c];
+        // Missing from API: use (Live USD/EUR) * (Fallback CUR/USD)
+        return liveUSD * CUR_FALLBACK[c];
+      };
+
+      const fromEUR = getRateToBase(from);
+      const toEUR = getRateToBase(to);
+      return toEUR / fromEUR;
     }
 
     function updateRateTag() {

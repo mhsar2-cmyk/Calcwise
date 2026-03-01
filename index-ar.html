@@ -2253,6 +2253,121 @@
     function updatePaceFields() { const s = document.getElementById('pace-solve').value; document.getElementById('pace-pace-field').style.display = s === 'pace' ? 'none' : ''; }
     function calcPace() { const solve = document.getElementById('pace-solve').value, dist = parseFloat(document.getElementById('pace-dist').value) || 0, h = parseInt(document.getElementById('pace-h').value) || 0, m = parseInt(document.getElementById('pace-m').value) || 0, s = parseInt(document.getElementById('pace-s').value) || 0, totalSec = h * 3600 + m * 60 + s, pMin = parseInt(document.getElementById('pace-min')?.value || 0), pSec = parseInt(document.getElementById('pace-sec')?.value || 0); let result, label; if (solve === 'pace') { const spk = totalSec / dist; result = Math.floor(spk / 60) + ':' + String(Math.round(spk % 60)).padStart(2, '0') + ' /كم'; label = 'الإيقاع'; } else if (solve === 'time') { const ps = pMin * 60 + pSec, tt = ps * dist; result = Math.floor(tt / 3600) + 'س ' + Math.floor((tt % 3600) / 60) + 'د ' + Math.round(tt % 60) + 'ث'; label = 'وقت الإنهاء'; } else { result = fmt(totalSec / (pMin * 60 + pSec), 2) + ' كم'; label = 'المسافة'; } document.getElementById('r-pace-result').textContent = result; document.getElementById('r-pace-label').textContent = label; document.getElementById('r-pace').classList.add('show'); }
 
+    // CURRENCY CONVERTER (AR)
+    const CURRENCY_LIST = [
+      ['USD', '$ دولار أمريكي'], ['EUR', '€ يورو'], ['GBP', '£ جنيه إسترليني'], ['SAR', 'ر.س ريال سعودي'],
+      ['AED', 'د.إ درهم إماراتي'], ['JPY', '¥ ين ياباني'], ['CNY', '¥ يوان صيني'], ['INR', '₹ روبية هندية'],
+      ['KWD', 'د.ك دينار كويتي'], ['QAR', 'ر.ق ريال قطري'], ['BHD', 'BD دينار بحريني'], ['OMR', 'ر.ع ريال عماني'],
+      ['EGP', 'ج.م جنيه مصري'], ['JOD', 'د.ا دينار أردني'], ['TRY', '₺ ليرة تركية'],
+      ['CAD', 'C$ دولار كندي'], ['AUD', 'A$ دولار أسترالي'], ['CHF', 'Fr فرنك سويسري'],
+      ['SEK', 'kr كرونة سويدية'], ['NOK', 'kr كرونة نرويجية'], ['DKK', 'kr كرونة دنماركية'],
+      ['HKD', 'HK$ دولار هونغ كونغ'], ['SGD', 'S$ دولار سنغافوري'], ['KRW', '₩ وون كوري'],
+      ['MYR', 'RM رينغيت ماليزي'], ['THB', '฿ بات تايلندي'], ['IDR', 'Rp روبية إندونيسية'],
+      ['PKR', '₨ روبية باكستانية'], ['BDT', '৳ تاكا بنغلاديشية'], ['NGN', '₦ نايرا نيجيرية'],
+      ['ZAR', 'R راند جنوب أفريقي'], ['BRL', 'R$ ريال برازيلي'], ['MXN', '$ بيزو مكسيكي'],
+    ];
+    // Base: USD fallback rates
+    const CUR_FALLBACK = {
+      USD: 1, EUR: 0.924, GBP: 0.791, SAR: 3.751, AED: 3.673, JPY: 149.5, CNY: 7.24,
+      INR: 83.1, KWD: 0.307, QAR: 3.641, BHD: 0.377, OMR: 0.385, EGP: 30.9, JOD: 0.709,
+      TRY: 32.5, CAD: 1.356, AUD: 1.535, CHF: 0.878, SEK: 10.45, NOK: 10.58, DKK: 6.9,
+      HKD: 7.824, SGD: 1.344, KRW: 1327, MYR: 4.74, THB: 35.5, IDR: 15700, PKR: 278,
+      BDT: 110, NGN: 1580, ZAR: 18.8, BRL: 4.98, MXN: 17.15,
+    };
+    let curRates = null; // {base:'USD', rates:{...}}
+    const POPULAR_TARGETS = ['SAR', 'AED', 'USD', 'EUR', 'GBP', 'KWD', 'EGP', 'QAR', 'TRY', 'INR'];
+
+    function curPopulate() {
+      const fromSel = document.getElementById('cur-from');
+      const toSel = document.getElementById('cur-to');
+      if (!fromSel || !toSel) return;
+      fromSel.innerHTML = '';
+      toSel.innerHTML = '';
+      CURRENCY_LIST.forEach(([code, label]) => {
+        const o1 = `<option value="${code}" ${code === 'USD' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
+        const o2 = `<option value="${code}" ${code === 'SAR' ? 'selected' : ''}>${code} — ${label.split(' ').slice(1).join(' ')}</option>`;
+        fromSel.insertAdjacentHTML('beforeend', o1);
+        toSel.insertAdjacentHTML('beforeend', o2);
+      });
+      const triggerCalc = () => { updateRateTag(); convertCurrency(); };
+      fromSel.addEventListener('change', triggerCalc);
+      toSel.addEventListener('change', triggerCalc);
+      document.getElementById('cur-amount').addEventListener('input', convertCurrency);
+    }
+
+    function getRate(from, to) {
+      if (!curRates) return CUR_FALLBACK[to] / CUR_FALLBACK[from];
+      const base = curRates.rates;
+      // The API base is EUR.
+      // If a currency is missing from the API (like SAR, AED), we anchor it to the live USD rate.
+      const liveUSD = base['USD'] || (1 / CUR_FALLBACK['EUR']);
+
+      const getRateToBase = (c) => {
+        if (c === 'EUR') return 1;
+        if (base[c]) return base[c];
+        // Missing from API: use (Live USD/EUR) * (Fallback CUR/USD)
+        return liveUSD * CUR_FALLBACK[c];
+      };
+
+      const fromEUR = getRateToBase(from);
+      const toEUR = getRateToBase(to);
+      return toEUR / fromEUR;
+    }
+
+    function updateRateTag() {
+      const from = document.getElementById('cur-from')?.value;
+      const to = document.getElementById('cur-to')?.value;
+      if (!from || !to) return;
+      const rate = getRate(from, to);
+      const rateEl = document.getElementById('cur-rate-display');
+      const tagEl = document.getElementById('cur-rate-tag');
+      if (rateEl) rateEl.innerHTML = rate.toFixed(rate < 0.01 ? 6 : rate < 1 ? 4 : 4) + ' <span dir="ltr">' + to + '</span>';
+      if (tagEl) tagEl.firstChild.textContent = '1 ' + from + ' = ';
+    }
+
+    function swapCurrency() {
+      const f = document.getElementById('cur-from');
+      const t = document.getElementById('cur-to');
+      if (!f || !t) return;
+      [f.value, t.value] = [t.value, f.value];
+      updateRateTag();
+    }
+
+    function convertCurrency() {
+      const amount = parseFloat(document.getElementById('cur-amount').value) || 0;
+      const from = document.getElementById('cur-from').value;
+      const to = document.getElementById('cur-to').value;
+      const rate = getRate(from, to);
+      const result = amount * rate;
+      const dp = result < 0.1 ? 6 : result < 1 ? 4 : 2;
+      document.getElementById('cur-r-main').innerHTML = result.toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp }) + ' <span dir="ltr">' + to + '</span>';
+      document.getElementById('cur-r-label').textContent = `${amount.toLocaleString()} ${from} →`;
+
+      // Multi grid
+      const grid = document.getElementById('cur-multi-grid');
+      grid.innerHTML = POPULAR_TARGETS.filter(c => c !== to && c !== from).slice(0, 8).map(c => {
+        const r = getRate(from, c);
+        const v = (amount * r);
+        const d = v < 1 ? 4 : 2;
+        return `<div class="cur-multi-item"><div class="cur-code">${c}</div><div class="cur-val">${v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d })}</div></div>`;
+      }).join('');
+      document.getElementById('r-currency').classList.add('show');
+    }
+
+    async function loadCurrencyRates() {
+      const statusEl = document.getElementById('cur-status');
+      try {
+        const res = await fetch('https://api.frankfurter.app/latest?base=EUR&symbols=USD,GBP,SAR,AED,JPY,CNY,INR,KWD,QAR,BHD,OMR,EGP,JOD,TRY,CAD,AUD,CHF,SEK,NOK,DKK,HKD,SGD,KRW,MYR,THB,IDR,PKR,BDT,NGN,ZAR,BRL,MXN');
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        curRates = { base: 'EUR', rates: { ...data.rates, EUR: 1 } };
+        if (statusEl) { statusEl.textContent = '🟢 أسعار حية · ' + data.date; statusEl.className = 'cur-status live'; }
+        updateRateTag();
+      } catch (e) {
+        if (statusEl) { statusEl.textContent = '⚪ وضع عدم الاتصال — استخدام أسعار تقريبية (فبراير ٢٠٢٦)'; statusEl.className = 'cur-status offline'; }
+      }
+    }
+
     // UNIT CONVERTER
     const unitData = { length: { units: ['مليمتر', 'سنتيمتر', 'متر', 'كيلومتر', 'بوصة', 'قدم', 'ياردة', 'ميل'], toBase: [0.001, 0.01, 1, 1000, 0.0254, 0.3048, 0.9144, 1609.344] }, weight: { units: ['ملليجرام', 'جرام', 'كيلوجرام', 'طن', 'أونصة', 'رطل', 'ستون'], toBase: [0.000001, 0.001, 1, 1000, 0.0283495, 0.453592, 6.35029] }, temp: { units: ['مئوية', 'فهرنهايت', 'كلفن'], toBase: null }, volume: { units: ['مليلتر', 'لتر', 'كوب', 'أونصة سائلة', 'باينت', 'كوارت', 'جالون'], toBase: [0.001, 1, 0.236588, 0.0295735, 0.473176, 0.946353, 3.78541] }, speed: { units: ['م/ث', 'كم/س', 'ميل/س', 'عقدة'], toBase: [1, 0.277778, 0.44704, 0.514444] } };
     function updateUnitOptions() { const cat = document.getElementById('unit-cat').value, data = unitData[cat], fromSel = document.getElementById('unit-from'), toSel = document.getElementById('unit-to'); fromSel.innerHTML = data.units.map((u, i) => `<option value="${i}">${u}</option>`).join(''); toSel.innerHTML = data.units.map((u, i) => `<option value="${i}">${u}</option>`).join(''); toSel.selectedIndex = 1; calcUnits(); }
