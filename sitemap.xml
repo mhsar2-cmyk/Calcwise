@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- ═══ MAIN PAGES ═══ -->
+  <!-- ═══ HOME PAGES ═══ -->
 
   <url>
     <loc>https://calcwises.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/index-ar.html"/>
-    <lastmod>2025-06-01</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -17,21 +17,67 @@
     <loc>https://calcwises.com/index-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/index-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/"/>
-    <lastmod>2025-06-01</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- ═══ ABOUT PAGES ═══ -->
+
+  <url>
+    <loc>https://calcwises.com/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/about-ar.html"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calcwises.com/about-ar.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/about-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/about.html"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══ PRIVACY PAGES ═══ -->
+
   <url>
     <loc>https://calcwises.com/privacy.html</loc>
-    <lastmod>2025-06-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/privacy-ar.html"/>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://calcwises.com/privacy-ar.html</loc>
-    <lastmod>2025-06-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/privacy-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/privacy.html"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ═══ TERMS PAGES ═══ -->
+
+  <url>
+    <loc>https://calcwises.com/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/terms-ar.html"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://calcwises.com/terms-ar.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/terms-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/terms.html"/>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
