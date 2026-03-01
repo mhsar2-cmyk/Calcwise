@@ -300,12 +300,7 @@ for fname in files_to_process:
 """
     if "window.toggleTheme = function" not in content:
         if "</body>" in content:
-            # Check if there is already a script tag near the end
-            if "<script>" in content:
-                 content = content.replace("</script>\n</body>", js_logic + "</script>\n</body>")
-                 content = content.replace("</script>\n</html>", js_logic + "</script>\n</html>")
-            else:
-                 content = content.replace("</body>", "<script>" + js_logic + "</script>\n</body>")
+            content = content.replace("</body>", "<script>" + js_logic + "</script>\n</body>")
 
     # 4. Inject Theme Toggle CSS if missing (for non-index pages)
     css_logic = """

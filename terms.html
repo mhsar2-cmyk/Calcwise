@@ -570,5 +570,25 @@ footer p { font-size: 0.8rem; color: var(--muted); }
   </div>
   <p>© 2025 CalcWise · calcwises.com · All rights reserved.</p>
 </footer>
+<script>
+    // ── LIGHT/DARK MODE TOGGLE ──
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cw-theme', next);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = next === 'light' ? '☀️' : '🌙';
+    };
+    // Initialize toggle icon
+    setTimeout(() => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const current = document.documentElement.getAttribute('data-theme');
+        btn.textContent = current === 'light' ? '☀️' : '🌙';
+      }
+    }, 100);
+</script>
 </body>
 </html>
