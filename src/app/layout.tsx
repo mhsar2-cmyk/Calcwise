@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 };
 
 import { AuthProvider } from "@/components/providers/SessionProvider";
-
 import Script from "next/script";
 
 export default function RootLayout({
@@ -25,16 +24,17 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`${cairo.variable} font-sans antialiased`}>
-        {/* Google Analytics - Recommended Next.js way */}
+        {/* Google Tag (gtag.js) */}
         <Script
+          async
           src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"
-          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+
             gtag('config', 'G-CQ0F5LVG3J');
           `}
         </Script>
@@ -44,11 +44,9 @@ export default function RootLayout({
         </AuthProvider>
       </body>
     </html>
-
-
-
   );
 }
+
 
 
 
