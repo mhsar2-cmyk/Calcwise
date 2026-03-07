@@ -35,7 +35,7 @@ function TradingViewWidget() {
     );
 
     return (
-        <div className="tradingview-widget-container glass rounded-2xl border border-white/5 overflow-hidden h-[300px] w-full" ref={container}>
+        <div className="tradingview-widget-container glass rounded-2xl border border-white/5 overflow-hidden h-[250px] w-full" ref={container}>
             <div className="tradingview-widget-container__widget h-full w-full"></div>
         </div>
     );
