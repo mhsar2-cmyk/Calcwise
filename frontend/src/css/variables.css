@@ -1,0 +1,57 @@
+/* 
+   Calcwise Design System - Core Variables 
+   Handles Themes (Light/Dark) and Directional Logic (RTL/LTR)
+*/
+
+:root {
+    /* Color Palette - Premium Dark Mode Default */
+    --bg-primary: #0a0b0d;
+    --bg-secondary: #16181b;
+    --bg-tertiary: #202226;
+    
+    --accent-blue: #3d6eff;
+    --accent-green: #00c076;
+    --accent-red: #ff3b3b;
+    --accent-gold: #f0b90b;
+
+    --text-primary: #ffffff;
+    --text-secondary: #848e9c;
+    --text-muted: #474d57;
+
+    --border-color: #2b2f36;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+    /* Spacing & Transitions */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --transition-fast: 0.2s ease;
+}
+
+/* Logical Properties Helper */
+[dir="rtl"] {
+    /* Manual overrides if logical properties are not enough for specific cases */
+    --dir-factor: -1;
+}
+
+[dir="ltr"] {
+    --dir-factor: 1;
+}
+
+/* Base Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Language Override for Arabic */
+[lang="ar"] {
+    font-family: 'Cairo', sans-serif;
+}

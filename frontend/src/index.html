@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcwise | Premium AI Trading Platform</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-text">CALCWISE</span>
+                    <span class="logo-ai">AI</span>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="#dashboard" data-i18n="nav-dashboard">Dashboard</a>
+                    <a href="#market" data-i18n="nav-market">Market</a>
+                    <a href="#ai-tools" data-i18n="nav-ai">AI Tools</a>
+                </div>
+
+                <div class="nav-actions">
+                    <!-- Language Switcher -->
+                    <button id="lang-toggle" class="btn-icon">
+                        <span class="lang-text">EN</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </button>
+                    <button class="btn-primary" data-i18n="btn-login">Login</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="hero">
+                <h1 data-i18n="hero-title">Trade Smarter with AI</h1>
+                <p data-i18n="hero-subtitle">Real-time market data and AI-powered sentiment analysis for Crypto, Stocks, and Forex.</p>
+                <div class="hero-actions">
+                    <button class="btn-large btn-glow" data-i18n="btn-start">Start Free Trial</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid Placeholder -->
+            <section class="dashboard-grid">
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card-title-chart">BTC/USDT Live Chart</h3>
+                    </div>
+                    <div id="main-chart" class="chart-container"></div>
+                </div>
+
+                <div class="card ai-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card-title-ai">AI Sentiment</h3>
+                    </div>
+                    <div class="sentiment-widget">
+                        <div class="sentiment-meter">
+                            <span class="meter-label" data-i18n="label-greed">Fear vs Greed</span>
+                            <div class="meter-bar">
+                                <div class="meter-fill" style="width: 65%;"></div>
+                            </div>
+                            <span class="meter-value">65 (Greed)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
