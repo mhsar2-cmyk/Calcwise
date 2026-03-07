@@ -202,10 +202,13 @@ class App {
 
     initChart() {
         const chartContainer = document.getElementById('main-chart');
-        if (!chartContainer) return;
+        const rsiContainer = document.getElementById('rsi-chart');
+        if (!chartContainer || !rsiContainer) return;
+
+        this.history = []; // Price history buffer
 
         const isDark = this.currentTheme === 'dark';
-        this.chart = LightweightCharts.createChart(chartContainer, {
+        const chartOptions = {
             layout: {
                 background: { color: isDark ? '#16181b' : '#ffffff' },
                 textColor: isDark ? '#848e9c' : '#5e6673',
@@ -216,26 +219,104 @@ class App {
             },
             crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
             rightPriceScale: { borderColor: isDark ? '#2b3139' : '#eaecef' },
-            timeScale: { borderColor: isDark ? '#2b3139' : '#eaecef' },
+            timeScale: { borderColor: isDark ? '#2b3139' : '#eaecef', visible: true },
+        };
+
+        // Main Chart
+        this.chart = LightweightCharts.createChart(chartContainer, chartOptions);
+        this.candleSeries = this.chart.addCandlestickSeries({
+            upColor: '#00c076', downColor: '#ff3b3b', borderVisible: false,
+            wickUpColor: '#00c076', wickDownColor: '#ff3b3b',
         });
 
-        this.candleSeries = this.chart.addCandlestickSeries({
-            upColor: '#00c076',
-            downColor: '#ff3b3b',
-            borderVisible: false,
-            wickUpColor: '#00c076',
-            wickDownColor: '#ff3b3b',
+        // SMA Series
+        this.sma20Series = this.chart.addLineSeries({ color: '#3d6eff', lineWidth: 1, title: 'SMA 20' });
+        this.sma50Series = this.chart.addLineSeries({ color: '#f0b90b', lineWidth: 1, title: 'SMA 50' });
+
+        // RSI Chart
+        this.rsiChart = LightweightCharts.createChart(rsiContainer, {
+            ...chartOptions,
+            timeScale: { ...chartOptions.timeScale, visible: false }, // Hide time scale on RSI
         });
+
+        this.rsiSeries = this.rsiChart.addLineSeries({
+            color: '#a020f0',
+            lineWidth: 2,
+            title: 'RSI 14',
+        });
+
+        // Add RSI Overbought/Oversold levels
+        this.rsiSeries.createPriceLine({ price: 70, color: '#ff3b3b', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '70' });
+        this.rsiSeries.createPriceLine({ price: 30, color: '#00c076', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '30' });
 
         window.addEventListener('resize', () => {
             this.chart.applyOptions({ width: chartContainer.clientWidth });
+            this.rsiChart.applyOptions({ width: rsiContainer.clientWidth });
         });
     }
 
     updateChartData(kline) {
-        if (this.candleSeries) {
-            this.candleSeries.update(kline);
+        if (!this.candleSeries) return;
+
+        this.candleSeries.update(kline);
+
+        // Update history for indicators
+        const lastBar = this.history[this.history.length - 1];
+        if (!lastBar || lastBar.time !== kline.time) {
+            this.history.push(kline);
+            if (this.history.length > 200) this.history.shift(); // Keep buffer sane
+        } else {
+            this.history[this.history.length - 1] = kline;
         }
+
+        this.updateIndicators(kline.time);
+    }
+
+    updateIndicators(time) {
+        if (this.history.length < 2) return;
+
+        const closes = this.history.map(bar => bar.close);
+
+        // SMA 20
+        if (closes.length >= 20) {
+            const sma20 = this.calculateSMA(closes, 20);
+            this.sma20Series.update({ time, value: sma20 });
+        }
+
+        // SMA 50
+        if (closes.length >= 50) {
+            const sma50 = this.calculateSMA(closes, 50);
+            this.sma50Series.update({ time, value: sma50 });
+        }
+
+        // RSI 14
+        if (closes.length >= 14) {
+            const rsi = this.calculateRSI(closes, 14);
+            this.rsiSeries.update({ time, value: rsi });
+        }
+    }
+
+    calculateSMA(data, period) {
+        const slice = data.slice(-period);
+        return slice.reduce((a, b) => a + b, 0) / period;
+    }
+
+    calculateRSI(data, period) {
+        let gains = 0;
+        let losses = 0;
+
+        for (let i = data.length - period; i < data.length; i++) {
+            const diff = data[i] - data[i - 1];
+            if (diff >= 0) gains += diff;
+            else losses -= diff;
+        }
+
+        const avgGain = gains / period;
+        const avgLoss = losses / period;
+
+        if (avgLoss === 0) return 100;
+        const rs = avgGain / avgLoss;
+        return 100 - (100 / (1 + rs));
     }
 }
 
