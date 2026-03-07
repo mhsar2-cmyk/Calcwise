@@ -1,38 +1,48 @@
-/* 
-   Calcwise Design System - Core Variables 
-   Handles Themes (Light/Dark) and Directional Logic (RTL/LTR)
-*/
-
 :root {
-    /* Color Palette - Premium Dark Mode Default */
-    --bg-primary: #0a0b0d;
-    --bg-secondary: #16181b;
-    --bg-tertiary: #202226;
-    
+    /* Base Color Tokens (Common) */
     --accent-blue: #3d6eff;
+    --accent-blue-hover: #2955e6;
     --accent-green: #00c076;
     --accent-red: #ff3b3b;
     --accent-gold: #f0b90b;
 
-    --text-primary: #ffffff;
-    --text-secondary: #848e9c;
-    --text-muted: #474d57;
-
-    --border-color: #2b2f36;
-    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-
-    /* Spacing & Transitions */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     --transition-fast: 0.2s ease;
+    --border-radius: 12px;
+}
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+    --bg-primary: #0a0b0d;
+    --bg-secondary: #16181b;
+    --bg-tertiary: #202226;
+    --text-primary: #ffffff;
+    --text-secondary: #848e9c;
+    --text-muted: #474d57;
+    --border-color: #2b3139;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --nav-blur: rgba(10, 11, 13, 0.8);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f0f2f5;
+    --text-primary: #1e2329;
+    --text-secondary: #5e6673;
+    --text-muted: #aeaeae;
+    --border-color: #eaecef;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --nav-blur: rgba(255, 255, 255, 0.8);
 }
 
 /* Logical Properties Helper */
 [dir="rtl"] {
-    /* Manual overrides if logical properties are not enough for specific cases */
     --dir-factor: -1;
 }
 
@@ -49,6 +59,7 @@ body {
     color: var(--text-primary);
     line-height: 1.5;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Language Override for Arabic */

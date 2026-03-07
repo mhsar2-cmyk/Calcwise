@@ -21,14 +21,27 @@ if (process.env.NODE_ENV !== 'production') {
     app.use(express.static(path.join(__dirname, '../public')));
 }
 
+const newsService = require('./src/services/newsService');
+const aiService = require('./src/services/aiService');
+
 // API Placeholder Routes
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Calcwise API is running' });
 });
 
-// Market Data Routes (Placeholder)
-app.get('/api/market/sentiment', (req, res) => {
-    res.json({ message: 'AI Sentiment route placeholder' });
+// Market Data Routes
+app.get('/api/market/sentiment', async (req, res) => {
+    try {
+        const news = await newsService.getMarketNews(req.query.asset || 'crypto');
+        const sentiment = await aiService.analyzeSentiment(news);
+        res.json({
+            success: true,
+            sentiment,
+            news
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
 });
 
 // Subscription Routes (Placeholder)

@@ -1,120 +1,244 @@
-/**
- * Calcwise App Entry Point
- * Handles i18n, RTL/LTR switching, and Chart Initialization
- */
-
 const translations = {
     en: {
         'nav-dashboard': 'Dashboard',
         'nav-market': 'Market',
         'nav-ai': 'AI Tools',
+        'nav-subs': 'Subscriptions',
         'btn-login': 'Login',
-        'hero-title': 'Trade Smarter with AI',
-        'hero-subtitle': 'Real-time market data and AI-powered sentiment analysis for Crypto, Stocks, and Forex.',
-        'btn-start': 'Start Free Trial',
-        'card-title-chart': 'BTC/USDT Live Chart',
-        'card-title-ai': 'AI Sentiment',
-        'label-greed': 'Fear vs Greed'
+        'btn-register': 'Register',
+        'search-placeholder': 'Search Markets (e.g. BTC, TSLA, EUR/USD)',
+        'card-title-ai': 'AI Sentiment Analysis',
+        'card-title-strategy': 'Strategy Builder',
+        'card-title-watchlist': 'Watchlist',
+        'card-title-news': 'Market News',
+        'label-fear': 'Extreme Fear',
+        'label-greed': 'Extreme Greed',
+        'ai-sentiment-summary': 'Strong bullish momentum detected in social trends and news volume.',
+        'strategy-help': 'Ask AI to generate a Pine Script or explain patterns.',
+        'btn-chat': 'Start New Session'
     },
     ar: {
         'nav-dashboard': 'لوحة التحكم',
         'nav-market': 'السوق',
         'nav-ai': 'أدوات الذكاء الاصطناعي',
+        'nav-subs': 'الاشتراكات',
         'btn-login': 'تسجيل الدخول',
-        'hero-title': 'تداول بذكاء مع الذكاء الاصطناعي',
-        'hero-subtitle': 'بيانات السوق في الوقت الفعلي وتحليل المشاعر المدعوم بالذكاء الاصطناعي للعملات المشفرة والأسهم والفوركس.',
-        'btn-start': 'ابدأ الفترة التجريبية مجاناً',
-        'card-title-chart': 'مخطط BTC/USDT المباشر',
-        'card-title-ai': 'مشاعر الذكاء الاصطناعي',
-        'label-greed': 'الخوف مقابل الطمع'
+        'btn-register': 'تسجيل جديد',
+        'search-placeholder': 'بحث في الأسواق (مثلاً BTC, TSLA)',
+        'card-title-ai': 'تحليل مشاعر الذكاء الاصطناعي',
+        'card-title-strategy': 'منشئ الاستراتيجيات',
+        'card-title-watchlist': 'قائمة المراقبة',
+        'card-title-news': 'أخبار السوق',
+        'label-fear': 'خوف شديد',
+        'label-greed': 'طمع شديد',
+        'ai-sentiment-summary': 'تم اكتشاف زخم صعودي قوي في الاتجاهات الاجتماعية وحجم الأخبار.',
+        'strategy-help': 'اطلب من الذكاء الاصطناعي إنشاء Pine Script أو شرح الأنماط.',
+        'btn-chat': 'بدء جلسة جديدة'
     }
 };
 
 class App {
     constructor() {
-        this.currentLang = 'en';
+        this.currentLang = localStorage.getItem('lang') || 'en';
+        this.currentTheme = localStorage.getItem('theme') || 'dark';
         this.init();
     }
 
     init() {
         this.setupEventListeners();
+        this.applyTheme(this.currentTheme);
+        this.applyLanguage(this.currentLang);
         this.initChart();
-        this.updateUI();
+        this.initRealTimeData();
+        this.fetchAISentiment();
     }
 
     setupEventListeners() {
-        const langToggle = document.getElementById('lang-toggle');
-        langToggle.addEventListener('click', () => this.toggleLanguage());
+        // Sidebar link active state
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Language Toggle
+        const langBtn = document.getElementById('lang-toggle');
+        langBtn.addEventListener('click', () => {
+            const nextLang = this.currentLang === 'en' ? 'ar' : 'en';
+            this.applyLanguage(nextLang);
+        });
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            const nextTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+            this.applyTheme(nextTheme);
+        });
     }
 
-    toggleLanguage() {
-        this.currentLang = this.currentLang === 'en' ? 'ar' : 'en';
+    applyTheme(theme) {
+        this.currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        if (sunIcon && moonIcon) {
+            sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
+            moonIcon.style.display = theme === 'dark' ? 'none' : 'block';
+        }
+
+        if (this.chart) {
+            const isDark = theme === 'dark';
+            this.chart.applyOptions({
+                layout: {
+                    background: { color: isDark ? '#16181b' : '#ffffff' },
+                    textColor: isDark ? '#848e9c' : '#5e6673',
+                },
+                grid: {
+                    vertLines: { color: isDark ? '#2b3139' : '#eaecef' },
+                    horzLines: { color: isDark ? '#2b3139' : '#eaecef' },
+                },
+                rightPriceScale: { borderColor: isDark ? '#2b3139' : '#eaecef' },
+                timeScale: { borderColor: isDark ? '#2b3139' : '#eaecef' },
+            });
+        }
+    }
+
+    applyLanguage(lang) {
+        this.currentLang = lang;
         const html = document.documentElement;
+        html.setAttribute('lang', lang);
+        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        localStorage.setItem('lang', lang);
 
-        html.setAttribute('lang', this.currentLang);
-        html.setAttribute('dir', this.currentLang === 'ar' ? 'rtl' : 'ltr');
+        const langText = document.querySelector('.lang-text');
+        if (langText) langText.innerText = lang.toUpperCase();
 
-        document.querySelector('.lang-text').innerText = this.currentLang.toUpperCase();
-        this.updateUI();
-    }
-
-    updateUI() {
-        const elements = document.querySelectorAll('[data-i18n]');
-        elements.forEach(el => {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[this.currentLang][key]) {
-                el.innerText = translations[this.currentLang][key];
+            if (translations[lang] && translations[lang][key]) {
+                el.innerText = translations[lang][key];
             }
         });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang] && translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+    }
+
+    initRealTimeData() {
+        // Binance Public WebSocket for BTCUSDT
+        const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@kline_1m');
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const kline = data.k;
+            const price = parseFloat(kline.c);
+            const change = ((price - parseFloat(kline.o)) / parseFloat(kline.o) * 100).toFixed(2);
+
+            this.updatePriceUI(price, change);
+            this.updateChartData({
+                time: kline.t / 1000,
+                open: parseFloat(kline.o),
+                high: parseFloat(kline.h),
+                low: parseFloat(kline.l),
+                close: parseFloat(kline.c),
+            });
+        };
+    }
+
+    updatePriceUI(price, change) {
+        const priceEl = document.querySelector('.market-price');
+        const changeEl = document.querySelector('.market-change');
+        if (!priceEl || !changeEl) return;
+
+        priceEl.innerText = `$${price.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+        changeEl.innerText = `${change > 0 ? '+' : ''}${change}%`;
+
+        const isUp = change >= 0;
+        priceEl.className = `market-price ${isUp ? 'up' : 'down'}`;
+        changeEl.className = `market-change ${isUp ? 'up' : 'down'}`;
+    }
+
+    async fetchAISentiment() {
+        try {
+            const response = await fetch('/api/market/sentiment');
+            const data = await response.json();
+
+            if (data.success) {
+                this.updateSentimentUI(data.sentiment);
+                this.updateNewsUI(data.news);
+            }
+        } catch (error) {
+            console.error('Sentiment Fetch Error:', error);
+        }
+    }
+
+    updateSentimentUI(sentiment) {
+        const pointer = document.querySelector('.meter-pointer');
+        const summary = document.querySelector('.ai-summary');
+        if (!pointer || !summary) return;
+
+        pointer.style.left = `${sentiment.score}%`;
+        summary.innerText = sentiment.summary;
+    }
+
+    updateNewsUI(news) {
+        const newsList = document.querySelector('.news-list');
+        if (!newsList) return;
+
+        newsList.innerHTML = news.map(item => `
+            <div class="news-item">
+                <span class="news-time">${item.time}</span>
+                <p>${item.title}</p>
+            </div>
+        `).join('');
     }
 
     initChart() {
         const chartContainer = document.getElementById('main-chart');
         if (!chartContainer) return;
 
-        const chart = LightweightCharts.createChart(chartContainer, {
+        const isDark = this.currentTheme === 'dark';
+        this.chart = LightweightCharts.createChart(chartContainer, {
             layout: {
-                background: { color: '#16181b' },
-                textColor: '#848e9c',
+                background: { color: isDark ? '#16181b' : '#ffffff' },
+                textColor: isDark ? '#848e9c' : '#5e6673',
             },
             grid: {
-                vertLines: { color: '#2b2f36' },
-                horzLines: { color: '#2b2f36' },
+                vertLines: { color: isDark ? '#2b3139' : '#eaecef' },
+                horzLines: { color: isDark ? '#2b3139' : '#eaecef' },
             },
-            crosshair: {
-                mode: LightweightCharts.CrosshairMode.Normal,
-            },
-            rightPriceScale: {
-                borderColor: '#2b2f36',
-            },
-            timeScale: {
-                borderColor: '#2b2f36',
-            },
+            crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+            rightPriceScale: { borderColor: isDark ? '#2b3139' : '#eaecef' },
+            timeScale: { borderColor: isDark ? '#2b3139' : '#eaecef' },
         });
 
-        const lineSeries = chart.addLineSeries({
-            color: '#3d6eff',
-            lineWidth: 2,
+        this.candleSeries = this.chart.addCandlestickSeries({
+            upColor: '#00c076',
+            downColor: '#ff3b3b',
+            borderVisible: false,
+            wickUpColor: '#00c076',
+            wickDownColor: '#ff3b3b',
         });
-
-        // Placeholder data
-        lineSeries.setData([
-            { time: '2023-12-01', value: 38000 },
-            { time: '2023-12-02', value: 39500 },
-            { time: '2023-12-03', value: 41000 },
-            { time: '2023-12-04', value: 42500 },
-            { time: '2023-12-05', value: 44000 },
-            { time: '2023-12-06', value: 43200 },
-            { time: '2023-12-07', value: 45000 },
-        ]);
 
         window.addEventListener('resize', () => {
-            chart.applyOptions({ width: chartContainer.clientWidth });
+            this.chart.applyOptions({ width: chartContainer.clientWidth });
         });
+    }
+
+    updateChartData(kline) {
+        if (this.candleSeries) {
+            this.candleSeries.update(kline);
+        }
     }
 }
 
-// Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     new App();
 });
