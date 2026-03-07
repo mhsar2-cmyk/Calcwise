@@ -3,6 +3,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/Button';
 import { TrendingUp } from 'lucide-react';
+import MarketTicker from './MarketTicker';
+
 
 export const Navbar = () => {
     return (
@@ -15,9 +17,9 @@ export const Navbar = () => {
                     <span className="text-2xl font-bold tracking-tighter text-white">كالك<span className="text-blue-500">وايز</span></span>
                 </Link>
 
-                <div className="hidden md:flex items-center gap-8">
+                <div className="flex items-center gap-8">
                     <Link href="/#features" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">المميزات</Link>
-                    <Link href="/dashboard" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">المؤشرات</Link>
+                    <Link href="/indicators" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">المؤشرات</Link>
                     <Link href="/#pricing" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">الأسعار</Link>
                     <Link href="/dashboard" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">لوحة التحكم</Link>
                 </div>
@@ -32,7 +34,11 @@ export const Navbar = () => {
                 </div>
             </div>
 
+            <div className="border-t border-white/5 h-11 flex items-center bg-black/20">
+                <MarketTicker />
+            </div>
         </nav>
+
     );
 };
 

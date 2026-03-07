@@ -11,22 +11,31 @@ import {
     ArrowUpRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { AddTradeModal } from '@/components/dashboard/AddTradeModal';
 
 export default function JournalPage() {
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+
     return (
-        <main className="min-h-screen bg-slate-950 pt-20 text-right">
+        <main className="min-h-screen bg-slate-950 pt-32 text-right">
             <Navbar />
+
+            <AddTradeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
             <div className="max-w-7xl mx-auto px-4 py-12">
                 <div className="flex items-center justify-between mb-12">
                     <div>
-                        <h1 className="text-4xl font-bold text-white mb-2">سجل الصفقات</h1>
-                        <p className="text-slate-400 text-lg italic">"لا يمكنك إدارة ما لا تقيسه."</p>
+                        <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">سجل الصفقات الذكي</h1>
+                        <p className="text-slate-400 text-lg">"لا يمكنك إدارة ما لا تقيسه."</p>
                     </div>
-                    <Button className="flex items-center gap-2">
+                    <Button
+                        onClick={() => setIsModalOpen(true)}
+                        className="flex items-center gap-2 py-6 px-8 rounded-2xl font-bold shadow-xl shadow-blue-500/20 active:scale-95 transition-transform"
+                    >
                         <Plus size={20} /> تسجيل صفقة جديدة
                     </Button>
                 </div>
+
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
                     {[

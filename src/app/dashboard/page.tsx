@@ -3,6 +3,7 @@ import React from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { PositionSizeCalculator } from '@/components/tools/PositionSizeCalculator';
 import { MarketBiasAI } from '@/components/dashboard/MarketBiasAI';
+import { CurrencyStrength } from '@/components/dashboard/CurrencyStrength';
 import {
     BarChart3,
     Activity,
@@ -113,8 +114,10 @@ export default function Dashboard() {
 
                         {/* Side Tools */}
                         <div className="lg:col-span-4 space-y-6">
+                            <CurrencyStrength />
                             <PositionSizeCalculator />
                             <div className="glass p-6 rounded-2xl border border-white/5">
+
                                 <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-widest">تنبيهات نشطة</h3>
                                 <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs flex gap-3">
                                     <Clock size={16} className="shrink-0" />
