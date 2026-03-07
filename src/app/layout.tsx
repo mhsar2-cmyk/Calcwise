@@ -23,13 +23,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CQ0F5LVG3J');
+          `
+        }} />
+      </head>
       <body className={`${cairo.variable} font-sans antialiased`}>
-        <GoogleAnalytics ga_id="G-CQ0F5LVG3J" />
         <AuthProvider>
           {children}
         </AuthProvider>
       </body>
     </html>
+
   );
 }
 
