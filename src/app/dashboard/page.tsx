@@ -38,11 +38,12 @@ export default function Dashboard() {
                 <aside className="w-64 hidden xl:block flex-shrink-0">
                     <div className="space-y-1">
                         <SidebarLink icon={LayoutDashboard} label="نظرة عامة" href="/dashboard" active />
-                        <SidebarLink icon={Activity} label="ماسحات السوق" href="/dashboard" />
-                        <SidebarLink icon={Search} label="محلل التحيز الذكي" href="/dashboard" />
-                        <SidebarLink icon={BarChart3} label="مركز المؤشرات" href="/dashboard" />
+                        <SidebarLink icon={Activity} label="ماسحات السوق" href="/scanners" />
+                        <SidebarLink icon={Search} label="محلل التحيز الذكي" href="/analysis" />
+                        <SidebarLink icon={BarChart3} label="مركز المؤشرات" href="/indicators" />
                         <SidebarLink icon={BookOpen} label="سجل الصفقات" href="/journal" />
                         <SidebarLink icon={Settings} label="الإعدادات" href="/dashboard" />
+
                     </div>
 
 
