@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalcWise — Calculate Smart. Trade Wise.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2eb;
+    --bg2: #edeae2;
+    --ink: #0f0f0d;
+    --ink2: #2a2a26;
+    --muted: #7a7a72;
+    --border: #d4d0c4;
+    --gold: #c8962a;
+    --gold2: #f0b93a;
+    --green: #1a6b3c;
+    --green-light: #e8f5ee;
+    --red: #8b1a1a;
+    --card: #ffffff;
+    --shadow: rgba(15,15,13,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Instrument Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Subtle paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 3.5rem;
+    background: rgba(245,242,235,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.6rem 1.5rem;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: #fff; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    align-items: center;
+    gap: 4rem;
+    padding: 9rem 3.5rem 5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(200,150,42,0.3);
+    border-radius: 2px;
+    background: rgba(200,150,42,0.06);
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold2);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -2px;
+    margin-bottom: 1.8rem;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+    position: relative;
+  }
+
+  h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold2);
+    opacity: 0.4;
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .btn-gold {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0.9rem 2.2rem;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.25s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-gold:hover { background: var(--gold2); box-shadow: 0 8px 24px rgba(200,150,42,0.3); transform: translateY(-1px); }
+
+  .btn-outline {
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.9rem 1.8rem;
+    background: transparent;
+    color: var(--ink2);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+
+  .trust-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .trust-item span { color: var(--green); font-weight: 600; }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px var(--shadow), 0 4px 16px var(--shadow);
+    animation: floatCard 6s ease-in-out infinite;
+  }
+
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .card-header {
+    background: var(--ink);
+    padding: 1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .card-dots { display: flex; gap: 0.4rem; }
+  .cdot { width: 8px; height: 8px; border-radius: 50%; }
+  .cdot.r { background: #ff5f57; }
+  .cdot.y { background: #febc2e; }
+  .cdot.g { background: #28c840; }
+
+  .card-body { padding: 1.5rem; }
+
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--bg2);
+    font-size: 0.88rem;
+  }
+
+  .calc-row:last-child { border-bottom: none; }
+
+  .calc-label { color: var(--muted); font-size: 0.82rem; }
+  .calc-val { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.9rem; }
+  .calc-val.pos { color: var(--green); }
+  .calc-val.neg { color: var(--red); }
+  .calc-val.gold { color: var(--gold); }
+
+  .calc-result {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--green-light);
+    border: 1px solid rgba(26,107,60,0.2);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .result-label {
+    font-size: 0.78rem;
+    color: var(--green);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .result-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+
+  .signal-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sig-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .sig-tag.bull { background: var(--green-light); color: var(--green); border: 1px solid rgba(26,107,60,0.2); }
+  .sig-tag.bear { background: rgba(139,26,26,0.08); color: var(--red); border: 1px solid rgba(139,26,26,0.2); }
+  .sig-tag.neut { background: rgba(200,150,42,0.08); color: var(--gold); border: 1px solid rgba(200,150,42,0.2); }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    position: relative;
+    z-index: 1;
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    padding: 0.9rem 0;
+  }
+
+  .marquee-inner {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 25s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+  }
+
+  .marquee-item .sym { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .marquee-item .up { color: #4ade80; }
+  .marquee-item .dn { color: #f87171; }
+
+  /* SECTION COMMON */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 3.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    max-width: 650px;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* TOOLS */
+  .tools-section {
+    background: var(--bg);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .tool-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 32px rgba(200,150,42,0.12);
+    transform: translateY(-2px);
+  }
+
+  .tool-card:hover::before { transform: scaleX(1); }
+
+  .tool-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--border);
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .tool-icon-wrap {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+  }
+
+  .tool-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.3px;
+  }
+
+  .tool-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+
+  .tool-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .tag-calc { background: rgba(200,150,42,0.1); color: var(--gold); border: 1px solid rgba(200,150,42,0.25); }
+  .tag-ai { background: rgba(26,107,60,0.1); color: var(--green); border: 1px solid rgba(26,107,60,0.2); }
+  .tag-scan { background: rgba(139,26,26,0.1); color: var(--red); border: 1px solid rgba(139,26,26,0.2); }
+  .tag-live { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); }
+
+  /* INDICATORS SECTION */
+  .indicators-wrap {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 6rem 3.5rem;
+  }
+
+  .indicators-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ind-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold2);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .ind-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 3rem;
+  }
+
+  .ind-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .ind-card {
+    background: #131310;
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .ind-card:hover { background: #1a1a16; }
+
+  .ind-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .ind-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .ind-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+
+  .ind-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 1.5px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .ib-pro { background: rgba(200,150,42,0.15); color: var(--gold2); border: 1px solid rgba(200,150,42,0.3); }
+  .ib-elite { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); }
+  .ib-basic { background: rgba(26,107,60,0.2); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+
+  .ind-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .ind-feat {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* PRICING */
+  .pricing-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .plan {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .plan:hover { border-color: var(--gold); box-shadow: 0 12px 40px rgba(200,150,42,0.1); }
+
+  .plan.featured {
+    border-color: var(--gold);
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 20px 60px rgba(15,15,13,0.2);
+  }
+
+  .plan-crown {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #fff;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+  }
+
+  .plan-tier {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .plan.featured .plan-tier { color: rgba(255,255,255,0.45); }
+
+  .plan-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .plan.featured .plan-price { color: #fff; }
+
+  .plan-price sup {
+    font-size: 1.5rem;
+    vertical-align: top;
+    margin-top: 0.5rem;
+    display: inline-block;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .plan.featured .plan-price sup { color: rgba(255,255,255,0.5); }
+
+  .plan-period {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .plan.featured .plan-period { color: rgba(255,255,255,0.45); }
+
+  .plan-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .plan.featured .plan-divider { background: rgba(255,255,255,0.1); }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .plan-features li {
+    font-size: 0.88rem;
+    color: var(--ink2);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .plan.featured .plan-features li { color: rgba(255,255,255,0.75); }
+
+  .plan-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .plan.featured .plan-features li::before { color: var(--gold2); }
+
+  .plan-features li.off { opacity: 0.3; }
+  .plan-features li.off::before { content: '—'; color: var(--border); }
+
+  .plan-btn-dark {
+    width: 100%;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.9rem;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .plan-btn-dark:hover { background: var(--gold); }
+
+  .plan-btn-gold {
+    width: 100%;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.9rem;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .plan-btn-gold:hover { background: var(--gold2); box-shadow: 0 8px 24px rgba(200,150,42,0.4); }
+
+  /* AI SECTION */
+  .ai-section {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+
+  .ai-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .chat-window {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px var(--shadow);
+  }
+
+  .chat-top {
+    background: var(--bg2);
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .chat-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  .chat-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .chat-status {
+    font-size: 0.72rem;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .chat-status::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+
+  .chat-messages { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+  .msg {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    animation: msgIn 0.4s ease backwards;
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg:nth-child(2) { animation-delay: 0.3s; }
+  .msg:nth-child(3) { animation-delay: 0.6s; }
+  .msg:nth-child(4) { animation-delay: 0.9s; }
+
+  .msg-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .msg-avatar.user { background: var(--ink); color: #fff; font-family: 'Syne', sans-serif; }
+  .msg-avatar.ai { background: var(--gold); color: #fff; }
+
+  .msg-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    max-width: 85%;
+  }
+
+  .msg.user .msg-bubble {
+    background: var(--ink);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .msg.ai .msg-bubble {
+    background: var(--bg2);
+    color: var(--ink2);
+    border: 1px solid var(--border);
+  }
+
+  .msg.user { flex-direction: row-reverse; }
+
+  .msg-highlight {
+    color: var(--green);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 3rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .footer-logo .gold { color: var(--gold2); }
+
+  footer ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  footer a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--gold2); }
+
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ANIMATIONS */
+  .hero-left > * {
+    animation: fadeUp 0.7s ease backwards;
+  }
+
+  .hero-left > *:nth-child(1) { animation-delay: 0s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.4s; }
+
+  .hero-card { animation: fadeUp 0.7s ease 0.5s backwards, floatCard 6s ease-in-out 1.2s infinite; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1000px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 8rem 1.5rem 3rem; }
+    .hero-card { max-width: 440px; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .ind-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .ai-inner { grid-template-columns: 1fr; }
+    .section { padding: 4rem 1.5rem; }
+    .indicators-wrap { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    footer ul { justify-content: center; }
+  }
+
+  @media (max-width: 640px) {
+    .tools-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 3rem; letter-spacing: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Calc<span style="color:var(--gold)">Wise</span><div class="logo-dot"></div></div>
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#indicators">Indicators</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#ai">AI Assistant</a></li>
+  </ul>
+  <button class="nav-cta">Start Free →</button>
+</nav>
+
+<!-- HERO -->
+<section style="position:relative; z-index:1; background:var(--bg);">
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Trading Intelligence Platform</div>
+    <h1>Calculate<br>Smart.<br><em>Trade Wise.</em></h1>
+    <p class="hero-sub">
+      Professional-grade indicators, AI-powered analysis, and precision risk tools — everything a serious trader needs in one platform.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-gold">Start Free Trial</button>
+      <button class="btn-outline">Watch 2-Min Demo</button>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item">✓ <span>No credit card required</span></div>
+      <div class="trust-item">✓ <span>14-day free trial</span></div>
+      <div class="trust-item">✓ <span>Cancel anytime</span></div>
+    </div>
+  </div>
+
+  <!-- HERO DASHBOARD CARD -->
+  <div class="hero-card">
+    <div class="card-header">
+      <div class="card-title">// CalcWise Dashboard</div>
+      <div class="card-dots">
+        <div class="cdot r"></div>
+        <div class="cdot y"></div>
+        <div class="cdot g"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="calc-row">
+        <span class="calc-label">Account Balance</span>
+        <span class="calc-val gold">$10,000.00</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">Risk per Trade</span>
+        <span class="calc-val">1.5%</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">Entry Price</span>
+        <span class="calc-val">1.08420</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">Stop Loss</span>
+        <span class="calc-val neg">1.07980 (–44 pips)</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">Take Profit</span>
+        <span class="calc-val pos">1.09300 (+88 pips)</span>
+      </div>
+      <div class="calc-result">
+        <div>
+          <div class="result-label">Position Size</div>
+          <div style="font-size:0.72rem; color:var(--green); font-family:'JetBrains Mono',monospace; margin-top:0.2rem;">RR: 2.0 · Risk: $150</div>
+        </div>
+        <div class="result-val">3.41 lots</div>
+      </div>
+      <div style="margin-top:1.2rem;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.6rem;">Live Signals · EUR/USD</div>
+        <div class="signal-row">
+          <span class="sig-tag bull">↑ 4H Bullish</span>
+          <span class="sig-tag bull">↑ BOS Detected</span>
+          <span class="sig-tag neut">⚡ FVG Active</span>
+          <span class="sig-tag bear">↓ 1H Caution</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <div class="marquee-item"><span class="sym">EUR/USD</span> 1.0842 <span class="up">▲ +0.31%</span></div>
+    <div class="marquee-item"><span class="sym">BTC/USD</span> 84,210 <span class="up">▲ +2.47%</span></div>
+    <div class="marquee-item"><span class="sym">GOLD</span> 2,914.5 <span class="dn">▼ -0.18%</span></div>
+    <div class="marquee-item"><span class="sym">GBP/USD</span> 1.2641 <span class="up">▲ +0.14%</span></div>
+    <div class="marquee-item"><span class="sym">SPX500</span> 5,741 <span class="up">▲ +1.02%</span></div>
+    <div class="marquee-item"><span class="sym">USD/JPY</span> 148.32 <span class="dn">▼ -0.09%</span></div>
+    <div class="marquee-item"><span class="sym">ETH/USD</span> 3,420 <span class="up">▲ +3.12%</span></div>
+    <div class="marquee-item"><span class="sym">OIL/USD</span> 78.40 <span class="dn">▼ -0.55%</span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-item"><span class="sym">EUR/USD</span> 1.0842 <span class="up">▲ +0.31%</span></div>
+    <div class="marquee-item"><span class="sym">BTC/USD</span> 84,210 <span class="up">▲ +2.47%</span></div>
+    <div class="marquee-item"><span class="sym">GOLD</span> 2,914.5 <span class="dn">▼ -0.18%</span></div>
+    <div class="marquee-item"><span class="sym">GBP/USD</span> 1.2641 <span class="up">▲ +0.14%</span></div>
+    <div class="marquee-item"><span class="sym">SPX500</span> 5,741 <span class="up">▲ +1.02%</span></div>
+    <div class="marquee-item"><span class="sym">USD/JPY</span> 148.32 <span class="dn">▼ -0.09%</span></div>
+    <div class="marquee-item"><span class="sym">ETH/USD</span> 3,420 <span class="up">▲ +3.12%</span></div>
+    <div class="marquee-item"><span class="sym">OIL/USD</span> 78.40 <span class="dn">▼ -0.55%</span></div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section class="section tools-section" id="tools">
+  <div class="section-eyebrow">// Tools Suite</div>
+  <h2 class="section-title">Every Tool a Serious Trader Needs</h2>
+  <p class="section-sub">From precise position sizing to AI-powered market bias — CalcWise gives you the edge traders pay thousands for elsewhere.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-num">01</div>
+      <div class="tool-icon-wrap">⚖️</div>
+      <div class="tool-name">Position Size Calculator</div>
+      <p class="tool-desc">Auto-calculate optimal lot size based on account balance, risk %, entry and stop loss. Never over-leverage again.</p>
+      <span class="tool-tag tag-calc">Calculator</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">02</div>
+      <div class="tool-icon-wrap">🔭</div>
+      <div class="tool-name">Trade Setup Scanner</div>
+      <p class="tool-desc">Scan 200+ pairs for breakouts, pullbacks, liquidity sweeps, and S/R flips — with probability scores and entry zones.</p>
+      <span class="tool-tag tag-scan">Scanner</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">03</div>
+      <div class="tool-icon-wrap">🤖</div>
+      <div class="tool-name">AI Market Bias</div>
+      <p class="tool-desc">Daily bullish/bearish/neutral bias for any asset, powered by trend analysis, momentum, and key level detection.</p>
+      <span class="tool-tag tag-ai">AI Powered</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">04</div>
+      <div class="tool-icon-wrap">📓</div>
+      <div class="tool-name">Trade Journal AI</div>
+      <p class="tool-desc">Log trades, upload screenshots. AI analyzes your patterns, emotional cycles, and strategy performance automatically.</p>
+      <span class="tool-tag tag-ai">AI Powered</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">05</div>
+      <div class="tool-icon-wrap">🔥</div>
+      <div class="tool-name">Liquidity Heatmap</div>
+      <p class="tool-desc">Visualize stop loss clusters, liquidity pools, and high volume nodes. See where institutional money is positioned.</p>
+      <span class="tool-tag tag-live">Live</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">06</div>
+      <div class="tool-icon-wrap">📊</div>
+      <div class="tool-name">Strategy Backtester</div>
+      <p class="tool-desc">Backtest any strategy on historical data. Get win rate, profit factor, max drawdown, and full equity curve.</p>
+      <span class="tool-tag tag-calc">Backtest</span>
+    </div>
+  </div>
+</section>
+
+<!-- INDICATORS -->
+<div class="indicators-wrap" id="indicators">
+  <div class="indicators-inner">
+    <div class="ind-eyebrow">// TradingView Indicators</div>
+    <h2 class="ind-title">Premium Pine Script Indicators</h2>
+
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-card-top">
+          <div>
+            <div class="ind-name">Liquidity Sweep Detector</div>
+            <div class="ind-desc">Detects stop hunts and liquidity grabs on equal highs/lows. Shows reversal probability with alerts.</div>
+          </div>
+          <span class="ind-badge ib-basic">Basic</span>
+        </div>
+        <div class="ind-features">
+          <span class="ind-feat">Equal H/L Detection</span>
+          <span class="ind-feat">Sweep Alerts</span>
+          <span class="ind-feat">Reversal Prob %</span>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-top">
+          <div>
+            <div class="ind-name">Smart Money Concepts Toolkit</div>
+            <div class="ind-desc">BOS, CHOCH, Order Blocks, Fair Value Gaps, and Liquidity Pools — all in one indicator.</div>
+          </div>
+          <span class="ind-badge ib-pro">Pro</span>
+        </div>
+        <div class="ind-features">
+          <span class="ind-feat">BOS / CHOCH</span>
+          <span class="ind-feat">Order Blocks</span>
+          <span class="ind-feat">FVG</span>
+          <span class="ind-feat">Liquidity Pools</span>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-top">
+          <div>
+            <div class="ind-name">Multi-Timeframe Trend Engine</div>
+            <div class="ind-desc">5m/15m/1H/4H trend dashboard using EMA 50/200. Alerts when all timeframes align.</div>
+          </div>
+          <span class="ind-badge ib-basic">Basic</span>
+        </div>
+        <div class="ind-features">
+          <span class="ind-feat">4 Timeframes</span>
+          <span class="ind-feat">EMA Alignment</span>
+          <span class="ind-feat">Visual Panel</span>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-top">
+          <div>
+            <div class="ind-name">Volatility Expansion Detector</div>
+            <div class="ind-desc">BB squeeze + ATR expansion + volume spike to catch breakouts before they explode.</div>
+          </div>
+          <span class="ind-badge ib-pro">Pro</span>
+        </div>
+        <div class="ind-features">
+          <span class="ind-feat">BB Squeeze</span>
+          <span class="ind-feat">ATR Expansion</span>
+          <span class="ind-feat">Volume Confirm</span>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-top">
+          <div>
+            <div class="ind-name">AI Probability Candle</div>
+            <div class="ind-desc">Analyzes 500 historical candles to calculate next-candle bullish/bearish probability in real time.</div>
+          </div>
+          <span class="ind-badge ib-elite">Elite</span>
+        </div>
+        <div class="ind-features">
+          <span class="ind-feat">Historical ML</span>
+          <span class="ind-feat">Probability %</span>
+          <span class="ind-feat">Real-time</span>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-top">
+          <div>
+            <div class="ind-name">Session Volume Profile</div>
+            <div class="ind-desc">London, NY, and Tokyo session volume profiles. Identify value areas and POCs per session.</div>
+          </div>
+          <span class="ind-badge ib-pro">Pro</span>
+        </div>
+        <div class="ind-features">
+          <span class="ind-feat">3 Sessions</span>
+          <span class="ind-feat">VAH / VAL / POC</span>
+          <span class="ind-feat">Session Bias</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI ASSISTANT -->
+<section class="section ai-section" id="ai">
+  <div class="ai-inner">
+    <div>
+      <div class="section-eyebrow">// AI Trading Assistant</div>
+      <h2 class="section-title">Chat With Your Market Data</h2>
+      <p class="section-sub">Ask CalcWise AI anything about any market. It analyzes trend, support/resistance, volatility, and momentum — then gives you structured, actionable answers.</p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem;">
+        <li style="display:flex; gap:0.8rem; align-items:flex-start; font-size:0.9rem; color:var(--ink2);">
+          <span style="color:var(--gold); font-weight:700; flex-shrink:0;">→</span>
+          <span>"Is EURUSD bullish today?" — Get bias with key levels and reasoning</span>
+        </li>
+        <li style="display:flex; gap:0.8rem; align-items:flex-start; font-size:0.9rem; color:var(--ink2);">
+          <span style="color:var(--gold); font-weight:700; flex-shrink:0;">→</span>
+          <span>"Review my last 20 trades" — AI spots patterns you miss</span>
+        </li>
+        <li style="display:flex; gap:0.8rem; align-items:flex-start; font-size:0.9rem; color:var(--ink2);">
+          <span style="color:var(--gold); font-weight:700; flex-shrink:0;">→</span>
+          <span>"Is this a valid breakout?" — Instant confirmation with probability score</span>
+        </li>
+      </ul>
+      <button class="btn-gold">Try AI Assistant Free</button>
+    </div>
+
+    <div class="chat-window">
+      <div class="chat-top">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div class="chat-name">CalcWise AI</div>
+          <div class="chat-status">Online · Analyzing markets</div>
+        </div>
+      </div>
+      <div class="chat-messages">
+        <div class="msg user">
+          <div class="msg-avatar user">Y</div>
+          <div class="msg-bubble">Is EURUSD bullish today?</div>
+        </div>
+        <div class="msg ai">
+          <div class="msg-avatar ai">✦</div>
+          <div class="msg-bubble">
+            <strong>Bias: Bullish ↑</strong><br><br>
+            4H structure is bullish — price broke the last swing high at <span class="msg-highlight">1.0812</span> and held above EMA 50. A Fair Value Gap is open between <span class="msg-highlight">1.0798–1.0810</span>, which is likely the next pullback target for long entries.<br><br>
+            Key resistance above: <span class="msg-highlight">1.0865</span> and <span class="msg-highlight">1.0910</span>.
+          </div>
+        </div>
+        <div class="msg user">
+          <div class="msg-avatar user">Y</div>
+          <div class="msg-bubble">What's my suggested position size for a 1% risk?</div>
+        </div>
+        <div class="msg ai">
+          <div class="msg-avatar ai">✦</div>
+          <div class="msg-bubble">
+            With a $10,000 account, 1% risk = <span class="msg-highlight">$100</span>.<br>
+            Entry: 1.0840 · SL: 1.0798 (42 pips)<br>
+            Suggested size: <span class="msg-highlight">2.38 lots</span> · RR to 1.0910 = <span class="msg-highlight">1:1.67</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="section-eyebrow">// Subscription Plans</div>
+  <h2 class="section-title">Simple, Transparent Pricing</h2>
+  <p class="section-sub">Start free for 14 days. No credit card needed. Upgrade only when you're ready.</p>
+
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-tier">Basic</div>
+      <div class="plan-price"><sup>$</sup>19</div>
+      <div class="plan-period">per month · billed monthly</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Position Size Calculator</li>
+        <li>3 Core Indicators</li>
+        <li>Trade Journal (50 trades)</li>
+        <li>Email Alerts</li>
+        <li>Multi-TF Trend Engine</li>
+        <li class="off">AI Trading Assistant</li>
+        <li class="off">Setup Scanner</li>
+        <li class="off">Strategy Backtester</li>
+      </ul>
+      <button class="plan-btn-dark">Get Started Free</button>
+    </div>
+
+    <div class="plan featured">
+      <div class="plan-crown">Most Popular</div>
+      <div class="plan-tier">Pro</div>
+      <div class="plan-price"><sup>$</sup>49</div>
+      <div class="plan-period">per month · billed monthly</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Everything in Basic</li>
+        <li>All 12 Pro Indicators</li>
+        <li>AI Trading Assistant</li>
+        <li>Setup Scanner (200+ pairs)</li>
+        <li>Unlimited Trade Journal</li>
+        <li>Telegram / Discord Alerts</li>
+        <li>AI Market Bias Daily</li>
+        <li class="off">Strategy Backtester</li>
+      </ul>
+      <button class="plan-btn-gold">Start Pro Free Trial</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tier">Elite</div>
+      <div class="plan-price"><sup>$</sup>99</div>
+      <div class="plan-period">per month · billed monthly</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Everything in Pro</li>
+        <li>All 20+ Elite Indicators</li>
+        <li>Strategy Backtester</li>
+        <li>AI Probability Candle</li>
+        <li>Liquidity Heatmap</li>
+        <li>Private Discord Access</li>
+        <li>Custom Indicator Requests</li>
+        <li>Priority Support</li>
+      </ul>
+      <button class="plan-btn-dark">Go Elite</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Calc<span class="gold">Wise</span></div>
+  <ul>
+    <li><a href="#">Tools</a></li>
+    <li><a href="#">Indicators</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Discord</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 CalcWise. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
