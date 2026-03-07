@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 };
 
 import { AuthProvider } from "@/components/providers/SessionProvider";
-import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 export default function RootLayout({
   children,
@@ -26,15 +25,16 @@ export default function RootLayout({
       <head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-CQ0F5LVG3J');
-          `
-        }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-CQ0F5LVG3J');
+            `,
+          }}
+        />
       </head>
       <body className={`${cairo.variable} font-sans antialiased`}>
         <AuthProvider>
@@ -42,6 +42,7 @@ export default function RootLayout({
         </AuthProvider>
       </body>
     </html>
+
 
   );
 }
