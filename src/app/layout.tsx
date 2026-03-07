@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 import { AuthProvider } from "@/components/providers/SessionProvider";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`${cairo.variable} font-sans antialiased`}>
+        <GoogleAnalytics ga_id="G-CQ0F5LVG3J" />
         <AuthProvider>
           {children}
         </AuthProvider>
@@ -30,5 +32,6 @@ export default function RootLayout({
     </html>
   );
 }
+
 
 
