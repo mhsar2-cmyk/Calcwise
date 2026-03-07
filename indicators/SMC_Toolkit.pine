@@ -1,0 +1,56 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Calcwise
+
+//@version=5
+indicator("Calcwise - Smart Money Concepts Toolkit", overlay=true, max_boxes_count=500, max_lines_count=500)
+
+// Settings
+show_bos = input.bool(true, "Show BOS/CHOCH")
+show_ob = input.bool(true, "Show Order Blocks")
+show_fvg = input.bool(true, "Show Fair Value Gaps")
+ob_lookback = input.int(50, "OB Lookback")
+
+// Colors
+color_bos = input.color(color.gray, "BOS Color")
+color_choch = input.color(color.white, "CHOCH Color")
+color_ob_bull = input.color(color.new(color.blue, 80), "Bullish OB Color")
+color_ob_bear = input.color(color.new(color.red, 80), "Bearish OB Color")
+
+// Logic for BOS/CHOCH (Simplified)
+var float last_high = high
+var float last_low = low
+var bool is_bullish = true
+
+if high > last_high
+    if show_bos
+        line.new(bar_index - 1, last_high, bar_index, last_high, color=is_bullish ? color_bos : color_choch, width=2)
+        label.new(bar_index, last_high, is_bullish ? "BOS" : "CHOCH", color=color.new(color.black, 100), textcolor=is_bullish ? color_bos : color_choch, style=label.style_label_down)
+    last_high := high
+    is_bullish := true
+
+if low < last_low
+    if show_bos
+        line.new(bar_index - 1, last_low, bar_index, last_low, color=!is_bullish ? color_bos : color_choch, width=2)
+        label.new(bar_index, last_low, !is_bullish ? "BOS" : "CHOCH", color=color.new(color.black, 100), textcolor=!is_bullish ? color_bos : color_choch, style=label.style_label_up)
+    last_low := low
+    is_bullish := false
+
+// Fair Value Gaps
+if show_fvg
+    if high[2] < low
+        box.new(bar_index-2, high[2], bar_index, low, bgcolor=color.new(color.blue, 90), border_color=na)
+    if low[2] > high
+        box.new(bar_index-2, low[2], bar_index, high, bgcolor=color.new(color.red, 90), border_color=na)
+
+// Order Blocks (Simplified)
+find_ob() =>
+    if close > open and close[1] < open[1] and high > high[1] // Potential Bullish OB
+        box.new(bar_index-1, low[1], bar_index+10, high[1], bgcolor=color_ob_bull)
+    if close < open and close[1] > open[1] and low < low[1] // Potential Bearish OB
+        box.new(bar_index-1, high[1], bar_index+10, low[1], bgcolor=color_ob_bear)
+
+if show_ob and (bar_index % 5 == 0) // Limit count
+    find_ob()
+
+alertcondition(high > last_high, "BOS/CHOCH Bullish", "Market structure broken bullish")
+alertcondition(low < last_low, "BOS/CHOCH Bearish", "Market structure broken bearish")

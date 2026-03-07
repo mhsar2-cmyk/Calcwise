@@ -1,0 +1,38 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Calcwise
+
+//@version=5
+indicator("Calcwise - Volatility Expansion Detector", overlay=true)
+
+// BB Settings
+bb_len = input.int(20, "BB Length")
+bb_mult = input.float(2.0, "BB Mult")
+// ATR Settings
+atr_len = input.int(14, "ATR Length")
+
+// BB Squeeze
+[bb_mid, bb_upper, bb_lower] = ta.bb(close, bb_len, bb_mult)
+bb_width = (bb_upper - bb_lower) / bb_mid
+
+// ATR Expansion
+atr = ta.atr(atr_len)
+atr_avg = ta.sma(atr, 20)
+atr_expansion = atr > atr_avg * 1.2
+
+// Volume Spike
+vol_avg = ta.sma(volume, 20)
+vol_spike = volume > vol_avg * 1.5
+
+// Squeeze Detection
+is_squeeze = bb_width < ta.sma(bb_width, 20)
+
+// Breakout Signal
+breakout_up = close > bb_upper and atr_expansion and vol_spike
+breakout_down = close < bb_lower and atr_expansion and vol_spike
+
+// Visuals
+bgcolor(is_squeeze ? color.new(color.gray, 90) : na)
+plotshape(breakout_up, "Bullish Breakout", shape.labelup, position.belowbar, color.green, text="EXPANSION", textcolor=color.white)
+plotshape(breakout_down, "Bearish Breakout", shape.labeldown, position.abovebar, color.red, text="EXPANSION", textcolor=color.white)
+
+alertcondition(breakout_up or breakout_down, "Volatility Expansion", "Significant volatility expansion detected")
