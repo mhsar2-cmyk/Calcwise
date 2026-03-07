@@ -61,8 +61,8 @@ export const MarketBiasAI = () => {
             <div className="mt-6 p-3 bg-white/5 rounded-lg border border-white/5 flex gap-3 items-start">
                 <Info size={16} className="text-blue-400 mt-0.5 shrink-0" />
                 <p className="text-[11px] text-slate-500 leading-relaxed italic">
-                    "يظهر مؤشر الدولار (DXY) علامات إنهاك على الإطار الزمني H4.
-                    توقع استمرار الصعود على الأزواج الرئيسية حتى افتتاح بورصة نيويورك."
+                    &quot;يظهر مؤشر الدولار (DXY) علامات إنهاك على الإطار الزمني H4.
+                    توقع استمرار الصعود على الأزواج الرئيسية حتى افتتاح بورصة نيويورك.&quot;
                 </p>
             </div>
         </div>

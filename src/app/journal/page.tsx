@@ -26,7 +26,7 @@ export default function JournalPage() {
                 <div className="flex items-center justify-between mb-12">
                     <div>
                         <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">سجل الصفقات الذكي</h1>
-                        <p className="text-slate-400 text-lg">"لا يمكنك إدارة ما لا تقيسه."</p>
+                        <p className="text-slate-400 text-lg">&quot;لا يمكنك إدارة ما لا تقيسه.&quot;</p>
                     </div>
                     <Button
                         onClick={() => setIsModalOpen(true)}

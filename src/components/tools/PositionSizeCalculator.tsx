@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Calculator, AlertCircle, Info } from 'lucide-react';
 
 export const PositionSizeCalculator = () => {
@@ -7,19 +7,9 @@ export const PositionSizeCalculator = () => {
     const [riskPercent, setRiskPercent] = useState<number>(1);
     const [entry, setEntry] = useState<number>(1.0850);
     const [stopLoss, setStopLoss] = useState<number>(1.0800);
-    const [positionSize, setPositionSize] = useState<number>(0);
-    const [riskAmount, setRiskAmount] = useState<number>(0);
-
-    useEffect(() => {
-        const riskAmt = balance * (riskPercent / 100);
-        const pips = Math.abs(entry - stopLoss);
-
-        if (pips > 0) {
-            const size = riskAmt / pips;
-            setPositionSize(Math.round(size));
-            setRiskAmount(riskAmt);
-        }
-    }, [balance, riskPercent, entry, stopLoss]);
+    const riskAmount = balance * (riskPercent / 100);
+    const pips = Math.abs(entry - stopLoss);
+    const positionSize = pips > 0 ? Math.round(riskAmount / pips) : 0;
 
     return (
         <div className="glass p-6 rounded-2xl border border-white/5 text-right">
