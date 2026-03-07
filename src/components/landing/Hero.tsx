@@ -63,7 +63,7 @@ export const Hero = () => {
 
                 {/* Mockup Preview */}
                 <motion.div
-                    className="mt-20 relative px-4"
+                    className="mt-20 relative px-4 animate-float"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
