@@ -106,6 +106,9 @@ const translations = {
     "support-options": "Options",
     "support-gold": "Gold",
     "all-products-btn": "View All Products",
+    // Trade Tracker
+    "trade-tracker-title": "Trade Tracker Indicator",
+    "trade-tracker-desc": "Monitors all hidden trades (market price) not recorded in the order book. Identify accumulation and distribution zones, liquidity inflow and outflow, helping you determine the professional direction of any trade.",
     // Footer
     "footer-brand": "Premium AI solutions for modern traders world-wide.",
     "footer-platforms": "Platforms",
@@ -217,6 +220,9 @@ const translations = {
     "support-options": "الخيارات",
     "support-gold": "الذهب",
     "all-products-btn": "عرض جميع المنتجات",
+    // Trade Tracker
+    "trade-tracker-title": "مؤشر راصد الصفقات",
+    "trade-tracker-desc": "يرصد جميع الصفقات الخفية ( سعر السوق ) والتي لا تسجل في الاوردر بوك ومن خلاله تستطيع معرفة اماكن التجميع والتصريف دخول السيولة وخروجها مما يساعدك على معرفة الاتجاة الصحيح للصفقة بشكل احترافي.",
     // Footer
     "footer-brand": "حلول ذكاء اصطناعي متميزة للمتداولين العصريين حول العالم.",
     "footer-platforms": "المنصات",

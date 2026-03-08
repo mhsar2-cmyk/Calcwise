@@ -457,6 +457,53 @@
 }
 
 /* =========================================
+   Trade Tracker
+   ========================================= */
+.trade-tracker-section {
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+    position: relative;
+    overflow: hidden;
+}
+
+.tracker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.tracker-visual {
+    position: relative;
+}
+
+.tracker-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.tracker-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.7;
+}
+
+.tracker-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.tracker-features .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+/* =========================================
    Platform Pages Specific
    ========================================= */
 .platform-page {
@@ -586,6 +633,7 @@
 @media (max-width: 992px) {
 
     .vip-grid,
+    .tracker-grid,
     .platform-grid,
     .analysis-demo-grid {
         grid-template-columns: 1fr;
