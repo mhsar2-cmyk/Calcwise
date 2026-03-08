@@ -106,6 +106,7 @@ const translations = {
     "support-options": "Options",
     "support-gold": "Gold",
     "all-products-btn": "View All Products",
+    "testimonials-title": "What Our Traders Say",
     // Trade Tracker
     "trade-tracker-title": "Trade Tracker Indicator",
     "trade-tracker-desc": "Monitors all hidden trades (market price) not recorded in the order book. Identify accumulation and distribution zones, liquidity inflow and outflow, helping you determine the professional direction of any trade.",
@@ -220,6 +221,7 @@ const translations = {
     "support-options": "الخيارات",
     "support-gold": "الذهب",
     "all-products-btn": "عرض جميع المنتجات",
+    "testimonials-title": "ماذا يقول متداولونا",
     // Trade Tracker
     "trade-tracker-title": "مؤشر راصد الصفقات",
     "trade-tracker-desc": "يرصد جميع الصفقات الخفية ( سعر السوق ) والتي لا تسجل في الاوردر بوك ومن خلاله تستطيع معرفة اماكن التجميع والتصريف دخول السيولة وخروجها مما يساعدك على معرفة الاتجاة الصحيح للصفقة بشكل احترافي.",
@@ -243,6 +245,46 @@ class App {
     this.applyTheme(this.currentTheme);
     this.applyLanguage(this.currentLang);
     this.setupDropdowns();
+    this.setupScrollReveal();
+    this.setupBackToTop();
+  }
+
+  setupBackToTop() {
+    const backBtn = document.getElementById('back-to-top');
+    if (!backBtn) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backBtn.classList.add('visible');
+      } else {
+        backBtn.classList.remove('visible');
+      }
+    });
+
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  setupScrollReveal() {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
   }
 
   setupEventListeners() {

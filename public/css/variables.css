@@ -20,7 +20,15 @@
   --card-padding: var(--spacing-lg);
 
   --transition-fast: 0.2s ease;
+  --transition-slow: 0.5s ease;
   --border-radius: 12px;
+  --border-radius-lg: 24px;
+
+  /* Premium Effects */
+  --glow-blue: 0 0 20px rgba(61, 110, 255, 0.4);
+  --glow-gold: 0 0 20px rgba(240, 185, 11, 0.4);
+  --glass-bg: rgba(22, 24, 27, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Dark Theme (Default) */

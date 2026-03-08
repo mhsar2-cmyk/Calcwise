@@ -85,9 +85,9 @@
 
     <main>
       <!-- Hero -->
-      <section class="hero-section">
+      <section class="hero-section" data-reveal>
         <div class="container">
-          <div class="hero-badge badge badge-cyan" data-i18n="hero-accuracy">
+          <div class="hero-badge badge badge-cyan animate-pulse" data-i18n="hero-accuracy">
             Up to 99% accuracy from AI data analysis
           </div>
           <h1 class="hero-title" data-i18n="hero-title">Best AI Trading Bot Indicators 2026</h1>
@@ -143,7 +143,7 @@
       </section>
 
       <!-- VIP Section -->
-      <section class="section vip-section" id="vip">
+      <section class="section vip-section" id="vip" data-reveal>
         <div class="container">
           <div class="vip-grid">
             <div class="vip-info">
@@ -172,19 +172,19 @@
               <a href="#products" class="btn-primary" data-i18n="btn-get-access">Get Access Now</a>
             </div>
             <div class="vip-visual">
-              <img src="images/calcwise_vip_mockup.png" alt="VIP Platform" class="mockup-img">
+              <img src="images/calcwise_vip_mockup.png" alt="VIP Platform" class="mockup-img animate-float">
             </div>
           </div>
         </div>
       </section>
 
       <!-- Trade Tracker Section -->
-      <section id="trade-tracker" class="trade-tracker-section section">
+      <section id="trade-tracker" class="trade-tracker-section section" data-reveal>
         <div class="container">
           <div class="tracker-grid">
             <div class="tracker-visual">
               <div class="card">
-                <img src="images/trade_tracker.png" alt="Trade Tracker" class="mockup-img">
+                <img src="images/trade_tracker.png" alt="Trade Tracker" class="mockup-img animate-float">
               </div>
             </div>
             <div class="tracker-content">
@@ -228,10 +228,10 @@
       </section>
 
       <!-- AI Analysis -->
-      <section class="section" id="analysis">
+      <section class="section" id="analysis" data-reveal>
         <div class="container">
           <div class="section-header">
-            <span class="badge badge-cyan" data-i18n="ai-analysis-badge">New Feature</span>
+            <span class="badge badge-cyan animate-pulse" data-i18n="ai-analysis-badge">New Feature</span>
             <h2 data-i18n="ai-analysis-title">Revolutionary AI Chart Analysis</h2>
             <p data-i18n="ai-analysis-desc">Upload a chart screenshot and let our AI provide 22+ professional tech
               analysis points.</p>
@@ -274,8 +274,52 @@
         </div>
       </section>
 
+      <!-- Testimonials -->
+      <section class="section" id="testimonials" data-reveal>
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-gold" data-i18n="trust-quality">Testimonials</span>
+            <h2 data-i18n="testimonials-title">What Our Traders Say</h2>
+          </div>
+          <div class="testimonials-grid">
+            <div class="card card-glass testimonial-card">
+              <div class="testimonial-header">
+                <div class="stars">★★★★★</div>
+              </div>
+              <p class="testimonial-text">"Calcwise AI has completely changed my trading strategy. The accuracy is
+                mind-blowing!"</p>
+              <div class="testimonial-footer">
+                <strong>Ahmed R.</strong>
+                <span>Professional Trader</span>
+              </div>
+            </div>
+            <div class="card card-glass testimonial-card">
+              <div class="testimonial-header">
+                <div class="stars">★★★★★</div>
+              </div>
+              <p class="testimonial-text">"The Trade Tracker is a must-have. No more guessing what the big players are
+                doing."</p>
+              <div class="testimonial-footer">
+                <strong>Sarah J.</strong>
+                <span>Crypto Enthusiast</span>
+              </div>
+            </div>
+            <div class="card card-glass testimonial-card">
+              <div class="testimonial-header">
+                <div class="stars">★★★★★</div>
+              </div>
+              <p class="testimonial-text">"Easy to use and very professional. Best indicator platform out there."</p>
+              <div class="testimonial-footer">
+                <strong>Michael S.</strong>
+                <span>Forex Trader</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Products -->
-      <section class="section" id="products">
+      <section class="section" id="products" data-reveal>
         <div class="container">
           <div class="section-header">
             <h2 data-i18n="section-title-products">Our Products</h2>
@@ -361,6 +405,11 @@
         <p>&copy; 2026 Calcwise AI. All rights reserved.</p>
       </div>
     </footer>
+    <button id="back-to-top" class="btn-icon back-to-top">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
   </div>
 
   <script src="js/app.js" type="module"></script>
