@@ -38,6 +38,42 @@
     transition: var(--transition-fast);
 }
 
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: var(--transition-fast);
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.lang-text {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+[data-theme="light"] .btn-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary,
+.btn-outline {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
 .nav-link:hover,
 .nav-link.active {
     color: var(--accent-blue);

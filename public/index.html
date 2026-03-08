@@ -40,27 +40,48 @@
           <span class="logo-ai">AI</span>
         </div>
         <nav class="nav-links">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#vip" class="nav-link">Calcwise VIP</a>
-          <a href="#rsi-pro" class="nav-link">Calcwise RSI PRO</a>
-          <a href="#analysis" class="nav-link">AI Analysis</a>
+          <a href="index.html" class="nav-link active" data-i18n="nav-home">Home</a>
+          <a href="#about" class="nav-link" data-i18n="nav-about">About</a>
+          <a href="#vip" class="nav-link" data-i18n="nav-vip">Calcwise VIP</a>
+          <a href="#rsi-pro" class="nav-link" data-i18n="nav-rsi">Calcwise RSI PRO</a>
+          <a href="#analysis" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
           <div class="dropdown">
-            <a href="#products" class="nav-link dropdown-toggle">Platforms</a>
+            <a href="#products" class="nav-link dropdown-toggle" data-i18n="nav-platforms">Platforms</a>
             <div class="dropdown-menu">
-              <a href="crypto.html">Crypto Platform</a>
-              <a href="forex.html">Forex & Options</a>
-              <a href="us-market.html">US Market</a>
-              <a href="saudi-market.html">Saudi Market</a>
+              <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
+              <a href="forex.html" data-i18n="nav-forex">Forex & Options</a>
+              <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
+              <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
             </div>
           </div>
-          <a href="#all-products" class="nav-link">All Products</a>
-          <a href="#contact" class="nav-link">Contact</a>
-          <a href="#affiliate" class="nav-link">Affiliate Program</a>
+          <a href="#all-products" class="nav-link" data-i18n="nav-all-products">All Products</a>
+          <a href="#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
+          <a href="#affiliate" class="nav-link" data-i18n="nav-affiliate">Affiliate Program</a>
         </nav>
         <div class="nav-actions">
-          <button class="btn-outline">Login</button>
-          <button class="btn-primary">Register</button>
+          <button id="theme-toggle" class="btn-icon" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" style="display:none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <button id="lang-toggle" class="btn-icon">
+            <span class="lang-text">EN</span>
+          </button>
+          <button class="btn-outline" data-i18n="btn-login">Login</button>
+          <button class="btn-primary" data-i18n="btn-register">Register</button>
         </div>
         <button class="mobile-toggle" id="mobile-toggle">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -76,14 +97,19 @@
       <!-- Hero Section -->
       <section class="hero-section">
         <div class="hero-container">
-          <div class="hero-badge">
+          <div class="hero-badge" data-i18n="hero-accuracy">
             <span class="pulse"></span>
             Up to 99% accuracy from AI data analysis
           </div>
-          <h1 class="hero-title">Best AI Trading Bot Indicators 2026</h1>
+          <h1 class="hero-title" data-i18n="hero-title">Best AI Trading Bot Indicators 2026</h1>
           <p class="hero-subtitle">
-            Supported Markets: <span>US Stocks</span> · <span>Crypto</span> · <span>Forex</span> · <span>Options</span>
-            · <span>Saudi Market</span> · <span>Gold</span>
+            <span data-i18n="hero-markets-label">Supported Markets:</span>
+            <span data-i18n="market-us">US Stocks</span> ·
+            <span data-i18n="market-crypto">Crypto</span> ·
+            <span data-i18n="market-forex">Forex</span> ·
+            <span data-i18n="market-options">Options</span> ·
+            <span data-i18n="market-saudi">Saudi Market</span> ·
+            <span data-i18n="market-gold">Gold</span>
           </p>
 
           <div class="trust-badges">
@@ -91,7 +117,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
-              <span>ISO Certified</span>
+              <span data-i18n="trust-iso">ISO Certified</span>
             </div>
             <div class="trust-badge">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
@@ -100,18 +126,19 @@
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
-              <span>40,000+ Clients</span>
+              <span data-i18n="trust-clients">40,000+ Clients</span>
             </div>
             <div class="trust-badge">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
                 <circle cx="12" cy="8" r="7"></circle>
                 <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
               </svg>
-              <span>Platinum Quality Guarantee</span>
+              <span data-i18n="trust-quality">Platinum Quality Guarantee</span>
             </div>
           </div>
 
-          <a href="#products" class="btn-primary btn-hero-cta animated-cta">Get Products</a>
+          <a href="#products" class="btn-primary btn-hero-cta animated-cta" data-i18n="btn-get-products">Get
+            Products</a>
         </div>
 
         <!-- TradingView Widget -->
@@ -124,17 +151,7 @@
                 {
                   "width": "100%",
                     "height": 400,
-                      "currencies": [
-                        "EUR",
-                        "USD",
-                        "JPY",
-                        "GBP",
-                        "CHF",
-                        "AUD",
-                        "CAD",
-                        "NZD",
-                        "CNY"
-                      ],
+                      "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY"],
                         "isTransparent": true,
                           "colorTheme": "dark",
                             "locale": "en"
@@ -149,9 +166,11 @@
         <!-- AI Chart Analysis Feature Section -->
         <section class="ai-analysis-feature">
           <div class="section-header">
-            <div class="badge-cyan">Real-time AI analysis in seconds — no expert needed.</div>
-            <h2>Revolutionary AI Chart Analysis</h2>
-            <p>Simply upload your chart screenshot, and our neural networks will perform a deep technical audit.</p>
+            <div class="badge-cyan" data-i18n="ai-analysis-badge">Real-time AI analysis in seconds — no expert needed.
+            </div>
+            <h2 data-i18n="ai-analysis-title">Revolutionary AI Chart Analysis</h2>
+            <p data-i18n="ai-analysis-desc">Simply upload your chart screenshot, and our neural networks will perform a
+              deep technical audit.</p>
           </div>
 
           <div class="analysis-demo-grid">
@@ -164,9 +183,9 @@
                   <polyline points="17 8 12 3 7 8"></polyline>
                   <line x1="12" y1="3" x2="12" y2="15"></line>
                 </svg>
-                <h3>Upload Chart Screenshot</h3>
-                <p>Drag and drop or click to browse</p>
-                <span class="upload-hint">Supports: PNG, JPG (Max 5MB)</span>
+                <h3 data-i18n="upload-title">Upload Chart Screenshot</h3>
+                <p data-i18n="upload-desc">Drag and drop or click to browse</p>
+                <span class="upload-hint" data-i18n="upload-hint">Supports: PNG, JPG (Max 5MB)</span>
               </div>
               <div class="analysis-status">
                 <img src="images/ai_chart_analysis.png" alt="AI Analysis Engine" class="engine-preview">
@@ -177,44 +196,46 @@
             <!-- Results Panel -->
             <div class="results-panel card">
               <div class="results-header">
-                <h3>Technical Audit Results <span class="badge-pro">22+ Analysis Points</span></h3>
+                <h3><span data-i18n="results-title">Technical Audit Results</span> <span class="badge-pro"
+                    data-i18n="results-badge">22+ Analysis Points</span></h3>
               </div>
               <div class="results-grid">
                 <div class="result-item glowing">
-                  <label>Trend Direction</label>
-                  <div class="value bullish">Bullish <span>(87% Confidence)</span></div>
+                  <label data-i18n="label-trend">Trend Direction</label>
+                  <div class="value bullish"><span data-i18n="trend-bullish">Bullish</span> <span class="conf-span">(87%
+                      <span data-i18n="label-confidence">Confidence</span>)</span></div>
                 </div>
                 <div class="result-item">
-                  <label>S&R Levels</label>
+                  <label data-i18n="label-sr">S&R Levels</label>
                   <div class="value">S: $64,250 | R: $68,900</div>
                 </div>
                 <div class="result-item glowing">
-                  <label>RSI Divergence</label>
-                  <div class="value positive">Positive Divergence Detected</div>
+                  <label data-i18n="label-rsi-div">RSI Divergence</label>
+                  <div class="value positive" data-i18n="value-rsi-div">Positive Divergence Detected</div>
                 </div>
                 <div class="result-item">
-                  <label>Volume Analysis</label>
-                  <div class="value">Bullish Accumulation (High)</div>
+                  <label data-i18n="label-volume">Volume Analysis</label>
+                  <div class="value" data-i18n="value-volume">Bullish Accumulation (High)</div>
                 </div>
                 <div class="result-item glowing">
-                  <label>Market Momentum Score</label>
+                  <label data-i18n="label-momentum">Market Momentum Score</label>
                   <div class="value score">9.2 / 10</div>
                 </div>
                 <div class="result-item">
-                  <label>Order Block Detection</label>
-                  <div class="value">Institutional Buy Zone @ $63,800</div>
+                  <label data-i18n="label-ob">Order Block Detection</label>
+                  <div class="value" data-i18n="value-ob">Institutional Buy Zone @ $63,800</div>
                 </div>
                 <div class="result-item glowing">
-                  <label>Recommendation</label>
-                  <div class="value buy">STRONG BUY</div>
+                  <label data-i18n="label-recommendation">Recommendation</label>
+                  <div class="value buy" data-i18n="value-buy">STRONG BUY</div>
                 </div>
                 <div class="result-item">
-                  <label>Targets & Stop Loss</label>
+                  <label data-i18n="label-targets">Targets & Stop Loss</label>
                   <div class="value">T1: $72K | T2: $78K | SL: $62K</div>
                 </div>
                 <div class="result-item glowing">
-                  <label>Expected Breakout</label>
-                  <div class="value breakout">Ascending Triangle (Top Zone)</div>
+                  <label data-i18n="label-breakout">Expected Breakout</label>
+                  <div class="value breakout" data-i18n="value-triangle">Ascending Triangle (Top Zone)</div>
                 </div>
               </div>
             </div>
@@ -225,9 +246,10 @@
         <section class="vip-section card">
           <div class="vip-grid">
             <div class="vip-info">
-              <div class="badge">PRO INDICATOR</div>
-              <h2 class="vip-title">Calcwise VIP Indicator</h2>
-              <p class="vip-subtitle">Advanced market intelligence tool designed for professional traders,
+              <div class="badge" data-i18n="vip-badge">PRO INDICATOR</div>
+              <h2 class="vip-title" data-i18n="vip-title">Calcwise VIP Indicator</h2>
+              <p class="vip-subtitle" data-i18n="vip-subtitle">Advanced market intelligence tool designed for
+                professional traders,
                 whales, and institutions.</p>
 
               <ul class="vip-features">
@@ -235,63 +257,66 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Auto support & resistance zones targeting market maker buy/sell areas</span>
+                  <span data-i18n="vip-feature-1">Auto support & resistance zones targeting market maker buy/sell
+                    areas</span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Buy signals <strong class="signal-buy">[BUY CALCWISE]</strong> targeting
-                    market maker accumulation zones</span>
+                  <span><span data-i18n="vip-feature-2-start">Buy signals</span> <strong class="signal-buy">[BUY
+                      CALCWISE]</strong> <span data-i18n="vip-feature-2-end">targeting market maker accumulation
+                      zones</span></span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Sell signals <strong class="signal-sell">[SELL CALCWISE]</strong> targeting
-                    whale & market maker distribution zones</span>
+                  <span><span data-i18n="vip-feature-3-start">Sell signals</span> <strong class="signal-sell">[SELL
+                      CALCWISE]</strong> <span data-i18n="vip-feature-3-end">targeting whale & market maker distribution
+                      zones</span></span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>A dashboard table of 11+ programmed sub-indicators showing live % chart
-                    status</span>
+                  <span data-i18n="vip-feature-4">A dashboard table of 11+ programmed sub-indicators showing live %
+                    chart status</span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Market maker behavior trend lines — auto-detecting buy, bounce, and sell
-                    zones</span>
+                  <span data-i18n="vip-feature-5">Market maker behavior trend lines — auto-detecting buy, bounce, and
+                    sell zones</span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Order Block detector with volume measurement, identifying tops/bottoms and
-                    accumulation/distribution</span>
+                  <span data-i18n="vip-feature-6">Order Block detector with volume measurement, identifying tops/bottoms
+                    and accumulation/distribution</span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>"Magic Deal" zones — strongest reversal points used by whales, funds, and
-                    banks</span>
+                  <span data-i18n="vip-feature-7">"Magic Deal" zones — strongest reversal points used by whales, funds,
+                    and banks</span>
                 </li>
               </ul>
 
               <div class="vip-footer">
-                <h4 class="supports-title">Supports:</h4>
+                <h4 class="supports-title" data-i18n="vip-supports">Supports:</h4>
                 <div class="supports-list">
-                  <span>TradingView</span>
-                  <span>Binance</span>
-                  <span>US Market</span>
-                  <span>Saudi Market (Tadawul)</span>
-                  <span>Crypto</span>
-                  <span>Forex</span>
-                  <span>Options</span>
-                  <span>Gold</span>
+                  <span data-i18n="support-tv">TradingView</span>
+                  <span data-i18n="support-binance">Binance</span>
+                  <span data-i18n="support-us">US Market</span>
+                  <span data-i18n="support-saudi">Saudi Market (Tadawul)</span>
+                  <span data-i18n="support-crypto">Crypto</span>
+                  <span data-i18n="support-forex">Forex</span>
+                  <span data-i18n="support-options">Options</span>
+                  <span data-i18n="support-gold">Gold</span>
                 </div>
               </div>
             </div>
@@ -417,7 +442,7 @@
           </div>
 
           <div class="section-footer">
-            <button class="btn-outline view-all-btn">View All Products</button>
+            <button class="btn-outline view-all-btn" data-i18n="all-products-btn">View All Products</button>
           </div>
         </section>
       </div>

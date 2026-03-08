@@ -37,27 +37,42 @@
                     <span class="logo-ai">AI</span>
                 </div>
                 <nav class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#about" class="nav-link">About</a>
-                    <a href="index.html#vip" class="nav-link">Calcwise VIP</a>
-                    <a href="index.html#rsi-pro" class="nav-link">Calcwise RSI PRO</a>
-                    <a href="index.html#analysis" class="nav-link">AI Analysis</a>
+                    <a href="index.html" class="nav-link" data-i18n="nav-home">Home</a>
+                    <a href="index.html#about" class="nav-link" data-i18n="nav-about">About</a>
+                    <a href="index.html#vip" class="nav-link" data-i18n="nav-vip">Calcwise VIP</a>
+                    <a href="index.html#rsi-pro" class="nav-link" data-i18n="nav-rsi">Calcwise RSI PRO</a>
+                    <a href="index.html#analysis" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
                     <div class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active">Platforms</a>
+                        <a href="#" class="nav-link dropdown-toggle active" data-i18n="nav-platforms">Platforms</a>
                         <div class="dropdown-menu">
-                            <a href="crypto.html">Crypto Platform</a>
-                            <a href="forex.html" class="active">Forex & Options</a>
-                            <a href="us-market.html">US Market</a>
-                            <a href="saudi-market.html">Saudi Market</a>
+                            <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
+                            <a href="forex.html" class="active" data-i18n="nav-forex">Forex & Options</a>
+                            <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
+                            <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
                         </div>
                     </div>
-                    <a href="index.html#all-products" class="nav-link">All Products</a>
-                    <a href="index.html#contact" class="nav-link">Contact</a>
-                    <a href="index.html#affiliate" class="nav-link">Affiliate Program</a>
+                    <a href="index.html#all-products" class="nav-link" data-i18n="nav-all-products">All Products</a>
+                    <a href="index.html#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
+                    <a href="index.html#affiliate" class="nav-link" data-i18n="nav-affiliate">Affiliate Program</a>
                 </nav>
                 <div class="nav-actions">
-                    <button class="btn-outline">Login</button>
-                    <button class="btn-primary">Register</button>
+                    <button id="theme-toggle" class="btn-icon">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" style="display:none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button id="lang-toggle" class="btn-icon">
+                        <span class="lang-text">EN</span>
+                    </button>
+                    <button class="btn-outline" data-i18n="btn-login">Login</button>
+                    <button class="btn-primary" data-i18n="btn-register">Register</button>
                 </div>
             </div>
         </header>
@@ -67,8 +82,9 @@
                 <div class="platform-container">
                     <div class="platform-grid">
                         <div class="platform-content">
-                            <h1>Forex & Options Platform</h1>
-                            <p class="market-coverage">Global Forex Pairs & Real-time Options Contracts</p>
+                            <h1 data-i18n="forex-title">Forex & Options Platform</h1>
+                            <p class="market-coverage" data-i18n="forex-coverage">Global Forex Pairs & Real-time Options
+                                Contracts</p>
 
                             <div class="feature-list-grid">
                                 <div class="feature-item">
@@ -76,74 +92,76 @@
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>AI technical & financial analysis in milliseconds</span>
+                                    <span data-i18n="feature-ai">AI technical & financial analysis in
+                                        milliseconds</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Market depth reading via volume algorithms</span>
+                                    <span data-i18n="feature-depth">Market depth reading via volume algorithms</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Price explosion zone detection</span>
+                                    <span data-i18n="feature-explosion">Price explosion zone detection</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Accumulation/distribution tracking</span>
+                                    <span data-i18n="feature-acc-dist">Accumulation/distribution tracking</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>RSI divergence scanner (Pos & Neg)</span>
+                                    <span data-i18n="feature-rsi">RSI divergence scanner (Pos & Neg)</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Institutional flow monitoring</span>
+                                    <span data-i18n="feature-pump">Institutional flow monitoring</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Professional entry/exit points</span>
+                                    <span data-i18n="feature-entry-exit">Professional entry/exit points</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>AI support & resistance detection</span>
+                                    <span data-i18n="feature-sr">AI support & resistance detection</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Watchlist with favorites sorting</span>
+                                    <span data-i18n="feature-watchlist">Watchlist with favorites sorting</span>
                                 </div>
                                 <div class="feature-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="3">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                    <span>Liquidity alerts & market depth timing</span>
+                                    <span data-i18n="feature-liquidity">Liquidity alerts & market depth timing</span>
                                 </div>
                             </div>
 
-                            <button class="btn-primary btn-platform-cta">Get Access Now</button>
+                            <button class="btn-primary btn-platform-cta" data-i18n="btn-get-access">Get Access
+                                Now</button>
                         </div>
                         <div class="platform-visual">
                             <div class="mockup-box">
@@ -156,6 +174,7 @@
             </section>
         </main>
     </div>
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>

@@ -1,42 +1,197 @@
 const translations = {
   en: {
-    "nav-dashboard": "Dashboard",
-    "nav-market": "Market",
-    "nav-ai": "AI Tools",
-    "nav-subs": "Subscriptions",
+    "nav-home": "Home",
+    "nav-about": "About",
+    "nav-vip": "Calcwise VIP",
+    "nav-rsi": "Calcwise RSI PRO",
+    "nav-analysis": "AI Analysis",
+    "nav-platforms": "Platforms",
+    "nav-crypto": "Crypto Platform",
+    "nav-forex": "Forex & Options",
+    "nav-us-market": "US Market",
+    "nav-saudi": "Saudi Market",
+    "nav-all-products": "All Products",
+    "nav-contact": "Contact",
+    "nav-affiliate": "Affiliate Program",
     "btn-login": "Login",
     "btn-register": "Register",
-    "search-placeholder": "Search Markets (e.g. BTC, TSLA, EUR/USD)",
-    "card-title-ai": "AI Sentiment Analysis",
-    "card-title-strategy": "Strategy Builder",
-    "card-title-watchlist": "Watchlist",
-    "card-title-news": "Market News",
-    "label-fear": "Extreme Fear",
-    "label-greed": "Extreme Greed",
-    "ai-sentiment-summary":
-      "Strong bullish momentum detected in social trends and news volume.",
-    "strategy-help": "Ask AI to generate a Pine Script or explain patterns.",
-    "btn-chat": "Start New Session",
+    "hero-accuracy": "Up to 99% accuracy from AI data analysis",
+    "hero-title": "Best AI Trading Bot Indicators 2026",
+    "hero-markets-label": "Supported Markets:",
+    "market-us": "US Stocks",
+    "market-crypto": "Crypto",
+    "market-forex": "Forex",
+    "market-options": "Options",
+    "market-saudi": "Saudi Market",
+    "market-gold": "Gold",
+    "trust-iso": "ISO Certified",
+    "trust-clients": "40,000+ Clients",
+    "trust-quality": "Platinum Quality Guarantee",
+    "btn-get-products": "Get Products",
+    "ai-analysis-badge": "Real-time AI analysis in seconds — no expert needed.",
+    "ai-analysis-title": "Revolutionary AI Chart Analysis",
+    "ai-analysis-desc": "Simply upload your chart screenshot, and our neural networks will perform a deep technical audit.",
+    "upload-title": "Upload Chart Screenshot",
+    "upload-desc": "Drag and drop or click to browse",
+    "upload-hint": "Supports: PNG, JPG (Max 5MB)",
+    "results-title": "Technical Audit Results",
+    "results-badge": "22+ Analysis Points",
+    "label-trend": "Trend Direction",
+    "trend-bullish": "Bullish",
+    "label-confidence": "Confidence",
+    "label-sr": "S&R Levels",
+    "label-rsi-div": "RSI Divergence",
+    "value-rsi-div": "Positive Divergence Detected",
+    "label-volume": "Volume Analysis",
+    "value-volume": "Bullish Accumulation (High)",
+    "label-momentum": "Market Momentum Score",
+    "label-ob": "Order Block Detection",
+    "value-ob": "Institutional Buy Zone @ $63,800",
+    "label-recommendation": "Recommendation",
+    "value-buy": "STRONG BUY",
+    "label-targets": "Targets & Stop Loss",
+    "label-breakout": "Expected Breakout",
+    "value-triangle": "Ascending Triangle (Top Zone)",
+    // Platform Pages
+    "crypto-title": "Calcwise Crypto Platform",
+    "crypto-coverage": "Comprehensive Analysis for 14,000+ Cryptocurrencies",
+    "forex-title": "Forex & Options Platform",
+    "forex-coverage": "Global Forex Pairs & Real-time Options Contracts",
+    "us-title": "US Market Platform",
+    "us-coverage": "Full Coverage of US Stocks, ETFs & Commodities",
+    "saudi-title": "Saudi Market Platform",
+    "saudi-coverage": "The Ultimate Tool for TASI Stocks & Saudi Exchange",
+    "feature-ai": "AI technical & financial analysis in milliseconds",
+    "feature-depth": "Market depth reading via volume algorithms",
+    "feature-explosion": "Price explosion zone detection",
+    "feature-acc-dist": "Accumulation/distribution tracking",
+    "feature-rsi": "RSI divergence scanner (Pos & Neg)",
+    "feature-pump": "Pump & dump detection alerts",
+    "feature-entry-exit": "Professional entry/exit points",
+    "feature-sr": "AI support & resistance detection",
+    "feature-watchlist": "Watchlist with favorites sorting",
+    "feature-liquidity": "Liquidity alerts & market depth timing",
+    "btn-get-access": "Get Access Now",
+    // VIP Section
+    "vip-badge": "PRO INDICATOR",
+    "vip-title": "Calcwise VIP Indicator",
+    "vip-subtitle": "Advanced market intelligence tool designed for professional traders, whales, and institutions.",
+    "vip-feature-1": "Auto support & resistance zones targeting market maker buy/sell areas",
+    "vip-feature-2-start": "Buy signals",
+    "vip-feature-2-end": "targeting market maker accumulation zones",
+    "vip-feature-3-start": "Sell signals",
+    "vip-feature-3-end": "targeting whale & market maker distribution zones",
+    "vip-feature-4": "A dashboard table of 11+ programmed sub-indicators showing live % chart status",
+    "vip-feature-5": "Market maker behavior trend lines — auto-detecting buy, bounce, and sell zones",
+    "vip-feature-6": "Order Block detector with volume measurement, identifying tops/bottoms and accumulation/distribution",
+    "vip-feature-7": "Magic Deal zones — strongest reversal points used by whales, funds, and banks",
+    "vip-supports": "Supports:",
+    "support-tv": "TradingView",
+    "support-binance": "Binance",
+    "support-us": "US Market",
+    "support-saudi": "Saudi Market (Tadawul)",
+    "support-crypto": "Crypto",
+    "support-forex": "Forex",
+    "support-options": "Options",
+    "support-gold": "Gold",
+    "all-products-btn": "View All Products",
   },
   ar: {
-    "nav-dashboard": "لوحة التحكم",
-    "nav-market": "السوق",
-    "nav-ai": "أدوات الذكاء الاصطناعي",
-    "nav-subs": "الاشتراكات",
-    "btn-login": "تسجيل الدخول",
-    "btn-register": "تسجيل جديد",
-    "search-placeholder": "بحث في الأسواق (مثلاً BTC, TSLA)",
-    "card-title-ai": "تحليل مشاعر الذكاء الاصطناعي",
-    "card-title-strategy": "منشئ الاستراتيجيات",
-    "card-title-watchlist": "قائمة المراقبة",
-    "card-title-news": "أخبار السوق",
-    "label-fear": "خوف شديد",
-    "label-greed": "طمع شديد",
-    "ai-sentiment-summary":
-      "تم اكتشاف زخم صعودي قوي في الاتجاهات الاجتماعية وحجم الأخبار.",
-    "strategy-help":
-      "اطلب من الذكاء الاصطناعي إنشاء Pine Script أو شرح الأنماط.",
-    "btn-chat": "بدء جلسة جديدة",
+    "nav-home": "الرئيسية",
+    "nav-about": "حول",
+    "nav-vip": "كالك وايز VIP",
+    "nav-rsi": "كالك وايز RSI PRO",
+    "nav-analysis": "تحليل الذكاء الاصطناعي",
+    "nav-platforms": "المنصات",
+    "nav-crypto": "منصة الكريبتو",
+    "nav-forex": "الفوركس والخيارات",
+    "nav-us-market": "السوق الأمريكي",
+    "nav-saudi": "السوق السعودي",
+    "nav-all-products": "جميع المنتجات",
+    "nav-contact": "اتصل بنا",
+    "nav-affiliate": "التسويق بالعمولة",
+    "btn-login": "دخول",
+    "btn-register": "تسجيل",
+    "hero-accuracy": "دقة تصل إلى 99% من تحليل بيانات الذكاء الاصطناعي",
+    "hero-title": "أفضل مؤشرات بوت التداول 2026",
+    "hero-markets-label": "الأسواق المدعومة:",
+    "market-us": "الأسهم الأمريكية",
+    "market-crypto": "العملات الرقمية",
+    "market-forex": "الفوركس",
+    "market-options": "الخيارات",
+    "market-saudi": "السوق السعودي",
+    "market-gold": "الذهب",
+    "trust-iso": "معتمد ISO",
+    "trust-clients": "40,000+ عميل",
+    "trust-quality": "ضمان الجودة البلاتيني",
+    "btn-get-products": "احصل على المنتجات",
+    "ai-analysis-badge": "تحليل فوري في ثوانٍ - لا حاجة لخبير.",
+    "ai-analysis-title": "تحليل رسوم بيانية ثوري",
+    "ai-analysis-desc": "ارفع لقطة شاشة، وسيقوم ذكاؤنا الاصطناعي بإجراء تدقيق فني عميق.",
+    "upload-title": "ارفع الرسم البياني",
+    "upload-desc": "اسحب وأفلت أو انقر للتصفح",
+    "upload-hint": "يدعم: PNG, JPG (بحد أقصى 5 ميجا)",
+    "results-title": "نتائج التدقيق الفني",
+    "results-badge": "+22 نقطة تحليل",
+    "label-trend": "اتجاه السوق",
+    "trend-bullish": "صاعد",
+    "label-confidence": "الثقة",
+    "label-sr": "الدعم والمقاومة",
+    "label-rsi-div": "تباعد RSI",
+    "value-rsi-div": "تم اكتشاف تباعد إيجابي",
+    "label-volume": "تحليل السيولة",
+    "value-volume": "تجميع صعودي (مرتفع)",
+    "label-momentum": "تقييم الزخم",
+    "label-ob": "كتل الطلبات (OB)",
+    "value-ob": "منطقة شراء مؤسسية @ $63,800",
+    "label-recommendation": "التوصية",
+    "value-buy": "شراء قوي",
+    "label-targets": "الأهداف ووقف الخسارة",
+    "label-breakout": "الاختراق المتوقع",
+    "value-triangle": "مثلت صاعد (منطقة القمة)",
+    // Platform Pages
+    "crypto-title": "منصة كالك وايز للعملات الرقمية",
+    "crypto-coverage": "تحليل شامل لأكثر من 14,000 عملة رقمية",
+    "forex-title": "منصة الفوركس والخيارات",
+    "forex-coverage": "أزواج الفوركس العالمية وعقود الخيارات الفورية",
+    "us-title": "منصة السوق الأمريكي",
+    "us-coverage": "تغطية كاملة للأسهم الأمريكية وصناديق الاستثمار والسلع",
+    "saudi-title": "منصة السوق السعودي",
+    "saudi-coverage": "الأداة المثالية لأسهم تاسي والسوق السعودي",
+    "feature-ai": "تحليل فني ومالي بالذكاء الاصطناعي في أجزاء من الثانية",
+    "feature-depth": "قراءة عمق السوق عبر خوارزميات السيولة",
+    "feature-explosion": "اكتشاف مناطق انفجار الأسعار",
+    "feature-acc-dist": "تتبع التجميع والتصريف",
+    "feature-rsi": "ماسح تباعد RSI (إيجابي وسلبي)",
+    "feature-pump": "تنبيهات اكتشاف المضاربات الوهمية",
+    "feature-entry-exit": "نقاط دخول وخروج احترافية",
+    "feature-sr": "اكتشاف الدعم والمقاومة بالذكاء الاصطناعي",
+    "feature-watchlist": "قائمة مراقبة مع فرز المفضلة",
+    "feature-liquidity": "تنبيهات السيولة وتوقيت عمق السوق",
+    "btn-get-access": "احصل على صلاحية الدخول الآن",
+    // VIP Section
+    "vip-badge": "مؤشر احترافي",
+    "vip-title": "مؤشر كالك وايز VIP",
+    "vip-subtitle": "أداة ذكاء سوقي متقدمة مصممة للمتداولين المحترفين والحيتان والمؤسسات.",
+    "vip-feature-1": "مناطق دعم ومقاومة تلقائية تستهدف مناطق شراء/بيع صناع السوق",
+    "vip-feature-2-start": "إشارات شراء",
+    "vip-feature-2-end": "تستهدف مناطق تجميع صناع السوق",
+    "vip-feature-3-start": "إشارات بيع",
+    "vip-feature-3-end": "تستهدف مناطق تصريف الحيتان وصناع السوق",
+    "vip-feature-4": "جدول لوحة تحكم لأكثر من 11 مؤشرًا فرعيًا يظهر حالة السوق المباشرة",
+    "vip-feature-5": "خطوط اتجاه سلوك صناع السوق — اكتشاف تلقائي لمناطق الشراء والارتداد والبيع",
+    "vip-feature-6": "مكتشف كتل الطلبات (Order Blocks) مع قياس السيولة لتحديد القمم والقيعان",
+    "vip-feature-7": "مناطق الصفقة السحرية — أقوى نقاط الانعكاس المستخدمة من قبل الحيتان والبنوك",
+    "vip-supports": "يدعم:",
+    "support-tv": "TradingView",
+    "support-binance": "Binance",
+    "support-us": "السوق الأمريكي",
+    "support-saudi": "السوق السعودي (تداول)",
+    "support-crypto": "العملات الرقمية",
+    "support-forex": "الفوركس",
+    "support-options": "الخيارات",
+    "support-gold": "الذهب",
+    "all-products-btn": "عرض جميع المنتجات",
   },
 };
 
@@ -51,56 +206,46 @@ class App {
     this.setupEventListeners();
     this.applyTheme(this.currentTheme);
     this.applyLanguage(this.currentLang);
-    this.initChart();
-    this.initRealTimeData();
-    this.fetchAISentiment();
+    this.setupDropdowns();
   }
 
   setupEventListeners() {
-    // Sidebar link active state
-    document.querySelectorAll(".sidebar-link").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        document
-          .querySelectorAll(".sidebar-link")
-          .forEach((l) => l.classList.remove("active"));
-        link.classList.add("active");
-      });
-    });
-
     // Language Toggle
     const langBtn = document.getElementById("lang-toggle");
-    langBtn.addEventListener("click", () => {
-      const nextLang = this.currentLang === "en" ? "ar" : "en";
-      this.applyLanguage(nextLang);
-    });
+    if (langBtn) {
+      langBtn.addEventListener("click", () => {
+        const nextLang = this.currentLang === "en" ? "ar" : "en";
+        this.applyLanguage(nextLang);
+      });
+    }
 
     // Theme Toggle
     const themeBtn = document.getElementById("theme-toggle");
-    themeBtn.addEventListener("click", () => {
-      const nextTheme = this.currentTheme === "dark" ? "light" : "dark";
-      this.applyTheme(nextTheme);
-    });
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const nextTheme = this.currentTheme === "dark" ? "light" : "dark";
+        this.applyTheme(nextTheme);
+      });
+    }
 
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById("menu-toggle");
-    const sidebar = document.querySelector(".sidebar");
-    const overlay = document.querySelector(".sidebar-overlay");
+    // Mobile Toggle
+    const mobileBtn = document.getElementById("mobile-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    if (mobileBtn && navLinks) {
+      mobileBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+    }
 
-    const toggleSidebar = () => {
-      sidebar.classList.toggle("active");
-      overlay.classList.toggle("active");
-      // Trigger chart resize after transition
-      setTimeout(() => this.resizeCharts(), 300);
-    };
-
-    if (menuBtn) menuBtn.addEventListener("click", toggleSidebar);
-    if (overlay) overlay.addEventListener("click", toggleSidebar);
-
-    // Close sidebar on link click (mobile)
-    document.querySelectorAll(".sidebar-link").forEach((link) => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-          toggleSidebar();
+    // Smooth Scrolling for nav links
+    document.querySelectorAll('.nav-link[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
         }
       });
     });
@@ -116,22 +261,6 @@ class App {
     if (sunIcon && moonIcon) {
       sunIcon.style.display = theme === "dark" ? "block" : "none";
       moonIcon.style.display = theme === "dark" ? "none" : "block";
-    }
-
-    if (this.chart) {
-      const isDark = theme === "dark";
-      this.chart.applyOptions({
-        layout: {
-          background: { color: isDark ? "#16181b" : "#ffffff" },
-          textColor: isDark ? "#848e9c" : "#5e6673",
-        },
-        grid: {
-          vertLines: { color: isDark ? "#2b3139" : "#eaecef" },
-          horzLines: { color: isDark ? "#2b3139" : "#eaecef" },
-        },
-        rightPriceScale: { borderColor: isDark ? "#2b3139" : "#eaecef" },
-        timeScale: { borderColor: isDark ? "#2b3139" : "#eaecef" },
-      });
     }
   }
 
@@ -160,242 +289,19 @@ class App {
     });
   }
 
-  initRealTimeData() {
-    // Binance Public WebSocket for BTCUSDT
-    const ws = new WebSocket(
-      "wss://stream.binance.com:9443/ws/btcusdt@kline_1m",
-    );
-
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      const kline = data.k;
-      const price = parseFloat(kline.c);
-      const change = (
-        ((price - parseFloat(kline.o)) / parseFloat(kline.o)) *
-        100
-      ).toFixed(2);
-
-      this.updatePriceUI(price, change);
-      this.updateChartData({
-        time: kline.t / 1000,
-        open: parseFloat(kline.o),
-        high: parseFloat(kline.h),
-        low: parseFloat(kline.l),
-        close: parseFloat(kline.c),
-      });
-    };
-  }
-
-  updatePriceUI(price, change) {
-    const priceEl = document.querySelector(".market-price");
-    const changeEl = document.querySelector(".market-change");
-    if (!priceEl || !changeEl) return;
-
-    priceEl.innerText = `$${price.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
-    changeEl.innerText = `${change > 0 ? "+" : ""}${change}%`;
-
-    const isUp = change >= 0;
-    priceEl.className = `market-price ${isUp ? "up" : "down"}`;
-    changeEl.className = `market-change ${isUp ? "up" : "down"}`;
-  }
-
-  async fetchAISentiment() {
-    try {
-      const response = await fetch("/api/market/sentiment");
-      const data = await response.json();
-
-      if (data.success) {
-        this.updateSentimentUI(data.sentiment);
-        this.updateNewsUI(data.news);
+  setupDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', (e) => {
+          if (window.innerWidth <= 992) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+          }
+        });
       }
-    } catch (error) {
-      console.error("Sentiment Fetch Error:", error);
-    }
-  }
-
-  updateSentimentUI(sentiment) {
-    const pointer = document.querySelector(".meter-pointer");
-    const summary = document.querySelector(".ai-summary");
-    if (!pointer || !summary) return;
-
-    pointer.style.left = `${sentiment.score}%`;
-    summary.innerText = sentiment.summary;
-  }
-
-  updateNewsUI(news) {
-    const newsList = document.querySelector(".news-list");
-    if (!newsList) return;
-
-    newsList.innerHTML = news
-      .map(
-        (item) => `
-            <div class="news-item">
-                <span class="news-time">${item.time}</span>
-                <p>${item.title}</p>
-            </div>
-        `,
-      )
-      .join("");
-  }
-
-  initChart() {
-    const chartContainer = document.getElementById("main-chart");
-    const rsiContainer = document.getElementById("rsi-chart");
-    if (!chartContainer || !rsiContainer) return;
-
-    this.history = []; // Price history buffer
-
-    const isDark = this.currentTheme === "dark";
-    const chartOptions = {
-      layout: {
-        background: { color: isDark ? "#16181b" : "#ffffff" },
-        textColor: isDark ? "#848e9c" : "#5e6673",
-      },
-      grid: {
-        vertLines: { color: isDark ? "#2b3139" : "#eaecef" },
-        horzLines: { color: isDark ? "#2b3139" : "#eaecef" },
-      },
-      crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-      rightPriceScale: { borderColor: isDark ? "#2b3139" : "#eaecef" },
-      timeScale: { borderColor: isDark ? "#2b3139" : "#eaecef", visible: true },
-    };
-
-    // Main Chart
-    this.chart = LightweightCharts.createChart(chartContainer, chartOptions);
-    this.candleSeries = this.chart.addCandlestickSeries({
-      upColor: "#00c076",
-      downColor: "#ff3b3b",
-      borderVisible: false,
-      wickUpColor: "#00c076",
-      wickDownColor: "#ff3b3b",
     });
-
-    // SMA Series
-    this.sma20Series = this.chart.addLineSeries({
-      color: "#3d6eff",
-      lineWidth: 1,
-      title: "SMA 20",
-    });
-    this.sma50Series = this.chart.addLineSeries({
-      color: "#f0b90b",
-      lineWidth: 1,
-      title: "SMA 50",
-    });
-
-    // RSI Chart
-    this.rsiChart = LightweightCharts.createChart(rsiContainer, {
-      ...chartOptions,
-      timeScale: { ...chartOptions.timeScale, visible: false }, // Hide time scale on RSI
-    });
-
-    this.rsiSeries = this.rsiChart.addLineSeries({
-      color: "#a020f0",
-      lineWidth: 2,
-      title: "RSI 14",
-    });
-
-    // Add RSI Overbought/Oversold levels
-    this.rsiSeries.createPriceLine({
-      price: 70,
-      color: "#ff3b3b",
-      lineWidth: 1,
-      lineStyle: 2,
-      axisLabelVisible: true,
-      title: "70",
-    });
-    this.rsiSeries.createPriceLine({
-      price: 30,
-      color: "#00c076",
-      lineWidth: 1,
-      lineStyle: 2,
-      axisLabelVisible: true,
-      title: "30",
-    });
-
-    window.addEventListener("resize", () => this.resizeCharts());
-  }
-
-  resizeCharts() {
-    const chartContainer = document.getElementById("main-chart");
-    const rsiContainer = document.getElementById("rsi-chart");
-    if (!chartContainer || !rsiContainer) return;
-
-    if (this.chart) {
-      this.chart.applyOptions({
-        width: chartContainer.clientWidth,
-        height: chartContainer.clientHeight,
-      });
-    }
-    if (this.rsiChart) {
-      this.rsiChart.applyOptions({
-        width: rsiContainer.clientWidth,
-        height: rsiContainer.clientHeight,
-      });
-    }
-  }
-
-  updateChartData(kline) {
-    if (!this.candleSeries) return;
-
-    this.candleSeries.update(kline);
-
-    // Update history for indicators
-    const lastBar = this.history[this.history.length - 1];
-    if (!lastBar || lastBar.time !== kline.time) {
-      this.history.push(kline);
-      if (this.history.length > 200) this.history.shift(); // Keep buffer sane
-    } else {
-      this.history[this.history.length - 1] = kline;
-    }
-
-    this.updateIndicators(kline.time);
-  }
-
-  updateIndicators(time) {
-    if (this.history.length < 2) return;
-
-    const closes = this.history.map((bar) => bar.close);
-
-    // SMA 20
-    if (closes.length >= 20) {
-      const sma20 = this.calculateSMA(closes, 20);
-      this.sma20Series.update({ time, value: sma20 });
-    }
-
-    // SMA 50
-    if (closes.length >= 50) {
-      const sma50 = this.calculateSMA(closes, 50);
-      this.sma50Series.update({ time, value: sma50 });
-    }
-
-    // RSI 14
-    if (closes.length >= 14) {
-      const rsi = this.calculateRSI(closes, 14);
-      this.rsiSeries.update({ time, value: rsi });
-    }
-  }
-
-  calculateSMA(data, period) {
-    const slice = data.slice(-period);
-    return slice.reduce((a, b) => a + b, 0) / period;
-  }
-
-  calculateRSI(data, period) {
-    let gains = 0;
-    let losses = 0;
-
-    for (let i = data.length - period; i < data.length; i++) {
-      const diff = data[i] - data[i - 1];
-      if (diff >= 0) gains += diff;
-      else losses -= diff;
-    }
-
-    const avgGain = gains / period;
-    const avgLoss = losses / period;
-
-    if (avgLoss === 0) return 100;
-    const rs = avgGain / avgLoss;
-    return 100 - 100 / (1 + rs);
   }
 }
 
