@@ -95,6 +95,11 @@ const translations = {
     "support-options": "Options",
     "support-gold": "Gold",
     "all-products-btn": "View All Products",
+    // Footer
+    "footer-brand": "Premium AI solutions for modern traders world-wide.",
+    "footer-platforms": "Platforms",
+    "footer-links": "Links",
+    "footer-copy": "© 2026 Calcwise AI. All rights reserved.",
   },
   ar: {
     "nav-home": "الرئيسية",
@@ -192,6 +197,11 @@ const translations = {
     "support-options": "الخيارات",
     "support-gold": "الذهب",
     "all-products-btn": "عرض جميع المنتجات",
+    // Footer
+    "footer-brand": "حلول ذكاء اصطناعي متميزة للمتداولين العصريين حول العالم.",
+    "footer-platforms": "المنصات",
+    "footer-links": "روابط",
+    "footer-copy": "© 2026 كالك وايز. جميع الحقوق محفوظة.",
   },
 };
 

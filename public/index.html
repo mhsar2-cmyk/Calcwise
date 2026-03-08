@@ -4,49 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calcwise | Advanced AI Trading Platform</title>
+  <title>Calcwise | Best AI Trading Indicators 2026</title>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-CQ0F5LVG3J');
-  </script>
+  <!-- Meta Tags -->
+  <meta name="description"
+    content="Calcwise offers the most accurate AI-powered trading indicators for Crypto, Forex, US Markets, and more.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap"
     rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/styles.css">
-
-  <!-- TradingView Lightweight Charts -->
-  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 </head>
 
 <body>
-  <div id="app" class="app-container">
-    <header class="navbar sticky">
-      <div class="nav-container">
-        <div class="logo">
+  <div class="app-container">
+    <header class="navbar">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
           <span class="logo-text">CALCWISE</span>
           <span class="logo-ai">AI</span>
-        </div>
+        </a>
+
         <nav class="nav-links">
           <a href="index.html" class="nav-link active" data-i18n="nav-home">Home</a>
-          <a href="#about" class="nav-link" data-i18n="nav-about">About</a>
-          <a href="#vip" class="nav-link" data-i18n="nav-vip">Calcwise VIP</a>
-          <a href="#rsi-pro" class="nav-link" data-i18n="nav-rsi">Calcwise RSI PRO</a>
-          <a href="#analysis" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
           <div class="dropdown">
-            <a href="#products" class="nav-link dropdown-toggle" data-i18n="nav-platforms">Platforms</a>
+            <a href="#" class="nav-link dropdown-toggle" data-i18n="nav-platforms">Platforms</a>
             <div class="dropdown-menu">
               <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
               <a href="forex.html" data-i18n="nav-forex">Forex & Options</a>
@@ -54,10 +42,12 @@
               <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
             </div>
           </div>
-          <a href="#all-products" class="nav-link" data-i18n="nav-all-products">All Products</a>
+          <a href="#vip" class="nav-link" data-i18n="nav-vip">VIP Indicator</a>
+          <a href="#analysis" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
+          <a href="#products" class="nav-link" data-i18n="nav-all-products">Products</a>
           <a href="#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
-          <a href="#affiliate" class="nav-link" data-i18n="nav-affiliate">Affiliate Program</a>
         </nav>
+
         <div class="nav-actions">
           <button id="theme-toggle" class="btn-icon" title="Toggle Theme">
             <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -82,374 +72,241 @@
           </button>
           <button class="btn-outline" data-i18n="btn-login">Login</button>
           <button class="btn-primary" data-i18n="btn-register">Register</button>
+          <button class="mobile-toggle btn-icon" id="mobile-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
         </div>
-        <button class="mobile-toggle" id="mobile-toggle">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
       </div>
     </header>
 
-    <main class="main-content">
-      <!-- Hero Section -->
+    <main>
+      <!-- Hero -->
       <section class="hero-section">
-        <div class="hero-container">
-          <div class="hero-badge" data-i18n="hero-accuracy">
-            <span class="pulse"></span>
+        <div class="container">
+          <div class="hero-badge badge badge-cyan" data-i18n="hero-accuracy">
             Up to 99% accuracy from AI data analysis
           </div>
           <h1 class="hero-title" data-i18n="hero-title">Best AI Trading Bot Indicators 2026</h1>
-          <p class="hero-subtitle">
-            <span data-i18n="hero-markets-label">Supported Markets:</span>
-            <span data-i18n="market-us">US Stocks</span> ·
-            <span data-i18n="market-crypto">Crypto</span> ·
-            <span data-i18n="market-forex">Forex</span> ·
-            <span data-i18n="market-options">Options</span> ·
-            <span data-i18n="market-saudi">Saudi Market</span> ·
-            <span data-i18n="market-gold">Gold</span>
+          <p class="hero-subtitle" data-i18n="hero-subtitle">
+            Supported Markets: US Stocks · Crypto · Forex · Options · Saudi Market · Gold
           </p>
 
           <div class="trust-badges">
             <div class="trust-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
               <span data-i18n="trust-iso">ISO Certified</span>
             </div>
             <div class="trust-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
               <span data-i18n="trust-clients">40,000+ Clients</span>
             </div>
             <div class="trust-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
                 <circle cx="12" cy="8" r="7"></circle>
                 <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
               </svg>
-              <span data-i18n="trust-quality">Platinum Quality Guarantee</span>
+              <span data-i18n="trust-quality">Platinum Guarantee</span>
             </div>
           </div>
 
-          <a href="#products" class="btn-primary btn-hero-cta animated-cta" data-i18n="btn-get-products">Get
-            Products</a>
-        </div>
-
-        <!-- TradingView Widget -->
-        <div class="widget-container">
-          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript"
-              src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
-                {
-                  "width": "100%",
-                    "height": 400,
-                      "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY"],
-                        "isTransparent": true,
-                          "colorTheme": "dark",
-                            "locale": "en"
-                }
-              </script>
+          <div class="hero-cta-group">
+            <a href="#products" class="btn-primary btn-hero animated-cta" data-i18n="btn-get-products">Get Products</a>
+            <a href="#analysis" class="btn-outline btn-hero" data-i18n="nav-analysis">Try AI Analysis</a>
           </div>
-          <!-- TradingView Widget END -->
+
+          <div class="widget-container">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
+                  {
+                    "width": "100%",
+                      "height": 400,
+                        "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY"],
+                          "isTransparent": true,
+                            "colorTheme": "dark",
+                              "locale": "en"
+                  }
+                </script>
+            </div>
+          </div>
         </div>
       </section>
 
-      <div class="content-container" id="analysis">
-        <!-- AI Chart Analysis Feature Section -->
-        <section class="ai-analysis-feature">
-          <div class="section-header">
-            <div class="badge-cyan" data-i18n="ai-analysis-badge">Real-time AI analysis in seconds — no expert needed.
+      <!-- VIP Section -->
+      <section class="section vip-section" id="vip">
+        <div class="container">
+          <div class="vip-grid">
+            <div class="vip-info">
+              <span class="badge badge-gold" data-i18n="vip-badge">PRO INDICATOR</span>
+              <h2 class="vip-title" data-i18n="vip-title">Calcwise VIP Indicator</h2>
+              <p class="vip-subtitle" data-i18n="vip-subtitle">Advanced market intelligence tools designed for
+                professional traders and institutions.</p>
+
+              <ul class="vip-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> <span data-i18n="vip-feature-1">Auto support & resistance zones</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> <span><span data-i18n="vip-feature-2-start">Buy signals</span> <strong
+                      class="signal-buy">[BUY]</strong></span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> <span><span data-i18n="vip-feature-3-start">Sell signals</span> <strong
+                      class="signal-sell">[SELL]</strong></span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> <span data-i18n="vip-feature-4">Live Dashboard of 11+ sub-indicators</span></li>
+              </ul>
+
+              <a href="#products" class="btn-primary" data-i18n="btn-get-access">Get Access Now</a>
             </div>
+            <div class="vip-visual">
+              <img src="images/calcwise_vip_mockup.png" alt="VIP Platform" class="mockup-img">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Analysis -->
+      <section class="section" id="analysis">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-cyan" data-i18n="ai-analysis-badge">New Feature</span>
             <h2 data-i18n="ai-analysis-title">Revolutionary AI Chart Analysis</h2>
-            <p data-i18n="ai-analysis-desc">Simply upload your chart screenshot, and our neural networks will perform a
-              deep technical audit.</p>
+            <p data-i18n="ai-analysis-desc">Upload a chart screenshot and let our AI provide 22+ professional tech
+              analysis points.</p>
           </div>
 
           <div class="analysis-demo-grid">
-            <!-- Upload Panel -->
             <div class="upload-panel card">
-              <div class="upload-box" id="chart-upload-box">
+              <div class="upload-box">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
                   stroke-width="1.5">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="17 8 12 3 7 8"></polyline>
                   <line x1="12" y1="3" x2="12" y2="15"></line>
                 </svg>
-                <h3 data-i18n="upload-title">Upload Chart Screenshot</h3>
-                <p data-i18n="upload-desc">Drag and drop or click to browse</p>
-                <span class="upload-hint" data-i18n="upload-hint">Supports: PNG, JPG (Max 5MB)</span>
-              </div>
-              <div class="analysis-status">
-                <img src="images/ai_chart_analysis.png" alt="AI Analysis Engine" class="engine-preview">
-                <div class="scanning-bar"></div>
+                <h3 data-i18n="upload-title">Upload Screenshot</h3>
+                <p data-i18n="upload-desc">Drag & drop or Click to browse</p>
               </div>
             </div>
 
-            <!-- Results Panel -->
             <div class="results-panel card">
               <div class="results-header">
-                <h3><span data-i18n="results-title">Technical Audit Results</span> <span class="badge-pro"
-                    data-i18n="results-badge">22+ Analysis Points</span></h3>
+                <h3 data-i18n="results-title">AI Performance Audit</h3>
               </div>
               <div class="results-grid">
-                <div class="result-item glowing">
-                  <label data-i18n="label-trend">Trend Direction</label>
-                  <div class="value bullish"><span data-i18n="trend-bullish">Bullish</span> <span class="conf-span">(87%
-                      <span data-i18n="label-confidence">Confidence</span>)</span></div>
+                <div class="result-item"><label data-i18n="label-trend">Trend</label>
+                  <div class="value bullish" data-i18n="trend-bullish">Bullish</div>
                 </div>
-                <div class="result-item">
-                  <label data-i18n="label-sr">S&R Levels</label>
-                  <div class="value">S: $64,250 | R: $68,900</div>
+                <div class="result-item"><label data-i18n="label-momentum">Momentum</label>
+                  <div class="value">9.2 / 10</div>
                 </div>
-                <div class="result-item glowing">
-                  <label data-i18n="label-rsi-div">RSI Divergence</label>
-                  <div class="value positive" data-i18n="value-rsi-div">Positive Divergence Detected</div>
+                <div class="result-item"><label data-i18n="label-recommendation">Action</label>
+                  <div class="value buy" data-i18n="value-buy">Strong Buy</div>
                 </div>
-                <div class="result-item">
-                  <label data-i18n="label-volume">Volume Analysis</label>
-                  <div class="value" data-i18n="value-volume">Bullish Accumulation (High)</div>
-                </div>
-                <div class="result-item glowing">
-                  <label data-i18n="label-momentum">Market Momentum Score</label>
-                  <div class="value score">9.2 / 10</div>
-                </div>
-                <div class="result-item">
-                  <label data-i18n="label-ob">Order Block Detection</label>
-                  <div class="value" data-i18n="value-ob">Institutional Buy Zone @ $63,800</div>
-                </div>
-                <div class="result-item glowing">
-                  <label data-i18n="label-recommendation">Recommendation</label>
-                  <div class="value buy" data-i18n="value-buy">STRONG BUY</div>
-                </div>
-                <div class="result-item">
-                  <label data-i18n="label-targets">Targets & Stop Loss</label>
-                  <div class="value">T1: $72K | T2: $78K | SL: $62K</div>
-                </div>
-                <div class="result-item glowing">
-                  <label data-i18n="label-breakout">Expected Breakout</label>
-                  <div class="value breakout" data-i18n="value-triangle">Ascending Triangle (Top Zone)</div>
+                <div class="result-item"><label data-i18n="label-rsi-div">RSI</label>
+                  <div class="value positive">Positive Div</div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- VIP Indicator Section -->
-        <section class="vip-section card">
-          <div class="vip-grid">
-            <div class="vip-info">
-              <div class="badge" data-i18n="vip-badge">PRO INDICATOR</div>
-              <h2 class="vip-title" data-i18n="vip-title">Calcwise VIP Indicator</h2>
-              <p class="vip-subtitle" data-i18n="vip-subtitle">Advanced market intelligence tool designed for
-                professional traders,
-                whales, and institutions.</p>
-
-              <ul class="vip-features">
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span data-i18n="vip-feature-1">Auto support & resistance zones targeting market maker buy/sell
-                    areas</span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span><span data-i18n="vip-feature-2-start">Buy signals</span> <strong class="signal-buy">[BUY
-                      CALCWISE]</strong> <span data-i18n="vip-feature-2-end">targeting market maker accumulation
-                      zones</span></span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span><span data-i18n="vip-feature-3-start">Sell signals</span> <strong class="signal-sell">[SELL
-                      CALCWISE]</strong> <span data-i18n="vip-feature-3-end">targeting whale & market maker distribution
-                      zones</span></span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span data-i18n="vip-feature-4">A dashboard table of 11+ programmed sub-indicators showing live %
-                    chart status</span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span data-i18n="vip-feature-5">Market maker behavior trend lines — auto-detecting buy, bounce, and
-                    sell zones</span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span data-i18n="vip-feature-6">Order Block detector with volume measurement, identifying tops/bottoms
-                    and accumulation/distribution</span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span data-i18n="vip-feature-7">"Magic Deal" zones — strongest reversal points used by whales, funds,
-                    and banks</span>
-                </li>
-              </ul>
-
-              <div class="vip-footer">
-                <h4 class="supports-title" data-i18n="vip-supports">Supports:</h4>
-                <div class="supports-list">
-                  <span data-i18n="support-tv">TradingView</span>
-                  <span data-i18n="support-binance">Binance</span>
-                  <span data-i18n="support-us">US Market</span>
-                  <span data-i18n="support-saudi">Saudi Market (Tadawul)</span>
-                  <span data-i18n="support-crypto">Crypto</span>
-                  <span data-i18n="support-forex">Forex</span>
-                  <span data-i18n="support-options">Options</span>
-                  <span data-i18n="support-gold">Gold</span>
-                </div>
-              </div>
-            </div>
-            <div class="vip-visual">
-              <div class="mockup-container">
-                <img src="images/calcwise_vip_mockup.png" alt="Calcwise VIP Mockup" class="mockup-img">
-                <div class="glow-effect"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Products Section -->
-        <section class="products-section">
+      <!-- Products -->
+      <section class="section" id="products">
+        <div class="container">
           <div class="section-header">
-            <h2 data-i18n="section-title-products">Our Premium Products</h2>
-            <p data-i18n="section-subtitle-products">Choose the perfect tool to elevate your trading
-              strategy.</p>
+            <h2 data-i18n="section-title-products">Our Products</h2>
+            <p data-i18n="section-subtitle-products">Choose the best tool for your trading style.</p>
           </div>
 
           <div class="products-grid">
-            <!-- Product 1 -->
             <div class="product-card">
               <div class="product-image">
-                <img src="images/products_1.png" alt="Calcwise AI Indicator" style="object-position: 0 0;">
-                <span class="product-category">Indicators</span>
-                <span class="sale-badge">Sale -70%</span>
+                <img src="images/products_1.png" alt="Crypto Platform">
+                <span class="product-category">Platforms</span>
+                <span class="sale-badge">-70%</span>
               </div>
               <div class="product-info">
-                <h3>Calcwise AI Indicator</h3>
-                <div class="price-badge">$199 – $2,388/yr</div>
-                <p class="plan-info">Monthly / Quarterly / Annual plans</p>
-                <a href="crypto.html" class="btn-primary product-btn">Select Options</a>
+                <h3>Calcwise AI Crypto</h3>
+                <div class="price-badge">$199 – $2,388</div>
+                <p class="plan-info">Global crypto markets coverage</p>
+                <a href="crypto.html" class="btn-primary product-btn" data-i18n="btn-get-access">Select Options</a>
               </div>
             </div>
 
-            <!-- Product 2 -->
-            <div class="product-card promo">
+            <div class="product-card">
               <div class="product-image">
-                <img src="images/products_1.png" alt="Calcwise AI VIP" style="object-position: 100% 0;">
-                <span class="product-category">Indicators</span>
-                <span class="sale-badge">Sale -70%</span>
+                <img src="images/products_1.png" alt="Forex Platform">
+                <span class="product-category">Forex</span>
               </div>
               <div class="product-info">
-                <h3>Calcwise AI VIP</h3>
-                <div class="price-badge">$319 – $949/yr</div>
-                <p class="plan-info">Premium access for pro traders</p>
+                <h3>Forex & Options AI</h3>
+                <div class="price-badge">$319 – $949</div>
+                <p class="plan-info">Professional FX pairs analysis</p>
                 <a href="forex.html" class="btn-primary product-btn">Select Options</a>
               </div>
             </div>
 
-            <!-- Product 3 -->
             <div class="product-card">
               <div class="product-image">
-                <img src="images/products_1.png" alt="Calcwise AI Live Cam" style="object-position: 0 100%;">
-                <span class="product-category">Platforms</span>
-              </div>
-              <div class="product-info">
-                <h3>Calcwise AI Live Cam</h3>
-                <div class="price-badge">$265 – $749/yr</div>
-                <p class="plan-info">Chart image AI analysis</p>
-                <a href="/products/live-cam" class="btn-primary product-btn">Select Options</a>
-              </div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-              <div class="product-image">
-                <img src="images/products_1.png" alt="Calcwise AI Premium" style="object-position: 100% 100%;">
-                <span class="product-category">Indicators</span>
-              </div>
-              <div class="product-info">
-                <h3>Calcwise AI Premium</h3>
-                <div class="price-badge">$212 – $529/yr</div>
-                <p class="plan-info">Enhanced AI analytics</p>
-                <a href="/products/ai-premium" class="btn-primary product-btn">Select Options</a>
-              </div>
-            </div>
-
-            <!-- Product 5 -->
-            <div class="product-card">
-              <div class="product-image">
-                <img src="images/products_2.png" alt="Saudi Market Platform" style="object-position: 0 0;">
-                <span class="product-category">Platforms</span>
-                <span class="sale-badge">Sale -70%</span>
+                <img src="images/products_2.png" alt="Saudi Market">
+                <span class="product-category">Markets</span>
               </div>
               <div class="product-info">
                 <h3>Saudi Market Platform</h3>
-                <div class="price-badge">$225 – $2,400/yr</div>
-                <p class="plan-info">Specialized for Tadawul</p>
+                <div class="price-badge">$225 – $2,400</div>
+                <p class="plan-info">Tadawul TASI analysis</p>
                 <a href="saudi-market.html" class="btn-primary product-btn">Select Options</a>
               </div>
             </div>
-
-            <!-- Product 6 -->
-            <div class="product-card royal">
-              <div class="product-image">
-                <img src="images/products_2.png" alt="Royal Package" style="object-position: 50% 0;">
-                <span class="product-category">Packages</span>
-                <span class="sale-badge">Sale -70%</span>
-              </div>
-              <div class="product-info">
-                <h3>Royal Package [Forex–Options–US]</h3>
-                <div class="price-badge">$449 – $4,370/yr</div>
-                <p class="plan-info">All-in-one institutional access</p>
-                <a href="forex.html" class="btn-primary product-btn">Select Options</a>
-              </div>
-            </div>
-
-            <!-- Product 7 -->
-            <div class="product-card">
-              <div class="product-image">
-                <img src="images/products_2.png" alt="Elite Plus Package" style="object-position: 100% 0;">
-                <span class="product-category">Packages</span>
-              </div>
-              <div class="product-info">
-                <h3>Elite Plus Package [Forex–Options–US]</h3>
-                <div class="price-badge">$295 – $2,660/yr</div>
-                <p class="plan-info">Forex, Options & US Market</p>
-                <a href="us-market.html" class="btn-primary product-btn">Select Options</a>
-              </div>
-            </div>
           </div>
-
-          <div class="section-footer">
-            <button class="btn-outline view-all-btn" data-i18n="all-products-btn">View All Products</button>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer section">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span>
+          </div>
+          <p>Premium AI solutions for modern traders world-wide.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platforms</h4>
+          <a href="crypto.html">Crypto</a>
+          <a href="forex.html">Forex</a>
+          <a href="us-market.html">US Market</a>
+          <a href="saudi-market.html">Saudi Market</a>
+        </div>
+        <div class="footer-links">
+          <h4>Links</h4>
+          <a href="#about">About Us</a>
+          <a href="#vip">VIP Indicator</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Calcwise AI. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 
-  <!-- Scripts -->
   <script src="js/app.js" type="module"></script>
 </body>
 
