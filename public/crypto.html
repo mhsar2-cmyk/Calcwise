@@ -102,7 +102,7 @@
             </section>
 
             <!-- Heatmap Section -->
-            <section class="section heatmap-section" data-reveal>
+            <section class="section heatmap-section">
                 <div class="container">
                     <div class="section-header">
                         <span class="badge badge-cyan" data-i18n="nav-crypto">Market Visualization</span>
@@ -111,7 +111,8 @@
                         </p>
                     </div>
                     <div class="widget-container card card-glass"
-                        style="padding: 10px; min-height: 600px; border-radius: 12px; overflow: hidden;">
+                        style="min-height: 600px; border-radius: 12px; overflow: hidden; position: relative;">
+                        <!-- TradingView Widget BEGIN -->
                         <div class="tradingview-widget-container">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript"
@@ -133,11 +134,13 @@
                                     }
                                 </script>
                         </div>
+                        <!-- TradingView Widget END -->
                     </div>
                 </div>
             </section>
+
             <!-- Top 20 Assets Section -->
-            <section class="section" data-reveal>
+            <section class="section top-assets-section">
                 <div class="container">
                     <div class="section-header">
                         <span class="badge badge-gold" data-i18n="crypto-top20-badge">Top Performers</span>
@@ -146,7 +149,8 @@
                             cryptocurrencies by market cap.</p>
                     </div>
                     <div class="widget-container card card-glass"
-                        style="min-height: 500px; border-radius: 12px; overflow: hidden;">
+                        style="min-height: 550px; border-radius: 12px; overflow: hidden; position: relative;">
+                        <!-- TradingView Widget BEGIN -->
                         <div class="tradingview-widget-container">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript"
@@ -163,6 +167,7 @@
                                     }
                                 </script>
                         </div>
+                        <!-- TradingView Widget END -->
                     </div>
                 </div>
             </section>
