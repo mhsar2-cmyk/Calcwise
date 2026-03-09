@@ -11,6 +11,7 @@ const translations = {
     "nav-us-market": "US Market",
     "nav-saudi": "Saudi Market",
     "nav-all-products": "All Products",
+    "nav-blog": "Blog",
     "nav-contact": "Contact",
     "nav-about": "About",
     "nav-rsi-pro": "Calcwise RSI PRO",
@@ -107,6 +108,10 @@ const translations = {
     "support-gold": "Gold",
     "all-products-btn": "View All Products",
     "testimonials-title": "What Our Traders Say",
+    // Blog Section
+    "blog-badge": "Insights",
+    "blog-title": "Latest Market Insights",
+    "blog-subtitle": "Stay updated with the latest trends and AI analysis in the financial markets.",
     // Trade Tracker
     "trade-tracker-title": "Trade Tracker Indicator",
     "trade-tracker-desc": "Monitors all hidden trades (market price) not recorded in the order book. Identify accumulation and distribution zones, liquidity inflow and outflow, helping you determine the professional direction of any trade.",
@@ -128,6 +133,7 @@ const translations = {
     "nav-us-market": "السوق الأمريكي",
     "nav-saudi": "السوق السعودي",
     "nav-all-products": "جميع المنتجات",
+    "nav-blog": "المدونة",
     "nav-contact": "اتصل بنا",
     "nav-affiliate": "التسويق بالعمولة",
     "btn-login": "دخول",
