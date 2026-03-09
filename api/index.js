@@ -54,6 +54,21 @@ app.get('/api/health', (req, res) => {
 });
 
 // Market Data Routes
+app.get('/api/diagnostics', async (req, res) => {
+    try {
+        const testSymbols = [{ symbol: 'BTC', market_type: 'crypto' }, { symbol: 'AAPL', market_type: 'stock' }];
+        const results = await marketDataService.getPortfolioPrices(testSymbols);
+        res.json({
+            success: true,
+            results,
+            node_env: process.env.NODE_ENV,
+            allowed_origin: process.env.ALLOWED_ORIGIN || '*'
+        });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
 app.get('/api/market/sentiment', async (req, res) => {
     try {
         const news = await newsService.getMarketNews(req.query.asset || 'crypto');

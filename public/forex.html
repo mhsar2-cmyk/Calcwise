@@ -71,10 +71,13 @@
             <section class="section forex-market-data" style="padding: 20px 0 60px 0;">
                 <div class="container">
                     <!-- Top Assets Grid -->
-                    <div class="indices-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div class="indices-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
                         <!-- Gold Card -->
-                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
-                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div class="market-overview-card card card-glass"
+                            style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header"
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                                 <div>
                                     <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Gold</h3>
                                     <span style="color: #888; font-size: 0.8rem;">XAU/USD</span>
@@ -89,8 +92,10 @@
                         </div>
 
                         <!-- EUR/USD Card -->
-                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
-                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div class="market-overview-card card card-glass"
+                            style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header"
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                                 <div>
                                     <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Euro / US Dollar</h3>
                                     <span style="color: #888; font-size: 0.8rem;">EUR/USD</span>
@@ -105,8 +110,10 @@
                         </div>
 
                         <!-- Oil Card -->
-                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
-                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div class="market-overview-card card card-glass"
+                            style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header"
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                                 <div>
                                     <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Crude Oil</h3>
                                     <span style="color: #888; font-size: 0.8rem;">WTI</span>
@@ -122,8 +129,10 @@
                     </div>
 
                     <!-- Forex Assets Table -->
-                    <div class="card card-glass" style="padding: 0; border-radius: 12px; overflow: hidden; background: #131722;">
-                        <div class="table-header" style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div class="card card-glass"
+                        style="padding: 0; border-radius: 12px; overflow: hidden; background: #131722;">
+                        <div class="table-header"
+                            style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <h3 style="margin: 0; font-size: 1.2rem;">Major Pairs & Commodities</h3>
                         </div>
                         <div class="table-responsive">
@@ -138,7 +147,10 @@
                                     </tr>
                                 </thead>
                                 <tbody id="forex-market-tbody">
-                                    <tr><td colspan="5" style="padding: 20px; text-align: center; color: #666;">Loading forex data...</td></tr>
+                                    <tr>
+                                        <td colspan="5" style="padding: 20px; text-align: center; color: #666;">Loading
+                                            forex data...</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -151,45 +163,52 @@
                 const forexConfig = {
                     symbols: ['EURUSD', 'GBPUSD', 'USDJPY', 'XAUUSD', 'WTI', 'XAGUSD'],
                     assets: {
-                        'EURUSD': { name: 'Euro / US Dollar', type: 'pair', base: 'eu', quote: 'us' }, 
-                        'GBPUSD': { name: 'British Pound / US Dollar', type: 'pair', base: 'gb', quote: 'us' }, 
-                        'USDJPY': { name: 'US Dollar / Japanese Yen', type: 'pair', base: 'us', quote: 'jp' }, 
-                        'XAUUSD': { name: 'Gold Spot / US Dollar', type: 'commodity', icon: 'gold' }, 
-                        'WTI': { name: 'WTI Crude Oil', type: 'commodity', icon: 'oil' }, 
+                        'EURUSD': { name: 'Euro / US Dollar', type: 'pair', base: 'eu', quote: 'us' },
+                        'GBPUSD': { name: 'British Pound / US Dollar', type: 'pair', base: 'gb', quote: 'us' },
+                        'USDJPY': { name: 'US Dollar / Japanese Yen', type: 'pair', base: 'us', quote: 'jp' },
+                        'XAUUSD': { name: 'Gold Spot / US Dollar', type: 'commodity', icon: 'gold' },
+                        'WTI': { name: 'WTI Crude Oil', type: 'commodity', icon: 'oil' },
                         'XAGUSD': { name: 'Silver Spot / US Dollar', type: 'commodity', icon: 'silver' }
                     }
                 };
 
                 let currentForexData = {};
 
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
                     fetchForexData();
                     initCharts();
                 });
 
                 async function fetchForexData() {
                     const symbolString = forexConfig.symbols.join(',');
+                    const tbody = document.getElementById('forex-market-tbody');
+
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 12000);
 
                     try {
-                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`);
+                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`, {
+                            signal: controller.signal
+                        });
+                        clearTimeout(timeoutId);
                         const data = await response.json();
-                        
-                        if (data.success && data.prices) {
+
+                        if (data.success && data.prices && Object.keys(data.prices).length > 0) {
                             currentForexData = data.prices;
-                            
-                            // Check if data exists before updating
+
                             if (data.prices['XAUUSD']) updateIndex('gold', data.prices['XAUUSD']);
                             if (data.prices['EURUSD']) updateIndex('eur', data.prices['EURUSD']);
                             if (data.prices['WTI']) updateIndex('oil', data.prices['WTI']);
-                            
+
                             renderForexTable();
                         } else {
-                            console.error('API response unsuccessful:', data);
-                            document.getElementById('forex-market-tbody').innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ff5252;">Failed to load data. Please try again later.</td></tr>`;
+                            console.error('API response unsuccessful or empty:', data);
+                            if (tbody) tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ff5252;">Data unavailable. Please refresh.</td></tr>`;
                         }
                     } catch (error) {
                         console.error('Error fetching forex data:', error);
-                        document.getElementById('forex-market-tbody').innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ff5252;">Network error. Please check your connection.</td></tr>`;
+                        const msg = error.name === 'AbortError' ? 'Request timed out.' : 'Network error.';
+                        if (tbody) tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ff5252;">${msg} Please check connection.</td></tr>`;
                     }
                 }
 
@@ -197,11 +216,11 @@
                     if (!data) return;
                     const container = document.getElementById(`${id}-price-container`);
                     if (!container) return; // Safety check
-                    
+
                     const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
                     const sign = data.change >= 0 ? '+' : '';
                     const decimals = (data.symbol === 'XAUUSD' || data.symbol === 'WTI') ? 2 : 4;
-                    
+
                     container.innerHTML = `
                         <div style="text-align: right;">
                             <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">${data.price.toFixed(decimals)}</div>
@@ -255,7 +274,7 @@
                 function renderForexTable() {
                     const tbody = document.getElementById('forex-market-tbody');
                     tbody.innerHTML = '';
-                    
+
                     if (Object.keys(currentForexData).length === 0) {
                         tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #888;">No data available.</td></tr>`;
                         return;
@@ -264,12 +283,12 @@
                     forexConfig.symbols.forEach(symbol => {
                         const data = currentForexData[symbol];
                         if (!data) return; // Skip if no data for this symbol
-                        
+
                         const asset = forexConfig.assets[symbol];
                         const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
                         const sign = data.change >= 0 ? '+' : '';
                         const decimals = (symbol === 'XAUUSD' || symbol === 'WTI' || symbol === 'XAGUSD' || symbol === 'USDJPY') ? 2 : 4;
-                        
+
                         let iconHtml = '';
                         if (asset.type === 'pair') {
                             iconHtml = `
@@ -287,17 +306,17 @@
                             let color = '#FFD700'; // Gold
                             if (asset.icon === 'oil') color = '#555';
                             if (asset.icon === 'silver') color = '#C0C0C0';
-                            
+
                             iconHtml = `
                                 <div style="width: 32px; height: 32px; background: ${color}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; border: 1px solid rgba(255,255,255,0.2);">
-                                    ${symbol.substring(0,2)}
+                                    ${symbol.substring(0, 2)}
                                 </div>
                             `;
                         }
-                        
+
                         const row = document.createElement('tr');
                         row.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-                        
+
                         row.innerHTML = `
                             <td style="padding: 15px 20px; color: #fff; font-weight: 500;">
                                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -310,16 +329,24 @@
                             <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.change.toFixed(decimals)}</td>
                             <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.changePercent.toFixed(2)}%</td>
                         `;
-                        
+
                         tbody.appendChild(row);
                     });
                 }
             </script>
-            
+
             <style>
-                .text-green { color: #4CAF50; }
-                .text-red { color: #FF5252; }
-                .market-table tr:hover { background: rgba(255,255,255,0.05) !important; }
+                .text-green {
+                    color: #4CAF50;
+                }
+
+                .text-red {
+                    color: #FF5252;
+                }
+
+                .market-table tr:hover {
+                    background: rgba(255, 255, 255, 0.05) !important;
+                }
             </style>
         </main>
         <footer class="footer section">

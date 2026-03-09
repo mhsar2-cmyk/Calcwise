@@ -1,5 +1,11 @@
 const axios = require('axios');
-const YahooFinance = require('yahoo-finance2').default;
+let yahooFinance;
+try {
+    yahooFinance = require('yahoo-finance2').default;
+    if (!yahooFinance) yahooFinance = require('yahoo-finance2');
+} catch (e) {
+    console.error('Failed to load yahoo-finance2:', e.message);
+}
 
 class MarketDataService {
     constructor() {
@@ -22,7 +28,11 @@ class MarketDataService {
         };
 
         // Instantiate Yahoo Finance with suppressed notices
-        this.yf = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
+        if (typeof yahooFinance === 'function') {
+            this.yf = new yahooFinance({ suppressNotices: ['yahooSurvey'] });
+        } else {
+            this.yf = yahooFinance; // Might be a singleton
+        }
     }
 
     // جلب سعر الأصل من Yahoo Finance
@@ -97,7 +107,7 @@ class MarketDataService {
     async getCryptoPriceFromBinance(symbol) {
         console.log(`[MarketData] Fetching ${symbol} from Binance...`);
         try {
-            const response = await axios.get(`${this.cryptoApis.binance}/ticker/24hr?symbol=${symbol}USDT`, { timeout: 5000 });
+            const response = await axios.get(`${this.cryptoApis.binance}/ticker/24hr?symbol=${symbol}USDT`, { timeout: 4000 });
             const data = response.data;
             console.log(`[MarketData] ${symbol} fetched from Binance.`);
 
@@ -106,26 +116,29 @@ class MarketDataService {
                 change: parseFloat(data.priceChange),
                 changePercent: parseFloat(data.priceChangePercent),
                 volume: parseFloat(data.volume),
-                marketCap: 'N/A', // Binance doesn't provide market cap directly in this endpoint
+                marketCap: 'N/A',
                 source: 'binance',
                 symbol: symbol
             };
         } catch (error) {
             console.error(`Binance API error for ${symbol}:`, error.message);
-            // Fallback to mock data if API fails
             return this.getMockStockData(symbol);
         }
     }
 
     // جلب سعر الأصل من CoinGecko
     async getCryptoPriceFromCoinGecko(coinId) {
+        console.log(`[MarketData] Fetching ${coinId} from CoinGecko...`);
         try {
-            const response = await axios.get(`${this.cryptoApis.coingecko}/simple/price?ids=${coinId}&vs_currencies=usd`);
-            return {
-                price: response.data[coinId].usd,
-                source: 'coingecko',
-                symbol: coinId
-            };
+            const response = await axios.get(`${this.cryptoApis.coingecko}/simple/price?ids=${coinId}&vs_currencies=usd`, { timeout: 4000 });
+            if (response.data && response.data[coinId]) {
+                return {
+                    price: response.data[coinId].usd,
+                    source: 'coingecko',
+                    symbol: coinId
+                };
+            }
+            return null;
         } catch (error) {
             console.error(`CoinGecko API error for ${coinId}:`, error.message);
             return null;

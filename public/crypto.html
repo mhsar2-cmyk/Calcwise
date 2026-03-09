@@ -169,27 +169,36 @@
 
                 async function fetchCryptoData() {
                     const symbolString = cryptoConfig.symbols.join(',');
+                    const tbody = document.getElementById('crypto-market-tbody');
+
+                    // Set a safety timeout on the frontend too (12 seconds)
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 12000);
 
                     try {
-                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`);
+                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`, {
+                            signal: controller.signal
+                        });
+                        clearTimeout(timeoutId);
+                        
                         const data = await response.json();
                         
-                        if (data.success && data.prices) {
+                        if (data.success && data.prices && Object.keys(data.prices).length > 0) {
                             currentCryptoData = data.prices;
                             
-                            // Check if data exists before updating
                             if (data.prices['BTC']) updateIndex('btc', data.prices['BTC']);
                             if (data.prices['ETH']) updateIndex('eth', data.prices['ETH']);
                             if (data.prices['SOL']) updateIndex('sol', data.prices['SOL']);
                             
                             renderCryptoTable();
                         } else {
-                            console.error('API response unsuccessful:', data);
-                            document.getElementById('crypto-market-tbody').innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ff5252;">Failed to load data. Please try again later.</td></tr>`;
+                            console.error('API response unsuccessful or empty:', data);
+                            if (tbody) tbody.innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ff5252;">Data currently unavailable. Please refresh in a moment.</td></tr>`;
                         }
                     } catch (error) {
                         console.error('Error fetching crypto data:', error);
-                        document.getElementById('crypto-market-tbody').innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ff5252;">Network error. Please check your connection.</td></tr>`;
+                        const msg = error.name === 'AbortError' ? 'Request timed out.' : 'Network error.';
+                        if (tbody) tbody.innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ff5252;">${msg} Please check your connection.</td></tr>`;
                     }
                 }
 
