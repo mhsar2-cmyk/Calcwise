@@ -1,4 +1,5 @@
 const axios = require('axios');
+const YahooFinance = require('yahoo-finance2').default;
 
 class MarketDataService {
     constructor() {
@@ -19,6 +20,56 @@ class MarketDataService {
             alphaVantage: 'https://www.alphavantage.co/query',
             polygon: 'https://api.polygon.io/v2'
         };
+
+        // Instantiate Yahoo Finance with suppressed notices
+        this.yf = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
+    }
+
+    // جلب سعر الأصل من Yahoo Finance
+    async getStockPriceFromYahoo(symbol) {
+        try {
+            // تحويل الرموز للسوق السعودي إذا كانت أرقام فقط
+            let yahooSymbol = symbol;
+            if (/^\d{4}$/.test(symbol)) {
+                yahooSymbol = `${symbol}.SR`;
+            } else if (symbol.endsWith('.SR')) {
+                // Keep it as is
+            }
+
+            // تحويل الرموز للعملات (Forex)
+            if (['EURUSD', 'GBPUSD', 'USDJPY', 'XAUUSD', 'XAGUSD'].includes(symbol)) {
+                if (symbol === 'XAUUSD') yahooSymbol = 'GC=F'; // Gold Futures
+                else if (symbol === 'XAGUSD') yahooSymbol = 'SI=F'; // Silver Futures
+                else yahooSymbol = `${symbol}=X`;
+            }
+
+            const result = await this.yf.quote(yahooSymbol);
+
+            if (!result || !result.regularMarketPrice) {
+                return this.getMockStockData(symbol);
+            }
+
+            return {
+                price: result.regularMarketPrice,
+                change: result.regularMarketChange || 0,
+                changePercent: result.regularMarketChangePercent || 0,
+                volume: result.regularMarketVolume || 0,
+                marketCap: result.marketCap ? this.formatMarketCap(result.marketCap) : 'N/A',
+                source: 'yahoo_finance',
+                symbol: symbol,
+                name: result.shortName || result.longName || symbol
+            };
+        } catch (error) {
+            console.error(`Yahoo Finance API error for ${symbol}:`, error.message);
+            return this.getMockStockData(symbol);
+        }
+    }
+
+    formatMarketCap(val) {
+        if (val >= 1e12) return (val / 1e12).toFixed(2) + 'T';
+        if (val >= 1e9) return (val / 1e9).toFixed(2) + 'B';
+        if (val >= 1e6) return (val / 1e6).toFixed(2) + 'M';
+        return val.toString();
     }
 
     // جلب سعر الأصل من Binance (مع بيانات التغير والحجم)
@@ -253,25 +304,7 @@ class MarketDataService {
 
     // جلب سعر الذهب (XAU/USD)
     async getGoldPrice() {
-        try {
-            // Mock data for Gold (Fallback is primary here since we don't have a reliable free API)
-            return {
-                price: 2045.50 + (Math.random() * 10 - 5),
-                change: 12.50 + (Math.random() * 2 - 1),
-                changePercent: 0.61,
-                volume: 0,
-                marketCap: '-',
-                source: 'mock_data',
-                symbol: 'XAUUSD'
-            };
-        } catch (error) {
-            console.error('Gold price API error:', error.message);
-            return {
-                price: 2045.50,
-                source: 'fallback',
-                symbol: 'XAUUSD'
-            };
-        }
+        return this.getStockPriceFromYahoo('XAUUSD');
     }
 
     // جلب جميع أسعار المحفظة
@@ -293,11 +326,8 @@ class MarketDataService {
                             break;
 
                         case 'stock':
-                            priceData = await this.getStockPriceFromAlphaVantage(asset.symbol, process.env.ALPHA_VANTAGE_API_KEY);
-                            break;
-
                         case 'forex':
-                            priceData = this.getMockStockData(asset.symbol);
+                            priceData = await this.getStockPriceFromYahoo(asset.symbol);
                             break;
                     }
                 } catch (err) {
