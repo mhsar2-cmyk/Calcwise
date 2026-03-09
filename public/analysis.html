@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcwise | Market Insights & AI Analysis Blog</title>
+    <title>Calcwise | AI Chart Analysis & Trading Audit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,8 +33,8 @@
                         </div>
                     </div>
                     <a href="index.html#vip" class="nav-link" data-i18n="nav-vip">VIP Indicator</a>
-                    <a href="analysis.html" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
-                    <a href="blog.html" class="nav-link active" data-i18n="nav-blog">Blog</a>
+                    <a href="analysis.html" class="nav-link active" data-i18n="nav-analysis">AI Analysis</a>
+                    <a href="blog.html" class="nav-link" data-i18n="nav-blog">Blog</a>
                     <a href="index.html#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
                 </nav>
                 <div class="nav-actions">
@@ -72,87 +72,68 @@
         </header>
 
         <main>
-            <!-- Blog Section -->
-            <section class="section" id="blog">
+            <!-- AI Analysis -->
+            <section class="section" id="analysis">
                 <div class="container">
                     <div class="section-header">
-                        <span class="badge badge-cyan" data-i18n="blog-badge">Insights</span>
-                        <h2 data-i18n="blog-title">Latest Market Insights</h2>
-                        <p data-i18n="blog-subtitle">Stay updated with the latest trends and AI analysis in the
-                            financial markets.</p>
+                        <span class="badge badge-cyan animate-pulse" data-i18n="ai-analysis-badge">New Feature</span>
+                        <h2 data-i18n="ai-analysis-title">Revolutionary AI Chart Analysis</h2>
+                        <p data-i18n="ai-analysis-desc">Upload a chart screenshot and let our AI provide 22+
+                            professional tech analysis points.</p>
                     </div>
 
-                    <div class="blog-grid">
-                        <article class="blog-card card card-glass" data-reveal>
-                            <div class="blog-image">
-                                <img src="https://images.unsplash.com/photo-1611974717482-16631627993a?auto=format&fit=crop&q=80&w=800"
-                                    alt="Crypto Trends">
-                                <span class="blog-tag" data-i18n="blog-tag-crypto">Crypto</span>
+                    <div class="analysis-demo-grid" data-reveal>
+                        <div class="upload-panel card">
+                            <div class="upload-box" id="chart-upload-box">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                                    stroke-width="1.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <h3 data-i18n="upload-title">Upload Chart Screenshot</h3>
+                                <p data-i18n="upload-desc">Drag & drop or click to browse</p>
+                                <span class="upload-hint" data-i18n="upload-hint">Supports: PNG, JPG (Max 5MB)</span>
                             </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="blog-date" data-i18n="blog-date-1">March 09, 2026</span>
-                                    <span class="blog-read" data-i18n="blog-read-5">5 min read</span>
-                                </div>
-                                <h3 class="blog-card-title" data-i18n="blog-title-1">Bitcoin's Halving: An AI
-                                    Perspective</h3>
-                                <p class="blog-excerpt" data-i18n="blog-desc-1">We analyze how the upcoming halving
-                                    event could impact liquidity and institutional flow according to our AI models.</p>
-                                <a href="#" class="btn-text" data-i18n="blog-read-more">Read More <svg width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg></a>
-                            </div>
-                        </article>
+                        </div>
 
-                        <article class="blog-card card card-glass" data-reveal>
-                            <div class="blog-image">
-                                <img src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&q=80&w=800"
-                                    alt="US Market">
-                                <span class="blog-tag" data-i18n="blog-tag-us">US Market</span>
+                        <div class="results-panel card">
+                            <div class="results-header">
+                                <span class="badge badge-gold" data-i18n="results-badge">22+ Analysis Points</span>
+                                <h3 data-i18n="results-title">Technical Audit Results</h3>
                             </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="blog-date" data-i18n="blog-date-2">March 08, 2026</span>
-                                    <span class="blog-read" data-i18n="blog-read-4">4 min read</span>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <label data-i18n="label-trend">Trend Direction</label>
+                                    <div class="value bullish" data-i18n="trend-bullish">Bullish</div>
                                 </div>
-                                <h3 class="blog-card-title" data-i18n="blog-title-2">Fed Interest Rates vs Tech Stocks
-                                </h3>
-                                <p class="blog-excerpt" data-i18n="blog-desc-2">Our proprietary algorithms reveal hidden
-                                    correlations between interest rate shifts and the NASDAQ performance.</p>
-                                <a href="#" class="btn-text" data-i18n="blog-read-more">Read More <svg width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg></a>
-                            </div>
-                        </article>
-
-                        <article class="blog-card card card-glass" data-reveal>
-                            <div class="blog-image">
-                                <img src="https://images.unsplash.com/photo-1526303310218-7f9004052ca1?auto=format&fit=crop&q=80&w=800"
-                                    alt="Forex Strategy">
-                                <span class="blog-tag" data-i18n="blog-tag-forex">Forex</span>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="blog-date" data-i18n="blog-date-3">March 07, 2026</span>
-                                    <span class="blog-read" data-i18n="blog-read-6">6 min read</span>
+                                <div class="result-item">
+                                    <label data-i18n="label-confidence">Confidence</label>
+                                    <div class="value">94.8%</div>
                                 </div>
-                                <h3 class="blog-card-title" data-i18n="blog-title-3">Scalping the EUR/USD with AI</h3>
-                                <p class="blog-excerpt" data-i18n="blog-desc-3">Learn how to use our VIP indicator to
-                                    identify high-probability reversal zones in the major currency pairs.</p>
-                                <a href="#" class="btn-text" data-i18n="blog-read-more">Read More <svg width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg></a>
+                                <div class="result-item">
+                                    <label data-i18n="label-recommendation">Recommendation</label>
+                                    <div class="value buy" data-i18n="value-buy">STRONG BUY</div>
+                                </div>
+                                <div class="result-item">
+                                    <label data-i18n="label-momentum">Market Momentum</label>
+                                    <div class="value">9.2 / 10</div>
+                                </div>
+                                <div class="result-item">
+                                    <label data-i18n="label-rsi-div">RSI Divergence</label>
+                                    <div class="value positive" data-i18n="value-rsi-div">Positive Divergence Detected
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <label data-i18n="label-ob">Order Block Detection</label>
+                                    <div class="value" data-i18n="value-ob">Institutional Buy Zone @ $63,800</div>
+                                </div>
+                                <div class="result-item highlight">
+                                    <label data-i18n="label-targets">Targets & Stop Loss</label>
+                                    <div class="value">TP1: $68,400 | SL: $62,100</div>
+                                </div>
                             </div>
-                        </article>
+                        </div>
                     </div>
                 </div>
             </section>
