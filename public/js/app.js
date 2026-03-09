@@ -20,6 +20,7 @@ const translations = {
     "btn-register": "Register",
     "hero-accuracy": "Up to 99% accuracy from AI data analysis",
     "hero-title": "Best AI Trading Bot Indicators 2026",
+    "hero-subtitle": "Supported Markets: US Stocks · Crypto · Forex · Options · Saudi Market · Gold",
     "hero-markets-label": "Supported Markets:",
     "market-us": "US Stocks",
     "market-crypto": "Crypto",
@@ -140,6 +141,44 @@ const translations = {
     "footer-platforms": "Platforms",
     "footer-links": "Links",
     "footer-copy": "© 2026 Calcwise AI. All rights reserved.",
+    // Pricing
+    "nav-pricing": "Pricing",
+    "pricing-badge": "Pricing",
+    "pricing-title": "Choose Your Plan",
+    "pricing-subtitle": "Start free, upgrade when you're ready.",
+    "plan-starter": "Starter",
+    "plan-pro": "Pro",
+    "plan-vip": "VIP",
+    "plan-feature-1": "Daily market snapshot",
+    "plan-feature-2": "Email newsletter",
+    "plan-feature-3": "Unlimited AI chart audits",
+    "plan-feature-4": "Crypto + Forex coverage",
+    "plan-feature-5": "Priority support",
+    "plan-feature-6": "Whale flow & liquidity alerts",
+    "plan-feature-7": "US + Saudi + Options",
+    "btn-start-trial": "Start Free Trial",
+    "price-per-month": "/month",
+    // Lead capture
+    "lead-title": "Stay Updated",
+    "lead-placeholder": "you@example.com",
+    "lead-submit": "Subscribe",
+    "nav-dashboard": "Dashboard",
+    "dashboard-badge": "Dashboard",
+    "dashboard-title": "Personal Dashboard",
+    "dashboard-subtitle": "Track your assets, manage alerts, and keep a journal.",
+    "watchlist-title": "Watchlist",
+    "watchlist-add": "Add",
+    "alerts-title": "Smart Alerts",
+    "alerts-create": "Create Alert",
+    "journal-title": "Trading Journal",
+    "journal-add": "Add Entry",
+    "risk-badge": "Risk",
+    "risk-title": "Risk Calculator",
+    "risk-subtitle": "Calculate position size based on balance, risk and stop.",
+    "risk-calc-btn": "Calculate",
+    "calendar-badge": "Calendar",
+    "calendar-title": "Economic Calendar",
+    "calendar-subtitle": "Major macro events and expected market impact",
   },
   ar: {
     "nav-home": "الرئيسية",
@@ -160,6 +199,7 @@ const translations = {
     "btn-register": "تسجيل",
     "hero-accuracy": "دقة تصل إلى 99% من تحليل بيانات الذكاء الاصطناعي",
     "hero-title": "أفضل مؤشرات بوت التداول 2026",
+    "hero-subtitle": "الأسواق المدعومة: الأسهم الأمريكية · العملات الرقمية · الفوركس · الخيارات · السوق السعودي · الذهب",
     "hero-markets-label": "الأسواق المدعومة:",
     "market-us": "الأسهم الأمريكية",
     "market-crypto": "العملات الرقمية",
@@ -280,6 +320,44 @@ const translations = {
     "footer-platforms": "المنصات",
     "footer-links": "روابط",
     "footer-copy": "© 2026 كالك وايز. جميع الحقوق محفوظة.",
+    // Pricing
+    "nav-pricing": "الأسعار",
+    "pricing-badge": "الأسعار",
+    "pricing-title": "اختر خطتك",
+    "pricing-subtitle": "ابدأ مجانًا، وطور عند الحاجة.",
+    "plan-starter": "مبتدئ",
+    "plan-pro": "احترافي",
+    "plan-vip": "VIP",
+    "plan-feature-1": "ملخص يومي للسوق",
+    "plan-feature-2": "نشرة بريدية",
+    "plan-feature-3": "تدقيق رسومي غير محدود",
+    "plan-feature-4": "تغطية كريبتو + فوركس",
+    "plan-feature-5": "دعم أولوية",
+    "plan-feature-6": "تنبيهات تدفق الحيتان والسيولة",
+    "plan-feature-7": "السوق الأمريكي + السعودي + الخيارات",
+    "btn-start-trial": "ابدأ التجربة مجاناً",
+    "price-per-month": "/شهرياً",
+    // Lead capture
+    "lead-title": "ابقَ على اطلاع",
+    "lead-placeholder": "you@example.com",
+    "lead-submit": "اشترك",
+    "nav-dashboard": "لوحة التحكم",
+    "dashboard-badge": "لوحة التحكم",
+    "dashboard-title": "لوحة المستخدم",
+    "dashboard-subtitle": "تابع أصولك، أنشئ تنبيهات، وسجل يوميات تداولك.",
+    "watchlist-title": "قائمة المتابعة",
+    "watchlist-add": "إضافة",
+    "alerts-title": "تنبيهات ذكية",
+    "alerts-create": "إنشاء تنبيه",
+    "journal-title": "مفكرة التداول",
+    "journal-add": "إضافة سجل",
+    "risk-badge": "المخاطر",
+    "risk-title": "حاسبة المخاطر",
+    "risk-subtitle": "احسب حجم الصفقة وفق الرصيد والمخاطرة ووقف الخسارة.",
+    "risk-calc-btn": "احسب",
+    "calendar-badge": "المفكرة",
+    "calendar-title": "المفكرة الاقتصادية",
+    "calendar-subtitle": "أهم الأحداث الاقتصادية وتأثيرها المتوقع",
   },
 };
 
@@ -297,10 +375,14 @@ class App {
     this.setupDropdowns();
     this.setupScrollReveal();
     this.setupBackToTop();
+    this.setupDashboard();
+    this.setupRiskCalculator();
+    this.setupBlogPersonalization();
   }
 
   setupBackToTop() {
     const backBtn = document.getElementById('back-to-top');
+    const navbar = document.querySelector('.navbar');
     if (!backBtn) return;
 
     window.addEventListener('scroll', () => {
@@ -308,6 +390,10 @@ class App {
         backBtn.classList.add('visible');
       } else {
         backBtn.classList.remove('visible');
+      }
+      if (navbar) {
+        if (window.scrollY > 10) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
       }
     });
 
@@ -377,6 +463,52 @@ class App {
         }
       });
     });
+
+    // Subscribe buttons
+    document.querySelectorAll('.subscribe-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const plan = btn.getAttribute('data-plan') || 'starter';
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ plan }),
+          });
+          const data = await res.json();
+          alert(data.message || 'Subscription initialized');
+        } catch (e) {
+          alert('Failed to start subscription. Please try again later.');
+        }
+      });
+    });
+
+    // Lead capture
+    const leadForm = document.getElementById('lead-form');
+    if (leadForm) {
+      leadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = leadForm.querySelector('input[name="email"]').value.trim();
+        const msg = document.getElementById('lead-message');
+        try {
+          const res = await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          const data = await res.json();
+          if (msg) {
+            msg.textContent = data.message || 'Thanks! You are on the list.';
+            msg.style.color = 'var(--accent-gold)';
+          }
+          leadForm.reset();
+        } catch (err) {
+          if (msg) {
+            msg.textContent = 'Something went wrong. Please try again.';
+            msg.style.color = 'tomato';
+          }
+        }
+      });
+    }
   }
 
   applyTheme(theme) {
@@ -450,6 +582,240 @@ class App {
     document.querySelectorAll('.dropdown-menu').forEach(menu => {
       menu.addEventListener('click', (e) => e.stopPropagation());
     });
+  }
+
+  setupBlogPersonalization() {
+    const grid = document.querySelector('.blog-grid');
+    if (!grid) return;
+    const prefKey = 'preferredTag';
+    const getPref = () => localStorage.getItem(prefKey);
+    const setPref = (t) => localStorage.setItem(prefKey, t);
+    const normalize = (t) => (t || '').toLowerCase().trim();
+    const reorder = (tag) => {
+      const pref = normalize(tag || getPref());
+      const cards = Array.from(grid.querySelectorAll('.blog-card'));
+      cards.forEach(c => c.style.display = '');
+      if (pref && pref !== 'all') {
+        cards.forEach(c => {
+          const t = normalize(c.querySelector('.blog-tag')?.textContent);
+          if (!t.includes(pref)) c.style.display = 'none';
+        });
+      }
+      cards.sort((a, b) => {
+        const ta = normalize(a.querySelector('.blog-tag')?.textContent);
+        const tb = normalize(b.querySelector('.blog-tag')?.textContent);
+        const sa = pref && pref !== 'all' && ta.includes(pref) ? 0 : 1;
+        const sb = pref && pref !== 'all' && tb.includes(pref) ? 0 : 1;
+        return sa - sb;
+      });
+      cards.forEach(c => grid.appendChild(c));
+    };
+    const filterBar = document.querySelector('[data-filter-tag]');
+    document.querySelectorAll('[data-filter-tag]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.getAttribute('data-filter-tag');
+        setPref(tag);
+        reorder(tag);
+      });
+    });
+    const saved = getPref();
+    if (saved) reorder(saved);
+  }
+
+  setupDashboard() {
+    const listEl = document.getElementById('wl-list');
+    const addBtn = document.getElementById('wl-add');
+    const inputEl = document.getElementById('wl-input');
+    const alertForm = document.getElementById('alert-form');
+    const alertMsg = document.getElementById('alert-message');
+    const journalForm = document.getElementById('journal-form');
+    const journalList = document.getElementById('journal-list');
+
+    const getWL = () => {
+      try { return JSON.parse(localStorage.getItem('watchlist') || '[]'); } catch { return []; }
+    };
+    const setWL = (arr) => localStorage.setItem('watchlist', JSON.stringify(arr));
+
+    const renderWL = () => {
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      const wl = getWL();
+      wl.forEach(sym => {
+        const li = document.createElement('li');
+        li.style.display = 'flex';
+        li.style.alignItems = 'center';
+        li.style.justifyContent = 'space-between';
+        li.style.gap = '8px';
+        const span = document.createElement('span');
+        span.textContent = sym;
+        const actions = document.createElement('div');
+        actions.style.display = 'flex';
+        actions.style.gap = '8px';
+        const btnSent = document.createElement('button');
+        btnSent.className = 'btn-outline';
+        btnSent.textContent = 'Sentiment';
+        const btnDel = document.createElement('button');
+        btnDel.className = 'btn-outline';
+        btnDel.textContent = '×';
+        const result = document.createElement('small');
+        btnSent.addEventListener('click', async () => {
+          try {
+            const r = await fetch(`/api/market/sentiment?asset=${encodeURIComponent(sym)}`);
+            const j = await r.json();
+            result.textContent = j?.sentiment ? `${j.sentiment.score} • ${j.sentiment.mood}` : '—';
+          } catch {
+            result.textContent = '—';
+          }
+        });
+        btnDel.addEventListener('click', () => {
+          const next = getWL().filter(s => s !== sym);
+          setWL(next);
+          renderWL();
+        });
+        actions.appendChild(btnSent);
+        actions.appendChild(btnDel);
+        li.appendChild(span);
+        li.appendChild(actions);
+        li.appendChild(result);
+        listEl.appendChild(li);
+      });
+    };
+
+    if (addBtn && inputEl) {
+      addBtn.addEventListener('click', () => {
+        const v = (inputEl.value || '').toUpperCase().trim();
+        if (!v) return;
+        const wl = getWL();
+        if (!wl.includes(v)) {
+          wl.push(v);
+          setWL(wl);
+          renderWL();
+        }
+        inputEl.value = '';
+      });
+    }
+
+    if (alertForm && alertMsg) {
+      alertForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fd = new FormData(alertForm);
+        const payload = {
+          symbol: fd.get('symbol'),
+          operator: fd.get('operator'),
+          target: parseFloat(fd.get('target') || '0'),
+          channel: fd.get('channel'),
+        };
+        try {
+          const res = await fetch('/api/alerts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json();
+          alertMsg.textContent = data.message || 'Alert created';
+          alertMsg.style.color = 'var(--accent-gold)';
+          alertForm.reset();
+        } catch {
+          alertMsg.textContent = 'Failed to create alert';
+          alertMsg.style.color = 'tomato';
+        }
+      });
+    }
+
+    const getJournal = () => {
+      try { return JSON.parse(localStorage.getItem('journalEntries') || '[]'); } catch { return []; }
+    };
+    const setJournal = (arr) => localStorage.setItem('journalEntries', JSON.stringify(arr));
+    const renderJournal = () => {
+      if (!journalList) return;
+      journalList.innerHTML = '';
+      getJournal().slice().reverse().forEach(e => {
+        const li = document.createElement('li');
+        li.className = 'card';
+        const dt = new Date(e.ts).toLocaleString();
+        li.textContent = `[${dt}] ${e.asset} — ${e.note}`;
+        journalList.appendChild(li);
+      });
+    };
+    if (journalForm) {
+      journalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(journalForm);
+        const entry = {
+          asset: (fd.get('asset') || '').toString().trim(),
+          note: (fd.get('note') || '').toString().trim(),
+          ts: Date.now(),
+        };
+        if (!entry.asset || !entry.note) return;
+        const arr = getJournal();
+        arr.push(entry);
+        setJournal(arr.slice(-100));
+        journalForm.reset();
+        renderJournal();
+      });
+    }
+    renderWL();
+    renderJournal();
+  }
+
+  setupRiskCalculator() {
+    const form = document.getElementById('risk-form');
+    const out = document.getElementById('risk-results');
+    if (!form || !out) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const balance = parseFloat(fd.get('balance') || '0');
+      const riskPct = parseFloat(fd.get('riskPct') || '0');
+      const entry = parseFloat(fd.get('entry') || '0');
+      const stop = parseFloat(fd.get('stop') || '0');
+      const instr = fd.get('instrument');
+      const riskAmount = balance * (riskPct / 100);
+      const stopSize = Math.abs(entry - stop);
+      if (!riskAmount || !stopSize) {
+        out.textContent = '—';
+        return;
+      }
+      const units = riskAmount / stopSize;
+      const positionValue = units * entry;
+      const fmt = (n) => (Math.abs(n) >= 1000 ? n.toLocaleString(undefined, { maximumFractionDigits: 2 }) : n.toFixed(4));
+      out.innerHTML = `
+        <div class="card"><strong>Risk:</strong> $${fmt(riskAmount)}</div>
+        <div class="card"><strong>Units:</strong> ${fmt(units)}</div>
+        <div class="card"><strong>Position Value:</strong> $${fmt(positionValue)}</div>
+        <div class="card"><strong>Instrument:</strong> ${instr}</div>
+      `;
+    });
+  }
+
+  setupBlogPersonalization() {
+    const grid = document.querySelector('.blog-grid');
+    if (!grid) return;
+    const prefKey = 'preferredTag';
+    const getPref = () => localStorage.getItem(prefKey);
+    const setPref = (t) => localStorage.setItem(prefKey, t);
+    const normalize = (t) => (t || '').toLowerCase().trim();
+    const reorder = () => {
+      const pref = normalize(getPref());
+      if (!pref) return;
+      const cards = Array.from(grid.querySelectorAll('.blog-card'));
+      cards.sort((a, b) => {
+        const ta = normalize(a.querySelector('.blog-tag')?.textContent);
+        const tb = normalize(b.querySelector('.blog-tag')?.textContent);
+        const sa = ta.includes(pref) ? 0 : 1;
+        const sb = tb.includes(pref) ? 0 : 1;
+        return sa - sb;
+      });
+      cards.forEach(c => grid.appendChild(c));
+    };
+    grid.addEventListener('click', (e) => {
+      const tag = e.target.closest('.blog-tag');
+      if (tag) {
+        setPref(normalize(tag.textContent));
+        reorder();
+      }
+    });
+    reorder();
   }
 }
 

@@ -12,6 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -66,172 +67,256 @@
             </div>
         </header>
         <main>
-            <!-- Platform Introductory Section -->
-            <section class="platform-page section">
+            <!-- Live Crypto Market Data (Custom) -->
+            <section class="section crypto-market-data" style="padding: 20px 0 60px 0;">
                 <div class="container">
-                    <div class="platform-grid">
-                        <div class="platform-content">
-                            <span class="badge badge-cyan" data-i18n="nav-platforms">Platform</span>
-                            <h1 data-i18n="crypto-title">Crypto Platform</h1>
-                            <p class="market-coverage" data-i18n="crypto-coverage">Global crypto assets coverage.</p>
-                            <div class="feature-list-grid">
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-ai">AI Analysis</span></div>
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-depth">Market Depth</span></div>
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-explosion">Explosion Zones</span></div>
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-entry-exit">Entry/Exit Points</span></div>
+                    <!-- Top Coins Grid -->
+                    <div class="indices-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <!-- Bitcoin Card -->
+                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Bitcoin</h3>
+                                    <span style="color: #888; font-size: 0.8rem;">BTC</span>
+                                </div>
+                                <div id="btc-price-container">
+                                    <span class="loading-spinner">Loading...</span>
+                                </div>
                             </div>
-                            <button class="btn-primary btn-hero" data-i18n="btn-get-access">Get Access Now</button>
+                            <div class="chart-container" style="height: 150px; width: 100%; position: relative;">
+                                <canvas id="btcChart"></canvas>
+                            </div>
                         </div>
-                        <div class="platform-visual">
-                            <div class="card"><img src="images/platform_mockup.png" alt="Platform" class="mockup-img">
+
+                        <!-- Ethereum Card -->
+                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Ethereum</h3>
+                                    <span style="color: #888; font-size: 0.8rem;">ETH</span>
+                                </div>
+                                <div id="eth-price-container">
+                                    <span class="loading-spinner">Loading...</span>
+                                </div>
                             </div>
+                            <div class="chart-container" style="height: 150px; width: 100%; position: relative;">
+                                <canvas id="ethChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Solana Card -->
+                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Solana</h3>
+                                    <span style="color: #888; font-size: 0.8rem;">SOL</span>
+                                </div>
+                                <div id="sol-price-container">
+                                    <span class="loading-spinner">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="chart-container" style="height: 150px; width: 100%; position: relative;">
+                                <canvas id="solChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Crypto Assets Table -->
+                    <div class="card card-glass" style="padding: 0; border-radius: 12px; overflow: hidden; background: #131722;">
+                        <div class="table-header" style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <h3 style="margin: 0; font-size: 1.2rem;">Top Crypto Assets</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="market-table" style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: rgba(255,255,255,0.02); text-align: left;">
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Asset</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Symbol</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Price (USD)</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Change</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">% Change</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Volume</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Market Cap</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="crypto-market-tbody">
+                                    <tr><td colspan="7" style="padding: 20px; text-align: center; color: #666;">Loading crypto data...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Market Dashboard (Heatmap + Top 20 side-by-side) -->
-            <section class="section market-dashboard" style="padding: 20px 0 60px 0;">
-                <div class="container">
-                    <div class="dashboard-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;">
-                        <!-- Heatmap Column -->
-                        <div class="widget-container card card-glass"
-                            style="min-height: 500px; border-radius: 12px; overflow: hidden; background: #131722;">
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript"
-                                    src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js"
-                                    async>
-                                        {
-                                            "dataSource": "Crypto",
-                                                "blockSize": "market_cap_calc",
-                                                    "blockColor": "change",
-                                                        "grouping": "platform",
-                                                            "locale": "en",
-                                                                "symbolUrl": "",
-                                                                    "colorTheme": "dark",
-                                                                        "hasTopBar": false,
-                                                                            "isDatasetEnabled": false,
-                                                                                "isStablecoinEnabled": false,
-                                                                                    "width": "100%",
-                                                                                        "height": 500
-                                        }
-                                    </script>
-                            </div>
-                        </div>
-
-                        <!-- Top 20 Column -->
-                        <div class="widget-container card card-glass"
-                            style="min-height: 500px; border-radius: 12px; overflow: hidden; background: #131722;">
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript"
-                                    src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
-                                    async>
-                                        {
-                                            "colorTheme": "dark",
-                                                "dateRange": "12M",
-                                                    "showChart": false,
-                                                        "locale": "en",
-                                                            "width": "100%",
-                                                                "height": 500,
-                                                                    "largeChartUrl": "",
-                                                                        "isTransparent": false,
-                                                                            "showSymbolLogo": true,
-                                                                                "showFloatingTooltip": false,
-                                                                                    "tabs": [
-                                                                                        {
-                                                                                            "title": "Top 20 Assets",
-                                                                                            "symbols": [
-                                                                                                { "s": "BINANCE:BTCUSDT" },
-                                                                                                { "s": "BINANCE:ETHUSDT" },
-                                                                                                { "s": "BINANCE:BNBUSDT" },
-                                                                                                { "s": "BINANCE:SOLUSDT" },
-                                                                                                { "s": "BINANCE:ADAUSDT" },
-                                                                                                { "s": "BINANCE:XRPUSDT" },
-                                                                                                { "s": "BINANCE:DOTUSDT" },
-                                                                                                { "s": "BINANCE:DOGEUSDT" },
-                                                                                                { "s": "BINANCE:AVAXUSDT" },
-                                                                                                { "s": "BINANCE:LINKUSDT" },
-                                                                                                { "s": "BINANCE:MATICUSDT" },
-                                                                                                { "s": "BINANCE:LTCUSDT" },
-                                                                                                { "s": "BINANCE:ALGOUSDT" },
-                                                                                                { "s": "BINANCE:BCHUSDT" },
-                                                                                                { "s": "BINANCE:XLMUSDT" },
-                                                                                                { "s": "BINANCE:VETUSDT" },
-                                                                                                { "s": "BINANCE:TRXUSDT" },
-                                                                                                { "s": "BINANCE:FILUSDT" },
-                                                                                                { "s": "BINANCE:NEARUSDT" },
-                                                                                                { "s": "BINANCE:ICPUSDT" }
-                                                                                            ]
-                                                                                        }
-                                                                                    ]
-                                        }
-                                    </script>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <style>
-                    @media (max-width: 992px) {
-                        .dashboard-grid {
-                            grid-template-columns: 1fr !important;
-                        }
+            <script>
+                // Crypto Data Configuration
+                const cryptoConfig = {
+                    symbols: ['BTC', 'ETH', 'BNB', 'SOL', 'XRP', 'ADA', 'AVAX', 'DOGE', 'DOT', 'TRX', 'LINK', 'MATIC', 'LTC', 'BCH', 'UNI', 'XLM', 'ATOM', 'ALGO'],
+                    names: {
+                        'BTC': 'Bitcoin', 'ETH': 'Ethereum', 'BNB': 'Binance Coin', 'SOL': 'Solana', 'XRP': 'Ripple', 
+                        'ADA': 'Cardano', 'AVAX': 'Avalanche', 'DOGE': 'Dogecoin', 'DOT': 'Polkadot', 'TRX': 'TRON',
+                        'LINK': 'Chainlink', 'MATIC': 'Polygon', 'LTC': 'Litecoin', 'BCH': 'Bitcoin Cash',
+                        'UNI': 'Uniswap', 'XLM': 'Stellar', 'ATOM': 'Cosmos', 'ALGO': 'Algorand'
                     }
-                </style>
-            </section>
+                };
 
+                let currentCryptoData = {};
 
-            <!-- Bitcoin Chart Section -->
-            <section class="section btc-chart-section" style="padding: 20px 0 60px 0;">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="badge badge-gold">Live Analysis</span>
-                        <h2>Bitcoin (BTC/USDT) Technical Chart</h2>
-                        <p>Real-time interactive chart with advanced technical indicators for Bitcoin.</p>
-                    </div>
-                    <div class="widget-container card card-glass"
-                        style="min-height: 600px; border-radius: 12px; overflow: hidden; background: #131722;">
-                        <div class="tradingview-widget-container" style="height:100%;width:100%">
-                            <div id="tradingview_btc" style="height: 600px;"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                            <script type="text/javascript">
-                                new TradingView.widget(
-                                    {
-                                        "autosize": true,
-                                        "symbol": "BINANCE:BTCUSDT",
-                                        "interval": "D",
-                                        "timezone": "Etc/UTC",
-                                        "theme": "dark",
-                                        "style": "8",
-                                        "locale": "en",
-                                        "toolbar_bg": "#f1f3f6",
-                                        "enable_publishing": false,
-                                        "hide_side_toolbar": false,
-                                        "allow_symbol_change": true,
-                                        "studies": [
-                                            "RSI@tv-basicstudies"
-                                        ],
-                                        "container_id": "tradingview_btc"
-                                    }
-                                );
-                            </script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetchCryptoData();
+                    initCharts();
+                });
+
+                async function fetchCryptoData() {
+                    const symbolString = cryptoConfig.symbols.join(',');
+
+                    try {
+                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`);
+                        const data = await response.json();
+                        
+                        if (data.success && data.prices) {
+                            currentCryptoData = data.prices;
+                            
+                            // Check if data exists before updating
+                            if (data.prices['BTC']) updateIndex('btc', data.prices['BTC']);
+                            if (data.prices['ETH']) updateIndex('eth', data.prices['ETH']);
+                            if (data.prices['SOL']) updateIndex('sol', data.prices['SOL']);
+                            
+                            renderCryptoTable();
+                        } else {
+                            console.error('API response unsuccessful:', data);
+                            document.getElementById('crypto-market-tbody').innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ff5252;">Failed to load data. Please try again later.</td></tr>`;
+                        }
+                    } catch (error) {
+                        console.error('Error fetching crypto data:', error);
+                        document.getElementById('crypto-market-tbody').innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ff5252;">Network error. Please check your connection.</td></tr>`;
+                    }
+                }
+
+                function updateIndex(id, data) {
+                    if (!data) return;
+                    const container = document.getElementById(`${id}-price-container`);
+                    if (!container) return; // Safety check
+                    
+                    const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
+                    const sign = data.change >= 0 ? '+' : '';
+                    
+                    container.innerHTML = `
+                        <div style="text-align: right;">
+                            <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">$${data.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                            <div class="${colorClass}" style="font-size: 0.8rem; font-weight: 500;">
+                                ${sign}${data.change.toFixed(2)} (${sign}${data.changePercent.toFixed(2)}%)
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    `;
+                }
+
+                function initCharts() {
+                    createChart('btcChart', 45000, '#F7931A');
+                    createChart('ethChart', 2300, '#627EEA');
+                    createChart('solChart', 98, '#14F195');
+                }
+
+                function createChart(canvasId, basePrice, color) {
+                    const ctx = document.getElementById(canvasId).getContext('2d');
+                    const labels = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
+                    const dataPoints = labels.map((_, i) => basePrice + (Math.random() * (basePrice * 0.02) - (basePrice * 0.01)) + (i * (basePrice * 0.005)));
+
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 150);
+                    gradient.addColorStop(0, color + '33'); // 20% opacity
+                    gradient.addColorStop(1, color + '00'); // 0% opacity
+
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: dataPoints,
+                                borderColor: color,
+                                backgroundColor: gradient,
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                pointHoverRadius: 4,
+                                fill: true,
+                                tension: 0.4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false }, tooltip: { enabled: true } },
+                            scales: { x: { display: false }, y: { display: false } },
+                            interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                        }
+                    });
+                }
+
+                function formatVolume(num) {
+                    if (num >= 1000000000) return (num / 1000000000).toFixed(2) + 'B';
+                    if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+                    if (num >= 1000) return (num / 1000).toFixed(2) + 'K';
+                    return num.toString();
+                }
+
+                function renderCryptoTable() {
+                    const tbody = document.getElementById('crypto-market-tbody');
+                    tbody.innerHTML = '';
+                    
+                    if (Object.keys(currentCryptoData).length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #888;">No data available.</td></tr>`;
+                        return;
+                    }
+
+                    cryptoConfig.symbols.forEach(symbol => {
+                        const data = currentCryptoData[symbol];
+                        if (!data) return; // Skip if no data for this symbol
+                        
+                        const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
+                        const sign = data.change >= 0 ? '+' : '';
+                        const volume = data.volume ? formatVolume(data.volume) : '-';
+                        const marketCap = data.marketCap || '-';
+                        
+                        const row = document.createElement('tr');
+                        row.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                        
+                        // Use CoinCap assets for icons with fallback to colorful letter
+                        const iconUrl = `https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`;
+                        
+                        // Generate color for fallback
+                        const colors = ['#F7931A', '#627EEA', '#14F195', '#23292F', '#0033AD', '#C2A633', '#E84142', '#E6007A', '#F3BA2F', '#26A17B'];
+                        const colorIndex = symbol.charCodeAt(0) % colors.length;
+                        const fallbackColor = colors[colorIndex];
+
+                        row.innerHTML = `
+                            <td style="padding: 15px 20px; color: #fff; font-weight: 500;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                        <img src="${iconUrl}" 
+                                             onerror="this.style.display='none'; this.parentElement.style.background='${fallbackColor}'; this.parentElement.innerHTML='<span style=\'color:white;font-size:12px;font-weight:bold\'>${symbol[0]}</span>'" 
+                                             alt="${symbol}" 
+                                             style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    ${cryptoConfig.names[symbol]}
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px; color: #888;">${symbol}</td>
+                            <td style="padding: 15px 20px; color: #fff; font-weight: 600;">$${data.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 6})}</td>
+                            <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.change.toFixed(4)}</td>
+                            <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.changePercent.toFixed(2)}%</td>
+                            <td style="padding: 15px 20px; color: #bbb;">${volume}</td>
+                            <td style="padding: 15px 20px; color: #bbb;">${marketCap}</td>
+                        `;
+                        
+                        tbody.appendChild(row);
+                    });
+                }
+            </script>
+            
+            <style>
+                .text-green { color: #4CAF50; }
+                .text-red { color: #FF5252; }
+                .market-table tr:hover { background: rgba(255,255,255,0.05) !important; }
+            </style>
 
 
         </main>

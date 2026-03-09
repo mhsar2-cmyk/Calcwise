@@ -12,6 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -66,41 +67,260 @@
             </div>
         </header>
         <main>
-            <section class="platform-page section">
+            <!-- Live Forex Market Data (Custom) -->
+            <section class="section forex-market-data" style="padding: 20px 0 60px 0;">
                 <div class="container">
-                    <div class="platform-grid">
-                        <div class="platform-content">
-                            <span class="badge badge-cyan" data-i18n="nav-platforms">Platform</span>
-                            <h1 data-i18n="forex-title">Forex & Options</h1>
-                            <p class="market-coverage" data-i18n="forex-coverage">Global Forex pairs & Real-time
-                                contracts.</p>
-                            <div class="feature-list-grid">
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-ai">AI Analysis</span></div>
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-depth">Market Depth</span></div>
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-explosion">Price Action</span></div>
-                                <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                        stroke="var(--accent-green)" stroke-width="3">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg> <span data-i18n="feature-entry-exit">Entry/Exit Points</span></div>
+                    <!-- Top Assets Grid -->
+                    <div class="indices-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <!-- Gold Card -->
+                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Gold</h3>
+                                    <span style="color: #888; font-size: 0.8rem;">XAU/USD</span>
+                                </div>
+                                <div id="gold-price-container">
+                                    <span class="loading-spinner">Loading...</span>
+                                </div>
                             </div>
-                            <button class="btn-primary btn-hero" data-i18n="btn-get-access">Get Access Now</button>
+                            <div class="chart-container" style="height: 150px; width: 100%; position: relative;">
+                                <canvas id="goldChart"></canvas>
+                            </div>
                         </div>
-                        <div class="platform-visual">
-                            <div class="card"><img src="images/platform_mockup.png" alt="Platform" class="mockup-img">
+
+                        <!-- EUR/USD Card -->
+                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Euro / US Dollar</h3>
+                                    <span style="color: #888; font-size: 0.8rem;">EUR/USD</span>
+                                </div>
+                                <div id="eur-price-container">
+                                    <span class="loading-spinner">Loading...</span>
+                                </div>
                             </div>
+                            <div class="chart-container" style="height: 150px; width: 100%; position: relative;">
+                                <canvas id="eurChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Oil Card -->
+                        <div class="market-overview-card card card-glass" style="padding: 20px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
+                            <div class="index-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #fff;">Crude Oil</h3>
+                                    <span style="color: #888; font-size: 0.8rem;">WTI</span>
+                                </div>
+                                <div id="oil-price-container">
+                                    <span class="loading-spinner">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="chart-container" style="height: 150px; width: 100%; position: relative;">
+                                <canvas id="oilChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forex Assets Table -->
+                    <div class="card card-glass" style="padding: 0; border-radius: 12px; overflow: hidden; background: #131722;">
+                        <div class="table-header" style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <h3 style="margin: 0; font-size: 1.2rem;">Major Pairs & Commodities</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="market-table" style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: rgba(255,255,255,0.02); text-align: left;">
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Asset</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Symbol</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Price</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Change</th>
+                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">% Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="forex-market-tbody">
+                                    <tr><td colspan="5" style="padding: 20px; text-align: center; color: #666;">Loading forex data...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <script>
+                // Forex Data Configuration
+                const forexConfig = {
+                    symbols: ['EURUSD', 'GBPUSD', 'USDJPY', 'XAUUSD', 'WTI', 'XAGUSD'],
+                    assets: {
+                        'EURUSD': { name: 'Euro / US Dollar', type: 'pair', base: 'eu', quote: 'us' }, 
+                        'GBPUSD': { name: 'British Pound / US Dollar', type: 'pair', base: 'gb', quote: 'us' }, 
+                        'USDJPY': { name: 'US Dollar / Japanese Yen', type: 'pair', base: 'us', quote: 'jp' }, 
+                        'XAUUSD': { name: 'Gold Spot / US Dollar', type: 'commodity', icon: 'gold' }, 
+                        'WTI': { name: 'WTI Crude Oil', type: 'commodity', icon: 'oil' }, 
+                        'XAGUSD': { name: 'Silver Spot / US Dollar', type: 'commodity', icon: 'silver' }
+                    }
+                };
+
+                let currentForexData = {};
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetchForexData();
+                    initCharts();
+                });
+
+                async function fetchForexData() {
+                    const symbolString = forexConfig.symbols.join(',');
+
+                    try {
+                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`);
+                        const data = await response.json();
+                        
+                        if (data.success && data.prices) {
+                            currentForexData = data.prices;
+                            
+                            // Check if data exists before updating
+                            if (data.prices['XAUUSD']) updateIndex('gold', data.prices['XAUUSD']);
+                            if (data.prices['EURUSD']) updateIndex('eur', data.prices['EURUSD']);
+                            if (data.prices['WTI']) updateIndex('oil', data.prices['WTI']);
+                            
+                            renderForexTable();
+                        } else {
+                            console.error('API response unsuccessful:', data);
+                            document.getElementById('forex-market-tbody').innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ff5252;">Failed to load data. Please try again later.</td></tr>`;
+                        }
+                    } catch (error) {
+                        console.error('Error fetching forex data:', error);
+                        document.getElementById('forex-market-tbody').innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ff5252;">Network error. Please check your connection.</td></tr>`;
+                    }
+                }
+
+                function updateIndex(id, data) {
+                    if (!data) return;
+                    const container = document.getElementById(`${id}-price-container`);
+                    if (!container) return; // Safety check
+                    
+                    const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
+                    const sign = data.change >= 0 ? '+' : '';
+                    const decimals = (data.symbol === 'XAUUSD' || data.symbol === 'WTI') ? 2 : 4;
+                    
+                    container.innerHTML = `
+                        <div style="text-align: right;">
+                            <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">${data.price.toFixed(decimals)}</div>
+                            <div class="${colorClass}" style="font-size: 0.8rem; font-weight: 500;">
+                                ${sign}${data.change.toFixed(decimals)} (${sign}${data.changePercent.toFixed(2)}%)
+                            </div>
+                        </div>
+                    `;
+                }
+
+                function initCharts() {
+                    createChart('goldChart', 2040, '#FFD700');
+                    createChart('eurChart', 1.09, '#2196F3');
+                    createChart('oilChart', 72, '#FF5722');
+                }
+
+                function createChart(canvasId, basePrice, color) {
+                    const ctx = document.getElementById(canvasId).getContext('2d');
+                    const labels = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
+                    const dataPoints = labels.map((_, i) => basePrice + (Math.random() * (basePrice * 0.01) - (basePrice * 0.005)) + (i * (basePrice * 0.002)));
+
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 150);
+                    gradient.addColorStop(0, color + '33'); // 20% opacity
+                    gradient.addColorStop(1, color + '00'); // 0% opacity
+
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: dataPoints,
+                                borderColor: color,
+                                backgroundColor: gradient,
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                pointHoverRadius: 4,
+                                fill: true,
+                                tension: 0.4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false }, tooltip: { enabled: true } },
+                            scales: { x: { display: false }, y: { display: false } },
+                            interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                        }
+                    });
+                }
+
+                function renderForexTable() {
+                    const tbody = document.getElementById('forex-market-tbody');
+                    tbody.innerHTML = '';
+                    
+                    if (Object.keys(currentForexData).length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: #888;">No data available.</td></tr>`;
+                        return;
+                    }
+
+                    forexConfig.symbols.forEach(symbol => {
+                        const data = currentForexData[symbol];
+                        if (!data) return; // Skip if no data for this symbol
+                        
+                        const asset = forexConfig.assets[symbol];
+                        const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
+                        const sign = data.change >= 0 ? '+' : '';
+                        const decimals = (symbol === 'XAUUSD' || symbol === 'WTI' || symbol === 'XAGUSD' || symbol === 'USDJPY') ? 2 : 4;
+                        
+                        let iconHtml = '';
+                        if (asset.type === 'pair') {
+                            iconHtml = `
+                                <div style="position: relative; width: 32px; height: 32px;">
+                                    <img src="https://flagcdn.com/w40/${asset.base}.png" 
+                                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:20px;height:20px;border-radius:50%;background:#333;color:white;font-size:8px;display:flex;align-items:center;justify-content:center;position:absolute;top:0;left:0\'>${asset.base.toUpperCase()}</div>'"
+                                         style="width: 20px; height: 20px; border-radius: 50%; position: absolute; top: 0; left: 0; border: 1px solid #333; object-fit: cover;">
+                                    <img src="https://flagcdn.com/w40/${asset.quote}.png" 
+                                         onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'width:20px;height:20px;border-radius:50%;background:#333;color:white;font-size:8px;display:flex;align-items:center;justify-content:center;position:absolute;bottom:0;right:0\'>${asset.quote.toUpperCase()}</div>'"
+                                         style="width: 20px; height: 20px; border-radius: 50%; position: absolute; bottom: 0; right: 0; border: 1px solid #333; object-fit: cover;">
+                                </div>
+                            `;
+                        } else {
+                            // Commodities icons (using colors/letters as fallback)
+                            let color = '#FFD700'; // Gold
+                            if (asset.icon === 'oil') color = '#555';
+                            if (asset.icon === 'silver') color = '#C0C0C0';
+                            
+                            iconHtml = `
+                                <div style="width: 32px; height: 32px; background: ${color}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; border: 1px solid rgba(255,255,255,0.2);">
+                                    ${symbol.substring(0,2)}
+                                </div>
+                            `;
+                        }
+                        
+                        const row = document.createElement('tr');
+                        row.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                        
+                        row.innerHTML = `
+                            <td style="padding: 15px 20px; color: #fff; font-weight: 500;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    ${iconHtml}
+                                    ${asset.name}
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px; color: #888;">${symbol}</td>
+                            <td style="padding: 15px 20px; color: #fff; font-weight: 600;">${data.price.toFixed(decimals)}</td>
+                            <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.change.toFixed(decimals)}</td>
+                            <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.changePercent.toFixed(2)}%</td>
+                        `;
+                        
+                        tbody.appendChild(row);
+                    });
+                }
+            </script>
+            
+            <style>
+                .text-green { color: #4CAF50; }
+                .text-red { color: #FF5252; }
+                .market-table tr:hover { background: rgba(255,255,255,0.05) !important; }
+            </style>
         </main>
         <footer class="footer section">
             <div class="container footer-grid">

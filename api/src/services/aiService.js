@@ -6,9 +6,7 @@ const { OpenAI } = require('openai');
  */
 class AIService {
     constructor() {
-        this.openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
-        });
+        this.openai = null;
     }
 
     async analyzeSentiment(newsItems) {
@@ -18,6 +16,11 @@ class AIService {
         }
 
         try {
+            if (!this.openai) {
+                this.openai = new OpenAI({
+                    apiKey: process.env.OPENAI_API_KEY,
+                });
+            }
             const prompt = `
                 Analyze the following market news items and provide a unified sentiment score between 0 (Extreme Fear) and 100 (Extreme Greed).
                 Also provide a 1-sentence summary of the overall market mood.
@@ -29,7 +32,7 @@ class AIService {
             `;
 
             const response = await this.openai.chat.completions.create({
-                model: "gpt-3.5-turbo-1106", // or gpt-4
+                model: "gpt-4o-mini",
                 messages: [{ role: "user", content: prompt }],
                 response_format: { type: "json_object" },
             });

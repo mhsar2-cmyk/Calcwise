@@ -42,6 +42,8 @@
               <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
             </div>
           </div>
+          <a href="#dashboard" class="nav-link" data-i18n="nav-dashboard">Dashboard</a>
+          <a href="#pricing" class="nav-link" data-i18n="nav-pricing">Pricing</a>
           <a href="#vip" class="nav-link" data-i18n="nav-vip">VIP Indicator</a>
           <a href="analysis.html" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
           <a href="blog.html" data-i18n="nav-blog">Blog</a>
@@ -143,6 +145,56 @@
       </section>
 
       <!-- VIP Section -->
+      <!-- Dashboard Section -->
+      <section class="section" id="dashboard" data-reveal>
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-gold" data-i18n="dashboard-badge">Dashboard</span>
+            <h2 data-i18n="dashboard-title">Personal Dashboard</h2>
+            <p data-i18n="dashboard-subtitle">Track your assets, manage alerts, and keep a journal.</p>
+          </div>
+          <div class="markets-grid">
+            <div class="card card-glass">
+              <h3 data-i18n="watchlist-title">Watchlist</h3>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+                <input id="wl-input" type="text" placeholder="BTC, AAPL, XAUUSD" style="flex:1;min-width:180px;">
+                <button id="wl-add" class="btn-primary" data-i18n="watchlist-add">Add</button>
+              </div>
+              <ul id="wl-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;"></ul>
+            </div>
+            <div class="card card-glass">
+              <h3 data-i18n="alerts-title">Smart Alerts</h3>
+              <form id="alert-form" style="display:flex;flex-direction:column;gap:8px;">
+                <input name="symbol" type="text" placeholder="BTC, AAPL..." required>
+                <div style="display:flex;gap:8px;">
+                  <select name="operator" style="flex:0 0 120px;">
+                    <option value=">=">&ge;</option>
+                    <option value="<=">&le;</option>
+                  </select>
+                  <input name="target" type="number" step="any" placeholder="Target Price" required style="flex:1;">
+                </div>
+                <select name="channel">
+                  <option value="email">Email</option>
+                  <option value="telegram">Telegram</option>
+                </select>
+                <button class="btn-primary" type="submit" data-i18n="alerts-create">Create Alert</button>
+                <small id="alert-message"></small>
+              </form>
+            </div>
+            <div class="card card-glass">
+              <h3 data-i18n="journal-title">Trading Journal</h3>
+              <form id="journal-form" style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
+                <input name="asset" type="text" placeholder="Asset" required>
+                <textarea name="note" placeholder="Why you entered/exited..." rows="3" required></textarea>
+                <button class="btn-outline" type="submit" data-i18n="journal-add">Add Entry</button>
+              </form>
+              <ul id="journal-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:auto;"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIP Section -->
       <section class="section vip-section" id="vip" data-reveal>
         <div class="container">
           <div class="vip-grid">
@@ -172,7 +224,62 @@
               <a href="#markets" class="btn-primary" data-i18n="btn-get-access">Get Access Now</a>
             </div>
             <div class="vip-visual">
-              <img src="images/calcwise_vip_mockup.png" alt="VIP Platform" class="mockup-img animate-float">
+              <img src="images/calcwise_vip_mockup.png" alt="VIP Platform" class="mockup-img animate-float" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Risk Calculator -->
+      <section class="section" id="risk-calc" data-reveal>
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-cyan" data-i18n="risk-badge">Risk</span>
+            <h2 data-i18n="risk-title">Risk Calculator</h2>
+            <p data-i18n="risk-subtitle">Calculate position size based on balance, risk and stop.</p>
+          </div>
+          <div class="markets-grid">
+            <div class="card card-glass" style="grid-column: 1/-1;">
+              <form id="risk-form" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+                <input name="balance" type="number" step="any" placeholder="Account Balance" required>
+                <input name="riskPct" type="number" step="any" placeholder="Risk % (e.g. 1)" required>
+                <input name="entry" type="number" step="any" placeholder="Entry Price" required>
+                <input name="stop" type="number" step="any" placeholder="Stop Loss Price" required>
+                <select name="instrument">
+                  <option value="crypto">Crypto</option>
+                  <option value="forex">Forex</option>
+                  <option value="gold">Gold</option>
+                  <option value="stock">Stock</option>
+                </select>
+                <button class="btn-primary" type="submit" data-i18n="risk-calc-btn">Calculate</button>
+              </form>
+              <div id="risk-results" style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Economic Calendar -->
+      <section class="section" id="calendar" data-reveal>
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-gold" data-i18n="calendar-badge">Calendar</span>
+            <h2 data-i18n="calendar-title">Economic Calendar</h2>
+            <p data-i18n="calendar-subtitle">Major macro events and expected market impact.</p>
+          </div>
+          <div class="card card-glass">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+              {
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "width": "100%",
+                "height": 500,
+                "importanceFilter": "-1,0,1",
+                "locale": "en"
+              }
+              </script>
             </div>
           </div>
         </div>
@@ -184,7 +291,7 @@
           <div class="tracker-grid">
             <div class="tracker-visual">
               <div class="card">
-                <img src="images/trade_tracker.png" alt="Trade Tracker" class="mockup-img animate-float">
+                <img src="images/trade_tracker.png" alt="Trade Tracker" class="mockup-img animate-float" loading="lazy">
               </div>
             </div>
             <div class="tracker-content">
@@ -267,6 +374,49 @@
           </div>
         </div>
       </section>
+
+      <!-- Pricing -->
+      <section class="section" id="pricing" data-reveal>
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-cyan" data-i18n="pricing-badge">Pricing</span>
+            <h2 data-i18n="pricing-title">Choose Your Plan</h2>
+            <p data-i18n="pricing-subtitle">Start free, upgrade when you're ready.</p>
+          </div>
+          <div class="markets-grid">
+            <div class="card card-glass">
+              <h3 data-i18n="plan-starter">Starter</h3>
+              <p><strong>$0</strong> <span data-i18n="price-per-month">/month</span></p>
+              <ul>
+                <li data-i18n="feature-ai">AI technical & financial analysis</li>
+                <li data-i18n="plan-feature-1">Daily market snapshot</li>
+                <li data-i18n="plan-feature-2">Email newsletter</li>
+              </ul>
+              <button class="btn-outline subscribe-btn" data-plan="starter" data-i18n="btn-start-trial">Start Free</button>
+            </div>
+            <div class="card card-glass">
+              <h3 data-i18n="plan-pro">Pro</h3>
+              <p><strong>$29</strong> <span data-i18n="price-per-month">/month</span></p>
+              <ul>
+                <li data-i18n="plan-feature-3">Unlimited AI chart audits</li>
+                <li data-i18n="plan-feature-4">Crypto + Forex coverage</li>
+                <li data-i18n="plan-feature-5">Priority support</li>
+              </ul>
+              <button class="btn-primary subscribe-btn" data-plan="pro" data-i18n="btn-start-trial">Start Free Trial</button>
+            </div>
+            <div class="card card-glass">
+              <h3 data-i18n="plan-vip">VIP</h3>
+              <p><strong>$79</strong> <span data-i18n="price-per-month">/month</span></p>
+              <ul>
+                <li data-i18n="vip-feature-4">Live Dashboard of 11+ sub-indicators</li>
+                <li data-i18n="plan-feature-6">Whale flow & liquidity alerts</li>
+                <li data-i18n="plan-feature-7">US + Saudi + Options</li>
+              </ul>
+              <button class="btn-primary subscribe-btn" data-plan="vip" data-i18n="btn-start-trial">Start Free Trial</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
@@ -276,10 +426,10 @@
           <div class="logo">
             <span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span>
           </div>
-          <p>Premium AI solutions for modern traders world-wide.</p>
+          <p data-i18n="footer-brand">Premium AI solutions for modern traders world-wide.</p>
         </div>
         <div class="footer-links">
-          <h4>Platforms</h4>
+          <h4 data-i18n="footer-platforms">Platforms</h4>
           <a href="crypto.html">Crypto</a>
           <a href="forex.html">Forex</a>
           <a href="us-market.html">US Market</a>
@@ -293,9 +443,17 @@
           <a href="blog.html" data-i18n="nav-blog">Blog</a>
           <a href="#contact" data-i18n="nav-contact">Contact</a>
         </div>
+        <div class="footer-links">
+          <h4 data-i18n="lead-title">Stay Updated</h4>
+          <form id="lead-form">
+            <input type="email" name="email" placeholder="you@example.com" required data-i18n-placeholder="lead-placeholder" />
+            <button type="submit" class="btn-primary" data-i18n="lead-submit">Subscribe</button>
+          </form>
+          <small id="lead-message" style="display:block;margin-top:8px;"></small>
+        </div>
       </div>
       <div class="container footer-bottom">
-        <p>&copy; 2026 Calcwise AI. All rights reserved.</p>
+        <p data-i18n="footer-copy">&copy; 2026 Calcwise AI. All rights reserved.</p>
       </div>
     </footer>
     <button id="back-to-top" class="btn-icon back-to-top">

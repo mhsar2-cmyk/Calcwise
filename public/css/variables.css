@@ -5,6 +5,7 @@
   --accent-green: #00c076;
   --accent-red: #ff3b3b;
   --accent-gold: #f0b90b;
+  --accent-cyan: #00f0ff;
 
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -29,6 +30,9 @@
   --glow-gold: 0 0 20px rgba(240, 185, 11, 0.4);
   --glass-bg: rgba(22, 24, 27, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
+  --focus-ring: 0 0 0 3px rgba(61, 110, 255, 0.35);
+  --focus-ring-weak: 0 0 0 2px rgba(61, 110, 255, 0.25);
+  --surface-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* Dark Theme (Default) */
@@ -89,4 +93,18 @@ body {
 /* Language Override for Arabic */
 [lang="ar"] {
   font-family: "Cairo", sans-serif;
+}
+
+/* Responsive Variable Overrides */
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 16px;
+    --header-height: 56px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --container-padding: 12px;
+  }
 }
