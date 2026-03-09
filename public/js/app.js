@@ -107,7 +107,6 @@ const translations = {
     "support-options": "Options",
     "support-gold": "Gold",
     "all-products-btn": "View All Products",
-    "testimonials-title": "What Our Traders Say",
     // Blog Section
     "blog-badge": "Insights",
     "blog-title": "Latest Market Insights",
@@ -243,7 +242,6 @@ const translations = {
     "support-options": "الخيارات",
     "support-gold": "الذهب",
     "all-products-btn": "عرض جميع المنتجات",
-    "testimonials-title": "ماذا يقول متداولونا",
     // Blog Section
     "blog-badge": "رؤى وأخبار",
     "blog-title": "آخر رؤى السوق",

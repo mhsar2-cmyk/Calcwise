@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcwise | Market Insights & AI Analysis Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link" data-i18n="nav-home">Home</a>
+                    <div class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-i18n="nav-platforms">Platforms</a>
+                        <div class="dropdown-menu">
+                            <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
+                            <a href="forex.html" data-i18n="nav-forex">Forex & Options</a>
+                            <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
+                            <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
+                        </div>
+                    </div>
+                    <a href="index.html#vip" class="nav-link" data-i18n="nav-vip">VIP Indicator</a>
+                    <a href="index.html#analysis" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
+                    <a href="blog.html" class="nav-link active" data-i18n="nav-blog">Blog</a>
+                    <a href="index.html#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
+                </nav>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="btn-icon">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" style="display:none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button id="lang-toggle" class="btn-icon"><span class="lang-text">EN</span></button>
+                    <button class="btn-outline" data-i18n="btn-login">Login</button>
+                    <button class="btn-primary" data-i18n="btn-register">Register</button>
+                    <button class="mobile-toggle btn-icon" id="mobile-toggle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Blog Section -->
+            <section class="section" id="blog">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="badge badge-cyan" data-i18n="blog-badge">Insights</span>
+                        <h2 data-i18n="blog-title">Latest Market Insights</h2>
+                        <p data-i18n="blog-subtitle">Stay updated with the latest trends and AI analysis in the
+                            financial markets.</p>
+                    </div>
+
+                    <div class="blog-grid">
+                        <article class="blog-card card card-glass" data-reveal>
+                            <div class="blog-image">
+                                <img src="https://images.unsplash.com/photo-1611974717482-16631627993a?auto=format&fit=crop&q=80&w=800"
+                                    alt="Crypto Trends">
+                                <span class="blog-tag" data-i18n="blog-tag-crypto">Crypto</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date" data-i18n="blog-date-1">March 09, 2026</span>
+                                    <span class="blog-read" data-i18n="blog-read-5">5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title" data-i18n="blog-title-1">Bitcoin's Halving: An AI
+                                    Perspective</h3>
+                                <p class="blog-excerpt" data-i18n="blog-desc-1">We analyze how the upcoming halving
+                                    event could impact liquidity and institutional flow according to our AI models.</p>
+                                <a href="#" class="btn-text" data-i18n="blog-read-more">Read More <svg width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg></a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card card card-glass" data-reveal>
+                            <div class="blog-image">
+                                <img src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&q=80&w=800"
+                                    alt="US Market">
+                                <span class="blog-tag" data-i18n="blog-tag-us">US Market</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date" data-i18n="blog-date-2">March 08, 2026</span>
+                                    <span class="blog-read" data-i18n="blog-read-4">4 min read</span>
+                                </div>
+                                <h3 class="blog-card-title" data-i18n="blog-title-2">Fed Interest Rates vs Tech Stocks
+                                </h3>
+                                <p class="blog-excerpt" data-i18n="blog-desc-2">Our proprietary algorithms reveal hidden
+                                    correlations between interest rate shifts and the NASDAQ performance.</p>
+                                <a href="#" class="btn-text" data-i18n="blog-read-more">Read More <svg width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg></a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card card card-glass" data-reveal>
+                            <div class="blog-image">
+                                <img src="https://images.unsplash.com/photo-1526303310218-7f9004052ca1?auto=format&fit=crop&q=80&w=800"
+                                    alt="Forex Strategy">
+                                <span class="blog-tag" data-i18n="blog-tag-forex">Forex</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date" data-i18n="blog-date-3">March 07, 2026</span>
+                                    <span class="blog-read" data-i18n="blog-read-6">6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title" data-i18n="blog-title-3">Scalping the EUR/USD with AI</h3>
+                                <p class="blog-excerpt" data-i18n="blog-desc-3">Learn how to use our VIP indicator to
+                                    identify high-probability reversal zones in the major currency pairs.</p>
+                                <a href="#" class="btn-text" data-i18n="blog-read-more">Read More <svg width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg></a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer section">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="logo"><span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span></div>
+                    <p data-i18n="footer-brand">Premium AI solutions for modern traders world-wide.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer-platforms">Platforms</h4>
+                    <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
+                    <a href="forex.html" data-i18n="nav-forex">Forex & Options</a>
+                    <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
+                    <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer-links">Links</h4>
+                    <a href="index.html" data-i18n="nav-home">Home</a>
+                    <a href="index.html#vip" data-i18n="nav-vip">VIP Indicator</a>
+                    <a href="blog.html" data-i18n="nav-blog">Blog</a>
+                    <a href="index.html#contact" data-i18n="nav-contact">Contact</a>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p data-i18n="footer-copy">&copy; 2026 Calcwise AI. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <button id="back-to-top" class="btn-icon back-to-top">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <script src="js/app.js" type="module"></script>
+</body>
+
+</html>

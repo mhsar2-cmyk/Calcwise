@@ -568,51 +568,6 @@ html {
     color: var(--accent-gold);
 }
 
-/* =========================================
-   Testimonials
-   ========================================= */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-}
-
-.testimonial-card {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.stars {
-    color: var(--accent-gold);
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-}
-
-.testimonial-text {
-    font-style: italic;
-    color: var(--text-primary);
-    line-height: 1.6;
-}
-
-.testimonial-footer {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.testimonial-footer strong {
-    color: var(--text-primary);
-    font-size: 1rem;
-}
-
-.testimonial-footer span {
-    color: var(--accent-blue);
-    font-size: 0.85rem;
-    font-weight: 600;
-}
 
 /* =========================================
    Trade Tracker
