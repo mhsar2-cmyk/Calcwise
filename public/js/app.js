@@ -375,16 +375,36 @@ class App {
 
   setupDropdowns() {
     const dropdowns = document.querySelectorAll('.dropdown');
+
+    // Toggle on click
     dropdowns.forEach(dropdown => {
       const toggle = dropdown.querySelector('.dropdown-toggle');
       if (toggle) {
         toggle.addEventListener('click', (e) => {
-          if (window.innerWidth <= 992) {
+          // On mobile, always toggle. On desktop, toggle if it's a touch or explicit click
+          if (window.innerWidth <= 1200 || ('ontouchstart' in window)) {
             e.preventDefault();
+            e.stopPropagation();
+
+            // Close other dropdowns first
+            dropdowns.forEach(other => {
+              if (other !== dropdown) other.classList.remove('active');
+            });
+
             dropdown.classList.toggle('active');
           }
         });
       }
+    });
+
+    // Close on click outside
+    document.addEventListener('click', () => {
+      dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+    });
+
+    // Prevent closing when clicking inside the menu
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.addEventListener('click', (e) => e.stopPropagation());
     });
   }
 }
