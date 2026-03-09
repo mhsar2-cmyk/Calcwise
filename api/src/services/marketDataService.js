@@ -126,16 +126,23 @@ class MarketDataService {
         }
     }
 
-    // جلب سعر الأصل من CoinGecko
+    // جلب سعر الأصل من CoinGecko مع بيانات السوق الكاملة
     async getCryptoPriceFromCoinGecko(coinId) {
         console.log(`[MarketData] Fetching ${coinId} from CoinGecko...`);
         try {
-            const response = await axios.get(`${this.cryptoApis.coingecko}/simple/price?ids=${coinId}&vs_currencies=usd`, { timeout: 4000 });
+            const url = `${this.cryptoApis.coingecko}/simple/price?ids=${coinId}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`;
+            const response = await axios.get(url, { timeout: 6000 });
+
             if (response.data && response.data[coinId]) {
+                const data = response.data[coinId];
                 return {
-                    price: response.data[coinId].usd,
+                    price: data.usd,
+                    change: (data.usd * (data.usd_24h_change / 100)) || 0, // Convert percentage change to absolute value
+                    changePercent: data.usd_24h_change || 0,
+                    volume: data.usd_24h_vol || 0,
+                    marketCap: data.usd_market_cap ? this.formatMarketCap(data.usd_market_cap) : 'N/A',
                     source: 'coingecko',
-                    symbol: coinId
+                    symbol: coinId.toUpperCase()
                 };
             }
             return null;
@@ -353,11 +360,14 @@ class MarketDataService {
                 try {
                     switch (asset.market_type) {
                         case 'crypto':
-                            priceData = await this.getCryptoPriceFromBinance(asset.symbol);
+                            // Prioritize CoinGecko as requested by the user
+                            const cgId = this.coinGeckoMap[asset.symbol] || asset.symbol.toLowerCase();
+                            priceData = await this.getCryptoPriceFromCoinGecko(cgId);
+
+                            // Fallback to Binance if CoinGecko data is missing
                             if (!priceData || priceData.source === 'mock_data') {
-                                const cgId = this.coinGeckoMap[asset.symbol] || asset.symbol.toLowerCase();
-                                const cgData = await this.getCryptoPriceFromCoinGecko(cgId);
-                                if (cgData) priceData = cgData;
+                                const binanceData = await this.getCryptoPriceFromBinance(asset.symbol);
+                                if (binanceData) priceData = binanceData;
                             }
                             break;
 
