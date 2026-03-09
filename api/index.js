@@ -89,39 +89,44 @@ app.get('/api/market/prices', async (req, res) => {
     console.log(`[API] Market Prices Request: ${symbols}`);
 
     try {
-        const symbolList = symbols ? symbols.split(',') : ['BTC', 'ETH', 'AAPL', 'XAUUSD'];
+        // Sanitize and trim symbols
+        const symbolList = symbols
+            ? symbols.split(',').map(s => s.trim()).filter(s => s.length > 0)
+            : ['BTC', 'ETH', 'AAPL', 'XAUUSD'];
 
-        // Define crypto and forex symbols for proper classification
+        // Comprehensive classification lists
         const cryptoSymbols = [
             'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'DOGE', 'AVAX', 'DOT', 'BNB',
-            'MATIC', 'LINK', 'LTC', 'BCH', 'XLM', 'ATOM', 'UNI', 'ALGO', 'SHIB', 'TRX'
+            'MATIC', 'LINK', 'LTC', 'BCH', 'XLM', 'ATOM', 'UNI', 'ALGO', 'SHIB', 'TRX',
+            'TON', 'NEAR', 'STX', 'ORDI', 'RNDR', 'KAS', 'PEPE', 'INJ'
         ];
-        const forexSymbols = ['XAUUSD', 'EURUSD', 'GBPUSD', 'USDJPY', 'WTI', 'XAGUSD'];
+        const forexSymbols = ['XAUUSD', 'EURUSD', 'GBPUSD', 'USDJPY', 'WTI', 'XAGUSD', 'GC=F', 'SI=F', 'CL=F'];
 
         const assets = symbolList.map(symbol => {
             let marketType = 'stock';
-            if (forexSymbols.includes(symbol)) {
+            const upperSymbol = symbol.toUpperCase();
+            if (forexSymbols.includes(upperSymbol)) {
                 marketType = 'forex';
-            } else if (cryptoSymbols.includes(symbol) || symbol.includes('USDT')) {
+            } else if (cryptoSymbols.includes(upperSymbol) || upperSymbol.includes('USDT')) {
                 marketType = 'crypto';
             }
-            return { symbol, market_type: marketType };
+            return { symbol: upperSymbol, market_type: marketType };
         });
 
-        // Timeout the entire service call just in case
+        // 8-second global safety timeout for the service call
         const pricePromise = marketDataService.getPortfolioPrices(assets);
         const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Service timeout')), 8000)
+            setTimeout(() => reject(new Error('Market Service Timeout')), 8500)
         );
 
         const prices = await Promise.race([pricePromise, timeoutPromise]);
-        res.json({ success: true, prices });
+        res.json({ success: true, prices: prices || {} });
     } catch (error) {
         console.error('[API Error] /api/market/prices:', error.message);
         res.status(500).json({
             success: false,
-            error: 'Failed to fetch market data',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Market data server busy',
+            details: error.message
         });
     }
 });

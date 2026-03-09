@@ -1,10 +1,12 @@
 const axios = require('axios');
-let yahooFinance;
+const path = require('path');
+
+// Safe Yahoo Finance Loading
+let yfModule = null;
 try {
-    yahooFinance = require('yahoo-finance2').default;
-    if (!yahooFinance) yahooFinance = require('yahoo-finance2');
+    yfModule = require('yahoo-finance2').default || require('yahoo-finance2');
 } catch (e) {
-    console.error('Failed to load yahoo-finance2:', e.message);
+    console.error('[MarketData] CRITICAL: Failed to load yahoo-finance2:', e.message);
 }
 
 class MarketDataService {
@@ -19,125 +21,130 @@ class MarketDataService {
             'ADA': 'cardano', 'DOGE': 'dogecoin', 'AVAX': 'avalanche-2', 'DOT': 'polkadot',
             'BNB': 'binancecoin', 'MATIC': 'matic-network', 'LINK': 'chainlink',
             'LTC': 'litecoin', 'BCH': 'bitcoin-cash', 'XLM': 'stellar', 'ATOM': 'cosmos',
-            'UNI': 'uniswap', 'ALGO': 'algorand', 'SHIB': 'shiba-inu', 'TRX': 'tron'
+            'UNI': 'uniswap', 'ALGO': 'algorand', 'SHIB': 'shiba-inu', 'TRX': 'tron',
+            'TON': 'the-open-network', 'NEAR': 'near', 'STX': 'stack', 'ORDI': 'ordi',
+            'RNDR': 'render-token', 'KAS': 'kaspa', 'PEPE': 'pepe', 'INJ': 'injective-protocol'
         };
 
-        this.stockApis = {
-            alphaVantage: 'https://www.alphavantage.co/query',
-            polygon: 'https://api.polygon.io/v2'
-        };
-
-        // Instantiate Yahoo Finance with suppressed notices
-        if (typeof yahooFinance === 'function') {
-            this.yf = new yahooFinance({ suppressNotices: ['yahooSurvey'] });
-        } else {
-            this.yf = yahooFinance;
+        this.yf = yfModule;
+        // Suppress notices if possible
+        if (this.yf && typeof this.yf.setGlobalConfig === 'function') {
+            try {
+                this.yf.setGlobalConfig({ suppressNotices: ['yahooSurvey'] });
+            } catch (e) { }
         }
 
-        // Pricing Cache (In-memory)
+        // Pricing Cache (In-memory) - Very important for serverless stability
         this.cache = new Map();
-        this.cacheExpiry = 60 * 1000; // 1 minute
+        this.cacheExpiry = 60 * 1000; // 1 minute fresh
+        this.cacheStaleLimit = 60 * 60 * 1000; // 1 hour stale fallback
     }
 
     // Helper to map internal symbols to Yahoo Finance symbols
     getYahooSymbol(symbol) {
         const indexMap = {
-            'SPX': '^GSPC',
-            'NDX': '^IXIC',
-            'DJI': '^DJI',
-            'TASI': '^TASI'
+            'SPX': '^GSPC', 'NDX': '^IXIC', 'DJI': '^DJI', 'TASI': '^TASI'
         };
 
         if (indexMap[symbol]) return indexMap[symbol];
         if (/^\d{4}$/.test(symbol)) return `${symbol}.SR`;
 
         const forexMap = {
-            'XAUUSD': 'GC=F',   // Gold
-            'XAGUSD': 'SI=F',   // Silver
-            'EURUSD': 'EURUSD=X',
-            'GBPUSD': 'GBPUSD=X',
-            'USDJPY': 'USDJPY=X',
-            'WTI': 'CL=F'       // Crude Oil
+            'XAUUSD': 'GC=F', 'XAGUSD': 'SI=F',
+            'EURUSD': 'EURUSD=X', 'GBPUSD': 'GBPUSD=X', 'USDJPY': 'USDJPY=X',
+            'WTI': 'CL=F', 'BRN': 'BZ=F'
         };
 
         if (forexMap[symbol]) return forexMap[symbol];
         return symbol;
     }
 
-    // جلب سعر الأصل من Yahoo Finance (Single Symbol)
-    async getStockPriceFromYahoo(symbol) {
-        try {
-            const results = await this.batchGetStockPricesFromYahoo([symbol]);
-            return results[symbol] || this.getMockStockData(symbol);
-        } catch (error) {
-            console.error(`Yahoo Finance individual fetch error for ${symbol}:`, error.message);
-            return this.getMockStockData(symbol);
-        }
-    }
-
-    // New: Batch fetch from Yahoo Finance to prevent timeouts
+    // New: Batch fetch from Yahoo Finance with internal safety
     async batchGetStockPricesFromYahoo(symbols) {
-        if (!symbols || symbols.length === 0) return {};
+        if (!symbols || symbols.length === 0 || !this.yf) return {};
 
         const mappedSymbols = symbols.map(s => this.getYahooSymbol(s));
-        console.log(`[MarketData] Batch fetching ${symbols.length} stocks from Yahoo...`);
+        console.log(`[MarketData] Yahoo Batch: ${mappedSymbols.join(',')}`);
 
         try {
             const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Yahoo Batch timeout')), 8000)
+                setTimeout(() => reject(new Error('Yahoo Timeout')), 7000)
             );
 
+            // Important: validate that mapping symbols works
             const quoteResults = await Promise.race([
                 this.yf.quote(mappedSymbols),
                 timeoutPromise
             ]);
 
             const results = {};
-
-            // Normalize result to array if it's a single object
             const quotes = Array.isArray(quoteResults) ? quoteResults : [quoteResults];
 
             quotes.forEach(res => {
                 if (!res || !res.symbol) return;
 
-                // Find which original symbol this corresponds to
-                const originalSymbol = symbols.find(s => this.getYahooSymbol(s) === res.symbol);
-                if (!originalSymbol) return;
+                // Find matching original symbol (Yahoo symbols might be uppercase or have suffixes)
+                const originalSymbol = symbols.find(s =>
+                    this.getYahooSymbol(s).toLowerCase() === res.symbol.toLowerCase()
+                );
 
-                results[originalSymbol] = {
-                    price: res.regularMarketPrice,
-                    change: res.regularMarketChange || 0,
-                    changePercent: res.regularMarketChangePercent || 0,
-                    volume: res.regularMarketVolume || 0,
-                    marketCap: res.marketCap ? this.formatMarketCap(res.marketCap) : 'N/A',
-                    source: 'yahoo_finance',
-                    symbol: originalSymbol,
-                    name: res.shortName || res.longName || originalSymbol
-                };
+                if (originalSymbol) {
+                    results[originalSymbol] = {
+                        price: res.regularMarketPrice || res.preMarketPrice || 0,
+                        change: res.regularMarketChange || 0,
+                        changePercent: res.regularMarketChangePercent || 0,
+                        volume: res.regularMarketVolume || 0,
+                        marketCap: res.marketCap ? this.formatMarketCap(res.marketCap) : 'N/A',
+                        source: 'yahoo_finance',
+                        symbol: originalSymbol,
+                        name: res.shortName || res.longName || originalSymbol
+                    };
+                }
             });
-
             return results;
         } catch (error) {
-            console.error('Yahoo Batch API error:', error.message);
+            console.error('[MarketData] Yahoo Batch Error:', error.message);
             return {};
         }
     }
 
-    formatMarketCap(val) {
-        if (val >= 1e12) return (val / 1e12).toFixed(2) + 'T';
-        if (val >= 1e9) return (val / 1e9).toFixed(2) + 'B';
-        if (val >= 1e6) return (val / 1e6).toFixed(2) + 'M';
-        return val.toString();
+    // Batch fetch from CoinGecko
+    async batchGetCryptoPricesFromCoinGecko(coinIds) {
+        if (!coinIds || coinIds.length === 0) return {};
+        const ids = coinIds.join(',');
+        console.log(`[MarketData] CoinGecko Batch: ${ids}`);
+
+        try {
+            const url = `${this.cryptoApis.coingecko}/simple/price?ids=${ids}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`;
+            const response = await axios.get(url, { timeout: 6000 });
+
+            const results = {};
+            if (response.data) {
+                Object.keys(response.data).forEach(id => {
+                    const data = response.data[id];
+                    results[id] = {
+                        price: data.usd,
+                        change: (data.usd * (data.usd_24h_change / 100)) || 0,
+                        changePercent: data.usd_24h_change || 0,
+                        volume: data.usd_24h_vol || 0,
+                        marketCap: data.usd_market_cap ? this.formatMarketCap(data.usd_market_cap) : 'N/A',
+                        source: 'coingecko',
+                        symbol: id.toUpperCase()
+                    };
+                });
+            }
+            return results;
+        } catch (error) {
+            console.error(`[MarketData] CoinGecko Batch Error:`, error.message);
+            return {};
+        }
     }
 
-    // جلب سعر الأصل من Binance (مع بيانات التغير والحجم)
+    // Individual Binance fetch (Backup)
     async getCryptoPriceFromBinance(symbol) {
-        console.log(`[MarketData] Fetching ${symbol} from Binance...`);
         try {
             const response = await axios.get(`${this.cryptoApis.binance}/ticker/24hr?symbol=${symbol}USDT`, { timeout: 4000 });
             const data = response.data;
-            console.log(`[MarketData] ${symbol} fetched from Binance.`);
-
             return {
                 price: parseFloat(data.lastPrice),
                 change: parseFloat(data.priceChange),
@@ -148,102 +155,65 @@ class MarketDataService {
                 symbol: symbol
             };
         } catch (error) {
-            console.error(`Binance API error for ${symbol}:`, error.message);
-            return this.getMockStockData(symbol);
+            return null;
         }
     }
 
-    // Batch fetch from CoinGecko to prevent rate limiting and timeouts
-    async batchGetCryptoPricesFromCoinGecko(coinIds) {
-        if (!coinIds || coinIds.length === 0) return {};
-        const ids = coinIds.join(',');
-        console.log(`[MarketData] Batch fetching ${coinIds.length} assets from CoinGecko...`);
-
-        try {
-            const url = `${this.cryptoApis.coingecko}/simple/price?ids=${ids}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`;
-            const response = await axios.get(url, { timeout: 6000 });
-
-            const results = {};
-            Object.keys(response.data).forEach(id => {
-                const data = response.data[id];
-                results[id] = {
-                    price: data.usd,
-                    change: (data.usd * (data.usd_24h_change / 100)) || 0,
-                    changePercent: data.usd_24h_change || 0,
-                    volume: data.usd_24h_vol || 0,
-                    marketCap: data.usd_market_cap ? this.formatMarketCap(data.usd_market_cap) : 'N/A',
-                    source: 'coingecko',
-                    symbol: id.toUpperCase()
-                };
-            });
-            return results;
-        } catch (error) {
-            console.error(`CoinGecko Batch API error:`, error.message);
-            return {};
-        }
+    formatMarketCap(val) {
+        if (val >= 1e12) return (val / 1e12).toFixed(2) + 'T';
+        if (val >= 1e9) return (val / 1e9).toFixed(2) + 'B';
+        if (val >= 1e6) return (val / 1e6).toFixed(2) + 'M';
+        return val.toString();
     }
 
-    // بيانات وهمية للعرض (Fallback)
-    getMockStockData(symbol) {
-        const mockData = {
-            'TASI': { price: 12450.30, change: 45.20, changePercent: 0.36, volume: 250000000, marketCap: '10.5T' },
-            '2222.SR': { price: 32.50, change: -0.15, changePercent: -0.46, volume: 15420300, marketCap: '7.8T' },
-            '2010.SR': { price: 79.10, change: 0.50, changePercent: 0.64, volume: 2300500, marketCap: '237B' },
-            'SPX': { price: 4780.25, change: 25.40, changePercent: 0.53, volume: 2500000000, marketCap: '40T' },
-            'NDX': { price: 16850.60, change: 120.30, changePercent: 0.72, volume: 1800000000, marketCap: '25T' },
-            'DJI': { price: 37650.10, change: 150.20, changePercent: 0.40, volume: 350000000, marketCap: '12T' },
-            'AAPL': { price: 185.90, change: 1.20, changePercent: 0.65, volume: 55000000, marketCap: '2.9T' },
-            'BTC': { price: 45250.00, change: 1200.50, changePercent: 2.72, volume: 35000000000, marketCap: '885B' },
-            'ETH': { price: 2350.20, change: 85.30, changePercent: 3.77, volume: 15000000000, marketCap: '282B' },
-            'EURUSD': { price: 1.0950, change: 0.0020, changePercent: 0.18, volume: 0, marketCap: '-' },
-            'XAUUSD': { price: 2045.50, change: 12.50, changePercent: 0.61, volume: 0, marketCap: '-' }
-        };
-
-        const defaultData = { price: 100.00, change: 0.00, changePercent: 0.00, volume: 100000, marketCap: '1B' };
-        const data = mockData[symbol] || defaultData;
-
-        return {
-            ...data,
-            source: 'mock_data',
-            symbol: symbol
-        };
-    }
-
-    // جلب سعر الذهب (XAU/USD)
-    async getGoldPrice() {
-        return this.getStockPriceFromYahoo('XAUUSD');
-    }
-
-    // جلب جميع أسعار المحفظة - Optimized with Batching & Caching
+    // Primary Orchestrator - Optimized for Speed and Safety
     async getPortfolioPrices(assets) {
         const prices = {};
         if (!assets || assets.length === 0) return prices;
 
         try {
-            // Group assets by market type
             const cryptoAssets = assets.filter(a => a.market_type === 'crypto');
             const stockAssets = assets.filter(a => a.market_type === 'stock' || a.market_type === 'forex');
 
-            // 1. Batch Fetch Crypto from CoinGecko
-            if (cryptoAssets.length > 0) {
-                const cryptoIds = cryptoAssets.map(a => this.coinGeckoMap[a.symbol] || a.symbol.toLowerCase());
-                const cgResults = await this.batchGetCryptoPricesFromCoinGecko(cryptoIds);
+            // RUN ALL BATCH FETCHES IN PARALLEL to beat serverless timeouts
+            const fetchPromises = [];
 
-                cryptoAssets.forEach(asset => {
-                    const id = this.coinGeckoMap[asset.symbol] || asset.symbol.toLowerCase();
-                    if (cgResults[id]) {
-                        prices[asset.symbol] = cgResults[id];
-                        this.cache.set(asset.symbol, { data: cgResults[id], timestamp: Date.now() });
-                    }
-                });
+            // 1. CoinGecko
+            if (cryptoAssets.length > 0) {
+                const cryptoIds = cryptoAssets.map(a => this.coinGeckoMap[a.symbol.toUpperCase()] || a.symbol.toLowerCase());
+                fetchPromises.push(this.batchGetCryptoPricesFromCoinGecko(cryptoIds).then(results => {
+                    cryptoAssets.forEach(asset => {
+                        const id = this.coinGeckoMap[asset.symbol.toUpperCase()] || asset.symbol.toLowerCase();
+                        if (results[id]) {
+                            prices[asset.symbol] = results[id];
+                            this.cache.set(asset.symbol, { data: results[id], timestamp: Date.now() });
+                        }
+                    });
+                }));
             }
 
-            // 2. Fetch remaining crypto from Binance fallback
+            // 2. Yahoo Finance
+            if (stockAssets.length > 0) {
+                const stockSymbols = stockAssets.map(a => a.symbol);
+                fetchPromises.push(this.batchGetStockPricesFromYahoo(stockSymbols).then(results => {
+                    stockAssets.forEach(asset => {
+                        if (results[asset.symbol]) {
+                            prices[asset.symbol] = results[asset.symbol];
+                            this.cache.set(asset.symbol, { data: results[asset.symbol], timestamp: Date.now() });
+                        }
+                    });
+                }));
+            }
+
+            // Wait for batches (with overall 7s timeout for this phase)
+            await Promise.all(fetchPromises);
+
+            // 3. Fallback for remaining crypto (Binance) - Parallel
             const missingCrypto = cryptoAssets.filter(a => !prices[a.symbol]);
             if (missingCrypto.length > 0) {
                 const binancePromises = missingCrypto.map(async (asset) => {
                     const data = await this.getCryptoPriceFromBinance(asset.symbol);
-                    if (data && data.source !== 'mock_data') {
+                    if (data) {
                         prices[asset.symbol] = data;
                         this.cache.set(asset.symbol, { data, timestamp: Date.now() });
                     }
@@ -251,24 +221,11 @@ class MarketDataService {
                 await Promise.all(binancePromises);
             }
 
-            // 3. Batch Fetch Stocks & Forex from Yahoo
-            if (stockAssets.length > 0) {
-                const stockSymbols = stockAssets.map(a => a.symbol);
-                const yahooResults = await this.batchGetStockPricesFromYahoo(stockSymbols);
-
-                stockAssets.forEach(asset => {
-                    if (yahooResults[asset.symbol]) {
-                        prices[asset.symbol] = yahooResults[asset.symbol];
-                        this.cache.set(asset.symbol, { data: yahooResults[asset.symbol], timestamp: Date.now() });
-                    }
-                });
-            }
-
-            // 4. Final Fallback Sequence: Cache -> Mock
+            // 4. Final Fallback Loop: Check Cache -> Mock
             assets.forEach(asset => {
                 if (!prices[asset.symbol]) {
                     const cached = this.cache.get(asset.symbol);
-                    if (cached && (Date.now() - cached.timestamp < this.cacheExpiry * 60)) { // 60 min cache for fallbacks
+                    if (cached && (Date.now() - cached.timestamp < this.cacheStaleLimit)) {
                         prices[asset.symbol] = cached.data;
                     } else {
                         prices[asset.symbol] = this.getMockStockData(asset.symbol);
@@ -277,7 +234,8 @@ class MarketDataService {
             });
 
         } catch (error) {
-            console.error('Global error in getPortfolioPrices:', error.message);
+            console.error('[MarketData] Global Error:', error.message);
+            // Emergency fallback for all
             assets.forEach(asset => {
                 if (!prices[asset.symbol]) {
                     const cached = this.cache.get(asset.symbol);
@@ -289,28 +247,31 @@ class MarketDataService {
         return prices;
     }
 
-    // جلب البيانات التاريخية (للتحليل الفني)
+    getMockStockData(symbol) {
+        const mockData = {
+            'TASI': { price: 12450.30, change: 45.20, changePercent: 0.36 },
+            'SPX': { price: 4780.25, change: 25.40, changePercent: 0.53 },
+            'BTC': { price: 45250.00, change: 1200.50, changePercent: 2.72 },
+            'AAPL': { price: 185.90, change: 1.20, changePercent: 0.65 }
+        };
+        const data = mockData[symbol] || { price: 100, change: 0, changePercent: 0 };
+        return { ...data, volume: 100000, marketCap: '1B', source: 'mock_data', symbol };
+    }
+
     async getHistoricalData(symbol, marketType, days = 30) {
         try {
-            let url = '';
-
             if (marketType === 'crypto') {
-                const cgId = this.coinGeckoMap[symbol] || symbol.toLowerCase();
-                url = `${this.cryptoApis.coingecko}/coins/${cgId}/market_chart?vs_currency=usd&days=${days}`;
-                const response = await axios.get(url);
-
+                const cgId = this.coinGeckoMap[symbol.toUpperCase()] || symbol.toLowerCase();
+                const url = `${this.cryptoApis.coingecko}/coins/${cgId}/market_chart?vs_currency=usd&days=${days}`;
+                const response = await axios.get(url, { timeout: 5000 });
                 return response.data.prices.map(([timestamp, price]) => ({
-                    timestamp,
-                    price,
-                    time: new Date(timestamp).toISOString()
+                    timestamp, price, time: new Date(timestamp).toISOString()
                 }));
             }
-
-            return [];
         } catch (error) {
-            console.error(`Historical data error for ${symbol}:`, error.message);
-            return [];
+            console.error(`[MarketData] Historical Error: ${symbol}`, error.message);
         }
+        return [];
     }
 }
 
