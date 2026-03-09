@@ -35,64 +35,87 @@ class MarketDataService {
         }
     }
 
-    // جلب سعر الأصل من Yahoo Finance
+    // Helper to map internal symbols to Yahoo Finance symbols
+    getYahooSymbol(symbol) {
+        const indexMap = {
+            'SPX': '^GSPC',
+            'NDX': '^IXIC',
+            'DJI': '^DJI',
+            'TASI': '^TASI'
+        };
+
+        if (indexMap[symbol]) return indexMap[symbol];
+        if (/^\d{4}$/.test(symbol)) return `${symbol}.SR`;
+
+        const forexMap = {
+            'XAUUSD': 'GC=F',   // Gold
+            'XAGUSD': 'SI=F',   // Silver
+            'EURUSD': 'EURUSD=X',
+            'GBPUSD': 'GBPUSD=X',
+            'USDJPY': 'USDJPY=X',
+            'WTI': 'CL=F'       // Crude Oil
+        };
+
+        if (forexMap[symbol]) return forexMap[symbol];
+        return symbol;
+    }
+
+    // جلب سعر الأصل من Yahoo Finance (Single Symbol)
     async getStockPriceFromYahoo(symbol) {
-        console.log(`[MarketData] Fetching ${symbol} from Yahoo...`);
         try {
-            // تحويل الرموز للسوق السعودي إذا كانت أرقام فقط
-            let yahooSymbol = symbol;
+            const results = await this.batchGetStockPricesFromYahoo([symbol]);
+            return results[symbol] || this.getMockStockData(symbol);
+        } catch (error) {
+            console.error(`Yahoo Finance individual fetch error for ${symbol}:`, error.message);
+            return this.getMockStockData(symbol);
+        }
+    }
 
-            // Mapping common US and Saudi indices
-            const indexMap = {
-                'SPX': '^GSPC',
-                'NDX': '^IXIC',
-                'DJI': '^DJI',
-                'TASI': '^TASI'
-            };
+    // New: Batch fetch from Yahoo Finance to prevent timeouts
+    async batchGetStockPricesFromYahoo(symbols) {
+        if (!symbols || symbols.length === 0) return {};
 
-            if (indexMap[symbol]) {
-                yahooSymbol = indexMap[symbol];
-            } else if (/^\d{4}$/.test(symbol)) {
-                yahooSymbol = `${symbol}.SR`;
-            } else if (symbol.endsWith('.SR')) {
-                // Keep it as is
-            }
+        const mappedSymbols = symbols.map(s => this.getYahooSymbol(s));
+        console.log(`[MarketData] Batch fetching ${symbols.length} stocks from Yahoo...`);
 
-            // تحويل الرموز للعملات (Forex)
-            if (['EURUSD', 'GBPUSD', 'USDJPY', 'XAUUSD', 'XAGUSD'].includes(symbol)) {
-                if (symbol === 'XAUUSD') yahooSymbol = 'GC=F'; // Gold Futures
-                else if (symbol === 'XAGUSD') yahooSymbol = 'SI=F'; // Silver Futures
-                else yahooSymbol = `${symbol}=X`;
-            }
-
-            // Creating a timeout for yahooFinance.quote
+        try {
             const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Yahoo Finance timeout')), 6000)
+                setTimeout(() => reject(new Error('Yahoo Batch timeout')), 8000)
             );
 
-            const result = await Promise.race([
-                this.yf.quote(yahooSymbol),
+            const quoteResults = await Promise.race([
+                this.yf.quote(mappedSymbols),
                 timeoutPromise
             ]);
 
-            console.log(`[MarketData] ${symbol} fetched from Yahoo.`);
-            if (!result || !result.regularMarketPrice) {
-                return this.getMockStockData(symbol);
-            }
+            const results = {};
 
-            return {
-                price: result.regularMarketPrice,
-                change: result.regularMarketChange || 0,
-                changePercent: result.regularMarketChangePercent || 0,
-                volume: result.regularMarketVolume || 0,
-                marketCap: result.marketCap ? this.formatMarketCap(result.marketCap) : 'N/A',
-                source: 'yahoo_finance',
-                symbol: symbol,
-                name: result.shortName || result.longName || symbol
-            };
+            // Normalize result to array if it's a single object
+            const quotes = Array.isArray(quoteResults) ? quoteResults : [quoteResults];
+
+            quotes.forEach(res => {
+                if (!res || !res.symbol) return;
+
+                // Find which original symbol this corresponds to
+                const originalSymbol = symbols.find(s => this.getYahooSymbol(s) === res.symbol);
+                if (!originalSymbol) return;
+
+                results[originalSymbol] = {
+                    price: res.regularMarketPrice,
+                    change: res.regularMarketChange || 0,
+                    changePercent: res.regularMarketChangePercent || 0,
+                    volume: res.regularMarketVolume || 0,
+                    marketCap: res.marketCap ? this.formatMarketCap(res.marketCap) : 'N/A',
+                    source: 'yahoo_finance',
+                    symbol: originalSymbol,
+                    name: res.shortName || res.longName || originalSymbol
+                };
+            });
+
+            return results;
         } catch (error) {
-            console.error(`Yahoo Finance API error for ${symbol}:`, error.message);
-            return this.getMockStockData(symbol);
+            console.error('Yahoo Batch API error:', error.message);
+            return {};
         }
     }
 
@@ -156,36 +179,6 @@ class MarketDataService {
         }
     }
 
-    // جلب سعر السهم من Alpha Vantage (يدعم السوق السعودي .SR)
-    async getStockPriceFromAlphaVantage(symbol, apiKey) {
-        try {
-            // تحويل الرموز السعودية للتنسيق الصحيح إذا لزم الأمر
-            const avSymbol = symbol.includes('.') ? symbol : `${symbol}.SR`; // افتراضي للسوق السعودي إذا لم يوجد امتداد
-
-            // التحقق من وجود مفتاح API
-            if (!apiKey || apiKey === 'your_polygon_key' || apiKey === 'demo') {
-                return this.getMockStockData(symbol);
-            }
-
-            const response = await axios.get(`${this.stockApis.alphaVantage}?function=GLOBAL_QUOTE&symbol=${avSymbol}&apikey=${apiKey}`);
-            const data = response.data['Global Quote'];
-
-            if (!data || !data['05. price']) {
-                return this.getMockStockData(symbol);
-            }
-
-            return {
-                price: parseFloat(data['05. price']),
-                change: parseFloat(data['09. change']),
-                changePercent: parseFloat(data['10. change percent'].replace('%', '')),
-                source: 'alpha_vantage',
-                symbol: symbol
-            };
-        } catch (error) {
-            console.error(`Alpha Vantage API error for ${symbol}:`, error.message);
-            return this.getMockStockData(symbol);
-        }
-    }
 
     // بيانات وهمية للعرض (Fallback)
     getMockStockData(symbol) {
