@@ -9,11 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Security & Logging
-if (process.env.NODE_ENV === 'production') {
-    app.use(helmet());
-} else {
-    app.use(helmet({ contentSecurityPolicy: false }));
-}
+// Disable CSP in production as it can block API calls and external assets
+app.use(helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN || '*';
 app.use(
@@ -42,9 +42,15 @@ const { pool } = require('./src/database/db');
 const marketDataService = require('./src/services/marketDataService');
 const aiAnalysisService = require('./src/services/aiAnalysisService');
 
-// API Placeholder Routes
+// Basic Health Check
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', message: 'Calcwise API is running' });
+    res.json({
+        success: true,
+        status: 'ok',
+        message: 'Calcwise API is running',
+        env: process.env.NODE_ENV,
+        timestamp: new Date().toISOString()
+    });
 });
 
 // Market Data Routes
@@ -64,9 +70,10 @@ app.get('/api/market/sentiment', async (req, res) => {
 
 // New Market Data Endpoints
 app.get('/api/market/prices', async (req, res) => {
-    console.log(`[API] Market Prices hit: ${req.query.symbols}`);
+    const symbols = req.query.symbols;
+    console.log(`[API] Market Prices Request: ${symbols}`);
+
     try {
-        const { symbols } = req.query;
         const symbolList = symbols ? symbols.split(',') : ['BTC', 'ETH', 'AAPL', 'XAUUSD'];
 
         // Define crypto and forex symbols for proper classification
@@ -77,21 +84,30 @@ app.get('/api/market/prices', async (req, res) => {
         const forexSymbols = ['XAUUSD', 'EURUSD', 'GBPUSD', 'USDJPY', 'WTI', 'XAGUSD'];
 
         const assets = symbolList.map(symbol => {
-            let marketType = 'stock'; // Default
-
+            let marketType = 'stock';
             if (forexSymbols.includes(symbol)) {
                 marketType = 'forex';
             } else if (cryptoSymbols.includes(symbol) || symbol.includes('USDT')) {
                 marketType = 'crypto';
             }
-
             return { symbol, market_type: marketType };
         });
 
-        const prices = await marketDataService.getPortfolioPrices(assets);
+        // Timeout the entire service call just in case
+        const pricePromise = marketDataService.getPortfolioPrices(assets);
+        const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Service timeout')), 8000)
+        );
+
+        const prices = await Promise.race([pricePromise, timeoutPromise]);
         res.json({ success: true, prices });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        console.error('[API Error] /api/market/prices:', error.message);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch market data',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
     }
 });
 
@@ -143,21 +159,11 @@ app.get('/api/portfolio/:userId', async (req, res) => {
 
 // User Authentication Endpoints
 app.post('/api/auth/register', async (req, res) => {
-    try {
-        const { email, password } = req.body;
+    res.json({ success: true, message: 'Registration placeholder' });
+});
 
-        // TODO: Implement proper registration with password hashing
-        const client = await pool.connect();
-        const result = await client.query(
-            'INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id, email, subscription_type',
-            [email, `hashed_${password}`] // Placeholder - use bcrypt in production
-        );
-
-        client.release();
-        res.json({ success: true, user: result.rows[0] });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
-    }
+app.post('/api/auth/login', async (req, res) => {
+    res.json({ success: true, message: 'Login placeholder' });
 });
 
 // Subscription Routes (Placeholder)
