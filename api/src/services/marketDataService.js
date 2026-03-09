@@ -6,7 +6,15 @@ class MarketDataService {
             binance: 'https://api.binance.com/api/v3',
             coingecko: 'https://api.coingecko.com/api/v3'
         };
-        
+
+        this.coinGeckoMap = {
+            'BTC': 'bitcoin', 'ETH': 'ethereum', 'SOL': 'solana', 'XRP': 'ripple',
+            'ADA': 'cardano', 'DOGE': 'dogecoin', 'AVAX': 'avalanche-2', 'DOT': 'polkadot',
+            'BNB': 'binancecoin', 'MATIC': 'matic-network', 'LINK': 'chainlink',
+            'LTC': 'litecoin', 'BCH': 'bitcoin-cash', 'XLM': 'stellar', 'ATOM': 'cosmos',
+            'UNI': 'uniswap', 'ALGO': 'algorand', 'SHIB': 'shiba-inu', 'TRX': 'tron'
+        };
+
         this.stockApis = {
             alphaVantage: 'https://www.alphavantage.co/query',
             polygon: 'https://api.polygon.io/v2'
@@ -18,7 +26,7 @@ class MarketDataService {
         try {
             const response = await axios.get(`${this.cryptoApis.binance}/ticker/24hr?symbol=${symbol}USDT`);
             const data = response.data;
-            
+
             return {
                 price: parseFloat(data.lastPrice),
                 change: parseFloat(data.priceChange),
@@ -55,7 +63,7 @@ class MarketDataService {
         try {
             // تحويل الرموز السعودية للتنسيق الصحيح إذا لزم الأمر
             const avSymbol = symbol.includes('.') ? symbol : `${symbol}.SR`; // افتراضي للسوق السعودي إذا لم يوجد امتداد
-            
+
             // التحقق من وجود مفتاح API
             if (!apiKey || apiKey === 'your_polygon_key' || apiKey === 'demo') {
                 return this.getMockStockData(symbol);
@@ -63,11 +71,11 @@ class MarketDataService {
 
             const response = await axios.get(`${this.stockApis.alphaVantage}?function=GLOBAL_QUOTE&symbol=${avSymbol}&apikey=${apiKey}`);
             const data = response.data['Global Quote'];
-            
+
             if (!data || !data['05. price']) {
                 return this.getMockStockData(symbol);
             }
-            
+
             return {
                 price: parseFloat(data['05. price']),
                 change: parseFloat(data['09. change']),
@@ -86,7 +94,7 @@ class MarketDataService {
         const mockData = {
             // مؤشر السوق الرئيسي
             'TASI': { price: 12450.30, change: 45.20, changePercent: 0.36, volume: 250000000, marketCap: '10.5T' },
-            
+
             // الطاقة والمواد الأساسية
             '2222.SR': { price: 32.50, change: -0.15, changePercent: -0.46, volume: 15420300, marketCap: '7.8T' }, // Aramco
             '2010.SR': { price: 79.10, change: 0.50, changePercent: 0.64, volume: 2300500, marketCap: '237B' },   // SABIC
@@ -107,11 +115,11 @@ class MarketDataService {
             '7020.SR': { price: 52.30, change: -0.50, changePercent: -0.95, volume: 650000, marketCap: '40B' },    // Etihad Etisalat (Mobily)
             '7030.SR': { price: 12.40, change: 0.05, changePercent: 0.40, volume: 3200000, marketCap: '18B' },    // Zain KSA
             '7202.SR': { price: 185.60, change: 5.40, changePercent: 3.00, volume: 120000, marketCap: '22B' },    // Elm
-            
+
             // الخدمات والمرافق
             '5110.SR': { price: 18.90, change: -0.20, changePercent: -1.05, volume: 4500000, marketCap: '95B' },  // Saudi Electricity
             '2080.SR': { price: 68.50, change: 1.10, changePercent: 1.63, volume: 320000, marketCap: '16B' },     // Gas & Industrialization
-            
+
             // الإسمنت والبناء
             '3030.SR': { price: 48.20, change: 0.30, changePercent: 0.63, volume: 150000, marketCap: '7B' },      // Saudi Cement
             '3050.SR': { price: 39.50, change: -0.40, changePercent: -1.00, volume: 120000, marketCap: '6B' },    // Southern Cement
@@ -142,7 +150,7 @@ class MarketDataService {
             // Financials
             'JPM': { price: 170.20, change: 0.80, changePercent: 0.47, volume: 8500000, marketCap: '490B' },     // JPMorgan
             'V': { price: 260.40, change: 1.10, changePercent: 0.42, volume: 4500000, marketCap: '530B' },       // Visa
-            
+
             // Retail & Consumer
             'WMT': { price: 158.60, change: 0.40, changePercent: 0.25, volume: 5500000, marketCap: '425B' },     // Walmart
             'HD': { price: 345.20, change: -1.20, changePercent: -0.35, volume: 2800000, marketCap: '345B' },    // Home Depot
@@ -269,31 +277,46 @@ class MarketDataService {
     // جلب جميع أسعار المحفظة
     async getPortfolioPrices(assets) {
         const prices = {};
-        
-        for (const asset of assets) {
-            let priceData = null;
-            
-            switch (asset.market_type) {
-                case 'crypto':
-                    priceData = await this.getCryptoPriceFromBinance(asset.symbol) || 
-                               await this.getCryptoPriceFromCoinGecko(asset.symbol.toLowerCase());
-                    break;
-                
-                case 'stock':
-                    priceData = await this.getStockPriceFromAlphaVantage(asset.symbol, process.env.ALPHA_VANTAGE_API_KEY);
-                    break;
-                
-                case 'forex':
-                    // Use mock data for all forex pairs including Gold
+
+        try {
+            const pricePromises = assets.map(async (asset) => {
+                let priceData = null;
+                try {
+                    switch (asset.market_type) {
+                        case 'crypto':
+                            priceData = await this.getCryptoPriceFromBinance(asset.symbol);
+                            if (!priceData || priceData.source === 'mock_data') {
+                                const cgId = this.coinGeckoMap[asset.symbol] || asset.symbol.toLowerCase();
+                                const cgData = await this.getCryptoPriceFromCoinGecko(cgId);
+                                if (cgData) priceData = cgData;
+                            }
+                            break;
+
+                        case 'stock':
+                            priceData = await this.getStockPriceFromAlphaVantage(asset.symbol, process.env.ALPHA_VANTAGE_API_KEY);
+                            break;
+
+                        case 'forex':
+                            priceData = this.getMockStockData(asset.symbol);
+                            break;
+                    }
+                } catch (err) {
+                    console.error(`Error fetching price for ${asset.symbol}:`, err.message);
                     priceData = this.getMockStockData(asset.symbol);
-                    break;
-            }
-            
-            if (priceData) {
-                prices[asset.symbol] = priceData;
-            }
+                }
+                return { symbol: asset.symbol, data: priceData };
+            });
+
+            const results = await Promise.all(pricePromises);
+            results.forEach(result => {
+                if (result.data) {
+                    prices[result.symbol] = result.data;
+                }
+            });
+        } catch (error) {
+            console.error('Global error in getPortfolioPrices:', error.message);
         }
-        
+
         return prices;
     }
 
@@ -301,18 +324,18 @@ class MarketDataService {
     async getHistoricalData(symbol, marketType, days = 30) {
         try {
             let url = '';
-            
+
             if (marketType === 'crypto') {
                 url = `${this.cryptoApis.coingecko}/coins/${symbol}/market_chart?vs_currency=usd&days=${days}`;
                 const response = await axios.get(url);
-                
+
                 return response.data.prices.map(([timestamp, price]) => ({
                     timestamp,
                     price,
                     time: new Date(timestamp).toISOString()
                 }));
             }
-            
+
             return [];
         } catch (error) {
             console.error(`Historical data error for ${symbol}:`, error.message);
