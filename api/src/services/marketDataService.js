@@ -126,29 +126,33 @@ class MarketDataService {
         }
     }
 
-    // جلب سعر الأصل من CoinGecko مع بيانات السوق الكاملة
-    async getCryptoPriceFromCoinGecko(coinId) {
-        console.log(`[MarketData] Fetching ${coinId} from CoinGecko...`);
+    // Batch fetch from CoinGecko to prevent rate limiting and timeouts
+    async batchGetCryptoPricesFromCoinGecko(coinIds) {
+        if (!coinIds || coinIds.length === 0) return {};
+        const ids = coinIds.join(',');
+        console.log(`[MarketData] Batch fetching ${coinIds.length} assets from CoinGecko...`);
+
         try {
-            const url = `${this.cryptoApis.coingecko}/simple/price?ids=${coinId}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`;
+            const url = `${this.cryptoApis.coingecko}/simple/price?ids=${ids}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`;
             const response = await axios.get(url, { timeout: 6000 });
 
-            if (response.data && response.data[coinId]) {
-                const data = response.data[coinId];
-                return {
+            const results = {};
+            Object.keys(response.data).forEach(id => {
+                const data = response.data[id];
+                results[id] = {
                     price: data.usd,
-                    change: (data.usd * (data.usd_24h_change / 100)) || 0, // Convert percentage change to absolute value
+                    change: (data.usd * (data.usd_24h_change / 100)) || 0,
                     changePercent: data.usd_24h_change || 0,
                     volume: data.usd_24h_vol || 0,
                     marketCap: data.usd_market_cap ? this.formatMarketCap(data.usd_market_cap) : 'N/A',
                     source: 'coingecko',
-                    symbol: coinId.toUpperCase()
+                    symbol: id.toUpperCase()
                 };
-            }
-            return null;
+            });
+            return results;
         } catch (error) {
-            console.error(`CoinGecko API error for ${coinId}:`, error.message);
-            return null;
+            console.error(`CoinGecko Batch API error:`, error.message);
+            return {};
         }
     }
 
@@ -350,45 +354,57 @@ class MarketDataService {
         return this.getStockPriceFromYahoo('XAUUSD');
     }
 
-    // جلب جميع أسعار المحفظة
+    // جلب جميع أسعار المحفظة - Optimized with Batching to prevent Timeouts
     async getPortfolioPrices(assets) {
         const prices = {};
+        if (!assets || assets.length === 0) return prices;
 
         try {
-            const pricePromises = assets.map(async (asset) => {
-                let priceData = null;
-                try {
-                    switch (asset.market_type) {
-                        case 'crypto':
-                            // Prioritize CoinGecko as requested by the user
-                            const cgId = this.coinGeckoMap[asset.symbol] || asset.symbol.toLowerCase();
-                            priceData = await this.getCryptoPriceFromCoinGecko(cgId);
+            // Group assets by market type
+            const cryptoAssets = assets.filter(a => a.market_type === 'crypto');
+            const stockAssets = assets.filter(a => a.market_type === 'stock' || a.market_type === 'forex');
 
-                            // Fallback to Binance if CoinGecko data is missing
-                            if (!priceData || priceData.source === 'mock_data') {
-                                const binanceData = await this.getCryptoPriceFromBinance(asset.symbol);
-                                if (binanceData) priceData = binanceData;
-                            }
-                            break;
+            // 1. Batch Fetch Crypto from CoinGecko (ONE SINGLE CALL)
+            if (cryptoAssets.length > 0) {
+                const cryptoIds = cryptoAssets.map(a => this.coinGeckoMap[a.symbol] || a.symbol.toLowerCase());
+                const cgResults = await this.batchGetCryptoPricesFromCoinGecko(cryptoIds);
 
-                        case 'stock':
-                        case 'forex':
-                            priceData = await this.getStockPriceFromYahoo(asset.symbol);
-                            break;
+                // Map results back
+                cryptoAssets.forEach(asset => {
+                    const id = this.coinGeckoMap[asset.symbol] || asset.symbol.toLowerCase();
+                    if (cgResults[id]) {
+                        prices[asset.symbol] = cgResults[id];
                     }
-                } catch (err) {
-                    console.error(`Error fetching price for ${asset.symbol}:`, err.message);
-                    priceData = this.getMockStockData(asset.symbol);
+                });
+            }
+
+            // 2. Fallback to Binance for missing crypto (parallel)
+            const missingCrypto = cryptoAssets.filter(a => !prices[a.symbol]);
+            if (missingCrypto.length > 0) {
+                const binancePromises = missingCrypto.map(async (asset) => {
+                    const data = await this.getCryptoPriceFromBinance(asset.symbol);
+                    if (data) prices[asset.symbol] = data;
+                });
+                await Promise.all(binancePromises);
+            }
+
+            // 3. Fetch Stocks & Forex from Yahoo (parallel)
+            if (stockAssets.length > 0) {
+                const stockPromises = stockAssets.map(async (asset) => {
+                    const data = await this.getStockPriceFromYahoo(asset.symbol);
+                    if (data) prices[asset.symbol] = data;
+                });
+                await Promise.all(stockPromises);
+            }
+
+            // 4. Critical Fallback: Ensure every symbol exists (mock if all failed)
+            assets.forEach(asset => {
+                if (!prices[asset.symbol]) {
+                    console.log(`[MarketData] Final fallback to mock for ${asset.symbol}`);
+                    prices[asset.symbol] = this.getMockStockData(asset.symbol);
                 }
-                return { symbol: asset.symbol, data: priceData };
             });
 
-            const results = await Promise.all(pricePromises);
-            results.forEach(result => {
-                if (result.data) {
-                    prices[result.symbol] = result.data;
-                }
-            });
         } catch (error) {
             console.error('Global error in getPortfolioPrices:', error.message);
         }

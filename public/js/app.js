@@ -647,8 +647,14 @@ class App {
 
       // Fetch latest prices for all symbols in watchlist
       let prices = {};
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       try {
-        const response = await fetch(`/api/market/prices?symbols=${wl.join(',')}`);
+        const response = await fetch(`/api/market/prices?symbols=${wl.join(',')}`, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
         const data = await response.json();
         if (data.success) prices = data.prices;
       } catch (e) {
