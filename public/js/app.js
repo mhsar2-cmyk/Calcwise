@@ -787,36 +787,6 @@ class App {
       `;
     });
   }
-
-  setupBlogPersonalization() {
-    const grid = document.querySelector('.blog-grid');
-    if (!grid) return;
-    const prefKey = 'preferredTag';
-    const getPref = () => localStorage.getItem(prefKey);
-    const setPref = (t) => localStorage.setItem(prefKey, t);
-    const normalize = (t) => (t || '').toLowerCase().trim();
-    const reorder = () => {
-      const pref = normalize(getPref());
-      if (!pref) return;
-      const cards = Array.from(grid.querySelectorAll('.blog-card'));
-      cards.sort((a, b) => {
-        const ta = normalize(a.querySelector('.blog-tag')?.textContent);
-        const tb = normalize(b.querySelector('.blog-tag')?.textContent);
-        const sa = ta.includes(pref) ? 0 : 1;
-        const sb = tb.includes(pref) ? 0 : 1;
-        return sa - sb;
-      });
-      cards.forEach(c => grid.appendChild(c));
-    };
-    grid.addEventListener('click', (e) => {
-      const tag = e.target.closest('.blog-tag');
-      if (tag) {
-        setPref(normalize(tag.textContent));
-        reorder();
-      }
-    });
-    reorder();
-  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
