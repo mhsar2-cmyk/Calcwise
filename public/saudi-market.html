@@ -66,6 +66,7 @@
             </div>
         </header>
         <main>
+            <!-- Platform Introductory Section -->
             <section class="platform-page section">
                 <div class="container">
                     <div class="platform-grid">
@@ -97,6 +98,136 @@
                         <div class="platform-visual">
                             <div class="card"><img src="images/platform_mockup.png" alt="Platform" class="mockup-img">
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Market Dashboard (Heatmap + Top Stocks side-by-side) -->
+            <section class="section market-dashboard" style="padding: 20px 0 60px 0;">
+                <div class="container">
+                    <div class="dashboard-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;">
+                        <!-- Heatmap Column -->
+                        <div class="widget-container card card-glass"
+                            style="min-height: 500px; border-radius: 12px; overflow: hidden; background: #131722;">
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript"
+                                    src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js"
+                                    async>
+                                        {
+                                            "dataSource": "Saudi",
+                                                "blockSize": "market_cap_basic",
+                                                    "blockColor": "change",
+                                                        "grouping": "sector",
+                                                            "locale": "en",
+                                                                "symbolUrl": "",
+                                                                    "colorTheme": "dark",
+                                                                        "hasTopBar": false,
+                                                                            "isDatasetEnabled": false,
+                                                                                "isStablecoinEnabled": false,
+                                                                                    "width": "100%",
+                                                                                        "height": 500
+                                        }
+                                    </script>
+                            </div>
+                        </div>
+
+                        <!-- Top Stocks Column -->
+                        <div class="widget-container card card-glass"
+                            style="min-height: 500px; border-radius: 12px; overflow: hidden; background: #131722;">
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript"
+                                    src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
+                                    async>
+                                        {
+                                            "colorTheme": "dark",
+                                                "dateRange": "12M",
+                                                    "showChart": false,
+                                                        "locale": "en",
+                                                            "width": "100%",
+                                                                "height": 500,
+                                                                    "largeChartUrl": "",
+                                                                        "isTransparent": false,
+                                                                            "showSymbolLogo": true,
+                                                                                "showFloatingTooltip": false,
+                                                                                    "tabs": [
+                                                                                        {
+                                                                                            "title": "Top Saudi Stocks",
+                                                                                            "symbols": [
+                                                                                                { "s": "TADAWUL:2222" },
+                                                                                                { "s": "TADAWUL:1120" },
+                                                                                                { "s": "TADAWUL:1150" },
+                                                                                                { "s": "TADAWUL:2010" },
+                                                                                                { "s": "TADAWUL:7010" },
+                                                                                                { "s": "TADAWUL:1180" },
+                                                                                                { "s": "TADAWUL:1010" },
+                                                                                                { "s": "TADAWUL:1211" },
+                                                                                                { "s": "TADAWUL:5110" },
+                                                                                                { "s": "TADAWUL:2280" },
+                                                                                                { "s": "TADAWUL:4190" },
+                                                                                                { "s": "TADAWUL:4030" },
+                                                                                                { "s": "TADAWUL:2350" },
+                                                                                                { "s": "TADAWUL:2020" },
+                                                                                                { "s": "TADAWUL:4250" },
+                                                                                                { "s": "TADAWUL:4003" },
+                                                                                                { "s": "TADAWUL:1111" },
+                                                                                                { "s": "TADAWUL:1140" },
+                                                                                                { "s": "TADAWUL:1060" },
+                                                                                                { "s": "TADAWUL:2080" }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                        }
+                                    </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style>
+                    @media (max-width: 992px) {
+                        .dashboard-grid {
+                            grid-template-columns: 1fr !important;
+                        }
+                    }
+                </style>
+            </section>
+
+            <!-- TASI Chart Section -->
+            <section class="section saudi-chart-section" style="padding: 20px 0 60px 0;">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="badge badge-gold">Live Analysis</span>
+                        <h2>TASI Index Technical Chart</h2>
+                        <p>Real-time interactive chart with advanced technical indicators for Saudi Stock Market.</p>
+                    </div>
+                    <div class="widget-container card card-glass"
+                        style="min-height: 600px; border-radius: 12px; overflow: hidden; background: #131722;">
+                        <div class="tradingview-widget-container" style="height:100%;width:100%">
+                            <div id="tradingview_sa" style="height: 600px;"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                                new TradingView.widget(
+                                    {
+                                        "autosize": true,
+                                        "symbol": "TADAWUL:TASI",
+                                        "interval": "D",
+                                        "timezone": "Etc/UTC",
+                                        "theme": "dark",
+                                        "style": "8",
+                                        "locale": "en",
+                                        "toolbar_bg": "#f1f3f6",
+                                        "enable_publishing": false,
+                                        "hide_side_toolbar": false,
+                                        "allow_symbol_change": true,
+                                        "studies": [
+                                            "RSI@tv-basicstudies"
+                                        ],
+                                        "container_id": "tradingview_sa"
+                                    }
+                                );
+                            </script>
                         </div>
                     </div>
                 </div>
