@@ -100,6 +100,42 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Heatmap Section -->
+            <section class="section heatmap-section" data-reveal>
+                <div class="container">
+                    <div class="section-header">
+                        <span class="badge badge-cyan" data-i18n="nav-crypto">Market Visualization</span>
+                        <h2 data-i18n="crypto-heatmap-title">Crypto Market Heatmap</h2>
+                        <p data-i18n="crypto-heatmap-desc">Real-time global performance of top cryptocurrency assets.
+                        </p>
+                    </div>
+                    <div class="widget-container card card-glass"
+                        style="padding: 10px; min-height: 600px; border-radius: 12px; overflow: hidden;">
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js"
+                                async>
+                                    {
+                                        "dataSource": "Crypto",
+                                            "blockSize": "market_cap_calc",
+                                                "blockColor": "change",
+                                                    "grouping": "platform",
+                                                        "locale": "en",
+                                                            "symbolUrl": "",
+                                                                "colorTheme": "dark",
+                                                                    "hasTopBar": false,
+                                                                        "isDatasetEnabled": false,
+                                                                            "isStablecoinEnabled": false,
+                                                                                "width": "100%",
+                                                                                    "height": 600
+                                    }
+                                </script>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
         <footer class="footer section">
             <div class="container footer-grid">

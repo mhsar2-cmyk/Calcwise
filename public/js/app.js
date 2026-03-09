@@ -67,6 +67,8 @@ const translations = {
     // Platform Pages
     "crypto-title": "Calcwise Crypto Platform",
     "crypto-coverage": "Comprehensive Analysis for 14,000+ Cryptocurrencies",
+    "crypto-heatmap-title": "Crypto Market Heatmap",
+    "crypto-heatmap-desc": "Real-time global performance of top cryptocurrency assets.",
     "forex-title": "Forex & Options Platform",
     "forex-coverage": "Global Forex Pairs & Real-time Options Contracts",
     "us-title": "US Market Platform",
@@ -202,6 +204,8 @@ const translations = {
     // Platform Pages
     "crypto-title": "منصة كالك وايز للعملات الرقمية",
     "crypto-coverage": "تحليل شامل لأكثر من 14,000 عملة رقمية",
+    "crypto-heatmap-title": "خريطة السوق الرقمي",
+    "crypto-heatmap-desc": "مراقبة الأداء العالمي المباشر لأكبر العملات الرقمية.",
     "forex-title": "منصة الفوركس والخيارات",
     "forex-coverage": "أزواج الفوركس العالمية وعقود الخيارات الفورية",
     "us-title": "منصة السوق الأمريكي",
