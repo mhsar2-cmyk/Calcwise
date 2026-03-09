@@ -194,7 +194,41 @@
             </section>
 
 
-
+            <!-- Bitcoin Chart Section -->
+            <section class="section btc-chart-section" style="padding: 20px 0 60px 0;">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="badge badge-gold">Live Analysis</span>
+                        <h2>Bitcoin (BTC/USDT) Technical Chart</h2>
+                        <p>Real-time interactive chart with advanced technical indicators for Bitcoin.</p>
+                    </div>
+                    <div class="widget-container card card-glass"
+                        style="min-height: 600px; border-radius: 12px; overflow: hidden; background: #131722;">
+                        <div class="tradingview-widget-container" style="height:100%;width:100%">
+                            <div id="tradingview_btc" style="height: 600px;"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                                new TradingView.widget(
+                                    {
+                                        "autosize": true,
+                                        "symbol": "BINANCE:BTCUSDT",
+                                        "interval": "D",
+                                        "timezone": "Etc/UTC",
+                                        "theme": "dark",
+                                        "style": "1",
+                                        "locale": "en",
+                                        "toolbar_bg": "#f1f3f6",
+                                        "enable_publishing": false,
+                                        "hide_side_toolbar": false,
+                                        "allow_symbol_change": true,
+                                        "container_id": "tradingview_btc"
+                                    }
+                                );
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
         </main>
