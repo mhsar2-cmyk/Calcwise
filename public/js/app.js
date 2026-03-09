@@ -636,47 +636,80 @@ class App {
     };
     const setWL = (arr) => localStorage.setItem('watchlist', JSON.stringify(arr));
 
-    const renderWL = () => {
+    const renderWL = async () => {
       if (!listEl) return;
-      listEl.innerHTML = '';
+
       const wl = getWL();
+      if (wl.length === 0) {
+        listEl.innerHTML = '<li style="color: #666; font-size: 0.9rem;">Watchlist empty</li>';
+        return;
+      }
+
+      // Fetch latest prices for all symbols in watchlist
+      let prices = {};
+      try {
+        const response = await fetch(`/api/market/prices?symbols=${wl.join(',')}`);
+        const data = await response.json();
+        if (data.success) prices = data.prices;
+      } catch (e) {
+        console.error('Failed to fetch watchlist prices:', e);
+      }
+
+      listEl.innerHTML = '';
       wl.forEach(sym => {
+        const data = prices[sym];
         const li = document.createElement('li');
         li.style.display = 'flex';
         li.style.alignItems = 'center';
         li.style.justifyContent = 'space-between';
-        li.style.gap = '8px';
-        const span = document.createElement('span');
-        span.textContent = sym;
+        li.style.gap = '12px';
+        li.style.padding = '8px 12px';
+        li.style.background = 'rgba(255,255,255,0.03)';
+        li.style.borderRadius = '8px';
+        li.style.marginBottom = '4px';
+
+        const info = document.createElement('div');
+        info.style.display = 'flex';
+        info.style.flexDirection = 'column';
+
+        const symSpan = document.createElement('span');
+        symSpan.style.fontWeight = '700';
+        symSpan.style.color = '#fff';
+        symSpan.textContent = sym;
+
+        const priceSpan = document.createElement('span');
+        priceSpan.style.fontSize = '0.85rem';
+        if (data) {
+          const sign = data.change >= 0 ? '+' : '';
+          const color = data.change >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+          priceSpan.innerHTML = `$${(data.price || 0).toLocaleString()} <span style="color:${color}">${sign}${(data.changePercent || 0).toFixed(2)}%</span>`;
+        } else {
+          priceSpan.textContent = 'Loading...';
+          priceSpan.style.color = '#666';
+        }
+
+        info.appendChild(symSpan);
+        info.appendChild(priceSpan);
+
         const actions = document.createElement('div');
         actions.style.display = 'flex';
+        actions.style.alignItems = 'center';
         actions.style.gap = '8px';
-        const btnSent = document.createElement('button');
-        btnSent.className = 'btn-outline';
-        btnSent.textContent = 'Sentiment';
+
         const btnDel = document.createElement('button');
-        btnDel.className = 'btn-outline';
-        btnDel.textContent = '×';
-        const result = document.createElement('small');
-        btnSent.addEventListener('click', async () => {
-          try {
-            const r = await fetch(`/api/market/sentiment?asset=${encodeURIComponent(sym)}`);
-            const j = await r.json();
-            result.textContent = j?.sentiment ? `${j.sentiment.score} • ${j.sentiment.mood}` : '—';
-          } catch {
-            result.textContent = '—';
-          }
-        });
+        btnDel.className = 'btn-icon';
+        btnDel.style.padding = '4px';
+        btnDel.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+
         btnDel.addEventListener('click', () => {
           const next = getWL().filter(s => s !== sym);
           setWL(next);
           renderWL();
         });
-        actions.appendChild(btnSent);
+
         actions.appendChild(btnDel);
-        li.appendChild(span);
+        li.appendChild(info);
         li.appendChild(actions);
-        li.appendChild(result);
         listEl.appendChild(li);
       });
     };

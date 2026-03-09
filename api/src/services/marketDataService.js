@@ -27,10 +27,22 @@ class MarketDataService {
 
     // جلب سعر الأصل من Yahoo Finance
     async getStockPriceFromYahoo(symbol) {
+        console.log(`[MarketData] Fetching ${symbol} from Yahoo...`);
         try {
             // تحويل الرموز للسوق السعودي إذا كانت أرقام فقط
             let yahooSymbol = symbol;
-            if (/^\d{4}$/.test(symbol)) {
+
+            // Mapping common US and Saudi indices
+            const indexMap = {
+                'SPX': '^GSPC',
+                'NDX': '^IXIC',
+                'DJI': '^DJI',
+                'TASI': '^TASI'
+            };
+
+            if (indexMap[symbol]) {
+                yahooSymbol = indexMap[symbol];
+            } else if (/^\d{4}$/.test(symbol)) {
                 yahooSymbol = `${symbol}.SR`;
             } else if (symbol.endsWith('.SR')) {
                 // Keep it as is
@@ -43,8 +55,17 @@ class MarketDataService {
                 else yahooSymbol = `${symbol}=X`;
             }
 
-            const result = await this.yf.quote(yahooSymbol);
+            // Creating a timeout for yahooFinance.quote
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Yahoo Finance timeout')), 6000)
+            );
 
+            const result = await Promise.race([
+                this.yf.quote(yahooSymbol),
+                timeoutPromise
+            ]);
+
+            console.log(`[MarketData] ${symbol} fetched from Yahoo.`);
             if (!result || !result.regularMarketPrice) {
                 return this.getMockStockData(symbol);
             }
@@ -74,9 +95,11 @@ class MarketDataService {
 
     // جلب سعر الأصل من Binance (مع بيانات التغير والحجم)
     async getCryptoPriceFromBinance(symbol) {
+        console.log(`[MarketData] Fetching ${symbol} from Binance...`);
         try {
-            const response = await axios.get(`${this.cryptoApis.binance}/ticker/24hr?symbol=${symbol}USDT`);
+            const response = await axios.get(`${this.cryptoApis.binance}/ticker/24hr?symbol=${symbol}USDT`, { timeout: 5000 });
             const data = response.data;
+            console.log(`[MarketData] ${symbol} fetched from Binance.`);
 
             return {
                 price: parseFloat(data.lastPrice),

@@ -64,29 +64,30 @@ app.get('/api/market/sentiment', async (req, res) => {
 
 // New Market Data Endpoints
 app.get('/api/market/prices', async (req, res) => {
+    console.log(`[API] Market Prices hit: ${req.query.symbols}`);
     try {
         const { symbols } = req.query;
         const symbolList = symbols ? symbols.split(',') : ['BTC', 'ETH', 'AAPL', 'XAUUSD'];
-        
+
         // Define crypto and forex symbols for proper classification
         const cryptoSymbols = [
-            'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'DOGE', 'AVAX', 'DOT', 'BNB', 
+            'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'DOGE', 'AVAX', 'DOT', 'BNB',
             'MATIC', 'LINK', 'LTC', 'BCH', 'XLM', 'ATOM', 'UNI', 'ALGO', 'SHIB', 'TRX'
         ];
         const forexSymbols = ['XAUUSD', 'EURUSD', 'GBPUSD', 'USDJPY', 'WTI', 'XAGUSD'];
 
         const assets = symbolList.map(symbol => {
             let marketType = 'stock'; // Default
-            
+
             if (forexSymbols.includes(symbol)) {
                 marketType = 'forex';
             } else if (cryptoSymbols.includes(symbol) || symbol.includes('USDT')) {
                 marketType = 'crypto';
             }
-            
+
             return { symbol, market_type: marketType };
         });
-        
+
         const prices = await marketDataService.getPortfolioPrices(assets);
         res.json({ success: true, prices });
     } catch (error) {
@@ -98,7 +99,7 @@ app.get('/api/market/analysis/:symbol', async (req, res) => {
     try {
         const { symbol } = req.params;
         const marketType = ['BTC', 'ETH'].includes(symbol) ? 'crypto' : 'stock';
-        
+
         const technicalAnalysis = await aiAnalysisService.analyzeTechnical(symbol, marketType);
         res.json({ success: true, analysis: technicalAnalysis });
     } catch (error) {
@@ -111,7 +112,7 @@ app.get('/api/portfolio/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
         const client = await pool.connect();
-        
+
         const portfolioResult = await client.query(
             `SELECT p.*, a.symbol, a.name, a.market_type 
              FROM portfolios p 
@@ -119,7 +120,7 @@ app.get('/api/portfolio/:userId', async (req, res) => {
              WHERE p.user_id = $1`,
             [userId]
         );
-        
+
         const watchlistResult = await client.query(
             `SELECT w.*, a.symbol, a.name, a.market_type 
              FROM watchlists w 
@@ -127,9 +128,9 @@ app.get('/api/portfolio/:userId', async (req, res) => {
              WHERE w.user_id = $1`,
             [userId]
         );
-        
+
         client.release();
-        
+
         res.json({
             success: true,
             portfolio: portfolioResult.rows,
@@ -144,14 +145,14 @@ app.get('/api/portfolio/:userId', async (req, res) => {
 app.post('/api/auth/register', async (req, res) => {
     try {
         const { email, password } = req.body;
-        
+
         // TODO: Implement proper registration with password hashing
         const client = await pool.connect();
         const result = await client.query(
             'INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id, email, subscription_type',
             [email, `hashed_${password}`] // Placeholder - use bcrypt in production
         );
-        
+
         client.release();
         res.json({ success: true, user: result.rows[0] });
     } catch (error) {
