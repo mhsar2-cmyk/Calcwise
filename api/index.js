@@ -76,8 +76,8 @@ app.delete('/api/portfolio/:id', authenticate, async (req, res) => {
 // Authentication Routes
 app.post('/api/auth/signup', async (req, res) => {
     try {
-        const user = await signup(req.body);
-        res.status(201).json({ success: true, user });
+        const result = await signup(req.body);
+        res.status(201).json({ success: true, ...result });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
@@ -86,8 +86,8 @@ app.post('/api/auth/signup', async (req, res) => {
 app.post('/api/auth/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await login(email, password);
-        res.json({ success: true, user });
+        const result = await login(email, password);
+        res.json({ success: true, ...result });
     } catch (error) {
         res.status(401).json({ success: false, message: error.message });
     }

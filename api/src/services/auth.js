@@ -28,10 +28,13 @@ const signup = async (userData) => {
 
     // 2. Return the user public data
     return {
-        id: data.user.id,
-        email: data.user.email,
-        firstName: firstName,
-        lastName: lastName
+        user: {
+            id: data.user.id,
+            email: data.user.email,
+            firstName: firstName,
+            lastName: lastName
+        },
+        session: data.session
     };
 };
 

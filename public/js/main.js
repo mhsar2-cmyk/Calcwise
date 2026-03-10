@@ -933,6 +933,9 @@ async function handleSignup(e) {
         if (data.success) {
             localStorage.setItem('calcwise_logged_in', 'true');
             localStorage.setItem('calcwise_user', JSON.stringify(data.user));
+            if (data.session) {
+                localStorage.setItem('calcwise_token', data.session.access_token);
+            }
             showToast('success', `Welcome, ${firstName}! Redirecting...`);
             setTimeout(() => window.location.href = 'dashboard.html', 1500);
         } else {
