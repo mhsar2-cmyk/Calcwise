@@ -3,14 +3,10 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-// Serve static files from public directory
-app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // API Routes
 app.get('/api/health', (req, res) => {
@@ -31,13 +27,28 @@ app.get('/api/rates', (req, res) => {
     });
 });
 
-// SPA fallback — serve index.html for any unmatched routes
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
-});
+// ──────────────────────────────────────────────
+// Environment-aware: works both locally AND on Vercel
+// ──────────────────────────────────────────────
 
-app.listen(PORT, () => {
-    console.log(`\n  📊 CalcWise is running!\n`);
-    console.log(`  → Local:   http://localhost:${PORT}`);
-    console.log(`  → Network: http://0.0.0.0:${PORT}\n`);
-});
+if (process.env.VERCEL) {
+    // On Vercel: export the Express app as a serverless function
+    // Static files are served by @vercel/static (configured in vercel.json)
+    module.exports = app;
+} else {
+    // Locally: serve static files and listen on a port
+    const PORT = process.env.PORT || 3000;
+
+    app.use(express.static(path.join(__dirname, '..', 'public')));
+
+    // SPA fallback — serve index.html for any unmatched routes
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+    });
+
+    app.listen(PORT, () => {
+        console.log(`\n  📊 CalcWise is running!\n`);
+        console.log(`  → Local:   http://localhost:${PORT}`);
+        console.log(`  → Network: http://0.0.0.0:${PORT}\n`);
+    });
+}
