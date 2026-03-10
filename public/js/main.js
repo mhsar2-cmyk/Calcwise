@@ -788,6 +788,9 @@ function applyLanguage(lang) {
 
     // Fix TradingView widgets locale if they exist
     // Note: TradingView widgets often need a reload or specific container update to change locale
+
+    // Update AI Assistant if initialized
+    updateAIAssistant();
 }
 
 function toggleLanguage(lang) {
@@ -1914,6 +1917,51 @@ function initAIAssistant() {
         </div>
     `;
     document.body.appendChild(chat);
+}
+
+function updateAIAssistant() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const btn = document.getElementById('aiAssistantBtn');
+    const chat = document.getElementById('aiChat');
+    const input = document.getElementById('aiInput');
+
+    if (!btn) return;
+
+    // Reposition button & chat (for redundancy with CSS)
+    btn.style.left = lang === 'ar' ? '24px' : 'auto';
+    btn.style.right = lang === 'ar' ? 'auto' : '24px';
+    if (chat) {
+        chat.style.left = lang === 'ar' ? '24px' : 'auto';
+        chat.style.right = lang === 'ar' ? 'auto' : '24px';
+    }
+
+    // Update button title
+    btn.title = lang === 'ar' ? 'مساعد كالك وايز' : 'CalcWise Assistant';
+
+    // Update Chat UI text if open
+    const aiName = translations['ai-name'] ? translations['ai-name'][lang] : 'CalcWise AI';
+    const aiStatus = translations['ai-status'] ? translations['ai-status'][lang] : '● Online · Market Assistant';
+    const aiPlaceholder = translations['ai-placeholder'] ? translations['ai-placeholder'][lang] : 'Ask anything...';
+
+    const headerName = document.querySelector('#aiChat .ai-info .name');
+    const headerStatus = document.querySelector('#aiChat .ai-info .status');
+    if (headerName) headerName.textContent = aiName;
+    if (headerStatus) headerStatus.textContent = aiStatus;
+    if (input) input.placeholder = aiPlaceholder;
+
+    // Update quick replies
+    const q1 = translations['ai-quick-trend'] ? translations['ai-quick-trend'][lang] : '📈 Market trend';
+    const q2 = translations['ai-quick-tip'] ? translations['ai-quick-tip'][lang] : '💡 Trading tip';
+    const q3 = translations['ai-quick-btc'] ? translations['ai-quick-btc'][lang] : '₿ Bitcoin';
+    const q4 = translations['ai-quick-risk'] ? translations['ai-quick-risk'][lang] : '🛡️ Risk mgmt';
+
+    const qbtns = document.querySelectorAll('#aiChat .ai-quick-btn');
+    if (qbtns.length === 4) {
+        qbtns[0].textContent = q1;
+        qbtns[1].textContent = q2;
+        qbtns[2].textContent = q3;
+        qbtns[3].textContent = q4;
+    }
 }
 
 function toggleAIChat() {
