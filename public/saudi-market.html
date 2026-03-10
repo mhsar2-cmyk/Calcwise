@@ -1,451 +1,138 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcwise Saudi Market | TASI & Tadawul Expert Analysis</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/variables.css">
+    <title>Saudi Market (Tadawul) — CalcWise</title>
+    <meta name="description"
+        content="Live Saudi stock market data, TASI index, and Saudi Arabian stock market analytics. Track Tadawul listed companies in real-time.">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
 
 <body>
-    <div class="app-container">
-        <header class="navbar">
-            <div class="container nav-container">
-                <a href="index.html" class="logo">
-                    <span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span>
-                </a>
-                <nav class="nav-links">
-                    <a href="index.html" class="nav-link" data-i18n="nav-home">Home</a>
-                    <div class="dropdown active">
-                        <a href="#" class="nav-link dropdown-toggle active" data-i18n="nav-platforms">Platforms</a>
-                        <div class="dropdown-menu">
-                            <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
-                            <a href="forex.html" data-i18n="nav-forex">Forex & Options</a>
-                            <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
-                            <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">📊</div> CalcWise
+            </a>
+                        <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav-home">Home</a>
+        
+        <div class="nav-dropdown">
+          <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+          <div class="dropdown-menu">
+            <a href="crypto.html"><span class="dropdown-icon">₿</span> <span data-i18n="nav-crypto">Cryptocurrency</span></a>
+            <a href="forex.html"><span class="dropdown-icon">💱</span> <span data-i18n="nav-forex">Forex</span></a>
+            <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span data-i18n="nav-us-stocks">US Stocks</span></a>
+            <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span data-i18n="nav-saudi">Saudi Market</span></a>
+          </div>
+        </div>
+
+        <a href="blog.html" data-i18n="nav-blog">Blog</a>
+        <a href="tools.html" data-i18n="nav-tools">Tools</a>
+      </div>
+
+                <div class="widget-container reveal">
+                    <div class="widget-header">
+                        <h3>🕯️ Saudi Aramco (2222)</h3>
+                    </div>
+                    <div style="height:500px;">
+                        <div class="tradingview-widget-container" style="height:100%;width:100%">
+                            <div id="tradingview_aramco" style="height:100%;width:100%"></div>
+                            <script type="text/javascript">
+                                new TradingView.widget({
+                                    "autosize": true,
+                                    "symbol": "TADAWUL:2222",
+                                    "interval": "D",
+                                    "timezone": "Asia/Riyadh",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#161638",
+                                    "enable_publishing": false,
+                                    "allow_symbol_change": true,
+                                    "container_id": "tradingview_aramco",
+                                    "hide_side_toolbar": false,
+                                    "studies": ["RSI@tv-basicstudies"]
+                                });
+                            </script>
                         </div>
                     </div>
-                    <a href="index.html#vip" class="nav-link" data-i18n="nav-vip">VIP Indicator</a>
-                    <a href="analysis.html" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
-                    <a href="blog.html" class="nav-link" data-i18n="nav-blog">Blog</a>
-                    <a href="index.html#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
-                </nav>
-                <div class="nav-actions">
-                    <button id="theme-toggle" class="btn-icon"><svg class="sun-icon" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg><svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" style="display:none;">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg></button>
-                    <button id="lang-toggle" class="btn-icon"><span class="lang-text">EN</span></button>
-                    <button class="btn-outline" data-i18n="btn-login">Login</button>
-                    <button class="btn-primary" data-i18n="btn-register">Register</button>
-                    <button class="mobile-toggle btn-icon" id="mobile-toggle"><svg width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg></button>
                 </div>
             </div>
-        </header>
-        <main>
-            <!-- Live Saudi Market Data (Custom) -->
-            <section class="section saudi-market-data" style="padding: 20px 0 60px 0;">
-                <div class="container">
-                    <!-- TASI Index Card -->
-                    <div class="market-overview-card card card-glass"
-                        style="margin-bottom: 30px; padding: 25px; border-radius: 12px; background: rgba(19, 23, 34, 0.6);">
-                        <div class="tasi-header"
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <div class="tasi-info">
-                                <h3 style="margin: 0; font-size: 1.5rem; color: #fff;">TASI General Index</h3>
-                                <span style="color: #888; font-size: 0.9rem;">Tadawul All Share Index</span>
-                            </div>
-                            <div class="tasi-price-container" id="tasi-price-container">
-                                <span class="loading-spinner">Loading...</span>
-                            </div>
-                        </div>
-                        <div class="tasi-chart-container" style="height: 300px; width: 100%; position: relative;">
-                            <canvas id="tasiChart"></canvas>
-                        </div>
-                    </div>
+        </div>
+    </section>
 
-                    <!-- Market Companies Table -->
-                    <div class="card card-glass"
-                        style="padding: 0; border-radius: 12px; overflow: hidden; background: #131722;">
-                        <div class="table-header"
-                            style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                            <h3 style="margin: 0; font-size: 1.2rem;">Saudi Market Companies</h3>
-                            <div class="sector-tabs"
-                                style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;">
-                                <button class="sector-btn active" onclick="filterSector('all')">All</button>
-                                <button class="sector-btn" onclick="filterSector('energy')">Energy & Materials</button>
-                                <button class="sector-btn" onclick="filterSector('finance')">Banks & Finance</button>
-                                <button class="sector-btn" onclick="filterSector('telecom')">Telecom & Tech</button>
-                                <button class="sector-btn" onclick="filterSector('other')">Others</button>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="market-table" style="width: 100%; border-collapse: collapse;">
-                                <thead>
-                                    <tr style="background: rgba(255,255,255,0.02); text-align: left;">
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Company</th>
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Symbol</th>
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Price (SAR)</th>
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Change</th>
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">% Change</th>
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Volume</th>
-                                        <th style="padding: 15px 20px; color: #888; font-weight: 500;">Market Cap</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="saudi-market-tbody">
-                                    <tr>
-                                        <td colspan="7" style="padding: 20px; text-align: center; color: #666;">Loading
-                                            market data...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <!-- SAUDI SCREENER -->
+    <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Saudi <span
+                        style="background:linear-gradient(135deg,#00B894,#55EFC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Stock
+                        Screener</span></h2>
+                <p>Browse all Tadawul-listed companies filtered by performance, sector, and market metrics.</p>
+            </div>
+
+            <div class="widget-container reveal">
+                <div style="height:600px;">
+                    <div class="tradingview-widget-container" style="height:100%;width:100%">
+                        <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+                        <script type="text/javascript"
+                            src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                                {
+                                    "width": "100%",
+                                        "height": "100%",
+                                            "defaultColumn": "overview",
+                                                "defaultScreen": "most_capitalized",
+                                                    "market": "saudi",
+                                                        "showToolbar": true,
+                                                            "colorTheme": "dark",
+                                                                "locale": "en",
+                                                                    "isTransparent": true
+                                }
+                            </script>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <script>
-                // Market Data Configuration
-                const marketConfig = {
-                    sectors: {
-                        energy: ['2222.SR', '2010.SR', '2020.SR', '2290.SR', '2310.SR'],
-                        finance: ['1120.SR', '1180.SR', '1010.SR', '1050.SR', '1060.SR', '1150.SR'],
-                        telecom: ['7010.SR', '7020.SR', '7030.SR', '7202.SR'],
-                        other: ['5110.SR', '2080.SR', '3030.SR', '3050.SR', '2280.SR', '4002.SR', '4190.SR']
-                    },
-                    companies: {
-                        '2222.SR': { name: 'Saudi Aramco', domain: 'aramco.com' },
-                        '2010.SR': { name: 'SABIC', domain: 'sabic.com' },
-                        '2020.SR': { name: 'SABIC Agri-Nutrients', domain: 'sabic-agrinutrients.com' },
-                        '2290.SR': { name: 'Yansab', domain: 'yansab.com.sa' },
-                        '2310.SR': { name: 'Sipchem', domain: 'sipchem.com' },
-                        '1120.SR': { name: 'Al Rajhi Bank', domain: 'alrajhibank.com.sa' },
-                        '1180.SR': { name: 'SNB', domain: 'alahli.com' },
-                        '1010.SR': { name: 'Riyad Bank', domain: 'riyadbank.com' },
-                        '1050.SR': { name: 'Banque Saudi Fransi', domain: 'alfransi.com.sa' },
-                        '1060.SR': { name: 'SAB', domain: 'sab.com' },
-                        '1150.SR': { name: 'Alinma Bank', domain: 'alinma.com' },
-                        '7010.SR': { name: 'stc', domain: 'stc.com.sa' },
-                        '7020.SR': { name: 'Mobily', domain: 'mobily.com.sa' },
-                        '7030.SR': { name: 'Zain KSA', domain: 'sa.zain.com' },
-                        '7202.SR': { name: 'Elm', domain: 'elm.sa' },
-                        '5110.SR': { name: 'Saudi Electricity', domain: 'se.com.sa' },
-                        '2080.SR': { name: 'GASCO', domain: 'gasco.com.sa' },
-                        '3030.SR': { name: 'Saudi Cement', domain: 'saudicement.com.sa' },
-                        '3050.SR': { name: 'Southern Cement', domain: 'spcc.com.sa' },
-                        '2280.SR': { name: 'Almarai', domain: 'almarai.com' },
-                        '4002.SR': { name: 'Mouwasat', domain: 'mouwasat.com' },
-                        '4190.SR': { name: 'Jarir', domain: 'jarir.com' }
-                    }
-                };
-
-                let currentMarketData = {};
-                let currentSector = 'all';
-                let tasiChart = null;
-
-                document.addEventListener('DOMContentLoaded', function () {
-                    fetchSaudiMarketData();
-                    initTASIChart();
-                });
-
-                function initTASIChart() {
-                    const ctx = document.getElementById('tasiChart').getContext('2d');
-
-                    // Generate intraday mock data (every 30 min from 10:00 to 15:00)
-                    const labels = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00'];
-                    const startPrice = 12405.0;
-                    const dataPoints = labels.map((_, i) => {
-                        return startPrice + (Math.random() * 60 - 20) + (i * 5); // Slight upward trend
-                    });
-
-                    // Create gradient
-                    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                    gradient.addColorStop(0, 'rgba(76, 175, 80, 0.2)');
-                    gradient.addColorStop(1, 'rgba(76, 175, 80, 0)');
-
-                    tasiChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'TASI Index',
-                                data: dataPoints,
-                                borderColor: '#4CAF50',
-                                backgroundColor: gradient,
-                                borderWidth: 2,
-                                pointRadius: 3,
-                                pointHoverRadius: 6,
-                                fill: true,
-                                tension: 0.4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    mode: 'index',
-                                    intersect: false,
-                                    backgroundColor: 'rgba(19, 23, 34, 0.9)',
-                                    titleColor: '#fff',
-                                    bodyColor: '#fff',
-                                    borderColor: 'rgba(255, 255, 255, 0.1)',
-                                    borderWidth: 1
-                                }
-                            },
-                            scales: {
-                                x: {
-                                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                                    ticks: { color: '#888' }
-                                },
-                                y: {
-                                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                                    ticks: { color: '#888' }
-                                }
-                            },
-                            interaction: {
-                                mode: 'nearest',
-                                axis: 'x',
-                                intersect: false
-                            }
-                        }
-                    });
-                }
-
-                function filterSector(sector) {
-                    currentSector = sector;
-
-                    // Update buttons
-                    document.querySelectorAll('.sector-btn').forEach(btn => btn.classList.remove('active'));
-                    event.target.classList.add('active');
-
-                    renderMarketTable();
-                }
-
-                function getAllSymbols() {
-                    return Object.values(marketConfig.sectors).flat();
-                }
-
-                async function fetchSaudiMarketData() {
-                    const symbols = getAllSymbols();
-                    const symbolString = `TASI,${symbols.join(',')}`;
-                    const tbody = document.getElementById('saudi-market-tbody');
-
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 12000);
-
-                    try {
-                        const response = await fetch(`/api/market/prices?symbols=${symbolString}`, {
-                            signal: controller.signal
-                        });
-                        clearTimeout(timeoutId);
-                        const data = await response.json();
-
-                        if (data.success && data.prices && Object.keys(data.prices).length > 0) {
-                            currentMarketData = data.prices;
-                            updateTASI(data.prices['TASI'] || { price: 12450.30, change: 45.20, changePercent: 0.36 });
-                            renderMarketTable();
-                        } else {
-                            console.error('API response unsuccessful or empty:', data);
-                            if (tbody) tbody.innerHTML = `<tr><td colspan="6" style="padding: 20px; text-align: center; color: #ff5252;">Data unavailable. Please refresh.</td></tr>`;
-                        }
-                    } catch (error) {
-                        console.error('Error fetching Saudi market data:', error);
-                        const msg = error.name === 'AbortError' ? 'Request timed out.' : 'Network error.';
-                        if (tbody) tbody.innerHTML = `<tr><td colspan="6" style="padding: 20px; text-align: center; color: #ff5252;">${msg} Please check connection.</td></tr>`;
-                    }
-                }
-
-                function updateTASI(data) {
-                    const container = document.getElementById('tasi-price-container');
-                    const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
-                    const sign = data.change >= 0 ? '+' : '';
-
-                    container.innerHTML = `
-                        <div style="text-align: right;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #fff;">${data.price.toFixed(2)}</div>
-                            <div class="${colorClass}" style="font-size: 1rem; font-weight: 500;">
-                                ${sign}${data.change.toFixed(2)} (${sign}${data.changePercent.toFixed(2)}%)
-                            </div>
-                        </div>
-                    `;
-                }
-
-                function formatVolume(num) {
-                    if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
-                    if (num >= 1000) return (num / 1000).toFixed(2) + 'K';
-                    return num.toString();
-                }
-
-                function renderMarketTable() {
-                    const tbody = document.getElementById('saudi-market-tbody');
-                    tbody.innerHTML = '';
-
-                    let symbolsToShow = [];
-                    if (currentSector === 'all') {
-                        symbolsToShow = getAllSymbols();
-                    } else {
-                        symbolsToShow = marketConfig.sectors[currentSector] || [];
-                    }
-
-                    symbolsToShow.forEach(symbol => {
-                        const data = currentMarketData[symbol];
-                        if (!data) return;
-
-                        const colorClass = data.change >= 0 ? 'text-green' : 'text-red';
-                        const sign = data.change >= 0 ? '+' : '';
-                        const volume = data.volume ? formatVolume(data.volume) : '-';
-                        const marketCap = data.marketCap || '-';
-
-                        const row = document.createElement('tr');
-                        row.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-
-                        // Generate color gradient based on symbol hash for better distribution
-                        let hash = 0;
-                        for (let i = 0; i < symbol.length; i++) {
-                            hash = symbol.charCodeAt(i) + ((hash << 5) - hash);
-                        }
-
-                        const colors = [
-                            'linear-gradient(135deg, #F44336, #D32F2F)',
-                            'linear-gradient(135deg, #E91E63, #C2185B)',
-                            'linear-gradient(135deg, #9C27B0, #7B1FA2)',
-                            'linear-gradient(135deg, #673AB7, #512DA8)',
-                            'linear-gradient(135deg, #3F51B5, #303F9F)',
-                            'linear-gradient(135deg, #2196F3, #1976D2)',
-                            'linear-gradient(135deg, #03A9F4, #0288D1)',
-                            'linear-gradient(135deg, #00BCD4, #0097A7)',
-                            'linear-gradient(135deg, #009688, #00796B)',
-                            'linear-gradient(135deg, #4CAF50, #388E3C)',
-                            'linear-gradient(135deg, #8BC34A, #689F38)',
-                            'linear-gradient(135deg, #CDDC39, #AFB42B)',
-                            'linear-gradient(135deg, #FFC107, #FFA000)',
-                            'linear-gradient(135deg, #FF9800, #F57C00)',
-                            'linear-gradient(135deg, #FF5722, #E64A19)'
-                        ];
-                        const colorIndex = Math.abs(hash) % colors.length;
-                        const bgGradient = colors[colorIndex];
-
-                        const company = marketConfig.companies[symbol];
-                        const logoUrl = `https://logo.clearbit.com/${company.domain}`;
-
-                        row.innerHTML = `
-                            <td style="padding: 15px 20px; color: #fff; font-weight: 500;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); overflow: hidden;">
-                                        <img src="${logoUrl}" 
-                                             onerror="this.style.display='none'; this.parentElement.style.background='${bgGradient}'; this.parentElement.innerHTML='${symbol[0]}'" 
-                                             alt="${company.name}" 
-                                             style="width: 100%; height: 100%; object-fit: contain; background: #fff;">
-                                    </div>
-                                    <div>
-                                        <div style="font-weight: 600;">${company.name}</div>
-                                        <div style="font-size: 12px; color: #888;">${symbol}</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding: 15px 20px; color: #bbb;">${marketConfig.sectors.energy.includes(symbol) ? 'Energy' : marketConfig.sectors.finance.includes(symbol) ? 'Finance' : 'Other'}</td>
-                            <td style="padding: 15px 20px; color: #fff; font-weight: 600;">${data.price.toFixed(2)}</td>
-                            <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.change.toFixed(2)}</td>
-                            <td style="padding: 15px 20px;" class="${colorClass}">${sign}${data.changePercent.toFixed(2)}%</td>
-                            <td style="padding: 15px 20px; color: #bbb;">${volume}</td>
-                            <td style="padding: 15px 20px; color: #bbb;">${marketCap}</td>
-                        `;
-
-                        tbody.appendChild(row);
-                    });
-                }
-            </script>
-
-            <style>
-                .text-green {
-                    color: #4CAF50;
-                }
-
-                .text-red {
-                    color: #FF5252;
-                }
-
-                .market-table tr:hover {
-                    background: rgba(255, 255, 255, 0.05) !important;
-                }
-
-                .sector-btn {
-                    background: transparent;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    color: #888;
-                    padding: 8px 16px;
-                    border-radius: 20px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    white-space: nowrap;
-                }
-
-                .sector-btn:hover,
-                .sector-btn.active {
-                    background: var(--accent-green);
-                    color: #fff;
-                    border-color: var(--accent-green);
-                }
-            </style>
-
-
-
-
-        </main>
-        <footer class="footer section">
-            <div class="container footer-grid">
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo"><span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span></div>
-                    <p data-i18n="footer-brand">Premium AI solutions for modern traders world-wide.</p>
+                    <a href="index.html" class="nav-logo">
+                        <div class="logo-icon">📊</div> CalcWise
+                    </a>
+                    <p class="mt-1">Your all-in-one financial intelligence platform.</p>
                 </div>
-                <div class="footer-links">
-                    <h4 data-i18n="footer-platforms">Platforms</h4>
-                    <a href="crypto.html" data-i18n="nav-crypto">Crypto</a>
-                    <a href="forex.html" data-i18n="nav-forex">Forex</a>
-                    <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
-                    <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
+                <div class="footer-col">
+                    <h5 data-i18n="footer-markets" data-i18n="footer-markets">Markets</h5>
+                    <a href="crypto.html">Cryptocurrency</a><a href="forex.html">Forex</a>
+                    <a href="us-market.html">US Stocks</a><a href="saudi-market.html">Saudi Market</a>
                 </div>
-                <div class="footer-links">
-                    <h4 data-i18n="footer-links">Links</h4>
-                    <a href="index.html" data-i18n="nav-home">Home</a>
-                    <a href="index.html#vip" data-i18n="nav-vip">VIP Indicator</a>
-                    <a href="analysis.html" data-i18n="nav-analysis">AI Analysis</a>
-                    <a href="blog.html" data-i18n="nav-blog">Blog</a>
-                    <a href="index.html#contact" data-i18n="nav-contact">Contact</a>
+                <div class="footer-col">
+                    <h5 data-i18n="footer-resources" data-i18n="footer-resources">Resources</h5>
+                    <a href="blog.html">Blog</a><a href="tools.html">Financial Tools</a><a
+                        href="dashboard.html">Dashboard</a>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footer-account" data-i18n="footer-account">Account</h5>
+                    <a href="login.html">Log In</a><a href="signup.html">Sign Up</a>
                 </div>
             </div>
-            <div class="container footer-bottom">
-                <p data-i18n="footer-copy">&copy; 2026 Calcwise AI. All rights reserved.</p>
+            <div class="footer-bottom">
+                <span data-i18n="footer-copyright">&copy; 2026 CalcWise. All rights reserved.</span>
+                <div class="footer-social"><a href="#">𝕏</a><a href="#">💬</a><a href="#">⌨</a></div>
             </div>
-        </footer>
-    </div>
-    <script src="js/app.js" type="module"></script>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

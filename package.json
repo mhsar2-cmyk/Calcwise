@@ -1,31 +1,14 @@
 {
     "name": "calcwise",
-    "version": "1.0.0",
-    "description": "Full-stack subscription-based trading platform",
+    "version": "2.0.0",
+    "description": "CalcWise — Smart Financial Intelligence Platform",
     "main": "api/index.js",
     "scripts": {
-        "start": "node api/index.js",
-        "dev": "nodemon api/index.js",
-        "db:init": "node api/src/database/init.js",
-        "db:reset": "npm run db:init"
+        "dev": "node api/index.js",
+        "start": "node api/index.js"
     },
     "dependencies": {
-        "axios": "^1.6.0",
-        "bcryptjs": "^2.4.3",
-        "cors": "^2.8.5",
-        "dotenv": "^16.3.1",
         "express": "^4.18.2",
-        "helmet": "^7.1.0",
-        "jsonwebtoken": "^9.0.2",
-        "morgan": "^1.10.0",
-        "openai": "^4.20.1",
-        "pg": "^8.11.3",
-        "sqlite3": "^5.1.7",
-        "stripe": "^14.4.0",
-        "ws": "^8.14.2",
-        "yahoo-finance2": "^3.13.2"
-    },
-    "devDependencies": {
-        "nodemon": "^3.0.1"
+        "cors": "^2.8.5"
     }
 }

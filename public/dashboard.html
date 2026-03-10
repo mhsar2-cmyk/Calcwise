@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — CalcWise</title>
+    <meta name="description"
+        content="Your personal CalcWise dashboard. Track your portfolio, monitor assets, and manage your financial goals.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <style>
+        .portfolio-chart-area {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .mini-chart {
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+        }
+
+        .mini-chart .bar {
+            flex: 1;
+            border-radius: 2px 2px 0 0;
+            transition: all var(--transition-fast);
+            min-height: 4px;
+        }
+
+        .mini-chart .bar:hover {
+            opacity: 0.7;
+        }
+
+        .allocation-chart {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .allocation-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.88rem;
+        }
+
+        .allocation-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .watchlist-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .watchlist-item:last-child {
+            border: none;
+        }
+
+        .add-asset-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            border: 2px dashed var(--border-default);
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            margin-top: var(--space-md);
+        }
+
+        .add-asset-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary-light);
+            background: rgba(108, 92, 231, 0.05);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .activity-item:last-child {
+            border: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .activity-info {
+            flex: 1;
+        }
+
+        .activity-info .title {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .activity-info .time {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .activity-amount {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">📊</div> CalcWise
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <div class="nav-dropdown">
+                    <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+                    <div class="dropdown-menu">
+                        <a href="crypto.html"><span class="dropdown-icon">₿</span> <span
+                                data-i18n="nav-crypto">Cryptocurrency</span></a>
+                        <a href="forex.html"><span class="dropdown-icon">💱</span> <span
+                                data-i18n="nav-forex">Forex</span></a>
+                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span
+                                data-i18n="nav-us-stocks">US Stocks</span></a>
+                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span
+                                data-i18n="nav-saudi">Saudi Market</span></a>
+                    </div>
+                </div>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
+                <a href="tools.html" data-i18n="nav-tools">Tools</a>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-toggles">
+                    <div class="toggle-pill theme-toggle" title="Toggle theme">
+                        <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
+                        <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
+                    </div>
+                    <div class="toggle-pill lang-toggle" title="Toggle language">
+                        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                    </div>
+                </div>
+                <span style="color:var(--text-secondary);font-size:0.88rem;" id="dashboardUser">Hi, User 👋</span>
+                <button class="btn btn-ghost btn-sm" onclick="handleLogout()" data-i18n="dash-logout">Log Out</button>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- DASHBOARD LAYOUT -->
+    <div class="dashboard-layout">
+        <!-- SIDEBAR -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-overview">Overview</div>
+                <a href="#" class="sidebar-link active"><span class="link-icon">📊</span> <span
+                        data-i18n="sidebar-portfolio">Portfolio</span></a>
+                <a href="#" class="sidebar-link"><span class="link-icon">👁️</span> <span
+                        data-i18n="sidebar-watchlist">Watchlist</span></a>
+                <a href="#" class="sidebar-link"><span class="link-icon">🔔</span> <span
+                        data-i18n="sidebar-alerts">Alerts</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-markets">Markets</div>
+                <a href="crypto.html" class="sidebar-link"><span class="link-icon">₿</span> <span
+                        data-i18n="filter-crypto">Crypto</span></a>
+                <a href="forex.html" class="sidebar-link"><span class="link-icon">💱</span> <span
+                        data-i18n="nav-forex">Forex</span></a>
+                <a href="us-market.html" class="sidebar-link"><span class="link-icon">🏛️</span> <span
+                        data-i18n="nav-us-stocks">US Stocks</span></a>
+                <a href="saudi-market.html" class="sidebar-link"><span class="link-icon">🇸🇦</span> <span
+                        data-i18n="nav-saudi">Saudi Market</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-tools">Tools</div>
+                <a href="tools.html" class="sidebar-link"><span class="link-icon">📐</span> <span
+                        data-i18n="tool-1-title">Position Sizer</span></a>
+                <a href="tools.html" class="sidebar-link"><span class="link-icon">💰</span> <span
+                        data-i18n="tool-2-title">Profit Calc</span></a>
+                <a href="tools.html" class="sidebar-link"><span class="link-icon">🔄</span> <span
+                        data-i18n="tool-3-title">Converter</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="footer-account">Account</div>
+                <a href="#" class="sidebar-link"><span class="link-icon">⚙️</span> <span
+                        data-i18n="sidebar-settings">Settings</span></a>
+                <a href="#" class="sidebar-link" onclick="handleLogout()"><span class="link-icon">🚪</span> <span
+                        data-i18n="sidebar-logout">Log Out</span></a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <div>
+                    <h1 data-i18n="dash-title">Portfolio Dashboard</h1>
+                    <p style="color:var(--text-muted);font-size:0.88rem;">Last updated: <span id="lastUpdated"></span>
+                    </p>
+                </div>
+                <div style="display:flex;gap:var(--space-sm);">
+                    <button class="btn btn-outline btn-sm" onclick="openAddAssetModal()" data-i18n="dash-add-asset">+
+                        Add Asset</button>
+                    <button class="btn btn-primary btn-sm" onclick="refreshDashboard()" data-i18n="dash-refresh">↻
+                        Refresh</button>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="grid grid-4" style="margin-bottom:var(--space-xl);">
+                <div class="card stat-card">
+                    <div class="stat-label" data-i18n="dash-total-value">Total Portfolio Value</div>
+                    <div class="stat-value" id="totalValue">$0.00</div>
+                    <div class="stat-change positive" id="totalChange">↑ +0.00%</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-label" data-i18n="dash-today-pl">Today's P/L</div>
+                    <div class="stat-value" id="todayPL" style="color:var(--success);">+$0.00</div>
+                    <div class="stat-change positive" id="todayPLPct">↑ +0.00%</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-label" data-i18n="dash-holdings">Total Holdings</div>
+                    <div class="stat-value" id="totalHoldings">0</div>
+                    <div class="stat-change" style="color:var(--text-muted);" data-i18n="dash-across">Across 4 markets
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-label" data-i18n="dash-best">Best Performer</div>
+                    <div class="stat-value" id="bestPerformer" style="font-size:1.4rem;">—</div>
+                    <div class="stat-change positive" id="bestPerformerChange">—</div>
+                </div>
+            </div>
+
+            <!-- PORTFOLIO CHART + ALLOCATION -->
+            <div class="grid grid-2" style="margin-bottom:var(--space-xl);">
+                <div class="portfolio-chart-area">
+                    <div
+                        style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
+                        <h3 style="font-size:1rem;" data-i18n="dash-performance">Portfolio Performance</h3>
+                        <div style="display:flex;gap:var(--space-xs);">
+                            <button class="btn btn-ghost btn-sm" style="font-size:0.75rem;">1D</button>
+                            <button class="btn btn-ghost btn-sm"
+                                style="font-size:0.75rem;background:rgba(108,92,231,0.15);color:var(--primary-light);">1W</button>
+                            <button class="btn btn-ghost btn-sm" style="font-size:0.75rem;">1M</button>
+                            <button class="btn btn-ghost btn-sm" style="font-size:0.75rem;">1Y</button>
+                            <button class="btn btn-ghost btn-sm" style="font-size:0.75rem;">ALL</button>
+                        </div>
+                    </div>
+                    <div class="mini-chart" id="portfolioChart" style="height:180px;"></div>
+                </div>
+
+                <div class="portfolio-chart-area">
+                    <h3 style="font-size:1rem;margin-bottom:var(--space-lg);" data-i18n="dash-allocation">Asset
+                        Allocation</h3>
+                    <div style="display:flex;gap:var(--space-xl);align-items:center;">
+                        <div
+                            style="width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--accent-gold) 0deg 126deg,var(--accent-teal) 126deg 216deg,var(--primary) 216deg 306deg,var(--accent-emerald) 306deg 360deg);position:relative;">
+                            <div
+                                style="position:absolute;inset:20px;border-radius:50%;background:var(--bg-card);display:flex;align-items:center;justify-content:center;">
+                                <span
+                                    style="font-family:var(--font-mono);font-weight:600;font-size:0.85rem;">100%</span>
+                            </div>
+                        </div>
+                        <div class="allocation-chart" style="flex-direction:column;">
+                            <div class="allocation-item"><span class="allocation-dot"
+                                    style="background:var(--accent-gold);"></span> <span>Crypto — 35%</span></div>
+                            <div class="allocation-item"><span class="allocation-dot"
+                                    style="background:var(--accent-teal);"></span> <span>Forex — 25%</span></div>
+                            <div class="allocation-item"><span class="allocation-dot"
+                                    style="background:var(--primary);"></span> <span>US Stocks — 25%</span></div>
+                            <div class="allocation-item"><span class="allocation-dot"
+                                    style="background:var(--accent-emerald);"></span> <span>Saudi Market — 15%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOLDINGS TABLE -->
+            <div class="card" style="margin-bottom:var(--space-xl);padding:0;overflow:hidden;">
+                <div
+                    style="padding:var(--space-xl);border-bottom:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;">
+                    <h3 style="font-size:1rem;" data-i18n="dash-your-holdings">Your Holdings</h3>
+                    <div style="display:flex;gap:var(--space-xs);">
+                        <button class="filter-btn active" style="font-size:0.78rem;padding:5px 12px;">All</button>
+                        <button class="filter-btn" style="font-size:0.78rem;padding:5px 12px;">Crypto</button>
+                        <button class="filter-btn" style="font-size:0.78rem;padding:5px 12px;">Stocks</button>
+                        <button class="filter-btn" style="font-size:0.78rem;padding:5px 12px;">Forex</button>
+                    </div>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="assets-table" id="holdingsTable">
+                        <thead>
+                            <tr>
+                                <th data-i18n="dash-th-asset">Asset</th>
+                                <th data-i18n="dash-th-market">Market</th>
+                                <th data-i18n="dash-th-qty">Quantity</th>
+                                <th data-i18n="dash-th-avg">Avg. Cost</th>
+                                <th data-i18n="dash-th-price">Current Price</th>
+                                <th data-i18n="dash-th-value">Value</th>
+                                <th data-i18n="dash-th-pl">P/L</th>
+                                <th data-i18n="dash-th-change">Change</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holdingsBody"></tbody>
+                    </table>
+                </div>
+                <div class="add-asset-btn" onclick="openAddAssetModal()" data-i18n="dash-add-track">
+                    + Add a new asset to track
+                </div>
+            </div>
+
+            <!-- WATCHLIST + ACTIVITY -->
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 style="font-size:1rem;margin-bottom:var(--space-md);" data-i18n="dash-watchlist">👁️ Watchlist
+                    </h3>
+                    <div id="watchlistContainer">
+                        <div class="watchlist-item">
+                            <div class="asset-name"><span class="asset-icon"
+                                    style="background:rgba(240,185,11,0.15);">₿</span>
+                                <div>
+                                    <div style="font-weight:500;">Bitcoin</div>
+                                    <div style="font-size:0.78rem;color:var(--text-muted);">BTC</div>
+                                </div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-family:var(--font-mono);font-weight:500;">$101,234</div>
+                                <div style="font-size:0.78rem;color:var(--success);">+2.4%</div>
+                            </div>
+                        </div>
+                        <div class="watchlist-item">
+                            <div class="asset-name"><span class="asset-icon"
+                                    style="background:rgba(108,92,231,0.15);">🏛</span>
+                                <div>
+                                    <div style="font-weight:500;">Apple Inc.</div>
+                                    <div style="font-size:0.78rem;color:var(--text-muted);">AAPL</div>
+                                </div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-family:var(--font-mono);font-weight:500;">$245.67</div>
+                                <div style="font-size:0.78rem;color:var(--danger);">-0.8%</div>
+                            </div>
+                        </div>
+                        <div class="watchlist-item">
+                            <div class="asset-name"><span class="asset-icon"
+                                    style="background:rgba(0,184,148,0.15);">🇸🇦</span>
+                                <div>
+                                    <div style="font-weight:500;">Saudi Aramco</div>
+                                    <div style="font-size:0.78rem;color:var(--text-muted);">2222</div>
+                                </div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-family:var(--font-mono);font-weight:500;">SAR 32.10</div>
+                                <div style="font-size:0.78rem;color:var(--success);">+1.2%</div>
+                            </div>
+                        </div>
+                        <div class="watchlist-item">
+                            <div class="asset-name"><span class="asset-icon"
+                                    style="background:rgba(0,210,211,0.15);">💱</span>
+                                <div>
+                                    <div style="font-weight:500;">EUR/USD</div>
+                                    <div style="font-size:0.78rem;color:var(--text-muted);">Forex</div>
+                                </div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-family:var(--font-mono);font-weight:500;">1.0845</div>
+                                <div style="font-size:0.78rem;color:var(--success);">+0.15%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="font-size:1rem;margin-bottom:var(--space-md);" data-i18n="dash-activity">📋 Recent
+                        Activity</h3>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background:var(--success-bg);">📈</div>
+                        <div class="activity-info">
+                            <div class="title">Bought Bitcoin</div>
+                            <div class="time">2 hours ago</div>
+                        </div>
+                        <div class="activity-amount text-success">+0.05 BTC</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background:var(--danger-bg);">📉</div>
+                        <div class="activity-info">
+                            <div class="title">Sold NVIDIA Shares</div>
+                            <div class="time">Yesterday</div>
+                        </div>
+                        <div class="activity-amount text-danger">-10 NVDA</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background:var(--info-bg);">🔔</div>
+                        <div class="activity-info">
+                            <div class="title">Price Alert Triggered</div>
+                            <div class="time">2 days ago</div>
+                        </div>
+                        <div class="activity-amount" style="color:var(--info);">ETH > $4,000</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background:var(--success-bg);">📈</div>
+                        <div class="activity-info">
+                            <div class="title">Bought Al Rajhi Bank</div>
+                            <div class="time">3 days ago</div>
+                        </div>
+                        <div class="activity-amount text-success">+50 shares</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background:var(--warning-bg);">💱</div>
+                        <div class="activity-info">
+                            <div class="title">Opened EUR/USD Long</div>
+                            <div class="time">5 days ago</div>
+                        </div>
+                        <div class="activity-amount" style="color:var(--warning);">0.5 lot</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADD ASSET MODAL -->
+    <div class="modal-overlay" id="addAssetModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 data-i18n="modal-add-title">Add Asset to Portfolio</h3>
+                <button class="modal-close" onclick="closeModal('addAssetModal')">✕</button>
+            </div>
+            <form onsubmit="addAsset(event)">
+                <div class="form-group">
+                    <label data-i18n="modal-market">Market</label>
+                    <select class="form-control" id="asset-market">
+                        <option value="crypto">Cryptocurrency</option>
+                        <option value="forex">Forex</option>
+                        <option value="us-stocks">US Stocks</option>
+                        <option value="saudi">Saudi Market</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal-asset-name">Asset Name / Symbol</label>
+                    <input type="text" class="form-control" id="asset-name" placeholder="e.g. Bitcoin, AAPL, EUR/USD"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal-qty">Quantity</label>
+                    <input type="number" class="form-control" id="asset-quantity" placeholder="1" step="any" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal-avg-cost">Average Cost / Entry Price</label>
+                    <input type="number" class="form-control" id="asset-cost" placeholder="50000" step="any" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" data-i18n="modal-add-btn">Add
+                    to Portfolio</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

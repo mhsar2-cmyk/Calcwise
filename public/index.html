@@ -1,469 +1,456 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calcwise | Best AI Trading Indicators 2026</title>
-
-  <!-- Meta Tags -->
+  <title>CalcWise — Smart Financial Intelligence Platform</title>
   <meta name="description"
-    content="Calcwise offers the most accurate AI-powered trading indicators for Crypto, Forex, US Markets, and more.">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/variables.css">
+    content="Track crypto, forex, US stocks, and Saudi markets in one premium platform. Real-time data, expert analysis, and powerful financial tools.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
 
 <body>
-  <div class="app-container">
-    <header class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo">
-          <span class="logo-text">CALCWISE</span>
-          <span class="logo-ai">AI</span>
-        </a>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">📊</div>
+        CalcWise
+      </a>
 
-        <nav class="nav-links">
-          <a href="index.html" class="nav-link active" data-i18n="nav-home">Home</a>
-          <div class="dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-i18n="nav-platforms">Platforms</a>
-            <div class="dropdown-menu">
-              <a href="crypto.html" data-i18n="nav-crypto">Crypto Platform</a>
-              <a href="forex.html" data-i18n="nav-forex">Forex & Options</a>
-              <a href="us-market.html" data-i18n="nav-us-market">US Market</a>
-              <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
-            </div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active" data-i18n="nav-home">Home</a>
+
+        <div class="nav-dropdown">
+          <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+          <div class="dropdown-menu">
+            <a href="crypto.html"><span class="dropdown-icon">₿</span> <span
+                data-i18n="nav-crypto">Cryptocurrency</span></a>
+            <a href="forex.html"><span class="dropdown-icon">💱</span> <span data-i18n="nav-forex">Forex</span></a>
+            <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span data-i18n="nav-us-stocks">US
+                Stocks</span></a>
+            <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span data-i18n="nav-saudi">Saudi
+                Market</span></a>
           </div>
-          <a href="#dashboard" class="nav-link" data-i18n="nav-dashboard">Dashboard</a>
-          <a href="#pricing" class="nav-link" data-i18n="nav-pricing">Pricing</a>
-          <a href="#vip" class="nav-link" data-i18n="nav-vip">VIP Indicator</a>
-          <a href="analysis.html" class="nav-link" data-i18n="nav-analysis">AI Analysis</a>
-          <a href="blog.html" data-i18n="nav-blog">Blog</a>
-          <a href="#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
-        </nav>
+        </div>
 
-        <div class="nav-actions">
-          <button id="theme-toggle" class="btn-icon" title="Toggle Theme">
-            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" style="display:none;">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-          <button id="lang-toggle" class="btn-icon">
-            <span class="lang-text">EN</span>
-          </button>
-          <button class="btn-outline" data-i18n="btn-login">Login</button>
-          <button class="btn-primary" data-i18n="btn-register">Register</button>
-          <button class="mobile-toggle btn-icon" id="mobile-toggle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          </button>
+        <a href="blog.html" data-i18n="nav-blog">Blog</a>
+        <a href="tools.html" data-i18n="nav-tools">Tools</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="nav-toggles">
+          <div class="toggle-pill theme-toggle" title="Toggle theme">
+            <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
+            <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
+          </div>
+          <div class="toggle-pill lang-toggle" title="Toggle language">
+            <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+            <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+          </div>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
+        <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">Get Started</a>
+      </div>
+
+      <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== TICKER BAR ===== -->
+  <div class="ticker-bar" style="margin-top: var(--header-height);">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" style="padding-top:0;">
+    <div class="hero-bg">
+      <img src="images/hero-bg.png" alt="Financial Technology Background">
+      <div style="position:absolute;inset:0;background:var(--gradient-hero);"></div>
+    </div>
+
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span data-i18n="hero-badge">Live Markets — 24/7 Real-Time Data</span>
+      </div>
+
+      <h1><span data-i18n="hero-title-1">Your All-In-One</span> <span class="text-gradient"
+          data-i18n="hero-title-2">Financial</span> <span data-i18n="hero-title-3">Intelligence Platform</span></h1>
+
+      <p data-i18n="hero-desc">Track crypto, forex, US stocks, and Saudi markets with real-time data, expert insights,
+        and powerful analytical tools — all in one place.</p>
+
+      <div class="hero-actions">
+        <a href="signup.html" class="btn btn-gold btn-lg" data-i18n="hero-cta-1">Start Free Today →</a>
+        <a href="#platforms" class="btn btn-outline btn-lg" data-i18n="hero-cta-2">Explore Markets</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-value" data-i18n="hero-stat-1-val">4</div>
+          <div class="stat-label" data-i18n="hero-stat-1-label">Market Platforms</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value" data-i18n="hero-stat-2-val">10K+</div>
+          <div class="stat-label" data-i18n="hero-stat-2-label">Tracked Assets</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value" data-i18n="hero-stat-3-val">24/7</div>
+          <div class="stat-label" data-i18n="hero-stat-3-label">Live Data</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value" data-i18n="hero-stat-4-val">Free</div>
+          <div class="stat-label" data-i18n="hero-stat-4-label">To Get Started</div>
         </div>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero-section" data-reveal>
-        <div class="container">
-          <div class="hero-badge badge badge-cyan animate-pulse" data-i18n="hero-accuracy">
-            Up to 99% accuracy from AI data analysis
+  <!-- ===== MARKET PLATFORMS ===== -->
+  <section class="section" id="platforms">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2><span data-i18n="platforms-title-1">Explore</span> <span class="text-gradient"
+            data-i18n="platforms-title-2">Global Markets</span></h2>
+        <p data-i18n="platforms-desc">Dive into four major financial markets with real-time data, charts, and actionable
+          insights.</p>
+      </div>
+
+      <div class="grid grid-4">
+        <a href="crypto.html" class="platform-card crypto reveal" style="text-decoration:none;">
+          <div class="platform-icon">₿</div>
+          <h3 data-i18n="platform-crypto-title">Cryptocurrency</h3>
+          <p data-i18n="platform-crypto-desc">Bitcoin, Ethereum, and 10,000+ digital assets with live prices, heatmaps,
+            and advanced charts.</p>
+          <span class="card-link" data-i18n="platform-crypto-link">Explore Crypto →</span>
+        </a>
+
+        <a href="forex.html" class="platform-card forex reveal" style="text-decoration:none;">
+          <div class="platform-icon">💱</div>
+          <h3 data-i18n="platform-forex-title">Forex</h3>
+          <p data-i18n="platform-forex-desc">Major, minor, and exotic currency pairs with real-time exchange rates and
+            technical analysis.</p>
+          <span class="card-link" data-i18n="platform-forex-link">Explore Forex →</span>
+        </a>
+
+        <a href="us-market.html" class="platform-card us-stocks reveal" style="text-decoration:none;">
+          <div class="platform-icon">🏛️</div>
+          <h3 data-i18n="platform-us-title">US Stocks</h3>
+          <p data-i18n="platform-us-desc">S&P 500, NASDAQ, Dow Jones — track America's leading companies and market
+            indices.</p>
+          <span class="card-link" data-i18n="platform-us-link">Explore US Market →</span>
+        </a>
+
+        <a href="saudi-market.html" class="platform-card saudi reveal" style="text-decoration:none;">
+          <div class="platform-icon">🇸🇦</div>
+          <h3 data-i18n="platform-saudi-title">Saudi Market</h3>
+          <p data-i18n="platform-saudi-desc">Tadawul (TASI) stocks and indices — comprehensive coverage of the Saudi
+            Arabian exchange.</p>
+          <span class="card-link" data-i18n="platform-saudi-link">Explore Saudi Market →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIVE MARKET OVERVIEW ===== -->
+  <section class="section"
+    style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2><span data-i18n="live-title-1">Live</span> <span class="text-gold" data-i18n="live-title-2">Market
+            Overview</span></h2>
+        <p data-i18n="live-desc">Real-time market data powered by TradingView</p>
+      </div>
+
+      <div class="grid grid-2 reveal">
+        <div class="widget-container">
+          <div class="widget-header">
+            <h3 data-i18n="widget-heatmap">🔥 Market Heatmap</h3>
           </div>
-          <h1 class="hero-title" data-i18n="hero-title">Best AI Trading Bot Indicators 2026</h1>
-          <p class="hero-subtitle" data-i18n="hero-subtitle">
-            Supported Markets: US Stocks · Crypto · Forex · Options · Saudi Market · Gold
-          </p>
-
-          <div class="trust-badges">
-            <div class="trust-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-              <span data-i18n="trust-iso">ISO Certified</span>
-            </div>
-            <div class="trust-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-              </svg>
-              <span data-i18n="trust-clients">40,000+ Clients</span>
-            </div>
-            <div class="trust-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-              <span data-i18n="trust-quality">Platinum Guarantee</span>
-            </div>
-          </div>
-
-          <div class="hero-cta-group">
-            <a href="#markets" class="btn-primary btn-hero animated-cta" data-i18n="btn-get-products">Get Products</a>
-            <a href="analysis.html" class="btn-outline btn-hero" data-i18n="nav-analysis">Try AI Analysis</a>
-          </div>
-
-          <div class="widget-container">
-            <div class="tradingview-widget-container">
-              <div class="tradingview-widget-container__widget"></div>
+          <div id="heatmapWidget" style="height: 400px;">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+              <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
               <script type="text/javascript"
-                src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
+                src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
                   {
-                    "width": "100%",
-                      "height": 400,
-                        "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY"],
-                          "isTransparent": true,
-                            "colorTheme": "dark",
-                              "locale": "en"
+                    "exchanges": [],
+                      "dataSource": "SPX500",
+                        "grouping": "sector",
+                          "blockSize": "market_cap_basic",
+                            "blockColor": "change",
+                              "locale": "en",
+                                "symbolUrl": "",
+                                  "colorTheme": "dark",
+                                    "hasTopBar": false,
+                                      "isDataSet498Enabled": false,
+                                        "isZoomEnabled": true,
+                                          "hasSymbolTooltip": true,
+                                            "isMonoSize": false,
+                                              "width": "100%",
+                                                "height": "100%"
                   }
                 </script>
             </div>
+            <!-- TradingView Widget END -->
           </div>
         </div>
-      </section>
 
-      <!-- VIP Section -->
-      <!-- Dashboard Section -->
-      <section class="section" id="dashboard" data-reveal>
-        <div class="container">
-          <div class="section-header">
-            <span class="badge badge-gold" data-i18n="dashboard-badge">Dashboard</span>
-            <h2 data-i18n="dashboard-title">Personal Dashboard</h2>
-            <p data-i18n="dashboard-subtitle">Track your assets, manage alerts, and keep a journal.</p>
+        <div class="widget-container">
+          <div class="widget-header">
+            <h3 data-i18n="widget-crypto">📊 Crypto Overview</h3>
           </div>
-          <div class="markets-grid">
-            <div class="card card-glass">
-              <h3 data-i18n="watchlist-title">Watchlist</h3>
-              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-                <input id="wl-input" type="text" placeholder="BTC, AAPL, XAUUSD" style="flex:1;min-width:180px;">
-                <button id="wl-add" class="btn-primary" data-i18n="watchlist-add">Add</button>
-              </div>
-              <ul id="wl-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;"></ul>
+          <div style="height: 400px;">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+              <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+              <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                  {
+                    "width": "100%",
+                      "height": "100%",
+                        "defaultColumn": "overview",
+                          "screener_type": "crypto_mkt",
+                            "displayCurrency": "USD",
+                              "colorTheme": "dark",
+                                "locale": "en",
+                                  "isTransparent": true
+                  }
+                </script>
             </div>
-            <div class="card card-glass">
-              <h3 data-i18n="alerts-title">Smart Alerts</h3>
-              <form id="alert-form" style="display:flex;flex-direction:column;gap:8px;">
-                <input name="symbol" type="text" placeholder="BTC, AAPL..." required>
-                <div style="display:flex;gap:8px;">
-                  <select name="operator" style="flex:0 0 120px;">
-                    <option value=">=">&ge;</option>
-                    <option value="<=">&le;</option>
-                  </select>
-                  <input name="target" type="number" step="any" placeholder="Target Price" required style="flex:1;">
-                </div>
-                <select name="channel">
-                  <option value="email">Email</option>
-                  <option value="telegram">Telegram</option>
-                </select>
-                <button class="btn-primary" type="submit" data-i18n="alerts-create">Create Alert</button>
-                <small id="alert-message"></small>
-              </form>
-            </div>
-            <div class="card card-glass">
-              <h3 data-i18n="journal-title">Trading Journal</h3>
-              <form id="journal-form" style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
-                <input name="asset" type="text" placeholder="Asset" required>
-                <textarea name="note" placeholder="Why you entered/exited..." rows="3" required></textarea>
-                <button class="btn-outline" type="submit" data-i18n="journal-add">Add Entry</button>
-              </form>
-              <ul id="journal-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:auto;"></ul>
-            </div>
+            <!-- TradingView Widget END -->
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- VIP Section -->
-      <section class="section vip-section" id="vip" data-reveal>
-        <div class="container">
-          <div class="vip-grid">
-            <div class="vip-info">
-              <span class="badge badge-gold" data-i18n="vip-badge">PRO INDICATOR</span>
-              <h2 class="vip-title" data-i18n="vip-title">Calcwise VIP Indicator</h2>
-              <p class="vip-subtitle" data-i18n="vip-subtitle">Advanced market intelligence tools designed for
-                professional traders and institutions.</p>
+  <!-- ===== FEATURES ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2><span data-i18n="features-title-1">Why Choose</span> <span class="text-gradient"
+            data-i18n="features-title-2">CalcWise</span>?</h2>
+        <p data-i18n="features-desc">Powerful features designed for both beginners and professionals</p>
+      </div>
 
-              <ul class="vip-features">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg> <span data-i18n="vip-feature-1">Auto support & resistance zones</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg> <span><span data-i18n="vip-feature-2-start">Buy signals</span> <strong
-                      class="signal-buy">[BUY]</strong></span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg> <span><span data-i18n="vip-feature-3-start">Sell signals</span> <strong
-                      class="signal-sell">[SELL]</strong></span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg> <span data-i18n="vip-feature-4">Live Dashboard of 11+ sub-indicators</span></li>
-              </ul>
-
-              <a href="#markets" class="btn-primary" data-i18n="btn-get-access">Get Access Now</a>
-            </div>
-            <div class="vip-visual">
-              <img src="images/calcwise_vip_mockup.png" alt="VIP Platform" class="mockup-img animate-float" loading="lazy">
-            </div>
-          </div>
+      <div class="grid grid-3">
+        <div class="card feature-card reveal">
+          <div class="feature-icon">📡</div>
+          <h4 data-i18n="feature-1-title">Real-Time Data</h4>
+          <p data-i18n="feature-1-desc">Live prices, charts, and market data updated in real-time across all four market
+            platforms.</p>
         </div>
-      </section>
 
-      <!-- Risk Calculator -->
-      <section class="section" id="risk-calc" data-reveal>
-        <div class="container">
-          <div class="section-header">
-            <span class="badge badge-cyan" data-i18n="risk-badge">Risk</span>
-            <h2 data-i18n="risk-title">Risk Calculator</h2>
-            <p data-i18n="risk-subtitle">Calculate position size based on balance, risk and stop.</p>
-          </div>
-          <div class="markets-grid">
-            <div class="card card-glass" style="grid-column: 1/-1;">
-              <form id="risk-form" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
-                <input name="balance" type="number" step="any" placeholder="Account Balance" required>
-                <input name="riskPct" type="number" step="any" placeholder="Risk % (e.g. 1)" required>
-                <input name="entry" type="number" step="any" placeholder="Entry Price" required>
-                <input name="stop" type="number" step="any" placeholder="Stop Loss Price" required>
-                <select name="instrument">
-                  <option value="crypto">Crypto</option>
-                  <option value="forex">Forex</option>
-                  <option value="gold">Gold</option>
-                  <option value="stock">Stock</option>
-                </select>
-                <button class="btn-primary" type="submit" data-i18n="risk-calc-btn">Calculate</button>
-              </form>
-              <div id="risk-results" style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;"></div>
+        <div class="card feature-card reveal">
+          <div class="feature-icon">🧮</div>
+          <h4 data-i18n="feature-2-title">Financial Calculators</h4>
+          <p data-i18n="feature-2-desc">Position sizer, profit calculator, currency converter, and more tools at your
+            fingertips.</p>
+        </div>
+
+        <div class="card feature-card reveal">
+          <div class="feature-icon">📰</div>
+          <h4 data-i18n="feature-3-title">Expert Blog</h4>
+          <p data-i18n="feature-3-desc">Stay informed with daily market analysis, trading strategies, and financial
+            education.</p>
+        </div>
+
+        <div class="card feature-card reveal">
+          <div class="feature-icon">📈</div>
+          <h4 data-i18n="feature-4-title">Advanced Charts</h4>
+          <p data-i18n="feature-4-desc">Interactive TradingView charts with technical indicators, drawing tools, and
+            multi-timeframe analysis.</p>
+        </div>
+
+        <div class="card feature-card reveal">
+          <div class="feature-icon">🔐</div>
+          <h4 data-i18n="feature-5-title">Portfolio Dashboard</h4>
+          <p data-i18n="feature-5-desc">Track your holdings in crypto, stocks, and forex with a personalized dashboard
+            and alerts.</p>
+        </div>
+
+        <div class="card feature-card reveal">
+          <div class="feature-icon">🌍</div>
+          <h4 data-i18n="feature-6-title">Multi-Market Access</h4>
+          <p data-i18n="feature-6-desc">One platform covering crypto, forex, American stocks, and the Saudi Arabian
+            exchange.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST BLOG ===== -->
+  <section class="section"
+    style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2><span data-i18n="blog-section-title-1">Latest from the</span> <span class="text-gold"
+            data-i18n="blog-section-title-2">Blog</span></h2>
+        <p data-i18n="blog-section-desc">Market insights, trading strategies, and financial education</p>
+      </div>
+
+      <div class="grid grid-3 reveal">
+        <div class="blog-card">
+          <img src="images/blog-header.png" alt="Market Analysis" class="blog-card-image">
+          <div class="blog-card-body">
+            <span class="blog-card-tag">Market Analysis</span>
+            <h4><a href="blog.html">Bitcoin Breaks $100K — What's Next for Crypto Markets?</a></h4>
+            <p>An in-depth look at the factors driving BTC's historic rally and what analysts predict for the remainder
+              of 2026.</p>
+            <div class="blog-card-meta">
+              <span>Mar 8, 2026</span>
+              <span>5 min read</span>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Economic Calendar -->
-      <section class="section" id="calendar" data-reveal>
-        <div class="container">
-          <div class="section-header">
-            <span class="badge badge-gold" data-i18n="calendar-badge">Calendar</span>
-            <h2 data-i18n="calendar-title">Economic Calendar</h2>
-            <p data-i18n="calendar-subtitle">Major macro events and expected market impact.</p>
-          </div>
-          <div class="card card-glass">
-            <div class="tradingview-widget-container">
-              <div class="tradingview-widget-container__widget"></div>
-              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-              {
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "width": "100%",
-                "height": 500,
-                "importanceFilter": "-1,0,1",
-                "locale": "en"
-              }
-              </script>
+        <div class="blog-card">
+          <img src="images/blog-header.png" alt="Forex Strategy" class="blog-card-image">
+          <div class="blog-card-body">
+            <span class="blog-card-tag" style="background:rgba(0,210,211,0.15);color:var(--accent-teal);">Forex</span>
+            <h4><a href="blog.html">Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD</a></h4>
+            <p>Understanding the impact of central bank policies on the world's most traded currency pair.</p>
+            <div class="blog-card-meta">
+              <span>Mar 6, 2026</span>
+              <span>7 min read</span>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Trade Tracker Section -->
-      <section id="trade-tracker" class="trade-tracker-section section" data-reveal>
-        <div class="container">
-          <div class="tracker-grid">
-            <div class="tracker-visual">
-              <div class="card">
-                <img src="images/trade_tracker.png" alt="Trade Tracker" class="mockup-img animate-float" loading="lazy">
-              </div>
-            </div>
-            <div class="tracker-content">
-              <span class="badge badge-gold" data-i18n="nav-vip">EXCLUSIVE TOOL</span>
-              <h2 class="tracker-title" data-i18n="trade-tracker-title">Trade Tracker Indicator</h2>
-              <p class="tracker-desc" data-i18n="trade-tracker-desc">
-                Monitors all hidden trades (market price) not recorded in the order book. Identify accumulation and
-                distribution zones, liquidity inflow and outflow, helping you determine the professional direction of
-                any trade.
-              </p>
-              <div class="tracker-features">
-                <div class="feature-item">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)"
-                    stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span>Real-time Market Price Tracking</span>
-                </div>
-                <div class="feature-item">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)"
-                    stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span>Whale & Institutional Flow Detection</span>
-                </div>
-                <div class="feature-item">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)"
-                    stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span>Hidden Order Detection</span>
-                </div>
-              </div>
-              <a href="#markets" class="btn-primary" data-i18n="btn-get-products">Get Products</a>
+        <div class="blog-card">
+          <img src="images/blog-header.png" alt="Saudi Vision 2030" class="blog-card-image">
+          <div class="blog-card-body">
+            <span class="blog-card-tag" style="background:rgba(0,184,148,0.15);color:var(--accent-emerald);">Saudi
+              Market</span>
+            <h4><a href="blog.html">Vision 2030 Update: Top Saudi Stocks to Watch This Quarter</a></h4>
+            <p>As Saudi Arabia's transformation accelerates, these sectors and stocks offer significant opportunities.
+            </p>
+            <div class="blog-card-meta">
+              <span>Mar 4, 2026</span>
+              <span>6 min read</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
+      <div class="text-center mt-2 reveal">
+        <a href="blog.html" class="btn btn-outline" data-i18n="blog-view-all">View All Articles →</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== FINANCIAL TOOLS PREVIEW ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2><span data-i18n="tools-section-title-1">Powerful</span> <span class="text-gradient"
+            data-i18n="tools-section-title-2">Financial Tools</span></h2>
+        <p data-i18n="tools-section-desc">Free calculators and tools to help you make smarter financial decisions</p>
+      </div>
 
+      <div class="grid grid-4 reveal">
+        <a href="tools.html#position-sizer" class="card tool-card" style="text-decoration:none;">
+          <div class="tool-icon">📐</div>
+          <h4 data-i18n="tool-1-title">Position Sizer</h4>
+          <p data-i18n="tool-1-desc">Calculate optimal position sizes based on your risk tolerance.</p>
+        </a>
 
-      <!-- Markets Overview -->
-      <section class="section" id="markets" data-reveal>
-        <div class="container">
-          <div class="section-header">
-            <span class="badge badge-gold" data-i18n="nav-platforms">Markets</span>
-            <h2 data-i18n="hero-markets-label">Supported Markets</h2>
-            <p data-i18n="section-subtitle-products">Access professional AI analysis for world-leading financial
-              markets.</p>
-          </div>
+        <a href="tools.html#profit-calc" class="card tool-card" style="text-decoration:none;">
+          <div class="tool-icon">💰</div>
+          <h4 data-i18n="tool-2-title">Profit Calculator</h4>
+          <p data-i18n="tool-2-desc">Estimate potential profits and losses before entering trades.</p>
+        </a>
 
-          <div class="markets-grid">
-            <a href="crypto.html" class="market-card card card-glass">
-              <div class="market-icon crypto">₿</div>
-              <h3 data-i18n="nav-crypto">Crypto Platform</h3>
-              <p data-i18n="product-crypto-desc">Global crypto markets coverage</p>
-            </a>
+        <a href="tools.html#currency-converter" class="card tool-card" style="text-decoration:none;">
+          <div class="tool-icon">🔄</div>
+          <h4 data-i18n="tool-3-title">Currency Converter</h4>
+          <p data-i18n="tool-3-desc">Convert between fiat currencies with live exchange rates.</p>
+        </a>
 
-            <a href="us-market.html" class="market-card card card-glass">
-              <div class="market-icon us">🇺🇸</div>
-              <h3 data-i18n="nav-us-market">US Market</h3>
-              <p data-i18n="us-coverage">Full Coverage of US Stocks & ETFs</p>
-            </a>
+        <a href="tools.html#compound" class="card tool-card" style="text-decoration:none;">
+          <div class="tool-icon">📊</div>
+          <h4 data-i18n="tool-4-title">Compound Interest</h4>
+          <p data-i18n="tool-4-desc">Visualize growth of your investments over time.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
-            <a href="forex.html" class="market-card card card-glass">
-              <div class="market-icon forex">💱</div>
-              <h3 data-i18n="nav-forex">Forex & Options</h3>
-              <p data-i18n="product-forex-desc">Professional FX pairs analysis</p>
-            </a>
-
-            <a href="saudi-market.html" class="market-card card card-glass">
-              <div class="market-icon saudi">🇸🇦</div>
-              <h3 data-i18n="nav-saudi">Saudi Market</h3>
-              <p data-i18n="product-saudi-desc">Tadawul TASI analysis</p>
-            </a>
-          </div>
+  <!-- ===== CTA ===== -->
+  <section class="section"
+    style="background: radial-gradient(ellipse at center, rgba(108,92,231,0.12) 0%, transparent 70%);">
+    <div class="container">
+      <div class="text-center reveal" style="max-width:650px;margin:0 auto;">
+        <h2><span data-i18n="cta-title-1">Ready to Take Control of Your</span> <span class="text-gold"
+            data-i18n="cta-title-2">Finances</span>?</h2>
+        <p class="mt-1" style="color:var(--text-secondary);font-size:1.1rem;" data-i18n="cta-desc">Join thousands of
+          traders and investors using CalcWise to make data-driven decisions across global markets.</p>
+        <div class="hero-actions mt-2">
+          <a href="signup.html" class="btn btn-gold btn-lg" data-i18n="cta-btn-1">Create Free Account →</a>
+          <a href="login.html" class="btn btn-outline btn-lg" data-i18n="cta-btn-2">Log In</a>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- Pricing -->
-      <section class="section" id="pricing" data-reveal>
-        <div class="container">
-          <div class="section-header">
-            <span class="badge badge-cyan" data-i18n="pricing-badge">Pricing</span>
-            <h2 data-i18n="pricing-title">Choose Your Plan</h2>
-            <p data-i18n="pricing-subtitle">Start free, upgrade when you're ready.</p>
-          </div>
-          <div class="markets-grid">
-            <div class="card card-glass">
-              <h3 data-i18n="plan-starter">Starter</h3>
-              <p><strong>$0</strong> <span data-i18n="price-per-month">/month</span></p>
-              <ul>
-                <li data-i18n="feature-ai">AI technical & financial analysis</li>
-                <li data-i18n="plan-feature-1">Daily market snapshot</li>
-                <li data-i18n="plan-feature-2">Email newsletter</li>
-              </ul>
-              <button class="btn-outline subscribe-btn" data-plan="starter" data-i18n="btn-start-trial">Start Free</button>
-            </div>
-            <div class="card card-glass">
-              <h3 data-i18n="plan-pro">Pro</h3>
-              <p><strong>$29</strong> <span data-i18n="price-per-month">/month</span></p>
-              <ul>
-                <li data-i18n="plan-feature-3">Unlimited AI chart audits</li>
-                <li data-i18n="plan-feature-4">Crypto + Forex coverage</li>
-                <li data-i18n="plan-feature-5">Priority support</li>
-              </ul>
-              <button class="btn-primary subscribe-btn" data-plan="pro" data-i18n="btn-start-trial">Start Free Trial</button>
-            </div>
-            <div class="card card-glass">
-              <h3 data-i18n="plan-vip">VIP</h3>
-              <p><strong>$79</strong> <span data-i18n="price-per-month">/month</span></p>
-              <ul>
-                <li data-i18n="vip-feature-4">Live Dashboard of 11+ sub-indicators</li>
-                <li data-i18n="plan-feature-6">Whale flow & liquidity alerts</li>
-                <li data-i18n="plan-feature-7">US + Saudi + Options</li>
-              </ul>
-              <button class="btn-primary subscribe-btn" data-plan="vip" data-i18n="btn-start-trial">Start Free Trial</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer section">
-      <div class="container footer-grid">
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <div class="logo">
-            <span class="logo-text">CALCWISE</span><span class="logo-ai">AI</span>
-          </div>
-          <p data-i18n="footer-brand">Premium AI solutions for modern traders world-wide.</p>
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">📊</div>
+            CalcWise
+          </a>
+          <p class="mt-1" data-i18n="footer-desc">Your all-in-one financial intelligence platform. Track markets, read
+            expert analysis, and use powerful tools — all for free.</p>
         </div>
-        <div class="footer-links">
-          <h4 data-i18n="footer-platforms">Platforms</h4>
-          <a href="crypto.html">Crypto</a>
-          <a href="forex.html">Forex</a>
-          <a href="us-market.html">US Market</a>
-          <a href="saudi-market.html">Saudi Market</a>
-        </div>
-        <div class="footer-links">
-          <h4 data-i18n="footer-links">Links</h4>
-          <a href="#about" data-i18n="nav-about">About Us</a>
-          <a href="#vip" data-i18n="nav-vip">VIP Indicator</a>
-          <a href="analysis.html" data-i18n="nav-analysis">AI Analysis</a>
-          <a href="blog.html" data-i18n="nav-blog">Blog</a>
-          <a href="#contact" data-i18n="nav-contact">Contact</a>
-        </div>
-        <div class="footer-links">
-          <h4 data-i18n="lead-title">Stay Updated</h4>
-          <form id="lead-form">
-            <input type="email" name="email" placeholder="you@example.com" required data-i18n-placeholder="lead-placeholder" />
-            <button type="submit" class="btn-primary" data-i18n="lead-submit">Subscribe</button>
-          </form>
-          <small id="lead-message" style="display:block;margin-top:8px;"></small>
-        </div>
-      </div>
-      <div class="container footer-bottom">
-        <p data-i18n="footer-copy">&copy; 2026 Calcwise AI. All rights reserved.</p>
-      </div>
-    </footer>
-    <button id="back-to-top" class="btn-icon back-to-top">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="18 15 12 9 6 15"></polyline>
-      </svg>
-    </button>
-  </div>
 
-  <script src="js/app.js" type="module"></script>
+        <div class="footer-col">
+          <h5 data-i18n="footer-markets">Markets</h5>
+          <a href="crypto.html" data-i18n="nav-crypto">Cryptocurrency</a>
+          <a href="forex.html" data-i18n="nav-forex">Forex</a>
+          <a href="us-market.html" data-i18n="nav-us-stocks">US Stocks</a>
+          <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
+        </div>
+
+        <div class="footer-col">
+          <h5 data-i18n="footer-resources">Resources</h5>
+          <a href="blog.html" data-i18n="footer-blog">Blog</a>
+          <a href="tools.html" data-i18n="footer-tools">Financial Tools</a>
+          <a href="dashboard.html" data-i18n="footer-dashboard">Dashboard</a>
+        </div>
+
+        <div class="footer-col">
+          <h5 data-i18n="footer-account">Account</h5>
+          <a href="login.html" data-i18n="footer-login">Log In</a>
+          <a href="signup.html" data-i18n="footer-signup">Sign Up</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer-copyright">&copy; 2026 CalcWise. All rights reserved.</span>
+        <div class="footer-social">
+          <a href="#" title="Twitter">𝕏</a>
+          <a href="#" title="Discord">💬</a>
+          <a href="#" title="GitHub">⌨</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 
 </html>
