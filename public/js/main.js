@@ -12,7 +12,18 @@ async function secureFetch(url, options = {}) {
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
-    return fetch(url, { ...options, headers });
+    
+    const response = await fetch(url, { ...options, headers });
+    
+    // Auto logout if unauthorized (session expired)
+    if (response.status === 401 && !url.includes('/api/auth/')) {
+        localStorage.removeItem('calcwise_logged_in');
+        localStorage.removeItem('calcwise_token');
+        localStorage.removeItem('calcwise_user');
+        window.location.href = 'login.html';
+    }
+    
+    return response;
 }
 
 // ===== INITIALIZATION =====
@@ -808,11 +819,48 @@ function showToast(type, message) {
 
 // ===== AUTHENTICATION =====
 function checkAuth() {
+    const isLoggedIn = localStorage.getItem('calcwise_logged_in') === 'true';
     const user = JSON.parse(localStorage.getItem('calcwise_user') || 'null');
-    const dashboardUser = document.getElementById('dashboardUser');
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const path = window.location.pathname;
 
+    // Protection for private pages
+    if (path.includes('dashboard.html') || path.includes('journal.html')) {
+        if (!isLoggedIn) {
+            window.location.href = 'login.html';
+            return;
+        }
+    }
+
+    // Redirect away from auth pages if already logged in
+    if ((path.includes('login.html') || path.includes('signup.html')) && isLoggedIn) {
+        window.location.href = 'dashboard.html';
+        return;
+    }
+
+    // Update Header UI for all pages
+    const navActions = document.querySelector('.nav-actions');
+    if (navActions && isLoggedIn) {
+        // If it's a guest navbar (contains Log In button), update it
+        if (navActions.querySelector('[data-i18n="nav-login"]')) {
+            const dashText = lang === 'ar' ? 'لوحة التحكم' : 'Dashboard';
+            const logoutText = translations['dash-logout'][lang] || 'Log Out';
+            
+            navActions.innerHTML = `
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option ${lang === 'en' ? 'active' : ''}" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option ${lang === 'ar' ? 'active' : ''}" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <a href="dashboard.html" class="btn btn-ghost btn-sm">${dashText}</a>
+                <button class="btn btn-primary btn-sm" onclick="handleLogout()">${logoutText}</button>
+            `;
+        }
+    }
+
+    const dashboardUser = document.getElementById('dashboardUser');
     if (dashboardUser && user) {
-        dashboardUser.textContent = `Hi, ${user.firstName} 👋`;
+        const hiText = translations['dash-hi'][lang] || 'Hi';
+        dashboardUser.textContent = `${hiText}, ${user.firstName} 👋`;
     }
 }
 
@@ -903,6 +951,8 @@ async function handleSignup(e) {
 
 function handleLogout() {
     localStorage.removeItem('calcwise_logged_in');
+    localStorage.removeItem('calcwise_token');
+    localStorage.removeItem('calcwise_user');
     showToast('success', 'Logged out successfully.');
     setTimeout(() => window.location.href = 'index.html', 1000);
 }
