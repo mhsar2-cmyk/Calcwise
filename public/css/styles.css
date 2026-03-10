@@ -598,6 +598,30 @@ h5 {
   box-shadow: var(--glass-shadow);
 }
 
+.top-crypto-card {
+  background: linear-gradient(145deg, rgba(22, 22, 56, 0.9), rgba(10, 10, 26, 0.9));
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  height: 220px;
+  padding: var(--space-md);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-crypto-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-glow);
+}
+
+.top-crypto-card .tradingview-widget-container {
+  margin-top: -10px;
+  flex-grow: 1;
+}
+
 /* ===== Hero Section ===== */
 .hero {
   position: relative;
