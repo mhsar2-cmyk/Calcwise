@@ -90,6 +90,62 @@
             font-weight: 600;
             margin-top: 4px;
         }
+
+        .tool-info-section {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .tool-info-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-info-section p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+
+        .usage-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: var(--space-sm);
+        }
+
+        .usage-list li {
+            position: relative;
+            padding-left: 24px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .usage-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-weight: bold;
+        }
+
+        [dir="rtl"] .usage-list li {
+            padding-left: 0;
+            padding-right: 24px;
+        }
+
+        [dir="rtl"] .usage-list li::before {
+            left: auto;
+            right: 0;
+            content: '←';
+        }
     </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
@@ -127,9 +183,6 @@
                 <a href="tools.html" class="active" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-
-
-
                 <div class="toggle-pill lang-toggle" title="Toggle language">
                     <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
                     <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
@@ -198,10 +251,15 @@
                             <div class="result-box" id="ps-result">
                                 <h4 data-i18n="results-title">Results</h4>
                                 <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="results-pos-desc">Enter
-                                    your trade details to
-                                    calculate the optimal position size.</p>
+                                    your trade details to calculate the optimal position size.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="tool-info-section reveal">
+                        <h4 data-i18n="tool-info-desc-title">About this Tool</h4>
+                        <p data-i18n="tool-pos-info-desc">Detailed tool description...</p>
+                        <h4 data-i18n="tool-info-usage-title">How to Use</h4>
+                        <div class="usage-list" data-i18n="tool-pos-usage-steps">Steps...</div>
                     </div>
                 </div>
             </div>
@@ -233,10 +291,15 @@
                             <div class="result-box" id="pl-result">
                                 <h4 data-i18n="results-title">Results</h4>
                                 <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="results-pl-desc">Enter
-                                    trade details to calculate
-                                    your potential profit or loss.</p>
+                                    trade details to calculate your potential profit or loss.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="tool-info-section reveal">
+                        <h4 data-i18n="tool-info-desc-title">About this Tool</h4>
+                        <p data-i18n="tool-pl-info-desc">Detailed tool description...</p>
+                        <h4 data-i18n="tool-info-usage-title">How to Use</h4>
+                        <div class="usage-list" data-i18n="tool-pl-usage-steps">Steps...</div>
                     </div>
                 </div>
             </div>
@@ -280,10 +343,15 @@
                             <div class="result-box" id="cc-result">
                                 <h4 data-i18n="tool-cc-title">Conversion Result</h4>
                                 <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="results-cc-desc">Select
-                                    currencies and amount to
-                                    see the conversion.</p>
+                                    currencies and amount to see the conversion.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="tool-info-section reveal">
+                        <h4 data-i18n="tool-info-desc-title">About this Tool</h4>
+                        <p data-i18n="tool-cc-info-desc">Detailed tool description...</p>
+                        <h4 data-i18n="tool-info-usage-title">How to Use</h4>
+                        <div class="usage-list" data-i18n="tool-cc-usage-steps">Steps...</div>
                     </div>
                 </div>
             </div>
@@ -314,10 +382,15 @@
                             <div class="result-box" id="ci-result">
                                 <h4 data-i18n="tool-ci-title">Growth Projection</h4>
                                 <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="results-ci-desc">Enter
-                                    investment details to see
-                                    how your money grows.</p>
+                                    investment details to see how your money grows.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="tool-info-section reveal">
+                        <h4 data-i18n="tool-info-desc-title">About this Tool</h4>
+                        <p data-i18n="tool-ci-info-desc">Detailed tool description...</p>
+                        <h4 data-i18n="tool-info-usage-title">How to Use</h4>
+                        <div class="usage-list" data-i18n="tool-ci-usage-steps">Steps...</div>
                     </div>
                 </div>
             </div>
@@ -354,10 +427,15 @@
                             <div class="result-box" id="pip-result">
                                 <h4 data-i18n="tab-pip-calc">Pip Value</h4>
                                 <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="results-pip-desc">
-                                    Select pair and lot size to
-                                    calculate pip value.</p>
+                                    Select pair and lot size to calculate pip value.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="tool-info-section reveal">
+                        <h4 data-i18n="tool-info-desc-title">About this Tool</h4>
+                        <p data-i18n="tool-pip-info-desc">Detailed tool description...</p>
+                        <h4 data-i18n="tool-info-usage-title">How to Use</h4>
+                        <div class="usage-list" data-i18n="tool-pip-usage-steps">Steps...</div>
                     </div>
                 </div>
             </div>
@@ -383,14 +461,18 @@
                             <div class="result-box" id="rr-result">
                                 <h4 data-i18n="tab-risk-reward">Risk/Reward Ratio</h4>
                                 <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="results-rr-desc">Enter
-                                    trade levels to calculate
-                                    your risk/reward ratio.</p>
+                                    trade levels to calculate your risk/reward ratio.</p>
                             </div>
                         </div>
                     </div>
+                    <div class="tool-info-section reveal">
+                        <h4 data-i18n="tool-info-desc-title">About this Tool</h4>
+                        <p data-i18n="tool-rr-info-desc">Detailed tool description...</p>
+                        <h4 data-i18n="tool-info-usage-title">How to Use</h4>
+                        <div class="usage-list" data-i18n="tool-rr-usage-steps">Steps...</div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -431,7 +513,6 @@
     </footer>
     <script src="js/main.js"></script>
 
-
     <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
     <div class="floating-toggles"
         onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
@@ -439,6 +520,15 @@
         <span class="theme-icon dark-icon">🌙</span>
         <span class="theme-icon light-icon">☀️</span>
     </div>
+
+    <script>
+        function switchTool(toolId, btn) {
+            document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(toolId).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>
