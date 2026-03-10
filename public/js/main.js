@@ -1872,7 +1872,7 @@ function initAIAssistant() {
     const btn = document.createElement('button');
     btn.id = 'aiAssistantBtn';
     btn.title = lang === 'ar' ? 'مساعد كالك وايز' : 'CalcWise Assistant';
-    btn.style.position = 'relative';
+    // Position is handled by CSS [dir] selectors — do NOT set position inline
     btn.innerHTML = '🤖<span class="notif-dot"></span>';
     btn.onclick = toggleAIChat;
     document.body.appendChild(btn);

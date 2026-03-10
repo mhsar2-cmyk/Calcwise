@@ -2380,7 +2380,7 @@ select.form-control {
 #aiAssistantBtn {
   position: fixed;
   bottom: 84px;
-/* Stacked above theme toggle (24px + 44px + gap) */
+  left: 24px; /* Default; overridden by [dir] selectors */
   width: 56px;
   height: 56px;
   border-radius: 50%;
