@@ -237,33 +237,114 @@ const translations = {
     'filter-saudi': { en: 'Saudi Market', ar: 'السوق السعودي' },
     'filter-education': { en: 'Education', ar: 'تعليم' },
     'filter-tools': { en: 'Tools & Strategy', ar: 'أدوات واستراتيجيات' },
+    'filter-strategy': { en: 'Strategy', ar: 'استراتيجيات' },
     'blog-subscribe': { en: 'Subscribe', ar: 'اشتراك' },
     'blog-newsletter-title-1': { en: 'Stay', ar: 'ابقَ' },
     'blog-newsletter-title-2': { en: 'Informed', ar: 'مطّلعاً' },
     'blog-newsletter-desc': { en: 'Get weekly market insights, trading tips, and exclusive analysis delivered to your inbox.', ar: 'احصل على رؤى سوقية أسبوعية ونصائح تداول وتحليلات حصرية في بريدك الإلكتروني.' },
     'blog-featured-tag': { en: 'Featured', ar: 'مميز' },
 
-    // ---- WIDGET HEADERS ----
-    'widget-ticker-crypto': { en: '📈 Crypto Market Ticker', ar: '📈 شريط سوق الكريبتو' },
-    'widget-btc-chart': { en: '🕯️ BTC/USDT Chart', ar: '🕯️ رسم BTC/USDT' },
-    'widget-crypto-heatmap': { en: '🔥 Crypto Heatmap', ar: '🔥 خريطة الكريبتو الحرارية' },
-    'widget-screener-crypto': { en: 'Crypto', ar: 'الكريبتو' },
-    'widget-screener-crypto-2': { en: 'Screener', ar: 'فاحص' },
-    'widget-ticker-forex': { en: '📈 Forex Ticker', ar: '📈 شريط الفوركس' },
-    'widget-eurusd-chart': { en: '🕯️ EUR/USD Chart', ar: '🕯️ رسم EUR/USD' },
-    'widget-forex-heatmap': { en: '🔥 Forex Heatmap', ar: '🔥 خريطة الفوركس الحرارية' },
-    'widget-cross-rates': { en: 'Forex', ar: 'أسعار' },
-    'widget-cross-rates-2': { en: 'Cross Rates', ar: 'الفوركس المتقاطعة' },
-    'widget-us-ticker': { en: '📈 US Market Ticker', ar: '📈 شريط السوق الأمريكي' },
-    'widget-spx-chart': { en: '🕯️ S&P 500 Chart', ar: '🕯️ رسم S&P 500' },
-    'widget-us-heatmap': { en: '🔥 US Stocks Heatmap', ar: '🔥 خريطة الأسهم الأمريكية' },
-    'widget-us-screener-1': { en: 'US Stock', ar: 'فاحص الأسهم' },
-    'widget-us-screener-2': { en: 'Screener', ar: 'الأمريكية' },
-    'widget-saudi-ticker': { en: '📈 Saudi Market Ticker', ar: '📈 شريط السوق السعودي' },
-    'widget-tasi-chart': { en: '🕯️ TASI Index Chart', ar: '🕯️ رسم مؤشر تاسي' },
-    'widget-aramco-chart': { en: '🕯️ Saudi Aramco (2222)', ar: '🕯️ أرامكو السعودية (2222)' },
-    'widget-saudi-screener-1': { en: 'Saudi', ar: 'فاحص الأسهم' },
-    'widget-saudi-screener-2': { en: 'Stock Screener', ar: 'السعودية' },
+    // ---- BLOG SPECIFIC ----
+    'blog-hero-title': { en: 'Finance <span class="text-gold">Blog</span>', ar: 'المدونة <span class="text-gold">المالية</span>' },
+    'blog-hero-sub': { en: 'Expert analysis, trading strategies, and market insights to help you make smarter financial decisions.', ar: 'تحليلات الخبراء، استراتيجيات التداول، ورؤى السوق لمساعدتك على اتخاذ قرارات مالية أذكى.' },
+
+    // Blog Cards
+    'blog-card-1-title': { en: 'Altcoin Season 2026: Top 10 Tokens to Watch', ar: 'موسم العملات البديلة ٢٠٢٦: أفضل ١٠ عملات للمراقبة' },
+    'blog-card-1-desc': { en: 'Identifying the most promising altcoins with strong fundamentals and technical setups for this cycle.', ar: 'تحديد العملات البديلة الواعدة بأساسيات قوية وإعدادات فنية لهذه الدورة.' },
+    'blog-card-2-title': { en: 'Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD', ar: 'اليورو مقابل الدولار: كيف تشكل قرارات أسعار الفائدة زوج EUR/USD' },
+    'blog-card-2-desc': { en: 'Understanding the impact of central bank policies on the world\'s most traded currency pair.', ar: 'فهم تأثير سياسات البنوك المركزية على أكثر أزواج العملات تداولاً في العالم.' },
+    'blog-card-3-title': { en: 'Mastering Forex Risk Management: The 2% Rule Explained', ar: 'إتقان إدارة مخاطر الفوركس: شرح قاعدة الـ ٢٪' },
+    'blog-card-3-desc': { en: 'Why professional traders never risk more than 2% per trade and how to implement this rule.', ar: 'لماذا لا يخاطر المتداولون المحترفون أبداً بأكثر من ٢٪ في الصفقة الواحدة وكيفية تطبيق هذه القاعدة.' },
+    'blog-card-4-title': { en: 'NVIDIA & AI Boom: Is the Tech Rally Sustainable?', ar: 'نفايديا وطفرة الذكاء الاصطناعي: هل استمرار رالي التكنولوجيا مستدام؟' },
+    'blog-card-4-desc': { en: 'Analyzing whether AI-driven tech stocks can maintain their momentum amid rising valuations.', ar: 'تحليل ما إذا كان بإمكان أسهم التكنولوجيا المدفوعة بالذكاء الاصطناعي الحفاظ على زخمها وسط ارتفاع التقييمات.' },
+    'blog-card-5-title': { en: 'Best Dividend Stocks for Passive Income in 2026', ar: 'أفضل أسهم التوزيعات للدخل السلبي في عام ٢٠٢٦' },
+    'blog-card-5-desc': { en: 'Build a reliable income stream with these high-yield, fundamentally strong dividend payers.', ar: 'أنشئ تدفقاً موثوقاً للدخل مع موزعي الأرباح ذوي العائد المرتفع والأساسيات القوية.' },
+    'blog-card-6-title': { en: 'Vision 2030 Update: Top Saudi Stocks to Watch This Quarter', ar: 'تحديث رؤية ٢٠٣٠: أفضل الأسهم السعودية للمراقبة هذا الربع' },
+    'blog-card-6-desc': { en: 'As Saudi Arabia\'s transformation accelerates, these sectors and stocks offer significant opportunities.', ar: 'مع تسارع تحول المملكة العربية السعودية، توفر هذه القطاعات والأسهم فرصاً كبيرة.' },
+    'blog-card-7-title': { en: 'Saudi Aramco Deep Dive: Is the World\'s Largest Company Still Undervalued?', ar: 'تحليل معمق لأرامكو السعودية: هل لا تزال أكبر شركة في العالم مقومة بأقل من قيمتها؟' },
+    'blog-card-7-desc': { en: 'A fundamental analysis of Saudi Aramco\'s earnings, dividends, and growth potential.', ar: 'تحليل أساسي لأرباح أرامكو السعودية، توزيعات الأرباح، وإمكانيات النمو.' },
+    'blog-card-8-title': { en: 'Trading Psychology: How to Control Fear and Greed', ar: 'علم نفس التداول: كيف تتحكم في الخوف والطمع' },
+    'blog-card-8-desc': { en: 'The mental frameworks professional traders use to stay disciplined during volatile markets.', ar: 'الأطر الذهنية التي يستخدمها المتداولون المحترفون للبقاء منضبطين خلال تقلبات السوق.' },
+    'blog-card-9-title': { en: 'Technical Analysis 101: Chart Patterns Every Trader Must Know', ar: 'أساسيات التحليل الفني: نماذج الرسوم البيانية التي يجب على كل متداول معرفتها' },
+    'blog-card-9-desc': { en: 'From head and shoulders to double bottoms — the patterns that signal major moves.', ar: 'من نمط الرأس والكتفين إلى القيعان المزدوجة — الأنماط التي تشير إلى تحركات كبرى.' },
+    'blog-card-10-title': { en: 'Position Sizing: The Most Important Tool You\'re Not Using', ar: 'تحديد حجم المركز: الأداة الأكثر أهمية التي لا تستخدمها' },
+    'blog-card-10-desc': { en: 'Why proper position sizing matters more than your entry strategy and how CalcWise tools can help.', ar: 'لماذا يهم تحديد حجم المركز الصحيح أكثر من استراتيجية الدخول وكيف تساعد أدوات CalcWise.' },
+    'blog-read-more': { en: 'Read More →', ar: 'اقرأ المزيد ←' },
+
+    // ---- TOOLS PAGE ----
+    'tools-hero-title': { en: 'Financial <span class="text-gradient">Tools</span>', ar: 'الأدوات <span class="text-gradient">المالية</span>' },
+    'tools-hero-sub': { en: 'Free calculators to help you plan trades, manage risk, and grow your portfolio.', ar: 'حاسبات مجانية لمساعدتك في التخطيط للصفقات، إدارة المخاطر، وتنمية محفظتك.' },
+    'tab-position-sizer': { en: '📐 Position Sizer', ar: '📐 حجم المركز' },
+    'tab-profit-calc': { en: '💰 Profit/Loss', ar: '💰 الربح والخسارة' },
+    'tab-currency-converter': { en: '🔄 Currency Converter', ar: '🔄 محول العملات' },
+    'tab-compound': { en: '📊 Compound Interest', ar: '📊 الفائدة المركبة' },
+    'tab-pip-calc': { en: '📏 Pip Calculator', ar: '📏 حاسبة النقاط' },
+    'tab-risk-reward': { en: '⚖️ Risk/Reward', ar: '⚖️ المخاطرة/العائد' },
+
+    'tool-pos-title': { en: '📐 Position Size Calculator', ar: '📐 حاسبة حجم المركز' },
+    'tool-pl-title': { en: '💰 Profit/Loss Calculator', ar: '💰 حاسبة الربح والخسارة' },
+    'tool-cc-title': { en: '🔄 Currency Converter', ar: '🔄 محول العملات' },
+    'tool-ci-title': { en: '📊 Compound Interest Calculator', ar: '📊 حاسبة الفائدة المركبة' },
+    'tool-pip-title': { en: '📏 Forex Pip Calculator', ar: '📏 حاسبة نقاط الفوركس (Pip)' },
+    'tool-rr-title': { en: '⚖️ Risk/Reward Calculator', ar: '⚖️ حاسبة المخاطرة مقابل العائد' },
+
+    'label-account-balance': { en: 'Account Balance ($)', ar: 'رصيد الحساب ($)' },
+    'label-risk-pct': { en: 'Risk per Trade (%)', ar: 'المخاطرة لكل صفقة (%)' },
+    'label-entry-price': { en: 'Entry Price', ar: 'سعر الدخول' },
+    'label-stop-loss': { en: 'Stop Loss Price', ar: 'سعر وقف الخسارة' },
+    'label-exit-price': { en: 'Exit Price', ar: 'سعر الخروج' },
+    'label-qty': { en: 'Quantity / Units', ar: 'الكمية / الوحدات' },
+    'label-direction': { en: 'Direction', ar: ' الاتجاه' },
+    'label-amount': { en: 'Amount', ar: 'المبلغ' },
+    'label-from-currency': { en: 'From Currency', ar: 'من عملة' },
+    'label-to-currency': { en: 'To Currency', ar: 'إلى عملة' },
+    'label-initial-investment': { en: 'Initial Investment ($)', ar: 'الاستثمار الأولي ($)' },
+    'label-monthly-contribution': { en: 'Monthly Contribution ($)', ar: 'المساهمة الشهرية ($)' },
+    'label-annual-rate': { en: 'Annual Interest Rate (%)', ar: 'معدل الفائدة السنوي (%)' },
+    'label-period-years': { en: 'Investment Period (Years)', ar: 'مدة الاستثمار (سنوات)' },
+    'label-currency-pair': { en: 'Currency Pair', ar: 'زوج العملات' },
+    'label-lot-size': { en: 'Lot Size', ar: 'حجم اللوت' },
+    'label-num-pips': { en: 'Number of Pips', ar: 'عدد النقاط' },
+    'label-take-profit': { en: 'Take Profit Price', ar: 'سعر جني الأرباح' },
+
+    'option-long': { en: 'Long (Buy)', ar: 'شراء (Long)' },
+    'option-short': { en: 'Short (Sell)', ar: 'بيع (Short)' },
+    'option-lot-standard': { en: 'Standard (100,000)', ar: 'قياسي (100,000)' },
+    'option-lot-mini': { en: 'Mini (10,000)', ar: 'ميني (10,000)' },
+    'option-lot-micro': { en: 'Micro (1,000)', ar: 'ميكرو (1,000)' },
+
+    'btn-calculate-pos': { en: 'Calculate Position Size', ar: 'احسب حجم المركز' },
+    'btn-calculate-pl': { en: 'Calculate P/L', ar: 'احسب الربح/الخسارة' },
+    'btn-convert': { en: 'Convert', ar: 'تحويل' },
+    'btn-calculate-growth': { en: 'Calculate Growth', ar: 'احسب النمو' },
+    'btn-calculate-pip': { en: 'Calculate Pip Value', ar: 'احسب قيمة النقطة' },
+    'btn-calculate-rr': { en: 'Calculate R:R', ar: 'احسب R:R' },
+
+    'results-title': { en: 'Results', ar: 'النتائج' },
+    'results-pos-desc': { en: 'Enter your trade details to calculate the optimal position size.', ar: 'أدخل تفاصيل الصفقة لحساب حجم المركز الأمثل.' },
+    'results-pl-desc': { en: 'Enter trade details to calculate your potential profit or loss.', ar: 'أدخل تفاصيل الصفقة لحساب ربحك أو خسارتك المحتملة.' },
+    'results-cc-desc': { en: 'Select currencies and amount to see the conversion.', ar: 'اختر العملات والمبلغ لمعرفة التحويل.' },
+    'results-ci-desc': { en: 'Enter investment details to see how your money grows.', ar: 'أدخل تفاصيل الاستثمار لترى كيف تنمو أموالك.' },
+    'results-pip-desc': { en: 'Select pair and lot size to calculate pip value.', ar: 'اختر الزوج وحجم اللوت لحساب قيمة النقطة.' },
+    'results-rr-desc': { en: 'Enter trade levels to calculate your risk/reward ratio.', ar: 'أدخل مستويات التداول لحساب نسبة المخاطرة إلى العائد.' },
+
+    // ---- MARKET PAGES SPECIFIC ----
+    'crypto-hero-title': { en: 'Cryptocurrency <span class="text-gold">Markets</span>', ar: 'أسواق <span class="text-gold">العملات الرقمية</span>' },
+    'crypto-hero-sub': { en: 'Real-time crypto prices, heatmaps, and comprehensive market data for 10,000+ digital assets.', ar: 'أسعار الكريبتو اللحظية، الخرائط الحرارية، وبيانات السوق الشاملة لأكثر من ١٠,٠٠٠ أصل رقمي.' },
+    'forex-hero-title': { en: 'Forex <span class="text-gold">Markets</span>', ar: 'أسواق <span class="text-gold">الفوركس</span>' },
+    'forex-hero-sub': { en: 'Real-time exchange rates, interactive charts, and analysis for all major, minor, and exotic currency pairs.', ar: 'أسعار صرف لحظية، رسوم بيانية تفاعلية، وتحليلات لجميع أزواج العملات الرئيسية والثانوية والغريبة.' },
+    'us-hero-title': { en: 'US Stock <span class="text-gold">Market</span>', ar: 'سوق <span class="text-gold">الأسهم الأمريكية</span>' },
+    'us-hero-sub': { en: 'Real-time data for S&amp;P 500, NASDAQ, Dow Jones, and thousands of individual stocks.', ar: 'بيانات لحظية لمؤشر S&P 500 وناسداك وداو جونز وآلاف الأسهم الفردية.' },
+    'saudi-hero-title': { en: 'Saudi <span class="text-gradient">Market</span>', ar: 'السوق <span class="text-gradient">السعودي</span>' },
+    'saudi-hero-sub': { en: 'Tadawul index, Saudi Aramco charts, and a full stock screener for the Saudi Arabian market.', ar: 'مؤشر تداول، رسوم بيانية لأرامكو السعودية، وفاحص أسهم كامل للسوق المالي السعودي.' },
+
+    'widget-heatmap-title': { en: '🔥 Market Heatmap', ar: '🔥 خريطة السوق الحرارية' },
+    'widget-screener-title': { en: 'Market Screener', ar: 'فاحص السوق' },
+    'widget-crypto-screener': { en: 'Crypto <span class="text-gold">Screener</span>', ar: 'فاحص <span class="text-gold">الكريبتو</span>' },
+    'widget-saudi-screener': { en: 'Saudi <span class="text-gradient">Stock Screener</span>', ar: 'فاحص <span class="text-gradient">الأسهم السعودية</span>' },
+    'widget-us-screener': { en: 'US <span class="text-gold">Stock Screener</span>', ar: 'فاحص <span class="text-gold">الأسهم الأمريكية</span>' },
+    'widget-screener-desc': { en: 'Browse and filter assets by market cap, price, volume, and more.', ar: 'تصفح وقم بتصفية الأصول حسب القيمة السوقية والسعر والحجم والمزيد.' },
+    'widget-saudi-desc': { en: 'Browse all Tadawul-listed companies filtered by performance, sector, and market metrics.', ar: 'تصفح جميع الشركات المدرجة في تداول والمصنفة حسب الأداء والقطاع ومقاييس السوق.' },
 };
 
 function initLanguage() {
@@ -287,7 +368,12 @@ function applyLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[key] && translations[key][lang]) {
-            el.textContent = translations[key][lang];
+            // Use innerHTML for keys that might contain spans/gradients
+            if (translations[key][lang].includes('<')) {
+                el.innerHTML = translations[key][lang];
+            } else {
+                el.textContent = translations[key][lang];
+            }
         }
     });
 
@@ -298,6 +384,9 @@ function applyLanguage(lang) {
             el.placeholder = translations[key][lang];
         }
     });
+
+    // Fix TradingView widgets locale if they exist
+    // Note: TradingView widgets often need a reload or specific container update to change locale
 }
 
 function toggleLanguage(lang) {

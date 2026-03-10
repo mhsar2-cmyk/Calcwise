@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-CQ0F5LVG3J");
-  </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-CQ0F5LVG3J");
+    </script>
 </head>
 
 <body>
@@ -46,14 +46,14 @@
                 <a href="tools.html" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-        
-        
-        
-        <div class="toggle-pill lang-toggle" title="Toggle language">
-          <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
-          <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
-        </div>
-        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
+
+
+
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
                 <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">Get Started</a>
             </div>
             <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
@@ -79,7 +79,7 @@
         <div class="container">
             <div class="widget-container reveal">
                 <div class="widget-header">
-                    <h3>🔥 US Stocks Heatmap</h3>
+                    <h3 data-i18n="widget-spx-chart">🕯️ Apple Inc. (AAPL)</h3>
                 </div>
                 <div style="height:500px;">
                     <div class="tradingview-widget-container" style="height:100%;width:100%">
@@ -98,8 +98,9 @@
     <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);">
         <div class="container">
             <div class="section-header reveal">
-                <h2>US Stock <span class="text-gradient">Screener</span></h2>
-                <p>Filter and discover top US stocks by performance, market cap, and other metrics.</p>
+                <h2 data-i18n="widget-us-screener">US <span class="text-gold">Stock Screener</span></h2>
+                <p data-i18n="widget-screener-desc">Browse American-listed companies filtered by performance, sector,
+                    and market metrics.</p>
             </div>
             <div class="widget-container reveal">
                 <div style="height:600px;">
@@ -152,12 +153,14 @@
     </footer>
     <script src="js/main.js"></script>
 
-  
-  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
-  <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
-    <span class="theme-icon dark-icon">🌙</span>
-    <span class="theme-icon light-icon">☀️</span>
-  </div>
+
+    <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+    <div class="floating-toggles"
+        onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
+        title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
 </body>
 
 </html>
