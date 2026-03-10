@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-CQ0F5LVG3J");
+  </script>
 </head>
 
 <body>
@@ -19,23 +27,80 @@
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon">📊</div> CalcWise
             </a>
-                        <div class="nav-links" id="navLinks">
-        <a href="index.html" data-i18n="nav-home">Home</a>
-        
-        <div class="nav-dropdown">
-          <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
-          <div class="dropdown-menu">
-            <a href="crypto.html"><span class="dropdown-icon">₿</span> <span data-i18n="nav-crypto">Cryptocurrency</span></a>
-            <a href="forex.html"><span class="dropdown-icon">💱</span> <span data-i18n="nav-forex">Forex</span></a>
-            <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span data-i18n="nav-us-stocks">US Stocks</span></a>
-            <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span data-i18n="nav-saudi">Saudi Market</span></a>
-          </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <div class="nav-dropdown">
+                    <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+                    <div class="dropdown-menu">
+                        <a href="crypto.html"><span class="dropdown-icon">₿</span> <span
+                                data-i18n="nav-crypto">Cryptocurrency</span></a>
+                        <a href="forex.html"><span class="dropdown-icon">💱</span> <span
+                                data-i18n="nav-forex">Forex</span></a>
+                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span
+                                data-i18n="nav-us-stocks">US Stocks</span></a>
+                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span
+                                data-i18n="nav-saudi">Saudi Market</span></a>
+                    </div>
+                </div>
+                <a href="blog.html" class="active" data-i18n="nav-blog">Blog</a>
+                <a href="tools.html" data-i18n="nav-tools">Tools</a>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-toggles">
+                    <div class="toggle-pill theme-toggle" title="Toggle theme">
+                        <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
+                        <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
+                    </div>
+                    <div class="toggle-pill lang-toggle" title="Toggle language">
+                        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                    </div>
+                </div>
+                <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
+                <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">Get Started</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
+            </div>
         </div>
+    </nav>
 
-        <a href="blog.html" data-i18n="nav-blog">Blog</a>
-        <a href="tools.html" data-i18n="nav-tools">Tools</a>
-      </div>
+    <!-- HERO -->
+    <section class="page-hero"
+        style="margin-top:var(--header-height);padding:var(--space-3xl) 0 var(--space-xl);text-align:center;">
+        <div class="container">
+            <div class="section-header reveal">
+                <div style="font-size:3rem;margin-bottom:var(--space-md);">📰</div>
+                <h1 data-i18n="blog-hero-title">Finance <span class="text-gold">Blog</span></h1>
+                <p data-i18n="blog-hero-sub">Expert analysis, trading strategies, and market insights to help you make
+                    smarter financial decisions.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- BLOG FILTERS -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom:var(--space-xl);">
+                <div style="display:flex;justify-content:center;gap:var(--space-sm);flex-wrap:wrap;">
+                    <button class="filter-btn active" onclick="filterBlog('all', this)"
+                        data-i18n="filter-all">All</button>
+                    <button class="filter-btn" onclick="filterBlog('crypto', this)"
+                        data-i18n="filter-crypto">Crypto</button>
+                    <button class="filter-btn" onclick="filterBlog('forex', this)"
+                        data-i18n="filter-forex">Forex</button>
+                    <button class="filter-btn" onclick="filterBlog('stocks', this)"
+                        data-i18n="filter-stocks">Stocks</button>
+                    <button class="filter-btn" onclick="filterBlog('saudi', this)"
+                        data-i18n="filter-saudi">Saudi</button>
+                    <button class="filter-btn" onclick="filterBlog('education', this)"
+                        data-i18n="filter-education">Education</button>
+                    <button class="filter-btn" onclick="filterBlog('tools', this)"
+                        data-i18n="filter-strategy">Strategy</button>
+                </div>
+            </div>
+
+            <div class="grid grid-3" id="blogGrid" style="gap:var(--space-xl);">
+                <!-- Crypto -->
                 <div class="blog-card" data-category="crypto">
                     <img src="images/blog-header.png" alt="Altcoin Season" class="blog-card-image">
                     <div class="blog-card-body">
@@ -44,14 +109,11 @@
                         <h4><a href="#">Altcoin Season 2026: Top 10 Tokens to Watch</a></h4>
                         <p>Identifying the most promising altcoins with strong fundamentals and technical setups for
                             this cycle.</p>
-                        <div class="blog-card-meta">
-                            <span>Mar 2, 2026</span>
-                            <span>6 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Mar 2, 2026</span><span>6 min read</span></div>
                     </div>
                 </div>
 
-                <!-- Forex Articles -->
+                <!-- Forex -->
                 <div class="blog-card" data-category="forex">
                     <img src="images/blog-header.png" alt="EUR/USD Analysis" class="blog-card-image">
                     <div class="blog-card-body">
@@ -60,10 +122,7 @@
                         <h4><a href="#">Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD</a></h4>
                         <p>Understanding the impact of central bank policies on the world's most traded currency pair.
                         </p>
-                        <div class="blog-card-meta">
-                            <span>Mar 6, 2026</span>
-                            <span>7 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Mar 6, 2026</span><span>7 min read</span></div>
                     </div>
                 </div>
 
@@ -75,14 +134,11 @@
                         <h4><a href="#">Mastering Forex Risk Management: The 2% Rule Explained</a></h4>
                         <p>Why professional traders never risk more than 2% per trade and how to implement this rule.
                         </p>
-                        <div class="blog-card-meta">
-                            <span>Mar 3, 2026</span>
-                            <span>5 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Mar 3, 2026</span><span>5 min read</span></div>
                     </div>
                 </div>
 
-                <!-- US Stocks Articles -->
+                <!-- US Stocks -->
                 <div class="blog-card" data-category="stocks">
                     <img src="images/blog-header.png" alt="Tech Stocks" class="blog-card-image">
                     <div class="blog-card-body">
@@ -91,10 +147,7 @@
                         <h4><a href="#">NVIDIA & AI Boom: Is the Tech Rally Sustainable?</a></h4>
                         <p>Analyzing whether AI-driven tech stocks can maintain their momentum amid rising valuations.
                         </p>
-                        <div class="blog-card-meta">
-                            <span>Mar 7, 2026</span>
-                            <span>6 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Mar 7, 2026</span><span>6 min read</span></div>
                     </div>
                 </div>
 
@@ -106,14 +159,11 @@
                         <h4><a href="#">Best Dividend Stocks for Passive Income in 2026</a></h4>
                         <p>Build a reliable income stream with these high-yield, fundamentally strong dividend payers.
                         </p>
-                        <div class="blog-card-meta">
-                            <span>Mar 1, 2026</span>
-                            <span>7 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Mar 1, 2026</span><span>7 min read</span></div>
                     </div>
                 </div>
 
-                <!-- Saudi Market Articles -->
+                <!-- Saudi Market -->
                 <div class="blog-card" data-category="saudi">
                     <img src="images/blog-header.png" alt="Vision 2030" class="blog-card-image">
                     <div class="blog-card-body">
@@ -122,10 +172,7 @@
                         <h4><a href="#">Vision 2030 Update: Top Saudi Stocks to Watch This Quarter</a></h4>
                         <p>As Saudi Arabia's transformation accelerates, these sectors and stocks offer significant
                             opportunities.</p>
-                        <div class="blog-card-meta">
-                            <span>Mar 4, 2026</span>
-                            <span>6 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Mar 4, 2026</span><span>6 min read</span></div>
                     </div>
                 </div>
 
@@ -137,10 +184,7 @@
                         <h4><a href="#">Saudi Aramco Deep Dive: Is the World's Largest Company Still Undervalued?</a>
                         </h4>
                         <p>A fundamental analysis of Saudi Aramco's earnings, dividends, and growth potential.</p>
-                        <div class="blog-card-meta">
-                            <span>Feb 28, 2026</span>
-                            <span>9 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Feb 28, 2026</span><span>9 min read</span></div>
                     </div>
                 </div>
 
@@ -153,10 +197,7 @@
                         <h4><a href="#">Trading Psychology: How to Control Fear and Greed</a></h4>
                         <p>The mental frameworks professional traders use to stay disciplined during volatile markets.
                         </p>
-                        <div class="blog-card-meta">
-                            <span>Feb 25, 2026</span>
-                            <span>8 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Feb 25, 2026</span><span>8 min read</span></div>
                     </div>
                 </div>
 
@@ -167,10 +208,7 @@
                             style="background:rgba(253,121,168,0.15);color:var(--accent-rose);">Education</span>
                         <h4><a href="#">Technical Analysis 101: Chart Patterns Every Trader Must Know</a></h4>
                         <p>From head and shoulders to double bottoms — the patterns that signal major moves.</p>
-                        <div class="blog-card-meta">
-                            <span>Feb 22, 2026</span>
-                            <span>10 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Feb 22, 2026</span><span>10 min read</span></div>
                     </div>
                 </div>
 
@@ -183,13 +221,9 @@
                         <h4><a href="#">Position Sizing: The Most Important Tool You're Not Using</a></h4>
                         <p>Why proper position sizing matters more than your entry strategy and how CalcWise tools can
                             help.</p>
-                        <div class="blog-card-meta">
-                            <span>Feb 20, 2026</span>
-                            <span>5 min read</span>
-                        </div>
+                        <div class="blog-card-meta"><span>Feb 20, 2026</span><span>5 min read</span></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -219,21 +253,25 @@
                     <a href="index.html" class="nav-logo">
                         <div class="logo-icon">📊</div> CalcWise
                     </a>
-                    <p class="mt-1">Your all-in-one financial intelligence platform.</p>
+                    <p class="mt-1" data-i18n="footer-tagline">Your all-in-one financial intelligence platform.</p>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-markets" data-i18n="footer-markets">Markets</h5>
-                    <a href="crypto.html">Cryptocurrency</a><a href="forex.html">Forex</a>
-                    <a href="us-market.html">US Stocks</a><a href="saudi-market.html">Saudi Market</a>
+                    <h5 data-i18n="footer-markets">Markets</h5>
+                    <a href="crypto.html" data-i18n="nav-crypto">Cryptocurrency</a>
+                    <a href="forex.html" data-i18n="nav-forex">Forex</a>
+                    <a href="us-market.html" data-i18n="nav-us-stocks">US Stocks</a>
+                    <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-resources" data-i18n="footer-resources">Resources</h5>
-                    <a href="blog.html">Blog</a><a href="tools.html">Financial Tools</a>
-                    <a href="dashboard.html">Dashboard</a>
+                    <h5 data-i18n="footer-resources">Resources</h5>
+                    <a href="blog.html" data-i18n="nav-blog">Blog</a>
+                    <a href="tools.html" data-i18n="footer-tools">Financial Tools</a>
+                    <a href="dashboard.html" data-i18n="sidebar-portfolio">Dashboard</a>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-account" data-i18n="footer-account">Account</h5>
-                    <a href="login.html">Log In</a><a href="signup.html">Sign Up</a>
+                    <h5 data-i18n="footer-account">Account</h5>
+                    <a href="login.html" data-i18n="nav-login">Log In</a>
+                    <a href="signup.html" data-i18n="footer-signup">Sign Up</a>
                 </div>
             </div>
             <div class="footer-bottom">

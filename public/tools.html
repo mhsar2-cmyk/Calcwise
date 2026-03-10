@@ -16,6 +16,7 @@
             gap: var(--space-sm);
             margin-bottom: var(--space-xl);
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .tool-tab {
@@ -90,6 +91,14 @@
             margin-top: 4px;
         }
     </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-CQ0F5LVG3J");
+  </script>
 </head>
 
 <body>
@@ -99,22 +108,95 @@
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon">📊</div> CalcWise
             </a>
-                        <div class="nav-links" id="navLinks">
-        <a href="index.html" data-i18n="nav-home">Home</a>
-        
-        <div class="nav-dropdown">
-          <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
-          <div class="dropdown-menu">
-            <a href="crypto.html"><span class="dropdown-icon">₿</span> <span data-i18n="nav-crypto">Cryptocurrency</span></a>
-            <a href="forex.html"><span class="dropdown-icon">💱</span> <span data-i18n="nav-forex">Forex</span></a>
-            <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span data-i18n="nav-us-stocks">US Stocks</span></a>
-            <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span data-i18n="nav-saudi">Saudi Market</span></a>
-          </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <div class="nav-dropdown">
+                    <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+                    <div class="dropdown-menu">
+                        <a href="crypto.html"><span class="dropdown-icon">₿</span> <span
+                                data-i18n="nav-crypto">Cryptocurrency</span></a>
+                        <a href="forex.html"><span class="dropdown-icon">💱</span> <span
+                                data-i18n="nav-forex">Forex</span></a>
+                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span
+                                data-i18n="nav-us-stocks">US Stocks</span></a>
+                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span
+                                data-i18n="nav-saudi">Saudi Market</span></a>
+                    </div>
+                </div>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
+                <a href="tools.html" class="active" data-i18n="nav-tools">Tools</a>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-toggles">
+                    <div class="toggle-pill theme-toggle" title="Toggle theme">
+                        <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
+                        <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
+                    </div>
+                    <div class="toggle-pill lang-toggle" title="Toggle language">
+                        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                    </div>
+                </div>
+                <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
+                <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">Get Started</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
+            </div>
         </div>
+    </nav>
 
-        <a href="blog.html" data-i18n="nav-blog">Blog</a>
-        <a href="tools.html" data-i18n="nav-tools">Tools</a>
-      </div>
+    <!-- HERO -->
+    <section class="page-hero"
+        style="margin-top:var(--header-height);padding:var(--space-3xl) 0 var(--space-xl);text-align:center;">
+        <div class="container">
+            <div class="section-header reveal">
+                <div style="font-size:3rem;margin-bottom:var(--space-md);">🛠️</div>
+                <h1 data-i18n="tools-hero-title">Financial <span class="text-gradient">Tools</span></h1>
+                <p data-i18n="tools-hero-sub">Free calculators to help you plan trades, manage risk, and grow your
+                    portfolio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="section">
+        <div class="container">
+            <div class="tool-tabs reveal">
+                <button class="tool-tab active" onclick="switchTool('position-sizer', this)">📐 Position Sizer</button>
+                <button class="tool-tab" onclick="switchTool('profit-calc', this)">💰 Profit/Loss</button>
+                <button class="tool-tab" onclick="switchTool('currency-converter', this)">🔄 Currency Converter</button>
+                <button class="tool-tab" onclick="switchTool('compound', this)">📊 Compound Interest</button>
+                <button class="tool-tab" onclick="switchTool('pip-calc', this)">📏 Pip Calculator</button>
+                <button class="tool-tab" onclick="switchTool('risk-reward', this)">⚖️ Risk/Reward</button>
+            </div>
+
+            <!-- POSITION SIZER -->
+            <div class="tool-panel active" id="position-sizer">
+                <div class="tool-interface reveal">
+                    <h3 style="margin-bottom:var(--space-xl);">📐 Position Size Calculator</h3>
+                    <div class="grid grid-2">
+                        <div>
+                            <div class="form-group"><label>Account Balance ($)</label><input type="number"
+                                    class="form-control" id="ps-balance" value="10000"></div>
+                            <div class="form-group"><label>Risk per Trade (%)</label><input type="number"
+                                    class="form-control" id="ps-risk" value="2" step="0.1"></div>
+                            <div class="form-group"><label>Entry Price</label><input type="number" class="form-control"
+                                    id="ps-entry" placeholder="50000" step="any"></div>
+                            <div class="form-group"><label>Stop Loss Price</label><input type="number"
+                                    class="form-control" id="ps-stoploss" placeholder="48000" step="any"></div>
+                            <button class="btn btn-primary btn-lg" onclick="calculatePositionSize()"
+                                style="width:100%;">Calculate Position Size</button>
+                        </div>
+                        <div>
+                            <div class="result-box" id="ps-result">
+                                <h4>Results</h4>
+                                <p style="color:var(--text-muted);font-size:0.88rem;">Enter your trade details to
+                                    calculate the optimal position size.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- PROFIT CALCULATOR -->
             <div class="tool-panel" id="profit-calc">
@@ -122,20 +204,13 @@
                     <h3 style="margin-bottom:var(--space-xl);">💰 Profit/Loss Calculator</h3>
                     <div class="grid grid-2">
                         <div>
-                            <div class="form-group">
-                                <label>Entry Price</label>
-                                <input type="number" class="form-control" id="pl-entry" placeholder="50000" step="any">
-                            </div>
-                            <div class="form-group">
-                                <label>Exit Price</label>
-                                <input type="number" class="form-control" id="pl-exit" placeholder="55000" step="any">
-                            </div>
-                            <div class="form-group">
-                                <label>Quantity / Units</label>
-                                <input type="number" class="form-control" id="pl-qty" placeholder="1" step="any">
-                            </div>
-                            <div class="form-group">
-                                <label>Direction</label>
+                            <div class="form-group"><label>Entry Price</label><input type="number" class="form-control"
+                                    id="pl-entry" placeholder="50000" step="any"></div>
+                            <div class="form-group"><label>Exit Price</label><input type="number" class="form-control"
+                                    id="pl-exit" placeholder="55000" step="any"></div>
+                            <div class="form-group"><label>Quantity / Units</label><input type="number"
+                                    class="form-control" id="pl-qty" placeholder="1" step="any"></div>
+                            <div class="form-group"><label>Direction</label>
                                 <select class="form-control" id="pl-direction">
                                     <option value="long">Long (Buy)</option>
                                     <option value="short">Short (Sell)</option>
@@ -161,12 +236,9 @@
                     <h3 style="margin-bottom:var(--space-xl);">🔄 Currency Converter</h3>
                     <div class="grid grid-2">
                         <div>
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="number" class="form-control" id="cc-amount" value="1000" step="any">
-                            </div>
-                            <div class="form-group">
-                                <label>From Currency</label>
+                            <div class="form-group"><label>Amount</label><input type="number" class="form-control"
+                                    id="cc-amount" value="1000" step="any"></div>
+                            <div class="form-group"><label>From Currency</label>
                                 <select class="form-control" id="cc-from">
                                     <option value="USD">USD — US Dollar</option>
                                     <option value="EUR">EUR — Euro</option>
@@ -178,8 +250,7 @@
                                     <option value="CHF">CHF — Swiss Franc</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>To Currency</label>
+                            <div class="form-group"><label>To Currency</label>
                                 <select class="form-control" id="cc-to">
                                     <option value="SAR">SAR — Saudi Riyal</option>
                                     <option value="USD">USD — US Dollar</option>
@@ -211,22 +282,14 @@
                     <h3 style="margin-bottom:var(--space-xl);">📊 Compound Interest Calculator</h3>
                     <div class="grid grid-2">
                         <div>
-                            <div class="form-group">
-                                <label>Initial Investment ($)</label>
-                                <input type="number" class="form-control" id="ci-principal" value="10000">
-                            </div>
-                            <div class="form-group">
-                                <label>Monthly Contribution ($)</label>
-                                <input type="number" class="form-control" id="ci-monthly" value="500">
-                            </div>
-                            <div class="form-group">
-                                <label>Annual Interest Rate (%)</label>
-                                <input type="number" class="form-control" id="ci-rate" value="10" step="0.1">
-                            </div>
-                            <div class="form-group">
-                                <label>Investment Period (Years)</label>
-                                <input type="number" class="form-control" id="ci-years" value="10">
-                            </div>
+                            <div class="form-group"><label>Initial Investment ($)</label><input type="number"
+                                    class="form-control" id="ci-principal" value="10000"></div>
+                            <div class="form-group"><label>Monthly Contribution ($)</label><input type="number"
+                                    class="form-control" id="ci-monthly" value="500"></div>
+                            <div class="form-group"><label>Annual Interest Rate (%)</label><input type="number"
+                                    class="form-control" id="ci-rate" value="10" step="0.1"></div>
+                            <div class="form-group"><label>Investment Period (Years)</label><input type="number"
+                                    class="form-control" id="ci-years" value="10"></div>
                             <button class="btn btn-primary btn-lg" onclick="calculateCompound()"
                                 style="width:100%;">Calculate Growth</button>
                         </div>
@@ -247,8 +310,7 @@
                     <h3 style="margin-bottom:var(--space-xl);">📏 Forex Pip Calculator</h3>
                     <div class="grid grid-2">
                         <div>
-                            <div class="form-group">
-                                <label>Currency Pair</label>
+                            <div class="form-group"><label>Currency Pair</label>
                                 <select class="form-control" id="pip-pair">
                                     <option value="EURUSD">EUR/USD</option>
                                     <option value="GBPUSD">GBP/USD</option>
@@ -258,18 +320,15 @@
                                     <option value="USDCAD">USD/CAD</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Lot Size</label>
+                            <div class="form-group"><label>Lot Size</label>
                                 <select class="form-control" id="pip-lot">
                                     <option value="100000">Standard (100,000)</option>
                                     <option value="10000">Mini (10,000)</option>
                                     <option value="1000">Micro (1,000)</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Number of Pips</label>
-                                <input type="number" class="form-control" id="pip-pips" value="50">
-                            </div>
+                            <div class="form-group"><label>Number of Pips</label><input type="number"
+                                    class="form-control" id="pip-pips" value="50"></div>
                             <button class="btn btn-primary btn-lg" onclick="calculatePip()"
                                 style="width:100%;">Calculate Pip Value</button>
                         </div>
@@ -290,19 +349,12 @@
                     <h3 style="margin-bottom:var(--space-xl);">⚖️ Risk/Reward Calculator</h3>
                     <div class="grid grid-2">
                         <div>
-                            <div class="form-group">
-                                <label>Entry Price</label>
-                                <input type="number" class="form-control" id="rr-entry" placeholder="100" step="any">
-                            </div>
-                            <div class="form-group">
-                                <label>Stop Loss Price</label>
-                                <input type="number" class="form-control" id="rr-stoploss" placeholder="95" step="any">
-                            </div>
-                            <div class="form-group">
-                                <label>Take Profit Price</label>
-                                <input type="number" class="form-control" id="rr-takeprofit" placeholder="115"
-                                    step="any">
-                            </div>
+                            <div class="form-group"><label>Entry Price</label><input type="number" class="form-control"
+                                    id="rr-entry" placeholder="100" step="any"></div>
+                            <div class="form-group"><label>Stop Loss Price</label><input type="number"
+                                    class="form-control" id="rr-stoploss" placeholder="95" step="any"></div>
+                            <div class="form-group"><label>Take Profit Price</label><input type="number"
+                                    class="form-control" id="rr-takeprofit" placeholder="115" step="any"></div>
                             <button class="btn btn-primary btn-lg" onclick="calculateRiskReward()"
                                 style="width:100%;">Calculate R:R</button>
                         </div>
@@ -328,21 +380,25 @@
                     <a href="index.html" class="nav-logo">
                         <div class="logo-icon">📊</div> CalcWise
                     </a>
-                    <p class="mt-1">Your all-in-one financial intelligence platform.</p>
+                    <p class="mt-1" data-i18n="footer-tagline">Your all-in-one financial intelligence platform.</p>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-markets" data-i18n="footer-markets">Markets</h5>
-                    <a href="crypto.html">Cryptocurrency</a><a href="forex.html">Forex</a>
-                    <a href="us-market.html">US Stocks</a><a href="saudi-market.html">Saudi Market</a>
+                    <h5 data-i18n="footer-markets">Markets</h5>
+                    <a href="crypto.html" data-i18n="nav-crypto">Cryptocurrency</a>
+                    <a href="forex.html" data-i18n="nav-forex">Forex</a>
+                    <a href="us-market.html" data-i18n="nav-us-stocks">US Stocks</a>
+                    <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-resources" data-i18n="footer-resources">Resources</h5>
-                    <a href="blog.html">Blog</a><a href="tools.html">Financial Tools</a><a
-                        href="dashboard.html">Dashboard</a>
+                    <h5 data-i18n="footer-resources">Resources</h5>
+                    <a href="blog.html" data-i18n="nav-blog">Blog</a>
+                    <a href="tools.html" data-i18n="footer-tools">Financial Tools</a>
+                    <a href="dashboard.html" data-i18n="sidebar-portfolio">Dashboard</a>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-account" data-i18n="footer-account">Account</h5>
-                    <a href="login.html">Log In</a><a href="signup.html">Sign Up</a>
+                    <h5 data-i18n="footer-account">Account</h5>
+                    <a href="login.html" data-i18n="nav-login">Log In</a>
+                    <a href="signup.html" data-i18n="footer-signup">Sign Up</a>
                 </div>
             </div>
             <div class="footer-bottom">
