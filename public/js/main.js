@@ -249,26 +249,26 @@ const translations = {
     'blog-hero-sub': { en: 'Expert analysis, trading strategies, and market insights to help you make smarter financial decisions.', ar: 'تحليلات الخبراء، استراتيجيات التداول، ورؤى السوق لمساعدتك على اتخاذ قرارات مالية أذكى.' },
 
     // Blog Cards
-    'blog-card-1-title': { en: 'Altcoin Season 2026: Top 10 Tokens to Watch', ar: 'موسم العملات البديلة ٢٠٢٦: أفضل ١٠ عملات للمراقبة' },
-    'blog-card-1-desc': { en: 'Identifying the most promising altcoins with strong fundamentals and technical setups for this cycle.', ar: 'تحديد العملات البديلة الواعدة بأساسيات قوية وإعدادات فنية لهذه الدورة.' },
-    'blog-card-2-title': { en: 'Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD', ar: 'اليورو مقابل الدولار: كيف تشكل قرارات أسعار الفائدة زوج EUR/USD' },
-    'blog-card-2-desc': { en: 'Understanding the impact of central bank policies on the world\'s most traded currency pair.', ar: 'فهم تأثير سياسات البنوك المركزية على أكثر أزواج العملات تداولاً في العالم.' },
-    'blog-card-3-title': { en: 'Mastering Forex Risk Management: The 2% Rule Explained', ar: 'إتقان إدارة مخاطر الفوركس: شرح قاعدة الـ ٢٪' },
-    'blog-card-3-desc': { en: 'Why professional traders never risk more than 2% per trade and how to implement this rule.', ar: 'لماذا لا يخاطر المتداولون المحترفون أبداً بأكثر من ٢٪ في الصفقة الواحدة وكيفية تطبيق هذه القاعدة.' },
-    'blog-card-4-title': { en: 'NVIDIA & AI Boom: Is the Tech Rally Sustainable?', ar: 'نفايديا وطفرة الذكاء الاصطناعي: هل استمرار رالي التكنولوجيا مستدام؟' },
-    'blog-card-4-desc': { en: 'Analyzing whether AI-driven tech stocks can maintain their momentum amid rising valuations.', ar: 'تحليل ما إذا كان بإمكان أسهم التكنولوجيا المدفوعة بالذكاء الاصطناعي الحفاظ على زخمها وسط ارتفاع التقييمات.' },
-    'blog-card-5-title': { en: 'Best Dividend Stocks for Passive Income in 2026', ar: 'أفضل أسهم التوزيعات للدخل السلبي في عام ٢٠٢٦' },
-    'blog-card-5-desc': { en: 'Build a reliable income stream with these high-yield, fundamentally strong dividend payers.', ar: 'أنشئ تدفقاً موثوقاً للدخل مع موزعي الأرباح ذوي العائد المرتفع والأساسيات القوية.' },
-    'blog-card-6-title': { en: 'Vision 2030 Update: Top Saudi Stocks to Watch This Quarter', ar: 'تحديث رؤية ٢٠٣٠: أفضل الأسهم السعودية للمراقبة هذا الربع' },
-    'blog-card-6-desc': { en: 'As Saudi Arabia\'s transformation accelerates, these sectors and stocks offer significant opportunities.', ar: 'مع تسارع تحول المملكة العربية السعودية، توفر هذه القطاعات والأسهم فرصاً كبيرة.' },
-    'blog-card-7-title': { en: 'Saudi Aramco Deep Dive: Is the World\'s Largest Company Still Undervalued?', ar: 'تحليل معمق لأرامكو السعودية: هل لا تزال أكبر شركة في العالم مقومة بأقل من قيمتها؟' },
-    'blog-card-7-desc': { en: 'A fundamental analysis of Saudi Aramco\'s earnings, dividends, and growth potential.', ar: 'تحليل أساسي لأرباح أرامكو السعودية، توزيعات الأرباح، وإمكانيات النمو.' },
-    'blog-card-8-title': { en: 'Trading Psychology: How to Control Fear and Greed', ar: 'علم نفس التداول: كيف تتحكم في الخوف والطمع' },
-    'blog-card-8-desc': { en: 'The mental frameworks professional traders use to stay disciplined during volatile markets.', ar: 'الأطر الذهنية التي يستخدمها المتداولون المحترفون للبقاء منضبطين خلال تقلبات السوق.' },
-    'blog-card-9-title': { en: 'Technical Analysis 101: Chart Patterns Every Trader Must Know', ar: 'أساسيات التحليل الفني: نماذج الرسوم البيانية التي يجب على كل متداول معرفتها' },
-    'blog-card-9-desc': { en: 'From head and shoulders to double bottoms — the patterns that signal major moves.', ar: 'من نمط الرأس والكتفين إلى القيعان المزدوجة — الأنماط التي تشير إلى تحركات كبرى.' },
-    'blog-card-10-title': { en: 'Position Sizing: The Most Important Tool You\'re Not Using', ar: 'تحديد حجم المركز: الأداة الأكثر أهمية التي لا تستخدمها' },
-    'blog-card-10-desc': { en: 'Why proper position sizing matters more than your entry strategy and how CalcWise tools can help.', ar: 'لماذا يهم تحديد حجم المركز الصحيح أكثر من استراتيجية الدخول وكيف تساعد أدوات CalcWise.' },
+    'blog-card-1-title': { en: 'Altcoin Season 2026: Top 10 Tokens to Watch 🚀', ar: 'موسم العملات البديلة ٢٠٢٦: أفضل ١٠ عملات للمراقبة 🚀' },
+    'blog-card-1-desc': { en: 'Identifying the most promising altcoins with strong fundamentals and technical setups for this cycle. 📈', ar: 'تحديد العملات البديلة الواعدة بأساسيات قوية وإعدادات فنية لهذه الدورة. 📈' },
+    'blog-card-2-title': { en: 'Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD 💱', ar: 'اليورو مقابل الدولار: كيف تشكل قرارات أسعار الفائدة زوج EUR/USD 💱' },
+    'blog-card-2-desc': { en: 'Understanding the impact of central bank policies on the world\'s most traded currency pair. 🏛️', ar: 'فهم تأثير سياسات البنوك المركزية على أكثر أزواج العملات تداولاً في العالم. 🏛️' },
+    'blog-card-3-title': { en: 'Mastering Forex Risk Management: The 2% Rule Explained 🛡️', ar: 'إتقان إدارة مخاطر الفوركس: شرح قاعدة الـ ٢٪ 🛡️' },
+    'blog-card-3-desc': { en: 'Why professional traders never risk more than 2% per trade and how to implement this rule. 📐', ar: 'لماذا لا يخاطر المتداولون المحترفون أبداً بأكثر من ٢٪ في الصفقة الواحدة وكيفية تطبيق هذه القاعدة. 📐' },
+    'blog-card-4-title': { en: 'NVIDIA & AI Boom: Is the Tech Rally Sustainable? 🤖', ar: 'نفايديا وطفرة الذكاء الاصطناعي: هل استمرار رالي التكنولوجيا مستدام؟ 🤖' },
+    'blog-card-4-desc': { en: 'Analyzing whether AI-driven tech stocks can maintain their momentum amid rising valuations. 📊', ar: 'تحليل ما إذا كان بإمكان أسهم التكنولوجيا المدفوعة بالذكاء الاصطناعي الحفاظ على زخمها وسط ارتفاع التقييمات. 📊' },
+    'blog-card-5-title': { en: 'Best Dividend Stocks for Passive Income in 2026 💰', ar: 'أفضل أسهم التوزيعات للدخل السلبي في عام ٢٠٢٦ 💰' },
+    'blog-card-5-desc': { en: 'Build a reliable income stream with these high-yield, fundamentally strong dividend payers. ✨', ar: 'أنشئ تدفقاً موثوقاً للدخل مع موزعي الأرباح ذوي العائد المرتفع والأساسيات القوية. ✨' },
+    'blog-card-6-title': { en: 'Vision 2030 Update: Top Saudi Stocks to Watch This Quarter 🇸🇦', ar: 'تحديث رؤية ٢٠٣٠: أفضل الأسهم السعودية للمراقبة هذا الربع 🇸🇦' },
+    'blog-card-6-desc': { en: 'As Saudi Arabia\'s transformation accelerates, these sectors and stocks offer significant opportunities. 🏗️', ar: 'مع تسارع تحول المملكة العربية السعودية، توفر هذه القطاعات والأسهم فرصاً كبيرة. 🏗️' },
+    'blog-card-7-title': { en: 'Saudi Aramco Deep Dive: Is the World\'s Largest Company Still Undervalued? 🛢️', ar: 'تحليل معمق لأرامكو السعودية: هل لا تزال أكبر شركة في العالم مقومة بأقل من قيمتها؟ 🛢️' },
+    'blog-card-7-desc': { en: 'A fundamental analysis of Saudi Aramco\'s earnings, dividends, and growth potential. 📈', ar: 'تحليل أساسي لأرباح أرامكو السعودية، توزيعات الأرباح، وإمكانيات النمو. 📈' },
+    'blog-card-8-title': { en: 'Trading Psychology: How to Control Fear and Greed 🧠', ar: 'علم نفس التداول: كيف تتحكم في الخوف والطمع 🧠' },
+    'blog-card-8-desc': { en: 'The mental frameworks professional traders use to stay disciplined during volatile markets. 🧘', ar: 'الأطر الذهنية التي يستخدمها المتداولون المحترفون للبقاء منضبطين خلال تقلبات السوق. 🧘' },
+    'blog-card-9-title': { en: 'Technical Analysis 101: Chart Patterns Every Trader Must Know 📉', ar: 'أساسيات التحليل الفني: نماذج الرسوم البيانية التي يجب على كل متداول معرفتها 📉' },
+    'blog-card-9-desc': { en: 'From head and shoulders to double bottoms — the patterns that signal major moves. 📐', ar: 'من نمط الرأس والكتفين إلى القيعان المزدوجة — الأنماط التي تشير إلى تحركات كبرى. 📐' },
+    'blog-card-10-title': { en: 'Position Sizing: The Most Important Tool You\'re Not Using 📏', ar: 'تحديد حجم المركز: الأداة الأكثر أهمية التي لا تستخدمها 📏' },
+    'blog-card-10-desc': { en: 'Why proper position sizing matters more than your entry strategy and how CalcWise tools can help. ⚖️', ar: 'لماذا يهم تحديد حجم المركز الصحيح أكثر من استراتيجية الدخول وكيف تساعد أدوات CalcWise. ⚖️' },
     'blog-read-more': { en: 'Read More →', ar: 'اقرأ المزيد ←' },
 
     // ---- TOOLS PAGE ----
@@ -386,6 +386,97 @@ const translations = {
     'results-pip-desc': { en: 'Select pair and lot size to calculate pip value.', ar: 'اختر الزوج وحجم اللوت لحساب قيمة النقطة.' },
     'results-rr-desc': { en: 'Enter trade levels to calculate your risk/reward ratio.', ar: 'أدخل مستويات التداول لحساب نسبة المخاطرة إلى العائد.' },
 
+    // ---- BLOG CONTENT ----
+    'blog-read-more': { en: 'Read Full Article', ar: 'اقرأ المقال كاملاً' },
+    'blog-1-content': {
+        en: `<h3>The Altcoin Season of 2026: A Deep Dive</h3>
+             <p>As Bitcoin stabilizes after its historic run, the spotlight is shifting to the altcoin market. Historically, capital flows from BTC into high-cap altcoins and then descends into smaller projects. This cycle, we are seeing strong fundamental growth in AI-driven tokens and DePIN (Decentralized Physical Infrastructure Networks).</p>
+             <p>Our top picks to watch include projects focused on scaling Ethereum and those providing verifiable AI compute. Remember, risk management is key. Never chase green candles without a clear exit plan.</p>
+             <ul>
+               <li><b>AI Integration:</b> Look for tokens providing actual utility in the AI space.</li>
+               <li><b>Gaming Evolution:</b> High-quality games are finally launching on-chain.</li>
+               <li><b>Layer 2 Solutions:</b> Scalability remains the top priority for adoption.</li>
+             </ul>`,
+        ar: `<h3>موسم العملات البديلة 2026: نظرة عميقة</h3>
+             <p>بينما يستقر البيتكوين بعد ارتفاعه التاريخي، ينتقل الضوء إلى سوق العملات البديلة. تاريخياً، تدفقات رأس المال تنتقل من البيتكوين إلى العملات الكبيرة ثم إلى المشاريع الأصغر. في هذه الدورة، نرى نمواً قوياً في العملات المرتبطة بالذكاء الاصطناعي وشبكات البنية التحتية اللامركزية (DePIN).</p>
+             <p>ترشيحاتنا للمراقبة تشمل مشاريع تحجيم إيثيريوم وتلك التي توفر حوسبة ذكاء اصطناعي موثقة. تذكر، إدارة المخاطر هي المفتاح. لا تطارد الشموع الخضراء دون خطة خروج واضحة.</p>
+             <ul>
+               <li><b>تكامل الذكاء الاصطناعي:</b> ابحث عن العملات التي تقدم فائدة حقيقية.</li>
+               <li><b>تطور الألعاب:</b> بدأت الألعاب عالية الجودة في الإطلاق الفعلي.</li>
+               <li><b>حلول الطبقة الثانية:</b> تظل القدرة على التحجيم هي الأولوية القصوى.</li>
+             </ul>`
+    },
+    'blog-2-content': {
+        en: `<h3>EUR/USD: The Central Bank Tug-of-War</h3>
+             <p>The currency markets are currently dominated by the divergence between Federal Reserve and European Central Bank policies. While the Fed signals a "higher for longer" stance to combat sticky inflation, the ECB is grappling with sluggish growth in the Eurozone.</p>
+             <p>Traders should monitor the monthly CPI data and unemployment rates closely. A break below the 1.05 level would signal further bearish momentum for the Euro.</p>`,
+        ar: `<h3>اليورو مقابل الدولار: صراع البنوك المركزية</h3>
+             <p>تهيمن الفوارق بين سياسات الاحتياطي الفيدرالي والبنك المركزي الأوروبي حالياً على أسواق العملات. بينما يشير الفيدرالي إلى سياسة "أسعار فائدة أعلى لفترة أطول"، يعاني المركزي الأوروبي من نمو متباطئ في منطقة اليورو.</p>
+             <p>يجب على المتداولين مراقبة بيانات التضخم ومعدلات البطالة الشهرية بدقة. كسر مستوى 1.05 سيشير إلى المزيد من الزخم السلبي لليورو.</p>`
+    },
+    'blog-3-content': {
+        en: `<h3>The 2% Rule: Professional Risk Management</h3>
+             <p>Why do most retail traders fail? Poor risk management. Professional traders use the "2% Rule" — never risking more than 2% of their total equity on any single trade.</p>
+             <p>By using CalcWise's Position Sizer, you can automatically calculate exactly how many lots or units to trade based on your stop-loss distance. This ensures that even a string of losses won't wipe out your account.</p>`,
+        ar: `<h3>قاعدة الـ 2%: إدارة المخاطر الاحترافية</h3>
+             <p>لماذا يفشل معظم المتداولين الأفراد؟ بسبب سوء إدارة المخاطر. يستخدم المتداولون المحترفون "قاعدة الـ 2%" - والتي تنص على عدم المخاطرة بأكثر من 2% من إجمالي رأس المال في أي صفقة واحدة.</p>
+             <p>باستخدام حاسبة حجم المركز في كالك وايز، يمكنك حساب عدد العقود بدقة بناءً على مسافة الوقف. هذا يضمن أن حتى سلسلة من الخسائر لن تمحو حسابك.</p>`
+    },
+    'blog-4-content': {
+        en: `<h3>NVIDIA and the AI Revolution: Market Outlook</h3>
+             <p>NVIDIA has become the bellwether of the US stock market. Its quarterly earnings reports now carry more weight than some economic indicators. But is the valuation justified?</p>
+             <p>While the AI boom is real, we are seeing signs of institutional profit-taking. Diversifying into AI software and energy sectors might be a smarter move for the second half of 2026.</p>`,
+        ar: `<h3>إنفيديا وثورة الذكاء الاصطناعي: نظرة على السوق</h3>
+             <p>أصبحت شركة إنفيديا (NVIDIA) هي المحرك الأساسي لسوق الأسهم الأمريكي. تقارير أرباحها الفصلية أصبحت تزن أكثر من بعض المؤشرات الاقتصادية. لكن هل التقييم الحالي عادل؟</p>
+             <p>بينما طفرة الذكاء الاصطناعي حقيقية، نرى بوادر لجني أرباح من قِبل المؤسسات. التنويع في برمجيات الذكاء الاصطناعي وقطاعات الطاقة قد يكون خطوة أذكى للنصف الثاني من 2026.</p>`
+    },
+    'blog-5-content': {
+        en: `<h3>Dividend Investing in 2026: Building Wealth</h3>
+             <p>In a volatile market, dividend-paying stocks provide a safety net. Focus on "Dividend Aristocrats" — companies that have consistently raised their payouts for over 25 years.</p>
+             <p>Our top sectors for 2026 include Utilities, Consumer Staples, and specialized Real Estate Investment Trusts (REITs).</p>`,
+        ar: `<h3>استثمار توزيعات الأرباح في 2026: بناء الثروة</h3>
+             <p>في سوق متقلب، توفر الشركات التي توزع أرباحاً شبكة أمان. ركز على "أرستقراطيي التوزيعات" - الشركات التي رفعت توزيعاتها باستمرار لأكثر من 25 عاماً.</p>
+             <p>قطاعاتنا المفضلة لعام 2026 تشمل المرافق، السلع الاستهلاكية الأساسية، وصناديق الاستثمار العقاري (REITs).</p>`
+    },
+    'blog-6-content': {
+        en: `<h3>Saudi Vision 2030: The Industrial Transformation</h3>
+             <p>The Saudi Arabian market (TASI) is evolving beyond oil. Large-scale projects like NEOM and Qiddiya are creating massive opportunities in the construction, financial, and tourism sectors.</p>
+             <p>Watch for banks like Al Rajhi and SNB, as they are central to financing this historic transformation.</p>`,
+        ar: `<h3>رؤية السعودية 2030: التحول الصناعي</h3>
+             <p>يتطور السوق السعودي (تاسي) ليتجاوز النفط. المشاريع الكبرى مثل نيوم والقدية تخلق فرصاً هائلة في قطاعات الإنشاءات، التمويل، والسياحة.</p>
+             <p>راقب البنوك مثل الراجحي والأهلي (SNB)، حيث أنها ركيزة أساسية في تمويل هذا التحول التاريخي.</p>`
+    },
+    'blog-7-content': {
+        en: `<h3>Saudi Aramco: The Global Energy Giant</h3>
+             <p>Saudi Aramco remains the most profitable company in history. With its pivot into hydrogen and renewed focus on natural gas, its long-term dividend yield remains attractive for conservative investors.</p>`,
+        ar: `<h3>أرامكو السعودية: عملاق الطاقة العالمي</h3>
+             <p>تظل أرامكو السعودية الشركة الأكثر ربحية في التاريخ. مع توجهها نحو الهيدروجين والتركيز المتجدد على الغاز الطبيعي، يظل عائد التوزيعات طويل الأجل جذاباً للمستثمرين المتحفظين.</p>`
+    },
+    'blog-8-content': {
+        en: `<h3>The Psychological Edge in Trading</h3>
+             <p>Trading is 10% strategy and 90% psychology. The ability to stay disciplined when a trade goes against you is what separates the winners from the losers.</p>
+             <p>Avoid "revenge trading" and always stick to your pre-defined plan. Remember, the market doesn't care about your feelings.</p>`,
+        ar: `<h3>التفوق النفسي في التداول</h3>
+             <p>التداول عبارة عن 10% استراتيجية و 90% علم نفس. القدرة على البقاء منضبطاً عندما تسير الصفقة ضدك هي ما يفصل الرابحين عن الخاسرين.</p>
+             <p>تجنب "تداول الانتقام" والتزم دائماً بخطتك المحددة مسبقاً. تذكر، السوق لا يهتم بمشاعرك.</p>`
+    },
+    'blog-9-content': {
+        en: `<h3>Chart Patterns: The Language of the Market</h3>
+             <p>Technical analysis is about reading the footprints of money. Patterns like Head and Shoulders or Cup and Handle occur because human behavior in markets is repetitive.</p>
+             <p>Learn to identify these patterns along with volume confirmation to increase your win rate.</p>`,
+        ar: `<h3>نماذج الشموع: لغة السوق</h3>
+             <p>التحليل الفني هو قراءة آثار أقدام المال. تظهر نماذج مثل "الرأس والكتفين" أو "الكوب والعروة" لأن السلوك البشري في الأسواق متكرر.</p>
+             <p>تعلم تحديد هذه النماذج مع تأكيد الحجم (Volume) لزيادة نسبة نجاحك.</p>`
+    },
+    'blog-10-content': {
+        en: `<h3>Why Position Sizing is Everything</h3>
+             <p>Most traders focus on "where to enter." Professional traders focus on "how much to risk." Proper position sizing ensures that no single trade can ruin your account.</p>
+             <p>Use our tools to calculate your risk based on your account equity and stop loss distance.</p>`,
+        ar: `<h3>لماذا حجم المركز هو كل شيء</h3>
+             <p>يركز معظم المتداولين على "أين يتم الدخول". يركز المتداولون المحترفون على "كم سنخاطر". يضمن حجم المركز الصحيح عدم قدرة أي صفقة فردية على تدمير حسابك.</p>
+             <p>استخدم أدواتنا لحساب مخاطرك بناءً على رأس مال حسابك ومسافة وقف الخسارة.</p>`
+    },
+
     // ---- CALCULATION RESULTS & ERRORS ----
     'res-pos-size': { en: 'Position Size Results', ar: 'نتائج حجم المركز' },
     'res-units': { en: 'units', ar: 'وحدة' },
@@ -416,6 +507,8 @@ const translations = {
     'res-pip-results': { en: 'Pip Value Results', ar: 'نتائج قيمة النقطة' },
     'res-per-pip': { en: 'Per Pip', ar: 'للنقطة الواحدة' },
     'res-total-pips': { en: 'Total Pips', ar: 'إجمالي النقاط' },
+    'res-lot-size': { en: 'Lot Size', ar: 'حجم اللوت' },
+    'res-pair': { en: 'Pair', ar: 'الزوج' },
 
     'res-rr-analysis': { en: 'Risk/Reward Analysis', ar: 'تحليل المخاطرة/العائد' },
     'res-risk-sl': { en: 'Risk (SL)', ar: 'المخاطرة (وقف)' },
@@ -848,8 +941,8 @@ function calculatePip() {
     <div class="result-breakdown">
       <div class="result-item"><div class="label">${translations['res-per-pip'][lang]}</div><div class="value">$${pipValue.toFixed(2)}</div></div>
       <div class="result-item"><div class="label">${translations['res-total-pips'][lang]}</div><div class="value">${pips}</div></div>
-      <div class="result-item"><div class="label">Lot Size</div><div class="value">${lotSize.toLocaleString()}</div></div>
-      <div class="result-item"><div class="label">Pair</div><div class="value">${pair}</div></div>
+      <div class="result-item"><div class="label">${translations['res-lot-size'][lang]}</div><div class="value">${lotSize.toLocaleString()}</div></div>
+      <div class="result-item"><div class="label">${translations['res-pair'][lang]}</div><div class="value">${pair}</div></div>
     </div>
   `;
 }
@@ -1078,4 +1171,39 @@ if (window.location.hash) {
             }
         });
     }
+}
+
+// ===== BLOG MODAL SYSTEM =====
+function openBlogModal(postId) {
+    console.log('Opening blog modal for post:', postId);
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const modal = document.getElementById('blogModal');
+    const contentArea = document.getElementById('blogContentArea');
+
+    if (!modal || !contentArea) return;
+
+    const content = translations[`blog-${postId}-content`] ? translations[`blog-${postId}-content`][lang] : '<p>Content coming soon...</p>';
+    const titleKey = `blog-card-${postId}-title`;
+    const title = translations[titleKey] ? translations[titleKey][lang] : 'Article';
+
+    contentArea.innerHTML = `
+        <div class="blog-full-article">
+            <h2 class="mb-2" style="color:var(--accent-gold);">${title}</h2>
+            <div class="article-body" style="font-size:1.1rem; line-height:1.7; color:var(--text-primary);">
+                ${content}
+            </div>
+            <div class="mt-4" style="border-top:1px solid var(--border-subtle); padding-top:var(--space-lg); text-align:center;">
+                <button class="btn btn-gold" onclick="closeBlogModal()">Close Article</button>
+            </div>
+        </div>
+    `;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBlogModal() {
+    const modal = document.getElementById('blogModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
 }

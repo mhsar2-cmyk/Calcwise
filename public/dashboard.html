@@ -132,14 +132,14 @@
             font-size: 0.9rem;
         }
     </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-CQ0F5LVG3J");
-  </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-CQ0F5LVG3J");
+    </script>
 </head>
 
 <body>
@@ -168,14 +168,14 @@
                 <a href="tools.html" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-        
-        <div class="toggle-pill lang-toggle" title="Toggle language">
-          <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
-          <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
-        </div>
-        
-        
-                
+
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+
+
+
                 <span style="color:var(--text-secondary);font-size:0.88rem;" id="dashboardUser">Hi, User 👋</span>
                 <button class="btn btn-ghost btn-sm" onclick="handleLogout()" data-i18n="dash-logout">Log Out</button>
             </div>
@@ -230,7 +230,7 @@
         <main class="dashboard-main">
             <div class="dashboard-header">
                 <div>
-                    <h1 data-i18n="dash-title">Portfolio Dashboard</h1>
+                    <h1 data-i18n="dash-title">Portfolio Dashboard 📊</h1>
                     <p style="color:var(--text-muted);font-size:0.88rem;">Last updated: <span id="lastUpdated"></span>
                     </p>
                 </div>
@@ -245,23 +245,23 @@
             <!-- STATS -->
             <div class="grid grid-4" style="margin-bottom:var(--space-xl);">
                 <div class="card stat-card">
-                    <div class="stat-label" data-i18n="dash-total-value">Total Portfolio Value</div>
+                    <div class="stat-label" data-i18n="dash-total-value">Total Portfolio Value 💰</div>
                     <div class="stat-value" id="totalValue">$0.00</div>
                     <div class="stat-change positive" id="totalChange">↑ +0.00%</div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-label" data-i18n="dash-today-pl">Today's P/L</div>
+                    <div class="stat-label" data-i18n="dash-today-pl">Today's P/L 📈</div>
                     <div class="stat-value" id="todayPL" style="color:var(--success);">+$0.00</div>
                     <div class="stat-change positive" id="todayPLPct">↑ +0.00%</div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-label" data-i18n="dash-holdings">Total Holdings</div>
+                    <div class="stat-label" data-i18n="dash-holdings">Total Holdings 📦</div>
                     <div class="stat-value" id="totalHoldings">0</div>
                     <div class="stat-change" style="color:var(--text-muted);" data-i18n="dash-across">Across 4 markets
                     </div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-label" data-i18n="dash-best">Best Performer</div>
+                    <div class="stat-label" data-i18n="dash-best">Best Performer 🏆</div>
                     <div class="stat-value" id="bestPerformer" style="font-size:1.4rem;">—</div>
                     <div class="stat-change positive" id="bestPerformerChange">—</div>
                 </div>
@@ -494,12 +494,14 @@
     <div class="toast-container" id="toastContainer"></div>
     <script src="js/main.js"></script>
 
-  
-  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
-  <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
-    <span class="theme-icon dark-icon">🌙</span>
-    <span class="theme-icon light-icon">☀️</span>
-  </div>
+
+    <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+    <div class="floating-toggles"
+        onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
+        title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
 </body>
 
 </html>

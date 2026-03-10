@@ -10,28 +10,26 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-CQ0F5LVG3J");
-  </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-CQ0F5LVG3J");
+    </script>
 </head>
 
 <body>
     <div class="auth-container">
 
-    <!-- Top-right Language Toggle for Auth Pages -->
-    <div style="position:fixed;top:20px;right:20px;z-index:100;">
-      <div class="toggle-pill lang-toggle" title="Toggle language">
-        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
-        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
-      </div>
-    </div>
-        <!-- Floating toggles for auth pages -->
-        
+        <!-- Top-right Language Toggle for Auth Pages -->
+        <div style="position:fixed;top:20px;right:20px;z-index:100;">
+            <div class="toggle-pill lang-toggle" title="Toggle language">
+                <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+            </div>
+        </div>
 
         <div class="card auth-card card-glass">
             <div class="auth-header">
@@ -39,8 +37,8 @@
                     <div class="logo-icon">📊</div>
                     CalcWise
                 </a>
-                <h2 data-i18n="auth-welcome">Welcome Back</h2>
-                <p data-i18n="auth-login-desc">Log in to your account to access your portfolio and tools.</p>
+                <h2 data-i18n="auth-welcome">Welcome Back 👋</h2>
+                <p data-i18n="auth-login-desc">Log in to your account to access your portfolio and tools. ✨</p>
             </div>
 
             <div class="social-login">
@@ -86,12 +84,13 @@
     <div class="toast-container" id="toastContainer"></div>
     <script src="js/main.js"></script>
 
-  
-  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
-  <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
-    <span class="theme-icon dark-icon">🌙</span>
-    <span class="theme-icon light-icon">☀️</span>
-  </div>
+    <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+    <div class="floating-toggles"
+        onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
+        title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
 </body>
 
 </html>

@@ -67,9 +67,9 @@
         <div class="container">
             <div class="section-header reveal">
                 <div style="font-size:3rem;margin-bottom:var(--space-md);">📰</div>
-                <h1 data-i18n="blog-hero-title">Finance <span class="text-gold">Blog</span></h1>
+                <h1 data-i18n="blog-hero-title">Finance <span class="text-gold">Blog</span> 📰</h1>
                 <p data-i18n="blog-hero-sub">Expert analysis, trading strategies, and market insights to help you make
-                    smarter financial decisions.</p>
+                    smarter financial decisions. 💡</p>
             </div>
         </div>
     </section>
@@ -98,150 +98,154 @@
 
             <div class="grid grid-3" id="blogGrid" style="gap:var(--space-xl);">
                 <!-- Crypto -->
-                <div class="blog-card" data-category="crypto">
+                <div class="blog-card" data-category="crypto" onclick="openBlogModal(1)">
                     <img src="images/blog-header.png" alt="Altcoin Season" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(240,185,11,0.15);color:var(--accent-gold);"
                             data-i18n="filter-crypto">Crypto</span>
-                        <h4><a href="#" data-i18n="blog-card-1-title">Altcoin Season 2026: Top 10 Tokens to Watch</a>
-                        </h4>
+                        <h4><span data-i18n="blog-card-1-title"
+                                style="color:var(--primary-light);cursor:pointer;">Altcoin Season 2026: Top 10 Tokens to
+                                Watch</span></h4>
                         <p data-i18n="blog-card-1-desc">Identifying the most promising altcoins with strong fundamentals
                             and technical setups for
-                            this cycle.</p>
-                        <div class="blog-card-meta"><span>Mar 2, 2026</span><span>6 min read</span></div>
+                            this cycle. 🚀</p>
+                        <div class="blog-card-meta"><span>📅 Mar 2, 2026</span><span>⏱ 6 min read</span></div>
                     </div>
                 </div>
 
                 <!-- Forex -->
-                <div class="blog-card" data-category="forex">
+                <div class="blog-card" data-category="forex" onclick="openBlogModal(2)">
                     <img src="images/blog-header.png" alt="EUR/USD Analysis" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(0,210,211,0.15);color:var(--accent-teal);"
                             data-i18n="filter-forex">Forex</span>
-                        <h4><a href="#" data-i18n="blog-card-2-title">Euro vs Dollar: How Interest Rate Decisions Shape
-                                EUR/USD</a></h4>
+                        <h4><span data-i18n="blog-card-2-title" style="color:var(--primary-light);cursor:pointer;">Euro
+                                vs Dollar: How Interest Rate Decisions Shape EUR/USD</span></h4>
                         <p data-i18n="blog-card-2-desc">Understanding the impact of central bank policies on the world's
-                            most traded currency pair.
+                            most traded currency pair. 💱
                         </p>
-                        <div class="blog-card-meta"><span>Mar 6, 2026</span><span>7 min read</span></div>
+                        <div class="blog-card-meta"><span>📅 Mar 6, 2026</span><span>⏱ 7 min read</span></div>
                     </div>
                 </div>
 
-                <div class="blog-card" data-category="forex">
+                <div class="blog-card" data-category="forex" onclick="openBlogModal(3)">
                     <img src="images/blog-header.png" alt="Forex Risk Management" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(0,210,211,0.15);color:var(--accent-teal);"
                             data-i18n="filter-forex">Forex</span>
-                        <h4><a href="#" data-i18n="blog-card-3-title">Mastering Forex Risk Management: The 2% Rule
-                                Explained</a></h4>
+                        <h4><span data-i18n="blog-card-3-title"
+                                style="color:var(--primary-light);cursor:pointer;">Mastering Forex Risk Management: The
+                                2% Rule Explained</span></h4>
                         <p data-i18n="blog-card-3-desc">Why professional traders never risk more than 2% per trade and
-                            how to implement this rule.
+                            how to implement this rule. 🛡️
                         </p>
-                        <div class="blog-card-meta"><span>Mar 3, 2026</span><span>5 min read</span></div>
+                        <div class="blog-card-meta"><span>📅 Mar 3, 2026</span><span>⏱ 5 min read</span></div>
                     </div>
                 </div>
 
                 <!-- US Stocks -->
-                <div class="blog-card" data-category="stocks">
+                <div class="blog-card" data-category="stocks" onclick="openBlogModal(4)">
                     <img src="images/blog-header.png" alt="Tech Stocks" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(108,92,231,0.15);color:var(--primary-light);"
                             data-i18n="filter-stocks">US Stocks</span>
-                        <h4><a href="#" data-i18n="blog-card-4-title">NVIDIA & AI Boom: Is the Tech Rally
-                                Sustainable?</a></h4>
+                        <h4><span data-i18n="blog-card-4-title"
+                                style="color:var(--primary-light);cursor:pointer;">NVIDIA & AI Boom: Is the Tech
+                                Rally
+                                Sustainable?</span></h4>
                         <p data-i18n="blog-card-4-desc">Analyzing whether AI-driven tech stocks can maintain their
-                            momentum amid rising valuations.
+                            momentum amid rising valuations. 🤖
                         </p>
-                        <div class="blog-card-meta"><span>Mar 7, 2026</span><span>6 min read</span></div>
+                        <div class="blog-card-meta"><span>📅 Mar 7, 2026</span><span>⏱ 6 min read</span></div>
                     </div>
                 </div>
 
-                <div class="blog-card" data-category="stocks">
+                <div class="blog-card" data-category="stocks" onclick="openBlogModal(5)">
                     <img src="images/blog-header.png" alt="Dividend Stocks" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(108,92,231,0.15);color:var(--primary-light);"
                             data-i18n="filter-stocks">US Stocks</span>
-                        <h4><a href="#" data-i18n="blog-card-5-title">Best Dividend Stocks for Passive Income in
-                                2026</a></h4>
+                        <h4><span data-i18n="blog-card-5-title" style="color:var(--primary-light);cursor:pointer;">Best
+                                Dividend Stocks for Passive Income in 2026</span></h4>
                         <p data-i18n="blog-card-5-desc">Build a reliable income stream with these high-yield,
-                            fundamentally strong dividend payers.
+                            fundamentally strong dividend payers. 💰
                         </p>
-                        <div class="blog-card-meta"><span>Mar 1, 2026</span><span>7 min read</span></div>
+                        <div class="blog-card-meta"><span>📅 Mar 1, 2026</span><span>⏱ 7 min read</span></div>
                     </div>
                 </div>
 
                 <!-- Saudi Market -->
-                <div class="blog-card" data-category="saudi">
+                <div class="blog-card" data-category="saudi" onclick="openBlogModal(6)">
                     <img src="images/blog-header.png" alt="Vision 2030" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(0,184,148,0.15);color:var(--accent-emerald);"
                             data-i18n="filter-saudi">Saudi Market</span>
-                        <h4><a href="#" data-i18n="blog-card-6-title">Vision 2030 Update: Top Saudi Stocks to Watch This
-                                Quarter</a>
-                        </h4>
+                        <h4><span data-i18n="blog-card-6-title"
+                                style="color:var(--primary-light);cursor:pointer;">Vision 2030 Update: Top Saudi Stocks
+                                to Watch This Quarter</span></h4>
                         <p data-i18n="blog-card-6-desc">As Saudi Arabia's transformation accelerates, these sectors and
                             stocks offer significant
-                            opportunities.</p>
-                        <div class="blog-card-meta"><span>Mar 4, 2026</span><span>6 min read</span></div>
+                            opportunities. 🇸🇦</p>
+                        <div class="blog-card-meta"><span>📅 Mar 4, 2026</span><span>⏱ 6 min read</span></div>
                     </div>
                 </div>
 
-                <div class="blog-card" data-category="saudi">
+                <div class="blog-card" data-category="saudi" onclick="openBlogModal(7)">
                     <img src="images/blog-header.png" alt="Aramco Analysis" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(0,184,148,0.15);color:var(--accent-emerald);"
                             data-i18n="filter-saudi">Saudi Market</span>
-                        <h4><a href="#" data-i18n="blog-card-7-title">Saudi Aramco Deep Dive: Is the World's Largest
-                                Company Still
-                                Undervalued?</a></h4>
+                        <h4><span data-i18n="blog-card-7-title" style="color:var(--primary-light);cursor:pointer;">Saudi
+                                Aramco Deep Dive: Is the World's Largest Company Still Undervalued?</span></h4>
                         <p data-i18n="blog-card-7-desc">A fundamental analysis of Saudi Aramco's earnings, dividends,
-                            and growth potential.</p>
-                        <div class="blog-card-meta"><span>Feb 28, 2026</span><span>9 min read</span></div>
+                            and growth potential. 🛢️</p>
+                        <div class="blog-card-meta"><span>📅 Feb 28, 2026</span><span>⏱ 9 min read</span></div>
                     </div>
                 </div>
 
                 <!-- Education -->
-                <div class="blog-card" data-category="education">
+                <div class="blog-card" data-category="education" onclick="openBlogModal(8)">
                     <img src="images/blog-header.png" alt="Trading Psychology" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(253,121,168,0.15);color:var(--accent-rose);"
                             data-i18n="filter-education">Education</span>
-                        <h4><a href="#" data-i18n="blog-card-8-title">Trading Psychology: How to Control Fear and
-                                Greed</a></h4>
+                        <h4><span data-i18n="blog-card-8-title"
+                                style="color:var(--primary-light);cursor:pointer;">Trading Psychology: How to Control
+                                Fear and Greed</span></h4>
                         <p data-i18n="blog-card-8-desc">The mental frameworks professional traders use to stay
-                            disciplined during volatile markets.
+                            disciplined during volatile markets. 🧠
                         </p>
-                        <div class="blog-card-meta"><span>Feb 25, 2026</span><span>8 min read</span></div>
+                        <div class="blog-card-meta"><span>📅 Feb 25, 2026</span><span>⏱ 8 min read</span></div>
                     </div>
                 </div>
 
-                <div class="blog-card" data-category="education">
+                <div class="blog-card" data-category="education" onclick="openBlogModal(9)">
                     <img src="images/blog-header.png" alt="Technical Analysis" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(253,121,168,0.15);color:var(--accent-rose);"
                             data-i18n="filter-education">Education</span>
-                        <h4><a href="#" data-i18n="blog-card-9-title">Technical Analysis 101: Chart Patterns Every
-                                Trader Must Know</a>
-                        </h4>
+                        <h4><span data-i18n="blog-card-9-title"
+                                style="color:var(--primary-light);cursor:pointer;">Technical Analysis 101: Chart
+                                Patterns Every Trader Must Know</span></h4>
                         <p data-i18n="blog-card-9-desc">From head and shoulders to double bottoms — the patterns that
-                            signal major moves.</p>
-                        <div class="blog-card-meta"><span>Feb 22, 2026</span><span>10 min read</span></div>
+                            signal major moves. 📉</p>
+                        <div class="blog-card-meta"><span>📅 Feb 22, 2026</span><span>⏱ 10 min read</span></div>
                     </div>
                 </div>
 
                 <!-- Tools & Strategy -->
-                <div class="blog-card" data-category="tools">
+                <div class="blog-card" data-category="tools" onclick="openBlogModal(10)">
                     <img src="images/blog-header.png" alt="Position Sizing" class="blog-card-image">
                     <div class="blog-card-body">
                         <span class="blog-card-tag" style="background:rgba(116,185,255,0.15);color:var(--info);"
                             data-i18n="filter-strategy">Strategy</span>
-                        <h4><a href="#" data-i18n="blog-card-10-title">Position Sizing: The Most Important Tool You're
-                                Not Using</a>
-                        </h4>
+                        <h4><span data-i18n="blog-card-10-title"
+                                style="color:var(--primary-light);cursor:pointer;">Position Sizing: The Most Important
+                                Tool You're Not Using</span></h4>
                         <p data-i18n="blog-card-10-desc">Why proper position sizing matters more than your entry
                             strategy and how CalcWise tools can
-                            help.</p>
-                        <div class="blog-card-meta"><span>Feb 20, 2026</span><span>5 min read</span></div>
+                            help. 📐</p>
+                        <div class="blog-card-meta"><span>📅 Feb 20, 2026</span><span>⏱ 5 min read</span></div>
                     </div>
                 </div>
             </div>
@@ -252,8 +256,8 @@
     <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);">
         <div class="container">
             <div class="text-center reveal" style="max-width:550px;margin:0 auto;">
-                <h2><span data-i18n="blog-newsletter-title-1">Stay</span> <span class="text-gold"
-                        data-i18n="blog-newsletter-title-2">Informed</span></h2>
+                <h2>📩 <span data-i18n="blog-newsletter-title-1">Stay</span> <span class="text-gold"
+                        data-i18n="blog-newsletter-title-2">Informed</span> ✨</h2>
                 <p style="color:var(--text-secondary);margin:var(--space-md) 0 var(--space-xl);"
                     data-i18n="blog-newsletter-desc">Get weekly market
                     insights, trading tips, and exclusive analysis delivered to your inbox.</p>
@@ -302,6 +306,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- BLOG CONTENT MODAL -->
+    <div class="modal-overlay" id="blogModal" onclick="closeBlogModal()">
+        <div class="modal-content blog-modal-content reveal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeBlogModal()">&times;</button>
+            <div id="blogContentArea">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 
 
