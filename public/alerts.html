@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Alerts — CalcWise</title>
+    <meta name="description" content="Set real-time price alerts for crypto, stocks, forex and Saudi market assets. Never miss a trading opportunity.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔔</text></svg>">
+    <style>
+        .alerts-hero {
+            padding: calc(var(--header-height) + var(--space-2xl)) 0 var(--space-2xl);
+            text-align: center;
+            background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(108,92,231,0.18) 0%, transparent 70%);
+        }
+        .alerts-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--space-md); }
+        .alerts-hero p { color: var(--text-secondary); max-width: 560px; margin: 0 auto; }
+
+        .alerts-layout { display: grid; grid-template-columns: 400px 1fr; gap: var(--space-xl); align-items: start; }
+
+        .alert-form-card { position: sticky; top: calc(var(--header-height) + var(--space-md)); }
+        .alert-form-card .card { padding: var(--space-xl); }
+
+        .price-direction-toggle { display: flex; gap: var(--space-sm); margin-bottom: var(--space-md); }
+        .dir-btn {
+            flex: 1; padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--border-default); border-radius: var(--radius-sm);
+            background: var(--bg-input); color: var(--text-secondary);
+            cursor: pointer; font-size: 0.9rem; transition: all var(--transition-fast); text-align: center;
+        }
+        .dir-btn.active.up { background: var(--success-bg); border-color: var(--success); color: var(--success); }
+        .dir-btn.active.down { background: var(--danger-bg); border-color: var(--danger); color: var(--danger); }
+
+        .alerts-list { display: flex; flex-direction: column; gap: var(--space-md); }
+        .alert-card {
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg); padding: var(--space-lg) var(--space-xl);
+            display: flex; align-items: center; gap: var(--space-lg);
+            transition: all var(--transition-base); position: relative; overflow: hidden;
+        }
+        .alert-card::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+        }
+        .alert-card.up::before { background: var(--success); }
+        .alert-card.down::before { background: var(--danger); }
+        .alert-card:hover { border-color: var(--border-default); transform: translateX(4px); }
+
+        .alert-icon {
+            width: 48px; height: 48px; border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .alert-icon img { width: 32px; height: 32px; object-fit: contain; border-radius: 50%; }
+
+        .alert-info { flex: 1; }
+        .alert-info .asset-name { font-weight: 700; font-size: 1rem; }
+        .alert-info .alert-condition { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+        .alert-target {
+            font-family: var(--font-mono); font-weight: 700; font-size: 1.1rem;
+            text-align: right;
+        }
+        .alert-target.up { color: var(--success); }
+        .alert-target.down { color: var(--danger); }
+
+        .alert-status {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 0.75rem; padding: 3px 10px; border-radius: var(--radius-full);
+            background: var(--success-bg); color: var(--success);
+        }
+        .alert-status.triggered { background: var(--warning-bg); color: var(--warning); }
+
+        .alert-delete-btn {
+            width: 32px; height: 32px; border-radius: var(--radius-sm);
+            background: var(--danger-bg); color: var(--danger); border: none;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; transition: all var(--transition-fast); flex-shrink: 0;
+        }
+        .alert-delete-btn:hover { background: var(--danger); color: #fff; }
+
+        .empty-alerts {
+            text-align: center; padding: var(--space-3xl);
+            color: var(--text-muted); font-size: 0.95rem;
+        }
+        .empty-alerts .icon { font-size: 3rem; margin-bottom: var(--space-md); }
+
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        .stat-mini {
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md); padding: var(--space-md) var(--space-lg);
+            text-align: center;
+        }
+        .stat-mini .val { font-size: 1.5rem; font-weight: 700; font-family: var(--font-mono); }
+        .stat-mini .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        @media (max-width: 900px) {
+            .alerts-layout { grid-template-columns: 1fr; }
+            .alert-form-card { position: static; }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date()); gtag("config", "G-CQ0F5LVG3J");
+    </script>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo"><div class="logo-icon">📊</div> CalcWise</a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <a class="dropdown-trigger">Markets</a>
+                    <div class="dropdown-menu">
+                        <a href="crypto.html"><span class="dropdown-icon">₿</span> Cryptocurrency</a>
+                        <a href="forex.html"><span class="dropdown-icon">💱</span> Forex</a>
+                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> US Stocks</a>
+                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> Saudi Market</a>
+                    </div>
+                </div>
+                <a href="blog.html">Blog</a>
+                <a href="tools.html">Tools</a>
+            </div>
+            <div class="nav-actions">
+                <div class="toggle-pill lang-toggle"><span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span><span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span></div>
+                <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
+                <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">Get Started</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="alerts-hero">
+        <div class="container">
+            <div class="badge" style="margin-bottom:var(--space-md);">🔔 Smart Price Alerts</div>
+            <h1>Never Miss a <span class="text-gradient">Market Move</span></h1>
+            <p>Set custom price alerts for any asset. Get notified the moment markets reach your target price.</p>
+        </div>
+    </section>
+
+    <div class="container" style="padding-bottom:var(--space-3xl);">
+
+        <!-- STATS BAR -->
+        <div class="stats-bar">
+            <div class="stat-mini">
+                <div class="val" id="totalAlertsCount" style="color:var(--primary-light);">0</div>
+                <div class="lbl">Active Alerts</div>
+            </div>
+            <div class="stat-mini">
+                <div class="val" id="triggeredAlertsCount" style="color:var(--warning);">0</div>
+                <div class="lbl">Triggered Today</div>
+            </div>
+            <div class="stat-mini">
+                <div class="val" id="upAlertsCount" style="color:var(--success);">0</div>
+                <div class="lbl">Above Target</div>
+            </div>
+        </div>
+
+        <div class="alerts-layout">
+            <!-- CREATE ALERT FORM -->
+            <div class="alert-form-card">
+                <div class="card card-glass">
+                    <h3 style="margin-bottom:var(--space-lg);font-size:1.1rem;">➕ Create New Alert</h3>
+                    <form id="alertForm" onsubmit="createAlert(event)">
+                        <div class="form-group">
+                            <label>Asset Symbol / Name</label>
+                            <input type="text" class="form-control" id="alert-symbol" placeholder="e.g. BTC, AAPL, EURUSD" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Market</label>
+                            <select class="form-control" id="alert-market">
+                                <option value="Crypto">Cryptocurrency</option>
+                                <option value="US Stocks">US Stocks</option>
+                                <option value="Saudi">Saudi Market</option>
+                                <option value="Forex">Forex</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Alert Direction</label>
+                            <div class="price-direction-toggle">
+                                <div class="dir-btn active up" id="dirUp" onclick="setDirection('up')">📈 Price Above</div>
+                                <div class="dir-btn down" id="dirDown" onclick="setDirection('down')">📉 Price Below</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Target Price ($)</label>
+                            <input type="number" class="form-control" id="alert-price" placeholder="e.g. 105000" step="any" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Note (optional)</label>
+                            <input type="text" class="form-control" id="alert-note" placeholder="e.g. Resistance level break">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">🔔 Set Alert</button>
+                    </form>
+                </div>
+
+                <!-- QUICK PRESETS -->
+                <div class="card" style="margin-top:var(--space-md);padding:var(--space-lg);">
+                    <h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:var(--space-md);">⚡ Quick Presets</h4>
+                    <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
+                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('BTC','Crypto','up',110000,'ATH Breakout')">₿ BTC above $110,000</button>
+                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('ETH','Crypto','up',5000,'Ethereum Target')">Ξ ETH above $5,000</button>
+                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('AAPL','US Stocks','up',260,'Apple Breakout')">🍎 AAPL above $260</button>
+                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('NVDA','US Stocks','down',800,'NVDA Support')">🟢 NVDA below $800</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALERTS LIST -->
+            <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
+                    <h2 style="font-size:1.1rem;">Your Alerts</h2>
+                    <button class="btn btn-outline btn-sm" onclick="clearAllAlerts()" style="color:var(--danger);border-color:var(--danger);">🗑️ Clear All</button>
+                </div>
+                <div class="alerts-list" id="alertsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="js/main.js"></script>
+    <script>
+        let alertDirection = 'up';
+
+        function setDirection(dir) {
+            alertDirection = dir;
+            document.getElementById('dirUp').classList.toggle('active', dir === 'up');
+            document.getElementById('dirDown').classList.toggle('active', dir === 'down');
+        }
+
+        function getAlerts() {
+            return JSON.parse(localStorage.getItem('calcwise_alerts') || '[]');
+        }
+        function saveAlerts(alerts) {
+            localStorage.setItem('calcwise_alerts', JSON.stringify(alerts));
+        }
+
+        function renderAlerts() {
+            const alerts = getAlerts();
+            const list = document.getElementById('alertsList');
+            document.getElementById('totalAlertsCount').textContent = alerts.length;
+            document.getElementById('triggeredAlertsCount').textContent = alerts.filter(a => a.triggered).length;
+            document.getElementById('upAlertsCount').textContent = alerts.filter(a => a.direction === 'up').length;
+
+            if (!alerts.length) {
+                list.innerHTML = `<div class="empty-alerts"><div class="icon">🔕</div><p>No alerts set yet. Create your first price alert to get started.</p></div>`;
+                return;
+            }
+
+            list.innerHTML = alerts.map((a, i) => `
+                <div class="alert-card ${a.direction}" style="animation:fadeInUp 0.3s ease ${i * 0.05}s both;">
+                    <div class="alert-icon" style="background:${a.direction === 'up' ? 'var(--success-bg)' : 'var(--danger-bg)'};">
+                        ${a.icon ? `<img src="${a.icon}" alt="${a.symbol}" onerror="this.parentNode.textContent='💰'">` : '💰'}
+                    </div>
+                    <div class="alert-info">
+                        <div class="asset-name">${a.symbol} <span style="font-weight:400;color:var(--text-muted);font-size:0.85rem;">(${a.market})</span></div>
+                        <div class="alert-condition">
+                            ${a.direction === 'up' ? '📈 Triggers when price goes <b>above</b>' : '📉 Triggers when price goes <b>below</b>'}
+                            ${a.note ? ` · <i>${a.note}</i>` : ''}
+                        </div>
+                        <div style="margin-top:var(--space-sm);">
+                            <span class="alert-status ${a.triggered ? 'triggered' : ''}">
+                                ${a.triggered ? '⚡ Triggered' : '⏳ Watching'}
+                            </span>
+                            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:var(--space-sm);">${new Date(a.createdAt).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="alert-target ${a.direction}">$${Number(a.targetPrice).toLocaleString()}</div>
+                    </div>
+                    <button class="alert-delete-btn" onclick="deleteAlert(${i})" title="Delete alert">✕</button>
+                </div>
+            `).join('');
+        }
+
+        function createAlert(e) {
+            e.preventDefault();
+            const symbol = document.getElementById('alert-symbol').value.toUpperCase().trim();
+            const market = document.getElementById('alert-market').value;
+            const targetPrice = parseFloat(document.getElementById('alert-price').value);
+            const note = document.getElementById('alert-note').value.trim();
+
+            if (!symbol || isNaN(targetPrice)) {
+                showToast('error', 'Please fill in all required fields.');
+                return;
+            }
+
+            const iconMap = {
+                'BTC': 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
+                'ETH': 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+                'SOL': 'https://cryptologos.cc/logos/solana-sol-logo.png',
+                'AAPL': 'https://logo.clearbit.com/apple.com',
+                'NVDA': 'https://logo.clearbit.com/nvidia.com',
+                'TSLA': 'https://logo.clearbit.com/tesla.com',
+            };
+
+            const alert = {
+                id: Date.now(),
+                symbol,
+                market,
+                direction: alertDirection,
+                targetPrice,
+                note,
+                icon: iconMap[symbol] || null,
+                triggered: false,
+                createdAt: new Date().toISOString()
+            };
+
+            const alerts = getAlerts();
+            alerts.unshift(alert);
+            saveAlerts(alerts);
+            renderAlerts();
+            e.target.reset();
+            showToast('success', `🔔 Alert set for ${symbol} ${alertDirection === 'up' ? 'above' : 'below'} $${targetPrice.toLocaleString()}`);
+        }
+
+        function presetAlert(symbol, market, direction, price, note) {
+            document.getElementById('alert-symbol').value = symbol;
+            document.getElementById('alert-market').value = market;
+            document.getElementById('alert-price').value = price;
+            document.getElementById('alert-note').value = note;
+            setDirection(direction);
+            showToast('success', `✅ Preset loaded — click "Set Alert" to confirm.`);
+        }
+
+        function deleteAlert(index) {
+            const alerts = getAlerts();
+            const sym = alerts[index].symbol;
+            alerts.splice(index, 1);
+            saveAlerts(alerts);
+            renderAlerts();
+            showToast('success', `Alert for ${sym} removed.`);
+        }
+
+        function clearAllAlerts() {
+            if (!getAlerts().length) return;
+            if (confirm('Remove all price alerts?')) {
+                saveAlerts([]);
+                renderAlerts();
+                showToast('success', 'All alerts cleared.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAlerts);
+    </script>
+
+    <!-- FLOATING THEME TOGGLE -->
+    <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
+</body>
+</html>

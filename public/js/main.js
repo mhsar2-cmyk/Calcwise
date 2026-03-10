@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initDashboard();
     updateLastUpdated();
     checkAuth();
+    initAIAssistant();
+    initEconomicCalendar();
 
     // Auto-refresh dashboard prices every 30s
     setInterval(() => {
@@ -1742,4 +1744,151 @@ async function handleJournalSubmit(e) {
         console.error('Journal save error:', error);
         showToast('error', 'Failed to save trade record.');
     }
+}
+
+// ===== AI MARKET ASSISTANT =====
+function initAIAssistant() {
+    // Inject the widget HTML into every page
+    if (document.getElementById('aiAssistantBtn')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'aiAssistantBtn';
+    btn.title = 'AI Market Assistant';
+    btn.style.position = 'relative';
+    btn.innerHTML = '🤖<span class="notif-dot"></span>';
+    btn.onclick = toggleAIChat;
+    document.body.appendChild(btn);
+
+    const chat = document.createElement('div');
+    chat.id = 'aiChat';
+    chat.innerHTML = `
+        <div class="ai-chat-header">
+            <div class="ai-avatar">🤖</div>
+            <div class="ai-info">
+                <div class="name">CalcWise AI</div>
+                <div class="status">● Online · Market Assistant</div>
+            </div>
+            <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
+        </div>
+        <div class="ai-chat-messages" id="aiMessages">
+            <div class="ai-msg bot">
+                👋 Hi! I'm your <strong>AI Market Assistant</strong>. Ask me about market trends, trading strategies, or how to use CalcWise features!
+            </div>
+        </div>
+        <div class="ai-quick-replies">
+            <button class="ai-quick-btn" onclick="sendAIMessage('📈 What is the market trend today?')">📈 Market trend</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('💡 Give me a trading tip')">💡 Trading tip</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('₿ Tell me about Bitcoin')">₿ Bitcoin</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('🛡️ What is risk management?')">🛡️ Risk mgmt</button>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="aiInput" placeholder="Ask anything about markets..." onkeydown="if(event.key==='Enter') sendAIMessage()">
+            <button onclick="sendAIMessage()">➤</button>
+        </div>
+    `;
+    document.body.appendChild(chat);
+}
+
+function toggleAIChat() {
+    const chat = document.getElementById('aiChat');
+    if (chat) chat.classList.toggle('open');
+    // Remove notif dot when opened
+    const dot = document.querySelector('#aiAssistantBtn .notif-dot');
+    if (dot) dot.style.display = 'none';
+}
+
+const AI_RESPONSES = {
+    'bitcoin|btc': '₿ <strong>Bitcoin (BTC)</strong> is the world\'s first and largest cryptocurrency by market cap. It\'s often called "digital gold" and is used as a store of value. BTC has a fixed supply of 21 million coins and operates on a decentralized blockchain. Consider using our <a href="crypto.html" style="color:var(--primary-light)">Crypto Market page</a> to track live BTC prices.',
+    'ethereum|eth': 'Ξ <strong>Ethereum (ETH)</strong> is a programmable blockchain that powers smart contracts and DeFi applications. It\'s the second-largest crypto by market cap. The network shifted to Proof-of-Stake in 2022, making it more energy-efficient.',
+    'forex|currency exchange|fx': '💱 <strong>Forex (FX)</strong> is the global market for trading currencies. It\'s the largest financial market in the world with $7.5 trillion traded daily. Major pairs include EUR/USD, GBP/USD, and USD/JPY. Check our <a href="forex.html" style="color:var(--primary-light)">Forex page</a> for live rates.',
+    'trend|market trend|bull|bear': '📊 Markets move in trends: <strong>Uptrend (Bullish)</strong> = higher highs & higher lows. <strong>Downtrend (Bearish)</strong> = lower highs & lower lows. Use moving averages (MA50, MA200) to identify the dominant trend. A "golden cross" (MA50 crossing above MA200) is a bullish signal.',
+    'risk management|risk|stop loss': '🛡️ <strong>Risk Management Rules:</strong><br>• Never risk more than 1-2% of your portfolio on a single trade<br>• Always use a Stop Loss<br>• Maintain a minimum 1:2 Risk/Reward ratio<br>• Diversify across asset classes<br>Use our <a href="tools.html" style="color:var(--primary-light)">Position Sizer tool</a> to calculate exact position sizes.',
+    'trading tip|strategy|how to trade': '💡 <strong>Top Trading Tips:</strong><br>• Follow the trend — "the trend is your friend"<br>• Wait for confluence (multiple signals agreeing)<br>• Keep a trade journal to track performance<br>• Control your emotions — stick to your plan<br>• Never invest money you cannot afford to lose',
+    'portfolio|holdings|assets': '📊 Your <strong>Portfolio Dashboard</strong> tracks all your assets in one place. You can add crypto, stocks, forex, and Saudi market holdings. The dashboard shows real-time P&L, best performers, and allocation charts. <a href="dashboard.html" style="color:var(--primary-light)">View Dashboard →</a>',
+    'alert|notification|price alert': '🔔 <strong>Price Alerts</strong> let you set target prices for any asset. When the market reaches your target, you get notified immediately. Go to <a href="alerts.html" style="color:var(--primary-light)">Price Alerts →</a> to set yours!',
+    'saudi|tadawul|aramco|tasi': '🇸🇦 The <strong>Saudi Market (Tadawul)</strong> is the largest stock exchange in the Middle East. Key stocks include Saudi Aramco (2222), Al Rajhi Bank (1120), and STC (7010). The TASI index tracks top Saudi shares. <a href="saudi-market.html" style="color:var(--primary-light)">View Saudi Market →</a>',
+    'stocks|shares|equity|usa|us market': '🏛️ <strong>US Stock Market</strong> includes NYSE and NASDAQ. Major indices are S&P 500, NASDAQ, and Dow Jones. Top stocks: AAPL, NVDA, TSLA, MSFT. The US market is open Mon–Fri, 9:30 AM – 4:00 PM ET. <a href="us-market.html" style="color:var(--primary-light)">View US Stocks →</a>',
+    'calcwise|features|tools|platform': '✨ <strong>CalcWise Features:</strong><br>📊 Portfolio tracking<br>📈 4 market pages (Crypto, Forex, US, Saudi)<br>🛠️ 5+ financial tools<br>🔔 Price alerts<br>📓 Trade journal<br>🤖 AI assistant (that\'s me!)<br>⚙️ Settings & profile<br><br>All free, forever.',
+    'inflation|interest rate|fed|central bank': '🏦 <strong>Interest Rates & Inflation</strong> have a huge impact on markets. When the Fed raises rates, bonds become more attractive and stocks often drop. When rates fall, risk assets like crypto and growth stocks tend to rally. Keep an eye on the Economic Calendar for Fed meeting dates!',
+    'dca|dollar cost averaging': '📉 <strong>Dollar Cost Averaging (DCA)</strong> means investing a fixed amount at regular intervals regardless of price. This strategy reduces the impact of volatility and removes the stress of timing the market. Great for long-term crypto and stock investors.',
+};
+
+function getAIResponse(msg) {
+    const lowerMsg = msg.toLowerCase();
+    for (const [keywords, response] of Object.entries(AI_RESPONSES)) {
+        if (keywords.split('|').some(k => lowerMsg.includes(k))) {
+            return response;
+        }
+    }
+    // Default response
+    const defaults = [
+        '🤔 Great question! While I\'m still learning, I suggest checking our <a href="blog.html" style="color:var(--primary-light)">blog</a> for in-depth market analysis.',
+        '📊 I\'d recommend using our <a href="tools.html" style="color:var(--primary-light)">financial tools</a> to help with that calculation!',
+        '💡 That\'s an interesting topic! For real-time data, check our market pages: <a href="crypto.html" style="color:var(--primary-light)">Crypto</a>, <a href="us-market.html" style="color:var(--primary-light)">US Stocks</a>, or <a href="forex.html" style="color:var(--primary-light)">Forex</a>.',
+        '🎯 Good thinking! Remember to always manage your risk — never risk more than 1-2% per trade. Use our <a href="tools.html" style="color:var(--primary-light)">Position Sizer</a> for precise calculations.',
+    ];
+    return defaults[Math.floor(Math.random() * defaults.length)];
+}
+
+function sendAIMessage(preset) {
+    const input = document.getElementById('aiInput');
+    const msg = preset || (input ? input.value.trim() : '');
+    if (!msg) return;
+
+    const messages = document.getElementById('aiMessages');
+    if (!messages) return;
+
+    // Add user message
+    messages.innerHTML += `<div class="ai-msg user">${msg}</div>`;
+    if (input) input.value = '';
+
+    // Show typing indicator
+    const typing = document.createElement('div');
+    typing.className = 'ai-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    // Simulate thinking delay
+    setTimeout(() => {
+        typing.remove();
+        const response = getAIResponse(msg);
+        messages.innerHTML += `<div class="ai-msg bot">${response}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+    }, 800 + Math.random() * 600);
+}
+
+// ===== ECONOMIC CALENDAR =====
+function initEconomicCalendar() {
+    const container = document.getElementById('economicCalendar');
+    if (!container) return;
+
+    const today = new Date();
+    const fmt = (h, m) => {
+        const d = new Date(today);
+        d.setHours(h, m, 0);
+        return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    };
+
+    const events = [
+        { time: fmt(9, 30), name: 'US Non-Farm Payrolls', country: '🇺🇸 USD', impact: 'high' },
+        { time: fmt(10, 0), name: 'US Consumer Price Index (CPI)', country: '🇺🇸 USD', impact: 'high' },
+        { time: fmt(14, 0), name: 'Federal Reserve Interest Decision', country: '🇺🇸 USD', impact: 'high' },
+        { time: fmt(10, 30), name: 'US Initial Jobless Claims', country: '🇺🇸 USD', impact: 'medium' },
+        { time: fmt(12, 0), name: 'EU ECB Rate Decision', country: '🇪🇺 EUR', impact: 'high' },
+        { time: fmt(8, 30), name: 'UK GDP Monthly Estimate', country: '🇬🇧 GBP', impact: 'medium' },
+        { time: fmt(11, 0), name: 'Saudi TASI Open', country: '🇸🇦 SAR', impact: 'low' },
+        { time: fmt(16, 0), name: 'US ISM Manufacturing PMI', country: '🇺🇸 USD', impact: 'medium' },
+    ].sort((a, b) => a.time.localeCompare(b.time));
+
+    container.innerHTML = events.map(ev => `
+        <div class="calendar-event">
+            <div class="event-impact ${ev.impact}" title="${ev.impact} impact"></div>
+            <div class="event-info">
+                <div class="event-name">${ev.name}</div>
+                <div class="event-meta">${ev.country} · ${ev.impact === 'high' ? '🔴 High' : ev.impact === 'medium' ? '🟡 Medium' : '🟢 Low'} Impact</div>
+            </div>
+            <div class="event-time">${ev.time}</div>
+        </div>
+    `).join('');
 }

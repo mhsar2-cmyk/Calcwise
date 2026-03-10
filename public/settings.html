@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — CalcWise</title>
+    <meta name="description" content="Manage your CalcWise account settings: profile, preferences, security, and notifications.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+    <style>
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: var(--space-xl);
+            min-height: calc(100vh - var(--header-height));
+            padding-top: calc(var(--header-height) + var(--space-xl));
+            padding-bottom: var(--space-3xl);
+        }
+
+        .settings-sidebar {
+            position: sticky;
+            top: calc(var(--header-height) + var(--space-md));
+            height: fit-content;
+        }
+
+        .settings-nav {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .settings-nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.9rem;
+        }
+
+        .settings-nav-item:last-child { border: none; }
+        .settings-nav-item:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .settings-nav-item.active { background: rgba(108,92,231,0.12); color: var(--primary-light); border-right: 3px solid var(--primary); }
+        .settings-nav-item .nav-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+
+        .settings-section { display: none; }
+        .settings-section.active { display: block; }
+
+        .settings-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .settings-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .avatar-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .avatar-circle:hover { transform: scale(1.05); }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .toggle-row:last-child { border: none; }
+        .toggle-row .info .title { font-size: 0.9rem; font-weight: 500; }
+        .toggle-row .info .desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+        .toggle-switch .slider {
+            position: absolute;
+            inset: 0;
+            background: var(--border-default);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .toggle-switch .slider::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+
+        .toggle-switch input:checked + .slider { background: var(--primary); }
+        .toggle-switch input:checked + .slider::before { transform: translateX(20px); }
+
+        .danger-zone {
+            background: var(--danger-bg);
+            border: 1px solid rgba(255,107,107,0.2);
+        }
+
+        .danger-zone h3 { color: var(--danger); border-bottom-color: rgba(255,107,107,0.2); }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-sm);
+        }
+
+        .currency-btn {
+            padding: var(--space-sm);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-sm);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: all var(--transition-fast);
+        }
+
+        .currency-btn.active {
+            background: rgba(108,92,231,0.15);
+            border-color: var(--primary);
+            color: var(--primary-light);
+        }
+
+        .stat-overview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            text-align: center;
+        }
+
+        .stat-box .val { font-size: 1.4rem; font-weight: 700; font-family: var(--font-mono); }
+        .stat-box .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+        @media (max-width: 900px) {
+            .settings-layout { grid-template-columns: 1fr; }
+            .settings-sidebar { position: static; }
+            .settings-nav { display: flex; overflow-x: auto; border-radius: var(--radius-md); }
+            .settings-nav-item { white-space: nowrap; border-bottom: none; border-right: 1px solid var(--border-subtle); flex-direction: column; gap: 4px; padding: var(--space-sm) var(--space-md); font-size: 0.78rem; }
+            .settings-nav-item:last-child { border: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .currency-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ0F5LVG3J');</script>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo"><div class="logo-icon">📊</div> CalcWise</a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <a class="dropdown-trigger">Markets</a>
+                    <div class="dropdown-menu">
+                        <a href="crypto.html"><span class="dropdown-icon">₿</span> Cryptocurrency</a>
+                        <a href="forex.html"><span class="dropdown-icon">💱</span> Forex</a>
+                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> US Stocks</a>
+                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> Saudi Market</a>
+                    </div>
+                </div>
+                <a href="blog.html">Blog</a>
+                <a href="tools.html">Tools</a>
+            </div>
+            <div class="nav-actions">
+                <div class="toggle-pill lang-toggle"><span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span><span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span></div>
+                <a href="dashboard.html" class="btn btn-ghost btn-sm">Dashboard</a>
+                <button class="btn btn-primary btn-sm" onclick="handleLogout()">Log Out</button>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="container settings-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="settings-sidebar">
+            <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-md);text-align:center;">
+                <div class="avatar-circle" id="avatarCircle" style="margin:0 auto var(--space-md);" onclick="document.getElementById('avatarInput').click()">U</div>
+                <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="handleAvatarUpload(this)">
+                <div id="settingsUserName" style="font-weight:600;">User</div>
+                <div id="settingsUserEmail" style="font-size:0.8rem;color:var(--text-muted);margin-top:2px;"></div>
+                <a href="dashboard.html" class="btn btn-outline btn-sm" style="margin-top:var(--space-md);width:100%;">← Back to Dashboard</a>
+            </div>
+
+            <div class="settings-nav">
+                <div class="settings-nav-item active" onclick="showTab('profile')">
+                    <span class="nav-icon">👤</span> Profile
+                </div>
+                <div class="settings-nav-item" onclick="showTab('preferences')">
+                    <span class="nav-icon">⚙️</span> Preferences
+                </div>
+                <div class="settings-nav-item" onclick="showTab('notifications')">
+                    <span class="nav-icon">🔔</span> Notifications
+                </div>
+                <div class="settings-nav-item" onclick="showTab('security')">
+                    <span class="nav-icon">🔐</span> Security
+                </div>
+                <div class="settings-nav-item" onclick="showTab('data')">
+                    <span class="nav-icon">📊</span> My Data
+                </div>
+                <div class="settings-nav-item" onclick="showTab('danger')" style="color:var(--danger);">
+                    <span class="nav-icon">⚠️</span> Danger Zone
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <main>
+
+            <!-- PROFILE -->
+            <div class="settings-section active" id="tab-profile">
+                <div class="settings-card">
+                    <h3>👤 Profile Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" id="profile-first" placeholder="First name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" id="profile-last" placeholder="Last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" id="profile-email" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Trading Experience</label>
+                        <select class="form-control" id="profile-experience">
+                            <option value="beginner">Beginner (Less than 1 year)</option>
+                            <option value="intermediate">Intermediate (1–3 years)</option>
+                            <option value="advanced">Advanced (3–7 years)</option>
+                            <option value="expert">Expert (7+ years)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bio / Trading Style</label>
+                        <textarea class="form-control" id="profile-bio" rows="3" placeholder="e.g. Swing trader focused on crypto and US equities..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveProfile()">💾 Save Profile</button>
+                </div>
+            </div>
+
+            <!-- PREFERENCES -->
+            <div class="settings-section" id="tab-preferences">
+                <div class="settings-card">
+                    <h3>🌐 Display & Language</h3>
+                    <div class="form-group">
+                        <label>Language</label>
+                        <select class="form-control" id="pref-lang" onchange="toggleLanguage(this.value)">
+                            <option value="en">English</option>
+                            <option value="ar">العربية (Arabic)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Theme</label>
+                        <div style="display:flex;gap:var(--space-md);">
+                            <div class="dir-btn active" id="themeDark" onclick="setThemePref('dark')" style="flex:1;text-align:center;padding:var(--space-md);border:1px solid var(--border-default);border-radius:var(--radius-sm);cursor:pointer;">🌙 Dark</div>
+                            <div class="dir-btn" id="themeLight" onclick="setThemePref('light')" style="flex:1;text-align:center;padding:var(--space-md);border:1px solid var(--border-default);border-radius:var(--radius-sm);cursor:pointer;">☀️ Light</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-card">
+                    <h3>💰 Default Currency</h3>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-md);">Portfolio values will be displayed in this currency.</p>
+                    <div class="currency-grid" id="currencyGrid">
+                        <div class="currency-btn active" onclick="setCurrency('USD')">🇺🇸 USD</div>
+                        <div class="currency-btn" onclick="setCurrency('EUR')">🇪🇺 EUR</div>
+                        <div class="currency-btn" onclick="setCurrency('GBP')">🇬🇧 GBP</div>
+                        <div class="currency-btn" onclick="setCurrency('SAR')">🇸🇦 SAR</div>
+                        <div class="currency-btn" onclick="setCurrency('JPY')">🇯🇵 JPY</div>
+                        <div class="currency-btn" onclick="setCurrency('AED')">🇦🇪 AED</div>
+                        <div class="currency-btn" onclick="setCurrency('CAD')">🇨🇦 CAD</div>
+                        <div class="currency-btn" onclick="setCurrency('AUD')">🇦🇺 AUD</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOTIFICATIONS -->
+            <div class="settings-section" id="tab-notifications">
+                <div class="settings-card">
+                    <h3>🔔 Notification Settings</h3>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">Price Alert Notifications</div>
+                            <div class="desc">Get notified when your price alerts trigger</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notif-price" checked onchange="savePref('notif-price', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">Portfolio Performance Summary</div>
+                            <div class="desc">Daily digest of your portfolio's performance</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notif-portfolio" checked onchange="savePref('notif-portfolio', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">Market Open / Close Alerts</div>
+                            <div class="desc">Alerts at NYSE, LSE, and Tadawul market open/close</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notif-market" onchange="savePref('notif-market', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">New Blog & Market Insights</div>
+                            <div class="desc">Get notified when we publish new expert analysis</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notif-blog" onchange="savePref('notif-blog', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">Product Updates</div>
+                            <div class="desc">New features, tools, and platform improvements</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notif-updates" checked onchange="savePref('notif-updates', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="settings-section" id="tab-security">
+                <div class="settings-card">
+                    <h3>🔐 Change Password</h3>
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" class="form-control" id="sec-current" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" id="sec-new" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" class="form-control" id="sec-confirm" placeholder="••••••••">
+                    </div>
+                    <button class="btn btn-primary" onclick="changePassword()">🔐 Update Password</button>
+                </div>
+                <div class="settings-card">
+                    <h3>📱 Active Sessions</h3>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:var(--space-md);background:var(--bg-secondary);border-radius:var(--radius-md);">
+                        <div>
+                            <div style="font-weight:500;font-size:0.9rem;">This Device · Browser</div>
+                            <div style="font-size:0.78rem;color:var(--text-muted);">Last active: just now · Current session</div>
+                        </div>
+                        <span style="padding:3px 10px;font-size:0.75rem;background:var(--success-bg);color:var(--success);border-radius:var(--radius-full);">Active</span>
+                    </div>
+                    <button class="btn btn-outline btn-sm" style="margin-top:var(--space-md);color:var(--danger);border-color:rgba(255,107,107,0.3);" onclick="handleLogout()">🚪 Sign Out of All Devices</button>
+                </div>
+            </div>
+
+            <!-- MY DATA -->
+            <div class="settings-section" id="tab-data">
+                <div class="settings-card">
+                    <h3>📊 My Stats</h3>
+                    <div class="stat-overview">
+                        <div class="stat-box">
+                            <div class="val" id="stat-holdings" style="color:var(--primary-light);">0</div>
+                            <div class="lbl">Holdings</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="val" id="stat-alerts" style="color:var(--accent-gold);">0</div>
+                            <div class="lbl">Active Alerts</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="val" id="stat-trades" style="color:var(--success);">0</div>
+                            <div class="lbl">Journal Trades</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-card">
+                    <h3>📥 Data Export</h3>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-lg);">Download all your CalcWise data in a portable format.</p>
+                    <div style="display:flex;gap:var(--space-md);">
+                        <button class="btn btn-outline" onclick="exportData('portfolio')">📊 Export Portfolio</button>
+                        <button class="btn btn-outline" onclick="exportData('journal')">📓 Export Journal</button>
+                        <button class="btn btn-outline" onclick="exportData('alerts')">🔔 Export Alerts</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DANGER ZONE -->
+            <div class="settings-section" id="tab-danger">
+                <div class="settings-card danger-zone">
+                    <h3>⚠️ Danger Zone</h3>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">Clear Portfolio Data</div>
+                            <div class="desc">Remove all holdings from your portfolio. This cannot be undone.</div>
+                        </div>
+                        <button class="btn btn-sm" style="background:var(--danger-bg);color:var(--danger);border:1px solid rgba(255,107,107,0.3);" onclick="clearPortfolio()">Clear Portfolio</button>
+                    </div>
+                    <div class="toggle-row">
+                        <div class="info">
+                            <div class="title">Clear All Alerts</div>
+                            <div class="desc">Delete all price alerts you have set.</div>
+                        </div>
+                        <button class="btn btn-sm" style="background:var(--danger-bg);color:var(--danger);border:1px solid rgba(255,107,107,0.3);" onclick="clearAllData('alerts')">Clear Alerts</button>
+                    </div>
+                    <div class="toggle-row" style="border:none;">
+                        <div class="info">
+                            <div class="title" style="color:var(--danger);font-weight:700;">Delete Account</div>
+                            <div class="desc">Permanently delete your account and all associated data.</div>
+                        </div>
+                        <button class="btn btn-sm" style="background:var(--danger);color:white;" onclick="deleteAccount()">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="js/main.js"></script>
+    <script>
+        function showTab(tab) {
+            document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.settings-nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function loadProfileData() {
+            const user = JSON.parse(localStorage.getItem('calcwise_user') || '{}');
+            const prefs = JSON.parse(localStorage.getItem('calcwise_prefs') || '{}');
+            
+            if (user.firstName) {
+                document.getElementById('profile-first').value = user.firstName || '';
+                document.getElementById('profile-last').value = user.lastName || '';
+                document.getElementById('profile-email').value = user.email || '';
+                document.getElementById('settingsUserName').textContent = `${user.firstName} ${user.lastName || ''}`.trim();
+                document.getElementById('settingsUserEmail').textContent = user.email || '';
+                document.getElementById('avatarCircle').textContent = (user.firstName || 'U')[0].toUpperCase();
+                if (prefs.experience) document.getElementById('profile-experience').value = prefs.experience;
+                if (prefs.bio) document.getElementById('profile-bio').value = prefs.bio;
+            }
+
+            // Load notification prefs
+            ['notif-price','notif-portfolio','notif-market','notif-blog','notif-updates'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && prefs[id] !== undefined) el.checked = prefs[id];
+            });
+
+            // Load currency pref
+            const cur = prefs.currency || 'USD';
+            document.querySelectorAll('.currency-btn').forEach(b => {
+                b.classList.toggle('active', b.textContent.includes(cur));
+            });
+
+            // Load theme
+            const theme = localStorage.getItem('calcwise_theme') || 'dark';
+            document.getElementById('themeDark').style.background = theme === 'dark' ? 'rgba(108,92,231,0.15)' : '';
+            document.getElementById('themeLight').style.background = theme === 'light' ? 'rgba(108,92,231,0.15)' : '';
+
+            // Stats
+            const holdings = JSON.parse(localStorage.getItem('calcwise_holdings') || '[]');
+            const alertsData = JSON.parse(localStorage.getItem('calcwise_alerts') || '[]');
+            const journal = JSON.parse(localStorage.getItem('calcwise_journal') || '[]');
+            document.getElementById('stat-holdings').textContent = holdings.length;
+            document.getElementById('stat-alerts').textContent = alertsData.length;
+            document.getElementById('stat-trades').textContent = journal.length;
+        }
+
+        function saveProfile() {
+            const user = JSON.parse(localStorage.getItem('calcwise_user') || '{}');
+            user.firstName = document.getElementById('profile-first').value.trim();
+            user.lastName = document.getElementById('profile-last').value.trim();
+            user.email = document.getElementById('profile-email').value.trim();
+            localStorage.setItem('calcwise_user', JSON.stringify(user));
+            
+            const prefs = JSON.parse(localStorage.getItem('calcwise_prefs') || '{}');
+            prefs.experience = document.getElementById('profile-experience').value;
+            prefs.bio = document.getElementById('profile-bio').value;
+            localStorage.setItem('calcwise_prefs', JSON.stringify(prefs));
+            
+            showToast('success', '✅ Profile saved successfully!');
+            loadProfileData();
+        }
+
+        function savePref(key, value) {
+            const prefs = JSON.parse(localStorage.getItem('calcwise_prefs') || '{}');
+            prefs[key] = value;
+            localStorage.setItem('calcwise_prefs', JSON.stringify(prefs));
+        }
+
+        function setCurrency(cur) {
+            document.querySelectorAll('.currency-btn').forEach(b => {
+                b.classList.toggle('active', b.textContent.includes(cur));
+            });
+            savePref('currency', cur);
+            showToast('success', `💰 Default currency set to ${cur}`);
+        }
+
+        function setThemePref(theme) {
+            toggleTheme(theme);
+            document.getElementById('themeDark').style.background = theme === 'dark' ? 'rgba(108,92,231,0.15)' : '';
+            document.getElementById('themeLight').style.background = theme === 'light' ? 'rgba(108,92,231,0.15)' : '';
+        }
+
+        function changePassword() {
+            const current = document.getElementById('sec-current').value;
+            const newPass = document.getElementById('sec-new').value;
+            const confirm = document.getElementById('sec-confirm').value;
+            if (!current || !newPass) return showToast('error', 'Please fill in all fields.');
+            if (newPass !== confirm) return showToast('error', 'New passwords do not match!');
+            if (newPass.length < 8) return showToast('error', 'Password must be at least 8 characters.');
+            showToast('success', '🔐 Password updated successfully!');
+            document.getElementById('sec-current').value = '';
+            document.getElementById('sec-new').value = '';
+            document.getElementById('sec-confirm').value = '';
+        }
+
+        function handleAvatarUpload(input) {
+            if (!input.files || !input.files[0]) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const circle = document.getElementById('avatarCircle');
+                circle.style.background = `url(${e.target.result}) center/cover`;
+                circle.textContent = '';
+                showToast('success', '🖼️ Avatar updated!');
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function exportData(type) {
+            let data, filename;
+            if (type === 'portfolio') {
+                data = localStorage.getItem('calcwise_holdings') || '[]';
+                filename = 'calcwise_portfolio.json';
+            } else if (type === 'journal') {
+                data = localStorage.getItem('calcwise_journal') || '[]';
+                filename = 'calcwise_journal.json';
+            } else {
+                data = localStorage.getItem('calcwise_alerts') || '[]';
+                filename = 'calcwise_alerts.json';
+            }
+            const blob = new Blob([data], {type: 'application/json'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            a.click();
+            showToast('success', `✅ ${filename} downloaded!`);
+        }
+
+        function clearPortfolio() {
+            if (confirm('Clear all portfolio holdings? This cannot be undone.')) {
+                localStorage.removeItem('calcwise_holdings');
+                showToast('success', '🗑️ Portfolio cleared.');
+                loadProfileData();
+            }
+        }
+
+        function clearAllData(type) {
+            if (confirm(`Clear all ${type}?`)) {
+                localStorage.removeItem('calcwise_' + type);
+                showToast('success', `✅ ${type} cleared.`);
+                loadProfileData();
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm('⚠️ This will permanently delete your account. Are you sure?')) {
+                if (confirm('Last chance — this is irreversible. Continue?')) {
+                    ['calcwise_logged_in','calcwise_token','calcwise_user','calcwise_holdings','calcwise_alerts','calcwise_journal','calcwise_prefs'].forEach(k => localStorage.removeItem(k));
+                    showToast('success', 'Account deleted. Goodbye! 👋');
+                    setTimeout(() => window.location.href = 'index.html', 1500);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProfileData);
+    </script>
+
+    <!-- FLOATING THEME TOGGLE -->
+    <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
+</body>
+</html>
