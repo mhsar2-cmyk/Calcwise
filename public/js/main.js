@@ -3,6 +3,18 @@
  * Handles navigation, auth, tools, dashboard, and UI interactions
  */
 
+async function secureFetch(url, options = {}) {
+    const token = localStorage.getItem('calcwise_token');
+    const headers = {
+        'Content-Type': 'application/json',
+        ...options.headers
+    };
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    return fetch(url, { ...options, headers });
+}
+
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
@@ -14,6 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initDashboard();
     updateLastUpdated();
     checkAuth();
+
+    // Auto-refresh dashboard prices every 30s
+    setInterval(() => {
+        if (document.getElementById('holdingsBody')) {
+            initDashboard();
+        }
+    }, 30000);
 });
 
 // ===== THEME TOGGLE (Dark / Light) =====
@@ -87,17 +106,17 @@ const translations = {
     'features-title-1': { en: 'Why Choose', ar: 'لماذا تختار' },
     'features-title-2': { en: 'CalcWise', ar: 'CalcWise' },
     'features-desc': { en: 'Powerful features designed for both beginners and professionals', ar: 'ميزات قوية مصممة للمبتدئين والمحترفين على حد سواء' },
-    'feature-1-title': { en: 'Real-Time Data', ar: 'بيانات لحظية' },
-    'feature-1-desc': { en: 'Live prices, charts, and market data updated in real-time across all four market platforms.', ar: 'أسعار ورسوم بيانية وبيانات سوقية محدّثة لحظياً عبر المنصات الأربع.' },
-    'feature-2-title': { en: 'Financial Calculators', ar: 'حاسبات مالية' },
+    'feature-1-title': { en: 'Real-Time Tracking ⚡', ar: 'تتبع لحظي ⚡' },
+    'feature-1-desc': { en: 'Stay updated with live feeds for 10,000+ assets across global markets.', ar: 'ابقَ على اطلاع مع تغذيات مباشرة لأكثر من ١٠,٠٠٠ أصل عبر الأسواق العالمية.' },
+    'feature-2-title': { en: 'Financial Calculators 🧮', ar: 'حاسبات مالية 🧮' },
     'feature-2-desc': { en: 'Position sizer, profit calculator, currency converter, and more tools at your fingertips.', ar: 'حاسبة حجم المركز، حاسبة الأرباح، محوّل العملات، والمزيد.' },
-    'feature-3-title': { en: 'Expert Blog', ar: 'مدونة الخبراء' },
-    'feature-3-desc': { en: 'Stay informed with daily market analysis, trading strategies, and financial education.', ar: 'ابقَ على اطلاع بتحليلات السوق اليومية واستراتيجيات التداول والتعليم المالي.' },
-    'feature-4-title': { en: 'Advanced Charts', ar: 'رسوم بيانية متقدمة' },
+    'feature-3-title': { en: 'Secure & Free ✨', ar: 'آمن ومجاني ✨' },
+    'feature-3-desc': { en: 'Access institutional-grade financial tools without any subscription fees.', ar: 'الوصول إلى أدوات مالية احترافية دون أي رسوم اشتراك.' },
+    'feature-4-title': { en: 'Advanced Charts 📈', ar: 'رسوم بيانية متقدمة 📈' },
     'feature-4-desc': { en: 'Interactive TradingView charts with technical indicators, drawing tools, and multi-timeframe analysis.', ar: 'رسوم بيانية تفاعلية من TradingView مع مؤشرات فنية وأدوات رسم.' },
-    'feature-5-title': { en: 'Portfolio Dashboard', ar: 'لوحة المحفظة' },
-    'feature-5-desc': { en: 'Track your holdings in crypto, stocks, and forex with a personalized dashboard and alerts.', ar: 'تتبع ممتلكاتك في العملات الرقمية والأسهم والفوركس بلوحة تحكم مخصصة.' },
-    'feature-6-title': { en: 'Multi-Market Access', ar: 'وصول متعدد الأسواق' },
+    'feature-5-title': { en: 'Portfolio Dashboard 🔐', ar: 'لوحة المحفظة 🔐' },
+    'feature-5-desc': { en: 'Track your holdings in crypto, stocks, and forex with a personalized dashboard and alerts.', ar: 'تتبع ممتلكاتك في الكريبتو والأسهم والفوركس بلوحة تحكم مخصصة.' },
+    'feature-6-title': { en: 'Multi-Market Access 🌍', ar: 'وصول متعدد الأسواق 🌍' },
     'feature-6-desc': { en: 'One platform covering crypto, forex, American stocks, and the Saudi Arabian exchange.', ar: 'منصة واحدة تغطي الكريبتو والفوركس والأسهم الأمريكية والسوق السعودي.' },
 
     // ---- BLOG SECTION (HOME) ----
@@ -137,6 +156,12 @@ const translations = {
     'footer-login': { en: 'Log In', ar: 'تسجيل الدخول' },
     'footer-signup': { en: 'Sign Up', ar: 'إنشاء حساب' },
     'footer-copyright': { en: '© 2026 CalcWise. All rights reserved.', ar: '© 2026 CalcWise. جميع الحقوق محفوظة.' },
+    'footer-tagline': { en: 'Your all-in-one financial intelligence platform.', ar: 'منصتك الشاملة للذكاء المالي.' },
+    'footer-legal': { en: 'Legal', ar: 'قانوني' },
+    'footer-about': { en: 'About Us', ar: 'من نحن' },
+    'footer-privacy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+    'footer-terms': { en: 'Terms of Service', ar: 'شروط الخدمة' },
+    'footer-contact': { en: 'Contact Us', ar: 'اتصل بنا' },
 
     // ---- PAGE HEADERS ----
     'page-crypto-title': { en: 'Cryptocurrency', ar: 'العملات الرقمية' },
@@ -177,8 +202,12 @@ const translations = {
     'auth-login-link': { en: 'Log in', ar: 'تسجيل الدخول' },
     'auth-or-email': { en: 'or continue with email', ar: 'أو المتابعة بالبريد الإلكتروني' },
     'auth-or-signup': { en: 'or sign up with email', ar: 'أو التسجيل بالبريد الإلكتروني' },
+    'auth-login-success': { en: 'Login successful! Redirecting...', ar: 'تم تسجيل الدخول بنجاح! جاري التحويل...' },
+    'auth-signup-success': { en: 'Account created! Welcome to CalcWise.', ar: 'تم إنشاء الحساب! مرحباً بك في كالك وايز.' },
+    'auth-error-password': { en: 'Passwords do not match!', ar: 'كلمات المرور غير متطابقة!' },
 
     // ---- DASHBOARD ----
+    'dash-hi': { en: 'Hi', ar: 'مرحباً' },
     'dash-title': { en: 'Portfolio Dashboard', ar: 'لوحة المحفظة' },
     'dash-add-asset': { en: '+ Add Asset', ar: '+ إضافة أصل' },
     'dash-refresh': { en: '↻ Refresh', ar: '↻ تحديث' },
@@ -206,12 +235,25 @@ const translations = {
     // ---- SIDEBAR ----
     'sidebar-overview': { en: 'Overview', ar: 'نظرة عامة' },
     'sidebar-portfolio': { en: 'Portfolio', ar: 'المحفظة' },
+    'sidebar-journal': { en: 'Trade Journal', ar: 'سجل التداول' },
     'sidebar-watchlist': { en: 'Watchlist', ar: 'المراقبة' },
     'sidebar-alerts': { en: 'Alerts', ar: 'التنبيهات' },
     'sidebar-markets': { en: 'Markets', ar: 'الأسواق' },
     'sidebar-tools': { en: 'Tools', ar: 'الأدوات' },
     'sidebar-settings': { en: 'Settings', ar: 'الإعدادات' },
     'sidebar-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
+
+    // ---- JOURNAL PAGE ----
+    'journal-title': { en: 'Trade Journal 📓', ar: 'سجل التداول 📓' },
+    'journal-subtitle': { en: 'Reflect on your trades to become a better investor.', ar: 'حلل تداولاتك لتصبح مستثمراً أفضل.' },
+    'journal-add-title': { en: 'Log New Trade', ar: 'تسجيل صفقة جديدة' },
+    'journal-th-date': { en: 'Date', ar: 'التاريخ' },
+    'journal-th-asset': { en: 'Asset', ar: 'الأصل' },
+    'journal-th-type': { en: 'Type', ar: 'النوع' },
+    'journal-th-entry': { en: 'Entry', ar: 'الدخول' },
+    'journal-th-exit': { en: 'Exit', ar: 'الخروج' },
+    'journal-th-pnl': { en: 'P/L', ar: 'الربح/الخسارة' },
+    'journal-th-notes': { en: 'Notes', ar: 'ملاحظات' },
 
     // ---- MODAL ----
     'modal-add-title': { en: 'Add Asset to Portfolio', ar: 'إضافة أصل إلى المحفظة' },
@@ -549,6 +591,46 @@ const translations = {
     'blog-read-8m': { en: '⏱ 8 min read', ar: '⏱ ٨ دقائق للقراءة' },
     'blog-read-9m': { en: '⏱ 9 min read', ar: '⏱ ٩ دقائق للقراءة' },
     'blog-read-10m': { en: '⏱ 10 min read', ar: '⏱ ١٠ دقائق للقراءة' },
+
+    // ---- ABOUT PAGE ----
+    'about-title': { en: 'Empowering Your <span class="text-gradient">Financial Future</span>', ar: 'تمكين <span class="text-gradient">مستقبلك المالي</span>' },
+    'about-subtitle': { en: 'We build the tools that professionals use, and we give them to you for free.', ar: 'نحن نبني الأدوات التي يستخدمها المحترفون، ونقدمها لك مجاناً.' },
+    'about-mission-title': { en: 'Our Mission', ar: 'مهمتنا' },
+
+    'about-stat-assets': { en: 'Assets Tracked', ar: 'أصل يتم تتبعه' },
+    'about-stat-data': { en: 'Live Data', ar: 'بيانات لحظية' },
+    'about-stat-free': { en: 'Free to Use', ar: 'مجاني تماماً' },
+    'about-stat-tools': { en: 'Expert Tools', ar: 'أداة خبيرة' },
+
+    'value-transparency-title': { en: 'Transparency', ar: 'الشفافية' },
+    'value-transparency-desc': { en: 'We believe in honest data. No hidden fees, no obscured metrics, just clear financial intelligence.', ar: 'نحن نؤمن بالبيانات الصادقة. لا توجد رسوم مخفية، ولا مقاييس غامضة، فقط معلومات مالية واضحة.' },
+    'value-speed-title': { en: 'Speed', ar: 'السرعة' },
+    'value-speed-desc': { en: 'In the markets, milliseconds matter. Our platform is optimized for the fastest data delivery possible.', ar: 'في الأسواق، الأجزاء من الثانية تهم. تم تحسين منصتنا لأسرع توصيل ممكن للبيانات.' },
+    'value-reliability-title': { en: 'Reliability', ar: 'الموثوقية' },
+    'value-reliability-desc': { en: 'Our infrastructure is built to handle high volatility and high traffic, ensuring you never miss a beat.', ar: 'بنيتنا التحتية مصممة للتعامل مع التقلبات العالية والضغط الكبير، مما يضمن عدم تفويت أي حركة.' },
+
+    // ---- CONTACT PAGE ----
+    'contact-title': { en: 'Get in <span class="text-gradient">Touch</span> ✉️', ar: 'تواصل <span class="text-gradient">معنا</span> ✉️' },
+    'contact-subtitle': { en: 'Have questions? We\'re here to help you navigate the platform.', ar: 'لديك استفسارات؟ نحن هنا لمساعدتك في استخدام المنصة.' },
+    'contact-email-label': { en: 'Email Us', ar: 'راسلنا' },
+    'contact-social-label': { en: 'Social Media', ar: 'وسائل التواصل' },
+    'contact-office-label': { en: 'Offices', ar: 'مكاتبنا' },
+    'contact-form-name': { en: 'Full Name', ar: 'الاسم الكامل' },
+    'contact-form-email': { en: 'Email Address', ar: 'البريد الإلكتروني' },
+    'contact-form-subject': { en: 'Subject', ar: 'الموضوع' },
+    'contact-form-message': { en: 'Message', ar: 'الرسالة' },
+    'contact-form-submit': { en: 'Send Message →', ar: 'إرسال الرسالة ←' },
+
+    // ---- PRIVACY & TERMS ----
+    'privacy-title': { en: 'Privacy <span class="text-gradient">Policy</span> 🛡️', ar: 'سياسة <span class="text-gradient">الخصوصية</span> 🛡️' },
+    'privacy-subtitle': { en: 'Your data is yours. Learn how we protect it.', ar: 'بياناتك ملك لك. تعرف على كيفية حمايتها.' },
+    'terms-title': { en: 'Terms of <span class="text-gradient">Service</span> ⚖️', ar: 'شروط <span class="text-gradient">الخدمة</span> ⚖️' },
+    'terms-subtitle': { en: 'The rules of the road for using CalcWise.', ar: 'قواعد الاستخدام لمنصة كالك وايز.' },
+
+    'market-crypto': { en: 'Crypto', ar: 'عملات رقمية' },
+    'market-us-stocks': { en: 'US Stocks', ar: 'أسم أمريكية' },
+    'market-saudi': { en: 'Saudi', ar: 'سوق سعودي' },
+    'market-forex': { en: 'Forex', ar: 'فوركس' },
 };
 
 function initLanguage() {
@@ -653,11 +735,11 @@ function initParticles() {
 }
 
 // ===== MARKET TICKER =====
-function initTicker() {
+async function initTicker() {
     const track = document.getElementById('tickerTrack');
     if (!track) return;
 
-    const tickerData = [
+    let tickerData = [
         { symbol: 'BTC', price: '$101,234.00', change: '+2.45%', up: true },
         { symbol: 'ETH', price: '$4,123.50', change: '+1.82%', up: true },
         { symbol: 'SOL', price: '$245.30', change: '+5.12%', up: true },
@@ -669,10 +751,24 @@ function initTicker() {
         { symbol: 'AAPL', price: '$245.67', change: '-0.85%', up: false },
         { symbol: 'NVDA', price: '$890.50', change: '+3.21%', up: true },
         { symbol: 'ARAMCO', price: 'SAR 32.10', change: '+1.20%', up: true },
-        { symbol: 'TASI', price: '12,450', change: '+0.34%', up: true },
-        { symbol: 'XRP', price: '$2.45', change: '+4.30%', up: true },
-        { symbol: 'DOGE', price: '$0.4520', change: '+6.10%', up: true },
+        { symbol: 'TASI', price: '12,450', change: '+0.34%', up: true }
     ];
+
+    try {
+        const response = await fetch('/api/market/prices');
+        const data = await response.json();
+
+        if (data && data.prices) {
+            tickerData = Object.entries(data.prices).map(([symbol, price]) => ({
+                symbol: symbol.toUpperCase(),
+                price: typeof price === 'number' ? `$${price.toLocaleString()}` : price,
+                change: (Math.random() * 4 - 1.5).toFixed(2) + '%',
+                up: Math.random() > 0.3
+            }));
+        }
+    } catch (error) {
+        console.error('Ticker fetch error:', error);
+    }
 
     // Double the items for seamless loop
     const items = [...tickerData, ...tickerData];
@@ -720,8 +816,9 @@ function checkAuth() {
     }
 }
 
-function handleLogin(e) {
+async function handleLogin(e) {
     e.preventDefault();
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
 
@@ -730,25 +827,42 @@ function handleLogin(e) {
         return;
     }
 
-    // Simulate login
-    const user = JSON.parse(localStorage.getItem('calcwise_user') || 'null');
-    if (user && user.email === email) {
-        localStorage.setItem('calcwise_logged_in', 'true');
-        showToast('success', 'Login successful! Redirecting...');
-        setTimeout(() => window.location.href = 'dashboard.html', 1500);
-    } else {
-        // For demo, log in with any credentials
-        localStorage.setItem('calcwise_logged_in', 'true');
-        if (!user) {
+    try {
+        const response = await secureFetch('/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            localStorage.setItem('calcwise_logged_in', 'true');
+            localStorage.setItem('calcwise_user', JSON.stringify(data.user));
+            // Store the JWT token for secure API calls
+            if (data.session) {
+                localStorage.setItem('calcwise_token', data.session.access_token);
+            }
+            showToast('success', translations['auth-login-success'][lang] || 'Login successful!');
+            setTimeout(() => window.location.href = 'dashboard.html', 1500);
+        } else {
+            // Fallback for demo if user not found in mock DB
+            localStorage.setItem('calcwise_logged_in', 'true');
             localStorage.setItem('calcwise_user', JSON.stringify({ firstName: 'User', email }));
+            showToast('success', translations['auth-login-success'][lang] || 'Login successful!');
+            setTimeout(() => window.location.href = 'dashboard.html', 1500);
         }
-        showToast('success', 'Login successful! Redirecting...');
+    } catch (error) {
+        console.error('Login error:', error);
+        // Fallback
+        localStorage.setItem('calcwise_logged_in', 'true');
+        showToast('success', 'Demo login successful! (API failed)');
         setTimeout(() => window.location.href = 'dashboard.html', 1500);
     }
 }
 
-function handleSignup(e) {
+async function handleSignup(e) {
     e.preventDefault();
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const firstName = document.getElementById('signup-first').value;
     const lastName = document.getElementById('signup-last').value;
     const email = document.getElementById('signup-email').value;
@@ -756,15 +870,35 @@ function handleSignup(e) {
     const confirm = document.getElementById('signup-confirm').value;
 
     if (password !== confirm) {
-        showToast('error', 'Passwords do not match!');
+        showToast('error', translations['auth-error-password'][lang]);
         return;
     }
 
-    const user = { firstName, lastName, email };
-    localStorage.setItem('calcwise_user', JSON.stringify(user));
-    localStorage.setItem('calcwise_logged_in', 'true');
-    showToast('success', `Welcome, ${firstName}! Redirecting to dashboard...`);
-    setTimeout(() => window.location.href = 'dashboard.html', 1500);
+    try {
+        const response = await secureFetch('/api/auth/signup', {
+            method: 'POST',
+            body: JSON.stringify({ firstName, lastName, email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            localStorage.setItem('calcwise_logged_in', 'true');
+            localStorage.setItem('calcwise_user', JSON.stringify(data.user));
+            showToast('success', `Welcome, ${firstName}! Redirecting...`);
+            setTimeout(() => window.location.href = 'dashboard.html', 1500);
+        } else {
+            showToast('error', data.message || 'Signup failed.');
+        }
+    } catch (error) {
+        console.error('Signup error:', error);
+        // Fallback for demo
+        const user = { firstName, lastName, email };
+        localStorage.setItem('calcwise_user', JSON.stringify(user));
+        localStorage.setItem('calcwise_logged_in', 'true');
+        showToast('success', `Welcome, ${firstName}! (Local Mode)`);
+        setTimeout(() => window.location.href = 'dashboard.html', 1500);
+    }
 }
 
 function handleLogout() {
@@ -988,14 +1122,135 @@ function calculateRiskReward() {
 }
 
 // ===== DASHBOARD =====
-function initDashboard() {
+async function initDashboard() {
     const holdingsBody = document.getElementById('holdingsBody');
     if (!holdingsBody) return;
 
-    const holdings = getHoldings();
-    renderHoldings(holdings);
-    updateStats(holdings);
-    renderPortfolioChart();
+    holdingsBody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">⌛ Loading your portfolio...</td></tr>';
+
+    try {
+        // Fetch Portfolio
+        const portResponse = await secureFetch('/api/portfolio');
+        const portData = await portResponse.json();
+        const holdings = portData.holdings;
+
+        renderHoldings(holdings);
+        updateStats(holdings);
+        renderPortfolioChart();
+        updateLastUpdated();
+
+        // Fetch Watchlist
+        initWatchlist();
+
+        // Fetch Activity
+        initActivity();
+
+        // Session Clock
+        initSessionClock();
+
+        // Update User Name
+        const user = JSON.parse(localStorage.getItem('calcwise_user') || '{"firstName": "User"}');
+        const userEl = document.getElementById('dashboardUser');
+        if (userEl) userEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName} 👋`;
+
+    } catch (error) {
+        console.error('Failed to load portfolio:', error);
+        const holdings = getHoldings();
+        renderHoldings(holdings);
+        updateStats(holdings);
+        renderPortfolioChart();
+    }
+}
+
+async function initWatchlist() {
+    const container = document.getElementById('watchlistContainer');
+    if (!container) return;
+
+    try {
+        const response = await fetch('/api/market/watchlist');
+        const data = await response.json();
+
+        container.innerHTML = data.watchlist.map(item => `
+            <div class="watchlist-item">
+                <div class="asset-name">
+                    <span class="asset-icon" style="background:${item.bg};">${item.icon}</span>
+                    <div>
+                        <div style="font-weight:500;">${item.name}</div>
+                        <div style="font-size:0.78rem;color:var(--text-muted);">${item.symbol}</div>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <div style="font-family:var(--font-mono);font-weight:500;">$${item.price.toLocaleString()}</div>
+                    <div style="font-size:0.78rem;color:${item.change.startsWith('+') ? 'var(--success)' : 'var(--danger)'};">${item.change}</div>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Watchlist fetch error:', error);
+    }
+}
+
+async function initActivity() {
+    const container = document.getElementById('activityContainer');
+    if (!container) return;
+
+    try {
+        const response = await secureFetch('/api/journal');
+        const data = await response.json();
+
+        if (data.success && data.journal.length > 0) {
+            container.innerHTML = data.journal.slice(0, 5).map(j => `
+                <div class="activity-item">
+                    <div class="activity-icon" style="background:${j.pnl >= 0 ? 'var(--success-bg)' : 'var(--danger-bg)'};">${j.pnl >= 0 ? '📈' : '📉'}</div>
+                    <div class="activity-info">
+                        <div class="title">Journaled: ${j.asset} ${j.type}</div>
+                        <div class="time">${j.date}</div>
+                    </div>
+                    <div class="activity-amount" style="color:${j.pnl >= 0 ? 'var(--success)' : 'var(--danger)'};">${j.pnl >= 0 ? '+' : ''}$${j.pnl.toFixed(0)}</div>
+                </div>
+            `).join('');
+        }
+    } catch (error) {
+        console.error('Activity fetch error:', error);
+    }
+}
+
+// ===== SESSION CLOCK =====
+function initSessionClock() {
+    const el = document.getElementById('sessionClock');
+    if (!el) return;
+
+    function updateSessions() {
+        const now = new Date();
+        const hours = now.getUTCHours();
+
+        // Simplified session times (UTC)
+        const sessions = [
+            { name: 'London', start: 8, end: 17, icon: '🇬🇧' },
+            { name: 'New York', start: 13, end: 22, icon: '🇺🇸' },
+            { name: 'Tokyo', start: 0, end: 9, icon: '🇯🇵' },
+            { name: 'Sydney', start: 22, end: 7, icon: '🇦🇺' }
+        ];
+
+        el.innerHTML = sessions.map(s => {
+            let isOpen = false;
+            if (s.start < s.end) {
+                isOpen = hours >= s.start && hours < s.end;
+            } else { // Over midnight
+                isOpen = hours >= s.start || hours < s.end;
+            }
+
+            return `
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; color:${isOpen ? 'var(--text-primary)' : 'var(--text-muted)'};">
+                    <span>${s.icon} ${s.name}</span>
+                    <span style="font-weight:600; color:${isOpen ? 'var(--success)' : 'var(--text-muted)'};">${isOpen ? 'OPEN' : 'CLOSED'}</span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    updateSessions();
+    setInterval(updateSessions, 60000);
 }
 
 function getHoldings() {
@@ -1016,9 +1271,10 @@ function renderHoldings(holdings) {
     if (!tbody) return;
 
     tbody.innerHTML = holdings.map(h => {
+        const avgCost = h.avg_cost || h.avgCost;
         const value = h.qty * h.currentPrice;
-        const pnl = (h.currentPrice - h.avgCost) * h.qty;
-        const change = ((h.currentPrice - h.avgCost) / h.avgCost) * 100;
+        const pnl = (h.currentPrice - avgCost) * h.qty;
+        const change = ((h.currentPrice - avgCost) / avgCost) * 100;
         const isPositive = pnl >= 0;
 
         return `
@@ -1032,13 +1288,14 @@ function renderHoldings(holdings) {
             </div>
           </div>
         </td>
-        <td><span style="font-size:0.82rem;color:var(--text-secondary);">${h.market}</span></td>
+        <td><span style="font-size:0.82rem;color:var(--text-secondary);">${translations['market-' + h.market.toLowerCase().replace(' ', '-')][lang]}</span></td>
         <td style="font-family:var(--font-mono);">${h.qty}</td>
-        <td style="font-family:var(--font-mono);">$${h.avgCost.toLocaleString()}</td>
+        <td style="font-family:var(--font-mono);">$${avgCost.toLocaleString()}</td>
         <td style="font-family:var(--font-mono);">$${h.currentPrice.toLocaleString()}</td>
         <td style="font-family:var(--font-mono);font-weight:600;">$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
         <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};">${isPositive ? '+' : ''}$${pnl.toFixed(2)}</td>
         <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};">${isPositive ? '↑' : '↓'} ${Math.abs(change).toFixed(2)}%</td>
+        <td style="text-align:right;"><button class="btn btn-ghost btn-sm" onclick="handleDeleteAsset('${h.id}')" style="color:var(--danger);padding:2px 8px;">✕</button></td>
       </tr>
     `;
     }).join('');
@@ -1046,7 +1303,7 @@ function renderHoldings(holdings) {
 
 function updateStats(holdings) {
     const totalValue = holdings.reduce((sum, h) => sum + h.qty * h.currentPrice, 0);
-    const totalCost = holdings.reduce((sum, h) => sum + h.qty * h.avgCost, 0);
+    const totalCost = holdings.reduce((sum, h) => sum + h.qty * (h.avg_cost || h.avgCost), 0);
     const totalPL = totalValue - totalCost;
     const totalPLPct = (totalPL / totalCost) * 100;
 
@@ -1066,13 +1323,16 @@ function updateStats(holdings) {
     // Best performer
     let best = holdings[0];
     holdings.forEach(h => {
-        const changePct = ((h.currentPrice - h.avgCost) / h.avgCost) * 100;
-        const bestChange = ((best.currentPrice - best.avgCost) / best.avgCost) * 100;
+        const hAvgCost = h.avg_cost || h.avgCost;
+        const bestAvgCost = best.avg_cost || best.avgCost;
+        const changePct = ((h.currentPrice - hAvgCost) / hAvgCost) * 100;
+        const bestChange = ((best.currentPrice - bestAvgCost) / bestAvgCost) * 100;
         if (changePct > bestChange) best = h;
     });
 
     if (el('bestPerformer')) el('bestPerformer').textContent = best.symbol;
-    const bestChangePct = ((best.currentPrice - best.avgCost) / best.avgCost) * 100;
+    const lastBestAvgCost = best.avg_cost || best.avgCost;
+    const bestChangePct = ((best.currentPrice - lastBestAvgCost) / lastBestAvgCost) * 100;
     if (el('bestPerformerChange')) el('bestPerformerChange').textContent = `↑ +${bestChangePct.toFixed(1)}%`;
 }
 
@@ -1107,7 +1367,7 @@ function closeModal(id) {
     if (modal) modal.classList.remove('active');
 }
 
-function addAsset(e) {
+async function addAsset(e) {
     e.preventDefault();
     const market = document.getElementById('asset-market').value;
     const name = document.getElementById('asset-name').value;
@@ -1118,37 +1378,55 @@ function addAsset(e) {
     const marketNames = { crypto: 'Crypto', forex: 'Forex', 'us-stocks': 'US Stocks', saudi: 'Saudi' };
     const marketColors = { crypto: 'var(--accent-gold)', forex: 'var(--accent-teal)', 'us-stocks': 'var(--primary)', saudi: 'var(--accent-emerald)' };
 
-    const holdings = getHoldings();
-    holdings.push({
+    const assetData = {
         name: name,
         symbol: name.substring(0, 4).toUpperCase(),
         market: marketNames[market],
         qty: qty,
         avgCost: cost,
-        currentPrice: cost * (1 + (Math.random() * 0.2 - 0.05)),
         icon: marketIcons[market],
         color: marketColors[market]
-    });
+    };
 
-    localStorage.setItem('calcwise_holdings', JSON.stringify(holdings));
-    renderHoldings(holdings);
-    updateStats(holdings);
-    closeModal('addAssetModal');
-    showToast('success', `${name} added to your portfolio! 🎉`);
+    try {
+        const response = await secureFetch('/api/portfolio', {
+            method: 'POST',
+            body: JSON.stringify(assetData)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showToast('success', 'Asset added to portfolio! 🚀');
+            closeModal('addAssetModal');
+            initDashboard(); // Refresh UI
+        }
+    } catch (error) {
+        console.error('Failed to add asset:', error);
+        showToast('error', 'Failed to save asset.');
+    }
 }
 
-function refreshDashboard() {
-    const holdings = getHoldings();
-    // Simulate price changes
-    holdings.forEach(h => {
-        h.currentPrice *= (1 + (Math.random() * 0.04 - 0.02));
-    });
-    localStorage.setItem('calcwise_holdings', JSON.stringify(holdings));
-    renderHoldings(holdings);
-    updateStats(holdings);
-    renderPortfolioChart();
-    updateLastUpdated();
+async function refreshDashboard() {
+    await initDashboard();
     showToast('success', 'Dashboard refreshed with latest data! 📊');
+}
+
+async function handleDeleteAsset(id) {
+    if (!confirm('Are you sure you want to remove this asset?')) return;
+
+    try {
+        const response = await secureFetch(`/api/portfolio/${id}`, { method: 'DELETE' });
+        const data = await response.json();
+
+        if (data.success) {
+            showToast('success', 'Asset removed from portfolio.');
+            initDashboard(); // Refresh
+        }
+    } catch (error) {
+        console.error('Delete error:', error);
+        showToast('error', 'Failed to remove asset.');
+    }
 }
 
 function updateLastUpdated() {
@@ -1215,4 +1493,81 @@ function closeBlogModal() {
     const modal = document.getElementById('blogModal');
     if (modal) modal.classList.remove('active');
     document.body.style.overflow = 'auto';
+}
+
+// ===== TRADE JOURNAL =====
+async function initJournal() {
+    const journalBody = document.getElementById('journalBody');
+    if (!journalBody) return;
+
+    try {
+        const response = await secureFetch('/api/journal');
+        const data = await response.json();
+
+        if (data.success) {
+            renderJournal(data.journal);
+        }
+
+        // Update User Name
+        const user = JSON.parse(localStorage.getItem('calcwise_user') || '{"firstName": "User"}');
+        const userEl = document.getElementById('dashboardUser');
+        if (userEl) userEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName} 👋`;
+    } catch (error) {
+        console.error('Journal fetch error:', error);
+    }
+}
+
+function renderJournal(entries) {
+    const tbody = document.getElementById('journalBody');
+    if (!tbody) return;
+
+    if (entries.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">No trades logged yet. Start your journey today!</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = entries.map(j => `
+        <tr>
+            <td style="font-size:0.85rem;color:var(--text-muted);">${j.date}</td>
+            <td style="font-weight:600;">${j.asset}</td>
+            <td><span class="journal-badge" style="background:${j.type === 'Long' ? 'var(--success-bg)' : 'var(--danger-bg)'};color:${j.type === 'Long' ? 'var(--success)' : 'var(--danger)'};">${j.type}</span></td>
+            <td style="font-family:var(--font-mono);">$${j.entry.toLocaleString()}</td>
+            <td style="font-family:var(--font-mono);">$${j.exit.toLocaleString()}</td>
+            <td style="font-family:var(--font-mono);color:${j.pnl >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:600;">${j.pnl >= 0 ? '+' : ''}$${j.pnl.toLocaleString()}</td>
+            <td style="font-size:0.85rem;color:var(--text-secondary);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${j.notes}">${j.notes}</td>
+        </tr>
+    `).join('');
+}
+
+async function handleJournalSubmit(e) {
+    e.preventDefault();
+    const asset = document.getElementById('trade-asset').value;
+    const type = document.getElementById('trade-type').value;
+    const entry = parseFloat(document.getElementById('trade-entry').value);
+    const exit = parseFloat(document.getElementById('trade-exit').value);
+    const qty = parseFloat(document.getElementById('trade-qty').value);
+    const notes = document.getElementById('trade-notes').value;
+
+    const pnl = (type === 'Long' ? (exit - entry) : (entry - exit)) * qty;
+
+    const tradeData = {
+        asset, type, entry, exit, qty, notes, pnl
+    };
+
+    try {
+        const response = await secureFetch('/api/journal', {
+            method: 'POST',
+            body: JSON.stringify(tradeData)
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            showToast('success', 'Trade logged successfully! 📓');
+            closeModal('addTradeModal');
+            initJournal(); // Refresh
+        }
+    } catch (error) {
+        console.error('Journal save error:', error);
+        showToast('error', 'Failed to save trade record.');
+    }
 }

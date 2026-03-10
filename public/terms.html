@@ -4,20 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Markets — CalcWise</title>
-    <meta name="description"
-        content="Live forex rates, currency charts, and market analysis. Track major, minor, and exotic currency pairs in real-time.">
+    <title>Terms of Service — CalcWise</title>
+    <meta name="description" content="Read our terms of service to understand the rules for using our platform.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag("js", new Date());
-        gtag("config", "G-CQ0F5LVG3J");
-    </script>
+    <style>
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: var(--space-3xl);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .legal-content h2 {
+            margin-top: var(--space-2xl);
+            margin-bottom: var(--space-md);
+            color: var(--primary-light);
+        }
+
+        .legal-content p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .legal-content ul {
+            margin-bottom: var(--space-md);
+            padding-left: var(--space-lg);
+        }
+
+        .legal-content li {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,18 +59,17 @@
                         <a href="forex.html"><span class="dropdown-icon">💱</span> <span
                                 data-i18n="nav-forex">Forex</span></a>
                         <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span
-                                data-i18n="nav-us-stocks">US Stocks</span></a>
+                                data-i18n="nav-us-stocks">US
+                                Stocks</span></a>
                         <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span
-                                data-i18n="nav-saudi">Saudi Market</span></a>
+                                data-i18n="nav-saudi">Saudi
+                                Market</span></a>
                     </div>
                 </div>
                 <a href="blog.html" data-i18n="nav-blog">Blog</a>
                 <a href="tools.html" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-
-
-
                 <div class="toggle-pill lang-toggle" title="Toggle language">
                     <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
                     <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
@@ -61,57 +82,56 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="page-hero"
-        style="margin-top:var(--header-height);padding:var(--space-3xl) 0 var(--space-xl);text-align:center;">
+    <!-- PAGE HEADER -->
+    <section class="page-hero" style="margin-top:var(--header-height);padding:var(--space-4xl) 0 var(--space-2xl);">
         <div class="container">
             <div class="section-header reveal">
-                <div style="font-size:3rem;margin-bottom:var(--space-md);">💱</div>
-                <h1 data-i18n="forex-hero-title">Forex <span class="text-gold">Markets</span> 💱</h1>
-                <p data-i18n="forex-hero-sub">Real-time exchange rates, interactive charts, and analysis for all major,
-                    minor, and exotic currency pairs. 📈</p>
+                <h1 data-i18n="terms-title">Terms of <span class="text-gradient">Service</span> ⚖️</h1>
+                <p data-i18n="terms-subtitle">The rules of the road for using CalcWise.</p>
             </div>
         </div>
     </section>
 
-    <!-- FOREX HEATMAP -->
+    <!-- CONTENT -->
     <section class="section">
         <div class="container">
-            <div class="widget-container reveal">
-                <div class="widget-header">
-                    <h3>🔥 Forex Heatmap</h3>
-                </div>
-                <div style="height:500px;">
-                    <div class="tradingview-widget-container" style="height:100%;width:100%">
-                        <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                        <script type="text/javascript"
-                            src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
-                                { "width": "100%", "height": "100%", "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD"], "isTransparent": true, "colorTheme": "dark", "locale": "en" }
-                            </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <article class="legal-content reveal">
+                <p><strong>Last Updated:</strong> March 10, 2026</p>
 
-    <!-- FOREX CROSS RATES -->
-    <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Forex <span class="text-teal">Cross Rates</span></h2>
-                <p>Comprehensive cross rates table for all major currencies.</p>
-            </div>
-            <div class="widget-container reveal">
-                <div style="height:500px;">
-                    <div class="tradingview-widget-container" style="height:100%;width:100%">
-                        <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                        <script type="text/javascript"
-                            src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
-                                { "width": "100%", "height": "100%", "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "SAR"], "isTransparent": true, "colorTheme": "dark", "locale": "en" }
-                            </script>
-                    </div>
-                </div>
-            </div>
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accesssing and using CalcWise, you agree to be bound by these Terms of Service and all applicable
+                    laws and regulations.</p>
+
+                <h2>2. No Financial Advice</h2>
+                <p><strong>IMPORTANT:</strong> All information provided on CalcWise is for educational and informational
+                    purposes only. CalcWise does not provide investment, tax, or legal advice. You should consult with a
+                    licensed professional before making any financial decisions.</p>
+
+                <h2>3. Use License</h2>
+                <p>You are granted a personal, non-exclusive, non-transferable license to use our tools for personal
+                    use. You may not:</p>
+                <ul>
+                    <li>Reverse engineer or attempt to extract source code.</li>
+                    <li>Use our data for commercial purposes without written consent.</li>
+                    <li>Automate extraction of data (scraping) from our platform.</li>
+                </ul>
+
+                <h2>4. Disclaimer</h2>
+                <p>Our services are provided "as is". We make no warranties regarding the accuracy, completeness, or
+                    timeliness of the market data provided. Financial markets involve significant risk.</p>
+
+                <h2>5. Limitation of Liability</h2>
+                <p>CalcWise shall not be liable for any financial losses or damages resulting from the use or inability
+                    to use our services.</p>
+
+                <h2>6. Account Responsibility</h2>
+                <p>You are responsible for maintaining the confidentiality of your account credentials and for all
+                    activities that occur under your account.</p>
+
+                <h2>7. Variations</h2>
+                <p>We may revise these terms at any time. By using this website, you agree to be bound by the current
+                    version of these Terms of Service.</p>
+            </article>
         </div>
     </section>
 
@@ -123,7 +143,7 @@
                     <a href="index.html" class="nav-logo">
                         <div class="logo-icon">📊</div> CalcWise
                     </a>
-                    <p class="mt-1" data-i18n="footer-tagline">Your all-in-one financial intelligence platform.</p>
+                    <p class="mt-1" data-i18n="footer-desc">Your all-in-one financial intelligence platform.</p>
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n="footer-markets">Markets</h5>
@@ -136,29 +156,28 @@
                     <h5 data-i18n="footer-resources">Resources</h5>
                     <a href="blog.html" data-i18n="footer-blog">Blog</a>
                     <a href="tools.html" data-i18n="footer-tools">Financial Tools</a>
-                    <a href="about.html" data-i18n="footer-about">About Us</a>
+                    <a href="about.html">About Us</a>
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n="footer-legal">Legal</h5>
-                    <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
-                    <a href="terms.html" data-i18n="footer-terms">Terms of Service</a>
-                    <a href="contact.html" data-i18n="footer-contact">Contact Us</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact.html">Contact Us</a>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span data-i18n="footer-copyright">&copy; 2026 CalcWise. All rights reserved.</span>
                 <div class="footer-social">
-                    <a href="https://twitter.com/calcwise" target="_blank" title="Twitter">𝕏</a>
-                    <a href="https://discord.gg/calcwise" target="_blank" title="Discord">💬</a>
-                    <a href="https://github.com/calcwise" target="_blank" title="GitHub">⌨</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="Discord">💬</a>
+                    <a href="#" title="GitHub">⌨</a>
                 </div>
             </div>
         </div>
     </footer>
+
     <script src="js/main.js"></script>
-
-
-    <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+    <!-- FLOATING THEME TOGGLE -->
     <div class="floating-toggles"
         onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
         title="Toggle theme">

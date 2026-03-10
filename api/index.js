@@ -1,6 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const { getMockPrices, getWatchlist } = require('./src/services/marketData');
+const { getPortfolio, addAsset, removeAsset } = require('./src/services/portfolio');
+const { login, signup } = require('./src/services/auth');
+const { getJournal, addTrade } = require('./src/services/journal');
+const authenticate = require('./src/middleware/auth');
 
 const app = express();
 
@@ -10,10 +15,101 @@ app.use(express.json());
 
 // API Routes
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', platform: 'CalcWise', version: '2.0.0' });
+    res.json({ status: 'ok', platform: 'CalcWise', version: '2.1.0' });
 });
 
-// Approximate exchange rates (for the currency converter tool)
+// Real-time Market Prices
+app.get('/api/market/prices', async (req, res) => {
+    const prices = await getMockPrices();
+    res.json({
+        prices,
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Real-time Watchlist
+app.get('/api/market/watchlist', async (req, res) => {
+    const watchlist = await getWatchlist();
+    res.json({
+        watchlist,
+        timestamp: new Date().toISOString()
+    });
+});
+
+// User Portfolio
+app.get('/api/portfolio', authenticate, async (req, res) => {
+    const userId = req.user.id;
+    const holdings = await getPortfolio(userId);
+    const prices = await getMockPrices();
+
+    // Map current prices to holdings
+    const enrichedHoldings = holdings.map(h => ({
+        ...h,
+        currentPrice: prices[h.symbol] || prices[h.name] || h.avg_cost || h.avgCost // Handle both cases
+    }));
+
+    res.json({
+        userId,
+        holdings: enrichedHoldings,
+        timestamp: new Date().toISOString()
+    });
+});
+
+app.post('/api/portfolio', authenticate, async (req, res) => {
+    try {
+        const asset = await addAsset({ ...req.body, userId: req.user.id });
+        res.status(201).json({ success: true, asset });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+});
+
+app.delete('/api/portfolio/:id', authenticate, async (req, res) => {
+    try {
+        await removeAsset(req.params.id);
+        res.json({ success: true });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// Authentication Routes
+app.post('/api/auth/signup', async (req, res) => {
+    try {
+        const user = await signup(req.body);
+        res.status(201).json({ success: true, user });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+});
+
+app.post('/api/auth/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await login(email, password);
+        res.json({ success: true, user });
+    } catch (error) {
+        res.status(401).json({ success: false, message: error.message });
+    }
+});
+
+// Trade Journal Routes
+app.get('/api/journal', authenticate, async (req, res) => {
+    const userId = req.user.id;
+    const journal = await getJournal(userId);
+    res.json({ success: true, journal });
+});
+
+app.post('/api/journal', authenticate, async (req, res) => {
+    try {
+        const trade = await addTrade({ ...req.body, userId: req.user.id });
+        res.status(201).json({ success: true, trade });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// Approximate exchange rates
 app.get('/api/rates', (req, res) => {
     res.json({
         base: 'USD',
@@ -33,7 +129,6 @@ app.get('/api/rates', (req, res) => {
 
 if (process.env.VERCEL) {
     // On Vercel: export the Express app as a serverless function
-    // Static files are served by @vercel/static (configured in vercel.json)
     module.exports = app;
 } else {
     // Locally: serve static files and listen on a port

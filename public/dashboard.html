@@ -190,8 +190,10 @@
         <aside class="dashboard-sidebar">
             <div class="sidebar-section">
                 <div class="sidebar-section-title" data-i18n="sidebar-overview">Overview</div>
-                <a href="#" class="sidebar-link active"><span class="link-icon">📊</span> <span
+                <a href="dashboard.html" class="sidebar-link active"><span class="link-icon">📊</span> <span
                         data-i18n="sidebar-portfolio">Portfolio</span></a>
+                <a href="journal.html" class="sidebar-link"><span class="link-icon">📓</span> <span
+                        data-i18n="sidebar-journal">Trade Journal</span></a>
                 <a href="#" class="sidebar-link"><span class="link-icon">👁️</span> <span
                         data-i18n="sidebar-watchlist">Watchlist</span></a>
                 <a href="#" class="sidebar-link"><span class="link-icon">🔔</span> <span
@@ -223,6 +225,13 @@
                         data-i18n="sidebar-settings">Settings</span></a>
                 <a href="#" class="sidebar-link" onclick="handleLogout()"><span class="link-icon">🚪</span> <span
                         data-i18n="sidebar-logout">Log Out</span></a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Market Sessions ⏰</div>
+                <div id="sessionClock" style="padding:var(--space-md); font-size:0.8rem;">
+                    <!-- Loaded via JS -->
+                </div>
             </div>
         </aside>
 
@@ -336,6 +345,7 @@
                                 <th data-i18n="dash-th-value">Value</th>
                                 <th data-i18n="dash-th-pl">P/L</th>
                                 <th data-i18n="dash-th-change">Change</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="holdingsBody"></tbody>
@@ -410,48 +420,49 @@
                 <div class="card">
                     <h3 style="font-size:1rem;margin-bottom:var(--space-md);" data-i18n="dash-activity">📋 Recent
                         Activity</h3>
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--success-bg);">📈</div>
-                        <div class="activity-info">
-                            <div class="title">Bought Bitcoin</div>
-                            <div class="time">2 hours ago</div>
+                    <div id="activityContainer">
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background:var(--success-bg);">📈</div>
+                            <div class="activity-info">
+                                <div class="title">Bought Bitcoin</div>
+                                <div class="time">2 hours ago</div>
+                            </div>
+                            <div class="activity-amount text-success">+0.05 BTC</div>
                         </div>
-                        <div class="activity-amount text-success">+0.05 BTC</div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--danger-bg);">📉</div>
-                        <div class="activity-info">
-                            <div class="title">Sold NVIDIA Shares</div>
-                            <div class="time">Yesterday</div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background:var(--danger-bg);">📉</div>
+                            <div class="activity-info">
+                                <div class="title">Sold NVIDIA Shares</div>
+                                <div class="time">Yesterday</div>
+                            </div>
+                            <div class="activity-amount text-danger">-10 NVDA</div>
                         </div>
-                        <div class="activity-amount text-danger">-10 NVDA</div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--info-bg);">🔔</div>
-                        <div class="activity-info">
-                            <div class="title">Price Alert Triggered</div>
-                            <div class="time">2 days ago</div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background:var(--info-bg);">🔔</div>
+                            <div class="activity-info">
+                                <div class="title">Price Alert Triggered</div>
+                                <div class="time">2 days ago</div>
+                            </div>
+                            <div class="activity-amount" style="color:var(--info);">ETH > $4,000</div>
                         </div>
-                        <div class="activity-amount" style="color:var(--info);">ETH > $4,000</div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--success-bg);">📈</div>
-                        <div class="activity-info">
-                            <div class="title">Bought Al Rajhi Bank</div>
-                            <div class="time">3 days ago</div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background:var(--success-bg);">📈</div>
+                            <div class="activity-info">
+                                <div class="title">Bought Al Rajhi Bank</div>
+                                <div class="time">3 days ago</div>
+                            </div>
+                            <div class="activity-amount text-success">+50 shares</div>
                         </div>
-                        <div class="activity-amount text-success">+50 shares</div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--warning-bg);">💱</div>
-                        <div class="activity-info">
-                            <div class="title">Opened EUR/USD Long</div>
-                            <div class="time">5 days ago</div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background:var(--warning-bg);">💱</div>
+                            <div class="activity-info">
+                                <div class="title">Opened EUR/USD Long</div>
+                                <div class="time">5 days ago</div>
+                            </div>
+                            <div class="activity-amount" style="color:var(--warning);">0.5 lot</div>
                         </div>
-                        <div class="activity-amount" style="color:var(--warning);">0.5 lot</div>
                     </div>
                 </div>
-            </div>
         </main>
     </div>
 

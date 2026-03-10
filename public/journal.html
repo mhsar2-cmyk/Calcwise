@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Journal — CalcWise</title>
+    <meta name="description"
+        content="Maintain a professional trade journal. Analysis, notes, and performance tracking for every trade.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <style>
+        .journal-table th,
+        .journal-table td {
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .journal-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">📊</div> CalcWise
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <div class="nav-dropdown">
+                    <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+                    <div class="dropdown-menu">
+                        <a href="crypto.html"><span class="dropdown-icon">₿</span> <span
+                                data-i18n="nav-crypto">Cryptocurrency</span></a>
+                        <a href="forex.html"><span class="dropdown-icon">💱</span> <span
+                                data-i18n="nav-forex">Forex</span></a>
+                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span
+                                data-i18n="nav-us-stocks">US Stocks</span></a>
+                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span
+                                data-i18n="nav-saudi">Saudi Market</span></a>
+                    </div>
+                </div>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
+                <a href="tools.html" data-i18n="nav-tools">Tools</a>
+            </div>
+            <div class="nav-actions">
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <span id="dashboardUser" style="color:var(--text-secondary);font-size:0.88rem;">Hi, User 👋</span>
+                <button class="btn btn-ghost btn-sm" onclick="handleLogout()" data-i18n="dash-logout">Log Out</button>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LAYOUT -->
+    <div class="dashboard-layout">
+        <!-- SIDEBAR -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-overview">Overview</div>
+                <a href="dashboard.html" class="sidebar-link"><span class="link-icon">📊</span> <span
+                        data-i18n="sidebar-portfolio">Portfolio</span></a>
+                <a href="#" class="sidebar-link active"><span class="link-icon">📓</span> <span
+                        data-i18n="sidebar-journal">Trade Journal</span></a>
+                <a href="#" class="sidebar-link"><span class="link-icon">👁️</span> <span
+                        data-i18n="sidebar-watchlist">Watchlist</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-markets">Markets</div>
+                <a href="crypto.html" class="sidebar-link"><span class="link-icon">₿</span> <span>Crypto</span></a>
+                <a href="forex.html" class="sidebar-link"><span class="link-icon">💱</span> <span>Forex</span></a>
+                <a href="us-market.html" class="sidebar-link"><span class="link-icon">🏛️</span> <span>US
+                        Stocks</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-tools">Tools</div>
+                <a href="tools.html" class="sidebar-link"><span class="link-icon">📐</span> <span>Calculators</span></a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <div>
+                    <h1 data-i18n="journal-title">Trade Journal 📓</h1>
+                    <p data-i18n="journal-subtitle" style="color:var(--text-muted);">Reflect on your trades to become a
+                        better investor.</p>
+                </div>
+                <button class="btn btn-primary" onclick="openModal('addTradeModal')">+ Log Trade</button>
+            </div>
+
+            <div class="card" style="padding:0; overflow:hidden;">
+                <table class="assets-table journal-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="journal-th-date">Date</th>
+                            <th data-i18n="journal-th-asset">Asset</th>
+                            <th data-i18n="journal-th-type">Type</th>
+                            <th data-i18n="journal-th-entry">Entry</th>
+                            <th data-i18n="journal-th-exit">Exit</th>
+                            <th data-i18n="journal-th-pnl">P/L</th>
+                            <th data-i18n="journal-th-notes">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="journalBody">
+                        <!-- Loaded via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="addTradeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 data-i18n="journal-add-title">Log New Trade</h3>
+                <button class="modal-close" onclick="closeModal('addTradeModal')">✕</button>
+            </div>
+            <form onsubmit="handleJournalSubmit(event)">
+                <div class="grid grid-2" style="gap:var(--space-md);">
+                    <div class="form-group">
+                        <label>Asset (e.g. BTC)</label>
+                        <input type="text" class="form-control" id="trade-asset" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="form-control" id="trade-type">
+                            <option value="Long">Long</option>
+                            <option value="Short">Short</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-2" style="gap:var(--space-md);">
+                    <div class="form-group">
+                        <label>Entry Price</label>
+                        <input type="number" step="any" class="form-control" id="trade-entry" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Exit Price</label>
+                        <input type="number" step="any" class="form-control" id="trade-exit" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" step="any" class="form-control" id="trade-qty" required>
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea class="form-control" id="trade-notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Save Trade Record</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="js/main.js"></script>
+    <script>
+        // Specific init for this page
+        document.addEventListener('DOMContentLoaded', () => {
+            initJournal();
+        });
+    </script>
+</body>
+
+</html>
