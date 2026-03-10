@@ -386,6 +386,50 @@ const translations = {
     'results-pip-desc': { en: 'Select pair and lot size to calculate pip value.', ar: 'اختر الزوج وحجم اللوت لحساب قيمة النقطة.' },
     'results-rr-desc': { en: 'Enter trade levels to calculate your risk/reward ratio.', ar: 'أدخل مستويات التداول لحساب نسبة المخاطرة إلى العائد.' },
 
+    // ---- CALCULATION RESULTS & ERRORS ----
+    'res-pos-size': { en: 'Position Size Results', ar: 'نتائج حجم المركز' },
+    'res-units': { en: 'units', ar: 'وحدة' },
+    'res-risk-amount': { en: 'Risk Amount', ar: 'مبلغ المخاطرة' },
+    'res-pos-value': { en: 'Position Value', ar: 'قيمة المركز' },
+    'res-stop-dist': { en: 'Stop Distance', ar: 'مسافة الوقف' },
+    'res-risk-trade': { en: 'Risk/Trade', ar: 'المخاطرة/الصفقة' },
+
+    'res-pl-results': { en: 'P/L Results', ar: 'نتائج الربح/الخسارة' },
+    'res-return-pct': { en: 'Return %', ar: 'العائد %' },
+    'res-entry-val': { en: 'Entry Value', ar: 'قيمة الدخول' },
+    'res-exit-val': { en: 'Exit Value', ar: 'قيمة الخروج' },
+    'res-direction': { en: 'Direction', ar: 'الاتجاه' },
+
+    'res-cc-results': { en: 'Conversion Result', ar: 'نتيجة التحويل' },
+    'res-from': { en: 'From', ar: 'من' },
+    'res-to': { en: 'To', ar: 'إلى' },
+    'res-rate': { en: 'Rate', ar: 'السعر' },
+    'res-cc-note': { en: '* Rates are approximate and for reference only.', ar: '* الأسعار تقريبية وللعلم فقط.' },
+
+    'res-ci-growth': { en: 'Growth Projection', ar: 'توقعات النمو' },
+    'res-total-invested': { en: 'Total Invested', ar: 'إجمالي المستثمر' },
+    'res-interest-earned': { en: 'Interest Earned', ar: 'الفائدة المكتسبة' },
+    'res-growth': { en: 'Growth', ar: 'النمو' },
+    'res-period': { en: 'Period', ar: 'المدة' },
+    'res-years': { en: 'years', ar: 'سنوات' },
+
+    'res-pip-results': { en: 'Pip Value Results', ar: 'نتائج قيمة النقطة' },
+    'res-per-pip': { en: 'Per Pip', ar: 'للنقطة الواحدة' },
+    'res-total-pips': { en: 'Total Pips', ar: 'إجمالي النقاط' },
+
+    'res-rr-analysis': { en: 'Risk/Reward Analysis', ar: 'تحليل المخاطرة/العائد' },
+    'res-risk-sl': { en: 'Risk (SL)', ar: 'المخاطرة (وقف)' },
+    'res-reward-tp': { en: 'Reward (TP)', ar: 'العائد (هدف)' },
+    'res-quality': { en: 'Quality', ar: 'الجودة' },
+    'res-win-rate-needed': { en: 'Win Rate Needed', ar: 'نسبة الفوز المطلوبة' },
+    'res-rr-good': { en: 'Good', ar: 'جيد' },
+    'res-rr-bad': { en: 'Below 2:1', ar: 'أقل من ٢:١' },
+    'res-rr-msg-good': { en: 'This trade has a favorable risk/reward ratio. ✅', ar: 'هذه الصفقة لديها نسبة مخاطرة/عائد جيدة. ✅' },
+    'res-rr-msg-bad': { en: 'Consider adjusting your levels for a minimum 2:1 ratio. ⚠️', ar: 'فكر في تعديل مستوياتك للحصول على نسبة ٢:١ كحد أدنى. ⚠️' },
+
+    'error-all-fields': { en: 'Please fill in all fields.', ar: 'برجاء ملء جميع الحقول.' },
+    'error-amount': { en: 'Please enter an amount.', ar: 'برجاء إدخال المبلغ.' },
+
     // ---- MARKET PAGES SPECIFIC ----
     'crypto-hero-title': { en: 'Cryptocurrency <span class="text-gold">Markets</span>', ar: 'أسواق <span class="text-gold">العملات الرقمية</span>' },
     'crypto-hero-sub': { en: 'Real-time crypto prices, heatmaps, and comprehensive market data for 10,000+ digital assets.', ar: 'أسعار الكريبتو اللحظية، الخرائط الحرارية، وبيانات السوق الشاملة لأكثر من ١٠,٠٠٠ أصل رقمي.' },
@@ -663,13 +707,14 @@ function switchTool(toolId, btn) {
 
 // ===== FINANCIAL TOOLS CALCULATORS =====
 function calculatePositionSize() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const balance = parseFloat(document.getElementById('ps-balance').value);
     const riskPct = parseFloat(document.getElementById('ps-risk').value);
     const entry = parseFloat(document.getElementById('ps-entry').value);
     const stopLoss = parseFloat(document.getElementById('ps-stoploss').value);
 
     if (!balance || !riskPct || !entry || !stopLoss) {
-        showToast('error', 'Please fill in all fields.');
+        showToast('error', translations['error-all-fields'][lang]);
         return;
     }
 
@@ -679,25 +724,26 @@ function calculatePositionSize() {
     const positionValue = positionSize * entry;
 
     document.getElementById('ps-result').innerHTML = `
-    <h4>📐 Position Size Results</h4>
-    <div class="result-value text-gradient">${positionSize.toFixed(6)} units</div>
+    <h4>📐 ${translations['res-pos-size'][lang]}</h4>
+    <div class="result-value text-gradient">${positionSize.toFixed(6)} ${translations['res-units'][lang]}</div>
     <div class="result-breakdown">
-      <div class="result-item"><div class="label">Risk Amount</div><div class="value text-danger">$${riskAmount.toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Position Value</div><div class="value">$${positionValue.toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Stop Distance</div><div class="value">${priceDiff.toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Risk/Trade</div><div class="value">${riskPct}%</div></div>
+      <div class="result-item"><div class="label">${translations['res-risk-amount'][lang]}</div><div class="value text-danger">$${riskAmount.toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-pos-value'][lang]}</div><div class="value">$${positionValue.toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-stop-dist'][lang]}</div><div class="value">${priceDiff.toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-risk-trade'][lang]}</div><div class="value">${riskPct}%</div></div>
     </div>
   `;
 }
 
 function calculateProfitLoss() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const entry = parseFloat(document.getElementById('pl-entry').value);
     const exit = parseFloat(document.getElementById('pl-exit').value);
     const qty = parseFloat(document.getElementById('pl-qty').value);
     const direction = document.getElementById('pl-direction').value;
 
     if (!entry || !exit || !qty) {
-        showToast('error', 'Please fill in all fields.');
+        showToast('error', translations['error-all-fields'][lang]);
         return;
     }
 
@@ -706,24 +752,25 @@ function calculateProfitLoss() {
     const isProfit = pnl >= 0;
 
     document.getElementById('pl-result').innerHTML = `
-    <h4>💰 P/L Results</h4>
+    <h4>💰 ${translations['res-pl-results'][lang]}</h4>
     <div class="result-value ${isProfit ? 'text-success' : 'text-danger'}">${isProfit ? '+' : ''}$${pnl.toFixed(2)}</div>
     <div class="result-breakdown">
-      <div class="result-item"><div class="label">Return %</div><div class="value ${isProfit ? 'text-success' : 'text-danger'}">${isProfit ? '+' : ''}${pnlPct.toFixed(2)}%</div></div>
-      <div class="result-item"><div class="label">Entry Value</div><div class="value">$${(entry * qty).toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Exit Value</div><div class="value">$${(exit * qty).toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Direction</div><div class="value">${direction === 'long' ? '📈 Long' : '📉 Short'}</div></div>
+      <div class="result-item"><div class="label">${translations['res-return-pct'][lang]}</div><div class="value ${isProfit ? 'text-success' : 'text-danger'}">${isProfit ? '+' : ''}${pnlPct.toFixed(2)}%</div></div>
+      <div class="result-item"><div class="label">${translations['res-entry-val'][lang]}</div><div class="value">$${(entry * qty).toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-exit-val'][lang]}</div><div class="value">$${(exit * qty).toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-direction'][lang]}</div><div class="value">${direction === 'long' ? '📈 ' + translations['option-long'][lang] : '📉 ' + translations['option-short'][lang]}</div></div>
     </div>
   `;
 }
 
 function convertCurrency() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const amount = parseFloat(document.getElementById('cc-amount').value);
     const from = document.getElementById('cc-from').value;
     const to = document.getElementById('cc-to').value;
 
     if (!amount) {
-        showToast('error', 'Please enter an amount.');
+        showToast('error', translations['error-amount'][lang]);
         return;
     }
 
@@ -737,25 +784,26 @@ function convertCurrency() {
     const result = inUSD * rates[to];
 
     document.getElementById('cc-result').innerHTML = `
-    <h4>🔄 Conversion Result</h4>
+    <h4>🔄 ${translations['res-cc-results'][lang]}</h4>
     <div class="result-value text-gold">${result.toFixed(2)} ${to}</div>
     <div class="result-breakdown">
-      <div class="result-item"><div class="label">From</div><div class="value">${amount.toFixed(2)} ${from}</div></div>
-      <div class="result-item"><div class="label">To</div><div class="value">${result.toFixed(2)} ${to}</div></div>
-      <div class="result-item"><div class="label">Rate</div><div class="value">1 ${from} = ${(rates[to] / rates[from]).toFixed(4)} ${to}</div></div>
+      <div class="result-item"><div class="label">${translations['res-from'][lang]}</div><div class="value">${amount.toFixed(2)} ${from}</div></div>
+      <div class="result-item"><div class="label">${translations['res-to'][lang]}</div><div class="value">${result.toFixed(2)} ${to}</div></div>
+      <div class="result-item"><div class="label">${translations['res-rate'][lang]}</div><div class="value">1 ${from} = ${(rates[to] / rates[from]).toFixed(4)} ${to}</div></div>
     </div>
-    <p style="margin-top:var(--space-md);font-size:0.78rem;color:var(--text-muted);">* Rates are approximate and for reference only.</p>
+    <p style="margin-top:var(--space-md);font-size:0.78rem;color:var(--text-muted);">${translations['res-cc-note'][lang]}</p>
   `;
 }
 
 function calculateCompound() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const principal = parseFloat(document.getElementById('ci-principal').value);
     const monthly = parseFloat(document.getElementById('ci-monthly').value);
     const rate = parseFloat(document.getElementById('ci-rate').value) / 100;
     const years = parseInt(document.getElementById('ci-years').value);
 
     if (!principal || !years) {
-        showToast('error', 'Please fill in all fields.');
+        showToast('error', translations['error-all-fields'][lang]);
         return;
     }
 
@@ -772,18 +820,19 @@ function calculateCompound() {
     const interestEarned = total - totalContributions;
 
     document.getElementById('ci-result').innerHTML = `
-    <h4>📊 Growth Projection</h4>
+    <h4>📊 ${translations['res-ci-growth'][lang]}</h4>
     <div class="result-value text-gradient">$${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
     <div class="result-breakdown">
-      <div class="result-item"><div class="label">Total Invested</div><div class="value">$${totalContributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div></div>
-      <div class="result-item"><div class="label">Interest Earned</div><div class="value text-success">$${interestEarned.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div></div>
-      <div class="result-item"><div class="label">Growth</div><div class="value text-success">${((total / totalContributions - 1) * 100).toFixed(1)}%</div></div>
-      <div class="result-item"><div class="label">Period</div><div class="value">${years} years</div></div>
+      <div class="result-item"><div class="label">${translations['res-total-invested'][lang]}</div><div class="value">$${totalContributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div></div>
+      <div class="result-item"><div class="label">${translations['res-interest-earned'][lang]}</div><div class="value text-success">$${interestEarned.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div></div>
+      <div class="result-item"><div class="label">${translations['res-growth'][lang]}</div><div class="value text-success">${((total / totalContributions - 1) * 100).toFixed(1)}%</div></div>
+      <div class="result-item"><div class="label">${translations['res-period'][lang]}</div><div class="value">${years} ${translations['res-years'][lang]}</div></div>
     </div>
   `;
 }
 
 function calculatePip() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const pair = document.getElementById('pip-pair').value;
     const lotSize = parseInt(document.getElementById('pip-lot').value);
     const pips = parseFloat(document.getElementById('pip-pips').value);
@@ -794,11 +843,11 @@ function calculatePip() {
     const totalValue = pipValue * pips;
 
     document.getElementById('pip-result').innerHTML = `
-    <h4>📏 Pip Value Results</h4>
+    <h4>📏 ${translations['res-pip-results'][lang]}</h4>
     <div class="result-value text-teal">$${totalValue.toFixed(2)}</div>
     <div class="result-breakdown">
-      <div class="result-item"><div class="label">Per Pip</div><div class="value">$${pipValue.toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Total Pips</div><div class="value">${pips}</div></div>
+      <div class="result-item"><div class="label">${translations['res-per-pip'][lang]}</div><div class="value">$${pipValue.toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-total-pips'][lang]}</div><div class="value">${pips}</div></div>
       <div class="result-item"><div class="label">Lot Size</div><div class="value">${lotSize.toLocaleString()}</div></div>
       <div class="result-item"><div class="label">Pair</div><div class="value">${pair}</div></div>
     </div>
@@ -806,12 +855,13 @@ function calculatePip() {
 }
 
 function calculateRiskReward() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const entry = parseFloat(document.getElementById('rr-entry').value);
     const stoploss = parseFloat(document.getElementById('rr-stoploss').value);
     const takeprofit = parseFloat(document.getElementById('rr-takeprofit').value);
 
     if (!entry || !stoploss || !takeprofit) {
-        showToast('error', 'Please fill in all fields.');
+        showToast('error', translations['error-all-fields'][lang]);
         return;
     }
 
@@ -821,16 +871,16 @@ function calculateRiskReward() {
     const isGood = ratio >= 2;
 
     document.getElementById('rr-result').innerHTML = `
-    <h4>⚖️ Risk/Reward Analysis</h4>
+    <h4>⚖️ ${translations['res-rr-analysis'][lang]}</h4>
     <div class="result-value" style="color:${isGood ? 'var(--success)' : 'var(--warning)'};">1 : ${ratio.toFixed(2)}</div>
     <div class="result-breakdown">
-      <div class="result-item"><div class="label">Risk (SL)</div><div class="value text-danger">${risk.toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Reward (TP)</div><div class="value text-success">${reward.toFixed(2)}</div></div>
-      <div class="result-item"><div class="label">Quality</div><div class="value" style="color:${isGood ? 'var(--success)' : 'var(--warning)'};">${isGood ? '✅ Good' : '⚠️ Below 2:1'}</div></div>
-      <div class="result-item"><div class="label">Win Rate Needed</div><div class="value">${(100 / (1 + ratio)).toFixed(1)}%</div></div>
+      <div class="result-item"><div class="label">${translations['res-risk-sl'][lang]}</div><div class="value text-danger">${risk.toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-reward-tp'][lang]}</div><div class="value text-success">${reward.toFixed(2)}</div></div>
+      <div class="result-item"><div class="label">${translations['res-quality'][lang]}</div><div class="value" style="color:${isGood ? 'var(--success)' : 'var(--warning)'};">${isGood ? '✅ ' + translations['res-rr-good'][lang] : '⚠️ ' + translations['res-rr-bad'][lang]}</div></div>
+      <div class="result-item"><div class="label">${translations['res-win-rate-needed'][lang]}</div><div class="value">${(100 / (1 + ratio)).toFixed(1)}%</div></div>
     </div>
     <p style="margin-top:var(--space-md);font-size:0.82rem;color:var(--text-muted);">
-      ${isGood ? 'This trade has a favorable risk/reward ratio. ✅' : 'Consider adjusting your levels for a minimum 2:1 ratio. ⚠️'}
+      ${isGood ? translations['res-rr-msg-good'][lang] : translations['res-rr-msg-bad'][lang]}
     </p>
   `;
 }
