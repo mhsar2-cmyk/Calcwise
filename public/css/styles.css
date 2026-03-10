@@ -602,8 +602,8 @@ h5 {
   background: linear-gradient(145deg, rgba(22, 22, 56, 0.9), rgba(10, 10, 26, 0.9));
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-subtle);
-  height: 220px;
-  padding: var(--space-md);
+  height: 160px;
+  padding: 0;
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
@@ -612,14 +612,14 @@ h5 {
 }
 
 .top-crypto-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   border-color: var(--primary-light);
   box-shadow: var(--shadow-glow);
 }
 
 .top-crypto-card .tradingview-widget-container {
-  margin-top: -10px;
-  flex-grow: 1;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 /* ===== Hero Section ===== */
