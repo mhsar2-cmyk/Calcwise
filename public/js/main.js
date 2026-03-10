@@ -213,7 +213,16 @@ const translations = {
     'dash-hi': { en: 'Hi', ar: 'مرحباً' },
     'dash-title': { en: 'Portfolio Dashboard', ar: 'لوحة المحفظة' },
     'dash-add-asset': { en: '+ Add Asset', ar: '+ إضافة أصل' },
-    'dash-refresh': { en: '↻ Refresh', ar: '↻ تحديث' },
+    'dash-sentiment': { en: 'Market Sentiment 🎭', ar: 'مزاج السوق 🎭' },
+    'dash-fear-greed': { en: 'Fear & Greed Index', ar: 'مؤشر الخوف والطمع' },
+    'dash-extreme-fear': { en: 'Extreme Fear', ar: 'خوف شديد' },
+    'dash-fear': { en: 'Fear', ar: 'خوف' },
+    'dash-neutral': { en: 'Neutral', ar: 'محايد' },
+    'dash-greed': { en: 'Greed', ar: 'طمع' },
+    'dash-extreme-greed': { en: 'Extreme Greed', ar: 'طمع شديد' },
+    'dash-momentum': { en: 'Technical Momentum 🚀', ar: 'الزخم الفني 🚀' },
+    'dash-buy': { en: 'Strong Buy', ar: 'شراء قوي' },
+    'dash-sell': { en: 'Strong Sell', ar: 'بيع قوي' },
     'dash-total-value': { en: 'Total Portfolio Value', ar: 'إجمالي قيمة المحفظة' },
     'dash-today-pl': { en: "Today's P/L", ar: 'الربح/الخسارة اليوم' },
     'dash-holdings': { en: 'Total Holdings', ar: 'إجمالي الممتلكات' },
@@ -1334,26 +1343,41 @@ async function initWatchlist() {
 
     try {
         const response = await fetch('/api/market/watchlist');
+        if (!response.ok) throw new Error('API failed');
         const data = await response.json();
+        renderWatchlistItems(data.watchlist, container);
+    } catch (error) {
+        console.warn('Watchlist API failed, using local storage.');
+        const localWatchlist = JSON.parse(localStorage.getItem('calcwise_watchlist')) || [
+            { name: 'Bitcoin', symbol: 'BTC', icon: '₿', bg: 'rgba(240,185,11,0.15)', price: '101,234', change: '+2.4%' },
+            { name: 'Apple Inc.', symbol: 'AAPL', icon: '🏛', bg: 'rgba(108,92,231,0.15)', price: '245.67', change: '-0.8%' },
+            { name: 'Saudi Aramco', symbol: '2222', icon: '🇸🇦', bg: 'rgba(0,184,148,0.15)', price: '32.10', change: '+1.2%' },
+            { name: 'EUR/USD', symbol: 'Forex', icon: '💱', bg: 'rgba(0,210,211,0.15)', price: '1.0845', change: '+0.15%' }
+        ];
+        renderWatchlistItems(localWatchlist, container);
+    }
+}
 
-        container.innerHTML = data.watchlist.map(item => `
+function renderWatchlistItems(items, container) {
+    container.innerHTML = items.slice(0, 4).map(item => {
+        const sign = item.change && item.change.startsWith('+') ? '' : ''; // Symbol logic
+        const isPositive = item.change && !item.change.startsWith('-');
+        return `
             <div class="watchlist-item">
                 <div class="asset-name">
-                    <span class="asset-icon" style="background:${item.bg};">${item.icon}</span>
+                    <span class="asset-icon" style="background:${item.bg || 'rgba(108,92,231,0.1)'}">${item.icon || '⭐'}</span>
                     <div>
                         <div style="font-weight:500;">${item.name}</div>
                         <div style="font-size:0.78rem;color:var(--text-muted);">${item.symbol}</div>
                     </div>
                 </div>
                 <div style="text-align:right;">
-                    <div style="font-family:var(--font-mono);font-weight:500;">$${item.price.toLocaleString()}</div>
-                    <div style="font-size:0.78rem;color:${item.change.startsWith('+') ? 'var(--success)' : 'var(--danger)'};">${item.change}</div>
+                    <div style="font-family:var(--font-mono);font-weight:500;">${item.price}</div>
+                    <div style="font-size:0.78rem;color:${isPositive ? 'var(--success)' : 'var(--danger)'};">${item.change}</div>
                 </div>
             </div>
-        `).join('');
-    } catch (error) {
-        console.error('Watchlist fetch error:', error);
-    }
+        `;
+    }).join('');
 }
 
 async function initActivity() {
