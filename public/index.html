@@ -100,24 +100,6 @@
         <a href="#platforms" class="btn btn-outline btn-lg" data-i18n="hero-cta-2">Explore Markets</a>
       </div>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="stat-value" data-i18n="hero-stat-1-val">4</div>
-          <div class="stat-label" data-i18n="hero-stat-1-label">Market Platforms</div>
-        </div>
-        <div class="hero-stat">
-          <div class="stat-value" data-i18n="hero-stat-2-val">10K+</div>
-          <div class="stat-label" data-i18n="hero-stat-2-label">Tracked Assets</div>
-        </div>
-        <div class="hero-stat">
-          <div class="stat-value" data-i18n="hero-stat-3-val">24/7</div>
-          <div class="stat-label" data-i18n="hero-stat-3-label">Live Data</div>
-        </div>
-        <div class="hero-stat">
-          <div class="stat-value" data-i18n="hero-stat-4-val">Free</div>
-          <div class="stat-label" data-i18n="hero-stat-4-label">To Get Started</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -187,23 +169,41 @@
             <div class="tradingview-widget-container" style="height:100%;width:100%">
               <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
               <script type="text/javascript"
-                src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+                src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
                   {
-                    "exchanges": [],
-                      "dataSource": "SPX500",
-                        "grouping": "sector",
-                          "blockSize": "market_cap_basic",
-                            "blockColor": "change",
-                              "locale": "en",
-                                "symbolUrl": "",
-                                  "colorTheme": "dark",
-                                    "hasTopBar": false,
-                                      "isDataSet498Enabled": false,
-                                        "isZoomEnabled": true,
-                                          "hasSymbolTooltip": true,
-                                            "isMonoSize": false,
-                                              "width": "100%",
-                                                "height": "100%"
+                    "colorTheme": "dark",
+                      "dateRange": "12M",
+                        "showChart": true,
+                          "locale": "en",
+                            "width": "100%",
+                              "height": "100%",
+                                "largeChartUrl": "",
+                                  "isTransparent": true,
+                                    "showSymbolLogo": true,
+                                      "showFloatingTooltip": false,
+                                        "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+                                          "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                                            "gridLineColor": "rgba(240, 243, 250, 0)",
+                                              "scaleFontColor": "rgba(106, 109, 120, 1)",
+                                                "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                                                  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                                                    "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                                                      "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                                                        "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+                                                          "tabs": [
+                                                            {
+                                                              "title": "Indices",
+                                                              "symbols": [
+                                                                { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" },
+                                                                { "s": "FOREXCOM:NSXUSD", "d": "US 100" },
+                                                                { "s": "FOREXCOM:DJI", "d": "Dow 30" },
+                                                                { "s": "INDEX:NKY", "d": "Nikkei 225" },
+                                                                { "s": "INDEX:DEU40", "d": "DAX Index" },
+                                                                { "s": "FOREXCOM:UK100", "d": "UK 100" }
+                                                              ],
+                                                              "originalTitle": "Indices"
+                                                            }
+                                                          ]
                   }
                 </script>
             </div>

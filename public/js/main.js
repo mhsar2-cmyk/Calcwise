@@ -58,14 +58,6 @@ const translations = {
     'hero-desc': { en: 'Track crypto, forex, US stocks, and Saudi markets with real-time data, expert insights, and powerful analytical tools — all in one place.', ar: 'تابع العملات الرقمية، الفوركس، الأسهم الأمريكية، والسوق السعودي ببيانات لحظية وتحليلات متقدمة — في مكان واحد.' },
     'hero-cta-1': { en: 'Start Free Today →', ar: 'ابدأ مجاناً اليوم ←' },
     'hero-cta-2': { en: 'Explore Markets', ar: 'استكشف الأسواق' },
-    'hero-stat-1-val': { en: '4', ar: '٤' },
-    'hero-stat-1-label': { en: 'Market Platforms', ar: 'منصات أسواق' },
-    'hero-stat-2-val': { en: '10K+', ar: '+١٠ آلاف' },
-    'hero-stat-2-label': { en: 'Tracked Assets', ar: 'أصل مُتتبّع' },
-    'hero-stat-3-val': { en: '24/7', ar: '٢٤/٧' },
-    'hero-stat-3-label': { en: 'Live Data', ar: 'بيانات حيّة' },
-    'hero-stat-4-val': { en: 'Free', ar: 'مجاني' },
-    'hero-stat-4-label': { en: 'To Get Started', ar: 'للبدء' },
 
     // ---- MARKET PLATFORMS SECTION ----
     'platforms-title-1': { en: 'Explore', ar: 'استكشف' },
