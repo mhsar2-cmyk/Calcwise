@@ -633,6 +633,102 @@ const translations = {
     'market-us-stocks': { en: 'US Stocks', ar: 'أسم أمريكية' },
     'market-saudi': { en: 'Saudi', ar: 'سوق سعودي' },
     'market-forex': { en: 'Forex', ar: 'فوركس' },
+
+    // ---- PRICE ALERTS PAGE ----
+    'alerts-badge': { en: '🔔 Smart Price Alerts', ar: '🔔 تنبيهات الأسعار الذكية' },
+    'alerts-title': { en: 'Never Miss a <span class="text-gradient">Market Move</span>', ar: 'لا تفوّت أي <span class="text-gradient">تحرك للسوق</span>' },
+    'alerts-subtitle': { en: 'Set custom price alerts for any asset. Get notified the moment markets reach your target price.', ar: 'اضبط تنبيهات أسعار مخصصة لأي أصل. احصل على إشعار فور وصول السوق إلى سعرك المستهدف.' },
+    'alerts-stat-active': { en: 'Active Alerts', ar: 'تنبيهات نشطة' },
+    'alerts-stat-triggered': { en: 'Triggered Today', ar: 'تفعّلت اليوم' },
+    'alerts-stat-above': { en: 'Above Target', ar: 'فوق الهدف' },
+    'alerts-form-title': { en: '➕ Create New Alert', ar: '➕ إنشاء تنبيه جديد' },
+    'alerts-form-symbol': { en: 'Asset Symbol / Name', ar: 'رمز الأصل / الاسم' },
+    'alerts-form-symbol-ph': { en: 'e.g. BTC, AAPL, EURUSD', ar: 'مثال: BTC، AAPL، EURUSD' },
+    'alerts-form-market': { en: 'Market', ar: 'السوق' },
+    'alerts-form-direction': { en: 'Alert Direction', ar: 'اتجاه التنبيه' },
+    'alerts-form-above': { en: '📈 Price Above', ar: '📈 السعر فوق' },
+    'alerts-form-below': { en: '📉 Price Below', ar: '📉 السعر دون' },
+    'alerts-form-target': { en: 'Target Price ($)', ar: 'السعر المستهدف ($)' },
+    'alerts-form-note': { en: 'Note (optional)', ar: 'ملاحظة (اختياري)' },
+    'alerts-form-note-ph': { en: 'e.g. Resistance level break', ar: 'مثال: كسر مستوى المقاومة' },
+    'alerts-form-submit': { en: '🔔 Set Alert', ar: '🔔 ضبط التنبيه' },
+    'alerts-presets': { en: '⚡ Quick Presets', ar: '⚡ إعدادات سريعة' },
+    'alerts-your-alerts': { en: 'Your Alerts', ar: 'تنبيهاتك' },
+    'alerts-clear-all': { en: '🗑️ Clear All', ar: '🗑️ مسح الكل' },
+    'alerts-empty': { en: 'No alerts set yet. Create your first price alert to get started.', ar: 'لا توجد تنبيهات بعد. أنشئ أول تنبيه سعر للبدء.' },
+    'alerts-status-watching': { en: '⏳ Watching', ar: '⏳ جاري المتابعة' },
+    'alerts-status-triggered': { en: '⚡ Triggered', ar: '⚡ تفعّل' },
+
+    // ---- SETTINGS PAGE ----
+    'settings-title': { en: 'Settings', ar: 'الإعدادات' },
+    'settings-back': { en: '← Back to Dashboard', ar: '→ العودة للوحة' },
+    'settings-nav-profile': { en: 'Profile', ar: 'الملف الشخصي' },
+    'settings-nav-prefs': { en: 'Preferences', ar: 'التفضيلات' },
+    'settings-nav-notifs': { en: 'Notifications', ar: 'الإشعارات' },
+    'settings-nav-security': { en: 'Security', ar: 'الأمان' },
+    'settings-nav-data': { en: 'My Data', ar: 'بياناتي' },
+    'settings-nav-danger': { en: 'Danger Zone', ar: 'منطقة الخطر' },
+    'settings-profile-title': { en: '👤 Profile Information', ar: '👤 معلومات الملف الشخصي' },
+    'settings-first-name': { en: 'First Name', ar: 'الاسم الأول' },
+    'settings-last-name': { en: 'Last Name', ar: 'اسم العائلة' },
+    'settings-email': { en: 'Email Address', ar: 'البريد الإلكتروني' },
+    'settings-experience': { en: 'Trading Experience', ar: 'خبرة التداول' },
+    'settings-exp-beginner': { en: 'Beginner (Less than 1 year)', ar: 'مبتدئ (أقل من سنة)' },
+    'settings-exp-intermediate': { en: 'Intermediate (1–3 years)', ar: 'متوسط (1–3 سنوات)' },
+    'settings-exp-advanced': { en: 'Advanced (3–7 years)', ar: 'متقدم (3–7 سنوات)' },
+    'settings-exp-expert': { en: 'Expert (7+ years)', ar: 'خبير (أكثر من 7 سنوات)' },
+    'settings-bio': { en: 'Bio / Trading Style', ar: 'نبذة / أسلوب التداول' },
+    'settings-save': { en: '💾 Save Profile', ar: '💾 حفظ الملف' },
+    'settings-currency': { en: '💰 Default Currency', ar: '💰 العملة الافتراضية' },
+    'settings-currency-desc': { en: 'Portfolio values will be displayed in this currency.', ar: 'ستُعرض قيم المحفظة بهذه العملة.' },
+    'settings-notif-title': { en: '🔔 Notification Settings', ar: '🔔 إعدادات الإشعارات' },
+    'settings-notif-price': { en: 'Price Alert Notifications', ar: 'إشعارات تنبيهات الأسعار' },
+    'settings-notif-price-desc': { en: 'Get notified when your price alerts trigger', ar: 'احصل على إشعار عند تفعّل تنبيهات الأسعار' },
+    'settings-notif-portfolio': { en: 'Portfolio Performance Summary', ar: 'ملخص أداء المحفظة' },
+    'settings-notif-portfolio-desc': { en: 'Daily digest of your portfolio\'s performance', ar: 'ملخص يومي لأداء محفظتك' },
+    'settings-notif-market': { en: 'Market Open / Close Alerts', ar: 'تنبيهات فتح/إغلاق السوق' },
+    'settings-notif-market-desc': { en: 'Alerts at NYSE, LSE, and Tadawul market open/close', ar: 'تنبيهات عند فتح وإغلاق بورصات NYSE وLSE وتداول' },
+    'settings-notif-blog': { en: 'New Blog & Market Insights', ar: 'مقالات ورؤى السوق الجديدة' },
+    'settings-notif-blog-desc': { en: 'Get notified when we publish new expert analysis', ar: 'اعلم حين ننشر تحليلات خبراء جديدة' },
+    'settings-notif-updates': { en: 'Product Updates', ar: 'تحديثات المنصة' },
+    'settings-notif-updates-desc': { en: 'New features, tools, and platform improvements', ar: 'ميزات وأدوات وتحسينات جديدة للمنصة' },
+    'settings-pw-title': { en: '🔐 Change Password', ar: '🔐 تغيير كلمة المرور' },
+    'settings-pw-current': { en: 'Current Password', ar: 'كلمة المرور الحالية' },
+    'settings-pw-new': { en: 'New Password', ar: 'كلمة المرور الجديدة' },
+    'settings-pw-confirm': { en: 'Confirm New Password', ar: 'تأكيد كلمة المرور الجديدة' },
+    'settings-pw-save': { en: '🔐 Update Password', ar: '🔐 تحديث كلمة المرور' },
+    'settings-stats-title': { en: '📊 My Stats', ar: '📊 إحصائياتي' },
+    'settings-export-title': { en: '📥 Data Export', ar: '📥 تصدير البيانات' },
+    'settings-export-desc': { en: 'Download all your CalcWise data in a portable format.', ar: 'حمّل جميع بياناتك من كالك وايز بصيغة قابلة للنقل.' },
+    'settings-export-portfolio': { en: '📊 Export Portfolio', ar: '📊 تصدير المحفظة' },
+    'settings-export-journal': { en: '📓 Export Journal', ar: '📓 تصدير السجل' },
+    'settings-export-alerts': { en: '🔔 Export Alerts', ar: '🔔 تصدير التنبيهات' },
+    'settings-danger-title': { en: '⚠️ Danger Zone', ar: '⚠️ منطقة الخطر' },
+    'settings-clear-portfolio': { en: 'Clear Portfolio', ar: 'مسح المحفظة' },
+    'settings-clear-portfolio-desc': { en: 'Remove all holdings from your portfolio. This cannot be undone.', ar: 'إزالة جميع الأصول من محفظتك. لا يمكن التراجع.' },
+    'settings-clear-alerts': { en: 'Clear Alerts', ar: 'مسح التنبيهات' },
+    'settings-delete-account': { en: 'Delete Account', ar: 'حذف الحساب' },
+    'settings-delete-account-desc': { en: 'Permanently delete your account and all associated data.', ar: 'حذف حسابك وجميع بياناتك المرتبطة به نهائياً.' },
+
+    // ---- AI ASSISTANT ----
+    'ai-name': { en: 'CalcWise AI', ar: 'مساعد كالك وايز' },
+    'ai-status': { en: '● Online · Market Assistant', ar: '● متصل · مساعد السوق' },
+    'ai-greeting': { en: "👋 Hi! I'm your <strong>AI Market Assistant</strong>. Ask me about market trends, trading strategies, or how to use CalcWise features!", ar: '👋 مرحباً! أنا <strong>مساعدك الذكي للأسواق</strong>. اسألني عن توجهات السوق، استراتيجيات التداول، أو كيفية استخدام ميزات كالك وايز!' },
+    'ai-placeholder': { en: 'Ask anything about markets...', ar: 'اسأل أي شيء عن الأسواق...' },
+    'ai-quick-trend': { en: '📈 Market trend', ar: '📈 توجه السوق' },
+    'ai-quick-tip': { en: '💡 Trading tip', ar: '💡 نصيحة تداول' },
+    'ai-quick-btc': { en: '₿ Bitcoin', ar: '₿ بيتكوين' },
+    'ai-quick-risk': { en: '🛡️ Risk mgmt', ar: '🛡️ إدارة المخاطر' },
+
+    // ---- ECONOMIC CALENDAR ----
+    'econ-cal-title': { en: '📅 Economic Calendar', ar: '📅 التقويم الاقتصادي' },
+    'econ-cal-subtitle': { en: "Today's key events", ar: 'أهم أحداث اليوم' },
+    'econ-impact-high': { en: 'High', ar: 'عالي' },
+    'econ-impact-medium': { en: 'Medium', ar: 'متوسط' },
+    'econ-impact-low': { en: 'Low', ar: 'منخفض' },
+
+    // ---- DASHBOARD ADDITIONS ----
+    'sidebar-alerts': { en: 'Price Alerts', ar: 'تنبيهات الأسعار' },
 };
 
 function initLanguage() {
@@ -1748,16 +1844,30 @@ async function handleJournalSubmit(e) {
 
 // ===== AI MARKET ASSISTANT =====
 function initAIAssistant() {
-    // Inject the widget HTML into every page
     if (document.getElementById('aiAssistantBtn')) return;
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
 
     const btn = document.createElement('button');
     btn.id = 'aiAssistantBtn';
-    btn.title = 'AI Market Assistant';
+    btn.title = lang === 'ar' ? 'مساعد السوق الذكي' : 'AI Market Assistant';
     btn.style.position = 'relative';
     btn.innerHTML = '🤖<span class="notif-dot"></span>';
     btn.onclick = toggleAIChat;
     document.body.appendChild(btn);
+
+    const aiName = translations['ai-name'] ? translations['ai-name'][lang] : 'CalcWise AI';
+    const aiStatus = translations['ai-status'] ? translations['ai-status'][lang] : '● Online · Market Assistant';
+    const aiGreeting = translations['ai-greeting'] ? translations['ai-greeting'][lang] : "👋 Hi! I'm your <strong>AI Market Assistant</strong>. Ask me anything!";
+    const aiPlaceholder = translations['ai-placeholder'] ? translations['ai-placeholder'][lang] : 'Ask anything about markets...';
+    const q1 = translations['ai-quick-trend'] ? translations['ai-quick-trend'][lang] : '📈 Market trend';
+    const q2 = translations['ai-quick-tip'] ? translations['ai-quick-tip'][lang] : '💡 Trading tip';
+    const q3 = translations['ai-quick-btc'] ? translations['ai-quick-btc'][lang] : '₿ Bitcoin';
+    const q4 = translations['ai-quick-risk'] ? translations['ai-quick-risk'][lang] : '🛡️ Risk mgmt';
+
+    const trendQ = lang === 'ar' ? '📈 ما هو توجه السوق؟' : '📈 What is the market trend today?';
+    const tipQ = lang === 'ar' ? '💡 أعطني نصيحة تداول' : '💡 Give me a trading tip';
+    const btcQ = lang === 'ar' ? '₿ أخبرني عن البيتكوين' : '₿ Tell me about Bitcoin';
+    const riskQ = lang === 'ar' ? '🛡️ ما هي إدارة المخاطر؟' : '🛡️ What is risk management?';
 
     const chat = document.createElement('div');
     chat.id = 'aiChat';
@@ -1765,24 +1875,22 @@ function initAIAssistant() {
         <div class="ai-chat-header">
             <div class="ai-avatar">🤖</div>
             <div class="ai-info">
-                <div class="name">CalcWise AI</div>
-                <div class="status">● Online · Market Assistant</div>
+                <div class="name">${aiName}</div>
+                <div class="status">${aiStatus}</div>
             </div>
             <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
         </div>
         <div class="ai-chat-messages" id="aiMessages">
-            <div class="ai-msg bot">
-                👋 Hi! I'm your <strong>AI Market Assistant</strong>. Ask me about market trends, trading strategies, or how to use CalcWise features!
-            </div>
+            <div class="ai-msg bot">${aiGreeting}</div>
         </div>
         <div class="ai-quick-replies">
-            <button class="ai-quick-btn" onclick="sendAIMessage('📈 What is the market trend today?')">📈 Market trend</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('💡 Give me a trading tip')">💡 Trading tip</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('₿ Tell me about Bitcoin')">₿ Bitcoin</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('🛡️ What is risk management?')">🛡️ Risk mgmt</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${trendQ}')">${q1}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${tipQ}')">${q2}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${btcQ}')">${q3}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${riskQ}')">${q4}</button>
         </div>
         <div class="ai-chat-input">
-            <input type="text" id="aiInput" placeholder="Ask anything about markets..." onkeydown="if(event.key==='Enter') sendAIMessage()">
+            <input type="text" id="aiInput" placeholder="${aiPlaceholder}" onkeydown="if(event.key==='Enter') sendAIMessage()">
             <button onclick="sendAIMessage()">➤</button>
         </div>
     `;
@@ -1792,42 +1900,90 @@ function initAIAssistant() {
 function toggleAIChat() {
     const chat = document.getElementById('aiChat');
     if (chat) chat.classList.toggle('open');
-    // Remove notif dot when opened
     const dot = document.querySelector('#aiAssistantBtn .notif-dot');
     if (dot) dot.style.display = 'none';
 }
 
 const AI_RESPONSES = {
-    'bitcoin|btc': '₿ <strong>Bitcoin (BTC)</strong> is the world\'s first and largest cryptocurrency by market cap. It\'s often called "digital gold" and is used as a store of value. BTC has a fixed supply of 21 million coins and operates on a decentralized blockchain. Consider using our <a href="crypto.html" style="color:var(--primary-light)">Crypto Market page</a> to track live BTC prices.',
-    'ethereum|eth': 'Ξ <strong>Ethereum (ETH)</strong> is a programmable blockchain that powers smart contracts and DeFi applications. It\'s the second-largest crypto by market cap. The network shifted to Proof-of-Stake in 2022, making it more energy-efficient.',
-    'forex|currency exchange|fx': '💱 <strong>Forex (FX)</strong> is the global market for trading currencies. It\'s the largest financial market in the world with $7.5 trillion traded daily. Major pairs include EUR/USD, GBP/USD, and USD/JPY. Check our <a href="forex.html" style="color:var(--primary-light)">Forex page</a> for live rates.',
-    'trend|market trend|bull|bear': '📊 Markets move in trends: <strong>Uptrend (Bullish)</strong> = higher highs & higher lows. <strong>Downtrend (Bearish)</strong> = lower highs & lower lows. Use moving averages (MA50, MA200) to identify the dominant trend. A "golden cross" (MA50 crossing above MA200) is a bullish signal.',
-    'risk management|risk|stop loss': '🛡️ <strong>Risk Management Rules:</strong><br>• Never risk more than 1-2% of your portfolio on a single trade<br>• Always use a Stop Loss<br>• Maintain a minimum 1:2 Risk/Reward ratio<br>• Diversify across asset classes<br>Use our <a href="tools.html" style="color:var(--primary-light)">Position Sizer tool</a> to calculate exact position sizes.',
-    'trading tip|strategy|how to trade': '💡 <strong>Top Trading Tips:</strong><br>• Follow the trend — "the trend is your friend"<br>• Wait for confluence (multiple signals agreeing)<br>• Keep a trade journal to track performance<br>• Control your emotions — stick to your plan<br>• Never invest money you cannot afford to lose',
-    'portfolio|holdings|assets': '📊 Your <strong>Portfolio Dashboard</strong> tracks all your assets in one place. You can add crypto, stocks, forex, and Saudi market holdings. The dashboard shows real-time P&L, best performers, and allocation charts. <a href="dashboard.html" style="color:var(--primary-light)">View Dashboard →</a>',
-    'alert|notification|price alert': '🔔 <strong>Price Alerts</strong> let you set target prices for any asset. When the market reaches your target, you get notified immediately. Go to <a href="alerts.html" style="color:var(--primary-light)">Price Alerts →</a> to set yours!',
-    'saudi|tadawul|aramco|tasi': '🇸🇦 The <strong>Saudi Market (Tadawul)</strong> is the largest stock exchange in the Middle East. Key stocks include Saudi Aramco (2222), Al Rajhi Bank (1120), and STC (7010). The TASI index tracks top Saudi shares. <a href="saudi-market.html" style="color:var(--primary-light)">View Saudi Market →</a>',
-    'stocks|shares|equity|usa|us market': '🏛️ <strong>US Stock Market</strong> includes NYSE and NASDAQ. Major indices are S&P 500, NASDAQ, and Dow Jones. Top stocks: AAPL, NVDA, TSLA, MSFT. The US market is open Mon–Fri, 9:30 AM – 4:00 PM ET. <a href="us-market.html" style="color:var(--primary-light)">View US Stocks →</a>',
-    'calcwise|features|tools|platform': '✨ <strong>CalcWise Features:</strong><br>📊 Portfolio tracking<br>📈 4 market pages (Crypto, Forex, US, Saudi)<br>🛠️ 5+ financial tools<br>🔔 Price alerts<br>📓 Trade journal<br>🤖 AI assistant (that\'s me!)<br>⚙️ Settings & profile<br><br>All free, forever.',
-    'inflation|interest rate|fed|central bank': '🏦 <strong>Interest Rates & Inflation</strong> have a huge impact on markets. When the Fed raises rates, bonds become more attractive and stocks often drop. When rates fall, risk assets like crypto and growth stocks tend to rally. Keep an eye on the Economic Calendar for Fed meeting dates!',
-    'dca|dollar cost averaging': '📉 <strong>Dollar Cost Averaging (DCA)</strong> means investing a fixed amount at regular intervals regardless of price. This strategy reduces the impact of volatility and removes the stress of timing the market. Great for long-term crypto and stock investors.',
+    // English
+    'bitcoin|btc': {
+        en: '₿ <strong>Bitcoin (BTC)</strong> is the world\'s first and largest cryptocurrency by market cap. Often called "digital gold," BTC has a fixed supply of 21 million coins. <a href="crypto.html" style="color:var(--primary-light)">View Crypto Market →</a>',
+        ar: '₿ <strong>بيتكوين (BTC)</strong> هي أول وأكبر عملة مشفرة في العالم. تُعرف بـ"الذهب الرقمي" ولها حد أقصى ثابت يبلغ 21 مليون عملة. <a href="crypto.html" style="color:var(--primary-light)">عرض سوق العملات ←</a>'
+    },
+    'ethereum|eth': {
+        en: 'Ξ <strong>Ethereum (ETH)</strong> is a programmable blockchain powering smart contracts and DeFi. It shifted to Proof-of-Stake in 2022, reducing energy consumption by ~99%.',
+        ar: 'Ξ <strong>إيثريوم (ETH)</strong> هي بلوكتشين قابلة للبرمجة تشغّل العقود الذكية و DeFi. انتقلت إلى Proof-of-Stake عام 2022، مما قلّل استهلاك الطاقة بنحو 99٪.'
+    },
+    'forex|currency exchange|fx|الفوركس|عملات': {
+        en: '💱 <strong>Forex (FX)</strong> is the largest financial market with $7.5 trillion traded daily. Major pairs: EUR/USD, GBP/USD, USD/JPY. <a href="forex.html" style="color:var(--primary-light)">View Forex →</a>',
+        ar: '💱 <strong>الفوركس</strong> هو أكبر سوق مالي في العالم بحجم تداول 7.5 تريليون دولار يومياً. الأزواج الرئيسية: EUR/USD، GBP/USD، USD/JPY. <a href="forex.html" style="color:var(--primary-light)">عرض الفوركس ←</a>'
+    },
+    'trend|market trend|bull|bear|توجه|صاعد|هابط': {
+        en: '📊 Markets move in trends. <strong>Uptrend (Bullish)</strong> = higher highs & higher lows. <strong>Downtrend (Bearish)</strong> = lower highs & lower lows. Use MA50/MA200 to identify the dominant trend.',
+        ar: '📊 الأسواق تتحرك في توجهات. <strong>صاعد (Bullish)</strong> = قمم وقيعان أعلى. <strong>هابط (Bearish)</strong> = قمم وقيعان أدنى. استخدم MA50/MA200 لتحديد الاتجاه السائد.'
+    },
+    'risk management|risk|stop loss|مخاطر|وقف الخسارة|إدارة': {
+        en: '🛡️ <strong>Risk Management:</strong><br>• Risk max 1-2% per trade<br>• Always use a Stop Loss<br>• Minimum 1:2 Risk/Reward<br>• Diversify assets<br>Use our <a href="tools.html" style="color:var(--primary-light)">Position Sizer →</a>',
+        ar: '🛡️ <strong>إدارة المخاطر:</strong><br>• خاطر بحد أقصى 1-2% للصفقة<br>• استخدم وقف الخسارة دائماً<br>• نسبة ربح/خطر 1:2 كحد أدنى<br>• نوّع أصولك<br>استخدم <a href="tools.html" style="color:var(--primary-light)">محدد الحجم ←</a>'
+    },
+    'trading tip|strategy|how to trade|نصيحة|استراتيجية': {
+        en: '💡 <strong>Top Trading Tips:</strong><br>• Follow the trend<br>• Wait for confluence<br>• Keep a trade journal<br>• Control your emotions<br>• Never invest what you can\'t afford to lose',
+        ar: '💡 <strong>أهم نصائح التداول:</strong><br>• اتبع الاتجاه<br>• انتظر تقارب الإشارات<br>• احتفظ بسجل تداول<br>• تحكم في عواطفك<br>• لا تستثمر ما لا تتحمل خسارته'
+    },
+    'portfolio|holdings|assets|محفظة|أصول': {
+        en: '📊 Your <strong>Portfolio Dashboard</strong> tracks all your assets with real-time P&L, best performers, and allocation charts. <a href="dashboard.html" style="color:var(--primary-light)">View Dashboard →</a>',
+        ar: '📊 <strong>لوحة المحفظة</strong> تتتبع جميع أصولك بأرباح وخسائر لحظية ومخططات التخصيص. <a href="dashboard.html" style="color:var(--primary-light)">عرض اللوحة ←</a>'
+    },
+    'alert|notification|price alert|تنبيه|إشعار': {
+        en: '🔔 <strong>Price Alerts</strong> notify you instantly when any asset reaches your target price. <a href="alerts.html" style="color:var(--primary-light)">Set Alerts →</a>',
+        ar: '🔔 <strong>تنبيهات الأسعار</strong> تُخطرك فوراً حين يصل أي أصل لسعرك المستهدف. <a href="alerts.html" style="color:var(--primary-light)">اضبط التنبيهات ←</a>'
+    },
+    'saudi|tadawul|aramco|tasi|سعودي|تداول|أرامكو|تاسي': {
+        en: '🇸🇦 <strong>Saudi Market (Tadawul)</strong> is the Middle East\'s largest exchange. Key stocks: Aramco (2222), Al Rajhi (1120), STC (7010). <a href="saudi-market.html" style="color:var(--primary-light)">View Saudi Market →</a>',
+        ar: '🇸🇦 <strong>السوق السعودية (تداول)</strong> هي الأكبر في الشرق الأوسط. أهم الأسهم: أرامكو (2222)، الراجحي (1120)، STC (7010). <a href="saudi-market.html" style="color:var(--primary-light)">عرض السوق السعودية ←</a>'
+    },
+    'stocks|shares|equity|usa|us market|أسهم|وول ستريت': {
+        en: '🏛️ <strong>US Stock Market</strong> includes NYSE and NASDAQ. Indices: S&P 500, NASDAQ, Dow Jones. Top stocks: AAPL, NVDA, TSLA. Open Mon–Fri 9:30AM–4PM ET. <a href="us-market.html" style="color:var(--primary-light)">View US Stocks →</a>',
+        ar: '🏛️ <strong>سوق الأسهم الأمريكية</strong> يشمل NYSE وNASDAQ. المؤشرات: S&P 500، ناسداق، داو جونز. أهم الأسهم: AAPL، NVDA، TSLA. <a href="us-market.html" style="color:var(--primary-light)">عرض الأسهم →</a>'
+    },
+    'calcwise|features|tools|platform|ميزات|المنصة': {
+        en: '✨ <strong>CalcWise Features:</strong><br>📊 Portfolio • 📈 4 Markets • 🛠️ Tools • 🔔 Alerts • 📓 Journal • 🤖 AI • ⚙️ Settings<br>All free, forever.',
+        ar: '✨ <strong>ميزات كالك وايز:</strong><br>📊 المحفظة • 📈 4 أسواق • 🛠️ أدوات • 🔔 تنبيهات • 📓 سجل • 🤖 ذكاء اصطناعي • ⚙️ الإعدادات<br>مجاني تماماً إلى الأبد.'
+    },
+    'inflation|interest rate|fed|central bank|تضخم|فائدة|فيدرالي': {
+        en: '🏦 <strong>Interest Rates & Inflation:</strong> When the Fed raises rates, stocks often drop. When rates fall, crypto and growth stocks tend to rally. Watch the Economic Calendar for Fed meetings!',
+        ar: '🏦 <strong>أسعار الفائدة والتضخم:</strong> حين يرفع الفيد الفائدة، تهبط الأسهم عادةً. حين تنخفض، ترتفع أصول المخاطرة كالعملات الرقمية. راقب التقويم الاقتصادي!'
+    },
+    'dca|dollar cost averaging|متوسط التكلفة': {
+        en: '📉 <strong>Dollar Cost Averaging (DCA)</strong> = investing a fixed amount regularly regardless of price. Reduces volatility impact and removes market-timing stress.',
+        ar: '📉 <strong>متوسط تكلفة الدولار (DCA)</strong> = استثمار مبلغ ثابت بانتظام بغض النظر عن السعر. يقلل تأثير التقلبات ويزيل ضغط توقيت السوق.'
+    },
 };
 
 function getAIResponse(msg) {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const lowerMsg = msg.toLowerCase();
     for (const [keywords, response] of Object.entries(AI_RESPONSES)) {
         if (keywords.split('|').some(k => lowerMsg.includes(k))) {
-            return response;
+            return typeof response === 'object' ? (response[lang] || response.en) : response;
         }
     }
-    // Default response
-    const defaults = [
-        '🤔 Great question! While I\'m still learning, I suggest checking our <a href="blog.html" style="color:var(--primary-light)">blog</a> for in-depth market analysis.',
-        '📊 I\'d recommend using our <a href="tools.html" style="color:var(--primary-light)">financial tools</a> to help with that calculation!',
-        '💡 That\'s an interesting topic! For real-time data, check our market pages: <a href="crypto.html" style="color:var(--primary-light)">Crypto</a>, <a href="us-market.html" style="color:var(--primary-light)">US Stocks</a>, or <a href="forex.html" style="color:var(--primary-light)">Forex</a>.',
-        '🎯 Good thinking! Remember to always manage your risk — never risk more than 1-2% per trade. Use our <a href="tools.html" style="color:var(--primary-light)">Position Sizer</a> for precise calculations.',
-    ];
-    return defaults[Math.floor(Math.random() * defaults.length)];
+    const defaults = {
+        en: [
+            '🤔 Great question! Check our <a href="blog.html" style="color:var(--primary-light)">blog</a> for in-depth market analysis.',
+            '📊 Try our <a href="tools.html" style="color:var(--primary-light)">financial tools</a> to help with that!',
+            '💡 For live data, check <a href="crypto.html" style="color:var(--primary-light)">Crypto</a>, <a href="us-market.html" style="color:var(--primary-light)">US Stocks</a>, or <a href="forex.html" style="color:var(--primary-light)">Forex</a>.',
+            '🎯 Always manage your risk — never risk more than 1-2% per trade. Use our <a href="tools.html" style="color:var(--primary-light)">Position Sizer</a>.',
+        ],
+        ar: [
+            '🤔 سؤال رائع! اطّلع على <a href="blog.html" style="color:var(--primary-light)">مدونتنا</a> للتحليلات المتعمقة.',
+            '📊 جرّب <a href="tools.html" style="color:var(--primary-light)">أدواتنا المالية</a> للمساعدة في ذلك!',
+            '💡 للبيانات اللحظية، راجع <a href="crypto.html" style="color:var(--primary-light)">العملات</a>، <a href="us-market.html" style="color:var(--primary-light)">الأسهم</a>، أو <a href="forex.html" style="color:var(--primary-light)">الفوركس</a>.',
+            '🎯 دائماً أدر مخاطرك — لا تخاطر بأكثر من 1-2٪ للصفقة. استخدم <a href="tools.html" style="color:var(--primary-light)">محدد الحجم</a>.',
+        ]
+    };
+    const arr = defaults[lang] || defaults.en;
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function sendAIMessage(preset) {
@@ -1838,18 +1994,15 @@ function sendAIMessage(preset) {
     const messages = document.getElementById('aiMessages');
     if (!messages) return;
 
-    // Add user message
     messages.innerHTML += `<div class="ai-msg user">${msg}</div>`;
     if (input) input.value = '';
 
-    // Show typing indicator
     const typing = document.createElement('div');
     typing.className = 'ai-typing';
     typing.innerHTML = '<span></span><span></span><span></span>';
     messages.appendChild(typing);
     messages.scrollTop = messages.scrollHeight;
 
-    // Simulate thinking delay
     setTimeout(() => {
         typing.remove();
         const response = getAIResponse(msg);
@@ -1863,30 +2016,31 @@ function initEconomicCalendar() {
     const container = document.getElementById('economicCalendar');
     if (!container) return;
 
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const today = new Date();
-    const fmt = (h, m) => {
-        const d = new Date(today);
-        d.setHours(h, m, 0);
-        return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    };
+    const fmt = (h, m) => { const d = new Date(today); d.setHours(h, m, 0); return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
 
     const events = [
-        { time: fmt(9, 30), name: 'US Non-Farm Payrolls', country: '🇺🇸 USD', impact: 'high' },
-        { time: fmt(10, 0), name: 'US Consumer Price Index (CPI)', country: '🇺🇸 USD', impact: 'high' },
-        { time: fmt(14, 0), name: 'Federal Reserve Interest Decision', country: '🇺🇸 USD', impact: 'high' },
-        { time: fmt(10, 30), name: 'US Initial Jobless Claims', country: '🇺🇸 USD', impact: 'medium' },
-        { time: fmt(12, 0), name: 'EU ECB Rate Decision', country: '🇪🇺 EUR', impact: 'high' },
-        { time: fmt(8, 30), name: 'UK GDP Monthly Estimate', country: '🇬🇧 GBP', impact: 'medium' },
-        { time: fmt(11, 0), name: 'Saudi TASI Open', country: '🇸🇦 SAR', impact: 'low' },
-        { time: fmt(16, 0), name: 'US ISM Manufacturing PMI', country: '🇺🇸 USD', impact: 'medium' },
+        { time: fmt(9, 30), name: lang === 'ar' ? 'الرواتب خارج القطاع الزراعي الأمريكي' : 'US Non-Farm Payrolls', country: '🇺🇸 USD', impact: 'high' },
+        { time: fmt(10, 0),  name: lang === 'ar' ? 'مؤشر أسعار المستهلكين الأمريكي (CPI)' : 'US Consumer Price Index (CPI)', country: '🇺🇸 USD', impact: 'high' },
+        { time: fmt(14, 0),  name: lang === 'ar' ? 'قرار الاحتياطي الفيدرالي بشأن الفائدة' : 'Federal Reserve Interest Decision', country: '🇺🇸 USD', impact: 'high' },
+        { time: fmt(10, 30), name: lang === 'ar' ? 'طلبيات إعانات البطالة الأمريكية' : 'US Initial Jobless Claims', country: '🇺🇸 USD', impact: 'medium' },
+        { time: fmt(12, 0),  name: lang === 'ar' ? 'قرار سعر الفائدة للبنك المركزي الأوروبي' : 'EU ECB Rate Decision', country: '🇪🇺 EUR', impact: 'high' },
+        { time: fmt(8, 30),  name: lang === 'ar' ? 'تقديرات الناتج المحلي الإجمالي البريطاني' : 'UK GDP Monthly Estimate', country: '🇬🇧 GBP', impact: 'medium' },
+        { time: fmt(11, 0),  name: lang === 'ar' ? 'افتتاح السوق السعودية (تاسي)' : 'Saudi TASI Open', country: '🇸🇦 SAR', impact: 'low' },
+        { time: fmt(16, 0),  name: lang === 'ar' ? 'مؤشر PMI التصنيعي ISM الأمريكي' : 'US ISM Manufacturing PMI', country: '🇺🇸 USD', impact: 'medium' },
     ].sort((a, b) => a.time.localeCompare(b.time));
+
+    const highLabel  = translations['econ-impact-high']   ? translations['econ-impact-high'][lang]   : 'High';
+    const medLabel   = translations['econ-impact-medium'] ? translations['econ-impact-medium'][lang]  : 'Medium';
+    const lowLabel   = translations['econ-impact-low']    ? translations['econ-impact-low'][lang]     : 'Low';
 
     container.innerHTML = events.map(ev => `
         <div class="calendar-event">
-            <div class="event-impact ${ev.impact}" title="${ev.impact} impact"></div>
+            <div class="event-impact ${ev.impact}" title="${ev.impact}"></div>
             <div class="event-info">
                 <div class="event-name">${ev.name}</div>
-                <div class="event-meta">${ev.country} · ${ev.impact === 'high' ? '🔴 High' : ev.impact === 'medium' ? '🟡 Medium' : '🟢 Low'} Impact</div>
+                <div class="event-meta">${ev.country} · ${ev.impact === 'high' ? `🔴 ${highLabel}` : ev.impact === 'medium' ? `🟡 ${medLabel}` : `🟢 ${lowLabel}`}</div>
             </div>
             <div class="event-time">${ev.time}</div>
         </div>
