@@ -248,6 +248,13 @@ const translations = {
     // ---- JOURNAL PAGE ----
     'journal-title': { en: 'Trade Journal 📓', ar: 'سجل التداول 📓' },
     'journal-subtitle': { en: 'Reflect on your trades to become a better investor.', ar: 'حلل تداولاتك لتصبح مستثمراً أفضل.' },
+    'journal-log-btn': { en: '+ Log Trade', ar: '+ تسجيل صفقة' },
+    'journal-stat-winrate': { en: 'Win Rate', ar: 'نسبة الربح' },
+    'journal-stat-netpl': { en: 'Total Net Profit', ar: 'صافي الربح الكلي' },
+    'journal-stat-across': { en: 'Across all assets', ar: 'عبر جميع الأصول' },
+    'journal-stat-avgprofit': { en: 'Avg. Profit / Trade', ar: 'متوسط الربح / صفقة' },
+    'journal-stat-best': { en: 'Best Performing Asset', ar: 'أفضل أصل أداءاً' },
+    'journal-stat-best-sub': { en: 'Highest P/L Contribution', ar: 'أعلى مساهمة ر/خ' },
     'journal-add-title': { en: 'Log New Trade', ar: 'تسجيل صفقة جديدة' },
     'journal-th-date': { en: 'Date', ar: 'التاريخ' },
     'journal-th-asset': { en: 'Asset', ar: 'الأصل' },
@@ -256,6 +263,16 @@ const translations = {
     'journal-th-exit': { en: 'Exit', ar: 'الخروج' },
     'journal-th-pnl': { en: 'P/L', ar: 'الربح/الخسارة' },
     'journal-th-notes': { en: 'Notes', ar: 'ملاحظات' },
+    'journal-form-asset': { en: 'Asset (e.g. BTC)', ar: 'الأصل (مثال: BTC)' },
+    'journal-form-type': { en: 'Type', ar: 'النوع' },
+    'journal-form-entry': { en: 'Entry Price', ar: 'سعر الدخول' },
+    'journal-form-exit': { en: 'Exit Price', ar: 'سعر الخروج' },
+    'journal-form-qty': { en: 'Quantity', ar: 'الكمية' },
+    'journal-form-notes': { en: 'Notes', ar: 'ملاحظات' },
+    'journal-form-submit': { en: 'Save Trade Record', ar: 'حفظ سجل الصفقة' },
+    'journal-type-long': { en: 'Long ↑', ar: 'شراء ↑' },
+    'journal-type-short': { en: 'Short ↓', ar: 'بيع ↓' },
+    'journal-empty': { en: 'No trades logged yet. Click "+ Log Trade" to add your first entry.', ar: 'لا توجد صفقات بعد. اضغط "+ تسجيل صفقة" لإضافة أول سجل.' },
 
     // ---- MODAL ----
     'modal-add-title': { en: 'Add Asset to Portfolio', ar: 'إضافة أصل إلى المحفظة' },
@@ -1427,8 +1444,8 @@ function renderHoldings(holdings) {
         <td style="font-family:var(--font-mono);">$${avgCost.toLocaleString()}</td>
         <td style="font-family:var(--font-mono);">$${h.currentPrice.toLocaleString()}</td>
         <td style="font-family:var(--font-mono);font-weight:600;">$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-        <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};">${isPositive ? '+' : ''}$${pnl.toFixed(2)}</td>
-        <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};">${isPositive ? '↑' : '↓'} ${Math.abs(change).toFixed(2)}%</td>
+        <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};"> ${isPositive ? '+' : ''}$${pnl.toFixed(2)}</td>
+        <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};"> ${isPositive ? '↑' : '↓'} ${Math.abs(change).toFixed(2)}%</td>
         <td style="text-align:right;"><button class="btn btn-ghost btn-sm" onclick="handleDeleteAsset('${h.id}')" style="color:var(--danger);padding:2px 8px;">✕</button></td>
       </tr>
     `;
@@ -1793,19 +1810,21 @@ function renderJournal(entries) {
 }
 
 async function handleDeleteTrade(id) {
-    if (!confirm('Are you sure you want to delete this trade record?')) return;
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const msg = lang === 'ar' ? 'هل أنت متأكد من حذف هذا السجل؟' : 'Are you sure you want to delete this trade record?';
+    if (!confirm(msg)) return;
 
     try {
         const response = await secureFetch(`/api/journal/${id}`, { method: 'DELETE' });
         const data = await response.json();
-        
+
         if (data.success) {
-            showToast('success', 'Trade record deleted.');
-            initJournal(); // Refresh UI
+            showToast('success', lang === 'ar' ? 'تم حذف سجل الصفقة.' : 'Trade record deleted.');
+            initJournal();
         }
     } catch (error) {
         console.error('Delete error:', error);
-        showToast('error', 'Failed to delete record.');
+        showToast('error', lang === 'ar' ? 'فشل حذف السجل.' : 'Failed to delete record.');
     }
 }
 

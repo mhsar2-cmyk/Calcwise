@@ -9,7 +9,7 @@
         content="Maintain a professional trade journal. Analysis, notes, and performance tracking for every trade.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
     <style>
         .journal-table th,
         .journal-table td {
@@ -22,7 +22,15 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
+
+        .journal-empty-row td {
+            text-align: center;
+            padding: var(--space-3xl);
+            color: var(--text-muted);
+        }
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ0F5LVG3J');</script>
 </head>
 
 <body>
@@ -71,21 +79,27 @@
                 <div class="sidebar-section-title" data-i18n="sidebar-overview">Overview</div>
                 <a href="dashboard.html" class="sidebar-link"><span class="link-icon">📊</span> <span
                         data-i18n="sidebar-portfolio">Portfolio</span></a>
-                <a href="#" class="sidebar-link active"><span class="link-icon">📓</span> <span
+                <a href="journal.html" class="sidebar-link active"><span class="link-icon">📓</span> <span
                         data-i18n="sidebar-journal">Trade Journal</span></a>
+                <a href="alerts.html" class="sidebar-link"><span class="link-icon">🔔</span> <span
+                        data-i18n="sidebar-alerts">Price Alerts</span></a>
                 <a href="#" class="sidebar-link"><span class="link-icon">👁️</span> <span
                         data-i18n="sidebar-watchlist">Watchlist</span></a>
             </div>
             <div class="sidebar-section">
                 <div class="sidebar-section-title" data-i18n="sidebar-markets">Markets</div>
-                <a href="crypto.html" class="sidebar-link"><span class="link-icon">₿</span> <span>Crypto</span></a>
-                <a href="forex.html" class="sidebar-link"><span class="link-icon">💱</span> <span>Forex</span></a>
-                <a href="us-market.html" class="sidebar-link"><span class="link-icon">🏛️</span> <span>US
-                        Stocks</span></a>
+                <a href="crypto.html" class="sidebar-link"><span class="link-icon">₿</span> <span data-i18n="nav-crypto">Crypto</span></a>
+                <a href="forex.html" class="sidebar-link"><span class="link-icon">💱</span> <span data-i18n="nav-forex">Forex</span></a>
+                <a href="us-market.html" class="sidebar-link"><span class="link-icon">🏛️</span> <span data-i18n="nav-us-stocks">US Stocks</span></a>
             </div>
             <div class="sidebar-section">
                 <div class="sidebar-section-title" data-i18n="sidebar-tools">Tools</div>
-                <a href="tools.html" class="sidebar-link"><span class="link-icon">📐</span> <span>Calculators</span></a>
+                <a href="tools.html" class="sidebar-link"><span class="link-icon">📐</span> <span data-i18n="nav-tools">Calculators</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="footer-account">Account</div>
+                <a href="settings.html" class="sidebar-link"><span class="link-icon">⚙️</span> <span data-i18n="sidebar-settings">Settings</span></a>
+                <a href="#" class="sidebar-link" onclick="handleLogout()"><span class="link-icon">🚪</span> <span data-i18n="sidebar-logout">Log Out</span></a>
             </div>
         </aside>
 
@@ -97,30 +111,30 @@
                     <p data-i18n="journal-subtitle" style="color:var(--text-muted);">Reflect on your trades to become a
                         better investor.</p>
                 </div>
-                <button class="btn btn-primary" onclick="openModal('addTradeModal')">+ Log Trade</button>
+                <button class="btn btn-primary" onclick="openModal('addTradeModal')" data-i18n="journal-log-btn">+ Log Trade</button>
             </div>
 
             <!-- JOURNAL STATS -->
             <div class="grid grid-4" style="margin-bottom: var(--space-xl);">
                 <div class="card stat-card">
-                    <div class="stat-label">Win Rate</div>
+                    <div class="stat-label" data-i18n="journal-stat-winrate">Win Rate</div>
                     <div class="stat-value" id="journalWinRate">0%</div>
                     <div class="stat-footer" id="journalCount">0 Trades Total</div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-label">Total Net Profit</div>
+                    <div class="stat-label" data-i18n="journal-stat-netpl">Total Net Profit</div>
                     <div class="stat-value" id="journalTotalPnL">$0.00</div>
-                    <div class="stat-footer positive">Across all assets</div>
+                    <div class="stat-footer positive" data-i18n="journal-stat-across">Across all assets</div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-label">Avg. Profit / Trade</div>
+                    <div class="stat-label" data-i18n="journal-stat-avgprofit">Avg. Profit / Trade</div>
                     <div class="stat-value" id="journalAvgProfit">$0.00</div>
                     <div class="stat-footer" id="journalProfitability">Analyzing...</div>
                 </div>
                 <div class="card stat-card" style="background:var(--primary-light); border:1px solid var(--primary);">
-                    <div class="stat-label" style="color:white;">Best Performing Asset</div>
+                    <div class="stat-label" style="color:white;" data-i18n="journal-stat-best">Best Performing Asset</div>
                     <div class="stat-value" id="journalBestAsset" style="color:white;">-</div>
-                    <div class="stat-footer" style="color:rgba(255,255,255,0.7);">Highest P/L Contribution</div>
+                    <div class="stat-footer" style="color:rgba(255,255,255,0.7);" data-i18n="journal-stat-best-sub">Highest P/L Contribution</div>
                 </div>
             </div>
 
@@ -156,36 +170,36 @@
             <form onsubmit="handleJournalSubmit(event)">
                 <div class="grid grid-2" style="gap:var(--space-md);">
                     <div class="form-group">
-                        <label>Asset (e.g. BTC)</label>
+                        <label data-i18n="journal-form-asset">Asset (e.g. BTC)</label>
                         <input type="text" class="form-control" id="trade-asset" required>
                     </div>
                     <div class="form-group">
-                        <label>Type</label>
+                        <label data-i18n="journal-form-type">Type</label>
                         <select class="form-control" id="trade-type">
-                            <option value="Long">Long</option>
-                            <option value="Short">Short</option>
+                            <option value="Long" data-i18n="journal-type-long">Long ↑</option>
+                            <option value="Short" data-i18n="journal-type-short">Short ↓</option>
                         </select>
                     </div>
                 </div>
                 <div class="grid grid-2" style="gap:var(--space-md);">
                     <div class="form-group">
-                        <label>Entry Price</label>
+                        <label data-i18n="journal-form-entry">Entry Price</label>
                         <input type="number" step="any" class="form-control" id="trade-entry" required>
                     </div>
                     <div class="form-group">
-                        <label>Exit Price</label>
+                        <label data-i18n="journal-form-exit">Exit Price</label>
                         <input type="number" step="any" class="form-control" id="trade-exit" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Quantity</label>
+                    <label data-i18n="journal-form-qty">Quantity</label>
                     <input type="number" step="any" class="form-control" id="trade-qty" required>
                 </div>
                 <div class="form-group">
-                    <label>Notes</label>
+                    <label data-i18n="journal-form-notes">Notes</label>
                     <textarea class="form-control" id="trade-notes" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Save Trade Record</button>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" data-i18n="journal-form-submit">Save Trade Record</button>
             </form>
         </div>
     </div>
@@ -193,11 +207,14 @@
     <div class="toast-container" id="toastContainer"></div>
     <script src="js/main.js"></script>
     <script>
-        // Specific init for this page
         document.addEventListener('DOMContentLoaded', () => {
             initJournal();
         });
     </script>
+
+    <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span><span class="theme-icon light-icon">☀️</span>
+    </div>
 </body>
 
 </html>
