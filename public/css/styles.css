@@ -2661,7 +2661,7 @@ select.form-control {
 }
 
 .calendar-event:last-child { border: none; }
-.calendar-event:hover { padding-left: 4px; }
+.calendar-event:hover { padding-inline-start: 4px; }
 
 .event-impact {
   width: 8px;
