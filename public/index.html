@@ -169,43 +169,8 @@
             <div class="tradingview-widget-container" style="height:100%;width:100%">
               <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
               <script type="text/javascript"
-                src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                  {
-                    "colorTheme": "dark",
-                      "dateRange": "12M",
-                        "showChart": true,
-                          "locale": "en",
-                            "width": "100%",
-                              "height": "100%",
-                                "largeChartUrl": "",
-                                  "isTransparent": true,
-                                    "showSymbolLogo": true,
-                                      "showFloatingTooltip": false,
-                                        "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-                                          "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-                                            "gridLineColor": "rgba(240, 243, 250, 0)",
-                                              "scaleFontColor": "rgba(106, 109, 120, 1)",
-                                                "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-                                                  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-                                                    "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-                                                      "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-                                                        "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
-                                                          "tabs": [
-                                                            {
-                                                              "title": "Indices",
-                                                              "symbols": [
-                                                                { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" },
-                                                                { "s": "FOREXCOM:NSXUSD", "d": "US 100" },
-                                                                { "s": "FOREXCOM:DJI", "d": "Dow 30" },
-                                                                { "s": "INDEX:NKY", "d": "Nikkei 225" },
-                                                                { "s": "INDEX:DEU40", "d": "DAX Index" },
-                                                                { "s": "FOREXCOM:UK100", "d": "UK 100" }
-                                                              ],
-                                                              "originalTitle": "Indices"
-                                                            }
-                                                          ]
-                  }
-                </script>
+                src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
+                async>{ "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "en", "width": "100%", "height": "100%", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "plotLineColorGrowing": "rgba(41,98,255,1)", "plotLineColorFalling": "rgba(41,98,255,1)", "gridLineColor": "rgba(240,243,250,0)", "scaleFontColor": "rgba(106,109,120,1)", "belowLineFillColorGrowing": "rgba(41,98,255,0.12)", "belowLineFillColorFalling": "rgba(41,98,255,0.12)", "belowLineFillColorGrowingBottom": "rgba(41,98,255,0)", "belowLineFillColorFallingBottom": "rgba(41,98,255,0)", "symbolActiveColor": "rgba(41,98,255,0.12)", "tabs": [{ "title": "Indices", "symbols": [{ "s": "FOREXCOM:SPXUSD", "d": "S&P 500" }, { "s": "FOREXCOM:NSXUSD", "d": "US 100" }, { "s": "FOREXCOM:DJI", "d": "Dow 30" }, { "s": "INDEX:NKY", "d": "Nikkei 225" }, { "s": "INDEX:DEU40", "d": "DAX Index" }, { "s": "FOREXCOM:UK100", "d": "UK 100" }], "originalTitle": "Indices" }] }</script>
             </div>
             <!-- TradingView Widget END -->
           </div>
@@ -220,18 +185,8 @@
             <div class="tradingview-widget-container" style="height:100%;width:100%">
               <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
               <script type="text/javascript"
-                src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-                  {
-                    "width": "100%",
-                      "height": "100%",
-                        "defaultColumn": "overview",
-                          "screener_type": "crypto_mkt",
-                            "displayCurrency": "USD",
-                              "colorTheme": "dark",
-                                "locale": "en",
-                                  "isTransparent": true
-                  }
-                </script>
+                src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js"
+                async>{ "width": "100%", "height": "100%", "defaultColumn": "overview", "screener_type": "crypto_mkt", "displayCurrency": "USD", "colorTheme": "dark", "locale": "en", "isTransparent": true }</script>
             </div>
             <!-- TradingView Widget END -->
           </div>
@@ -307,13 +262,14 @@
         <div class="blog-card">
           <img src="images/blog-header.png" alt="Market Analysis" class="blog-card-image">
           <div class="blog-card-body">
-            <span class="blog-card-tag">Market Analysis</span>
-            <h4><a href="blog.html">Bitcoin Breaks $100K — What's Next for Crypto Markets?</a></h4>
-            <p>An in-depth look at the factors driving BTC's historic rally and what analysts predict for the remainder
-              of 2026.</p>
+            <span class="blog-card-tag" data-i18n="filter-crypto">Market Analysis</span>
+            <h4><a href="blog.html" data-i18n="blog-card-1-title">Altcoin Season 2026: Top 10 Tokens to Watch 🚀</a>
+            </h4>
+            <p data-i18n="blog-card-1-desc">Identifying the most promising altcoins with strong fundamentals and
+              technical setups for this cycle. 📈</p>
             <div class="blog-card-meta">
-              <span>Mar 8, 2026</span>
-              <span>5 min read</span>
+              <span data-i18n="blog-date-1">Mar 8, 2026</span>
+              <span data-i18n="blog-read-5m">5 min read</span>
             </div>
           </div>
         </div>
@@ -321,12 +277,15 @@
         <div class="blog-card">
           <img src="images/blog-header.png" alt="Forex Strategy" class="blog-card-image">
           <div class="blog-card-body">
-            <span class="blog-card-tag" style="background:rgba(0,210,211,0.15);color:var(--accent-teal);">Forex</span>
-            <h4><a href="blog.html">Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD</a></h4>
-            <p>Understanding the impact of central bank policies on the world's most traded currency pair.</p>
+            <span class="blog-card-tag" style="background:rgba(0,210,211,0.15);color:var(--accent-teal);"
+              data-i18n="filter-forex">Forex</span>
+            <h4><a href="blog.html" data-i18n="blog-card-2-title">Euro vs Dollar: How Interest Rate Decisions Shape
+                EUR/USD</a></h4>
+            <p data-i18n="blog-card-2-desc">Understanding the impact of central bank policies on the world's most traded
+              currency pair.</p>
             <div class="blog-card-meta">
-              <span>Mar 6, 2026</span>
-              <span>7 min read</span>
+              <span data-i18n="blog-date-2">Mar 6, 2026</span>
+              <span data-i18n="blog-read-7m">7 min read</span>
             </div>
           </div>
         </div>
@@ -334,14 +293,15 @@
         <div class="blog-card">
           <img src="images/blog-header.png" alt="Saudi Vision 2030" class="blog-card-image">
           <div class="blog-card-body">
-            <span class="blog-card-tag" style="background:rgba(0,184,148,0.15);color:var(--accent-emerald);">Saudi
-              Market</span>
-            <h4><a href="blog.html">Vision 2030 Update: Top Saudi Stocks to Watch This Quarter</a></h4>
-            <p>As Saudi Arabia's transformation accelerates, these sectors and stocks offer significant opportunities.
-            </p>
+            <span class="blog-card-tag" style="background:rgba(0,184,148,0.15);color:var(--accent-emerald);"
+              data-i18n="filter-saudi">Saudi Market</span>
+            <h4><a href="blog.html" data-i18n="blog-card-6-title">Vision 2030 Update: Top Saudi Stocks to Watch This
+                Quarter</a></h4>
+            <p data-i18n="blog-card-6-desc">As Saudi Arabia's transformation accelerates, these sectors and stocks offer
+              significant opportunities.</p>
             <div class="blog-card-meta">
-              <span>Mar 4, 2026</span>
-              <span>6 min read</span>
+              <span data-i18n="blog-date-6">Mar 4, 2026</span>
+              <span data-i18n="blog-read-6m">6 min read</span>
             </div>
           </div>
         </div>

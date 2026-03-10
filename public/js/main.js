@@ -532,6 +532,23 @@ const translations = {
     'widget-us-screener': { en: 'US <span class="text-gold">Stock Screener</span>', ar: 'فاحص <span class="text-gold">الأسهم الأمريكية</span>' },
     'widget-screener-desc': { en: 'Browse and filter assets by market cap, price, volume, and more.', ar: 'تصفح وقم بتصفية الأصول حسب القيمة السوقية والسعر والحجم والمزيد.' },
     'widget-saudi-desc': { en: 'Browse all Tadawul-listed companies filtered by performance, sector, and market metrics.', ar: 'تصفح جميع الشركات المدرجة في تداول والمصنفة حسب الأداء والقطاع ومقاييس السوق.' },
+    // Blog Metadata
+    'blog-date-1': { en: '📅 Mar 8, 2026', ar: '📅 ٨ مارس ٢٠٢٦' },
+    'blog-date-2': { en: '📅 Mar 6, 2026', ar: '📅 ٦ مارس ٢٠٢٦' },
+    'blog-date-3': { en: '📅 Mar 3, 2026', ar: '📅 ٣ مارس ٢٠٢٦' },
+    'blog-date-4': { en: '📅 Mar 7, 2026', ar: '📅 ٧ مارس ٢٠٢٦' },
+    'blog-date-5': { en: '📅 Mar 1, 2026', ar: '📅 ١ مارس ٢٠٢٦' },
+    'blog-date-6': { en: '📅 Mar 4, 2026', ar: '📅 ٤ مارس ٢٠٢٦' },
+    'blog-date-7': { en: '📅 Feb 28, 2026', ar: '📅 ٢٨ فبراير ٢٠٢٦' },
+    'blog-date-8': { en: '📅 Feb 25, 2026', ar: '📅 ٢٥ فبراير ٢٠٢٦' },
+    'blog-date-9': { en: '📅 Feb 22, 2026', ar: '📅 ٢٢ فبراير ٢٠٢٦' },
+    'blog-date-10': { en: '📅 Feb 20, 2026', ar: '📅 ٢٠ فبراير ٢٠٢٦' },
+    'blog-read-5m': { en: '⏱ 5 min read', ar: '⏱ ٥ دقائق للقراءة' },
+    'blog-read-6m': { en: '⏱ 6 min read', ar: '⏱ ٦ دقائق للقراءة' },
+    'blog-read-7m': { en: '⏱ 7 min read', ar: '⏱ ٧ دقائق للقراءة' },
+    'blog-read-8m': { en: '⏱ 8 min read', ar: '⏱ ٨ دقائق للقراءة' },
+    'blog-read-9m': { en: '⏱ 9 min read', ar: '⏱ ٩ دقائق للقراءة' },
+    'blog-read-10m': { en: '⏱ 10 min read', ar: '⏱ ١٠ دقائق للقراءة' },
 };
 
 function initLanguage() {
