@@ -811,30 +811,21 @@ function checkAuth() {
     const isLoggedIn = localStorage.getItem('calcwise_logged_in') === 'true';
     const user = JSON.parse(localStorage.getItem('calcwise_user') || 'null');
     const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const path = window.location.pathname;
+    const href = window.location.href;
 
-    // Protection for private pages
-    if (path.includes('dashboard.html') || path.includes('journal.html')) {
-        if (!isLoggedIn) {
-            window.location.href = 'login.html';
-            return;
-        }
-    }
-
-    // Redirect away from auth pages if already logged in
-    if ((path.includes('login.html') || path.includes('signup.html')) && isLoggedIn) {
-        window.location.href = 'dashboard.html';
+    // Guard: protect dashboard and journal — redirect to login if not authenticated
+    const isPrivatePage = href.includes('dashboard.html') || href.includes('journal.html');
+    if (isPrivatePage && !isLoggedIn) {
+        window.location.replace('login.html');
         return;
     }
 
-    // Update Header UI for all pages
+    // Update Header UI for all pages (swap Log In / Sign Up with Dashboard / Log Out)
     const navActions = document.querySelector('.nav-actions');
     if (navActions && isLoggedIn) {
-        // If it's a guest navbar (contains Log In button), update it
         if (navActions.querySelector('[data-i18n="nav-login"]')) {
             const dashText = lang === 'ar' ? 'لوحة التحكم' : 'Dashboard';
             const logoutText = translations['dash-logout'][lang] || 'Log Out';
-            
             navActions.innerHTML = `
                 <div class="toggle-pill lang-toggle" title="Toggle language">
                     <span class="toggle-option ${lang === 'en' ? 'active' : ''}" data-value="en" onclick="toggleLanguage('en')">EN</span>
@@ -846,6 +837,7 @@ function checkAuth() {
         }
     }
 
+    // Update greeting on dashboard
     const dashboardUser = document.getElementById('dashboardUser');
     if (dashboardUser && user) {
         const hiText = translations['dash-hi'][lang] || 'Hi';
