@@ -46,9 +46,6 @@
                 <a href="tools.html" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-
-
-
                 <div class="toggle-pill lang-toggle" title="Toggle language">
                     <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
                     <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
@@ -77,7 +74,7 @@
     <!-- TOP 3 TODAY CHARTS -->
     <section class="section" style="padding-top: 0; padding-bottom: var(--space-xl);">
         <div class="container">
-            <div class="grid grid-3" style="gap: 10px;">
+            <div class="grid grid-3" style="gap: 15px;">
                 <!-- BITCOIN -->
                 <div class="top-crypto-card reveal">
                     <div class="tradingview-widget-container">
@@ -88,6 +85,7 @@
                                 { "symbol": "BINANCE:BTCUSDT", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
                             </script>
                     </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%;margin-top:var(--space-sm);border-radius:var(--radius-sm);" onclick="deepAddAsset('BTC', 'Bitcoin', 'Crypto', 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', 'var(--accent-gold)')">+ Add to Portfolio</button>
                 </div>
 
                 <!-- ETHEREUM -->
@@ -100,6 +98,7 @@
                                 { "symbol": "BINANCE:ETHUSDT", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
                             </script>
                     </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%;margin-top:var(--space-sm);border-radius:var(--radius-sm);" onclick="deepAddAsset('ETH', 'Ethereum', 'Crypto', 'https://cryptologos.cc/logos/ethereum-eth-logo.png', 'var(--primary-light)')">+ Add to Portfolio</button>
                 </div>
 
                 <!-- SOLANA -->
@@ -112,6 +111,7 @@
                                 { "symbol": "BINANCE:SOLUSDT", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
                             </script>
                     </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%;margin-top:var(--space-sm);border-radius:var(--radius-sm);" onclick="deepAddAsset('SOL', 'Solana', 'Crypto', 'https://cryptologos.cc/logos/solana-sol-logo.png', 'var(--accent-teal)')">+ Add to Portfolio</button>
                 </div>
             </div>
         </div>
@@ -132,17 +132,17 @@
                             async>
                                 {
                                     "dataSource": "Crypto",
-                                        "blockSize": "market_cap_calc",
-                                            "blockColor": "change",
-                                                "locale": "en",
-                                                    "symbolUrl": "",
-                                                        "colorTheme": "dark",
-                                                            "hasTopBar": false,
-                                                                "isDataSetEnabled": false,
-                                                                    "isZoomEnabled": true,
-                                                                        "hasSymbolTooltip": true,
-                                                                            "width": "100%",
-                                                                                "height": "100%"
+                                    "blockSize": "market_cap_calc",
+                                    "blockColor": "change",
+                                    "locale": "en",
+                                    "symbolUrl": "",
+                                    "colorTheme": "dark",
+                                    "hasTopBar": false,
+                                    "isDataSetEnabled": false,
+                                    "isZoomEnabled": true,
+                                    "hasSymbolTooltip": true,
+                                    "width": "100%",
+                                    "height": "100%"
                                 }
                             </script>
                     </div>
@@ -159,7 +159,7 @@
                 <p data-i18n="widget-screener-desc">Browse and filter all cryptocurrencies by market cap, price, volume,
                     and more.</p>
             </div>
-            <div class="widget-container reveal">
+            <div class="widget-container reveal" style="padding:0; overflow:hidden;">
                 <div style="height:600px;">
                     <div class="tradingview-widget-container" style="height:100%;width:100%">
                         <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
@@ -167,13 +167,13 @@
                             src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
                                 {
                                     "width": "100%",
-                                        "height": "300",
-                                            "defaultColumn": "overview",
-                                                "screener_type": "crypto_mkt",
-                                                    "displayCurrency": "USD",
-                                                        "colorTheme": "dark",
-                                                            "locale": "en",
-                                                                "isTransparent": true
+                                    "height": "100%",
+                                    "defaultColumn": "overview",
+                                    "screener_type": "crypto_mkt",
+                                    "displayCurrency": "USD",
+                                    "colorTheme": "dark",
+                                    "locale": "en",
+                                    "isTransparent": true
                                 }
                             </script>
                     </div>
@@ -223,7 +223,6 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
-
 
     <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
     <div class="floating-toggles"

@@ -74,6 +74,51 @@
             </div>
         </div>
     </section>
+    <!-- TOP STOCKS -->
+    <section class="section" style="padding-top: 0; padding-bottom: var(--space-xl);">
+        <div class="container">
+            <div class="grid grid-3" style="gap: 15px;">
+                <!-- APPLE -->
+                <div class="top-crypto-card reveal">
+                    <div style="height:200px;margin-bottom:var(--space-md);">
+                        <div class="tradingview-widget-container" style="height:100%;width:100%">
+                            <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                { "symbol": "NASDAQ:AAPL", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
+                            </script>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%;border-radius:var(--radius-sm);" onclick="deepAddAsset('AAPL', 'Apple Inc.', 'US Stocks', 'https://logo.clearbit.com/apple.com', 'var(--text-primary)')">+ Add to Portfolio</button>
+                </div>
+
+                <!-- NVIDIA -->
+                <div class="top-crypto-card reveal">
+                    <div style="height:200px;margin-bottom:var(--space-md);">
+                        <div class="tradingview-widget-container" style="height:100%;width:100%">
+                            <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                { "symbol": "NASDAQ:NVDA", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
+                            </script>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%;border-radius:var(--radius-sm);" onclick="deepAddAsset('NVDA', 'NVIDIA', 'US Stocks', 'https://logo.clearbit.com/nvidia.com', 'var(--success)')">+ Add to Portfolio</button>
+                </div>
+
+                <!-- TESLA -->
+                <div class="top-crypto-card reveal">
+                    <div style="height:200px;margin-bottom:var(--space-md);">
+                        <div class="tradingview-widget-container" style="height:100%;width:100%">
+                            <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                { "symbol": "NASDAQ:TSLA", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
+                            </script>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%;border-radius:var(--radius-sm);" onclick="deepAddAsset('TSLA', 'Tesla Inc.', 'US Stocks', 'https://logo.clearbit.com/tesla.com', 'var(--danger)')">+ Add to Portfolio</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- US STOCKS HEATMAP -->
     <section class="section">

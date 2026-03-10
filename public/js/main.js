@@ -1255,12 +1255,12 @@ function initSessionClock() {
 
 function getHoldings() {
     const defaults = [
-        { name: 'Bitcoin', symbol: 'BTC', market: 'Crypto', qty: 0.5, avgCost: 68000, currentPrice: 101234, icon: '₿', color: 'var(--accent-gold)' },
-        { name: 'Ethereum', symbol: 'ETH', market: 'Crypto', qty: 5, avgCost: 3200, currentPrice: 4123, icon: '⟠', color: 'var(--primary-light)' },
-        { name: 'Apple Inc.', symbol: 'AAPL', market: 'US Stocks', qty: 20, avgCost: 180, currentPrice: 245.67, icon: '🍎', color: 'var(--text-primary)' },
-        { name: 'NVIDIA', symbol: 'NVDA', market: 'US Stocks', qty: 10, avgCost: 500, currentPrice: 890.50, icon: '🟢', color: 'var(--success)' },
-        { name: 'Saudi Aramco', symbol: '2222', market: 'Saudi', qty: 100, avgCost: 28, currentPrice: 32.10, icon: '🇸🇦', color: 'var(--accent-emerald)' },
-        { name: 'Al Rajhi Bank', symbol: '1180', market: 'Saudi', qty: 50, avgCost: 75, currentPrice: 82.30, icon: '🏦', color: 'var(--accent-teal)' },
+        { name: 'Bitcoin', symbol: 'BTC', market: 'Crypto', qty: 0.5, avgCost: 68000, currentPrice: 101234, icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: 'var(--accent-gold)' },
+        { name: 'Ethereum', symbol: 'ETH', market: 'Crypto', qty: 5, avgCost: 3200, currentPrice: 4123, icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: 'var(--primary-light)' },
+        { name: 'Apple Inc.', symbol: 'AAPL', market: 'US Stocks', qty: 20, avgCost: 180, currentPrice: 245.67, icon: 'https://logo.clearbit.com/apple.com', color: 'var(--text-primary)' },
+        { name: 'NVIDIA', symbol: 'NVDA', market: 'US Stocks', qty: 10, avgCost: 500, currentPrice: 890.50, icon: 'https://logo.clearbit.com/nvidia.com', color: 'var(--success)' },
+        { name: 'Saudi Aramco', symbol: '2222', market: 'Saudi', qty: 100, avgCost: 28, currentPrice: 32.10, icon: 'https://logo.clearbit.com/saudiaramco.com', color: 'var(--accent-emerald)' },
+        { name: 'Al Rajhi Bank', symbol: '1120', market: 'Saudi', qty: 50, avgCost: 75, currentPrice: 82.30, icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: 'var(--accent-teal)' },
     ];
 
     return JSON.parse(localStorage.getItem('calcwise_holdings') || JSON.stringify(defaults));
@@ -1281,7 +1281,9 @@ function renderHoldings(holdings) {
       <tr>
         <td>
           <div class="asset-name">
-            <span class="asset-icon" style="background:${h.color}22;">${h.icon}</span>
+            <span class="asset-icon" style="background:${h.color}22;">
+                ${h.icon && h.icon.startsWith('http') ? `<img src="${h.icon}" style="width:100%;height:100%;object-fit:contain;border-radius:50%;" alt="${h.name}">` : h.icon || '💰'}
+            </span>
             <div>
               <div style="font-weight:500;">${h.name}</div>
               <div style="font-size:0.78rem;color:var(--text-muted);">${h.symbol}</div>
@@ -1409,6 +1411,46 @@ function openAddAssetModal() {
 function closeModal(id) {
     const modal = document.getElementById(id);
     if (modal) modal.classList.remove('active');
+}
+
+/**
+ * Direct Asset Addition (from Market Pages)
+ */
+async function deepAddAsset(symbol, name, market, icon, color) {
+    if (!localStorage.getItem('calcwise_logged_in')) {
+        showToast('warning', 'Please log in to manage your portfolio.');
+        setTimeout(() => window.location.href = 'login.html', 1500);
+        return;
+    }
+
+    const qty = prompt(`How many ${symbol} tokens/shares do you hold?`, "1");
+    if (qty === null || isNaN(parseFloat(qty))) return;
+
+    const cost = prompt(`What was your average entry price for ${symbol}?`, "0");
+    if (cost === null || isNaN(parseFloat(cost))) return;
+
+    const assetData = {
+        name: name,
+        symbol: symbol,
+        market: market,
+        qty: parseFloat(qty),
+        avgCost: parseFloat(cost),
+        icon: icon,
+        color: color
+    };
+
+    try {
+        const response = await secureFetch('/api/portfolio', {
+            method: 'POST',
+            body: JSON.stringify(assetData)
+        });
+        const data = await response.json();
+        if (data.success) {
+            showToast('success', `${name} added to your portfolio! 🚀`);
+        }
+    } catch (error) {
+        showToast('error', 'Failed to add asset.');
+    }
 }
 
 async function addAsset(e) {
