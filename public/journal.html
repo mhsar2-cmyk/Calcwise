@@ -100,6 +100,30 @@
                 <button class="btn btn-primary" onclick="openModal('addTradeModal')">+ Log Trade</button>
             </div>
 
+            <!-- JOURNAL STATS -->
+            <div class="grid grid-4" style="margin-bottom: var(--space-xl);">
+                <div class="card stat-card">
+                    <div class="stat-label">Win Rate</div>
+                    <div class="stat-value" id="journalWinRate">0%</div>
+                    <div class="stat-footer" id="journalCount">0 Trades Total</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-label">Total Net Profit</div>
+                    <div class="stat-value" id="journalTotalPnL">$0.00</div>
+                    <div class="stat-footer positive">Across all assets</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-label">Avg. Profit / Trade</div>
+                    <div class="stat-value" id="journalAvgProfit">$0.00</div>
+                    <div class="stat-footer" id="journalProfitability">Analyzing...</div>
+                </div>
+                <div class="card stat-card" style="background:var(--primary-light); border:1px solid var(--primary);">
+                    <div class="stat-label" style="color:white;">Best Performing Asset</div>
+                    <div class="stat-value" id="journalBestAsset" style="color:white;">-</div>
+                    <div class="stat-footer" style="color:rgba(255,255,255,0.7);">Highest P/L Contribution</div>
+                </div>
+            </div>
+
             <div class="card" style="padding:0; overflow:hidden;">
                 <table class="assets-table journal-table">
                     <thead>
@@ -111,6 +135,7 @@
                             <th data-i18n="journal-th-exit">Exit</th>
                             <th data-i18n="journal-th-pnl">P/L</th>
                             <th data-i18n="journal-th-notes">Notes</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="journalBody">

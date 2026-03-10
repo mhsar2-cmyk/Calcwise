@@ -36,4 +36,11 @@ const addTrade = async (tradeData) => {
     return data[0];
 };
 
-module.exports = { getJournal, addTrade };
+const removeTrade = async (id) => {
+    if (!supabase) return false;
+    const { error } = await supabase.from('journals').delete().eq('id', id);
+    if (error) throw new Error(error.message);
+    return true;
+};
+
+module.exports = { getJournal, addTrade, removeTrade };

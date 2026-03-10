@@ -4,7 +4,7 @@ const path = require('path');
 const { getMockPrices, getWatchlist } = require('./src/services/marketData');
 const { getPortfolio, addAsset, removeAsset } = require('./src/services/portfolio');
 const { login, signup } = require('./src/services/auth');
-const { getJournal, addTrade } = require('./src/services/journal');
+const { getJournal, addTrade, removeTrade } = require('./src/services/journal');
 const authenticate = require('./src/middleware/auth');
 
 const app = express();
@@ -104,6 +104,15 @@ app.post('/api/journal', authenticate, async (req, res) => {
     try {
         const trade = await addTrade({ ...req.body, userId: req.user.id });
         res.status(201).json({ success: true, trade });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+app.delete('/api/journal/:id', authenticate, async (req, res) => {
+    try {
+        await removeTrade(req.params.id);
+        res.json({ success: true });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

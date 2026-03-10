@@ -1334,6 +1334,50 @@ function updateStats(holdings) {
     const lastBestAvgCost = best.avg_cost || best.avgCost;
     const bestChangePct = ((best.currentPrice - lastBestAvgCost) / lastBestAvgCost) * 100;
     if (el('bestPerformerChange')) el('bestPerformerChange').textContent = `↑ +${bestChangePct.toFixed(1)}%`;
+
+    // --- Dynamic Allocation ---
+    const markets = {};
+    holdings.forEach(h => {
+        const val = h.qty * h.currentPrice;
+        markets[h.market] = (markets[h.market] || 0) + val;
+    });
+
+    const marketColors = {
+        'Crypto': 'var(--accent-gold)',
+        'Forex': 'var(--accent-teal)',
+        'US Stocks': 'var(--primary)',
+        'Saudi': 'var(--accent-emerald)'
+    };
+
+    const allocationContainer = document.querySelector('.allocation-chart');
+    if (allocationContainer && totalValue > 0) {
+        let gradientStr = '';
+        let currentDeg = 0;
+        let html = '';
+
+        Object.keys(markets).forEach(market => {
+            const pct = (markets[market] / totalValue) * 100;
+            const deg = (pct / 100) * 360;
+            const color = marketColors[market] || 'var(--text-muted)';
+            
+            gradientStr += `${color} ${currentDeg}deg ${currentDeg + deg}deg,`;
+            currentDeg += deg;
+
+            html += `
+                <div class="allocation-item">
+                    <span class="allocation-dot" style="background:${color};"></span>
+                    <span>${market} — ${pct.toFixed(0)}%</span>
+                </div>
+            `;
+        });
+
+        // Update Pie
+        const pie = document.querySelector('[style*="conic-gradient"]');
+        if (pie) pie.style.background = `conic-gradient(${gradientStr.slice(0, -1)})`;
+        
+        // Update labels
+        allocationContainer.innerHTML = html;
+    }
 }
 
 function renderPortfolioChart() {
@@ -1522,10 +1566,44 @@ function renderJournal(entries) {
     if (!tbody) return;
 
     if (entries.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">No trades logged yet. Start your journey today!</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">No trades logged yet. Start your journey today!</td></tr>';
         return;
     }
 
+    // --- Calculate Stats ---
+    const totalTrades = entries.length;
+    const wins = entries.filter(j => j.pnl > 0).length;
+    const winRate = (wins / totalTrades) * 100;
+    const totalPnL = entries.reduce((sum, j) => sum + j.pnl, 0);
+    const avgProfit = totalPnL / totalTrades;
+
+    // Find best asset
+    const assetPnL = {};
+    entries.forEach(j => {
+        assetPnL[j.asset] = (assetPnL[j.asset] || 0) + j.pnl;
+    });
+    let bestAsset = '-';
+    let maxPnL = -Infinity;
+    for (const asset in assetPnL) {
+        if (assetPnL[asset] > maxPnL) {
+            maxPnL = assetPnL[asset];
+            bestAsset = asset;
+        }
+    }
+
+    // --- Update UI Stats ---
+    if (el('journalWinRate')) el('journalWinRate').textContent = `${winRate.toFixed(1)}%`;
+    if (el('journalCount')) el('journalCount').textContent = `${totalTrades} Trades Total`;
+    if (el('journalTotalPnL')) el('journalTotalPnL').textContent = `${totalPnL >= 0 ? '+' : ''}$${totalPnL.toLocaleString()}`;
+    if (el('journalAvgProfit')) el('journalAvgProfit').textContent = `${avgProfit >= 0 ? '+' : ''}$${avgProfit.toLocaleString()}`;
+    if (el('journalBestAsset')) el('journalBestAsset').textContent = bestAsset;
+    
+    if (el('journalProfitability')) {
+        el('journalProfitability').textContent = avgProfit > 0 ? 'Highly Profitable' : 'Attention Needed';
+        el('journalProfitability').className = `stat-footer ${avgProfit > 0 ? 'positive' : 'negative'}`;
+    }
+
+    // --- Render Table ---
     tbody.innerHTML = entries.map(j => `
         <tr>
             <td style="font-size:0.85rem;color:var(--text-muted);">${j.date}</td>
@@ -1535,8 +1613,26 @@ function renderJournal(entries) {
             <td style="font-family:var(--font-mono);">$${j.exit.toLocaleString()}</td>
             <td style="font-family:var(--font-mono);color:${j.pnl >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:600;">${j.pnl >= 0 ? '+' : ''}$${j.pnl.toLocaleString()}</td>
             <td style="font-size:0.85rem;color:var(--text-secondary);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${j.notes}">${j.notes}</td>
+            <td style="text-align:right;"><button class="btn btn-ghost btn-sm" onclick="handleDeleteTrade('${j.id}')" style="color:var(--danger);padding:2px 8px;">✕</button></td>
         </tr>
     `).join('');
+}
+
+async function handleDeleteTrade(id) {
+    if (!confirm('Are you sure you want to delete this trade record?')) return;
+
+    try {
+        const response = await secureFetch(`/api/journal/${id}`, { method: 'DELETE' });
+        const data = await response.json();
+        
+        if (data.success) {
+            showToast('success', 'Trade record deleted.');
+            initJournal(); // Refresh UI
+        }
+    } catch (error) {
+        console.error('Delete error:', error);
+        showToast('error', 'Failed to delete record.');
+    }
 }
 
 async function handleJournalSubmit(e) {
