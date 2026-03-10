@@ -168,16 +168,14 @@
                 <a href="tools.html" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-                <div class="nav-toggles">
-                    <div class="toggle-pill theme-toggle" title="Toggle theme">
-                        <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
-                        <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
-                    </div>
-                    <div class="toggle-pill lang-toggle" title="Toggle language">
-                        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
-                        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
-                    </div>
-                </div>
+        
+        <div class="toggle-pill lang-toggle" title="Toggle language">
+          <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+          <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+        </div>
+        
+        
+                
                 <span style="color:var(--text-secondary);font-size:0.88rem;" id="dashboardUser">Hi, User 👋</span>
                 <button class="btn btn-ghost btn-sm" onclick="handleLogout()" data-i18n="dash-logout">Log Out</button>
             </div>
@@ -495,6 +493,13 @@
 
     <div class="toast-container" id="toastContainer"></div>
     <script src="js/main.js"></script>
+
+  
+  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+  <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
+    <span class="theme-icon dark-icon">🌙</span>
+    <span class="theme-icon light-icon">☀️</span>
+  </div>
 </body>
 
 </html>

@@ -46,17 +46,14 @@
                 <a href="tools.html" data-i18n="nav-tools">Tools</a>
             </div>
             <div class="nav-actions">
-                <div class="nav-toggles">
-                    <div class="toggle-pill theme-toggle" title="Toggle theme">
-                        <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
-                        <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
-                    </div>
-                    <div class="toggle-pill lang-toggle" title="Toggle language">
-                        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
-                        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
-                    </div>
-                </div>
-                <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
+        
+        
+        
+        <div class="toggle-pill lang-toggle" title="Toggle language">
+          <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+          <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">Log In</a>
                 <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">Get Started</a>
             </div>
             <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
@@ -158,6 +155,13 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
+
+  
+  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+  <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
+    <span class="theme-icon dark-icon">🌙</span>
+    <span class="theme-icon light-icon">☀️</span>
+  </div>
 </body>
 
 </html>

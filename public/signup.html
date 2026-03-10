@@ -22,19 +22,16 @@
 
 <body>
     <div class="auth-container">
+
+    <!-- Top-right Language Toggle for Auth Pages -->
+    <div style="position:fixed;top:20px;right:20px;z-index:100;">
+      <div class="toggle-pill lang-toggle" title="Toggle language">
+        <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+        <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+      </div>
+    </div>
         <!-- Floating toggles for auth pages -->
-        <div style="position:fixed;top:20px;right:20px;z-index:100;">
-            <div class="nav-toggles" style="flex-direction:column;">
-                <div class="toggle-pill theme-toggle" title="Toggle theme">
-                    <span class="toggle-option active" data-value="dark" onclick="toggleTheme('dark')">🌙</span>
-                    <span class="toggle-option" data-value="light" onclick="toggleTheme('light')">☀️</span>
-                </div>
-                <div class="toggle-pill lang-toggle" title="Toggle language">
-                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
-                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="card auth-card card-glass">
             <div class="auth-header">
@@ -105,6 +102,13 @@
 
     <div class="toast-container" id="toastContainer"></div>
     <script src="js/main.js"></script>
+
+  
+  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
+  <div class="floating-toggles" onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')" title="Toggle theme">
+    <span class="theme-icon dark-icon">🌙</span>
+    <span class="theme-icon light-icon">☀️</span>
+  </div>
 </body>
 
 </html>

@@ -34,8 +34,11 @@
 
   /* Dark Theme */
   --bg-primary: #0A0A1A;
+  --bg-primary-rgb: 10, 10, 26;
   --bg-secondary: #111128;
+  --bg-secondary-rgb: 17, 17, 40;
   --bg-card: #161638;
+  --bg-card-rgb: 22, 22, 56;
   --bg-card-hover: #1C1C48;
   --bg-surface: #1E1E4A;
   --bg-input: #12122E;
@@ -2152,6 +2155,80 @@ select.form-control {
 /* ======================================================
    TOGGLE BUTTONS (Theme & Language)
    ====================================================== */
+/* Floating Theme Toggle (Circular) */
+.floating-toggles {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--bg-card-rgb), 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: slideInLeft 0.5s var(--ease-out) forwards;
+  overflow: visible;
+}
+
+.floating-toggles:hover {
+  transform: scale(1.1) rotate(12deg);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-xl), 0 0 25px var(--primary-glow);
+}
+
+[data-theme="light"] .floating-toggles {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.floating-toggles .theme-icon {
+  font-size: 1.2rem;
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .floating-toggles .light-icon {
+  opacity: 0;
+  transform: scale(0) rotate(-180deg);
+}
+
+[data-theme="dark"] .floating-toggles .dark-icon {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+[data-theme="light"] .floating-toggles .dark-icon {
+  opacity: 0;
+  transform: scale(0) rotate(180deg);
+}
+
+[data-theme="light"] .floating-toggles .light-icon {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .nav-toggles {
   display: flex;
   align-items: center;
