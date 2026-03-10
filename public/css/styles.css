@@ -2380,7 +2380,7 @@ select.form-control {
 #aiAssistantBtn {
   position: fixed;
   bottom: 80px;
-  left: 24px;
+  /* Positioned via [dir] selectors below */
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -2396,6 +2396,16 @@ select.form-control {
   justify-content: center;
   transition: all var(--transition-spring);
   animation: pulse-ai 3s ease-in-out infinite;
+}
+
+[dir="ltr"] #aiAssistantBtn {
+  right: 24px;
+  left: auto;
+}
+
+[dir="rtl"] #aiAssistantBtn {
+  left: 24px;
+  right: auto;
 }
 
 #aiAssistantBtn:hover {
@@ -2428,7 +2438,7 @@ select.form-control {
 #aiChat {
   position: fixed;
   bottom: 150px;
-  left: 24px;
+  /* Positioned via [dir] selectors below */
   width: 360px;
   max-height: 500px;
   background: var(--bg-card);
@@ -2443,6 +2453,16 @@ select.form-control {
   opacity: 0;
   pointer-events: none;
   transition: all var(--transition-spring);
+}
+
+[dir="ltr"] #aiChat {
+  right: 24px;
+  left: auto;
+}
+
+[dir="rtl"] #aiChat {
+  left: 24px;
+  right: auto;
 }
 
 #aiChat.open {
