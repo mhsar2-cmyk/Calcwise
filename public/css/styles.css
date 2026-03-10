@@ -2185,7 +2185,7 @@ select.form-control {
 .floating-toggles {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  /* Side handled by [dir] selectors below */
   z-index: 9999;
   width: 44px;
   height: 44px;
@@ -2201,6 +2201,16 @@ select.form-control {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: slideInLeft 0.5s var(--ease-out) forwards;
   overflow: visible;
+}
+
+[dir="ltr"] .floating-toggles {
+  right: 24px;
+  left: auto;
+}
+
+[dir="rtl"] .floating-toggles {
+  left: 24px;
+  right: auto;
 }
 
 .floating-toggles:hover {

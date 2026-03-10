@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     initAIAssistant();
     initEconomicCalendar();
+    initSessionClock();
 
     // Auto-refresh dashboard prices every 30s
     setInterval(() => {
@@ -327,6 +328,19 @@ const translations = {
     // ---- TOOLS PAGE ----
     'tools-hero-title': { en: 'Financial <span class="text-gradient">Tools</span>', ar: 'الأدوات <span class="text-gradient">المالية</span>' },
     'tools-hero-sub': { en: 'Free calculators to help you plan trades, manage risk, and grow your portfolio.', ar: 'حاسبات مجانية لمساعدتك في التخطيط للصفقات، إدارة المخاطر، وتنمية محفظتك.' },
+    'sidebar-watchlist': { en: 'Watchlist', ar: 'قائمة المراقبة' },
+    'watchlist-title': { en: 'Market Watchlist 👁️', ar: 'قائمة مراقبة السوق 👁️' },
+    'watchlist-subtitle': { en: 'Keep an eye on the assets that matter most to you.', ar: 'راقب الأصول التي تهمك أكثر من غيرها.' },
+    'watchlist-search-placeholder': { en: 'Search for assets to add...', ar: 'ابحث عن أصل لإضافته...' },
+    'watchlist-add-btn': { en: '+ Add Asset', ar: '+ إضافة أصل' },
+    'watchlist-modal-title': { en: 'Add to Watchlist', ar: 'إضافة لقائمة المراقبة' },
+    'watchlist-modal-desc': { en: 'Type asset name or ticker to add it to your monitor.', ar: 'اكتب اسم الأصل أو رمزه لإضافته للمراقبة.' },
+    'watchlist-empty-msg': { en: 'Your watchlist is empty. Start adding assets to track them!', ar: 'قائمة المراقبة فارغة. ابدأ بإضافة الأصول لتتبعها!' },
+    'watchlist-remove-confirm': { en: 'Remove {name} from your watchlist?', ar: 'إزالة {name} من قائمة المراقبة؟' },
+    'session-open': { en: 'OPEN', ar: 'مفتوح' },
+    'session-closed': { en: 'CLOSED', ar: 'مغلق' },
+    'session-tadawul': { en: 'Tadawul', ar: 'تداول' },
+
     'tab-position-sizer': { en: '📐 Position Sizer', ar: '📐 حجم المركز' },
     'tab-profit-calc': { en: '💰 Profit/Loss', ar: '💰 الربح والخسارة' },
     'tab-currency-converter': { en: '🔄 Currency Converter', ar: '🔄 محول العملات' },
@@ -1380,6 +1394,7 @@ function initSessionClock() {
         const sessions = [
             { name: 'London', start: 8, end: 17, icon: '🇬🇧' },
             { name: 'New York', start: 13, end: 22, icon: '🇺🇸' },
+            { name: 'Tadawul', start: 7, end: 12, icon: '🇸🇦' },
             { name: 'Tokyo', start: 0, end: 9, icon: '🇯🇵' },
             { name: 'Sydney', start: 22, end: 7, icon: '🇦🇺' }
         ];
@@ -1392,10 +1407,14 @@ function initSessionClock() {
                 isOpen = hours >= s.start || hours < s.end;
             }
 
+            const statusKey = isOpen ? 'session-open' : 'session-closed';
+            const statusLabel = translations[statusKey] ? translations[statusKey][lang] : (isOpen ? 'OPEN' : 'CLOSED');
+            const sessionName = s.name === 'Tadawul' ? (translations['session-tadawul'] ? translations['session-tadawul'][lang] : 'Tadawul') : s.name;
+
             return `
                 <div style="display:flex; justify-content:space-between; margin-bottom:8px; color:${isOpen ? 'var(--text-primary)' : 'var(--text-muted)'};">
-                    <span>${s.icon} ${s.name}</span>
-                    <span style="font-weight:600; color:${isOpen ? 'var(--success)' : 'var(--text-muted)'};">${isOpen ? 'OPEN' : 'CLOSED'}</span>
+                    <span>${s.icon} ${sessionName}</span>
+                    <span style="font-weight:600; color:${isOpen ? 'var(--success)' : 'var(--text-muted)'};">${statusLabel}</span>
                 </div>
             `;
         }).join('');
@@ -2112,4 +2131,156 @@ function initEconomicCalendar() {
             <div class="event-time">${ev.time}</div>
         </div>
     `).join('');
+}
+
+// ===== WATCHLIST SYSTEM =====
+function getWatchlist() {
+    const defaults = [
+        { id: 'btc', name: 'Bitcoin', symbol: 'BTC', price: 98450.25, change: 2.45, icon: '₿', color: '#f7931a' },
+        { id: 'eth', name: 'Ethereum', symbol: 'ETH', price: 3840.12, change: -1.20, icon: 'Ξ', color: '#627eea' },
+        { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', price: 245.67, change: 0.85, icon: '🍎', color: '#555555' },
+        { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', price: 142.33, change: 5.12, icon: '🟩', color: '#76b900' }
+    ];
+    return JSON.parse(localStorage.getItem('calcwise_watchlist') || JSON.stringify(defaults));
+}
+
+function saveWatchlist(list) {
+    localStorage.setItem('calcwise_watchlist', JSON.stringify(list));
+}
+
+function initWatchlist() {
+    const grid = document.getElementById('watchlistGrid');
+    if (!grid) return;
+    renderWatchlist();
+}
+
+function renderWatchlist() {
+    const grid = document.getElementById('watchlistGrid');
+    if (!grid) return;
+
+    const list = getWatchlist();
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+
+    if (list.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-watchlist">
+                <div style="font-size:3rem;margin-bottom:var(--space-md);">👁️</div>
+                <h3>${translations['watchlist-empty-msg'][lang]}</h3>
+                <button class="btn btn-primary mt-1" onclick="openModal('addWatchlistModal')">${translations['watchlist-add-btn'][lang]}</button>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = list.map(item => {
+        const isPos = item.change >= 0;
+        return `
+            <div class="card watchlist-card reveal">
+                <button class="remove-btn" onclick="removeWatchlistAsset('${item.id}', '${item.name}')">✕</button>
+                <div class="asset-info">
+                    <div class="asset-icon" style="background:${item.color}22;color:${item.color}">
+                        ${item.icon}
+                    </div>
+                    <div>
+                        <div style="font-weight:700;font-size:1.1rem;">${item.name}</div>
+                        <div style="color:var(--text-muted);font-size:0.85rem;">${item.symbol}</div>
+                    </div>
+                </div>
+                <div class="price-info">
+                    <div class="price-value">$${item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
+                    <div class="price-change" style="color:${isPos ? 'var(--success)' : 'var(--danger)'}">
+                        ${isPos ? '↑' : '↓'} ${Math.abs(item.change).toFixed(2)}%
+                    </div>
+                </div>
+                <div class="watchlist-chart" id="chart-${item.id}">
+                    <!-- Simplified sparkline placeholder -->
+                    <div style="width:100%;height:100%;display:flex;align-items:flex-end;gap:2px;padding:10px;">
+                        ${Array.from({length: 20}).map(() => `<div style="flex:1;background:${isPos ? 'var(--success)' : 'var(--danger)'};opacity:0.3;height:${Math.random()*100}%;border-radius:2px;"></div>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function handleWatchlistSearch(query, isModal = false) {
+    const resultsContainer = document.getElementById(isModal ? 'modalSearchResults' : 'watchlistSearchResults');
+    if (!query) {
+        resultsContainer.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        return;
+    }
+
+    // Mock search data
+    const pool = [
+        { id: 'tsla', name: 'Tesla', symbol: 'TSLA', icon: '🚗', color: '#cc0000' },
+        { id: 'msft', name: 'Microsoft', symbol: 'MSFT', icon: '🟦', color: '#00a4ef' },
+        { id: 'sol', name: 'Solana', symbol: 'SOL', icon: '☀️', color: '#14f195' },
+        { id: 'gold', name: 'Gold', symbol: 'XAU', icon: '📀', color: '#ffd700' },
+        { id: 'eurusd', name: 'EUR/USD', symbol: 'EURUSD', icon: '🇪🇺', color: '#003399' },
+        { id: 'aramco', name: 'Saudi Aramco', symbol: '2222', icon: '🇸🇦', color: '#00843d' }
+    ];
+
+    const filtered = pool.filter(a => 
+        a.name.toLowerCase().includes(query.toLowerCase()) || 
+        a.symbol.toLowerCase().includes(query.toLowerCase())
+    );
+
+    if (filtered.length === 0) {
+        resultsContainer.innerHTML = '<div class="search-result-item">No assets found</div>';
+    } else {
+        resultsContainer.innerHTML = filtered.map(a => `
+            <div class="search-result-item" onclick="addWatchlistAsset('${a.id}', '${a.name}', '${a.symbol}', '${a.icon}', '${a.color}')">
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <span>${a.icon}</span>
+                    <div>
+                        <strong>${a.name}</strong>
+                        <div style="font-size:0.75rem;color:var(--text-muted);">${a.symbol}</div>
+                    </div>
+                </div>
+                <button class="btn btn-ghost btn-sm">+</button>
+            </div>
+        `).join('');
+    }
+    resultsContainer.style.display = 'block';
+}
+
+function addWatchlistAsset(id, name, symbol, icon, color) {
+    let list = getWatchlist();
+    if (list.find(a => a.id === id)) {
+        showToast('error', `${name} is already in your watchlist.`);
+        return;
+    }
+
+    const newAsset = {
+        id, name, symbol, icon, color,
+        price: 100 + Math.random() * 1000, // Simulated price
+        change: (Math.random() * 10) - 5 // Simulated change
+    };
+
+    list.push(newAsset);
+    saveWatchlist(list);
+    showToast('success', `${name} added to watchlist! 👁️`);
+    
+    // Clear UI
+    document.getElementById('watchlistSearch').value = '';
+    document.getElementById('modalSearchInput').value = '';
+    document.getElementById('watchlistSearchResults').style.display = 'none';
+    document.getElementById('modalSearchResults').innerHTML = '';
+    closeModal('addWatchlistModal');
+    
+    renderWatchlist();
+}
+
+function removeWatchlistAsset(id, name) {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const confirmMsg = translations['watchlist-remove-confirm'][lang].replace('{name}', name);
+    
+    if (confirm(confirmMsg)) {
+        let list = getWatchlist();
+        list = list.filter(a => a.id !== id);
+        saveWatchlist(list);
+        showToast('success', `${name} removed.`);
+        renderWatchlist();
+    }
 }

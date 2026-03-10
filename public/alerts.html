@@ -80,85 +80,112 @@
         </div>
     </nav>
 
-    <section class="alerts-hero">
-        <div class="container">
-            <div class="badge" style="margin-bottom:var(--space-md);" data-i18n="alerts-badge">🔔 Smart Price Alerts</div>
-            <h1 data-i18n="alerts-title">Never Miss a <span class="text-gradient">Market Move</span></h1>
-            <p data-i18n="alerts-subtitle">Set custom price alerts for any asset. Get notified the moment markets reach your target price.</p>
-        </div>
-    </section>
+    <!-- LAYOUT -->
+    <div class="dashboard-layout">
+        <!-- SIDEBAR -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-overview">Overview</div>
+                <a href="dashboard.html" class="sidebar-link"><span class="link-icon">📊</span> <span
+                        data-i18n="sidebar-portfolio">Portfolio</span></a>
+                <a href="journal.html" class="sidebar-link"><span class="link-icon">📓</span> <span
+                        data-i18n="sidebar-journal">Trade Journal</span></a>
+                <a href="alerts.html" class="sidebar-link active"><span class="link-icon">🔔</span> <span
+                        data-i18n="sidebar-alerts">Price Alerts</span></a>
+                <a href="watchlist.html" class="sidebar-link"><span class="link-icon">👁️</span> <span
+                        data-i18n="sidebar-watchlist">Watchlist</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-markets">Markets</div>
+                <a href="crypto.html" class="sidebar-link"><span class="link-icon">₿</span> <span data-i18n="nav-crypto">Crypto</span></a>
+                <a href="forex.html" class="sidebar-link"><span class="link-icon">💱</span> <span data-i18n="nav-forex">Forex</span></a>
+                <a href="us-market.html" class="sidebar-link"><span class="link-icon">🏛️</span> <span data-i18n="nav-us-stocks">US Stocks</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="sidebar-tools">Tools</div>
+                <a href="tools.html" class="sidebar-link"><span class="link-icon">📐</span> <span data-i18n="nav-tools">Calculators</span></a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title" data-i18n="footer-account">Account</div>
+                <a href="settings.html" class="sidebar-link"><span class="link-icon">⚙️</span> <span data-i18n="sidebar-settings">Settings</span></a>
+                <a href="#" class="sidebar-link" onclick="handleLogout()"><span class="link-icon">🚪</span> <span data-i18n="sidebar-logout">Log Out</span></a>
+            </div>
+        </aside>
 
-    <div class="container" style="padding-bottom:var(--space-3xl);">
-        <div class="stats-bar">
-            <div class="stat-mini">
-                <div class="val" id="totalAlertsCount" style="color:var(--primary-light);">0</div>
-                <div class="lbl" data-i18n="alerts-stat-active">Active Alerts</div>
-            </div>
-            <div class="stat-mini">
-                <div class="val" id="triggeredAlertsCount" style="color:var(--warning);">0</div>
-                <div class="lbl" data-i18n="alerts-stat-triggered">Triggered Today</div>
-            </div>
-            <div class="stat-mini">
-                <div class="val" id="upAlertsCount" style="color:var(--success);">0</div>
-                <div class="lbl" data-i18n="alerts-stat-above">Above Target</div>
-            </div>
-        </div>
-
-        <div class="alerts-layout">
-            <div class="alert-form-card">
-                <div class="card card-glass">
-                    <h3 style="margin-bottom:var(--space-lg);font-size:1.1rem;" data-i18n="alerts-form-title">➕ Create New Alert</h3>
-                    <form id="alertForm" onsubmit="createAlert(event)">
-                        <div class="form-group">
-                            <label data-i18n="alerts-form-symbol">Asset Symbol / Name</label>
-                            <input type="text" class="form-control" id="alert-symbol" data-i18n-ph="alerts-form-symbol-ph" placeholder="e.g. BTC, AAPL, EURUSD" required>
-                        </div>
-                        <div class="form-group">
-                            <label data-i18n="alerts-form-market">Market</label>
-                            <select class="form-control" id="alert-market">
-                                <option value="Crypto" data-i18n="nav-crypto">Cryptocurrency</option>
-                                <option value="US Stocks" data-i18n="nav-us-stocks">US Stocks</option>
-                                <option value="Saudi" data-i18n="nav-saudi">Saudi Market</option>
-                                <option value="Forex" data-i18n="nav-forex">Forex</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label data-i18n="alerts-form-direction">Alert Direction</label>
-                            <div class="price-direction-toggle">
-                                <div class="dir-btn active up" id="dirUp" onclick="setDirection('up')" data-i18n="alerts-form-above">📈 Price Above</div>
-                                <div class="dir-btn down" id="dirDown" onclick="setDirection('down')" data-i18n="alerts-form-below">📉 Price Below</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label data-i18n="alerts-form-target">Target Price ($)</label>
-                            <input type="number" class="form-control" id="alert-price" placeholder="e.g. 105000" step="any" required>
-                        </div>
-                        <div class="form-group">
-                            <label data-i18n="alerts-form-note">Note (optional)</label>
-                            <input type="text" class="form-control" id="alert-note" data-i18n-ph="alerts-form-note-ph" placeholder="e.g. Resistance level break">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" data-i18n="alerts-form-submit">🔔 Set Alert</button>
-                    </form>
+        <!-- MAIN -->
+        <main class="dashboard-main">
+            <section class="alerts-hero" style="padding-top:0;">
+                <div class="container" style="padding:0;">
+                    <div class="badge" style="margin-bottom:var(--space-md);" data-i18n="alerts-badge">🔔 Smart Price Alerts</div>
+                    <h1 data-i18n="alerts-title">Never Miss a <span class="text-gradient">Market Move</span></h1>
+                    <p data-i18n="alerts-subtitle">Set custom price alerts for any asset. Get notified the moment markets reach your target price.</p>
                 </div>
-                <div class="card" style="margin-top:var(--space-md);padding:var(--space-lg);">
-                    <h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:var(--space-md);" data-i18n="alerts-presets">⚡ Quick Presets</h4>
-                    <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
-                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('BTC','Crypto','up',110000,'ATH Breakout')">₿ BTC above $110,000</button>
-                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('ETH','Crypto','up',5000,'Ethereum Target')">Ξ ETH above $5,000</button>
-                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('AAPL','US Stocks','up',260,'Apple Breakout')">🍎 AAPL above $260</button>
-                        <button class="btn btn-outline btn-sm" style="text-align:left;justify-content:flex-start;" onclick="presetAlert('NVDA','US Stocks','down',800,'NVDA Support')">🟢 NVDA below $800</button>
+            </section>
+
+            <div class="container" style="padding:0; max-width:100%;">
+                <div class="stats-bar">
+                    <div class="stat-mini">
+                        <div class="val" id="totalAlertsCount" style="color:var(--primary-light);">0</div>
+                        <div class="lbl" data-i18n="alerts-stat-active">Active Alerts</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="val" id="triggeredAlertsCount" style="color:var(--warning);">0</div>
+                        <div class="lbl" data-i18n="alerts-stat-triggered">Triggered Today</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="val" id="upAlertsCount" style="color:var(--success);">0</div>
+                        <div class="lbl" data-i18n="alerts-stat-above">Above Target</div>
+                    </div>
+                </div>
+
+                <div class="alerts-layout" style="display:grid; grid-template-columns: 350px 1fr; gap:var(--space-xl);">
+                    <div class="alert-form-card">
+                        <div class="card card-glass" style="padding:var(--space-xl);">
+                            <h3 style="margin-bottom:var(--space-lg);font-size:1.1rem;" data-i18n="alerts-form-title">➕ Create New Alert</h3>
+                            <form id="alertForm" onsubmit="createAlert(event)">
+                                <div class="form-group">
+                                    <label data-i18n="alerts-form-symbol">Asset Symbol / Name</label>
+                                    <input type="text" class="form-control" id="alert-symbol" data-i18n-ph="alerts-form-symbol-ph" placeholder="e.g. BTC, AAPL, EURUSD" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="alerts-form-market">Market</label>
+                                    <select class="form-control" id="alert-market">
+                                        <option value="Crypto" data-i18n="nav-crypto">Cryptocurrency</option>
+                                        <option value="US Stocks" data-i18n="nav-us-stocks">US Stocks</option>
+                                        <option value="Saudi" data-i18n="nav-saudi">Saudi Market</option>
+                                        <option value="Forex" data-i18n="nav-forex">Forex</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="alerts-form-direction">Alert Direction</label>
+                                    <div class="price-direction-toggle">
+                                        <div class="dir-btn active up" id="dirUp" onclick="setDirection('up')" data-i18n="alerts-form-above">📈 Price Above</div>
+                                        <div class="dir-btn down" id="dirDown" onclick="setDirection('down')" data-i18n="alerts-form-below">📉 Price Below</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="alerts-form-target">Target Price ($)</label>
+                                    <input type="number" class="form-control" id="alert-price" placeholder="e.g. 105000" step="any" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="alerts-form-note">Note (optional)</label>
+                                    <input type="text" class="form-control" id="alert-note" data-i18n-ph="alerts-form-note-ph" placeholder="e.g. Resistance level break">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" data-i18n="alerts-form-submit">🔔 Set Alert</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
+                            <h2 style="font-size:1.1rem;" data-i18n="alerts-your-alerts">Your Alerts</h2>
+                            <button class="btn btn-outline btn-sm" onclick="clearAllAlerts()" style="color:var(--danger);border-color:var(--danger);" data-i18n="alerts-clear-all">🗑️ Clear All</button>
+                        </div>
+                        <div class="alerts-list" id="alertsList"></div>
                     </div>
                 </div>
             </div>
-
-            <div>
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
-                    <h2 style="font-size:1.1rem;" data-i18n="alerts-your-alerts">Your Alerts</h2>
-                    <button class="btn btn-outline btn-sm" onclick="clearAllAlerts()" style="color:var(--danger);border-color:var(--danger);" data-i18n="alerts-clear-all">🗑️ Clear All</button>
-                </div>
-                <div class="alerts-list" id="alertsList"></div>
-            </div>
-        </div>
+        </main>
     </div>
 
     <div class="toast-container" id="toastContainer"></div>
