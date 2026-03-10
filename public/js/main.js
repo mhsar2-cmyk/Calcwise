@@ -12,18 +12,7 @@ async function secureFetch(url, options = {}) {
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
-    
-    const response = await fetch(url, { ...options, headers });
-    
-    // Auto logout if unauthorized (session expired)
-    if (response.status === 401 && !url.includes('/api/auth/')) {
-        localStorage.removeItem('calcwise_logged_in');
-        localStorage.removeItem('calcwise_token');
-        localStorage.removeItem('calcwise_user');
-        window.location.href = 'login.html';
-    }
-    
-    return response;
+    return fetch(url, { ...options, headers });
 }
 
 // ===== INITIALIZATION =====
