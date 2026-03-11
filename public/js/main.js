@@ -1,7 +1,5 @@
-/**
- * CalcWise — Main JavaScript
- * Handles navigation, auth, tools, dashboard, and UI interactions
- */
+// ===== GLOBAL STATE =====
+let lang = localStorage.getItem('calcwise_lang') || 'en';
 
 async function secureFetch(url, options = {}) {
     const token = localStorage.getItem('calcwise_token');
@@ -794,7 +792,8 @@ function initLanguage() {
     applyLanguage(saved);
 }
 
-function applyLanguage(lang) {
+function applyLanguage(newLang) {
+    lang = newLang; // Update global
     localStorage.setItem('calcwise_lang', lang);
 
     // Set direction
@@ -1316,20 +1315,28 @@ function calculateRiskReward() {
 
 // ===== DASHBOARD =====
 async function initDashboard() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const holdingsBody = document.getElementById('holdingsBody');
     if (!holdingsBody) return;
 
-    holdingsBody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">⌛ Loading your portfolio...</td></tr>';
+    holdingsBody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">${lang === 'ar' ? '⌛ جاري تحميل المحفظة...' : '⌛ Loading your portfolio...'}</td></tr>`;
 
     try {
         // Fetch Portfolio
         const portResponse = await secureFetch('/api/portfolio');
         const portData = await portResponse.json();
-        const holdings = portData.holdings;
+        let holdings = portData.holdings;
 
-        renderHoldings(holdings);
-        updateStats(holdings);
-        renderPortfolioChart();
+        // If API returns nothing, try local storage
+        if (!holdings || (Array.isArray(holdings) && holdings.length === 0)) {
+            holdings = getHoldings();
+        }
+
+        if (Array.isArray(holdings)) {
+            renderHoldings(holdings);
+            updateStats(holdings);
+            renderPortfolioChart();
+        }
         updateLastUpdated();
 
         // Fetch Watchlist
@@ -1377,6 +1384,7 @@ async function initWatchlist() {
 }
 
 function renderWatchlistItems(items, container) {
+    if (!items || !Array.isArray(items)) return;
     container.innerHTML = items.slice(0, 4).map(item => {
         const sign = item.change && item.change.startsWith('+') ? '' : ''; // Symbol logic
         const isPositive = item.change && !item.change.startsWith('-');
@@ -1484,33 +1492,40 @@ function saveHoldings(holdings) {
 }
 
 function renderHoldings(holdings) {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
     const tbody = document.getElementById('holdingsBody');
     if (!tbody) return;
 
     tbody.innerHTML = holdings.map(h => {
-        const avgCost = h.avg_cost || h.avgCost;
-        const value = h.qty * h.currentPrice;
-        const pnl = (h.currentPrice - avgCost) * h.qty;
-        const change = ((h.currentPrice - avgCost) / avgCost) * 100;
+        const avgCost = parseFloat(h.avg_cost || h.avgCost || 0);
+        const currentPrice = parseFloat(h.currentPrice || avgCost || 0);
+        const qty = parseFloat(h.qty || 0);
+        
+        const value = qty * currentPrice;
+        const pnl = (currentPrice - avgCost) * qty;
+        const change = avgCost > 0 ? ((currentPrice - avgCost) / avgCost) * 100 : 0;
         const isPositive = pnl >= 0;
+
+        const marketKey = 'market-' + (h.market || 'crypto').toLowerCase().replace(' ', '-');
+        const marketName = (translations[marketKey] && translations[marketKey][lang]) ? translations[marketKey][lang] : (h.market || 'Crypto');
 
         return `
       <tr>
         <td>
           <div class="asset-name">
-            <span class="asset-icon" style="background:${h.color}22;">
+            <span class="asset-icon" style="background:${(h.color || '#ccc')}22;">
                 ${h.icon && h.icon.startsWith('http') ? `<img src="${h.icon}" style="width:100%;height:100%;object-fit:contain;border-radius:50%;" alt="${h.name}">` : h.icon || '💰'}
             </span>
             <div>
-              <div style="font-weight:500;">${h.name}</div>
-              <div style="font-size:0.78rem;color:var(--text-muted);">${h.symbol}</div>
+              <div style="font-weight:500;">${h.name || 'Unknown'}</div>
+              <div style="font-size:0.78rem;color:var(--text-muted);">${h.symbol || '---'}</div>
             </div>
           </div>
         </td>
-        <td><span style="font-size:0.82rem;color:var(--text-secondary);">${translations['market-' + h.market.toLowerCase().replace(' ', '-')][lang]}</span></td>
-        <td style="font-family:var(--font-mono);">${h.qty}</td>
-        <td style="font-family:var(--font-mono);">$${avgCost.toLocaleString()}</td>
-        <td style="font-family:var(--font-mono);">$${h.currentPrice.toLocaleString()}</td>
+        <td><span style="font-size:0.82rem;color:var(--text-secondary);">${marketName}</span></td>
+        <td style="font-family:var(--font-mono);">${qty}</td>
+        <td style="font-family:var(--font-mono);">$${avgCost.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+        <td style="font-family:var(--font-mono);">$${currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
         <td style="font-family:var(--font-mono);font-weight:600;">$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
         <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};"> ${isPositive ? '+' : ''}$${pnl.toFixed(2)}</td>
         <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};"> ${isPositive ? '↑' : '↓'} ${Math.abs(change).toFixed(2)}%</td>
@@ -1521,10 +1536,12 @@ function renderHoldings(holdings) {
 }
 
 function updateStats(holdings) {
-    const totalValue = holdings.reduce((sum, h) => sum + h.qty * h.currentPrice, 0);
-    const totalCost = holdings.reduce((sum, h) => sum + h.qty * (h.avg_cost || h.avgCost), 0);
+    if (!holdings || !Array.isArray(holdings) || holdings.length === 0) return;
+
+    const totalValue = holdings.reduce((sum, h) => sum + (parseFloat(h.qty || 0) * parseFloat(h.currentPrice || h.avgCost || 0)), 0);
+    const totalCost = holdings.reduce((sum, h) => sum + (parseFloat(h.qty || 0) * parseFloat(h.avg_cost || h.avgCost || 0)), 0);
     const totalPL = totalValue - totalCost;
-    const totalPLPct = (totalPL / totalCost) * 100;
+    const totalPLPct = totalCost > 0 ? (totalPL / totalCost) * 100 : 0;
 
     const el = (id) => document.getElementById(id);
     if (el('totalValue')) el('totalValue').textContent = `$${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
