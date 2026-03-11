@@ -1451,6 +1451,8 @@ select.form-control {
   justify-content: center;
   font-size: 0.9rem;
   background: rgba(108, 92, 231, 0.1);
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 /* ===== Footer ===== */

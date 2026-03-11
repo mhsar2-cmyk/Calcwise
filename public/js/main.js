@@ -1383,15 +1383,33 @@ async function initWatchlist() {
     }
 }
 
+function renderAssetIcon(icon, name, color = '#6C5CE7') {
+    if (!icon) return `<span class="asset-icon" style="background:${color}22;color:${color}">💰</span>`;
+    
+    // Check if icon is a URL
+    if (icon.startsWith('http') || icon.startsWith('/') || icon.includes('.')) {
+        return `
+            <span class="asset-icon" style="background:${color}22; overflow:hidden;">
+                <img src="${icon}" 
+                     style="width:100%;height:100%;object-fit:contain;padding:2px;" 
+                     alt="${name}" 
+                     onerror="this.parentElement.innerHTML='${name ? name[0] : '💰'}'">
+            </span>
+        `;
+    }
+    
+    // Default to emoji/text
+    return `<span class="asset-icon" style="background:${color}22;color:${color}">${icon}</span>`;
+}
+
 function renderWatchlistItems(items, container) {
     if (!items || !Array.isArray(items)) return;
     container.innerHTML = items.slice(0, 4).map(item => {
-        const sign = item.change && item.change.startsWith('+') ? '' : ''; // Symbol logic
         const isPositive = item.change && !item.change.startsWith('-');
         return `
             <div class="watchlist-item">
                 <div class="asset-name">
-                    <span class="asset-icon" style="background:${item.bg || 'rgba(108,92,231,0.1)'}">${item.icon || '⭐'}</span>
+                    ${renderAssetIcon(item.icon, item.name, item.color || item.bg)}
                     <div>
                         <div style="font-weight:500;">${item.name}</div>
                         <div style="font-size:0.78rem;color:var(--text-muted);">${item.symbol}</div>
@@ -1513,9 +1531,7 @@ function renderHoldings(holdings) {
       <tr>
         <td>
           <div class="asset-name">
-            <span class="asset-icon" style="background:${(h.color || '#ccc')}22;">
-                ${h.icon && h.icon.startsWith('http') ? `<img src="${h.icon}" style="width:100%;height:100%;object-fit:contain;border-radius:50%;" alt="${h.name}">` : h.icon || '💰'}
-            </span>
+            ${renderAssetIcon(h.icon, h.name, h.color)}
             <div>
               <div style="font-weight:500;">${h.name || 'Unknown'}</div>
               <div style="font-size:0.78rem;color:var(--text-muted);">${h.symbol || '---'}</div>
@@ -2210,10 +2226,10 @@ function initEconomicCalendar() {
 // ===== WATCHLIST SYSTEM =====
 function getWatchlist() {
     const defaults = [
-        { id: 'btc', name: 'Bitcoin', symbol: 'BTC', price: 98450.25, change: 2.45, icon: '₿', color: '#f7931a' },
-        { id: 'eth', name: 'Ethereum', symbol: 'ETH', price: 3840.12, change: -1.20, icon: 'Ξ', color: '#627eea' },
-        { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', price: 245.67, change: 0.85, icon: '🍎', color: '#555555' },
-        { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', price: 142.33, change: 5.12, icon: '🟩', color: '#76b900' }
+        { id: 'btc', name: 'Bitcoin', symbol: 'BTC', price: 98450.25, change: 2.45, icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: '#f7931a' },
+        { id: 'eth', name: 'Ethereum', symbol: 'ETH', price: 3840.12, change: -1.20, icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: '#627eea' },
+        { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', price: 245.67, change: 0.85, icon: 'https://logo.clearbit.com/apple.com', color: '#555555' },
+        { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', price: 142.33, change: 5.12, icon: 'https://logo.clearbit.com/nvidia.com', color: '#76b900' }
     ];
     return JSON.parse(localStorage.getItem('calcwise_watchlist') || JSON.stringify(defaults));
 }
@@ -2252,9 +2268,7 @@ function renderWatchlist() {
             <div class="card watchlist-card reveal">
                 <button class="remove-btn" onclick="removeWatchlistAsset('${item.id}', '${item.name}')">✕</button>
                 <div class="asset-info">
-                    <div class="asset-icon" style="background:${item.color}22;color:${item.color}">
-                        ${item.icon}
-                    </div>
+                    ${renderAssetIcon(item.icon, item.name, item.color)}
                     <div>
                         <div style="font-weight:700;font-size:1.1rem;">${item.name}</div>
                         <div style="color:var(--text-muted);font-size:0.85rem;">${item.symbol}</div>
@@ -2306,7 +2320,7 @@ function handleWatchlistSearch(query, isModal = false) {
         resultsContainer.innerHTML = filtered.map(a => `
             <div class="search-result-item" onclick="addWatchlistAsset('${a.id}', '${a.name}', '${a.symbol}', '${a.icon}', '${a.color}')">
                 <div style="display:flex;align-items:center;gap:12px;">
-                    <span>${a.icon}</span>
+                    ${renderAssetIcon(a.icon, a.name, a.color)}
                     <div>
                         <strong>${a.name}</strong>
                         <div style="font-size:0.75rem;color:var(--text-muted);">${a.symbol}</div>
