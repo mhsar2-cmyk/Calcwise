@@ -1,5 +1,17 @@
-// ===== GLOBAL STATE =====
 let lang = localStorage.getItem('calcwise_lang') || 'en';
+
+const ASSET_POOL = [
+    { id: 'btc', name: 'Bitcoin', symbol: 'BTC', market: 'crypto', icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: '#f7931a' },
+    { id: 'eth', name: 'Ethereum', symbol: 'ETH', market: 'crypto', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: '#627eea' },
+    { id: 'sol', name: 'Solana', symbol: 'SOL', market: 'crypto', icon: 'https://cryptologos.cc/logos/solana-sol-logo.png', color: '#14f195' },
+    { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', market: 'us-stocks', icon: 'https://logo.clearbit.com/apple.com', color: '#555555' },
+    { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', market: 'us-stocks', icon: 'https://logo.clearbit.com/nvidia.com', color: '#76b900' },
+    { id: 'tsla', name: 'Tesla', symbol: 'TSLA', market: 'us-stocks', icon: 'https://logo.clearbit.com/tesla.com', color: '#cc0000' },
+    { id: 'aramco', name: 'Saudi Aramco', symbol: '2222', market: 'saudi', icon: 'https://logo.clearbit.com/saudiaramco.com', color: '#00843d' },
+    { id: 'rajhi', name: 'Al Rajhi Bank', symbol: '1120', market: 'saudi', icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: '#006a4d' },
+    { id: 'eurusd', name: 'EUR/USD', symbol: 'EURUSD', market: 'forex', icon: '🇪🇺', color: '#003399' },
+    { id: 'gold', name: 'Gold', symbol: 'XAU', market: 'forex', icon: '📀', color: '#ffd700' }
+];
 
 async function secureFetch(url, options = {}) {
     const token = localStorage.getItem('calcwise_token');
@@ -1384,6 +1396,7 @@ async function initWatchlist() {
     }
 }
 
+
 function renderAssetIcon(icon, name, color = '#6C5CE7') {
     if (!icon) return `<span class="asset-icon" style="background:${color}22;color:${color}">💰</span>`;
     
@@ -1727,18 +1740,23 @@ async function addAsset(e) {
     const qty = parseFloat(document.getElementById('asset-quantity').value);
     const cost = parseFloat(document.getElementById('asset-cost').value);
 
+    const form = e.target;
+    const selectedSymbol = form.dataset.selectedSymbol;
+    const selectedIcon = form.dataset.selectedIcon;
+    const selectedColor = form.dataset.selectedColor;
+
     const marketIcons = { crypto: '₿', forex: '💱', 'us-stocks': '🏛', saudi: '🇸🇦' };
-    const marketNames = { crypto: 'Crypto', forex: 'Forex', 'us-stocks': 'US Stocks', saudi: 'Saudi' };
+    const marketNames = { crypto: 'Crypto', forex: 'Forex', 'us-stocks': 'US Stocks', saudi: 'Saudi Market' };
     const marketColors = { crypto: 'var(--accent-gold)', forex: 'var(--accent-teal)', 'us-stocks': 'var(--primary)', saudi: 'var(--accent-emerald)' };
 
     const assetData = {
         name: name,
-        symbol: name.substring(0, 4).toUpperCase(),
-        market: marketNames[market],
+        symbol: selectedSymbol || name.substring(0, 4).toUpperCase(),
+        market: marketNames[market] || (market.charAt(0).toUpperCase() + market.slice(1)),
         qty: qty,
         avgCost: cost,
-        icon: marketIcons[market],
-        color: marketColors[market]
+        icon: selectedIcon || marketIcons[market] || '💰',
+        color: selectedColor || marketColors[market] || '#6C5CE7'
     };
 
     const id = Date.now().toString();
@@ -1754,8 +1772,6 @@ async function addAsset(e) {
 
         if (data.success) {
             showToast('success', 'Asset added to portfolio! 🚀');
-            closeModal('addAssetModal');
-            initDashboard();
         } else {
             throw new Error('API failed');
         }
@@ -1764,10 +1780,14 @@ async function addAsset(e) {
         const holdings = getHoldings();
         holdings.push(assetDataWithId);
         saveHoldings(holdings);
-        
         showToast('success', 'Asset saved to local portfolio! 🏠');
+    } finally {
         closeModal('addAssetModal');
-        initDashboard(); // Refresh UI which calls getHoldings()
+        form.reset();
+        delete form.dataset.selectedSymbol;
+        delete form.dataset.selectedIcon;
+        delete form.dataset.selectedColor;
+        initDashboard();
     }
 }
 
@@ -2340,17 +2360,7 @@ function handleWatchlistSearch(query, isModal = false) {
         return;
     }
 
-    // Mock search data
-    const pool = [
-        { id: 'tsla', name: 'Tesla', symbol: 'TSLA', icon: '🚗', color: '#cc0000' },
-        { id: 'msft', name: 'Microsoft', symbol: 'MSFT', icon: '🟦', color: '#00a4ef' },
-        { id: 'sol', name: 'Solana', symbol: 'SOL', icon: '☀️', color: '#14f195' },
-        { id: 'gold', name: 'Gold', symbol: 'XAU', icon: '📀', color: '#ffd700' },
-        { id: 'eurusd', name: 'EUR/USD', symbol: 'EURUSD', icon: '🇪🇺', color: '#003399' },
-        { id: 'aramco', name: 'Saudi Aramco', symbol: '2222', icon: '🇸🇦', color: '#00843d' }
-    ];
-
-    const filtered = pool.filter(a => 
+    const filtered = ASSET_POOL.filter(a => 
         a.name.toLowerCase().includes(query.toLowerCase()) || 
         a.symbol.toLowerCase().includes(query.toLowerCase())
     );
@@ -2372,6 +2382,51 @@ function handleWatchlistSearch(query, isModal = false) {
         `).join('');
     }
     resultsContainer.style.display = 'block';
+}
+
+function handlePortfolioSearch(query) {
+    const resultsContainer = document.getElementById('portfolioSearchResults');
+    let poolToUse = ASSET_POOL;
+
+    if (query && query.length >= 1) {
+        poolToUse = ASSET_POOL.filter(a => 
+            a.name.toLowerCase().includes(query.toLowerCase()) || 
+            a.symbol.toLowerCase().includes(query.toLowerCase())
+        );
+    }
+
+    if (poolToUse.length === 0) {
+        resultsContainer.innerHTML = '<div class="search-result-item">No assets found</div>';
+    } else {
+        const title = query ? '' : `<div style="padding:10px var(--space-md); font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid var(--border-subtle);">${lang === 'ar' ? 'أصول مقترحة' : 'Suggested Assets'}</div>`;
+        resultsContainer.innerHTML = title + poolToUse.map(a => `
+            <div class="search-result-item" onclick="selectPortfolioAsset('${a.name}', '${a.symbol}', '${a.market}', '${a.icon}', '${a.color}')">
+                <div style="display:flex;align-items:center;gap:12px;">
+                    ${renderAssetIcon(a.icon, a.name, a.color)}
+                    <div>
+                        <strong>${a.name}</strong>
+                        <div style="font-size:0.75rem;color:var(--text-muted);">${a.symbol}</div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+    resultsContainer.style.display = 'block';
+}
+
+function selectPortfolioAsset(name, symbol, market, icon, color) {
+    document.getElementById('asset-name').value = name;
+    document.getElementById('asset-market').value = market;
+    document.getElementById('portfolioSearchResults').style.display = 'none';
+    
+    // Store metadata for the submission
+    const form = document.querySelector('#addAssetModal form');
+    form.dataset.selectedSymbol = symbol;
+    form.dataset.selectedIcon = icon;
+    form.dataset.selectedColor = color;
+    
+    // Auto-focus quantity
+    document.getElementById('asset-quantity').focus();
 }
 
 function addWatchlistAsset(id, name, symbol, icon, color) {

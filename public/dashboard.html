@@ -543,10 +543,11 @@
                         <option value="saudi">Saudi Market</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="position:relative;">
                     <label data-i18n="modal-asset-name">Asset Name / Symbol</label>
-                    <input type="text" class="form-control" id="asset-name" placeholder="e.g. Bitcoin, AAPL, EUR/USD"
-                        required>
+                    <input type="text" class="form-control" id="asset-name" placeholder="Search e.g. BTC, AAPL, Aramco"
+                        oninput="handlePortfolioSearch(this.value)" onfocus="handlePortfolioSearch(this.value)" autocomplete="off" required>
+                    <div id="portfolioSearchResults" class="search-results-dropdown" style="display:none; position:absolute; top:100%; left:0; right:0; z-index:100; background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); max-height:200px; overflow-y:auto; box-shadow:var(--shadow-lg);"></div>
                 </div>
                 <div class="form-group">
                     <label data-i18n="modal-qty">Quantity</label>

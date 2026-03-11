@@ -2680,3 +2680,30 @@ select.form-control {
 .event-info .event-name { font-size: 0.875rem; font-weight: 500; }
 .event-info .event-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
 .event-time { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); flex-shrink: 0; }
+/* ===== SEARCH RESULTS ===== */
+.search-results-dropdown {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-dark) var(--bg-secondary);
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(108, 92, 231, 0.1);
+}
+
+.search-result-item strong {
+    color: var(--text-primary);
+}
