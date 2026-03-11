@@ -86,6 +86,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initEconomicCalendar();
     initSessionClock();
 
+    // Global click listener to close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        const portfolioSearch = document.getElementById('portfolioSearchResults');
+        const portfolioInput = document.getElementById('asset-name');
+        if (portfolioSearch && portfolioInput && !portfolioSearch.contains(e.target) && e.target !== portfolioInput) {
+            portfolioSearch.style.display = 'none';
+        }
+
+        const watchlistSearch = document.getElementById('watchlistSearchResults');
+        const watchlistInput = document.getElementById('watchlistSearch');
+        if (watchlistSearch && watchlistInput && !watchlistSearch.contains(e.target) && e.target !== watchlistInput) {
+            watchlistSearch.style.display = 'none';
+        }
+
+        const modalWatchlistResults = document.getElementById('modalSearchResults');
+        const modalWatchlistInput = document.getElementById('modalSearchInput');
+        if (modalWatchlistResults && modalWatchlistInput && !modalWatchlistResults.contains(e.target) && e.target !== modalWatchlistInput) {
+            modalWatchlistResults.style.display = 'none';
+        }
+    });
+
     // Auto-refresh dashboard prices every 30s
     setInterval(() => {
         if (document.getElementById('holdingsBody')) {
