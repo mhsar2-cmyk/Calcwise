@@ -1494,12 +1494,12 @@ function initSessionClock() {
 
 function getHoldings() {
     const defaults = [
-        { name: 'Bitcoin', symbol: 'BTC', market: 'Crypto', qty: 0.5, avgCost: 68000, currentPrice: 101234, icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: 'var(--accent-gold)' },
-        { name: 'Ethereum', symbol: 'ETH', market: 'Crypto', qty: 5, avgCost: 3200, currentPrice: 4123, icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: 'var(--primary-light)' },
-        { name: 'Apple Inc.', symbol: 'AAPL', market: 'US Stocks', qty: 20, avgCost: 180, currentPrice: 245.67, icon: 'https://logo.clearbit.com/apple.com', color: 'var(--text-primary)' },
-        { name: 'NVIDIA', symbol: 'NVDA', market: 'US Stocks', qty: 10, avgCost: 500, currentPrice: 890.50, icon: 'https://logo.clearbit.com/nvidia.com', color: 'var(--success)' },
-        { name: 'Saudi Aramco', symbol: '2222', market: 'Saudi', qty: 100, avgCost: 28, currentPrice: 32.10, icon: 'https://logo.clearbit.com/saudiaramco.com', color: 'var(--accent-emerald)' },
-        { name: 'Al Rajhi Bank', symbol: '1120', market: 'Saudi', qty: 50, avgCost: 75, currentPrice: 82.30, icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: 'var(--accent-teal)' },
+        { id: 'def-btc', name: 'Bitcoin', symbol: 'BTC', market: 'Crypto', qty: 0.5, avgCost: 68000, currentPrice: 101234, icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: 'var(--accent-gold)' },
+        { id: 'def-eth', name: 'Ethereum', symbol: 'ETH', market: 'Crypto', qty: 5, avgCost: 3200, currentPrice: 4123, icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: 'var(--primary-light)' },
+        { id: 'def-aapl', name: 'Apple Inc.', symbol: 'AAPL', market: 'US Stocks', qty: 20, avgCost: 180, currentPrice: 245.67, icon: 'https://logo.clearbit.com/apple.com', color: 'var(--text-primary)' },
+        { id: 'def-nvda', name: 'NVIDIA', symbol: 'NVDA', market: 'US Stocks', qty: 10, avgCost: 500, currentPrice: 890.50, icon: 'https://logo.clearbit.com/nvidia.com', color: 'var(--success)' },
+        { id: 'def-aramco', name: 'Saudi Aramco', symbol: '2222', market: 'Saudi', qty: 100, avgCost: 28, currentPrice: 32.10, icon: 'https://logo.clearbit.com/saudiaramco.com', color: 'var(--accent-emerald)' },
+        { id: 'def-rajhi', name: 'Al Rajhi Bank', symbol: '1120', market: 'Saudi', qty: 50, avgCost: 75, currentPrice: 82.30, icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: 'var(--accent-teal)' },
     ];
 
     return JSON.parse(localStorage.getItem('calcwise_holdings') || JSON.stringify(defaults));
@@ -1760,19 +1760,33 @@ async function refreshDashboard() {
 }
 
 async function handleDeleteAsset(id) {
-    if (!confirm('Are you sure you want to remove this asset?')) return;
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const confirmMsg = lang === 'ar' ? 'هل أنت متأكد من حذف هذا الأصل؟' : 'Are you sure you want to remove this asset?';
+    if (!confirm(confirmMsg)) return;
 
     try {
         const response = await secureFetch(`/api/portfolio/${id}`, { method: 'DELETE' });
         const data = await response.json();
 
         if (data.success) {
-            showToast('success', 'Asset removed from portfolio.');
-            initDashboard(); // Refresh
+            showToast('success', lang === 'ar' ? 'تم حذف الأصل.' : 'Asset removed from portfolio.');
+            initDashboard();
+        } else {
+            throw new Error('API delete failed');
         }
     } catch (error) {
-        console.error('Delete error:', error);
-        showToast('error', 'Failed to remove asset.');
+        console.warn('API delete error, using local fallback:', error);
+        let holdings = getHoldings();
+        const initialCount = holdings.length;
+        holdings = holdings.filter(h => h.id !== id);
+        
+        if (holdings.length < initialCount) {
+            saveHoldings(holdings);
+            showToast('success', lang === 'ar' ? 'تم الحذف من التخزين المحلي.' : 'Removed from local portfolio.');
+            initDashboard();
+        } else {
+            showToast('error', lang === 'ar' ? 'فشل الحذف.' : 'Failed to remove asset.');
+        }
     }
 }
 
