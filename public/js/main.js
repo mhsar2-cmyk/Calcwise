@@ -213,6 +213,8 @@ const translations = {
     'dash-hi': { en: 'Hi', ar: 'مرحباً' },
     'dash-title': { en: 'Portfolio Dashboard', ar: 'لوحة المحفظة' },
     'dash-add-asset': { en: '+ Add Asset', ar: '+ إضافة أصل' },
+    'dash-add-portfolio': { en: '+ Add to Portfolio', ar: '+ إضافة للمحفظة' },
+    'dash-watchlist-add': { en: '+', ar: '+' },
     'dash-sentiment': { en: 'Market Sentiment 🎭', ar: 'مزاج السوق 🎭' },
     'dash-fear-greed': { en: 'Fear & Greed Index', ar: 'مؤشر الخوف والطمع' },
     'dash-extreme-fear': { en: 'Extreme Fear', ar: 'خوف شديد' },
@@ -226,6 +228,22 @@ const translations = {
     'dash-total-value': { en: 'Total Portfolio Value', ar: 'إجمالي قيمة المحفظة' },
     'dash-today-pl': { en: "Today's P/L", ar: 'الربح/الخسارة اليوم' },
     'dash-holdings': { en: 'Total Holdings', ar: 'إجمالي الممتلكات' },
+    'dash-add-track': { en: '+ Add Tracker', ar: '+ إضافة متتبع' },
+    
+    'market-crypto': { en: 'Crypto', ar: 'كريبتو' },
+    'market-forex': { en: 'Forex', ar: 'فوركس' },
+    'market-us-stocks': { en: 'US Stocks', ar: 'أسهم أمريكية' },
+    'market-saudi': { en: 'Saudi Market', ar: 'السوق السعودي' },
+
+    'modal-add-title': { en: 'Add Asset to Portfolio', ar: 'إضافة أصل للمحفظة' },
+    'modal-market': { en: 'Market', ar: 'السوق' },
+    'modal-asset-name': { en: 'Asset Name / Symbol', ar: 'اسم الأصل / الرمز' },
+    'modal-qty': { en: 'Quantity', ar: 'الكمية' },
+    'modal-avg-cost': { en: 'Average Cost', ar: 'متوسط التكلفة' },
+    'modal-add-btn': { en: 'Add to Portfolio', ar: 'إضافة للمحفظة' },
+    
+    'watchlist-modal-title': { en: 'Add to Watchlist', ar: 'إضافة لقائمة المراقبة' },
+    'watchlist-add-btn': { en: '+ Add Asset', ar: '+ إضافة أصل' },
     'dash-best': { en: 'Best Performer', ar: 'الأفضل أداءً' },
     'dash-across': { en: 'Across 4 markets', ar: 'عبر ٤ أسواق' },
     'dash-performance': { en: 'Portfolio Performance', ar: 'أداء المحفظة' },
@@ -1461,6 +1479,10 @@ function getHoldings() {
     return JSON.parse(localStorage.getItem('calcwise_holdings') || JSON.stringify(defaults));
 }
 
+function saveHoldings(holdings) {
+    localStorage.setItem('calcwise_holdings', JSON.stringify(holdings));
+}
+
 function renderHoldings(holdings) {
     const tbody = document.getElementById('holdingsBody');
     if (!tbody) return;
@@ -1598,8 +1620,8 @@ function renderPortfolioChart() {
     }).join('');
 }
 
-function openAddAssetModal() {
-    const modal = document.getElementById('addAssetModal');
+function openModal(id) {
+    const modal = document.getElementById(id);
     if (modal) modal.classList.add('active');
 }
 
@@ -1669,10 +1691,13 @@ async function addAsset(e) {
         color: marketColors[market]
     };
 
+    const id = Date.now().toString();
+    const assetDataWithId = { ...assetData, id: id, currentPrice: cost }; // Initial current price is cost
+
     try {
         const response = await secureFetch('/api/portfolio', {
             method: 'POST',
-            body: JSON.stringify(assetData)
+            body: JSON.stringify(assetDataWithId)
         });
 
         const data = await response.json();
@@ -1680,11 +1705,19 @@ async function addAsset(e) {
         if (data.success) {
             showToast('success', 'Asset added to portfolio! 🚀');
             closeModal('addAssetModal');
-            initDashboard(); // Refresh UI
+            initDashboard();
+        } else {
+            throw new Error('API failed');
         }
     } catch (error) {
-        console.error('Failed to add asset:', error);
-        showToast('error', 'Failed to save asset.');
+        console.warn('API save failed, using local fallback:', error);
+        const holdings = getHoldings();
+        holdings.push(assetDataWithId);
+        saveHoldings(holdings);
+        
+        showToast('success', 'Asset saved to local portfolio! 🏠');
+        closeModal('addAssetModal');
+        initDashboard(); // Refresh UI which calls getHoldings()
     }
 }
 
@@ -2287,13 +2320,21 @@ function addWatchlistAsset(id, name, symbol, icon, color) {
     showToast('success', `${name} added to watchlist! 👁️`);
     
     // Clear UI
-    document.getElementById('watchlistSearch').value = '';
-    document.getElementById('modalSearchInput').value = '';
-    document.getElementById('watchlistSearchResults').style.display = 'none';
-    document.getElementById('modalSearchResults').innerHTML = '';
+    const searchDash = document.getElementById('watchlistSearch');
+    const searchModal = document.getElementById('modalSearchInput');
+    if (searchDash) searchDash.value = '';
+    if (searchModal) searchModal.value = '';
+    
+    const resultsDash = document.getElementById('watchlistSearchResults');
+    if (resultsDash) resultsDash.style.display = 'none';
+    
+    const resultsModal = document.getElementById('modalSearchResults');
+    if (resultsModal) resultsModal.innerHTML = '';
+    
     closeModal('addWatchlistModal');
     
-    renderWatchlist();
+    renderWatchlist(); // Refresh full grid (watchlist.html)
+    initWatchlist();   // Refresh dashboard widget (dashboard.html)
 }
 
 function removeWatchlistAsset(id, name) {

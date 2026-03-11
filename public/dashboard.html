@@ -242,7 +242,7 @@
                     </p>
                 </div>
                 <div style="display:flex;gap:var(--space-sm);">
-                    <button class="btn btn-outline btn-sm" onclick="openAddAssetModal()" data-i18n="dash-add-asset">+
+                    <button class="btn btn-outline btn-sm" onclick="openModal('addAssetModal')" data-i18n="dash-add-asset">+
                         Add Asset</button>
                     <button class="btn btn-primary btn-sm" onclick="refreshDashboard()" data-i18n="dash-refresh">↻
                         Refresh</button>
@@ -349,8 +349,10 @@
                         <tbody id="holdingsBody"></tbody>
                     </table>
                 </div>
-                <div class="add-asset-btn" onclick="openAddAssetModal()" data-i18n="dash-add-track">
-                    + Add a new asset to track
+                <div style="display:flex;gap:var(--space-md);">
+                    <div class="add-asset-btn" onclick="openModal('addAssetModal')" data-i18n="dash-add-portfolio" style="flex:1;">
+                        + Add to Portfolio
+                    </div>
                 </div>
             </div>
 
@@ -379,7 +381,10 @@
                     </div>
 
                     <div class="card" style="flex:1;">
-                        <h3 style="font-size:1rem;margin-bottom:var(--space-md);" data-i18n="dash-watchlist">👁️ Watchlist</h3>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-md);">
+                        <h3 style="font-size:1rem;" data-i18n="dash-watchlist">👁️ Watchlist</h3>
+                        <button class="btn btn-ghost btn-xs" onclick="openModal('addWatchlistModal')" data-i18n="dash-watchlist-add">+</button>
+                    </div>
                     <div id="watchlistContainer">
                         <div class="watchlist-item">
                             <div class="asset-name"><span class="asset-icon"
@@ -551,6 +556,23 @@
                 <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" data-i18n="modal-add-btn">Add
                     to Portfolio</button>
             </form>
+        </div>
+    </div>
+
+    <!-- ADD WATCHLIST MODAL -->
+    <div class="modal-overlay" id="addWatchlistModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 data-i18n="watchlist-modal-title">Add to Watchlist</h3>
+                <button class="modal-close" onclick="closeModal('addWatchlistModal')">✕</button>
+            </div>
+            <p style="color:var(--text-secondary);margin-bottom:var(--space-md);">Search for assets to monitor.</p>
+            <div class="form-group">
+                <input type="text" class="form-control" id="modalSearchInput" placeholder="BTC, AAPL, EURUSD..." oninput="handleWatchlistSearch(this.value, true)">
+            </div>
+            <div id="modalSearchResults" style="margin-top:var(--space-md); max-height: 250px; overflow-y: auto;">
+                <!-- Search results here -->
+            </div>
         </div>
     </div>
 
