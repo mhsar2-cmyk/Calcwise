@@ -324,11 +324,14 @@
                 <div
                     style="padding:var(--space-xl);border-bottom:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;">
                     <h3 style="font-size:1rem;" data-i18n="dash-your-holdings">Your Holdings</h3>
-                    <div style="display:flex;gap:var(--space-xs);">
-                        <button class="filter-btn active" style="font-size:0.78rem;padding:5px 12px;">All</button>
-                        <button class="filter-btn" style="font-size:0.78rem;padding:5px 12px;">Crypto</button>
-                        <button class="filter-btn" style="font-size:0.78rem;padding:5px 12px;">Stocks</button>
-                        <button class="filter-btn" style="font-size:0.78rem;padding:5px 12px;">Forex</button>
+                    <div style="display:flex;gap:var(--space-sm);align-items:center;">
+                        <div style="display:flex;gap:var(--space-xs);margin-right:10px;border-right:1px solid var(--border-subtle);padding-right:10px;">
+                            <button class="filter-btn active" style="font-size:0.72rem;padding:4px 10px;">All</button>
+                            <button class="filter-btn" style="font-size:0.72rem;padding:4px 10px;">Crypto</button>
+                            <button class="filter-btn" style="font-size:0.72rem;padding:4px 10px;">Stocks</button>
+                            <button class="filter-btn" style="font-size:0.72rem;padding:4px 10px;">Forex</button>
+                        </div>
+                        <button class="btn btn-ghost btn-sm" onclick="clearAllAssets()" style="color:var(--danger);font-size:0.75rem;padding:4px 10px;border:1px solid var(--danger-bg);" data-i18n="dash-clear-all">Clear All</button>
                     </div>
                 </div>
                 <div style="overflow-x:auto;">

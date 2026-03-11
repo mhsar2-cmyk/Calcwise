@@ -258,6 +258,7 @@ const translations = {
     'dash-th-value': { en: 'Value', ar: 'القيمة' },
     'dash-th-pl': { en: 'P/L', ar: 'الربح/الخسارة' },
     'dash-th-change': { en: 'Change', ar: 'التغيير' },
+    'dash-clear-all': { en: 'Clear All', ar: 'مسح الكل' },
     'dash-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
 
     // ---- SIDEBAR ----
@@ -1502,7 +1503,23 @@ function getHoldings() {
         { id: 'def-rajhi', name: 'Al Rajhi Bank', symbol: '1120', market: 'Saudi', qty: 50, avgCost: 75, currentPrice: 82.30, icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: 'var(--accent-teal)' },
     ];
 
-    return JSON.parse(localStorage.getItem('calcwise_holdings') || JSON.stringify(defaults));
+    const stored = localStorage.getItem('calcwise_holdings');
+    if (!stored) return defaults;
+
+    let holdings = JSON.parse(stored);
+    
+    // Auto-repair: Give IDs to assets that don't have them
+    let repaired = false;
+    holdings = holdings.map((h, index) => {
+        if (!h.id) {
+            h.id = 'legacy-' + index + '-' + Date.now();
+            repaired = true;
+        }
+        return h;
+    });
+
+    if (repaired) saveHoldings(holdings);
+    return holdings;
 }
 
 function saveHoldings(holdings) {
@@ -1788,6 +1805,16 @@ async function handleDeleteAsset(id) {
             showToast('error', lang === 'ar' ? 'فشل الحذف.' : 'Failed to remove asset.');
         }
     }
+}
+
+function clearAllAssets() {
+    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const msg = lang === 'ar' ? 'هل تريد مسح جميع الممتلكات؟' : 'Are you sure you want to clear all holdings?';
+    if (!confirm(msg)) return;
+
+    saveHoldings([]);
+    showToast('success', lang === 'ar' ? 'تم مسح المحفظة.' : 'Portfolio cleared.');
+    initDashboard();
 }
 
 function updateLastUpdated() {
