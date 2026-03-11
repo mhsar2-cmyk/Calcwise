@@ -1,16 +1,62 @@
 let lang = localStorage.getItem('calcwise_lang') || 'en';
 
 const ASSET_POOL = [
+    // --- CRYPTO ---
     { id: 'btc', name: 'Bitcoin', symbol: 'BTC', market: 'crypto', icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: '#f7931a' },
     { id: 'eth', name: 'Ethereum', symbol: 'ETH', market: 'crypto', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: '#627eea' },
     { id: 'sol', name: 'Solana', symbol: 'SOL', market: 'crypto', icon: 'https://cryptologos.cc/logos/solana-sol-logo.png', color: '#14f195' },
+    { id: 'bnb', name: 'Binance Coin', symbol: 'BNB', market: 'crypto', icon: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png', color: '#f3ba2f' },
+    { id: 'xrp', name: 'XRP', symbol: 'XRP', market: 'crypto', icon: 'https://cryptologos.cc/logos/xrp-xrp-logo.png', color: '#23292f' },
+    { id: 'ada', name: 'Cardano', symbol: 'ADA', market: 'crypto', icon: 'https://cryptologos.cc/logos/cardano-ada-logo.png', color: '#0033ad' },
+    { id: 'dot', name: 'Polkadot', symbol: 'DOT', market: 'crypto', icon: 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png', color: '#e6007a' },
+    { id: 'link', name: 'Chainlink', symbol: 'LINK', market: 'crypto', icon: 'https://cryptologos.cc/logos/chainlink-link-logo.png', color: '#2a5ada' },
+    { id: 'matic', name: 'Polygon', symbol: 'MATIC', market: 'crypto', icon: 'https://cryptologos.cc/logos/polygon-matic-logo.png', color: '#8247e5' },
+    { id: 'ltc', name: 'Litecoin', symbol: 'LTC', market: 'crypto', icon: 'https://cryptologos.cc/logos/litecoin-ltc-logo.png', color: '#345d9d' },
+    { id: 'doge', name: 'Dogecoin', symbol: 'DOGE', market: 'crypto', icon: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png', color: '#c2a633' },
+    
+    // --- US STOCKS ---
     { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', market: 'us-stocks', icon: 'https://logo.clearbit.com/apple.com', color: '#555555' },
     { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', market: 'us-stocks', icon: 'https://logo.clearbit.com/nvidia.com', color: '#76b900' },
     { id: 'tsla', name: 'Tesla', symbol: 'TSLA', market: 'us-stocks', icon: 'https://logo.clearbit.com/tesla.com', color: '#cc0000' },
+    { id: 'msft', name: 'Microsoft', symbol: 'MSFT', market: 'us-stocks', icon: 'https://logo.clearbit.com/microsoft.com', color: '#00a4ef' },
+    { id: 'amzn', name: 'Amazon', symbol: 'AMZN', market: 'us-stocks', icon: 'https://logo.clearbit.com/amazon.com', color: '#ff9900' },
+    { id: 'googl', name: 'Google', symbol: 'GOOGL', market: 'us-stocks', icon: 'https://logo.clearbit.com/google.com', color: '#4285f4' },
+    { id: 'meta', name: 'Meta (Facebook)', symbol: 'META', market: 'us-stocks', icon: 'https://logo.clearbit.com/meta.com', color: '#0668E1' },
+    { id: 'nflx', name: 'Netflix', symbol: 'NFLX', market: 'us-stocks', icon: 'https://logo.clearbit.com/netflix.com', color: '#e50914' },
+    { id: 'amd', name: 'AMD', symbol: 'AMD', market: 'us-stocks', icon: 'https://logo.clearbit.com/amd.com', color: '#ed1c24' },
+    { id: 'dis', name: 'Disney', symbol: 'DIS', market: 'us-stocks', icon: 'https://logo.clearbit.com/disney.com', color: '#11385b' },
+    { id: 'adbe', name: 'Adobe', symbol: 'ADBE', market: 'us-stocks', icon: 'https://logo.clearbit.com/adobe.com', color: '#ff0000' },
+    { id: 'crm', name: 'Salesforce', symbol: 'CRM', market: 'us-stocks', icon: 'https://logo.clearbit.com/salesforce.com', color: '#00a1e0' },
+    { id: 'intc', name: 'Intel', symbol: 'INTC', market: 'us-stocks', icon: 'https://logo.clearbit.com/intel.com', color: '#0071c5' },
+    
+    // --- SAUDI MARKET ---
     { id: 'aramco', name: 'Saudi Aramco', symbol: '2222', market: 'saudi', icon: 'https://logo.clearbit.com/saudiaramco.com', color: '#00843d' },
     { id: 'rajhi', name: 'Al Rajhi Bank', symbol: '1120', market: 'saudi', icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: '#006a4d' },
+    { id: 'stc', name: 'stc', symbol: '7010', market: 'saudi', icon: 'https://logo.clearbit.com/stc.com.sa', color: '#4f2d7f' },
+    { id: 'sabic', name: 'SABIC', symbol: '2010', market: 'saudi', icon: 'https://logo.clearbit.com/sabic.com', color: '#007cc3' },
+    { id: 'snb', name: 'SNB (Al Ahli)', symbol: '1180', market: 'saudi', icon: 'https://logo.clearbit.com/alahli.com', color: '#004a3d' },
+    { id: 'maaden', name: 'Ma\'aden', symbol: '1211', market: 'saudi', icon: 'https://logo.clearbit.com/maaden.com.sa', color: '#8c734b' },
+    { id: 'alinma', name: 'Alinma Bank', symbol: '1150', market: 'saudi', icon: 'https://logo.clearbit.com/alinma.com', color: '#6d1c1c' },
+    { id: 'acwa', name: 'ACWA Power', symbol: '2082', market: 'saudi', icon: 'https://logo.clearbit.com/acwapower.com', color: '#005a9c' },
+    { id: 'sal', name: 'Sal Logistics', symbol: '4263', market: 'saudi', icon: 'https://logo.clearbit.com/sal.sa', color: '#000000' },
+    { id: 'riyad', name: 'Riyad Bank', symbol: '1010', market: 'saudi', icon: 'https://logo.clearbit.com/riyadbank.com', color: '#00a950' },
+    { id: 'daralkarn', name: 'Dar Al Arkan', symbol: '4300', market: 'saudi', icon: 'https://logo.clearbit.com/alarkan.com', color: '#555555' },
+    { id: 'safco', name: 'SABIC Agri', symbol: '2020', market: 'saudi', icon: 'https://logo.clearbit.com/sabic.com', color: '#00a1e4' },
+    { id: 'elm', name: 'Elm', symbol: '7203', market: 'saudi', icon: 'https://logo.clearbit.com/elm.sa', color: '#004f91' },
+    { id: 'jahez', name: 'Jahez', symbol: '9526', market: 'saudi', icon: 'https://logo.clearbit.com/jahez.net', color: '#ff0032' },
+    { id: 'solutions', name: 'solutions by stc', symbol: '7202', market: 'saudi', icon: 'https://logo.clearbit.com/solutions.com.sa', color: '#4f2d7f' },
+    { id: 'almarai', name: 'Almarai', symbol: '2280', market: 'saudi', icon: 'https://logo.clearbit.com/almarai.com', color: '#00552b' },
+    { id: 'savola', name: 'Savola Group', symbol: '2050', market: 'saudi', icon: 'https://logo.clearbit.com/savola.com', color: '#007cc3' },
+    { id: 'jarir', name: 'Jarir', symbol: '4190', market: 'saudi', icon: 'https://logo.clearbit.com/jarir.com', color: '#e31e24' },
+    
+    // --- FOREX & COMMODITIES ---
     { id: 'eurusd', name: 'EUR/USD', symbol: 'EURUSD', market: 'forex', icon: '🇪🇺', color: '#003399' },
-    { id: 'gold', name: 'Gold', symbol: 'XAU', market: 'forex', icon: '📀', color: '#ffd700' }
+    { id: 'gbpusd', name: 'GBP/USD', symbol: 'GBPUSD', market: 'forex', icon: '🇬🇧', color: '#cf142b' },
+    { id: 'usdjpy', name: 'USD/JPY', symbol: 'USDJPY', market: 'forex', icon: '🇯🇵', color: '#bc002d' },
+    { id: 'gold', name: 'Gold', symbol: 'XAU', market: 'forex', icon: '📀', color: '#ffd700' },
+    { id: 'silver', name: 'Silver', symbol: 'XAG', market: 'forex', icon: '⚪', color: '#c0c0c0' },
+    { id: 'brent', name: 'Brent Oil', symbol: 'BRENT', market: 'forex', icon: '🛢️', color: '#333333' },
+    { id: 'gas', name: 'Natural Gas', symbol: 'NG', market: 'forex', icon: '🔥', color: '#ffa500' }
 ];
 
 async function secureFetch(url, options = {}) {
