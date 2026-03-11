@@ -536,7 +536,7 @@
             <form onsubmit="addAsset(event)">
                 <div class="form-group">
                     <label data-i18n="modal-market">Market</label>
-                    <select class="form-control" id="asset-market">
+                    <select class="form-control" id="asset-market" onchange="const input = document.getElementById('asset-name'); if(input.value || document.activeElement === input) handlePortfolioSearch(input.value)">
                         <option value="crypto">Cryptocurrency</option>
                         <option value="forex">Forex</option>
                         <option value="us-stocks">US Stocks</option>

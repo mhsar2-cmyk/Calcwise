@@ -2432,10 +2432,13 @@ function handleWatchlistSearch(query, isModal = false) {
 
 function handlePortfolioSearch(query) {
     const resultsContainer = document.getElementById('portfolioSearchResults');
-    let poolToUse = ASSET_POOL;
+    const selectedMarket = document.getElementById('asset-market').value;
+    
+    // Filter pool by market first
+    let poolToUse = ASSET_POOL.filter(a => a.market === selectedMarket);
 
     if (query && query.length >= 1) {
-        poolToUse = ASSET_POOL.filter(a => 
+        poolToUse = poolToUse.filter(a => 
             a.name.toLowerCase().includes(query.toLowerCase()) || 
             a.symbol.toLowerCase().includes(query.toLowerCase())
         );
