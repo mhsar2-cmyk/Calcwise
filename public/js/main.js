@@ -579,7 +579,42 @@ const translations = {
     'my-courses-title-2': { en: 'Learning', ar: 'الخاص' },
     'my-courses-page-title': { en: 'My Learning — LingoWise', ar: 'تعلمي — لينغو وايز' },
     'my-courses-sub': { en: 'Pick up where you left off and keep track of your achievements.', ar: 'تابع من حيث توقفت وتتبع إنجازاتك.' },
+    'speaking-hero-sub': { en: 'Improve your fluency and pronunciation with real-time AI feedback.', ar: 'حسن طلاقتك ونطقك من خلال تقنيات الذكاء الاصطناعي في الوقت الفعلي.' },
+    'speaking-topics': { en: 'Practice Topics', ar: 'مواضيع الممارسة' },
+    'topic-1-title': { en: 'Job Interview Preparation', ar: 'التحضير لمقابلة العمل' },
+    'topic-1-desc': { en: 'Practice answering common career questions.', ar: 'تدرب على الإجابة على الأسئلة الوظيفية الشائعة.' },
+    'topic-2-title': { en: 'Ordering Food at a Restaurant', ar: 'طلب الطعام في المطعم' },
+    'topic-2-desc': { en: 'Master social interactions in dining.', ar: 'أتقن التفاعلات الاجتماعية عند تناول الطعام.' },
+    'topic-3-title': { en: 'Travel & Directions', ar: 'السفر والاتجاهات' },
+    'topic-3-desc': { en: 'Essential phrases for your next trip.', ar: 'عبارات أساسية لرحلتك القادمة.' },
+    'topic-4-title': { en: 'Daily Conversation', ar: 'المحادثات اليومية' },
+    'topic-4-desc': { en: 'Casual talk with friends and colleagues.', ar: 'حديث غير رسمي مع الأصدقاء والزملاء.' },
+    'speaking-pronunciation': { en: 'Pronunciation', ar: 'النطق' },
+    'speaking-grammar-acc': { en: 'Grammar Accuracy', ar: 'دقة القواعد' },
+    'speaking-initial-tip': { en: 'Select a topic and start speaking to get personalized tips!', ar: 'اختر موضوعاً وابدأ التحدث للحصول على نصائح مخصصة!' },
+    'speaking-word-suggestion': { en: 'Word Suggestion', ar: 'اقتراح كلمة' },
+    'speaking-add-to-bank': { en: '+ Add to Bank', ar: '+ إضافة للبنك' },
     'unit-hrs': { en: 'hrs', ar: 'ساعة' },
+    'grammar-hero-title': { en: 'Grammar', ar: 'دليل' },
+    'grammar-hero-title-2': { en: 'Guide', ar: 'القواعد' },
+    'grammar-hero-sub': { en: 'Essential grammar rules explained simply with interactive examples.', ar: 'قواعد اللغة الأساسية مشروحة ببساطة مع أمثلة تفاعلية.' },
+    'grammar-search-ph': { en: 'Search grammar topics...', ar: 'ابحث عن مواضيع القواعد...' },
+    'grammar-cat-fundamentals': { en: 'Fundamentals', ar: 'الأساسيات' },
+    'grammar-cat-blocks': { en: 'Building Blocks', ar: 'لبنات البناء' },
+    'grammar-cat-structure': { en: 'Structure', ar: 'الهيكل' },
+    'grammar-cat-clarity': { en: 'Writing Clarity', ar: 'وضوح الكتابة' },
+    'grammar-cat-advanced': { en: 'Advanced', ar: 'مستوى متقدم' },
+    'grammar-topic-conditionals': { en: 'Conditionals', ar: 'الجمل الشرطية' },
+    'grammar-topic-conditionals-desc': { en: 'Learn how to express hypothetical situations and "if" clauses.', ar: 'تعلم كيفية التعبير عن المواقف الافتراضية وجمل "if".' },
+    'grammar-topic-passive': { en: 'Passive Voice', ar: 'المبني للمجهول' },
+    'grammar-topic-passive-desc': { en: 'When and how to use the passive voice for formal and business writing.', ar: 'متى وكيف تستخدم المبني للمجهول في الكتابة الرسمية والأعمال.' },
+    'grammar-help-title': { en: 'Need more help?', ar: 'هل تحتاج للمساعدة؟' },
+    'grammar-help-desc': { en: 'Our AI Assistant is ready to explain any grammar rule in detail.', ar: 'مساعدنا الذكي مستعد لشرح أي قاعدة نحوية بالتفصيل.' },
+    'grammar-ask-ai': { en: 'Ask AI Tutor 🤖', ar: 'اسأل المعلم الذكي 🤖' },
+    'vocab-hero-title': { en: 'Vocabulary Bank', ar: 'بنك المفردات' },
+    'vocab-hero-sub': { en: 'Master words scheduled for review today.', ar: 'أتقن الكلمات المقررة للمراجعة اليوم.' },
+    'vocab-review-btn': { en: 'Start Review Session 🔥', ar: 'ابدأ جلسة المراجعة 🔥' },
+    'vocab-filter-all': { en: 'All Categories', ar: 'جميع الفئات' },
     'dash-goal-vocab': { en: 'New Vocabulary', ar: 'مفردات جديدة' },
     'dash-goal-speak': { en: 'Speaking Practice', ar: 'ممارسة التحدث' },
     'dash-goal-done': { en: 'Completed for today!', ar: 'اكتمل لهذا اليوم!' },
@@ -736,17 +771,21 @@ function renderVocabGrid(filterTerm = '', filterCat = 'all') {
         return;
     }
     
-    grid.innerHTML = items.map(v => `
-        <div class="card vocab-card reveal active">
-            <button class="delete-btn" onclick="deleteWord('${v.id}')">✕</button>
-            <div class="vocab-word">${v.word}</div>
-            <div class="vocab-translation">${v.translation}</div>
-            <div class="vocab-footer">
-                <span class="vocab-tag">${v.category}</span>
-                <span class="vocab-date">${v.date}</span>
+    grid.innerHTML = items.map(v => {
+        const catKey = `filter-${v.category.toLowerCase()}`;
+        const localizedCat = (translations[catKey] && translations[catKey][lang]) || v.category;
+        return `
+            <div class="card vocab-card reveal active">
+                <button class="delete-btn" onclick="deleteWord('${v.id}')">✕</button>
+                <div class="vocab-word">${v.word}</div>
+                <div class="vocab-translation">${v.translation}</div>
+                <div class="vocab-footer">
+                    <span class="vocab-tag">${localizedCat}</span>
+                    <span class="vocab-date">${v.date}</span>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function handleVocabSearch(q) { 
@@ -767,7 +806,7 @@ function addVocabulary(e) {
     const vocab = getVocab();
     vocab.unshift({ id: Date.now().toString(), word, translation: trans, category: cat, date: new Date().toISOString().split('T')[0] });
     saveVocab(vocab);
-    showToast('success', 'Word added!');
+    showToast('success', lang === 'ar' ? 'تمت إضافة الكلمة!' : 'Word added!');
     closeModal('addWordModal');
     if (document.getElementById('vocabularyGrid')) renderVocabGrid();
     updateVocabUIStrip();

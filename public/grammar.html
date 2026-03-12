@@ -93,7 +93,9 @@
                     <span class="toggle-option" data-value="en" onclick="toggleLanguage('en')">EN</span>
                     <span class="toggle-option active" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
                 </div>
-                <a href="dashboard.html" class="btn btn-ghost btn-sm" data-i18n="sidebar-dashboard">Dashboard</a>
+                <div id="auth-container" style="display:inline-flex; gap:10px;">
+                    <!-- Filled by JS -->
+                </div>
             </div>
             <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
             </div>
@@ -111,7 +113,7 @@
             </div>
 
             <div class="grammar-search reveal">
-                <input type="text" placeholder="Search grammar topics..." data-i18n="[placeholder]vocab-search-ph">
+                <input type="text" placeholder="Search grammar topics..." data-i18n="[placeholder]grammar-search-ph">
             </div>
         </div>
     </section>
@@ -123,7 +125,7 @@
                 <!-- Topic 1 -->
                 <div class="card grammar-topic-card reveal">
                     <div class="topic-icon">⏳</div>
-                    <div class="category-tag">Fundamentals</div>
+                    <div class="category-tag" data-i18n="grammar-cat-fundamentals">Fundamentals</div>
                     <h3 data-i18n="grammar-topic-tenses">Verb Tenses</h3>
                     <p class="text-secondary" data-i18n="grammar-topic-tenses-desc">Master Past, Present, and Future forms with clear examples.</p>
                     <button class="btn btn-ghost mt-auto" style="align-self: flex-start;" data-i18n="grammar-view-guide">View Guide</button>
@@ -132,7 +134,7 @@
                 <!-- Topic 2 -->
                 <div class="card grammar-topic-card reveal">
                     <div class="topic-icon">🧩</div>
-                    <div class="category-tag">Building Blocks</div>
+                    <div class="category-tag" data-i18n="grammar-cat-blocks">Building Blocks</div>
                     <h3 data-i18n="grammar-topic-parts">Parts of Speech</h3>
                     <p class="text-secondary" data-i18n="grammar-topic-parts-desc">Deep dive into nouns, verbs, adjectives, and adverbs.</p>
                     <button class="btn btn-ghost mt-auto" style="align-self: flex-start;" data-i18n="grammar-view-guide">View Guide</button>
@@ -141,7 +143,7 @@
                 <!-- Topic 3 -->
                 <div class="card grammar-topic-card reveal">
                     <div class="topic-icon">🏗️</div>
-                    <div class="category-tag">Structure</div>
+                    <div class="category-tag" data-i18n="grammar-cat-structure">Structure</div>
                     <h3 data-i18n="grammar-topic-sentence">Sentence Structure</h3>
                     <p class="text-secondary" data-i18n="grammar-topic-sentence-desc">Understand clauses, phrases, and complex sentence types.</p>
                     <button class="btn btn-ghost mt-auto" style="align-self: flex-start;" data-i18n="grammar-view-guide">View Guide</button>
@@ -150,7 +152,7 @@
                 <!-- Topic 4 -->
                 <div class="card grammar-topic-card reveal">
                     <div class="topic-icon">📍</div>
-                    <div class="category-tag">Writing Clarity</div>
+                    <div class="category-tag" data-i18n="grammar-cat-clarity">Writing Clarity</div>
                     <h3 data-i18n="grammar-topic-punctuation">Punctuation</h3>
                     <p class="text-secondary" data-i18n="grammar-topic-punctuation-desc">Master commas, semicolons, and proper capitalization.</p>
                     <button class="btn btn-ghost mt-auto" style="align-self: flex-start;" data-i18n="grammar-view-guide">View Guide</button>
@@ -159,18 +161,18 @@
                 <!-- Topic 5 -->
                 <div class="card grammar-topic-card reveal">
                     <div class="topic-icon">💬</div>
-                    <div class="category-tag">Advanced</div>
-                    <h3 data-i18n="ai-quick-speak">Conditionals</h3>
-                    <p class="text-secondary">Learn how to express hypothetical situations and "if" clauses.</p>
+                    <div class="category-tag" data-i18n="grammar-cat-advanced">Advanced</div>
+                    <h3 data-i18n="grammar-topic-conditionals">Conditionals</h3>
+                    <p class="text-secondary" data-i18n="grammar-topic-conditionals-desc">Learn how to express hypothetical situations and "if" clauses.</p>
                     <button class="btn btn-ghost mt-auto" style="align-self: flex-start;" data-i18n="grammar-view-guide">View Guide</button>
                 </div>
 
                 <!-- Topic 6 -->
                 <div class="card grammar-topic-card reveal">
                     <div class="topic-icon">🏢</div>
-                    <div class="category-tag">Advanced</div>
-                    <h3 data-i18n="filter-business">Passive Voice</h3>
-                    <p class="text-secondary">When and how to use the passive voice for formal and business writing.</p>
+                    <div class="category-tag" data-i18n="grammar-cat-advanced">Advanced</div>
+                    <h3 data-i18n="grammar-topic-passive">Passive Voice</h3>
+                    <p class="text-secondary" data-i18n="grammar-topic-passive-desc">When and how to use the passive voice for formal and business writing.</p>
                     <button class="btn btn-ghost mt-auto" style="align-self: flex-start;" data-i18n="grammar-view-guide">View Guide</button>
                 </div>
             </div>
@@ -180,9 +182,9 @@
     <!-- CTA -->
     <section class="section" style="background: var(--bg-secondary);">
         <div class="container text-center">
-            <h2 data-i18n="ai-greeting">Need more help?</h2>
-            <p class="text-secondary mb-2">Our AI Assistant is ready to explain any grammar rule in detail.</p>
-            <button class="btn btn-primary" onclick="toggleAIChat()">Ask AI Tutor 🤖</button>
+            <h2 data-i18n="grammar-help-title">Need more help?</h2>
+            <p class="text-secondary mb-2" data-i18n="grammar-help-desc">Our AI Assistant is ready to explain any grammar rule in detail.</p>
+            <button class="btn btn-primary" onclick="toggleAIChat()" data-i18n="grammar-ask-ai">Ask AI Tutor 🤖</button>
         </div>
     </section>
 
