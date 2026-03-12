@@ -551,10 +551,35 @@ const translations = {
     'feature-2-title': { en: 'Progress Trackers 🎓', ar: 'تتبع التقدم 🎓' },
     'feature-2-desc': { en: 'Visualize your growth with detailed analytics for vocabulary, grammar, and fluency.', ar: 'تصور نموك مع تحليلات مفصلة للمفردات والقواعد والطلاقة.' },
     'dash-learner-default': { en: 'Learner', ar: 'متعلم' },
+    'sidebar-overview': { en: 'Learning Hub', ar: 'مركز التعلم' },
+    'sidebar-resources': { en: 'Resources', ar: 'المصادر' },
+    'sidebar-settings': { en: 'Settings', ar: 'الإعدادات' },
+    'sidebar-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
+    'dash-streak-title': { en: 'Current Streak 🔥', ar: 'النشاط الحالي 🔥' },
+    'dash-streak-sub': { en: 'Keep it up! Reach 7 for a bonus.', ar: 'استمر! صل إلى 7 أيام للحصول على مكافأة.' },
+    'dash-welcome-sub': { en: 'Track your progress and continue your journey.', ar: 'تتبع تقدمك وواصل رحلتك.' },
+    'dash-browse-courses': { en: 'Browse Courses', ar: 'تصفح الدورات' },
+    'dash-stat-time-sub': { en: '+2.5 hrs this week', ar: '+2.5 ساعة هذا الأسبوع' },
+    'dash-stat-courses-sub': { en: 'Next: Business English', ar: 'التالي: الإنجليزية للأعمال' },
+    'dash-stat-vocab-sub': { en: '↑ 15 new today', ar: '↑ 15 كلمة جديدة اليوم' },
+    'dash-stat-speak-sub': { en: '↑ Improved 5%', ar: '↑ تحسن بنسبة 5%' },
+    'dash-view-all': { en: 'View All', ar: 'عرض الكل' },
+    'dash-vocab-add': { en: '+ Add Word', ar: '+ إضافة كلمة' },
+    'modal-add-word-title': { en: 'Add New Word', ar: 'إضافة كلمة جديدة' },
+    'label-word': { en: 'Word / Phrase', ar: 'الكلمة / العبارة' },
+    'label-translation': { en: 'Translation', ar: 'الترجمة' },
+    'label-category': { en: 'Category', ar: 'الفئة' },
+    'btn-save-word': { en: 'Save to Bank', ar: 'حفظ في البنك' },
+    'footer-account': { en: 'Account', ar: 'الحساب' },
     'auth-error-match': { en: 'Passwords do not match!', ar: 'كلمات المرور غير متطابقة!' },
     'auth-success-signup': { en: 'Account created! Redirecting...', ar: 'تم إنشاء الحساب! جاري التحويل...' },
     'auth-success-login': { en: 'Welcome back! Redirecting...', ar: 'مرحباً بعودتك! جاري التحويل...' },
     'auth-error-invalid': { en: 'Invalid email or password.', ar: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.' },
+    'unit-hrs': { en: 'hrs', ar: 'ساعة' },
+    'dash-goal-vocab': { en: 'New Vocabulary', ar: 'مفردات جديدة' },
+    'dash-goal-speak': { en: 'Speaking Practice', ar: 'ممارسة التحدث' },
+    'dash-goal-done': { en: 'Completed for today!', ar: 'اكتمل لهذا اليوم!' },
+    'dash-goal-rem': { en: 'minutes remaining', ar: 'دقيقة متبقية' },
 };
 
 // ===== DASHBOARD LOGIC =====
@@ -575,7 +600,8 @@ function updateDashboardStats() {
     const vocabCount = getVocab().length;
     if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = vocabCount;
     const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "750");
-    if (document.getElementById('learningTime')) document.getElementById('learningTime').innerText = (totalMin / 60).toFixed(1) + " hrs";
+    const hrsUnit = translations['unit-hrs'][lang];
+    if (document.getElementById('learningTime')) document.getElementById('learningTime').innerText = `${(totalMin / 60).toFixed(1)} ${hrsUnit}`;
     
     const streak = localStorage.getItem('lingowise_streak') || '5';
     const streakEl = document.querySelector('[data-i18n="dash-streak-days"]');
