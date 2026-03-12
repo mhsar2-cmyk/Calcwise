@@ -575,6 +575,10 @@ const translations = {
     'auth-success-signup': { en: 'Account created! Redirecting...', ar: 'تم إنشاء الحساب! جاري التحويل...' },
     'auth-success-login': { en: 'Welcome back! Redirecting...', ar: 'مرحباً بعودتك! جاري التحويل...' },
     'auth-error-invalid': { en: 'Invalid email or password.', ar: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.' },
+    'my-courses-title': { en: 'My', ar: 'تعلمي' },
+    'my-courses-title-2': { en: 'Learning', ar: 'الخاص' },
+    'my-courses-page-title': { en: 'My Learning — LingoWise', ar: 'تعلمي — لينغو وايز' },
+    'my-courses-sub': { en: 'Pick up where you left off and keep track of your achievements.', ar: 'تابع من حيث توقفت وتتبع إنجازاتك.' },
     'unit-hrs': { en: 'hrs', ar: 'ساعة' },
     'dash-goal-vocab': { en: 'New Vocabulary', ar: 'مفردات جديدة' },
     'dash-goal-speak': { en: 'Speaking Practice', ar: 'ممارسة التحدث' },
@@ -791,7 +795,29 @@ function updateVocabUIStrip() {
 }
 
 // ===== MY COURSES LOGIC =====
-function initMyCoursesPage() { renderMyCoursesGrid(); }
+function initMyCoursesPage() { 
+    renderMyCoursesGrid(); 
+    updateMyCoursesStats();
+}
+
+function updateMyCoursesStats() {
+    const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "750");
+    const hrsUnit = translations['unit-hrs'][lang];
+    const timeEl = document.querySelector('#learningTimeVal');
+    if (timeEl) timeEl.innerText = `${(totalMin / 60).toFixed(1)}${hrsUnit}`;
+    
+    const vocabCount = getVocab().length;
+    const vocabEl = document.querySelector('#myVocabCount');
+    if (vocabEl) vocabEl.innerText = vocabCount;
+
+    const score = localStorage.getItem('lingowise_avg_score') || '82%';
+    const scoreEl = document.querySelector('#speakingScoreVal');
+    if (scoreEl) scoreEl.innerText = score;
+
+    const doneCount = localStorage.getItem('lingowise_courses_done') || '3';
+    const doneEl = document.querySelector('#coursesDoneVal');
+    if (doneEl) doneEl.innerText = doneCount;
+}
 
 function renderMyCoursesGrid() {
     const grid = document.getElementById('myCoursesGrid');
