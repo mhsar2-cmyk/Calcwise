@@ -1,129 +1,11 @@
 let lang = localStorage.getItem('calcwise_lang') || 'en';
 
-const ASSET_POOL = [
-    // --- CRYPTO ---
-    { id: 'btc', name: 'Bitcoin', symbol: 'BTC', market: 'crypto', icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: '#f7931a' },
-    { id: 'eth', name: 'Ethereum', symbol: 'ETH', market: 'crypto', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: '#627eea' },
-    { id: 'sol', name: 'Solana', symbol: 'SOL', market: 'crypto', icon: 'https://cryptologos.cc/logos/solana-sol-logo.png', color: '#14f195' },
-    { id: 'bnb', name: 'Binance Coin', symbol: 'BNB', market: 'crypto', icon: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png', color: '#f3ba2f' },
-    { id: 'xrp', name: 'XRP', symbol: 'XRP', market: 'crypto', icon: 'https://cryptologos.cc/logos/xrp-xrp-logo.png', color: '#23292f' },
-    { id: 'ada', name: 'Cardano', symbol: 'ADA', market: 'crypto', icon: 'https://cryptologos.cc/logos/cardano-ada-logo.png', color: '#0033ad' },
-    { id: 'dot', name: 'Polkadot', symbol: 'DOT', market: 'crypto', icon: 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png', color: '#e6007a' },
-    { id: 'link', name: 'Chainlink', symbol: 'LINK', market: 'crypto', icon: 'https://cryptologos.cc/logos/chainlink-link-logo.png', color: '#2a5ada' },
-    { id: 'matic', name: 'Polygon', symbol: 'MATIC', market: 'crypto', icon: 'https://cryptologos.cc/logos/polygon-matic-logo.png', color: '#8247e5' },
-    { id: 'ltc', name: 'Litecoin', symbol: 'LTC', market: 'crypto', icon: 'https://cryptologos.cc/logos/litecoin-ltc-logo.png', color: '#345d9d' },
-    { id: 'doge', name: 'Dogecoin', symbol: 'DOGE', market: 'crypto', icon: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png', color: '#c2a633' },
-    { id: 'avax', name: 'Avalanche', symbol: 'AVAX', market: 'crypto', icon: 'https://cryptologos.cc/logos/avalanche-avax-logo.png', color: '#e84142' },
-    { id: 'trx', name: 'TRON', symbol: 'TRX', market: 'crypto', icon: 'https://cryptologos.cc/logos/tron-trx-logo.png', color: '#ff0013' },
-    { id: 'shib', name: 'Shiba Inu', symbol: 'SHIB', market: 'crypto', icon: 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png', color: '#ff8a08' },
-    { id: 'uni', name: 'Uniswap', symbol: 'UNI', market: 'crypto', icon: 'https://cryptologos.cc/logos/uniswap-uni-logo.png', color: '#ff007a' },
-    { id: 'atom', name: 'Cosmos', symbol: 'ATOM', market: 'crypto', icon: 'https://cryptologos.cc/logos/cosmos-atom-logo.png', color: '#2e3148' },
-    { id: 'xlm', name: 'Stellar', symbol: 'XLM', market: 'crypto', icon: 'https://cryptologos.cc/logos/stellar-xlm-logo.png', color: '#000000' },
-    { id: 'near', name: 'NEAR Protocol', symbol: 'NEAR', market: 'crypto', icon: 'https://cryptologos.cc/logos/near-protocol-near-logo.png', color: '#000000' },
-    { id: 'kas', name: 'Kaspa', symbol: 'KAS', market: 'crypto', icon: 'https://cryptologos.cc/logos/kaspa-kas-logo.png', color: '#70c5ce' },
-    { id: 'inj', name: 'Injective', symbol: 'INJ', market: 'crypto', icon: 'https://cryptologos.cc/logos/injective-inj-logo.png', color: '#00a3ff' },
-    { id: 'rndr', name: 'Render', symbol: 'RNDR', market: 'crypto', icon: 'https://cryptologos.cc/logos/render-token-rndr-logo.png', color: '#232323' },
-    { id: 'fet', name: 'Fetch.ai', symbol: 'FET', market: 'crypto', icon: 'https://cryptologos.cc/logos/fetch-ai-fet-logo.png', color: '#1e2023' },
-    { id: 'pepe', name: 'Pepe', symbol: 'PEPE', market: 'crypto', icon: 'https://cryptologos.cc/logos/pepe-pepe-logo.png', color: '#00ac4d' },
-    
-    // --- US STOCKS ---
-    { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', market: 'us-stocks', icon: 'https://logo.clearbit.com/apple.com', color: '#555555' },
-    { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', market: 'us-stocks', icon: 'https://logo.clearbit.com/nvidia.com', color: '#76b900' },
-    { id: 'tsla', name: 'Tesla', symbol: 'TSLA', market: 'us-stocks', icon: 'https://logo.clearbit.com/tesla.com', color: '#cc0000' },
-    { id: 'msft', name: 'Microsoft', symbol: 'MSFT', market: 'us-stocks', icon: 'https://logo.clearbit.com/microsoft.com', color: '#00a4ef' },
-    { id: 'amzn', name: 'Amazon', symbol: 'AMZN', market: 'us-stocks', icon: 'https://logo.clearbit.com/amazon.com', color: '#ff9900' },
-    { id: 'googl', name: 'Google', symbol: 'GOOGL', market: 'us-stocks', icon: 'https://logo.clearbit.com/google.com', color: '#4285f4' },
-    { id: 'meta', name: 'Meta (Facebook)', symbol: 'META', market: 'us-stocks', icon: 'https://logo.clearbit.com/meta.com', color: '#0668E1' },
-    { id: 'nflx', name: 'Netflix', symbol: 'NFLX', market: 'us-stocks', icon: 'https://logo.clearbit.com/netflix.com', color: '#e50914' },
-    { id: 'amd', name: 'AMD', symbol: 'AMD', market: 'us-stocks', icon: 'https://logo.clearbit.com/amd.com', color: '#ed1c24' },
-    { id: 'dis', name: 'Disney', symbol: 'DIS', market: 'us-stocks', icon: 'https://logo.clearbit.com/disney.com', color: '#11385b' },
-    { id: 'adbe', name: 'Adobe', symbol: 'ADBE', market: 'us-stocks', icon: 'https://logo.clearbit.com/adobe.com', color: '#ff0000' },
-    { id: 'crm', name: 'Salesforce', symbol: 'CRM', market: 'us-stocks', icon: 'https://logo.clearbit.com/salesforce.com', color: '#00a1e0' },
-    { id: 'intc', name: 'Intel', symbol: 'INTC', market: 'us-stocks', icon: 'https://logo.clearbit.com/intel.com', color: '#0071c5' },
-    { id: 'pltr', name: 'Palantir', symbol: 'PLTR', market: 'us-stocks', icon: 'https://logo.clearbit.com/palantir.com', color: '#000000' },
-    { id: 'orcl', name: 'Oracle', symbol: 'ORCL', market: 'us-stocks', icon: 'https://logo.clearbit.com/oracle.com', color: '#ff0000' },
-    { id: 'uber', name: 'Uber', symbol: 'UBER', market: 'us-stocks', icon: 'https://logo.clearbit.com/uber.com', color: '#000000' },
-    { id: 'jpm', name: 'JP Morgan', symbol: 'JPM', market: 'us-stocks', icon: 'https://logo.clearbit.com/jpmorganchase.com', color: '#1c1c1c' },
-    { id: 'gs', name: 'Goldman Sachs', symbol: 'GS', market: 'us-stocks', icon: 'https://logo.clearbit.com/goldmansachs.com', color: '#7399c6' },
-    { id: 'v', name: 'Visa', symbol: 'V', market: 'us-stocks', icon: 'https://logo.clearbit.com/visa.com', color: '#19206d' },
-    { id: 'ma', name: 'Mastercard', symbol: 'MA', market: 'us-stocks', icon: 'https://logo.clearbit.com/mastercard.com', color: '#eb001b' },
-    { id: 'pypl', name: 'PayPal', symbol: 'PYPL', market: 'us-stocks', icon: 'https://logo.clearbit.com/paypal.com', color: '#003087' },
-    { id: 'wmt', name: 'Walmart', symbol: 'WMT', market: 'us-stocks', icon: 'https://logo.clearbit.com/walmart.com', color: '#0071ce' },
-    { id: 'cost', name: 'Costco', symbol: 'COST', market: 'us-stocks', icon: 'https://logo.clearbit.com/costco.com', color: '#005ea6' },
-    { id: 'tgt', name: 'Target', symbol: 'TGT', market: 'us-stocks', icon: 'https://logo.clearbit.com/target.com', color: '#cc0000' },
-    { id: 'nke', name: 'Nike', symbol: 'NKE', market: 'us-stocks', icon: 'https://logo.clearbit.com/nike.com', color: '#000000' },
-    { id: 'sbux', name: 'Starbucks', symbol: 'SBUX', market: 'us-stocks', icon: 'https://logo.clearbit.com/starbucks.com', color: '#00704a' },
-    { id: 'ko', name: 'Coca-Cola', symbol: 'KO', market: 'us-stocks', icon: 'https://logo.clearbit.com/coca-cola.com', color: '#e41c2b' },
-    { id: 'pep', name: 'PepsiCo', symbol: 'PEP', market: 'us-stocks', icon: 'https://logo.clearbit.com/pepsico.com', color: '#004b91' },
-    { id: 'mu', name: 'Micron', symbol: 'MU', market: 'us-stocks', icon: 'https://logo.clearbit.com/micron.com', color: '#007cc3' },
-    { id: 'avgo', name: 'Broadcom', symbol: 'AVGO', market: 'us-stocks', icon: 'https://logo.clearbit.com/broadcom.com', color: '#cc092f' },
-    { id: 'qcom', name: 'Qualcomm', symbol: 'QCOM', market: 'us-stocks', icon: 'https://logo.clearbit.com/qualcomm.com', color: '#3253dc' },
-    { id: 'smci', name: 'SuperMicro', symbol: 'SMCI', market: 'us-stocks', icon: 'https://logo.clearbit.com/supermicro.com', color: '#003399' },
-    { id: 'arm', name: 'ARM Holdings', symbol: 'ARM', market: 'us-stocks', icon: 'https://logo.clearbit.com/arm.com', color: '#0091bd' },
-    { id: 'abnb', name: 'Airbnb', symbol: 'ABNB', market: 'us-stocks', icon: 'https://logo.clearbit.com/airbnb.com', color: '#ff5a5f' },
-    { id: 'coin', name: 'Coinbase', symbol: 'COIN', market: 'us-stocks', icon: 'https://logo.clearbit.com/coinbase.com', color: '#0052ff' },
-    
-    // --- SAUDI MARKET ---
-    { id: 'aramco', name: 'Saudi Aramco', symbol: '2222', market: 'saudi', icon: 'https://logo.clearbit.com/saudiaramco.com', color: '#00843d' },
-    { id: 'rajhi', name: 'Al Rajhi Bank', symbol: '1120', market: 'saudi', icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: '#006a4d' },
-    { id: 'stc', name: 'stc', symbol: '7010', market: 'saudi', icon: 'https://logo.clearbit.com/stc.com.sa', color: '#4f2d7f' },
-    { id: 'sabic', name: 'SABIC', symbol: '2010', market: 'saudi', icon: 'https://logo.clearbit.com/sabic.com', color: '#007cc3' },
-    { id: 'snb', name: 'SNB (Al Ahli)', symbol: '1180', market: 'saudi', icon: 'https://logo.clearbit.com/alahli.com', color: '#004a3d' },
-    { id: 'maaden', name: 'Ma\'aden', symbol: '1211', market: 'saudi', icon: 'https://logo.clearbit.com/maaden.com.sa', color: '#8c734b' },
-    { id: 'alinma', name: 'Alinma Bank', symbol: '1150', market: 'saudi', icon: 'https://logo.clearbit.com/alinma.com', color: '#6d1c1c' },
-    { id: 'acwa', name: 'ACWA Power', symbol: '2082', market: 'saudi', icon: 'https://logo.clearbit.com/acwapower.com', color: '#005a9c' },
-    { id: 'sal', name: 'Sal Logistics', symbol: '4263', market: 'saudi', icon: 'https://logo.clearbit.com/sal.sa', color: '#000000' },
-    { id: 'riyad', name: 'Riyad Bank', symbol: '1010', market: 'saudi', icon: 'https://logo.clearbit.com/riyadbank.com', color: '#00a950' },
-    { id: 'daralkarn', name: 'Dar Al Arkan', symbol: '4300', market: 'saudi', icon: 'https://logo.clearbit.com/alarkan.com', color: '#555555' },
-    { id: 'safco', name: 'SABIC Agri', symbol: '2020', market: 'saudi', icon: 'https://logo.clearbit.com/sabic.com', color: '#00a1e4' },
-    { id: 'elm', name: 'Elm', symbol: '7203', market: 'saudi', icon: 'https://logo.clearbit.com/elm.sa', color: '#004f91' },
-    { id: 'jahez', name: 'Jahez', symbol: '9526', market: 'saudi', icon: 'https://logo.clearbit.com/jahez.net', color: '#ff0032' },
-    { id: 'solutions', name: 'solutions by stc', symbol: '7202', market: 'saudi', icon: 'https://logo.clearbit.com/solutions.com.sa', color: '#4f2d7f' },
-    { id: 'almarai', name: 'Almarai', symbol: '2280', market: 'saudi', icon: 'https://logo.clearbit.com/almarai.com', color: '#00552b' },
-    { id: 'savola', name: 'Savola Group', symbol: '2050', market: 'saudi', icon: 'https://logo.clearbit.com/savola.com', color: '#007cc3' },
-    { id: 'jarir', name: 'Jarir', symbol: '4190', market: 'saudi', icon: 'https://logo.clearbit.com/jarir.com', color: '#e31e24' },
-    { id: 'albilad', name: 'Bank Albilad', symbol: '1140', market: 'saudi', icon: 'https://logo.clearbit.com/bankalbilad.com', color: '#7c5a31' },
-    { id: 'aljazira', name: 'Bank Aljazira', symbol: '1020', market: 'saudi', icon: 'https://logo.clearbit.com/baj.com.sa', color: '#003e29' },
-    { id: ' PetroRabigh', name: 'Petro Rabigh', symbol: '2380', market: 'saudi', icon: 'https://logo.clearbit.com/petrorabigh.com', color: '#006192' },
-    { id: 'tasnee', name: 'Tasnee', symbol: '2060', market: 'saudi', icon: 'https://logo.clearbit.com/tasnee.com', color: '#a0b127' },
-    { id: 'kayan', name: 'Saudi Kayan', symbol: '2350', market: 'saudi', icon: 'https://logo.clearbit.com/saudikayan.com', color: '#007cc3' },
-    { id: 'sipchem', name: 'Sipchem', symbol: '2310', market: 'saudi', icon: 'https://logo.clearbit.com/sipchem.com', color: '#0072bc' },
-    { id: 'jabalomar', name: 'Jabal Omar', symbol: '4250', market: 'saudi', icon: 'https://logo.clearbit.com/jabalomar.com.sa', color: '#2b2e34' },
-    { id: 'americana', name: 'Americana', symbol: '6015', market: 'saudi', icon: 'https://logo.clearbit.com/americanarestaurants.com', color: '#c91f2c' },
-    { id: 'bindawood', name: 'BinDawood', symbol: '4161', market: 'saudi', icon: 'https://logo.clearbit.com/bindawood.com', color: '#005ba3' },
-    { id: 'othaim', name: 'Abdullah Al Othaim', symbol: '4001', market: 'saudi', icon: 'https://logo.clearbit.com/othaimmarkets.com', color: '#013a7c' },
-    { id: 'zain', name: 'Zain KSA', symbol: '7030', market: 'saudi', icon: 'https://logo.clearbit.com/sa.zain.com', color: '#000000' },
-    { id: 'mobily', name: 'Mobily', symbol: '7020', market: 'saudi', icon: 'https://logo.clearbit.com/mobily.com.sa', color: '#00b1eb' },
-    { id: 'tawuniya', name: 'Tawuniya', symbol: '8010', market: 'saudi', icon: 'https://logo.clearbit.com/tawuniya.com.sa', color: '#00778b' },
-    { id: 'bupa', name: 'Bupa Arabia', symbol: '8210', market: 'saudi', icon: 'https://logo.clearbit.com/bupa.com.sa', color: '#0079c1' },
-    { id: 'habib', name: 'Dr. Sulaiman Al Habib', symbol: '4013', market: 'saudi', icon: 'https://logo.clearbit.com/hmg.com', color: '#1e407a' },
-    { id: 'dallah', name: 'Dallah Health', symbol: '4004', market: 'saudi', icon: 'https://logo.clearbit.com/dallahhealth.com', color: '#006837' },
-    { id: 'mouwasat', name: 'Mouwasat', symbol: '4002', market: 'saudi', icon: 'https://logo.clearbit.com/mouwasat.com', color: '#005b44' },
-    { id: 'bahri', name: 'Bahri', symbol: '4030', market: 'saudi', icon: 'https://logo.clearbit.com/bahri.sa', color: '#005a9c' },
-    { id: 'seera', name: 'Seera Group', symbol: '1810', market: 'saudi', icon: 'https://logo.clearbit.com/seera.sa', color: '#000000' },
-    { id: 'cenomi', name: 'Cenomi Centers', symbol: '4321', market: 'saudi', icon: 'https://logo.clearbit.com/cenomicenters.com', color: '#000000' },
-    { id: 'nahdi', name: 'Nahdi', symbol: '4164', market: 'saudi', icon: 'https://logo.clearbit.com/nahdi.sa', color: '#007cc3' },
-    { id: 'tanmiah', name: 'Tanmiah', symbol: '2281', market: 'saudi', icon: 'https://logo.clearbit.com/tanmiah.com', color: '#ed1c24' },
-    
-    // --- FOREX & COMMODITIES ---
-    { id: 'eurusd', name: 'EUR/USD', symbol: 'EURUSD', market: 'forex', icon: '🇪🇺', color: '#003399' },
-    { id: 'gbpusd', name: 'GBP/USD', symbol: 'GBPUSD', market: 'forex', icon: '🇬🇧', color: '#cf142b' },
-    { id: 'usdjpy', name: 'USD/JPY', symbol: 'USDJPY', market: 'forex', icon: '🇯🇵', color: '#bc002d' },
-    { id: 'usdcad', name: 'USD/CAD', symbol: 'USDCAD', market: 'forex', icon: '🇨🇦', color: '#ff0000' },
-    { id: 'audusd', name: 'AUD/USD', symbol: 'AUDUSD', market: 'forex', icon: '🇦🇺', color: '#00008b' },
-    { id: 'nzdusd', name: 'NZD/USD', symbol: 'NZDUSD', market: 'forex', icon: '🇳🇿', color: '#000080' },
-    { id: 'usdchf', name: 'USD/CHF', symbol: 'USDCHF', market: 'forex', icon: '🇨🇭', color: '#d52b1e' },
-    { id: 'eurgbp', name: 'EUR/GBP', symbol: 'EURGBP', market: 'forex', icon: '🇪🇺🇬🇧', color: '#003399' },
-    { id: 'eurjpy', name: 'EUR/JPY', symbol: 'EURJPY', market: 'forex', icon: '🇪🇺🇯🇵', color: '#003399' },
-    { id: 'gbpjpy', name: 'GBP/JPY', symbol: 'GBPJPY', market: 'forex', icon: '🇬🇧🇯🇵', color: '#cf142b' },
-    { id: 'usdsar', name: 'USD/SAR', symbol: 'USDSAR', market: 'forex', icon: '🇸🇦', color: '#00843d' },
-    { id: 'gold', name: 'Gold', symbol: 'XAU', market: 'forex', icon: '📀', color: '#ffd700' },
-    { id: 'silver', name: 'Silver', symbol: 'XAG', market: 'forex', icon: '⚪', color: '#c0c0c0' },
-    { id: 'platinum', name: 'Platinum', symbol: 'XPT', market: 'forex', icon: '💍', color: '#e5e4e2' },
-    { id: 'copper', name: 'Copper', symbol: 'HG', market: 'forex', icon: '🧱', color: '#b87333' },
-    { id: 'brent', name: 'Brent Oil', symbol: 'BRENT', market: 'forex', icon: '🛢️', color: '#333333' },
-    { id: 'wti', name: 'WTI Oil', symbol: 'WTI', market: 'forex', icon: '⛽', color: '#000000' },
-    { id: 'gas', name: 'Natural Gas', symbol: 'NG', market: 'forex', icon: '🔥', color: '#ffa500' }
+const COURSE_POOL = [
+    { id: 'beg-1', name: 'Beginner English 101', level: 'Beginner', category: 'General', icon: '🌱', color: '#00d2d3' },
+    { id: 'int-1', name: 'Intermediate Grammar', level: 'Intermediate', category: 'Grammar', icon: '📝', color: '#6c5ce7' },
+    { id: 'adv-1', name: 'Advanced Speaking', level: 'Advanced', category: 'Speaking', icon: '🎙️', color: '#ff9f43' },
+    { id: 'bus-1', name: 'Business Writing', level: 'Business', category: 'Writing', icon: '💼', color: '#2e86de' },
+    { id: 'ielt-1', name: 'IELTS Prep Masterclass', level: 'Advanced', category: 'Exam', icon: '🎓', color: '#ee5253' }
 ];
 
 async function secureFetch(url, options = {}) {
@@ -174,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Auto-refresh dashboard prices every 30s
+    // Auto-refresh dashboard progress every 30s
     setInterval(() => {
-        if (document.getElementById('holdingsBody')) {
+        if (document.getElementById('activeCoursesContainer')) {
             initDashboard();
         }
     }, 30000);
@@ -206,109 +88,81 @@ function toggleTheme(theme) {
 const translations = {
     // ---- NAVIGATION ----
     'nav-home': { en: 'Home', ar: 'الرئيسية' },
-    'nav-markets': { en: 'Markets', ar: 'الأسواق' },
+    'nav-courses': { en: 'Courses', ar: 'الدورات' },
+    'nav-labs': { en: 'Live Labs', ar: 'مختبرات مباشرة' },
     'nav-blog': { en: 'Blog', ar: 'المدونة' },
-    'nav-tools': { en: 'Tools', ar: 'الأدوات' },
+    'nav-community': { en: 'Community', ar: 'المجتمع' },
     'nav-login': { en: 'Log In', ar: 'تسجيل الدخول' },
     'nav-get-started': { en: 'Get Started', ar: 'ابدأ الآن' },
-    'nav-crypto': { en: 'Cryptocurrency', ar: 'العملات الرقمية' },
-    'nav-forex': { en: 'Forex', ar: 'الفوركس' },
-    'nav-us-stocks': { en: 'US Stocks', ar: 'الأسهم الأمريكية' },
-    'nav-saudi': { en: 'Saudi Market', ar: 'السوق السعودي' },
 
     // ---- HERO ----
-    'hero-badge': { en: 'Live Markets — 24/7 Real-Time Data', ar: 'أسواق حيّة — بيانات لحظية على مدار الساعة' },
-    'hero-title-1': { en: 'Your All-In-One', ar: 'منصتك الشاملة' },
-    'hero-title-2': { en: 'Financial', ar: 'للذكاء' },
-    'hero-title-3': { en: 'Intelligence Platform', ar: 'المالي' },
-    'hero-desc': { en: 'Track crypto, forex, US stocks, and Saudi markets with real-time data, expert insights, and powerful analytical tools — all in one place.', ar: 'تابع العملات الرقمية، الفوركس، الأسهم الأمريكية، والسوق السعودي ببيانات لحظية وتحليلات متقدمة — في مكان واحد.' },
-    'hero-cta-1': { en: 'Start Free Today →', ar: 'ابدأ مجاناً اليوم ←' },
-    'hero-cta-2': { en: 'Explore Markets', ar: 'استكشف الأسواق' },
+    'hero-badge': { en: 'New: AI Conversation Practice Now Live!', ar: 'جديد: ممارسة المحادثة بالذكاء الاصطناعي متاحة الآن!' },
+    'hero-title-1': { en: 'Unlock Your Potential', ar: 'أطلق العنان لإمكانياتك' },
+    'hero-title-2': { en: 'English', ar: 'اللغة الإنجليزية' },
+    'hero-title-3': { en: 'Mastery Awaits', ar: 'في انتظارك' },
+    'hero-desc': { en: 'Master English with interactive courses, real-time progress tracking, and personalized learning paths designed by linguistic experts.', ar: 'أتقن اللغة الإنجليزية من خلال دورات تفاعلية، وتتبع التقدم في الوقت الفعلي، ومسارات تعلم مخصصة صممها خبراء لغويون.' },
+    'hero-cta-1': { en: 'Start Learning for Free →', ar: 'ابدأ التعلم مجاناً ←' },
+    'hero-cta-2': { en: 'View Courses', ar: 'عرض الدورات' },
 
-    // ---- MARKET PLATFORMS SECTION ----
-    'platforms-title-1': { en: 'Explore', ar: 'استكشف' },
-    'platforms-title-2': { en: 'Global Markets', ar: 'الأسواق العالمية' },
-    'platforms-desc': { en: 'Dive into four major financial markets with real-time data, charts, and actionable insights.', ar: 'انغمس في أربعة أسواق مالية رئيسية مع بيانات لحظية ورسوم بيانية وتحليلات قابلة للتنفيذ.' },
-    'platform-crypto-title': { en: 'Cryptocurrency', ar: 'العملات الرقمية' },
-    'platform-crypto-desc': { en: 'Bitcoin, Ethereum, and 10,000+ digital assets with live prices, heatmaps, and advanced charts.', ar: 'بتكوين، إيثريوم، و+١٠,٠٠٠ أصل رقمي مع أسعار حيّة وخرائط حرارية ورسوم بيانية متقدمة.' },
-    'platform-crypto-link': { en: 'Explore Crypto →', ar: '← استكشف العملات الرقمية' },
-    'platform-forex-title': { en: 'Forex', ar: 'الفوركس' },
-    'platform-forex-desc': { en: 'Major, minor, and exotic currency pairs with real-time exchange rates and technical analysis.', ar: 'أزواج العملات الرئيسية والثانوية والغريبة مع أسعار صرف حيّة وتحليل فني.' },
-    'platform-forex-link': { en: 'Explore Forex →', ar: '← استكشف الفوركس' },
-    'platform-us-title': { en: 'US Stocks', ar: 'الأسهم الأمريكية' },
-    'platform-us-desc': { en: 'S&P 500, NASDAQ, Dow Jones — track America\'s leading companies and market indices.', ar: 'مؤشر S&P 500، ناسداك، داو جونز — تتبع أكبر الشركات الأمريكية.' },
-    'platform-us-link': { en: 'Explore US Market →', ar: '← استكشف السوق الأمريكي' },
-    'platform-saudi-title': { en: 'Saudi Market', ar: 'السوق السعودي' },
-    'platform-saudi-desc': { en: 'Tadawul (TASI) stocks and indices — comprehensive coverage of the Saudi Arabian exchange.', ar: 'أسهم ومؤشرات تداول (تاسي) — تغطية شاملة للسوق المالية السعودية.' },
-    'platform-saudi-link': { en: 'Explore Saudi Market →', ar: '← استكشف السوق السعودي' },
+    // ---- LEVELS SECTION ----
+    'levels-title-1': { en: 'Choose Your', ar: 'اختر مستوى' },
+    'levels-title-2': { en: 'Learning Level', ar: 'التعلم الخاص بك' },
+    'levels-desc': { en: 'From beginner to professional, we have a path for every learner.', ar: 'من المبتدئ إلى المحترف، لدينا مسار لكل متعلم.' },
+    'level-beginner-title': { en: 'Beginner (A1-A2)', ar: 'مبتدئ (A1-A2)' },
+    'level-beginner-desc': { en: 'Build a strong foundation with essential vocabulary, basic grammar, and simple conversational skills.', ar: 'ابنِ أساساً قوياً مع المفردات الأساسية، والقواعد البسيطة، ومهارات المحادثة الأساسية.' },
+    'level-beginner-link': { en: 'Start Journey →', ar: 'ابدأ الرحلة ←' },
+    'level-intermediate-title': { en: 'Intermediate (B1-B2)', ar: 'متوسط (B1-B2)' },
+    'level-intermediate-desc': { en: 'Expand your fluency, tackle complex grammar, and engage in more sophisticated discussions.', ar: 'وسع طلاقتك، وتناول القواعد المعقدة، وشارك في مناقشات أكثر تطوراً.' },
+    'level-intermediate-link': { en: 'Level Up →', ar: 'ارتقِ بمستواك ←' },
+    'level-advanced-title': { en: 'Advanced (C1-C2)', ar: 'متقدم (C1-C2)' },
+    'level-advanced-desc': { en: 'Refine your nuances, master academic English, and sound like a near-native speaker.', ar: 'صقل مهاراتك، وأتقن الإنجليزية الأكاديمية، وتحدث كالمحترفين.' },
+    'level-advanced-link': { en: 'Refine Skills →', ar: 'صقل المهارات ←' },
+    'level-business-title': { en: 'Business English', ar: 'الإنجليزية للأعمال' },
+    'level-business-desc': { en: 'Professional communication, workplace etiquette, and technical terminology for your career.', ar: 'التواصل المهني، وآداب العمل، والمصطلحات التقنية لمستقبلك المهني.' },
+    'level-business-link': { en: 'Go Pro →', ar: 'كن محترفاً ←' },
 
-    // ---- LIVE MARKET OVERVIEW ----
-    'live-title-1': { en: 'Live', ar: 'نظرة' },
-    'live-title-2': { en: 'Market Overview', ar: 'عامة على الأسواق' },
-    'live-desc': { en: 'Real-time market data powered by TradingView', ar: 'بيانات السوق اللحظية مدعومة من TradingView' },
-    'widget-heatmap': { en: '🔥 Market Heatmap', ar: '🔥 خريطة حرارية' },
-    'widget-crypto': { en: '📊 Crypto Overview', ar: '📊 نظرة عامة على الكريبتو' },
+    // ---- LEARNING STATS ----
+    'stats-title-1': { en: 'Join a', ar: 'انضم إلى' },
+    'stats-title-2': { en: 'Global Community', ar: 'مجتمع عالمي' },
+    'stats-desc': { en: 'Empowering learners from every corner of the world.', ar: 'تمكين المتعلمين من كل ركن في العالم.' },
+    'stat-learners': { en: 'Active Learners', ar: 'متعلم نشط' },
+    'stat-countries': { en: 'Countries Represented', ar: 'دولة ممثلة' },
+    'stat-satisfaction': { en: 'Success Rate', ar: 'نسبة النجاح' },
 
     // ---- FEATURES ----
     'features-title-1': { en: 'Why Choose', ar: 'لماذا تختار' },
-    'features-title-2': { en: 'CalcWise', ar: 'CalcWise' },
-    'features-desc': { en: 'Powerful features designed for both beginners and professionals', ar: 'ميزات قوية مصممة للمبتدئين والمحترفين على حد سواء' },
-    'feature-1-title': { en: 'Real-Time Tracking ⚡', ar: 'تتبع لحظي ⚡' },
-    'feature-1-desc': { en: 'Stay updated with live feeds for 10,000+ assets across global markets.', ar: 'ابقَ على اطلاع مع تغذيات مباشرة لأكثر من ١٠,٠٠٠ أصل عبر الأسواق العالمية.' },
-    'feature-2-title': { en: 'Financial Calculators 🧮', ar: 'حاسبات مالية 🧮' },
-    'feature-2-desc': { en: 'Position sizer, profit calculator, currency converter, and more tools at your fingertips.', ar: 'حاسبة حجم المركز، حاسبة الأرباح، محوّل العملات، والمزيد.' },
-    'feature-3-title': { en: 'Secure & Free ✨', ar: 'آمن ومجاني ✨' },
-    'feature-3-desc': { en: 'Access institutional-grade financial tools without any subscription fees.', ar: 'الوصول إلى أدوات مالية احترافية دون أي رسوم اشتراك.' },
-    'feature-4-title': { en: 'Advanced Charts 📈', ar: 'رسوم بيانية متقدمة 📈' },
-    'feature-4-desc': { en: 'Interactive TradingView charts with technical indicators, drawing tools, and multi-timeframe analysis.', ar: 'رسوم بيانية تفاعلية من TradingView مع مؤشرات فنية وأدوات رسم.' },
-    'feature-5-title': { en: 'Portfolio Dashboard 🔐', ar: 'لوحة المحفظة 🔐' },
-    'feature-5-desc': { en: 'Track your holdings in crypto, stocks, and forex with a personalized dashboard and alerts.', ar: 'تتبع ممتلكاتك في الكريبتو والأسهم والفوركس بلوحة تحكم مخصصة.' },
-    'feature-6-title': { en: 'Multi-Market Access 🌍', ar: 'وصول متعدد الأسواق 🌍' },
-    'feature-6-desc': { en: 'One platform covering crypto, forex, American stocks, and the Saudi Arabian exchange.', ar: 'منصة واحدة تغطي الكريبتو والفوركس والأسهم الأمريكية والسوق السعودي.' },
-
-    // ---- BLOG SECTION (HOME) ----
-    'blog-section-title-1': { en: 'Latest from the', ar: 'آخر مقالات' },
-    'blog-section-title-2': { en: 'Blog', ar: 'المدونة' },
-    'blog-section-desc': { en: 'Market insights, trading strategies, and financial education', ar: 'رؤى سوقية، استراتيجيات تداول، وتعليم مالي' },
-    'blog-view-all': { en: 'View All Articles →', ar: '← عرض جميع المقالات' },
-
-    // ---- TOOLS SECTION (HOME) ----
-    'tools-section-title-1': { en: 'Powerful', ar: 'أدوات' },
-    'tools-section-title-2': { en: 'Financial Tools', ar: 'مالية قوية' },
-    'tools-section-desc': { en: 'Free calculators and tools to help you make smarter financial decisions', ar: 'حاسبات وأدوات مجانية لمساعدتك على اتخاذ قرارات مالية أذكى' },
-    'tool-1-title': { en: 'Position Sizer', ar: 'حاسبة المركز' },
-    'tool-1-desc': { en: 'Calculate optimal position sizes based on your risk tolerance.', ar: 'احسب حجم المركز الأمثل بناءً على مدى تحملك للمخاطر.' },
-    'tool-2-title': { en: 'Profit Calculator', ar: 'حاسبة الأرباح' },
-    'tool-2-desc': { en: 'Estimate potential profits and losses before entering trades.', ar: 'قدّر الأرباح والخسائر المحتملة قبل الدخول في الصفقات.' },
-    'tool-3-title': { en: 'Currency Converter', ar: 'محوّل العملات' },
-    'tool-3-desc': { en: 'Convert between fiat currencies with live exchange rates.', ar: 'حوّل بين العملات بأسعار صرف حيّة.' },
-    'tool-4-title': { en: 'Compound Interest', ar: 'الفائدة المركبة' },
-    'tool-4-desc': { en: 'Visualize growth of your investments over time.', ar: 'تصوّر نمو استثماراتك عبر الزمن.' },
+    'features-title-2': { en: 'LingoWise', ar: 'LingoWise' },
+    'features-desc': { en: 'Innovative tools designed to make language learning effective and fun', ar: 'أدوات مبتكرة مصممة لجعل تعلم اللغة فعالاً وممتعاً' },
+    'feature-1-title': { en: 'AI Speaking Lab ⚡', ar: 'مختبر التحدث بالذكاء الاصطناعي ⚡' },
+    'feature-1-desc': { en: 'Practice real conversations with our AI tutor and get instant feedback on pronunciation.', ar: 'مارس محادثات حقيقية مع مدرسنا الآلي واحصل على ملاحظات فورية حول النطق.' },
+    'feature-2-title': { en: 'Progress Trackers 📊', ar: 'متتبعات التقدم 📊' },
+    'feature-2-desc': { en: 'Visualize your growth with detailed analytics for vocabulary, grammar, and fluency.', ar: 'تصور نموك مع تحليلات مفصلة للمفردات والقواعد والطلاقة.' },
+    'feature-3-title': { en: 'Active Recall ✨', ar: 'الاستدعاء النشط ✨' },
+    'feature-3-desc': { en: 'Spaced repetition system (SRS) for long-term vocabulary retention and mastery.', ar: 'نظام التكرار المتباعد (SRS) للاحتفاظ بالمفردات وإتقانها على المدى الطويل.' },
+    'feature-4-title': { en: 'Live Study Groups 💬', ar: 'مجموعات الدراسة المباشرة 💬' },
+    'feature-4-desc': { en: 'Join small, interactive groups led by native speakers for real-world practice.', ar: 'انضم إلى مجموعات صغيرة وتفاعلية بقيادة متحدثين أصليين للممارسة الواقعية.' },
+    'feature-5-title': { en: 'Certified Courses 🔐', ar: 'دورات معتمدة 🔐' },
+    'feature-5-desc': { en: 'Pathways aligned with CEFR standards (A1 to C2) to help you achieve your goals.', ar: 'مسارات تتماشى مع معايير CEFR (من A1 إلى C2) لمساعدتك في تحقيق أهدافك.' },
+    'feature-6-title': { en: 'Multi-Device Learning 🌍', ar: 'التعلم عبر أجهزة متعددة 🌍' },
+    'feature-6-desc': { en: 'Learn on the go. Sync your progress across desktop, tablet, and mobile devices.', ar: 'تعلم أثناء التنقل. زامن تقدمك عبر الكمبيوتر والجهاز اللوحي والهاتف.' },
 
     // ---- CTA ----
-    'cta-title-1': { en: 'Ready to Take Control of Your', ar: 'مستعد للسيطرة على' },
-    'cta-title-2': { en: 'Finances', ar: 'أموالك' },
-    'cta-desc': { en: 'Join thousands of traders and investors using CalcWise to make data-driven decisions across global markets.', ar: 'انضم لآلاف المتداولين والمستثمرين الذين يستخدمون CalcWise لاتخاذ قرارات مبنية على البيانات.' },
-    'cta-btn-1': { en: 'Create Free Account →', ar: '← إنشاء حساب مجاني' },
+    'cta-title-1': { en: 'Ready to Master', ar: 'مستعد لإتقان' },
+    'cta-title-2': { en: 'English', ar: 'الإنجليزية' },
+    'cta-desc': { en: 'Join thousands of learners achieving fluency with LingoWise. Your global career starts here.', ar: 'انضم إلى آلاف المتعلمين الذين يحققون الطلاقة مع LingoWise. مسيرتك العالمية تبدأ من هنا.' },
+    'cta-btn-1': { en: 'Create Free Account →', ar: 'إنشاء حساب مجاني ←' },
     'cta-btn-2': { en: 'Log In', ar: 'تسجيل الدخول' },
 
     // ---- FOOTER ----
-    'footer-desc': { en: 'Your all-in-one financial intelligence platform. Track markets, read expert analysis, and use powerful tools — all for free.', ar: 'منصتك الشاملة للذكاء المالي. تابع الأسواق، اقرأ التحليلات، واستخدم أدوات قوية — كل ذلك مجاناً.' },
-    'footer-markets': { en: 'Markets', ar: 'الأسواق' },
+    'footer-tagline': { en: 'Your all-in-one English language learning platform.', ar: 'منصتك الشاملة لتعلم اللغة الإنجليزية.' },
+    'footer-courses': { en: 'Courses', ar: 'الدورات' },
     'footer-resources': { en: 'Resources', ar: 'الموارد' },
-    'footer-account': { en: 'Account', ar: 'الحساب' },
-    'footer-blog': { en: 'Blog', ar: 'المدونة' },
-    'footer-tools': { en: 'Financial Tools', ar: 'الأدوات المالية' },
-    'footer-dashboard': { en: 'Dashboard', ar: 'لوحة التحكم' },
-    'footer-login': { en: 'Log In', ar: 'تسجيل الدخول' },
-    'footer-signup': { en: 'Sign Up', ar: 'إنشاء حساب' },
-    'footer-copyright': { en: '© 2026 CalcWise. All rights reserved.', ar: '© 2026 CalcWise. جميع الحقوق محفوظة.' },
-    'footer-tagline': { en: 'Your all-in-one financial intelligence platform.', ar: 'منصتك الشاملة للذكاء المالي.' },
     'footer-legal': { en: 'Legal', ar: 'قانوني' },
     'footer-about': { en: 'About Us', ar: 'من نحن' },
     'footer-privacy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
     'footer-terms': { en: 'Terms of Service', ar: 'شروط الخدمة' },
     'footer-contact': { en: 'Contact Us', ar: 'اتصل بنا' },
+    'footer-copyright': { en: '© 2026 LingoWise. All rights reserved.', ar: '© 2026 LingoWise. جميع الحقوق محفوظة.' },
 
     // ---- PAGE HEADERS ----
     'page-crypto-title': { en: 'Cryptocurrency', ar: 'العملات الرقمية' },
@@ -350,29 +204,22 @@ const translations = {
     'auth-or-email': { en: 'or continue with email', ar: 'أو المتابعة بالبريد الإلكتروني' },
     'auth-or-signup': { en: 'or sign up with email', ar: 'أو التسجيل بالبريد الإلكتروني' },
     'auth-login-success': { en: 'Login successful! Redirecting...', ar: 'تم تسجيل الدخول بنجاح! جاري التحويل...' },
-    'auth-signup-success': { en: 'Account created! Welcome to CalcWise.', ar: 'تم إنشاء الحساب! مرحباً بك في كالك وايز.' },
+    'auth-signup-success': { en: 'Account created! Welcome to LingoWise.', ar: 'تم إنشاء الحساب! مرحباً بك في لينغو وايز.' },
     'auth-error-password': { en: 'Passwords do not match!', ar: 'كلمات المرور غير متطابقة!' },
 
     // ---- DASHBOARD ----
     'dash-hi': { en: 'Hi', ar: 'مرحباً' },
-    'dash-title': { en: 'Portfolio Dashboard', ar: 'لوحة المحفظة' },
-    'dash-add-asset': { en: '+ Add Asset', ar: '+ إضافة أصل' },
-    'dash-add-portfolio': { en: '+ Add to Portfolio', ar: '+ إضافة للمحفظة' },
-    'dash-watchlist-add': { en: '+', ar: '+' },
-    'dash-sentiment': { en: 'Market Sentiment 🎭', ar: 'مزاج السوق 🎭' },
-    'dash-fear-greed': { en: 'Fear & Greed Index', ar: 'مؤشر الخوف والطمع' },
-    'dash-extreme-fear': { en: 'Extreme Fear', ar: 'خوف شديد' },
-    'dash-fear': { en: 'Fear', ar: 'خوف' },
-    'dash-neutral': { en: 'Neutral', ar: 'محايد' },
-    'dash-greed': { en: 'Greed', ar: 'طمع' },
-    'dash-extreme-greed': { en: 'Extreme Greed', ar: 'طمع شديد' },
-    'dash-momentum': { en: 'Technical Momentum 🚀', ar: 'الزخم الفني 🚀' },
-    'dash-buy': { en: 'Strong Buy', ar: 'شراء قوي' },
-    'dash-sell': { en: 'Strong Sell', ar: 'بيع قوي' },
-    'dash-total-value': { en: 'Total Portfolio Value', ar: 'إجمالي قيمة المحفظة' },
-    'dash-today-pl': { en: "Today's P/L", ar: 'الربح/الخسارة اليوم' },
-    'dash-holdings': { en: 'Total Holdings', ar: 'إجمالي الممتلكات' },
-    'dash-add-track': { en: '+ Add Tracker', ar: '+ إضافة متتبع' },
+    'dash-welcome': { en: 'Good morning, Student! ☀️', ar: 'صباح الخير، أيها الطالب! ☀️' },
+    'dash-learning-time': { en: 'Learning Time ⏱️', ar: 'وقت التعلم ⏱️' },
+    'dash-courses-done': { en: 'Courses Completed 🏆', ar: 'الدورات المكتملة 🏆' },
+    'dash-vocab-mastery': { en: 'Vocab Mastery 🔤', ar: 'إتقان المفردات 🔤' },
+    'dash-speaking-score': { en: 'Speaking Score 🎙️', ar: 'درجة التحدث 🎙️' },
+    'dash-active-courses': { en: 'Current Courses', ar: 'الدورات الحالية' },
+    'dash-daily-goals': { en: 'Daily Learning Goals', ar: 'أهداف التعلم اليومية' },
+    'dash-recent-vocab': { en: 'Recently Learned Words', ar: 'كلمات تعلمتها مؤخراً' },
+    'dash-upcoming-labs': { en: 'Upcoming Live Labs', ar: 'المختبرات المباشرة القادمة' },
+    'dash-browse-courses': { en: 'Browse Courses', ar: 'تصفح الدورات' },
+    'dash-vocab-add': { en: '+ Add Word', ar: '+ إضافة كلمة' },
     
     'market-crypto': { en: 'Crypto', ar: 'كريبتو' },
     'market-forex': { en: 'Forex', ar: 'فوركس' },
@@ -408,13 +255,14 @@ const translations = {
     'dash-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
 
     // ---- SIDEBAR ----
-    'sidebar-overview': { en: 'Overview', ar: 'نظرة عامة' },
-    'sidebar-portfolio': { en: 'Portfolio', ar: 'المحفظة' },
-    'sidebar-journal': { en: 'Trade Journal', ar: 'سجل التداول' },
-    'sidebar-watchlist': { en: 'Watchlist', ar: 'المراقبة' },
-    'sidebar-alerts': { en: 'Alerts', ar: 'التنبيهات' },
-    'sidebar-markets': { en: 'Markets', ar: 'الأسواق' },
-    'sidebar-tools': { en: 'Tools', ar: 'الأدوات' },
+    'sidebar-overview': { en: 'Learning Hub', ar: 'مركز التعلم' },
+    'sidebar-dashboard': { en: 'Dashboard', ar: 'لوحة التحكم' },
+    'sidebar-courses': { en: 'My Courses', ar: 'دوراتي' },
+    'sidebar-vocabulary': { en: 'Vocabulary Bank', ar: 'بنك الكلمات' },
+    'sidebar-speaking': { en: 'AI Speaking Lab', ar: 'مختبر التحدث' },
+    'sidebar-resources': { en: 'Resources', ar: 'الموارد' },
+    'sidebar-grammar': { en: 'Grammar Guide', ar: 'دليل القواعد' },
+    'sidebar-labs': { en: 'Live Labs', ar: 'مختبرات مباشرة' },
     'sidebar-settings': { en: 'Settings', ar: 'الإعدادات' },
     'sidebar-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
 
@@ -475,31 +323,31 @@ const translations = {
     'blog-hero-sub': { en: 'Expert analysis, trading strategies, and market insights to help you make smarter financial decisions.', ar: 'تحليلات الخبراء، استراتيجيات التداول، ورؤى السوق لمساعدتك على اتخاذ قرارات مالية أذكى.' },
 
     // Blog Cards
-    'blog-card-1-title': { en: 'Altcoin Season 2026: Top 10 Tokens to Watch 🚀', ar: 'موسم العملات البديلة ٢٠٢٦: أفضل ١٠ عملات للمراقبة 🚀' },
-    'blog-card-1-desc': { en: 'Identifying the most promising altcoins with strong fundamentals and technical setups for this cycle. 📈', ar: 'تحديد العملات البديلة الواعدة بأساسيات قوية وإعدادات فنية لهذه الدورة. 📈' },
-    'blog-card-2-title': { en: 'Euro vs Dollar: How Interest Rate Decisions Shape EUR/USD 💱', ar: 'اليورو مقابل الدولار: كيف تشكل قرارات أسعار الفائدة زوج EUR/USD 💱' },
-    'blog-card-2-desc': { en: 'Understanding the impact of central bank policies on the world\'s most traded currency pair. 🏛️', ar: 'فهم تأثير سياسات البنوك المركزية على أكثر أزواج العملات تداولاً في العالم. 🏛️' },
-    'blog-card-3-title': { en: 'Mastering Forex Risk Management: The 2% Rule Explained 🛡️', ar: 'إتقان إدارة مخاطر الفوركس: شرح قاعدة الـ ٢٪ 🛡️' },
-    'blog-card-3-desc': { en: 'Why professional traders never risk more than 2% per trade and how to implement this rule. 📐', ar: 'لماذا لا يخاطر المتداولون المحترفون أبداً بأكثر من ٢٪ في الصفقة الواحدة وكيفية تطبيق هذه القاعدة. 📐' },
-    'blog-card-4-title': { en: 'NVIDIA & AI Boom: Is the Tech Rally Sustainable? 🤖', ar: 'نفايديا وطفرة الذكاء الاصطناعي: هل استمرار رالي التكنولوجيا مستدام؟ 🤖' },
-    'blog-card-4-desc': { en: 'Analyzing whether AI-driven tech stocks can maintain their momentum amid rising valuations. 📊', ar: 'تحليل ما إذا كان بإمكان أسهم التكنولوجيا المدفوعة بالذكاء الاصطناعي الحفاظ على زخمها وسط ارتفاع التقييمات. 📊' },
-    'blog-card-5-title': { en: 'Best Dividend Stocks for Passive Income in 2026 💰', ar: 'أفضل أسهم التوزيعات للدخل السلبي في عام ٢٠٢٦ 💰' },
-    'blog-card-5-desc': { en: 'Build a reliable income stream with these high-yield, fundamentally strong dividend payers. ✨', ar: 'أنشئ تدفقاً موثوقاً للدخل مع موزعي الأرباح ذوي العائد المرتفع والأساسيات القوية. ✨' },
-    'blog-card-6-title': { en: 'Vision 2030 Update: Top Saudi Stocks to Watch This Quarter 🇸🇦', ar: 'تحديث رؤية ٢٠٣٠: أفضل الأسهم السعودية للمراقبة هذا الربع 🇸🇦' },
-    'blog-card-6-desc': { en: 'As Saudi Arabia\'s transformation accelerates, these sectors and stocks offer significant opportunities. 🏗️', ar: 'مع تسارع تحول المملكة العربية السعودية، توفر هذه القطاعات والأسهم فرصاً كبيرة. 🏗️' },
-    'blog-card-7-title': { en: 'Saudi Aramco Deep Dive: Is the World\'s Largest Company Still Undervalued? 🛢️', ar: 'تحليل معمق لأرامكو السعودية: هل لا تزال أكبر شركة في العالم مقومة بأقل من قيمتها؟ 🛢️' },
-    'blog-card-7-desc': { en: 'A fundamental analysis of Saudi Aramco\'s earnings, dividends, and growth potential. 📈', ar: 'تحليل أساسي لأرباح أرامكو السعودية، توزيعات الأرباح، وإمكانيات النمو. 📈' },
-    'blog-card-8-title': { en: 'Trading Psychology: How to Control Fear and Greed 🧠', ar: 'علم نفس التداول: كيف تتحكم في الخوف والطمع 🧠' },
-    'blog-card-8-desc': { en: 'The mental frameworks professional traders use to stay disciplined during volatile markets. 🧘', ar: 'الأطر الذهنية التي يستخدمها المتداولون المحترفون للبقاء منضبطين خلال تقلبات السوق. 🧘' },
-    'blog-card-9-title': { en: 'Technical Analysis 101: Chart Patterns Every Trader Must Know 📉', ar: 'أساسيات التحليل الفني: نماذج الرسوم البيانية التي يجب على كل متداول معرفتها 📉' },
-    'blog-card-9-desc': { en: 'From head and shoulders to double bottoms — the patterns that signal major moves. 📐', ar: 'من نمط الرأس والكتفين إلى القيعان المزدوجة — الأنماط التي تشير إلى تحركات كبرى. 📐' },
-    'blog-card-10-title': { en: 'Position Sizing: The Most Important Tool You\'re Not Using 📏', ar: 'تحديد حجم المركز: الأداة الأكثر أهمية التي لا تستخدمها 📏' },
-    'blog-card-10-desc': { en: 'Why proper position sizing matters more than your entry strategy and how CalcWise tools can help. ⚖️', ar: 'لماذا يهم تحديد حجم المركز الصحيح أكثر من استراتيجية الدخول وكيف تساعد أدوات CalcWise. ⚖️' },
+    'blog-card-1-title': { en: 'Top 10 Phrasal Verbs for Business English 💼', ar: 'أهم ١٠ أفعال مركبة للغة الإنجليزية للأعمال 💼' },
+    'blog-card-1-desc': { en: 'Master the most common expressions used in professional settings to sound more natural. 📈', ar: 'أتقن التعبيرات الأكثر شيوعاً في البيئات المهنية لتبدو أكثر طبيعية. 📈' },
+    'blog-card-2-title': { en: 'How to Prepare for the IELTS Speaking Test 🎙️', ar: 'كيفية التحضير لاختبار التحدث في الآيلتس 🎙️' },
+    'blog-card-2-desc': { en: 'Expert tips and strategies to help you achieve a Band 7+ score in your next exam. 🏛️', ar: 'نصائح واستراتيجيات الخبراء لمساعدتك في الحصول على ٧+ في اختبارك القادم. 🏛️' },
+    'blog-card-3-title': { en: 'The Secret to Mastering English Pronunciation 🗣️', ar: 'سر إتقان نطق اللغة الإنجليزية 🗣️' },
+    'blog-card-3-desc': { en: 'Learn the techniques native speakers use to improve their clarity and accent. 🛡️', ar: 'تعلم التقنيات التي يستخدمها المتحدثون الأصليون لتحسين وضوحهم ولهجتهم. 🛡️' },
+    'blog-card-4-title': { en: 'English vs Arabic: Common Grammar Hurdles 🌍', ar: 'الإنجليزية مقابل العربية: عقبات القواعد الشائعة 🌍' },
+    'blog-card-4-desc': { en: 'Understanding the key differences between the two languages to avoid common mistakes. 🤖', ar: 'فهم الاختلافات الرئيسية بين اللغتين لتجنب الأخطاء الشائعة. 🤖' },
+    'blog-card-5-title': { en: '15 Idioms to Sound Like a Native Speaker ✨', ar: '١٥ عبارة اصطلاحية لتبدو كمتحدث أصلي ✨' },
+    'blog-card-5-desc': { en: 'Add these fun and common idioms to your daily vocabulary to impress your friends. 💰', ar: 'أضف هذه العبارات الاصطلاحية الممتعة والشائعة إلى مفرداتك اليومية لإبهار أصدقائك. 💰' },
+    'blog-card-6-title': { en: 'Effective Ways to Learn Vocabulary Fast 💡', ar: 'طرق فعالة لتعلم المفردات بسرعة 💡' },
+    'blog-card-6-desc': { en: 'Using science-backed methods like spaced repetition and active recall. 🏗️', ar: 'باستخدام طرق مدعومة علمياً مثل التكرار المتباعد والاسترجاع النشط. 🏗️' },
+    'blog-card-7-title': { en: 'Writing the Perfect Resume in English 👔', ar: 'كتابة السيرة الذاتية المثالية باللغة الإنجليزية 👔' },
+    'blog-card-7-desc': { en: 'A step-by-step guide to showcasing your skills for international career opportunities. 📈', ar: 'دليل خطوة بخطوة لعرض مهاراتك لفرص العمل الدولية. 📈' },
+    'blog-card-8-title': { en: 'Overcoming the Fear of Speaking English 🧠', ar: 'التغلب على الخوف من التحدث بالإنجليزية 🧠' },
+    'blog-card-8-desc': { en: 'Psychological strategies to build confidence and start conversing fluently. 🧘', ar: 'استراتيجيات نفسية لبناء الثقة والبدء في التحدث بطلاقة. 🧘' },
+    'blog-card-9-title': { en: 'Mastering English Tenses Once and For All 📉', ar: 'إتقان أزمنة الإنجليزية مرة واحدة وللأبد 📉' },
+    'blog-card-9-desc': { en: 'A clear and simple guide to understanding when to use each tense. 📐', ar: 'دليل واضح وبسيط لفهم متى تستخدم كل زمن. 📐' },
+    'blog-card-10-title': { en: 'Is Daily Practice Better Than Weekly Study? 📏', ar: 'هل الممارسة اليومية أفضل من الدراسة الأسبوعية؟ 📏' },
+    'blog-card-10-desc': { en: 'Why consistency matters more than intensity and how LingoWise tools can help you stay on track. 🎓', ar: 'لماذا يهم الاستمرار أكثر من الكثافة وكيف تساعد أدوات LingoWise في البقاء على المسار الصحيح. 🎓' },
     'blog-read-more': { en: 'Read More →', ar: 'اقرأ المزيد ←' },
 
     // ---- TOOLS PAGE ----
-    'tools-hero-title': { en: 'Financial <span class="text-gradient">Tools</span>', ar: 'الأدوات <span class="text-gradient">المالية</span>' },
-    'tools-hero-sub': { en: 'Free calculators to help you plan trades, manage risk, and grow your portfolio.', ar: 'حاسبات مجانية لمساعدتك في التخطيط للصفقات، إدارة المخاطر، وتنمية محفظتك.' },
+    'tools-hero-title': { en: 'Language Learning <span class="text-gradient">Tools</span>', ar: 'أدوات <span class="text-gradient">تعلم اللغة</span>' },
+    'tools-hero-sub': { en: 'Free resources to help you practice speaking, expand vocabulary, and track your metrics.', ar: 'موارد مجانية لمساعدتك في ممارسة التحدث، وتوسيع المفردات، وتتبع مقاييسك.' },
     'sidebar-watchlist': { en: 'Watchlist', ar: 'قائمة المراقبة' },
     'watchlist-title': { en: 'Market Watchlist 👁️', ar: 'قائمة مراقبة السوق 👁️' },
     'watchlist-subtitle': { en: 'Keep an eye on the assets that matter most to you.', ar: 'راقب الأصول التي تهمك أكثر من غيرها.' },
@@ -513,7 +361,7 @@ const translations = {
     'session-closed': { en: 'CLOSED', ar: 'مغلق' },
     'session-tadawul': { en: 'Tadawul', ar: 'تداول' },
 
-    'tab-position-sizer': { en: '📐 Position Sizer', ar: '📐 حجم المركز' },
+    'tab-speaking-lab': { en: '🎙️ Speaking Lab', ar: '🎙️ مختبر التحدث' },
     'tab-profit-calc': { en: '💰 Profit/Loss', ar: '💰 الربح والخسارة' },
     'tab-currency-converter': { en: '🔄 Currency Converter', ar: '🔄 محول العملات' },
     'tab-compound': { en: '📊 Compound Interest', ar: '📊 الفائدة المركبة' },
@@ -830,7 +678,7 @@ const translations = {
     'privacy-title': { en: 'Privacy <span class="text-gradient">Policy</span> 🛡️', ar: 'سياسة <span class="text-gradient">الخصوصية</span> 🛡️' },
     'privacy-subtitle': { en: 'Your data is yours. Learn how we protect it.', ar: 'بياناتك ملك لك. تعرف على كيفية حمايتها.' },
     'terms-title': { en: 'Terms of <span class="text-gradient">Service</span> ⚖️', ar: 'شروط <span class="text-gradient">الخدمة</span> ⚖️' },
-    'terms-subtitle': { en: 'The rules of the road for using CalcWise.', ar: 'قواعد الاستخدام لمنصة كالك وايز.' },
+    'terms-subtitle': { en: 'The rules of the road for using LingoWise.', ar: 'قواعد الاستخدام لمنصة لينغو وايز.' },
 
     'market-crypto': { en: 'Crypto', ar: 'عملات رقمية' },
     'market-us-stocks': { en: 'US Stocks', ar: 'أسم أمريكية' },
@@ -902,7 +750,7 @@ const translations = {
     'settings-pw-save': { en: '🔐 Update Password', ar: '🔐 تحديث كلمة المرور' },
     'settings-stats-title': { en: '📊 My Stats', ar: '📊 إحصائياتي' },
     'settings-export-title': { en: '📥 Data Export', ar: '📥 تصدير البيانات' },
-    'settings-export-desc': { en: 'Download all your CalcWise data in a portable format.', ar: 'حمّل جميع بياناتك من كالك وايز بصيغة قابلة للنقل.' },
+    'settings-export-desc': { en: 'Download all your LingoWise progress data.', ar: 'حمّل جميع بيانات تقدمك من لينغو وايز.' },
     'settings-export-portfolio': { en: '📊 Export Portfolio', ar: '📊 تصدير المحفظة' },
     'settings-export-journal': { en: '📓 Export Journal', ar: '📓 تصدير السجل' },
     'settings-export-alerts': { en: '🔔 Export Alerts', ar: '🔔 تصدير التنبيهات' },
@@ -914,14 +762,14 @@ const translations = {
     'settings-delete-account-desc': { en: 'Permanently delete your account and all associated data.', ar: 'حذف حسابك وجميع بياناتك المرتبطة به نهائياً.' },
 
     // ---- AI ASSISTANT ----
-    'ai-name': { en: 'CalcWise AI', ar: 'مساعد كالك وايز' },
-    'ai-status': { en: '● Online · Market Assistant', ar: '● متصل · مساعد السوق' },
-    'ai-greeting': { en: "👋 Hi! I'm your <strong>AI Market Assistant</strong>. Ask me about market trends, trading strategies, or how to use CalcWise features!", ar: '👋 مرحباً! أنا <strong>مساعدك الذكي للأسواق</strong>. اسألني عن توجهات السوق، استراتيجيات التداول، أو كيفية استخدام ميزات كالك وايز!' },
-    'ai-placeholder': { en: 'Ask anything about markets...', ar: 'اسأل أي شيء عن الأسواق...' },
-    'ai-quick-trend': { en: '📈 Market trend', ar: '📈 توجه السوق' },
-    'ai-quick-tip': { en: '💡 Trading tip', ar: '💡 نصيحة تداول' },
-    'ai-quick-btc': { en: '₿ Bitcoin', ar: '₿ بيتكوين' },
-    'ai-quick-risk': { en: '🛡️ Risk mgmt', ar: '🛡️ إدارة المخاطر' },
+    'ai-name': { en: 'LingoWise AI', ar: 'مساعد لينغو وايز' },
+    'ai-status': { en: '● Online · Language Tutor', ar: '● متصل · معلم لغة' },
+    'ai-greeting': { en: "👋 Hi! I'm your <strong>LingoWise AI Tutor</strong>. Ask me about grammar, vocabulary, or how to use LingoWise features!", ar: '👋 مرحباً! أنا <strong>معلمك الذكي</strong>. اسألني عن القواعد، المفردات، أو كيفية استخدام ميزات لينغو وايز!' },
+    'ai-placeholder': { en: 'Ask anything about English...', ar: 'اسأل أي شيء عن الإنجليزية...' },
+    'ai-quick-grammar': { en: '📝 Grammar Check', ar: '📝 فحص القواعد' },
+    'ai-quick-tip': { en: '💡 Study Tip', ar: '💡 نصيحة دراسية' },
+    'ai-quick-speak': { en: '🎙️ Speak Practice', ar: '🎙️ ممارسة التحدث' },
+    'ai-quick-exam': { en: '🎓 Exam Prep', ar: '🎓 تحضير الاختبار' },
 
     // ---- ECONOMIC CALENDAR ----
     'econ-cal-title': { en: '📅 Economic Calendar', ar: '📅 التقويم الاقتصادي' },
@@ -1463,50 +1311,129 @@ function calculateRiskReward() {
 // ===== DASHBOARD =====
 async function initDashboard() {
     const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const holdingsBody = document.getElementById('holdingsBody');
-    if (!holdingsBody) return;
-
-    holdingsBody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">${lang === 'ar' ? '⌛ جاري تحميل المحفظة...' : '⌛ Loading your portfolio...'}</td></tr>`;
+    const activeCoursesContainer = document.getElementById('activeCoursesContainer');
+    if (!activeCoursesContainer) return;
 
     try {
-        // Fetch Portfolio
-        const portResponse = await secureFetch('/api/portfolio');
-        const portData = await portResponse.json();
-        let holdings = portData.holdings;
-
-        // If API returns nothing, try local storage
-        if (!holdings || (Array.isArray(holdings) && holdings.length === 0)) {
-            holdings = getHoldings();
-        }
-
-        if (Array.isArray(holdings)) {
-            renderHoldings(holdings);
-            updateStats(holdings);
-            renderPortfolioChart();
-        }
-        updateLastUpdated();
-
-        // Fetch Watchlist
-        initWatchlist();
-
-        // Fetch Activity
-        initActivity();
-
-        // Session Clock
-        initSessionClock();
-
-        // Update User Name
-        const user = JSON.parse(localStorage.getItem('calcwise_user') || '{"firstName": "User"}');
+        const user = JSON.parse(localStorage.getItem('calcwise_user') || '{"firstName": "Student"}');
         const userEl = document.getElementById('dashboardUser');
-        if (userEl) userEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName} 👋`;
+        const nameEl = document.getElementById('userName');
+        if (userEl) userEl.innerText = `Hi, ${user.firstName} 👋`;
+        if (nameEl) nameEl.innerText = user.firstName;
 
-    } catch (error) {
-        console.error('Failed to load portfolio:', error);
-        const holdings = getHoldings();
-        renderHoldings(holdings);
-        updateStats(holdings);
-        renderPortfolioChart();
+        // Statistics initialization (simulated)
+        if (document.getElementById('learningTime')) document.getElementById('learningTime').innerText = "12.5 hrs";
+        if (document.getElementById('coursesDone')) document.getElementById('coursesDone').innerText = "3";
+        if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = (localStorage.getItem('lingowise_vocab_count') || "450");
+        if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = "82%";
+
+        // Populate Courses
+        updateCoursesUI();
+        
+        // Populate Daily Goals
+        initDailyGoals();
+
+        // Populate Vocabulary
+        updateVocabUI();
+
+    } catch (e) {
+        console.error("Dashboard init error:", e);
     }
+}
+
+function updateCoursesUI() {
+    const container = document.getElementById('activeCoursesContainer');
+    if (!container) return;
+
+    const activeCourses = [
+        { name: 'Intermediate Grammar Mastery', progress: 65, color: 'var(--primary)' },
+        { name: 'Business English Essentials', progress: 42, color: 'var(--accent-teal)' },
+        { name: 'Phonetics & Pronunciation', progress: 88, color: 'var(--accent-gold)' }
+    ];
+
+    container.innerHTML = activeCourses.map(course => `
+        <div class="course-progress-item">
+            <div style="display:flex; justify-content:space-between; margin-bottom:var(--space-xs);">
+                <span style="font-weight:600; font-size:0.9rem;">${course.name}</span>
+                <span style="color:${course.color}; font-weight:700; font-size:0.85rem;">${course.progress}%</span>
+            </div>
+            <div style="height:8px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
+                <div style="width:${course.progress}%; height:100%; background:${course.color}; transition: width 0.3s ease;"></div>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function initDailyGoals() {
+    const container = document.getElementById('dailyGoalsContainer');
+    if (!container) return;
+
+    const goals = [
+        { title: 'New Vocabulary', progress: '10/10', done: true, icon: '✓', color: 'var(--success)' },
+        { title: 'Speaking Practice', progress: '5/15 min', done: false, icon: '🎙️', color: 'var(--primary)' },
+        { title: 'Grammar Quiz', progress: '0/1', done: false, icon: '📝', color: 'var(--accent-gold)' }
+    ];
+
+    container.innerHTML = goals.map(goal => `
+        <div style="display:flex; align-items:center; gap:var(--space-md);">
+            <div style="width:40px; height:40px; border-radius:50%; border:3px solid ${goal.color}; display:flex; align-items:center; justify-content:center; color:${goal.color}; font-weight:800; font-size:0.8rem;">
+                ${goal.icon}
+            </div>
+            <div style="flex:1;">
+                <div style="font-weight:600; font-size:0.9rem;">${goal.title} (${goal.progress})</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">${goal.done ? 'Completed!' : 'In progress'}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function updateVocabUI() {
+    const container = document.getElementById('recentVocabContainer');
+    if (!container) return;
+
+    const defaults = [
+        { word: 'Resilience', translation: 'المرونة' },
+        { word: 'Ambiguous', translation: 'غامض' },
+        { word: 'Innovation', translation: 'ابتكار' },
+        { word: 'Proactive', translation: 'مبادر' }
+    ];
+
+    const vocabList = JSON.parse(localStorage.getItem('lingowise_vocab') || '[]');
+    const displayList = vocabList.length > 0 ? vocabList.slice(0, 4) : defaults;
+
+    container.innerHTML = displayList.map(v => `
+        <div class="vocab-card-mini card text-center p-1" style="background:var(--bg-secondary); border:1px solid var(--border-subtle); transition:all 0.2s ease;">
+            <div style="font-weight:700; font-size:1rem; color:var(--text-primary);">${v.word}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${v.translation}</div>
+        </div>
+    `).join('');
+}
+
+function addVocabulary(event) {
+    event.preventDefault();
+    const word = document.getElementById('vocab-word').value;
+    const translation = document.getElementById('vocab-translation').value;
+    const category = document.getElementById('vocab-category').value;
+
+    if (!word || !translation) return;
+
+    const vocabList = JSON.parse(localStorage.getItem('lingowise_vocab') || '[]');
+    vocabList.unshift({ word, translation, category, date: new Date().toISOString() });
+    localStorage.setItem('lingowise_vocab', JSON.stringify(vocabList));
+
+    const currentCount = parseInt(localStorage.getItem('lingowise_vocab_count') || "450");
+    localStorage.setItem('lingowise_vocab_count', currentCount + 1);
+
+    showToast('success', `"${word}" added to your vocabulary bank! 🔤`);
+    closeModal('addWordModal');
+    
+    // Refresh dashboard if on dashboard
+    const vocabEl = document.getElementById('vocabMastery');
+    if (vocabEl) vocabEl.innerText = (currentCount + 1);
+    
+    updateVocabUI();
+    
+    event.target.reset();
 }
 
 async function initWatchlist() {
@@ -2168,32 +2095,22 @@ async function handleJournalSubmit(e) {
     }
 }
 
-// ===== AI MARKET ASSISTANT =====
+// ===== LINGOWISE AI ASSISTANT =====
 function initAIAssistant() {
     if (document.getElementById('aiAssistantBtn')) return;
     const lang = localStorage.getItem('calcwise_lang') || 'en';
 
     const btn = document.createElement('button');
     btn.id = 'aiAssistantBtn';
-    btn.title = lang === 'ar' ? 'مساعد كالك وايز' : 'CalcWise Assistant';
-    // Position is handled by CSS [dir] selectors — do NOT set position inline
+    btn.title = lang === 'ar' ? 'مساعد لينغو وايز' : 'LingoWise Assistant';
     btn.innerHTML = '🤖<span class="notif-dot"></span>';
     btn.onclick = toggleAIChat;
     document.body.appendChild(btn);
 
-    const aiName = translations['ai-name'] ? translations['ai-name'][lang] : 'CalcWise AI';
-    const aiStatus = translations['ai-status'] ? translations['ai-status'][lang] : '● Online · Market Assistant';
-    const aiGreeting = translations['ai-greeting'] ? translations['ai-greeting'][lang] : "👋 Hi! I'm your <strong>AI Market Assistant</strong>. Ask me anything!";
-    const aiPlaceholder = translations['ai-placeholder'] ? translations['ai-placeholder'][lang] : 'Ask anything about markets...';
-    const q1 = translations['ai-quick-trend'] ? translations['ai-quick-trend'][lang] : '📈 Market trend';
-    const q2 = translations['ai-quick-tip'] ? translations['ai-quick-tip'][lang] : '💡 Trading tip';
-    const q3 = translations['ai-quick-btc'] ? translations['ai-quick-btc'][lang] : '₿ Bitcoin';
-    const q4 = translations['ai-quick-risk'] ? translations['ai-quick-risk'][lang] : '🛡️ Risk mgmt';
-
-    const trendQ = lang === 'ar' ? '📈 ما هو توجه السوق؟' : '📈 What is the market trend today?';
-    const tipQ = lang === 'ar' ? '💡 أعطني نصيحة تداول' : '💡 Give me a trading tip';
-    const btcQ = lang === 'ar' ? '₿ أخبرني عن البيتكوين' : '₿ Tell me about Bitcoin';
-    const riskQ = lang === 'ar' ? '🛡️ ما هي إدارة المخاطر؟' : '🛡️ What is risk management?';
+    const aiName = "LingoWise AI";
+    const aiStatus = "● Online · Language Tutor";
+    const aiGreeting = "👋 Hi! I'm your <strong>LingoWise AI Tutor</strong>. Ask me about grammar, vocabulary, or practice speaking!";
+    const aiPlaceholder = lang === 'ar' ? 'اسأل أي شيء عن اللغة الإنجليزية...' : 'Ask anything about English...';
 
     const chat = document.createElement('div');
     chat.id = 'aiChat';
@@ -2210,10 +2127,9 @@ function initAIAssistant() {
             <div class="ai-msg bot">${aiGreeting}</div>
         </div>
         <div class="ai-quick-replies">
-            <button class="ai-quick-btn" onclick="sendAIMessage('${trendQ}')">${q1}</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('${tipQ}')">${q2}</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('${btcQ}')">${q3}</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('${riskQ}')">${q4}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('Explain Present Perfect')">Present Perfect</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('IELTS Speaking tips')">IELTS Tips</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('Practice conversation')">Practice</button>
         </div>
         <div class="ai-chat-input">
             <input type="text" id="aiInput" placeholder="${aiPlaceholder}" onkeydown="if(event.key==='Enter') sendAIMessage()">
@@ -2318,8 +2234,8 @@ const AI_RESPONSES = {
         ar: '🏛️ <strong>سوق الأسهم الأمريكية</strong> يشمل NYSE وNASDAQ. المؤشرات: S&P 500، ناسداق، داو جونز. أهم الأسهم: AAPL، NVDA، TSLA. <a href="us-market.html" style="color:var(--primary-light)">عرض الأسهم →</a>'
     },
     'calcwise|features|tools|platform|ميزات|المنصة': {
-        en: '✨ <strong>CalcWise Features:</strong><br>📊 Portfolio • 📈 4 Markets • 🛠️ Tools • 🔔 Alerts • 📓 Journal • 🤖 AI • ⚙️ Settings<br>All free, forever.',
-        ar: '✨ <strong>ميزات كالك وايز:</strong><br>📊 المحفظة • 📈 4 أسواق • 🛠️ أدوات • 🔔 تنبيهات • 📓 سجل • 🤖 ذكاء اصطناعي • ⚙️ الإعدادات<br>مجاني تماماً إلى الأبد.'
+        en: '✨ <strong>LingoWise Features:</strong><br>📊 Dashboard • 📚 Courses • 🎙️ Speaking Lab • 📝 Grammar Guide • 🔤 Vocabulary • 🤖 AI Tutor<br>Master English, today.',
+        ar: '✨ <strong>ميزات لينغو وايز:</strong><br>📊 لوحة التحكم • 📚 الدورات • 🎙️ مختبر التحدث • 📝 دليل القواعد • 🔤 المفردات • 🤖 المعلم الذكي<br>أتقن الإنجليزية اليوم.'
     },
     'inflation|interest rate|fed|central bank|تضخم|فائدة|فيدرالي': {
         en: '🏦 <strong>Interest Rates & Inflation:</strong> When the Fed raises rates, stocks often drop. When rates fall, crypto and growth stocks tend to rally. Watch the Economic Calendar for Fed meetings!',

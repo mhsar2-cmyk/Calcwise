@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Blog — CalcWise</title>
+    <title>Learning Blog — LingoWise</title>
     <meta name="description"
-        content="Expert financial analysis, trading strategies, market news, and investment education. Your trusted source for market intelligence.">
+        content="Expert language learning tips, study strategies, and grammar guides to help you master English.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
     <script>
@@ -25,21 +25,21 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="index.html" class="nav-logo">
-                <div class="logo-icon">📊</div> CalcWise
+                <div class="logo-icon">🎓</div> LingoWise
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="index.html" data-i18n="nav-home">Home</a>
                 <div class="nav-dropdown">
-                    <a class="dropdown-trigger" data-i18n="nav-markets">Markets</a>
+                    <a class="dropdown-trigger" data-i18n="nav-courses">Courses</a>
                     <div class="dropdown-menu">
-                        <a href="crypto.html"><span class="dropdown-icon">₿</span> <span
-                                data-i18n="nav-crypto">Cryptocurrency</span></a>
-                        <a href="forex.html"><span class="dropdown-icon">💱</span> <span
-                                data-i18n="nav-forex">Forex</span></a>
-                        <a href="us-market.html"><span class="dropdown-icon">🏛️</span> <span
-                                data-i18n="nav-us-stocks">US Stocks</span></a>
-                        <a href="saudi-market.html"><span class="dropdown-icon">🇸🇦</span> <span
-                                data-i18n="nav-saudi">Saudi Market</span></a>
+                        <a href="courses.html?level=beginner"><span class="dropdown-icon">🌱</span> <span
+                                data-i18n="level-beginner-title">Beginner</span></a>
+                        <a href="courses.html?level=intermediate"><span class="dropdown-icon">🚀</span> <span
+                                data-i18n="level-intermediate-title">Intermediate</span></a>
+                        <a href="courses.html?level=advanced"><span class="dropdown-icon">💎</span> <span
+                                data-i18n="level-advanced-title">Advanced</span></a>
+                        <a href="courses.html?level=business"><span class="dropdown-icon">👔</span> <span
+                                data-i18n="level-business-title">Business</span></a>
                     </div>
                 </div>
                 <a href="blog.html" class="active" data-i18n="nav-blog">Blog</a>
@@ -66,10 +66,10 @@
         style="margin-top:var(--header-height);padding:var(--space-3xl) 0 var(--space-xl);text-align:center;">
         <div class="container">
             <div class="section-header reveal">
-                <div style="font-size:3rem;margin-bottom:var(--space-md);">📰</div>
-                <h1 data-i18n="blog-hero-title">Finance <span class="text-gold">Blog</span> 📰</h1>
-                <p data-i18n="blog-hero-sub">Expert analysis, trading strategies, and market insights to help you make
-                    smarter financial decisions. 💡</p>
+                <div style="font-size:3rem;margin-bottom:var(--space-md);">🎓</div>
+                <h1 data-i18n="blog-hero-title">Learning <span class="text-gold">Blog</span> 🎓</h1>
+                <p data-i18n="blog-hero-sub">Expert language tips, study strategies, and interactive guides to help you
+                    master English faster. 💡</p>
             </div>
         </div>
     </section>
@@ -81,35 +81,30 @@
                 <div style="display:flex;justify-content:center;gap:var(--space-sm);flex-wrap:wrap;">
                     <button class="filter-btn active" onclick="filterBlog('all', this)"
                         data-i18n="filter-all">All</button>
-                    <button class="filter-btn" onclick="filterBlog('crypto', this)"
-                        data-i18n="filter-crypto">Crypto</button>
-                    <button class="filter-btn" onclick="filterBlog('forex', this)"
-                        data-i18n="filter-forex">Forex</button>
-                    <button class="filter-btn" onclick="filterBlog('stocks', this)"
-                        data-i18n="filter-stocks">Stocks</button>
-                    <button class="filter-btn" onclick="filterBlog('saudi', this)"
-                        data-i18n="filter-saudi">Saudi</button>
+                    <button class="filter-btn" onclick="filterBlog('grammar', this)"
+                        data-i18n="filter-grammar">Grammar</button>
+                    <button class="filter-btn" onclick="filterBlog('vocabulary', this)"
+                        data-i18n="sidebar-vocabulary">Vocabulary</button>
+                    <button class="filter-btn" onclick="filterBlog('speaking', this)"
+                        data-i18n="sidebar-speaking">Speaking</button>
+                    <button class="filter-btn" onclick="filterBlog('exams', this)"
+                        data-i18n="ai-quick-exam">Exams</button>
                     <button class="filter-btn" onclick="filterBlog('education', this)"
-                        data-i18n="filter-education">Education</button>
-                    <button class="filter-btn" onclick="filterBlog('tools', this)"
-                        data-i18n="filter-strategy">Strategy</button>
+                        data-i18n="filter-education">Study Tips</button>
                 </div>
             </div>
 
             <div class="grid grid-3" id="blogGrid" style="gap:var(--space-xl);">
-                <!-- Crypto -->
-                <div class="blog-card" data-category="crypto" onclick="openBlogModal(1)">
-                    <img src="images/blog_altcoin.png" alt="Altcoin Season" class="blog-card-image">
+                <!-- Study Tips -->
+                <div class="blog-card" data-category="education" onclick="openBlogModal(8)">
+                    <img src="images/blog_psychology.png" alt="Speaking Confidence" class="blog-card-image">
                     <div class="blog-card-body">
-                        <span class="blog-card-tag" style="background:rgba(240,185,11,0.15);color:var(--accent-gold);"
-                            data-i18n="filter-crypto">Crypto</span>
-                        <h4><span data-i18n="blog-card-1-title"
-                                style="color:var(--primary-light);cursor:pointer;">Altcoin Season 2026: Top 10 Tokens to
-                                Watch</span></h4>
-                        <p data-i18n="blog-card-1-desc">Identifying the most promising altcoins with strong fundamentals
-                            and technical setups for
-                            this cycle. 🚀</p>
-                        <div class="blog-card-meta"><span>📅 Mar 2, 2026</span><span>⏱ 6 min read</span></div>
+                        <span class="blog-card-tag" style="background:rgba(253,121,168,0.15);color:var(--accent-rose);"
+                            data-i18n="filter-education">Study Tips</span>
+                        <h4><span data-i18n="blog-card-8-title"
+                                style="color:var(--primary-light);cursor:pointer;">Overcoming the Fear of Speaking English</span></h4>
+                        <p data-i18n="blog-card-8-desc">Psychological strategies to build confidence and start conversing fluently. 🧘</p>
+                        <div class="blog-card-meta"><span data-i18n="blog-date-8">Feb 25, 2026</span><span data-i18n="blog-read-8m">⏱ 8 min read</span></div>
                     </div>
                 </div>
 
@@ -259,8 +254,8 @@
                 <h2>📩 <span data-i18n="blog-newsletter-title-1">Stay</span> <span class="text-gold"
                         data-i18n="blog-newsletter-title-2">Informed</span> ✨</h2>
                 <p style="color:var(--text-secondary);margin:var(--space-md) 0 var(--space-xl);"
-                    data-i18n="blog-newsletter-desc">Get weekly market
-                    insights, trading tips, and exclusive analysis delivered to your inbox.</p>
+                    data-i18n="blog-newsletter-desc">Get weekly language
+                    learning tips, study hacks, and exclusive content delivered to your inbox.</p>
                 <form style="display:flex;gap:var(--space-sm);"
                     onsubmit="event.preventDefault();showToast('success','Subscribed! Welcome aboard 🎉');">
                     <input type="email" class="form-control" data-i18n-placeholder="auth-email"
@@ -277,21 +272,21 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="nav-logo">
-                        <div class="logo-icon">📊</div> CalcWise
+                        <div class="logo-icon">🎓</div> LingoWise
                     </a>
-                    <p class="mt-1" data-i18n="footer-tagline">Your all-in-one financial intelligence platform.</p>
+                    <p class="mt-1" data-i18n="footer-tagline">Your all-in-one English language learning platform.</p>
                 </div>
                 <div class="footer-col">
-                    <h5 data-i18n="footer-markets">Markets</h5>
-                    <a href="crypto.html" data-i18n="nav-crypto">Cryptocurrency</a>
-                    <a href="forex.html" data-i18n="nav-forex">Forex</a>
-                    <a href="us-market.html" data-i18n="nav-us-stocks">US Stocks</a>
-                    <a href="saudi-market.html" data-i18n="nav-saudi">Saudi Market</a>
+                    <h5 data-i18n="sidebar-overview">Learning Hub</h5>
+                    <a href="courses.html" data-i18n="nav-courses">Courses</a>
+                    <a href="labs.html" data-i18n="nav-labs">Live Labs</a>
+                    <a href="speaking-lab.html" data-i18n="sidebar-speaking">AI Speaking Lab</a>
+                    <a href="vocabulary.html" data-i18n="sidebar-vocabulary">Vocabulary Bank</a>
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n="footer-resources">Resources</h5>
                     <a href="blog.html" data-i18n="footer-blog">Blog</a>
-                    <a href="tools.html" data-i18n="footer-tools">Financial Tools</a>
+                    <a href="grammar.html" data-i18n="sidebar-grammar">Grammar Guide</a>
                     <a href="about.html" data-i18n="footer-about">About Us</a>
                 </div>
                 <div class="footer-col">
@@ -302,11 +297,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <span data-i18n="footer-copyright">&copy; 2026 CalcWise. All rights reserved.</span>
+                <span data-i18n="footer-copyright">&copy; 2026 LingoWise. All rights reserved.</span>
                 <div class="footer-social">
-                    <a href="https://twitter.com/calcwise" target="_blank" title="Twitter">𝕏</a>
-                    <a href="https://discord.gg/calcwise" target="_blank" title="Discord">💬</a>
-                    <a href="https://github.com/calcwise" target="_blank" title="GitHub">⌨</a>
+                    <a href="https://twitter.com/lingowise" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://discord.gg/lingowise" target="_blank" title="Discord">💬</a>
+                    <a href="https://github.com/lingowise" target="_blank" title="GitHub">⌨</a>
                 </div>
             </div>
         </div>
