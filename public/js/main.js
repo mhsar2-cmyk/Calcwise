@@ -543,6 +543,7 @@ const translations = {
     'courses-hero-sub': { en: 'Comprehensive learning paths designed to take you from beginner to native-like fluency.', ar: 'مسارات تعلم شاملة مصممة لتنقلك من المستوى المبتدئ إلى الطلاقة.' },
     'cta-title-1': { en: 'Ready to Master English?', ar: 'جاهز لإتقان الإنجليزية؟' },
     'cta-desc': { en: 'Join thousands of learners achieving fluency with LingoWise. Your global career starts here.', ar: 'انضم إلى آلاف المتعلمين الذين يحققون الطلاقة مع لينغو وايز. مسيرتك العالمية تبدأ من هنا.' },
+    'cta-btn-1': { en: 'Start Learning for Free →', ar: 'ابدأ التعلم مجاناً ←' },
     'stat-learners': { en: 'Active Learners', ar: 'متعلم نشط' },
     'stat-countries': { en: 'Countries Represented', ar: 'دولة ممثلة' },
     'stat-satisfaction': { en: 'Success Rate', ar: 'معدل النجاح' },
