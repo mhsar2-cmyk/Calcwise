@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +9,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-CQ0F5LVG3J");
-  </script>
 </head>
-
 <body>
   <!-- ===== NAVIGATION ===== -->
   <nav class="navbar" id="navbar">
@@ -31,18 +21,14 @@
 
       <div class="nav-links" id="navLinks">
         <a href="index.html" class="active" data-i18n="nav-home">Home</a>
-
         <a href="courses.html" data-i18n="nav-courses">Courses</a>
-        <a href="live-labs.html" data-i18n="nav-labs">Live Labs</a>
+        <a href="labs.html" data-i18n="nav-labs">Live Labs</a>
         <a href="blog.html" data-i18n="nav-blog">Blog</a>
         <a href="community.html" data-i18n="nav-community">Community</a>
       </div>
 
       <div class="nav-actions">
-
-
-
-        <div class="toggle-pill lang-toggle" title="Toggle language">
+        <div class="toggle-pill lang-toggle">
           <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
           <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
         </div>
@@ -56,34 +42,38 @@
     </div>
   </nav>
 
-
+  <!-- ===== TICKER ===== -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="symbol">🌍 LIVE:</span> <span class="price" data-i18n="ticker-learners">2,450 learners online</span></div>
+      <div class="ticker-item"><span class="symbol">🔥 NEW:</span> <span class="price" data-i18n="ticker-speaking">Advanced Speaking Lab</span></div>
+      <div class="ticker-item"><span class="symbol">🏆 GOAL:</span> <span class="price" data-i18n="ticker-satisfaction">98% satisfaction rate</span></div>
+      <div class="ticker-item"><span class="symbol">📚 BOOKS:</span> <span class="price" data-i18n="ticker-ielts">150+ IELTS resources</span></div>
+      <div class="ticker-item"><span class="symbol">🌍 LIVE:</span> <span class="price" data-i18n="ticker-learners">2,450 learners online</span></div>
+      <div class="ticker-item"><span class="symbol">🔥 NEW:</span> <span class="price" data-i18n="ticker-speaking">Advanced Speaking Lab</span></div>
+      <div class="ticker-item"><span class="symbol">🏆 GOAL:</span> <span class="price" data-i18n="ticker-satisfaction">98% satisfaction rate</span></div>
+      <div class="ticker-item"><span class="symbol">📚 BOOKS:</span> <span class="price" data-i18n="ticker-ielts">150+ IELTS resources</span></div>
+    </div>
+  </div>
 
   <!-- ===== HERO ===== -->
-  <section class="hero" style="padding-top:0;">
+  <section class="hero">
     <div class="hero-bg">
-      <img src="images/hero-bg.png" alt="LingoWise Language Learning Background">
+      <img src="images/hero-bg.png" alt="LingoWise Background">
       <div style="position:absolute;inset:0;background:var(--gradient-hero);"></div>
     </div>
-
     <div class="hero-particles" id="heroParticles"></div>
-
     <div class="hero-content">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
         <span data-i18n="hero-badge">New: AI Conversation Practice Now Live!</span>
       </div>
-
-      <h1>🌟 <span data-i18n="hero-title-1">Unlock Your Potential</span> <span class="text-gradient"
-          data-i18n="hero-title-2">English</span> <span data-i18n="hero-title-3">Mastery Awaits</span> 🗣️</h1>
-
-      <p data-i18n="hero-desc">Master English with interactive courses, real-time progress tracking, and 
-        personalized learning paths designed by linguistic experts.</p>
-
+      <h1>🌟 <span data-i18n="hero-title-1">Unlock Your Potential</span> <span class="text-gradient" data-i18n="hero-title-2">English</span> <span data-i18n="hero-title-3">Mastery Awaits</span> 🗣️</h1>
+      <p data-i18n="hero-desc">Master English with interactive courses, real-time progress tracking, and personalized learning paths designed by linguistic experts.</p>
       <div class="hero-actions">
         <a href="signup.html" class="btn btn-gold btn-lg" data-i18n="hero-cta-1">Start Learning for Free →</a>
-        <a href="#levels" class="btn btn-outline btn-lg" data-i18n="hero-cta-2">View Courses</a>
+        <a href="courses.html" class="btn btn-outline btn-lg" data-i18n="hero-cta-2">View Courses</a>
       </div>
-
     </div>
   </section>
 
@@ -91,68 +81,33 @@
   <section class="section" id="levels">
     <div class="container">
       <div class="section-header reveal">
-        <h2>📚 <span data-i18n="levels-title-1">Choose Your</span> <span class="text-gradient"
-            data-i18n="levels-title-2">Learning Level</span> 🚀</h2>
+        <h2>📚 <span data-i18n="levels-title-1">Choose Your</span> <span class="text-gradient" data-i18n="levels-title-2">Learning Level</span> 🚀</h2>
         <p data-i18n="levels-desc">From beginner to professional, we have a path for every learner.</p>
       </div>
-
       <div class="grid grid-4">
-        <a href="courses.html?level=beginner" class="platform-card crypto reveal" style="text-decoration:none;">
-          <div class="platform-icon">🌱</div>
-          <h3 data-i18n="level-beginner-title">Beginner (A1-A2)</h3>
-          <p data-i18n="level-beginner-desc">Build a strong foundation with essential vocabulary, basic grammar, and 
-            simple conversational skills.</p>
-          <span class="card-link" data-i18n="level-beginner-link">Start Journey →</span>
-        </a>
-
-        <a href="courses.html?level=intermediate" class="platform-card forex reveal" style="text-decoration:none;">
-          <div class="platform-icon">🚀</div>
-          <h3 data-i18n="level-intermediate-title">Intermediate (B1-B2)</h3>
-          <p data-i18n="level-intermediate-desc">Expand your fluency, tackle complex grammar, and engage in more 
-            sophisticated discussions.</p>
-          <span class="card-link" data-i18n="level-intermediate-link">Level Up →</span>
-        </a>
-
-        <a href="courses.html?level=advanced" class="platform-card us-stocks reveal" style="text-decoration:none;">
-          <div class="platform-icon">💎</div>
-          <h3 data-i18n="level-advanced-title">Advanced (C1-C2)</h3>
-          <p data-i18n="level-advanced-desc">Refine your nuances, master academic English, and sound like a 
-            near-native speaker.</p>
-          <span class="card-link" data-i18n="level-advanced-link">Refine Skills →</span>
-        </a>
-
-        <a href="courses.html?level=business" class="platform-card saudi reveal" style="text-decoration:none;">
-          <div class="platform-icon">👔</div>
-          <h3 data-i18n="level-business-title">Business English</h3>
-          <p data-i18n="level-business-desc">Professional communication, workplace etiquette, and technical 
-            terminology for your career.</p>
-          <span class="card-link" data-i18n="level-business-link">Go Pro →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== LEARNING STATS ===== -->
-  <section class="section"
-    style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>⚡ <span data-i18n="stats-title-1">Join a</span> <span class="text-gold" data-i18n="stats-title-2">Global Community</span> 🌍</h2>
-        <p data-i18n="stats-desc">Empowering learners from every corner of the world.</p>
-      </div>
-
-      <div class="grid grid-3 reveal">
-        <div class="stat-card card text-center p-2">
-          <div class="stat-value text-gradient h1" data-i18n="stat-learners-val">50k+</div>
-          <p class="stat-label" data-i18n="stat-learners">Active Learners</p>
+        <div class="card platform-card reveal">
+          <div class="card-icon">🌱</div>
+          <h3 data-i18n="level-beginner-title">Beginner</h3>
+          <p data-i18n="level-beginner-desc">Build a strong foundation with essential vocabulary and basic grammar.</p>
+          <a href="courses.html?level=Beginner" class="btn btn-ghost btn-sm" data-i18n="level-beginner-link">Start Journey →</a>
         </div>
-        <div class="stat-card card text-center p-2">
-          <div class="stat-value text-gradient h1" data-i18n="stat-countries-val">150+</div>
-          <p class="stat-label" data-i18n="stat-countries">Countries Represented</p>
+        <div class="card platform-card reveal">
+          <div class="card-icon">🚀</div>
+          <h3 data-i18n="level-intermediate-title">Intermediate</h3>
+          <p data-i18n="level-intermediate-desc">Expand your fluency and tackle complex sentence structures.</p>
+          <a href="courses.html?level=Intermediate" class="btn btn-ghost btn-sm" data-i18n="level-intermediate-link">Level Up →</a>
         </div>
-        <div class="stat-card card text-center p-2">
-          <div class="stat-value text-gradient h1" data-i18n="stat-satisfaction-val">98%</div>
-          <p class="stat-label" data-i18n="stat-satisfaction">Success Rate</p>
+        <div class="card platform-card reveal">
+          <div class="card-icon">💎</div>
+          <h3 data-i18n="level-advanced-title">Advanced</h3>
+          <p data-i18n="level-advanced-desc">Refine your nuances and sound like a near-native speaker.</p>
+          <a href="courses.html?level=Advanced" class="btn btn-ghost btn-sm" data-i18n="level-advanced-link">Refine Skills →</a>
+        </div>
+        <div class="card platform-card reveal">
+          <div class="card-icon">👔</div>
+          <h3 data-i18n="level-business-title">Business</h3>
+          <p data-i18n="level-business-desc">Professional communication and workplace etiquette.</p>
+          <a href="courses.html?level=Business" class="btn btn-ghost btn-sm" data-i18n="level-business-link">Go Pro →</a>
         </div>
       </div>
     </div>
@@ -162,162 +117,21 @@
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <h2>💎 <span data-i18n="features-title-1">Why Choose</span> <span class="text-gradient"
-            data-i18n="features-title-2">LingoWise</span>? ✨</h2>
-        <p data-i18n="features-desc">Innovative tools designed to make language learning effective and fun</p>
+        <h2>✨ <span data-i18n="features-title-1">Why Choose</span> <span class="text-gradient" data-i18n="features-title-2">LingoWise</span></h2>
+        <p data-i18n="features-desc">Innovative tools designed to make language learning effective and fun.</p>
       </div>
-
       <div class="grid grid-3">
         <div class="card feature-card reveal">
-          <div class="feature-icon">🎙️</div>
-          <h3 data-i18n="feature-1-title">AI Speaking Lab ⚡</h3>
-          <p data-i18n="feature-1-desc">Practice real conversations with our AI tutor and get instant feedback on 
-            pronunciation.</p>
+           <h3 data-i18n="feature-1-title">AI Speaking Lab ⚡</h3>
+           <p data-i18n="feature-1-desc">Practice real conversations with our AI tutor and get instant feedback.</p>
         </div>
-
         <div class="card feature-card reveal">
-          <div class="feature-icon">📈</div>
-          <h3 data-i18n="feature-2-title">Progress Trackers 📊</h3>
-          <p data-i18n="feature-2-desc">Visualize your growth with detailed analytics for vocabulary, grammar, and 
-            fluency.</p>
+           <h3 data-i18n="feature-2-title">Progress Trackers 📊</h3>
+           <p data-i18n="feature-2-desc">Visualize your growth with detailed analytics for fluency and vocabulary.</p>
         </div>
-
         <div class="card feature-card reveal">
-          <div class="feature-icon">💡</div>
-          <h3 data-i18n="feature-3-title">Active Recall ✨</h3>
-          <p data-i18n="feature-3-desc">Spaced repetition system (SRS) for long-term vocabulary retention and mastery.</p>
-        </div>
-
-        <div class="card feature-card reveal">
-          <div class="feature-icon">👥</div>
-          <h3 data-i18n="feature-4-title">Live Study Groups 💬</h3>
-          <p data-i18n="feature-4-desc">Join small, interactive groups led by native speakers for real-world practice.</p>
-        </div>
-
-        <div class="card feature-card reveal">
-          <div class="feature-icon">📜</div>
-          <h3 data-i18n="feature-5-title">Certified Courses 🔐</h3>
-          <p data-i18n="feature-5-desc">Pathways aligned with CEFR standards (A1 to C2) to help you achieve your goals.</p>
-        </div>
-
-        <div class="card feature-card reveal">
-          <div class="feature-icon">📱</div>
-          <h3 data-i18n="feature-6-title">Multi-Device Learning 🌍</h3>
-          <p data-i18n="feature-6-desc">Learn on the go. Sync your progress across desktop, tablet, and mobile devices.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== LATEST BLOG ===== -->
-  <section class="section"
-    style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>💡 <span data-i18n="blog-section-title-1">Latest from the</span> <span class="text-gold"
-            data-i18n="blog-section-title-2">Learning Blog</span> ✍️</h2>
-        <p data-i18n="blog-section-desc">Language tips, study strategies, and expert advice</p>
-      </div>
-
-      <div class="grid grid-3 reveal">
-        <div class="blog-card">
-          <img src="images/blog-header.png" alt="Market Analysis" class="blog-card-image">
-          <div class="blog-card-body">
-            <span class="blog-card-tag" data-i18n="filter-education">Study Tips</span>
-            <h4><a href="blog.html" data-i18n="blog-card-8-title">Mastering English Fluency: Tips for Busy Professionals 🚀</a>
-            </h4>
-            <p data-i18n="blog-card-8-desc">How to integrate language learning into your daily routine effectively. 📈</p>
-            <div class="blog-card-meta">
-              <span data-i18n="blog-date-1">Mar 8, 2026</span>
-              <span data-i18n="blog-read-5m">5 min read</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="blog-card">
-          <img src="images/blog-header.png" alt="Forex Strategy" class="blog-card-image">
-          <div class="blog-card-body">
-            <span class="blog-card-tag" style="background:rgba(0,210,211,0.15);color:var(--accent-teal);"
-              data-i18n="filter-tools">Learning Tools</span>
-            <h4><a href="blog.html" data-i18n="blog-card-10-title">The Power of Spaced Repetition for Vocabulary Mastery 🔱</a></h4>
-            <p data-i18n="blog-card-10-desc">Why consistency matters more than intensity and how LingoWise can help.</p>
-            <div class="blog-card-meta">
-              <span data-i18n="blog-date-2">Mar 6, 2026</span>
-              <span data-i18n="blog-read-7m">7 min read</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="blog-card">
-          <img src="images/blog-header.png" alt="Saudi Vision 2030" class="blog-card-image">
-          <div class="blog-card-body">
-            <span class="blog-card-tag" style="background:rgba(0,184,148,0.15);color:var(--accent-emerald);"
-              data-i18n="filter-grammar">Grammar Guide</span>
-            <h4><a href="blog.html" data-i18n="blog-card-9-title">Common Grammar Pitfalls and How to Avoid Them</a></h4>
-            <p data-i18n="blog-card-9-desc">Mastering complex tenses and nuances of modern English communication.</p>
-            <div class="blog-card-meta">
-              <span data-i18n="blog-date-6">Mar 4, 2026</span>
-              <span data-i18n="blog-read-6m">6 min read</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-2 reveal">
-        <a href="blog.html" class="btn btn-outline" data-i18n="blog-view-all">View All Articles →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FINANCIAL TOOLS PREVIEW ===== -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>🛠️ <span data-i18n="tools-section-title-1">Powerful</span> <span class="text-gradient"
-            data-i18n="tools-section-title-2">Learning Tools</span> 🔧</h2>
-        <p data-i18n="tools-section-desc">Free tools to help you master vocabulary, grammar, and speaking skills</p>
-      </div>
-
-      <div class="grid grid-4 reveal">
-        <a href="speaking-lab.html" class="card tool-card" style="text-decoration:none;">
-          <div class="tool-icon">🎙️</div>
-          <h4 data-i18n="sidebar-speaking">AI Speaking Lab</h4>
-          <p data-i18n="feature-1-desc">Practice real conversations with our AI tutor and get instant feedback.</p>
-        </a>
-
-        <a href="vocabulary.html" class="card tool-card" style="text-decoration:none;">
-          <div class="tool-icon">🔤</div>
-          <h4 data-i18n="sidebar-vocabulary">Vocabulary Bank</h4>
-          <p data-i18n="feature-3-desc">Spaced repetition system (SRS) for long-term vocabulary retention.</p>
-        </a>
-
-        <a href="grammar.html" class="card tool-card" style="text-decoration:none;">
-          <div class="tool-icon">📝</div>
-          <h4 data-i18n="sidebar-grammar">Grammar Guide</h4>
-          <p data-i18n="level-beginner-desc">Build a strong foundation with essential vocabulary and basic grammar.</p>
-        </a>
-
-        <a href="labs.html" class="card tool-card" style="text-decoration:none;">
-          <div class="tool-icon">👥</div>
-          <h4 data-i18n="sidebar-labs">Live Labs</h4>
-          <p data-i18n="feature-4-desc">Join small, interactive groups led by native speakers for practice.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA ===== -->
-  <section class="section"
-    style="background: radial-gradient(ellipse at center, rgba(108,92,231,0.12) 0%, transparent 70%);">
-    <div class="container">
-      <div class="text-center reveal" style="max-width:650px;margin:0 auto;">
-        <h2>🔥 <span data-i18n="cta-title-1">Ready to Master</span> <span class="text-gold"
-            data-i18n="cta-title-2">English</span>? 🚀</h2>
-        <p class="mt-1" style="color:var(--text-secondary);font-size:1.1rem;" data-i18n="cta-desc">Join thousands of 
-          learners achieving fluency with LingoWise. Your global career starts here.</p>
-        <div class="hero-actions mt-2">
-          <a href="signup.html" class="btn btn-gold btn-lg" data-i18n="cta-btn-1">Create Free Account →</a>
-          <a href="login.html" class="btn btn-outline btn-lg" data-i18n="cta-btn-2">Log In</a>
+           <h3 data-i18n="feature-3-title">Active Recall ✨</h3>
+           <p data-i18n="feature-3-desc">Spaced repetition system for long-term vocabulary retention.</p>
         </div>
       </div>
     </div>
@@ -328,52 +142,24 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="nav-logo">
+          <div class="nav-logo">
             <div class="logo-icon">🎓</div> LingoWise
-          </a>
-          <p class="mt-1" data-i18n="footer-tagline">Your all-in-one English language learning platform.</p>
+          </div>
+          <p data-i18n="footer-tagline">Your all-in-one English language learning platform.</p>
         </div>
         <div class="footer-col">
-          <h5 data-i18n="sidebar-overview">Learning Hub</h5>
+          <h4 data-i18n="footer-resources">Resources</h4>
           <a href="courses.html" data-i18n="nav-courses">Courses</a>
           <a href="labs.html" data-i18n="nav-labs">Live Labs</a>
-          <a href="speaking-lab.html" data-i18n="sidebar-speaking">AI Speaking Lab</a>
-          <a href="vocabulary.html" data-i18n="sidebar-vocabulary">Vocabulary Bank</a>
-        </div>
-        <div class="footer-col">
-          <h5 data-i18n="footer-resources">Resources</h5>
-          <a href="blog.html" data-i18n="footer-blog">Learning Blog</a>
-          <a href="tools.html" data-i18n="footer-tools">Learning Tools</a>
-          <a href="about.html" data-i18n="footer-about">About Us</a>
-        </div>
-        <div class="footer-col">
-          <h5 data-i18n="footer-legal">Legal</h5>
-          <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
-          <a href="terms.html" data-i18n="footer-terms">Terms of Service</a>
-          <a href="contact.html" data-i18n="footer-contact">Contact Us</a>
+          <a href="blog.html" data-i18n="nav-blog">Blog</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span data-i18n="footer-copyright">&copy; 2026 LingoWise. All rights reserved.</span>
-        <div class="footer-social">
-          <a href="https://twitter.com/lingowise" target="_blank" title="Twitter">𝕏</a>
-          <a href="https://discord.gg/lingowise" target="_blank" title="Discord">💬</a>
-          <a href="https://github.com/lingowise" target="_blank" title="GitHub">⌨</a>
-        </div>
+        <p data-i18n="footer-copyright">© 2026 LingoWise. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-
-
-  <!-- FLOATING THEME TOGGLE (CIRCULAR) -->
-  <div class="floating-toggles"
-    onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
-    title="Toggle theme">
-    <span class="theme-icon dark-icon">🌙</span>
-    <span class="theme-icon light-icon">☀️</span>
-  </div>
 </body>
-
 </html>

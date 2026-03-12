@@ -1,11 +1,11 @@
 let lang = localStorage.getItem('calcwise_lang') || 'en';
 
 const COURSE_POOL = [
-    { id: 'beg-1', name: 'Beginner English 101', level: 'Beginner', category: 'General', icon: '🌱', color: '#00d2d3' },
-    { id: 'int-1', name: 'Intermediate Grammar', level: 'Intermediate', category: 'Grammar', icon: '📝', color: '#6c5ce7' },
-    { id: 'adv-1', name: 'Advanced Speaking', level: 'Advanced', category: 'Speaking', icon: '🎙️', color: '#ff9f43' },
-    { id: 'bus-1', name: 'Business Writing', level: 'Business', category: 'Writing', icon: '💼', color: '#2e86de' },
-    { id: 'ielt-1', name: 'IELTS Prep Masterclass', level: 'Advanced', category: 'Exam', icon: '🎓', color: '#ee5253' }
+    { id: 'beg-1', name: { en: 'Beginner English 101', ar: 'أساسيات الإنجليزية ١٠١' }, level: 'Beginner', category: { en: 'General', ar: 'عام' }, icon: '🌱', color: '#00d2d3' },
+    { id: 'int-1', name: { en: 'Intermediate Grammar', ar: 'قواعد المستوى المتوسط' }, level: 'Intermediate', category: { en: 'Grammar', ar: 'قواعد' }, icon: '📝', color: '#6c5ce7' },
+    { id: 'adv-1', name: { en: 'Advanced Speaking', ar: 'مهارات التحدث المتقدمة' }, level: 'Advanced', category: { en: 'Speaking', ar: 'محادثة' }, icon: '🎙️', color: '#ff9f43' },
+    { id: 'bus-1', name: { en: 'Business Writing', ar: 'الكتابة للأعمال' }, level: 'Business', category: { en: 'Writing', ar: 'كتابة' }, icon: '💼', color: '#2e86de' },
+    { id: 'ielt-1', name: { en: 'IELTS Prep Masterclass', ar: 'دورة التحضير للآيلتس' }, level: 'Advanced', category: { en: 'Exam', ar: 'اختبارات' }, icon: '🎓', color: '#ee5253' }
 ];
 
 async function secureFetch(url, options = {}) {
@@ -72,6 +72,10 @@ const translations = {
     'nav-community': { en: 'Community', ar: 'الممجتمع' },
     'nav-login': { en: 'Log In', ar: 'تسجيل الدخول' },
     'nav-get-started': { en: 'Get Started', ar: 'ابدأ الآن' },
+    'ticker-learners': { en: '2,450 learners online', ar: '٢,٤٥٠ متعلم متصل الآن' },
+    'ticker-speaking': { en: 'Advanced Speaking Lab', ar: 'مختبر التحدث المتقدم' },
+    'ticker-satisfaction': { en: '98% satisfaction rate', ar: '٩٨٪ نسبة الرضا' },
+    'ticker-ielts': { en: '150+ IELTS resources', ar: '١٥٠+ مرجع للآيلتس' },
 
     // ---- HERO ----
     'hero-badge': { en: 'New: AI Conversation Practice Now Live!', ar: 'جديد: ممارسة المحادثة بالذكاء الاصطناعي متاحة الآن!' },
@@ -109,6 +113,17 @@ const translations = {
     'stat-learners-val': { en: '50k+', ar: '٥٠ ألف+' },
     'stat-countries-val': { en: '150+', ar: '١٥٠+' },
     'stat-satisfaction-val': { en: '98%', ar: '٩٨٪' },
+
+    'sidebar-vocabulary': { en: 'Vocabulary Bank', ar: 'بنك المفردات' },
+    'sidebar-speaking': { en: 'AI Speaking Lab', ar: 'مختبر التحدث الذكي' },
+    'sidebar-grammar': { en: 'Grammar Guide', ar: 'دليل القواعد' },
+    'sidebar-settings': { en: 'Settings', ar: 'الإعدادات' },
+    'sidebar-logout': { en: 'Logout', ar: 'تسجيل الخروج' },
+    'sidebar-profile': { en: 'Profile', ar: 'الملف الشخصي' },
+    'sidebar-notifications': { en: 'Notifications', ar: 'التنبيهات' },
+    'sidebar-security': { en: 'Security', ar: 'الأمان' },
+    'sidebar-data': { en: 'My Data', ar: 'بياناتي' },
+    'sidebar-danger': { en: 'Danger Zone', ar: 'منطقة الخطر' },
 
     // ---- FEATURES ----
     'features-title-1': { en: 'Why Choose', ar: 'لماذا تختار' },
@@ -202,6 +217,19 @@ const translations = {
     'dash-lab-reminder': { en: 'Set Reminder', ar: 'تعيين تذكير' },
     'dash-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
 
+    // ---- SPEAKING LAB ----
+    'lab-title': { en: 'AI Speaking Lab', ar: 'مختبر التحدث بالذكاء الاصطناعي' },
+    'lab-desc': { en: 'Improve your fluency with real-time AI conversation partner.', ar: 'حسن طلاقتك مع شريك محادثة آلي في الوقت الفعلي.' },
+    'lab-status': { en: 'Ready to chat', ar: 'جاهز للمحادثة' },
+    'lab-feedback': { en: 'Session Feedback', ar: 'ملاحظات الجلسة' },
+    'lab-topics': { en: 'Conversation Topics', ar: 'مواضيع المحادثة' },
+    'lab-end': { en: 'End Session', ar: 'إنهاء الجلسة' },
+    'lab-history': { en: 'History', ar: 'السجل' },
+    'lab-settings': { en: 'Settings', ar: 'الإعدادات' },
+    'lab-pronunciation': { en: 'Pronunciation', ar: 'النطق' },
+    'lab-fluency': { en: 'Fluency', ar: 'الطلاقة' },
+    'lab-more': { en: 'View More Topics →', ar: 'عرض المزيد من المواضيع ←' },
+
     // ---- SIDEBAR ----
     'sidebar-overview': { en: 'Learning Hub', ar: 'مركز التعلم' },
     'sidebar-dashboard': { en: 'Dashboard', ar: 'لوحة التحكم' },
@@ -242,7 +270,17 @@ const translations = {
     'label-word': { en: 'Word / Phrase', ar: 'الكلمة / العبارة' },
     'label-translation': { en: 'Translation', ar: 'الترجمة' },
     'label-category': { en: 'Category', ar: 'الفئة' },
-    'btn-save-word': { en: 'Save to Bank', ar: 'حفظ في البنك' }
+    'btn-save-word': { en: 'Save to Bank', ar: 'حفظ في البنك' },
+    'dash-learning-time': { en: 'Learning Time', ar: 'وقت التعلم' },
+    'dash-courses-done': { en: 'Courses Completed', ar: 'الدورات المنجزة' },
+    'dash-vocab-mastery': { en: 'Vocab Mastery', ar: 'إتقان المفردات' },
+    'dash-speaking-score': { en: 'Speaking Score', ar: 'درجة التحدث' },
+    'dash-activity-chart': { en: 'Learning Activity', ar: 'نشاط التعلم' },
+    'dash-active-courses': { en: 'Active Courses', ar: 'الدورات الحالية' },
+    'dash-upcoming-labs': { en: 'Upcoming Labs', ar: 'المختبرات القادمة' },
+    'dash-view-all': { en: 'View All', ar: 'عرض الكل' },
+    'dash-welcome-sub': { en: 'Welcome back! Ready to continue your English journey?', ar: 'أهلاً بك مجدداً! هل أنت مستعد لمواصلة رحلتك؟' },
+    'dash-user-rank': { en: 'Premium Learner', ar: 'متعلم متميز' }
 };
 
 function initLanguage() {
@@ -383,6 +421,48 @@ function checkAuth() {
             dashGreetingEl.textContent = `${hiText}, ${user.firstName} 👋`;
         }
     }
+
+    if (document.getElementById('progressChart')) {
+        initProgressChart();
+    }
+}
+
+let progressChartInstance = null;
+function initProgressChart() {
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    if (progressChartInstance) progressChartInstance.destroy();
+
+    const isAr = lang === 'ar';
+    const labels = isAr 
+        ? ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت']
+        : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    progressChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: isAr ? 'وقت التعلم (دقائق)' : 'Learning Time (mins)',
+                data: [30, 45, 60, 20, 90, 120, 45],
+                borderColor: '#6c5ce7',
+                backgroundColor: 'rgba(108, 92, 231, 0.1)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
 }
 
 async function handleLogin(e) {
@@ -426,16 +506,53 @@ function initDashboard() {
     updateCoursesUI();
     initDailyGoals();
     updateVocabUI();
+    initUpcomingLabs();
+}
+
+function initUpcomingLabs() {
+    const container = document.getElementById('upcomingLabs');
+    if (!container) return;
+
+    const isAr = lang === 'ar';
+    const labs = [
+        { 
+            title: isAr ? 'دورة المصطلحات العامية' : 'Native Slang & Idioms',
+            time: isAr ? 'يبدأ خلال ٤٥ دقيقة' : 'Starting in 45 minutes',
+            icon: '🎙️', color: 'var(--info-bg)'
+        },
+        { 
+            title: isAr ? 'التحضير المكثف للآيلتس' : 'IELTS Strategy Intensive',
+            time: isAr ? 'غداً في ٦:٠٠ مساءً' : 'Tomorrow at 6:00 PM',
+            icon: '📝', color: 'var(--warning-bg)'
+        }
+    ];
+
+    container.innerHTML = labs.map(l => `
+        <div class="activity-item">
+            <div class="activity-icon" style="background:${l.color};">${l.icon}</div>
+            <div class="activity-info">
+                <div class="title">${l.title}</div>
+                <div class="time">${l.time}</div>
+            </div>
+            <button class="btn btn-primary btn-xs">${isAr ? 'انضم' : 'Join'}</button>
+        </div>
+    `).join('');
 }
 
 function updateCoursesUI() {
     const container = document.getElementById('activeCoursesContainer');
     if (!container) return;
 
-    // Mock data for current courses
+    const isAr = lang === 'ar';
     const active = [
-        { name: 'Intermediate Grammar mastery', progress: 65, color: 'var(--primary)' },
-        { name: 'Business Writing Essentials', progress: 42, color: 'var(--accent-teal)' }
+        { 
+            name: isAr ? COURSE_POOL[1].name.ar : COURSE_POOL[1].name.en, 
+            progress: 65, color: 'var(--primary)' 
+        },
+        { 
+            name: isAr ? COURSE_POOL[3].name.ar : COURSE_POOL[3].name.en, 
+            progress: 42, color: 'var(--accent-teal)' 
+        }
     ];
 
     container.innerHTML = active.map(c => `
@@ -455,17 +572,26 @@ function initDailyGoals() {
     const container = document.getElementById('dailyGoalsContainer');
     if (!container) return;
 
+    const isAr = lang === 'ar';
     const goals = [
-        { name: 'New Vocabulary', current: 10, target: 10, done: true, icon: '✓', color: 'var(--success)' },
-        { name: 'Speaking Practice', current: 5, target: 15, done: false, icon: '5m', color: 'var(--primary)' }
+        { 
+            name: isAr ? 'المفردات الجديدة' : 'New Vocabulary', 
+            current: 10, target: 10, done: true, icon: '✓', color: 'var(--success)',
+            sub: isAr ? 'تم الإنجاز اليوم!' : 'Completed for today!'
+        },
+        { 
+            name: isAr ? 'ممارسة التحدث' : 'Speaking Practice', 
+            current: 5, target: 15, done: false, icon: '5m', color: 'var(--primary)',
+            sub: isAr ? 'تبقى ١٠ دقائق' : '10 minutes remaining'
+        }
     ];
 
     container.innerHTML = goals.map(g => `
         <div style="display:flex; align-items:center; gap:var(--space-md);">
             <div style="width:40px; height:40px; border-radius:50%; border:3px solid ${g.color}; display:flex; align-items:center; justify-content:center; color:${g.color}; font-weight:800; font-size:0.8rem;">${g.icon}</div>
             <div style="flex:1;">
-                <div style="font-weight:600; font-size:0.9rem;">${g.name} (${g.current}/${g.target}${g.done ? '' : ' min'})</div>
-                <div style="font-size:0.75rem; color:var(--text-muted);">${g.done ? 'Completed for today!' : `${g.target - g.current} minutes remaining`}</div>
+                <div style="font-weight:600; font-size:0.9rem;">${g.name} (${g.current}/${g.target}${g.done ? '' : (isAr ? ' د' : ' min')})</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">${g.sub}</div>
             </div>
         </div>
     `).join('');
