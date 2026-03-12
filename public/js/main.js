@@ -3,75 +3,84 @@ let lang = localStorage.getItem('lingowise_lang') || 'ar';
 const COURSE_POOL = [
     { 
         id: 'beg-1', 
-        name: 'Complete English Foundations', 
-        level: 'Beginner', 
-        category: 'General', 
+        name: { en: 'Complete English Foundations', ar: 'أساسيات اللغة الإنجليزية الكاملة' }, 
+        level: { en: 'Beginner', ar: 'مبتدئ' }, 
+        category: { en: 'General', ar: 'عام' }, 
         icon: '🌱', 
         color: '#00d2d3',
         videoUrl: 'https://www.youtube.com/embed/juKDRv6S32I',
         lessons: [
-            { id: 1, title: 'Introduction to Tenses', duration: '12:05' },
-            { id: 2, title: 'Present Simple vs Continuous', duration: '15:20' },
-            { id: 3, title: 'Daily Life Vocabulary', duration: '10:45' }
+            { id: 1, title: { en: 'Introduction to Tenses', ar: 'مقدمة في الأزمنة' }, duration: '12:05' },
+            { id: 2, title: { en: 'Present Simple vs Continuous', ar: 'المضارع البسيط مقابل المستمر' }, duration: '15:20' },
+            { id: 3, title: { en: 'Daily Life Vocabulary', ar: 'مفردات الحياة اليومية' }, duration: '10:45' }
         ]
     },
     { 
         id: 'int-1', 
-        name: 'Mastering English Grammar', 
-        level: 'Intermediate', 
-        category: 'Grammar', 
+        name: { en: 'Mastering English Grammar', ar: 'إتقان قواعد اللغة الإنجليزية' }, 
+        level: { en: 'Intermediate', ar: 'متوسط' }, 
+        category: { en: 'Grammar', ar: 'قواعد' }, 
         icon: '📝', 
         color: '#6c5ce7',
         videoUrl: 'https://www.youtube.com/embed/pSj7S9Wp17A',
         lessons: [
-            { id: 1, title: 'The Passive Voice', duration: '18:10' },
-            { id: 2, title: 'Conditional Sentences', duration: '22:30' },
-            { id: 3, title: 'Relative Clauses', duration: '14:50' }
+            { id: 1, title: { en: 'The Passive Voice', ar: 'المبني للمجهول' }, duration: '18:10' },
+            { id: 2, title: { en: 'Conditional Sentences', ar: 'الجمل الشرطية' }, duration: '22:30' },
+            { id: 3, title: { en: 'Relative Clauses', ar: 'جمل الوصل' }, duration: '14:50' }
         ]
     },
     { 
         id: 'adv-1', 
-        name: 'Advanced Conversation & Fluency', 
-        level: 'Advanced', 
-        category: 'Speaking', 
+        name: { en: 'Advanced Conversation & Fluency', ar: 'المحادثة والطلاقة المتقدمة' }, 
+        level: { en: 'Advanced', ar: 'متقدم' }, 
+        category: { en: 'Speaking', ar: 'تحدث' }, 
         icon: '🎙️', 
         color: '#ff9f43',
         videoUrl: 'https://www.youtube.com/embed/6_fJ_Wv8n9U',
         lessons: [
-            { id: 1, title: 'Native-like Pronunciation', duration: '25:00' },
-            { id: 2, title: 'Slang & Idioms', duration: '19:15' },
-            { id: 3, title: 'Public Speaking in English', duration: '30:40' }
+            { id: 1, title: { en: 'Native-like Pronunciation', ar: 'نطق مثل المتحدثين الأصليين' }, duration: '25:00' },
+            { id: 2, title: { en: 'Slang & Idioms', ar: 'العامية والاصطلاحات' }, duration: '19:15' },
+            { id: 3, title: { en: 'Public Speaking in English', ar: 'التحدث أمام الجمهور بالإنجليزية' }, duration: '30:40' }
         ]
     },
     { 
         id: 'bus-1', 
-        name: 'English for Business Professionals', 
-        level: 'Business', 
-        category: 'Workplace', 
+        name: { en: 'English for Business Professionals', ar: 'الإنجليزية للمحترفين في الأعمال' }, 
+        level: { en: 'Business', ar: 'أعمال' }, 
+        category: { en: 'Workplace', ar: 'مكان العمل' }, 
         icon: '💼', 
         color: '#2e86de', 
         videoUrl: 'https://www.youtube.com/embed/nU0lS9T7mE0', 
-        lessons: [{id:1, title:'Business Email Writing', duration:'10:00'}, {id:2, title:'Negotiation Phrases', duration:'15:00'}] 
+        lessons: [
+            { id: 1, title: { en: 'Business Email Writing', ar: 'كتابة رسائل البريد الإلكتروني للأعمال' }, duration: '10:00' },
+            { id: 2, title: { en: 'Negotiation Phrases', ar: 'عبارات التفاوض' }, duration: '15:00' }
+        ] 
     },
     { 
         id: 'ielt-1', 
-        name: 'IELTS Success Masterclass', 
-        level: 'Advanced', 
-        category: 'Exams', 
+        name: { en: 'IELTS Success Masterclass', ar: 'ماستر كلاس النجاح في الآيلتس' }, 
+        level: { en: 'Advanced', ar: 'متقدم' }, 
+        category: { en: 'Exams', ar: 'امتحانات' }, 
         icon: '🎓', 
         color: '#ee5253', 
         videoUrl: 'https://www.youtube.com/embed/juKDRv6S32I', 
-        lessons: [{id:1, title:'IELTS Speaking Intro', duration:'15:00'}, {id:2, title:'Writing Task 2 Strategies', duration:'25:00'}] 
+        lessons: [
+            { id: 1, title: { en: 'IELTS Speaking Intro', ar: 'مقدمة تحدث الآيلتس' }, duration: '15:00' },
+            { id: 2, title: { en: 'Writing Task 2 Strategies', ar: 'استراتيجيات مهمة الكتابة 2' }, duration: '25:00' }
+        ] 
     },
     { 
         id: 'acad-1', 
-        name: 'Academic Writing Excellence', 
-        level: 'Advanced', 
-        category: 'Writing', 
+        name: { en: 'Academic Writing Excellence', ar: 'التميز في الكتابة الأكاديمية' }, 
+        level: { en: 'Advanced', ar: 'متقدم' }, 
+        category: { en: 'Writing', ar: 'كتابة' }, 
         icon: '✍️', 
         color: '#54a0ff', 
         videoUrl: 'https://www.youtube.com/embed/pSj7S9Wp17A', 
-        lessons: [{id:1, title:'Academic Essay Structure', duration:'20:00'}, {id:2, title:'Citations and Referencing', duration:'12:00'}] 
+        lessons: [
+            { id: 1, title: { en: 'Academic Essay Structure', ar: 'هيكل المقال الأكاديمي' }, duration: '20:00' },
+            { id: 2, title: { en: 'Citations and Referencing', ar: 'الاقتباسات والمراجع' }, duration: '12:00' }
+        ] 
     }
 ];
 
