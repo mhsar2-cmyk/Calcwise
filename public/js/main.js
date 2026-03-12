@@ -164,6 +164,11 @@ function applyLanguage(newLang) {
         if (translations[key] && translations[key][lang]) el.placeholder = translations[key][lang];
     });
 
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (translations[key] && translations[key][lang]) el.title = translations[key][lang];
+    });
+
     if (typeof updateAIAssistant === 'function') updateAIAssistant();
 }
 function toggleLanguage(l) { applyLanguage(l); }
@@ -479,6 +484,35 @@ const translations = {
     'auth-email': { en: 'Email Address', ar: 'البريد الإلكتروني' },
     'auth-welcome': { en: 'Welcome Back', ar: 'مرحباً بعودتك' },
     'auth-login-desc': { en: 'Access your learning progress.', ar: 'الوصول إلى تقدمك في التعلم.' },
+    'auth-or-signup': { en: 'or sign up with email', ar: 'أو سجل عبر البريد الإلكتروني' },
+    'auth-or-email': { en: 'or continue with email', ar: 'أو استمر عبر البريد الإلكتروني' },
+    'auth-first-name': { en: 'First Name', ar: 'الاسم الأول' },
+    'auth-last-name': { en: 'Last Name', ar: 'الاسم الأخير' },
+    'auth-first-ph': { en: 'John', ar: 'فلان' },
+    'auth-last-ph': { en: 'Doe', ar: 'الفلاني' },
+    'auth-email-ph': { en: 'you@example.com', ar: 'you@example.com' },
+    'auth-password': { en: 'Password', ar: 'كلمة المرور' },
+    'auth-confirm': { en: 'Confirm Password', ar: 'تأكيد كلمة المرور' },
+    'auth-password-ph': { en: 'Min. 8 characters', ar: '٨ أحرف على الأقل' },
+    'auth-password-ph-login': { en: '••••••••', ar: '••••••••' },
+    'auth-confirm-ph': { en: 'Re-enter password', ar: 'أعد إدخال كلمة المرور' },
+    'auth-remember': { en: 'Remember me for 30 days', ar: 'تذكرني لمدة ٣٠ يوم' },
+    'auth-forgot': { en: 'Forgot password?', ar: 'نسيت كلمة المرور؟' },
+    'auth-terms': { en: 'I agree to the', ar: 'أوافق على' },
+    'auth-tos': { en: 'Terms of Service', ar: 'شروط الخدمة' },
+    'auth-privacy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+    'auth-create-title': { en: 'Create Your Account ✨', ar: 'أنشئ حسابك ✨' },
+    'auth-create-desc': { en: 'Start your learning journey today — 100% free. 🚀', ar: 'ابدأ رحلة تعلمك اليوم - مجاناً ١٠٠٪. 🚀' },
+    'auth-create-btn': { en: 'Create Free Account', ar: 'إنشاء حساب مجاني' },
+    'auth-login-btn': { en: 'Log In', ar: 'تسجيل الدخول' },
+    'auth-has-account': { en: 'Already have an account?', ar: 'لديك حساب بالفعل؟' },
+    'auth-login-link': { en: 'Log in', ar: 'تسجيل الدخول' },
+    'auth-no-account': { en: "Don't have an account?", ar: 'ليس لديك حساب؟' },
+    'auth-signup-link': { en: 'Sign up free', ar: 'سجل مجاناً' },
+    'auth-social-google': { en: 'Google', ar: 'جوجل' },
+    'auth-social-apple': { en: 'Apple', ar: 'آبل' },
+    'auth-social-twitter': { en: 'Twitter', ar: 'تويتر' },
+    'auth-logo-text': { en: 'LingoWise', ar: 'لينغو وايز' },
 
     // About Page
     'about-title': { en: 'Empowering Your Language Future', ar: 'تمكين مستقبلك اللغوي' },
