@@ -498,7 +498,7 @@ const translations = {
 
     // Contact & Misc
     'contact-title': { en: 'Get in Touch', ar: 'تواصل معنا' },
-    'contact-desc': { en: 'We are here to help you.', ar: 'نحن هنا لمساعدتك.' },
+    'contact-subtitle': { en: "Have questions? We're here to help you on your learning journey.", ar: 'لديك أسئلة؟ نحن هنا لمساعدتك في رحلة تعلمك.' },
     'contact-send': { en: 'Send Message', ar: 'إرسال الرسالة' },
     'contact-name': { en: 'Your Name', ar: 'اسمك' },
     'contact-msg': { en: 'Your Message', ar: 'رسالتك' },
@@ -514,6 +514,12 @@ const translations = {
     'contact-subject': { en: 'Subject', ar: 'الموضوع' },
     'contact-msg-label': { en: 'Message', ar: 'الرسالة' },
     'contact-success': { en: 'Message sent! We will get back to you soon.', ar: 'تم إرسال الرسالة! سنقوم بالرد عليك قريباً.' },
+    'contact-name-ph': { en: 'John Doe', ar: 'فلان الفلاني' },
+    'contact-email-ph': { en: 'your@email.com', ar: 'بريدك@الإلكتروني.com' },
+    'contact-inquiry-gen': { en: 'General Inquiry', ar: 'استفسار عام' },
+    'contact-inquiry-tech': { en: 'Technical Support', ar: 'دعم فني' },
+    'contact-inquiry-feedback': { en: 'Course Feedback', ar: 'ملاحظات حول الدورات' },
+    'contact-inquiry-partner': { en: 'Partnership', ar: 'شراكة' },
     
     // Common Headings
     'nav-home': { en: 'Home', ar: 'الرئيسية' },

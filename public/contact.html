@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us — LingoWise</title>
+    <title data-i18n="contact-title">Contact Us — LingoWise</title>
     <meta name="description" content="Reach out to the LingoWise team for support, partnerships, or feedback.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon"
@@ -74,19 +74,19 @@
                     <form class="card p-3" onsubmit="event.preventDefault(); showToast('success', translations['contact-success'][lang]); this.reset();">
                         <div class="form-group">
                             <label data-i18n="contact-full-name">Full Name</label>
-                            <input type="text" class="form-control" placeholder="John Doe" required>
+                            <input type="text" class="form-control" data-i18n-placeholder="contact-name-ph" placeholder="John Doe" required>
                         </div>
                         <div class="form-group">
                             <label data-i18n="auth-email">Email Address</label>
-                            <input type="email" class="form-control" placeholder="your@email.com" required>
+                            <input type="email" class="form-control" data-i18n-placeholder="contact-email-ph" placeholder="your@email.com" required>
                         </div>
                         <div class="form-group">
                             <label data-i18n="contact-subject">Subject</label>
                             <select class="form-control">
-                                <option>General Inquiry</option>
-                                <option>Technical Support</option>
-                                <option>Course Feedback</option>
-                                <option>Partnership</option>
+                                <option data-i18n="contact-inquiry-gen">General Inquiry</option>
+                                <option data-i18n="contact-inquiry-tech">Technical Support</option>
+                                <option data-i18n="contact-inquiry-feedback">Course Feedback</option>
+                                <option data-i18n="contact-inquiry-partner">Partnership</option>
                             </select>
                         </div>
                         <div class="form-group">
