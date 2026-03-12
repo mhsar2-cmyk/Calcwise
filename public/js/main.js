@@ -485,6 +485,22 @@ const translations = {
     'grammar-topic-punctuation-desc': { en: 'Commas, semicolons, and rules.', ar: 'الفاصلة والفاصلة المنقوطة والقواعد.' },
     'grammar-view-guide': { en: 'View Guide', ar: 'عرض الدليل' },
     'filter-business': { en: 'Business', ar: 'الأعمال' },
+    'filter-beginner': { en: 'Beginner', ar: 'مبتدئ' },
+    'filter-intermediate': { en: 'Intermediate', ar: 'متوسط' },
+    'filter-advanced': { en: 'Advanced', ar: 'متقدم' },
+    'courses-hero-title': { en: 'Our English', ar: 'دوراتنا في' },
+    'courses-hero-title-2': { en: 'Courses', ar: 'اللغة الإنجليزية' },
+    'courses-hero-sub': { en: 'Comprehensive learning paths designed to take you from beginner to native-like fluency.', ar: 'مسارات تعلم شاملة مصممة لتنقلك من المستوى المبتدئ إلى الطلاقة.' },
+    'cta-title-1': { en: 'Ready to Master English?', ar: 'جاهز لإتقان الإنجليزية؟' },
+    'cta-desc': { en: 'Join thousands of learners achieving fluency with LingoWise. Your global career starts here.', ar: 'انضم إلى آلاف المتعلمين الذين يحققون الطلاقة مع لينغو وايز. مسيرتك العالمية تبدأ من هنا.' },
+    'stat-learners': { en: 'Active Learners', ar: 'متعلم نشط' },
+    'stat-countries': { en: 'Countries Represented', ar: 'دولة ممثلة' },
+    'stat-satisfaction': { en: 'Success Rate', ar: 'معدل النجاح' },
+    'feature-1-title': { en: 'AI Speaking Lab ⚡', ar: 'مختبر التحدث الذكي ⚡' },
+    'feature-1-desc': { en: 'Practice real conversations with our AI tutor and get instant feedback on pronunciation.', ar: 'مارس محادثات حقيقية مع مدرسنا الذكي واحصل على تعليقات فورية على نطقك.' },
+    'feature-2-title': { en: 'Progress Trackers 🎓', ar: 'تتبع التقدم 🎓' },
+    'feature-2-desc': { en: 'Visualize your growth with detailed analytics for vocabulary, grammar, and fluency.', ar: 'تصور نموك مع تحليلات مفصلة للمفردات والقواعد والطلاقة.' },
+    'dash-learner-default': { en: 'Learner', ar: 'متعلم' },
 };
 
 // ===== DASHBOARD LOGIC =====
@@ -492,8 +508,9 @@ function initDashboard() {
     const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
     const hiEl = document.getElementById('dashboardUser');
     const nameEl = document.getElementById('userName');
-    if (hiEl) hiEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName || 'Learner'} 👋`;
-    if (nameEl) nameEl.innerText = user.firstName || 'Learner';
+    const defaultName = translations['dash-learner-default'][lang];
+    if (hiEl) hiEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName || defaultName} 👋`;
+    if (nameEl) nameEl.innerText = user.firstName || defaultName;
     
     updateDashboardStats();
     updateActiveCourses();
