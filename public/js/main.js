@@ -1,4 +1,4 @@
-let lang = localStorage.getItem('lingowise_lang') || 'en';
+let lang = localStorage.getItem('lingowise_lang') || 'ar';
 
 const COURSE_POOL = [
     { 
@@ -128,7 +128,7 @@ function applyTheme(theme) {
 function toggleTheme(theme) { applyTheme(theme); }
 
 function initLanguage() {
-    const saved = localStorage.getItem('lingowise_lang') || 'en';
+    const saved = localStorage.getItem('lingowise_lang') || 'ar';
     applyLanguage(saved);
 }
 
