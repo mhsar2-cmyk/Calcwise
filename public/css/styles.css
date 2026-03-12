@@ -1,5 +1,5 @@
 /* ========================================
-   LINGOWISE - Master English with Smart Learning
+   CALCWISE - Premium Financial Platform
    Design System & Global Styles
    ======================================== */
 
@@ -1604,77 +1604,6 @@ select.form-control {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ===== Utilities ===== */
-.m-top-md { margin-top: var(--space-md); }
-.m-top-lg { margin-top: var(--space-lg); }
-.m-top-xl { margin-top: var(--space-xl); }
-.m-bottom-md { margin-bottom: var(--space-md); }
-.m-bottom-lg { margin-bottom: var(--space-lg); }
-.m-bottom-xl { margin-bottom: var(--space-xl); }
-.p-xl { padding: var(--space-xl); }
-.p-2xl { padding: var(--space-2xl); }
-.w-100 { width: 100%; }
-.text-link { color: var(--primary-light); cursor: pointer; text-decoration: none; transition: color var(--transition-fast); }
-.text-link:hover { color: var(--primary); text-decoration: underline; }
-
-/* ===== Activity Items ===== */
-.activity-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-}
-.activity-item:hover {
-  background: var(--bg-card-hover);
-  transform: translateX(4px);
-}
-.activity-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-.activity-info {
-  flex: 1;
-}
-.activity-info .title {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--text-primary);
-}
-.activity-info .time {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-/* ===== Chart Components ===== */
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-lg);
-}
-.chart-legend {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
 }
 
 /* ===== Toast/Notification ===== */

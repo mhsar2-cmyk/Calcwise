@@ -1,7 +1,7 @@
 {
-    "name": "lingowise",
+    "name": "calcwise",
     "version": "2.0.0",
-    "description": "LingoWise — Master English with Smart Learning",
+    "description": "CalcWise — Smart Financial Intelligence Platform",
     "main": "api/index.js",
     "scripts": {
         "dev": "node api/index.js",

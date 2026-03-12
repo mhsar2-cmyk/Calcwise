@@ -1,41 +1,37 @@
 /**
- * Learning Progress Service
- * Manages user's course progress and stats.
+ * Portfolio Service
+ * Manages user's asset holdings.
  */
 const supabase = require('../supabase');
 
-const getProgress = async (userId) => {
-    // Return mock data for demo if DB not available
-    if (!supabase) return [
-        { courseId: 'beg-1', progress: 65, status: 'active' },
-        { courseId: 'int-1', progress: 12, status: 'active' }
-    ];
+const getPortfolio = async (userId) => {
+    if (!supabase) return [];
 
     const { data, error } = await supabase
-        .from('learning_progress')
+        .from('portfolio')
         .select('*')
         .eq('user_id', userId);
 
     if (error) {
-        console.warn('Progress fetch failed, using fallback.');
+        console.error('Portfolio fetch error:', error);
         return [];
     }
     return data;
 };
 
-const updateProgress = async (progressData) => {
-    const { userId, courseId, progress, status } = progressData;
+const addAsset = async (assetData) => {
+    const { userId, name, symbol, market, qty, avgCost, icon, color } = assetData;
 
-    if (!supabase) return { success: true, mock: true };
+    if (!supabase) throw new Error('Database connection missing');
 
     const { data, error } = await supabase
-        .from('learning_progress')
-        .upsert([{
+        .from('portfolio')
+        .insert([{
             user_id: userId,
-            course_id: courseId,
-            progress: parseFloat(progress),
-            status,
-            updated_at: new Date()
+            name, symbol, market,
+            qty: parseFloat(qty),
+            avg_cost: parseFloat(avgCost),
+            icon, color
         }])
         .select();
 
@@ -43,4 +39,11 @@ const updateProgress = async (progressData) => {
     return data[0];
 };
 
-module.exports = { getProgress, updateProgress };
+const removeAsset = async (id) => {
+    if (!supabase) return false;
+    const { error } = await supabase.from('portfolio').delete().eq('id', id);
+    if (error) throw new Error(error.message);
+    return true;
+};
+
+module.exports = { getPortfolio, addAsset, removeAsset };

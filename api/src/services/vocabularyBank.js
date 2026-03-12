@@ -1,39 +1,34 @@
 /**
- * Vocabulary Bank Service
- * Manages user's saved words and phrases.
+ * Trade Journal Service
+ * Manages user's past trades and notes.
  */
 const supabase = require('../supabase');
 
-const getBank = async (userId) => {
-    if (!supabase) return [
-        { id: 1, word: 'Resilience', translation: 'المرونة', category: 'General' },
-        { id: 2, word: 'Ambiguous', translation: 'غامض', category: 'General' }
-    ];
+const getJournal = async (userId) => {
+    if (!supabase) return [];
 
     const { data, error } = await supabase
-        .from('vocabulary_bank')
+        .from('journals')
         .select('*')
         .eq('user_id', userId);
 
     if (error) {
-        console.error('Bank fetch error:', error);
+        console.error('Journal fetch error:', error);
         return [];
     }
     return data;
 };
 
-const addWord = async (wordData) => {
-    const { userId, word, translation, category } = wordData;
+const addTrade = async (tradeData) => {
+    const { userId, asset, type, entry, exit, qty, pnl, notes } = tradeData;
 
-    if (!supabase) return { success: true, mock: true };
+    if (!supabase) throw new Error('Database connection missing');
 
     const { data, error } = await supabase
-        .from('vocabulary_bank')
+        .from('journals')
         .insert([{
             user_id: userId,
-            word,
-            translation,
-            category
+            asset, type, entry, exit, qty, pnl, notes
         }])
         .select();
 
@@ -41,11 +36,11 @@ const addWord = async (wordData) => {
     return data[0];
 };
 
-const removeWord = async (id) => {
-    if (!supabase) return true;
-    const { error } = await supabase.from('vocabulary_bank').delete().eq('id', id);
+const removeTrade = async (id) => {
+    if (!supabase) return false;
+    const { error } = await supabase.from('journals').delete().eq('id', id);
     if (error) throw new Error(error.message);
     return true;
 };
 
-module.exports = { getBank, addWord, removeWord };
+module.exports = { getJournal, addTrade, removeTrade };
