@@ -168,6 +168,54 @@ function applyLanguage(newLang) {
 }
 function toggleLanguage(l) { applyLanguage(l); }
 
+function handleSignup(e) {
+    e.preventDefault();
+    const first = document.getElementById('signup-first').value;
+    const last = document.getElementById('signup-last').value;
+    const email = document.getElementById('signup-email').value;
+    const pass = document.getElementById('signup-password').value;
+    const confirm = document.getElementById('signup-confirm').value;
+
+    if (pass !== confirm) {
+        showToast('error', translations['auth-error-match'][lang]);
+        return;
+    }
+
+    // Simulate account creation
+    const user = { firstName: first, lastName: last, email: email };
+    localStorage.setItem('lingowise_user', JSON.stringify(user));
+    localStorage.setItem('lingowise_logged_in', 'true');
+    localStorage.setItem('lingowise_token', 'simulated-jwt-token');
+
+    showToast('success', translations['auth-success-signup'][lang]);
+    setTimeout(() => window.location.href = 'dashboard.html', 1500);
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const pass = document.getElementById('login-password').value;
+
+    // Simulate login logic - just accept any valid looking email for demo
+    if (email && pass.length >= 8) {
+        const existingUser = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
+        const user = { 
+            firstName: existingUser.firstName || 'Learner', 
+            lastName: existingUser.lastName || '', 
+            email: email 
+        };
+        
+        localStorage.setItem('lingowise_user', JSON.stringify(user));
+        localStorage.setItem('lingowise_logged_in', 'true');
+        localStorage.setItem('lingowise_token', 'simulated-jwt-token');
+        
+        showToast('success', translations['auth-success-login'][lang]);
+        setTimeout(() => window.location.href = 'dashboard.html', 1500);
+    } else {
+        showToast('error', translations['auth-error-invalid'][lang]);
+    }
+}
+
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -272,13 +320,15 @@ function updateAuthUI() {
     if (authContainer) {
         if (isLoggedIn && user.firstName) {
             authContainer.innerHTML = `
-                <span class="text-sm mr-2">${translations['nav-welcome'][lang]}, ${user.firstName}!</span>
-                <button class="btn btn-sm btn-outline-primary" onclick="handleLogout()">${translations['nav-logout'][lang]}</button>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <a href="dashboard.html" style="font-weight:600; font-size:0.9rem; color:var(--primary-light); text-decoration:none;">${translations['nav-welcome'][lang]}, ${user.firstName}</a>
+                    <button class="btn btn-ghost btn-sm" onclick="handleLogout()">${translations['nav-logout'][lang]}</button>
+                </div>
             `;
         } else {
             authContainer.innerHTML = `
-                <a href="login.html" class="btn btn-sm btn-outline-primary mr-2">${translations['nav-login'][lang]}</a>
-                <a href="signup.html" class="btn btn-sm btn-primary">${translations['nav-signup'][lang]}</a>
+                <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav-login">${translations['nav-login'][lang]}</a>
+                <a href="signup.html" class="btn btn-primary btn-sm" data-i18n="nav-get-started">${translations['nav-get-started'][lang]}</a>
             `;
         }
     }
@@ -501,6 +551,10 @@ const translations = {
     'feature-2-title': { en: 'Progress Trackers 🎓', ar: 'تتبع التقدم 🎓' },
     'feature-2-desc': { en: 'Visualize your growth with detailed analytics for vocabulary, grammar, and fluency.', ar: 'تصور نموك مع تحليلات مفصلة للمفردات والقواعد والطلاقة.' },
     'dash-learner-default': { en: 'Learner', ar: 'متعلم' },
+    'auth-error-match': { en: 'Passwords do not match!', ar: 'كلمات المرور غير متطابقة!' },
+    'auth-success-signup': { en: 'Account created! Redirecting...', ar: 'تم إنشاء الحساب! جاري التحويل...' },
+    'auth-success-login': { en: 'Welcome back! Redirecting...', ar: 'مرحباً بعودتك! جاري التحويل...' },
+    'auth-error-invalid': { en: 'Invalid email or password.', ar: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.' },
 };
 
 // ===== DASHBOARD LOGIC =====
