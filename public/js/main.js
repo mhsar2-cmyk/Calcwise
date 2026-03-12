@@ -375,6 +375,107 @@ const translations = {
     'stats-desc': { en: 'Empowering learners from every corner of the world.', ar: 'تمكين المتعلمين من كل ركن في العالم.' },
     'features-title-1': { en: 'Why Choose', ar: 'لماذا تختار' },
     'features-title-2': { en: 'LingoWise', ar: 'لينغو وايز' },
+    'features-desc': { en: 'Innovative tools designed to make language learning effective and fun', ar: 'أدوات مبتكرة مصممة لجعل تعلم اللغة فعالاً وممتعاً' },
+    
+    // Blog Page
+    'blog-hero-title': { en: 'Learning Blog', ar: 'مدونة التعلم' },
+    'blog-hero-sub': { en: 'Expert language tips, study strategies, and guides.', ar: 'نصائح لغوية من الخبراء، استراتيجيات دراسية، وأدلة.' },
+    'filter-all': { en: 'All', ar: 'الكل' },
+    'filter-grammar': { en: 'Grammar', ar: 'القواعد' },
+    'filter-education': { en: 'Study Tips', ar: 'نصائح دراسية' },
+    'blog-newsletter-title-1': { en: 'Stay', ar: 'ابقَ' },
+    'blog-newsletter-title-2': { en: 'Informed', ar: 'على اطلاع' },
+    'blog-newsletter-desc': { en: 'Get weekly language learning tips delivered to your inbox.', ar: 'احصل على نصائح تعلم اللغة أسبوعياً في بريدك الوارد.' },
+    'blog-subscribe': { en: 'Subscribe', ar: 'اشترك الآن' },
+    
+    // Blog Cards
+    'blog-card-1-title': { en: 'Top 10 Phrasal Verbs for Business', ar: 'أهم 10 أفعال مركبة للأعمال' },
+    'blog-card-1-desc': { en: 'Master common expressions in professional settings.', ar: 'أتقن التعبيرات الشائعة في الأماكن المهنية.' },
+    'blog-card-2-title': { en: 'IELTS Preparation Guide 2026', ar: 'دليل التحضير لـ IELTS 2026' },
+    'blog-card-2-desc': { en: 'Expert strategies for a higher score on your first try.', ar: 'استراتيجيات الخبراء للحصول على درجة أعلى من المحاولة الأولى.' },
+    'blog-card-3-title': { en: 'Mastering Pronunciation', ar: 'إتقان النطق' },
+    'blog-card-3-desc': { en: 'Techniques used by native speakers for clear speech.', ar: 'تقنيات يستخدمها المتحدثون الأصليون للتحدث بوضوح.' },
+    'blog-card-8-title': { en: 'English Fluency for Professionals', ar: 'الطلاقة الإنجليزية للمحترفين' },
+    'blog-card-8-desc': { en: 'How to integrate learning into your busy schedule.', ar: 'كيفية دمج التعلم في جدولك المزدحم.' },
+    'blog-card-9-title': { en: 'Common Grammar Pitfalls', ar: 'أخطاء القواعد الشائعة' },
+    'blog-card-9-desc': { en: 'How to avoid them and speak more naturally.', ar: 'كيفية تجنبها والتحدث بشكل طبيعي أكثر.' },
+    'blog-card-10-title': { en: 'Spaced Repetition Mastery', ar: 'إتقان التكرار المتباعد' },
+    'blog-card-10-desc': { en: 'Why consistency is key to vocabulary growth.', ar: 'لماذا الاستمرارية هي مفتاح نمو المفردات.' },
+    'blog-view-all': { en: 'View All Articles →', ar: 'عرض جميع المقالات ←' },
+    'blog-date-1': { en: 'Mar 8, 2026', ar: '٨ مارس ٢٠٢٦' },
+    'blog-date-2': { en: 'Mar 6, 2026', ar: '٦ مارس ٢٠٢٦' },
+    'blog-date-6': { en: 'Mar 4, 2026', ar: '٤ مارس ٢٠٢٦' },
+    'blog-date-8': { en: 'Feb 25, 2026', ar: '٢٥ فبراير ٢٠٢٦' },
+    'blog-date-9': { en: 'Feb 22, 2026', ar: '٢٢ فبراير ٢٠٢٦' },
+    'blog-date-10': { en: 'Feb 20, 2026', ar: '٢٠ فبراير ٢٠٢٦' },
+
+    'auth-email': { en: 'Email Address', ar: 'البريد الإلكتروني' },
+    'auth-welcome': { en: 'Welcome Back', ar: 'مرحباً بعودتك' },
+    'auth-login-desc': { en: 'Access your learning progress.', ar: 'الوصول إلى تقدمك في التعلم.' },
+
+    // About Page
+    'about-title': { en: 'Empowering Your Language Future', ar: 'تمكين مستقبلك اللغوي' },
+    'about-subtitle': { en: 'Professional tools, 100% free.', ar: 'أدوات احترافية، مجانية ١٠٠٪.' },
+    'about-mission-title': { en: 'Our Mission', ar: 'مهمتنا' },
+    'value-transparency-title': { en: 'Accessibility', ar: 'سهولة الوصول' },
+    'value-speed-title': { en: 'Innovation', ar: 'الابتكار' },
+    'value-reliability-title': { en: 'Community', ar: 'المجتمع' },
+    'footer-learning': { en: 'Learning Hub', ar: 'مركز التعلم' },
+
+    // Community Page
+    'community-title': { en: 'Join the Community', ar: 'انضم للمجتمع' },
+    'community-subtitle': { en: 'Connect with thousands of learners.', ar: 'تواصل مع آلاف المتعلمين.' },
+    'community-groups': { en: 'Study Groups', ar: 'مجموعات الدراسة' },
+    'community-events': { en: 'Live Events', ar: 'فعاليات مباشرة' },
+    'comm-hero-title': { en: 'Global', ar: 'مجتمع' },
+    'comm-hero-title-2': { en: 'Community', ar: 'عالمي' },
+    'comm-hero-sub': { en: 'Connect with fellow learners and practice together.', ar: 'تواصل مع زملائك المتعلمين وتدربوا معاً.' },
+    'comm-groups-title': { en: 'Active Study Groups', ar: 'مجموعات الدراسة النشطة' },
+    'comm-members': { en: 'members', ar: 'عضو' },
+    'comm-online': { en: 'Online Now', ar: 'متصل الآن' },
+    'comm-join-btn': { en: 'Join Group', ar: 'انضم للمجموعة' },
+    'comm-events-title': { en: 'Upcoming Live Events', ar: 'الفعاليات المباشرة القادمة' },
+    'comm-event-reminder': { en: 'Set Reminder', ar: 'تعيين تذكير' },
+
+    // Contact & Misc
+    'contact-title': { en: 'Get in Touch', ar: 'تواصل معنا' },
+    'contact-desc': { en: 'We are here to help you.', ar: 'نحن هنا لمساعدتك.' },
+    'contact-send': { en: 'Send Message', ar: 'إرسال الرسالة' },
+    'contact-name': { en: 'Your Name', ar: 'اسمك' },
+    'contact-msg': { en: 'Your Message', ar: 'رسالتك' },
+    'sidebar-community': { en: 'Community', ar: 'المجتمع' },
+    'dash-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
+    
+    // Contact Details
+    'contact-office': { en: 'Our Office', ar: 'مكتبنا' },
+    'contact-riyadh': { en: 'Riyadh, Saudi Arabia', ar: 'الرياض، المملكة العربية السعودية' },
+    'contact-email-us': { en: 'Email Us', ar: 'راسلنا' },
+    'contact-follow-us': { en: 'Follow Us', ar: 'تابعنا' },
+    'contact-full-name': { en: 'Full Name', ar: 'الاسم الكامل' },
+    'contact-subject': { en: 'Subject', ar: 'الموضوع' },
+    'contact-msg-label': { en: 'Message', ar: 'الرسالة' },
+    'contact-success': { en: 'Message sent! We will get back to you soon.', ar: 'تم إرسال الرسالة! سنقوم بالرد عليك قريباً.' },
+    
+    // Common Headings
+    'nav-home': { en: 'Home', ar: 'الرئيسية' },
+    'nav-courses': { en: 'Courses', ar: 'الدورات' },
+    'nav-blog': { en: 'Blog', ar: 'المدونة' },
+    'nav-community': { en: 'Community', ar: 'المجتمع' },
+    
+    // Grammar
+    'grammar-hero-title': { en: 'Grammar', ar: 'دليل' },
+    'grammar-hero-title-2': { en: 'Guide', ar: 'القواعد' },
+    'grammar-hero-sub': { en: 'Essential grammar rules explained simply.', ar: 'قواعد اللغة الأساسية مشروحة ببساطة.' },
+    'grammar-topic-tenses': { en: 'Verb Tenses', ar: 'أزمنة الأفعال' },
+    'grammar-topic-tenses-desc': { en: 'Master Past, Present, and Future forms.', ar: 'أتقن صيغ الماضي والمضارع والمستقبل.' },
+    'grammar-topic-parts': { en: 'Parts of Speech', ar: 'أقسام الكلام' },
+    'grammar-topic-parts-desc': { en: 'Nouns, verbs, adjectives, and more.', ar: 'الأسماء والأفعال والصفات والمزيد.' },
+    'grammar-topic-sentence': { en: 'Sentence Structure', ar: 'بناء الجملة' },
+    'grammar-topic-sentence-desc': { en: 'Clauses, phrases, and complex types.', ar: 'الجمل والعبارات والأنواع المعقدة.' },
+    'grammar-topic-punctuation': { en: 'Punctuation', ar: 'علامات الترقيم' },
+    'grammar-topic-punctuation-desc': { en: 'Commas, semicolons, and rules.', ar: 'الفاصلة والفاصلة المنقوطة والقواعد.' },
+    'grammar-view-guide': { en: 'View Guide', ar: 'عرض الدليل' },
+    'filter-business': { en: 'Business', ar: 'الأعمال' },
 };
 
 // ===== DASHBOARD LOGIC =====
@@ -658,3 +759,59 @@ function getSpeakingAnalysis(topicId) {
         suggestedVocab: { word: 'Consistency', translation: lang === 'ar' ? 'الاستمرارية' : 'Consistency', cat: 'Academic' }
     };
 }
+
+// ===== BLOG LOGIC =====
+function filterBlog(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cards = document.querySelectorAll('.blog-card');
+    cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+const BLOG_CONTENT = {
+    1: {
+        title: { en: 'Top 10 Phrasal Verbs for Business', ar: 'أهم 10 أفعال مركبة للأعمال' },
+        content: { 
+            en: 'Phrasal verbs are essential for natural English. In business, we use "bring up" (suggest), "call off" (cancel), and "put off" (postpone)...',
+            ar: 'الأفعال المركبة ضرورية للغة إنجليزية طبيعية. في الأعمال، نستخدم "bring up" (اقتراح)، "call off" (إلغاء)، و "put off" (تأجيل)...'
+        }
+    },
+    2: {
+        title: { en: 'IELTS Speaking Success', ar: 'نجاح التحدث في الايلتس' },
+        content: { 
+            en: 'To score Band 7+, focus on lexical resource and grammatical range. Don\'t just use "good", use "exceptional" or "remarkable"...',
+            ar: 'للحصول على درجة 7+، ركز على الموارد المعجمية والنطاق النحوي. لا تستخدم فقط "good"، بل استخدم "exceptional" أو "remarkable"...'
+        }
+    }
+};
+
+function openBlogModal(id) {
+    const modal = document.getElementById('blogModal');
+    const contentArea = document.getElementById('blogContentArea');
+    const post = BLOG_CONTENT[id] || { title: { en: 'New Post', ar: 'مقال جديد' }, content: { en: 'Content coming soon...', ar: 'المحتوى قريباً...' } };
+    
+    if (modal && contentArea) {
+        contentArea.innerHTML = `
+            <h2 style="margin-bottom:20px;">${post.title[lang]}</h2>
+            <div style="line-height:1.6; font-size:1.1rem; color:var(--text-secondary);">
+                ${post.content[lang]}
+            </div>
+            <div style="margin-top:30px; padding-top:20px; border-top:1px solid var(--border-subtle);">
+                <button class="btn btn-primary" onclick="closeBlogModal()">Close</button>
+            </div>
+        `;
+        modal.classList.add('active');
+    }
+}
+
+function closeBlogModal() {
+    const modal = document.getElementById('blogModal');
+    if (modal) modal.classList.remove('active');
+}
+
