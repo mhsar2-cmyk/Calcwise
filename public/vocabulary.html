@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Bank — LingoWise</title>
+    <meta name="description"
+        content="Personalized vocabulary bank. Save new words, organize by category, and master them with active recall.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    
+    <style>
+        .vocab-controls {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .vocab-card {
+            padding: var(--space-xl);
+            position: relative;
+            animation: fadeInUp 0.4s ease forwards;
+        }
+
+        .vocab-card .delete-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .vocab-card:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .vocab-word {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: var(--space-xs);
+        }
+
+        .vocab-translation {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .vocab-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .vocab-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            background: rgba(108, 92, 231, 0.1);
+            color: var(--primary-light);
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .vocab-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .review-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #a29bfe 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            color: white;
+            margin-bottom: var(--space-2xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.2);
+        }
+
+        .review-banner h2 { margin-bottom: 0.5rem; }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-CQ0F5LVG3J");
+    </script>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🎓</div> LingoWise
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <a href="courses.html" data-i18n="nav-courses">Courses</a>
+                <a href="speaking-lab.html" data-i18n="sidebar-speaking">AI Speaking Lab</a>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <a href="dashboard.html" class="btn btn-ghost btn-sm" data-i18n="sidebar-dashboard">Dashboard</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <section class="section" style="margin-top:var(--header-height);">
+        <div class="container">
+            
+            <div class="review-banner reveal">
+                <div>
+                    <h2 data-i18n="vocab-hero-title">Vocabulary Bank</h2>
+                    <p data-i18n="vocab-hero-sub">Master 15 words scheduled for review today.</p>
+                </div>
+                <button class="btn btn-gold btn-lg" data-i18n="vocab-review-btn">Start Review Session 🔥</button>
+            </div>
+
+            <div class="vocab-controls reveal">
+                <div class="search-box">
+                    <input type="text" id="vocabSearch" placeholder="Search words..." data-i18n="[placeholder]vocab-search-ph" oninput="handleVocabSearch(this.value)">
+                </div>
+                <select class="form-control" style="width:auto; min-width:180px;" id="vocabFilterCat" onchange="handleVocabFilter(this.value)">
+                    <option value="all" data-i18n="vocab-filter-all">All Categories</option>
+                    <option value="general">General</option>
+                    <option value="business">Business</option>
+                    <option value="academic">Academic</option>
+                </select>
+                <button class="btn btn-primary" onclick="openModal('addWordModal')" data-i18n="dash-vocab-add">+ Add Word</button>
+            </div>
+
+            <div class="vocab-grid" id="vocabularyGrid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ADD WORD MODAL -->
+    <div class="modal-overlay" id="addWordModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 data-i18n="modal-add-word-title">Add New Word</h3>
+                <button class="modal-close" onclick="closeModal('addWordModal')">✕</button>
+            </div>
+            <form onsubmit="addVocabulary(event)">
+                <div class="form-group">
+                    <label data-i18n="label-word">Word / Phrase</label>
+                    <input type="text" class="form-control" id="vocab-word" placeholder="e.g. Resilience" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label-translation">Translation</label>
+                    <input type="text" class="form-control" id="vocab-translation" placeholder="e.g. المرونة" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label-category">Category</label>
+                    <select class="form-control" id="vocab-category">
+                        <option value="General">General</option>
+                        <option value="Business">Business</option>
+                        <option value="Academic">Academic</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" data-i18n="btn-save-word">Save to Bank</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/main.js"></script>
+    <!-- FLOATING THEME TOGGLE -->
+    <div class="floating-toggles"
+        onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
+        title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
+</body>
+
+</html>

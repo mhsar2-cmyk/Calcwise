@@ -7,4 +7,4 @@ Allow: /
 Disallow: /dashboard.html
 
 # Sitemaps
-Sitemap: https://calcwises.com/sitemap.xml
+Sitemap: https://lingowise.com/sitemap.xml

@@ -1,15 +1,16 @@
-let lang = localStorage.getItem('calcwise_lang') || 'en';
+let lang = localStorage.getItem('lingowise_lang') || 'en';
 
 const COURSE_POOL = [
-    { id: 'beg-1', name: 'Beginner English 101', level: 'Beginner', category: 'General', icon: '🌱', color: '#00d2d3' },
-    { id: 'int-1', name: 'Intermediate Grammar', level: 'Intermediate', category: 'Grammar', icon: '📝', color: '#6c5ce7' },
-    { id: 'adv-1', name: 'Advanced Speaking', level: 'Advanced', category: 'Speaking', icon: '🎙️', color: '#ff9f43' },
-    { id: 'bus-1', name: 'Business Writing', level: 'Business', category: 'Writing', icon: '💼', color: '#2e86de' },
-    { id: 'ielt-1', name: 'IELTS Prep Masterclass', level: 'Advanced', category: 'Exam', icon: '🎓', color: '#ee5253' }
+    { id: 'beg-1', name: 'Complete English Foundations', level: 'Beginner', category: 'General', icon: '🌱', color: '#00d2d3' },
+    { id: 'int-1', name: 'Mastering English Grammar', level: 'Intermediate', category: 'Grammar', icon: '📝', color: '#6c5ce7' },
+    { id: 'adv-1', name: 'Advanced Conversation & Fluency', level: 'Advanced', category: 'Speaking', icon: '🎙️', color: '#ff9f43' },
+    { id: 'bus-1', name: 'English for Business Professionals', level: 'Business', category: 'Workplace', icon: '💼', color: '#2e86de' },
+    { id: 'ielt-1', name: 'IELTS Success Masterclass', level: 'Advanced', category: 'Exams', icon: '🎓', color: '#ee5253' },
+    { id: 'acad-1', name: 'Academic Writing Excellence', level: 'Advanced', category: 'Writing', icon: '✍️', color: '#54a0ff' }
 ];
 
 async function secureFetch(url, options = {}) {
-    const token = localStorage.getItem('calcwise_token');
+    const token = localStorage.getItem('lingowise_token');
     const headers = {
         'Content-Type': 'application/json',
         ...options.headers
@@ -26,13 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguage();
     initNavbar();
     initScrollReveal();
-    initTicker();
+
     initParticles();
     initDashboard();
+    initCourses();
+    initVocabularyPage();
+    initMyCoursesPage();
     updateLastUpdated();
     checkAuth();
     initAIAssistant();
-    initEconomicCalendar();
+
     initSessionClock();
 
     // Global click listener to close dropdowns when clicking outside
@@ -66,13 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== THEME TOGGLE (Dark / Light) =====
 function initTheme() {
-    const saved = localStorage.getItem('calcwise_theme') || 'dark';
+    const saved = localStorage.getItem('lingowise_theme') || 'dark';
     applyTheme(saved);
 }
 
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('calcwise_theme', theme);
+    localStorage.setItem('lingowise_theme', theme);
 
     // Update toggle UI
     document.querySelectorAll('.theme-toggle .toggle-option').forEach(opt => {
@@ -89,7 +93,6 @@ const translations = {
     // ---- NAVIGATION ----
     'nav-home': { en: 'Home', ar: 'الرئيسية' },
     'nav-courses': { en: 'Courses', ar: 'الدورات' },
-    'nav-labs': { en: 'Live Labs', ar: 'مختبرات مباشرة' },
     'nav-blog': { en: 'Blog', ar: 'المدونة' },
     'nav-community': { en: 'Community', ar: 'المجتمع' },
     'nav-login': { en: 'Log In', ar: 'تسجيل الدخول' },
@@ -122,9 +125,6 @@ const translations = {
     'level-business-link': { en: 'Go Pro →', ar: 'كن محترفاً ←' },
 
     // ---- LEARNING STATS ----
-    'stats-title-1': { en: 'Join a', ar: 'انضم إلى' },
-    'stats-title-2': { en: 'Global Community', ar: 'مجتمع عالمي' },
-    'stats-desc': { en: 'Empowering learners from every corner of the world.', ar: 'تمكين المتعلمين من كل ركن في العالم.' },
     'stat-learners': { en: 'Active Learners', ar: 'متعلم نشط' },
     'stat-countries': { en: 'Countries Represented', ar: 'دولة ممثلة' },
     'stat-satisfaction': { en: 'Success Rate', ar: 'نسبة النجاح' },
@@ -133,9 +133,6 @@ const translations = {
     'stat-satisfaction-val': { en: '98%', ar: '٩٨٪' },
 
     // ---- FEATURES ----
-    'features-title-1': { en: 'Why Choose', ar: 'لماذا تختار' },
-    'features-title-2': { en: 'LingoWise', ar: 'LingoWise' },
-    'features-desc': { en: 'Innovative tools designed to make language learning effective and fun', ar: 'أدوات مبتكرة مصممة لجعل تعلم اللغة فعالاً وممتعاً' },
     'feature-1-title': { en: 'AI Speaking Lab ⚡', ar: 'مختبر التحدث بالذكاء الاصطناعي ⚡' },
     'feature-1-desc': { en: 'Practice real conversations with our AI tutor and get instant feedback on pronunciation.', ar: 'مارس محادثات حقيقية مع مدرسنا الآلي واحصل على ملاحظات فورية حول النطق.' },
     'feature-2-title': { en: 'Progress Trackers 📊', ar: 'متتبعات التقدم 📊' },
@@ -168,28 +165,17 @@ const translations = {
     'cta-btn-2': { en: 'Log In', ar: 'تسجيل الدخول' },
 
     // ---- FOOTER ----
-    'footer-tagline': { en: 'Your all-in-one English language learning platform.', ar: 'منصتك الشاملة لتعلم اللغة الإنجليزية.' },
-    'footer-courses': { en: 'Courses', ar: 'الدورات' },
+    'footer-tagline': { en: 'Your all-in-one English learning platform.', ar: 'منصتك الشاملة لتعلم الإنجليزية.' },
+    'footer-learning': { en: 'Learning Hub', ar: 'مركز التعلم' },
     'footer-resources': { en: 'Resources', ar: 'الموارد' },
     'footer-legal': { en: 'Legal', ar: 'قانوني' },
     'footer-about': { en: 'About Us', ar: 'من نحن' },
     'footer-privacy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
     'footer-terms': { en: 'Terms of Service', ar: 'شروط الخدمة' },
     'footer-contact': { en: 'Contact Us', ar: 'اتصل بنا' },
-    'footer-account': { en: 'Account', ar: 'الحساب' },
-    'footer-blog': { en: 'Learning Blog', ar: 'مدونة التعلم' },
-    'footer-tools': { en: 'Learning Tools', ar: 'أدوات التعلم' },
     'footer-copyright': { en: '© 2026 LingoWise. All rights reserved.', ar: '© 2026 LingoWise. جميع الحقوق محفوظة.' },
 
     // ---- PAGE HEADERS ----
-    'page-crypto-title': { en: 'Cryptocurrency', ar: 'العملات الرقمية' },
-    'page-crypto-desc': { en: 'Real-time prices, interactive charts, and market analytics for 10,000+ digital assets.', ar: 'أسعار لحظية ورسوم بيانية تفاعلية وتحليلات سوقية لأكثر من ١٠,٠٠٠ أصل رقمي.' },
-    'page-forex-title': { en: 'Forex', ar: 'الفوركس' },
-    'page-forex-desc': { en: 'Real-time exchange rates, interactive charts, and analysis for all major, minor, and exotic currency pairs.', ar: 'أسعار صرف لحظية ورسوم بيانية تفاعلية وتحليلات لجميع أزواج العملات.' },
-    'page-us-title': { en: 'US Stock', ar: 'سوق الأسهم' },
-    'page-us-desc': { en: 'Real-time data for S&P 500, NASDAQ, Dow Jones, and thousands of individual stocks.', ar: 'بيانات لحظية لمؤشر S&P 500 وناسداك وداو جونز وآلاف الأسهم الفردية.' },
-    'page-saudi-title': { en: 'Saudi Market', ar: 'السوق السعودي' },
-    'page-saudi-desc': { en: 'Tadawul (TASI) — Real-time data, charts, and analytics for the Saudi Arabian stock exchange.', ar: 'تداول (تاسي) — بيانات لحظية ورسوم بيانية وتحليلات للسوق المالية السعودية.' },
     'page-blog-title': { en: 'Learning', ar: 'مدونة' },
     'page-blog-title-2': { en: 'Blog', ar: 'التعلم' },
     'page-blog-desc': { en: 'Language tips, study strategies, and expert advice for every level.', ar: 'نصائح لغوية، استراتيجيات دراسية، ونصائح الخبراء لكل المستويات.' },
@@ -226,8 +212,21 @@ const translations = {
     'auth-or-email': { en: 'or continue with email', ar: 'أو المتابعة بالبريد الإلكتروني' },
     'auth-or-signup': { en: 'or sign up with email', ar: 'أو التسجيل بالبريد الإلكتروني' },
     'auth-login-success': { en: 'Login successful! Redirecting...', ar: 'تم تسجيل الدخول بنجاح! جاري التحويل...' },
-    'auth-signup-success': { en: 'Account created! Welcome to LingoWise.', ar: 'تم إنشاء الحساب! مرحباً بك في لينغو وايز.' },
     'auth-error-password': { en: 'Passwords do not match!', ar: 'كلمات المرور غير متطابقة!' },
+
+    // ---- COURSES PAGE ----
+    'courses-hero-title': { en: 'Our English', ar: 'دوراتنا في' },
+    'courses-hero-title-2': { en: 'Courses', ar: 'اللغة الإنجليزية' },
+    'courses-hero-sub': { en: 'Comprehensive learning paths designed to take you from beginner to native-like fluency.', ar: 'مسارات تعلم شاملة مصممة لتأخذك من مستوى المبتدئ إلى الطلاقة.' },
+    'filter-all': { en: 'All Courses', ar: 'جميع الدورات' },
+    'filter-beginner': { en: 'Beginner', ar: 'مبتدئ' },
+    'filter-intermediate': { en: 'Intermediate', ar: 'متوسط' },
+    'filter-advanced': { en: 'Advanced', ar: 'متقدم' },
+    'filter-business': { en: 'Business', ar: 'الأعمال' },
+    'course-enroll': { en: 'Enroll Now', ar: 'سجل الآن' },
+    'course-details': { en: 'Course Details', ar: 'تفاصيل الدورة' },
+    'course-duration': { en: 'Duration', ar: 'المدة' },
+    'course-lessons': { en: 'Lessons', ar: 'الدروس' },
 
     // ---- DASHBOARD ----
     'dash-hi': { en: 'Hi', ar: 'مرحباً' },
@@ -239,7 +238,6 @@ const translations = {
     'dash-active-courses': { en: 'Current Courses', ar: 'الدورات الحالية' },
     'dash-daily-goals': { en: 'Daily Learning Goals', ar: 'أهداف التعلم اليومية' },
     'dash-recent-vocab': { en: 'Recently Learned Words', ar: 'كلمات تعلمتها مؤخراً' },
-    'dash-upcoming-labs': { en: 'Upcoming Live Labs', ar: 'المختبرات المباشرة القادمة' },
     'dash-browse-courses': { en: 'Browse Courses', ar: 'تصفح الدورات' },
     'dash-vocab-add': { en: '+ Add Word', ar: '+ إضافة كلمة' },
     'dash-streak-title': { en: 'Current Streak 🔥', ar: 'السلسلة الحالية 🔥' },
@@ -251,13 +249,6 @@ const translations = {
     'dash-stat-courses-sub': { en: 'Next: Business English', ar: 'التالي: الإنجليزية للأعمال' },
     'dash-stat-vocab-sub': { en: '↑ 15 new today', ar: '↑ ١٥ كلمة جديدة اليوم' },
     'dash-stat-speak-sub': { en: '↑ Improved 5%', ar: '↑ تحسن بنسبة ٥٪' },
-    'dash-lab-native': { en: 'Native Slang & Idioms', ar: 'العامية والاصطلاحات الأصلية' },
-    'dash-lab-starting': { en: 'Starting in 45 minutes', ar: 'يبدأ خلال ٤٥ دقيقة' },
-    'dash-lab-join': { en: 'Join Lab', ar: 'انضم للمختبر' },
-    'dash-lab-ielts': { en: 'IELTS Strategy Intensive', ar: 'استراتيجية الآيلتس المكثفة' },
-    'dash-lab-tomorrow': { en: 'Tomorrow at 6:00 PM', ar: 'غداً الساعة ٦:٠٠ مساءً' },
-    'dash-lab-reminder': { en: 'Set Reminder', ar: 'تعيين تذكير' },
-    
     'market-crypto': { en: 'Crypto', ar: 'كريبتو' },
     'market-forex': { en: 'Forex', ar: 'فوركس' },
     'market-us-stocks': { en: 'US Stocks', ar: 'أسهم أمريكية' },
@@ -297,14 +288,74 @@ const translations = {
     'sidebar-courses': { en: 'My Courses', ar: 'دوراتي' },
     'sidebar-vocabulary': { en: 'Vocabulary Bank', ar: 'بنك الكلمات' },
     'sidebar-speaking': { en: 'AI Speaking Lab', ar: 'مختبر التحدث' },
+    'sidebar-grammar': { en: 'Grammar Guide', ar: 'دليل القواعد' },
+    'sidebar-labs': { en: 'Live Labs', ar: 'المختبرات المباشرة' },
+    'sidebar-settings': { en: 'Settings', ar: 'الإعدادات' },
+    'sidebar-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
+    'sidebar-resources': { en: 'Resources', ar: 'الموارد' },
+
+    // ---- VOCABULARY PAGE ----
+    'vocab-hero-title': { en: 'Vocabulary', ar: 'بنك' },
+    'vocab-hero-title-2': { en: 'Bank', ar: 'المفردات' },
+    'vocab-hero-sub': { en: 'Save, organize, and master new words using our active recall system.', ar: 'احفظ، نظم، وأتقن كلمات جديدة باستخدام نظام الاستدعاء النشط الخاص بنا.' },
+    'vocab-search-ph': { en: 'Search words...', ar: 'ابحث عن كلمات...' },
+    'vocab-filter-all': { en: 'All Categories', ar: 'جميع الفئات' },
+    'vocab-review-btn': { en: 'Review Flashcards', ar: 'مراجعة البطاقات التعليمية' },
+    'label-word': { en: 'Word / Phrase', ar: 'الكلمة / العبارة' },
+    'label-translation': { en: 'Translation', ar: 'الترجمة' },
+    'label-category': { en: 'Category', ar: 'الفئة' },
+    'modal-add-word-title': { en: 'Add New Word', ar: 'إضافة كلمة جديدة' },
+    'btn-save-word': { en: 'Save to Bank', ar: 'حفظ في البنك' },
+    'vocab-empty': { en: 'Your vocabulary bank is empty. Add some words to start learning!', ar: 'بنك المفردات الخاص بك فارغ. أضف بعض الكلمات لبدء التعلم!' },
+    'sidebar-overview': { en: 'Learning Hub', ar: 'مركز التعلم' },
+    'sidebar-dashboard': { en: 'Dashboard', ar: 'لوحة التحكم' },
+    'sidebar-courses': { en: 'My Courses', ar: 'دوراتي' },
+    'sidebar-vocabulary': { en: 'Vocabulary Bank', ar: 'بنك الكلمات' },
+    'sidebar-speaking': { en: 'AI Speaking Lab', ar: 'مختبر التحدث' },
     'sidebar-resources': { en: 'Resources', ar: 'الموارد' },
     'sidebar-grammar': { en: 'Grammar Guide', ar: 'دليل القواعد' },
-    'sidebar-labs': { en: 'Live Labs', ar: 'مختبرات مباشرة' },
+
     'sidebar-settings': { en: 'Settings', ar: 'الإعدادات' },
     'sidebar-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
     'sidebar-streak': { en: 'Current Streak', ar: 'السلسلة الحالية' },
     'sidebar-streak-info': { en: 'Keep it up! Reach 7 for a bonus.', ar: 'استمر! صل إلى ٧ للحصول على مكافأة.' },
     'sidebar-days': { en: 'Days', ar: 'أيام' },
+
+    // ---- MY COURSES PAGE ----
+    'my-courses-title': { en: 'My', ar: 'دوراتي' },
+    'my-courses-title-2': { en: 'Learning', ar: 'التعليمية' },
+    'my-courses-sub': { en: 'Pick up where you left off and keep track of your achievements.', ar: 'واصل من حيث توقفت وتتبع إنجازاتك.' },
+    'course-status-in-progress': { en: 'In Progress', ar: 'قيد التنفيذ' },
+    'course-status-completed': { en: 'Completed', ar: 'مكتمل' },
+    'course-resume': { en: 'Resume Course', ar: 'متابعة الدورة' },
+    'course-certificate': { en: 'Get Certificate', ar: 'احصل على الشهادة' },
+    'no-courses-yet': { en: "You haven't enrolled in any courses yet.", ar: 'لم تسجل في أي دورات بعد.' },
+    'browse-btn': { en: 'Browse All Courses', ar: 'تصفح جميع الدورات' },
+
+    // ---- GRAMMAR PAGE ----
+    'grammar-hero-title': { en: 'Grammar', ar: 'دليل' },
+    'grammar-hero-title-2': { en: 'Guide', ar: 'القواعد' },
+    'grammar-hero-sub': { en: 'Essential grammar rules explained simply with interactive examples.', ar: 'قواعد النحو الأساسية مشروحة ببساطة مع أمثلة تفاعلية.' },
+    'grammar-topic-tenses': { en: 'Verb Tenses', ar: 'الأزمنة' },
+    'grammar-topic-tenses-desc': { en: 'Master Past, Present, and Future forms.', ar: 'أتقن أشكال الماضي والحاضر والمستقبل.' },
+    'grammar-topic-parts': { en: 'Parts of Speech', ar: 'أجزاء الكلام' },
+    'grammar-topic-parts-desc': { en: 'Nouns, Verbs, Adjectives, and more.', ar: 'الأسماء، الأفعال، الصفات، وأكثر من ذلك.' },
+    'grammar-topic-sentence': { en: 'Sentence Structure', ar: 'هيكل الجملة' },
+    'grammar-topic-sentence-desc': { en: 'Learn how to build correct sentences.', ar: 'تعلم كيفية بناء جمل صحيحة.' },
+    'grammar-topic-punctuation': { en: 'Punctuation', ar: 'علامات الترقيم' },
+    'grammar-topic-punctuation-desc': { en: 'Commas, Semicolons, and Periods.', ar: 'الفاصلة، الفاصلة المنقوطة، والنقطة.' },
+    'grammar-view-guide': { en: 'View Guide', ar: 'عرض الدليل' },
+
+    // ---- COMMUNITY PAGE ----
+    'comm-hero-title': { en: 'Global', ar: 'المجتمع' },
+    'comm-hero-title-2': { en: 'Community', ar: 'العالمي' },
+    'comm-hero-sub': { en: 'Connect with fellow learners, join study groups, and practice together.', ar: 'تواصل مع زملائك المتعلمين، وانضم إلى مجموعات الدراسة، وتدربوا معاً.' },
+    'comm-groups-title': { en: 'Active Study Groups', ar: 'مجموعات الدراسة النشطة' },
+    'comm-events-title': { en: 'Upcoming Live Events', ar: 'الفعاليات الحية القادمة' },
+    'comm-join-btn': { en: 'Join Group', ar: 'انضم للمجموعة' },
+    'comm-members': { en: 'members', ar: 'عضو' },
+    'comm-online': { en: 'Online Now', ar: 'متواجد الآن' },
+    'comm-event-reminder': { en: 'Set Reminder', ar: 'تعيين تذكير' },
 
     // ---- JOURNAL PAGE ----
     'journal-title': { en: 'Trade Journal 📓', ar: 'سجل التداول 📓' },
@@ -844,22 +895,32 @@ const translations = {
     'speaking-listening': { en: 'Listening...', ar: 'جاري الاستماع...' },
     'speaking-analyzing': { en: 'Analyzing...', ar: 'جاري التحليل...' },
     'speaking-complete': { en: 'Analysis Complete!', ar: 'اكتمل التحليل!' },
+    'speaking-analyzing': { en: 'Analyzing your speech...', ar: 'جاري تحليل حديثك...' },
+    'speaking-complete': { en: 'Analysis Complete!', ar: 'اكتمل التحليل!' },
+    'speaking-listening': { en: 'Listening...', ar: 'جاري الاستماع...' },
+    'speaking-ready': { en: 'Ready to practice? Click the button.', ar: 'جاهز للممارسة؟ اضغط على الزر.' },
+    'speaking-hold': { en: 'Hold button to speak', ar: 'استمر في الضغط للتحدث' },
     'speaking-phrase-1': { en: 'I am highly interested in the marketing manager position at your company.', ar: 'أنا مهتم جداً بمنصب مدير التسويق في شركتكم.' },
     'speaking-phrase-2': { en: 'Would you like to try the specialty pasta with our homemade white sauce?', ar: 'هل ترغب في تجربة الباستا مع صوص الكريمة الخاص بنا؟' },
     'speaking-phrase-3': { en: 'Excuse me, could you tell me the fastest way to get to the main square?', ar: 'معذرة، هل يمكنك إخباري بأسرع طريق للوصول إلى الميدان الرئيسي؟' },
-    'speaking-tip-1': { en: "Focus on the 'th' sound in 'the' and 'thirsty'.", ar: "ركز على نطق حرف الـ 'ث' بشكل أوضح." },
-    'speaking-tip-2': { en: 'Try to reduce the pauses between words to improve your flow.', ar: 'حاول تقليل الوقفات بين الكلمات لتحسين الطلاقة.' },
-    'speaking-tip-3': { en: 'Excellent grammar! Try to use more complex sentence structures.', ar: 'قواعد ممتازة! حاول استخدام هياكل جمل أكثر تعقيداً.' },
+    'speaking-phrase-4': { en: 'I believe climate change is the most pressing issue for our generation.', ar: 'أعتقد أن تغير المناخ هو القضية الأكثر إلحاحاً لجيلنا.' },
+    'speaking-phrase-5': { en: 'Could you please repeat that? I didn\'t catch the last part of your sentence.', ar: 'هل يمكنك تكرار ذلك من فضلك؟ لم أسمع الجزء الأخير من جملتك.' },
+    'speaking-phrase-6': { en: 'My greatest strength is my ability to adapt to new environments quickly.', ar: 'أكبر نقطة قوة لدي هي قدرتي على التكيف مع البيئات الجديدة بسرعة.' },
+    'speaking-tip-low-pron': { en: 'Try practicing tongue twisters to improve your clarity.', ar: 'جرب ممارسة تمارين نطق الكلمات الصعبة لتحسين وضوحك.' },
+    'speaking-tip-low-fluency': { en: 'Focus on connecting words instead of stopping after each one.', ar: 'ركز على ربط الكلمات معاً بدلاً من التوقف بعد كل كلمة.' },
+    'speaking-tip-low-grammar': { en: 'Review subject-verb agreement for better sentence structure.', ar: 'راجع توافق الفاعل مع الفعل لتحسين هيكل الجملة.' },
+    'speaking-tip-high': { en: 'Excellent work! Challenge yourself with more complex vocabulary.', ar: 'عمل ممتاز! تحدَّ نفسك باستخدام مفردات أكثر تعقيداً.' },
+    'speaking-initial-tip': { en: 'Select a topic and start speaking to get personalized tips!', ar: 'اختر موضوعاً وابدأ التحدث للحصول على نصائح مخصصة!' },
 };
 
 function initLanguage() {
-    const saved = localStorage.getItem('calcwise_lang') || 'en';
+    const saved = localStorage.getItem('lingowise_lang') || 'en';
     applyLanguage(saved);
 }
 
 function applyLanguage(newLang) {
     lang = newLang; // Update global
-    localStorage.setItem('calcwise_lang', lang);
+    localStorage.setItem('lingowise_lang', lang);
 
     // Set direction
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
@@ -957,53 +1018,7 @@ function initParticles() {
     }
 }
 
-// ===== MARKET TICKER =====
-async function initTicker() {
-    const track = document.getElementById('tickerTrack');
-    if (!track) return;
 
-    let tickerData = [
-        { symbol: 'BTC', price: '$101,234.00', change: '+2.45%', up: true },
-        { symbol: 'ETH', price: '$4,123.50', change: '+1.82%', up: true },
-        { symbol: 'SOL', price: '$245.30', change: '+5.12%', up: true },
-        { symbol: 'EUR/USD', price: '1.0845', change: '+0.15%', up: true },
-        { symbol: 'GBP/USD', price: '1.2680', change: '-0.22%', up: false },
-        { symbol: 'USD/SAR', price: '3.7500', change: '0.00%', up: true },
-        { symbol: 'S&P 500', price: '5,823.40', change: '+0.68%', up: true },
-        { symbol: 'NASDAQ', price: '18,745.20', change: '+0.92%', up: true },
-        { symbol: 'AAPL', price: '$245.67', change: '-0.85%', up: false },
-        { symbol: 'NVDA', price: '$890.50', change: '+3.21%', up: true },
-        { symbol: 'ARAMCO', price: 'SAR 32.10', change: '+1.20%', up: true },
-        { symbol: 'TASI', price: '12,450', change: '+0.34%', up: true }
-    ];
-
-    try {
-        const response = await fetch('/api/market/prices');
-        const data = await response.json();
-
-        if (data && data.prices) {
-            tickerData = Object.entries(data.prices).map(([symbol, price]) => ({
-                symbol: symbol.toUpperCase(),
-                price: typeof price === 'number' ? `$${price.toLocaleString()}` : price,
-                change: (Math.random() * 4 - 1.5).toFixed(2) + '%',
-                up: Math.random() > 0.3
-            }));
-        }
-    } catch (error) {
-        console.error('Ticker fetch error:', error);
-    }
-
-    // Double the items for seamless loop
-    const items = [...tickerData, ...tickerData];
-
-    track.innerHTML = items.map(item => `
-    <div class="ticker-item">
-      <span class="symbol">${item.symbol}</span>
-      <span class="price">${item.price}</span>
-      <span class="change ${item.up ? 'up' : 'down'}">${item.change}</span>
-    </div>
-  `).join('');
-}
 
 // ===== TOAST NOTIFICATIONS =====
 function showToast(type, message) {
@@ -1031,9 +1046,9 @@ function showToast(type, message) {
 
 // ===== AUTHENTICATION =====
 function checkAuth() {
-    const isLoggedIn = localStorage.getItem('calcwise_logged_in') === 'true';
-    const user = JSON.parse(localStorage.getItem('calcwise_user') || 'null');
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const isLoggedIn = localStorage.getItem('lingowise_logged_in') === 'true';
+    const user = JSON.parse(localStorage.getItem('lingowise_user') || 'null');
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const href = window.location.href;
 
     // Guard: protect dashboard and journal — redirect to login if not authenticated
@@ -1070,7 +1085,7 @@ function checkAuth() {
 
 async function handleLogin(e) {
     e.preventDefault();
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
 
@@ -1088,25 +1103,25 @@ async function handleLogin(e) {
         const data = await response.json();
 
         if (data.success) {
-            localStorage.setItem('calcwise_logged_in', 'true');
-            localStorage.setItem('calcwise_user', JSON.stringify(data.user));
+            localStorage.setItem('lingowise_logged_in', 'true');
+            localStorage.setItem('lingowise_user', JSON.stringify(data.user));
             // Store the JWT token for secure API calls
             if (data.session) {
-                localStorage.setItem('calcwise_token', data.session.access_token);
+                localStorage.setItem('lingowise_token', data.session.access_token);
             }
             showToast('success', translations['auth-login-success'][lang] || 'Login successful!');
             setTimeout(() => window.location.href = 'dashboard.html', 1500);
         } else {
             // Fallback for demo if user not found in mock DB
-            localStorage.setItem('calcwise_logged_in', 'true');
-            localStorage.setItem('calcwise_user', JSON.stringify({ firstName: 'User', email }));
+            localStorage.setItem('lingowise_logged_in', 'true');
+            localStorage.setItem('lingowise_user', JSON.stringify({ firstName: 'User', email }));
             showToast('success', translations['auth-login-success'][lang] || 'Login successful!');
             setTimeout(() => window.location.href = 'dashboard.html', 1500);
         }
     } catch (error) {
         console.error('Login error:', error);
         // Fallback
-        localStorage.setItem('calcwise_logged_in', 'true');
+        localStorage.setItem('lingowise_logged_in', 'true');
         showToast('success', 'Demo login successful! (API failed)');
         setTimeout(() => window.location.href = 'dashboard.html', 1500);
     }
@@ -1114,7 +1129,7 @@ async function handleLogin(e) {
 
 async function handleSignup(e) {
     e.preventDefault();
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const firstName = document.getElementById('signup-first').value;
     const lastName = document.getElementById('signup-last').value;
     const email = document.getElementById('signup-email').value;
@@ -1135,10 +1150,10 @@ async function handleSignup(e) {
         const data = await response.json();
 
         if (data.success) {
-            localStorage.setItem('calcwise_logged_in', 'true');
-            localStorage.setItem('calcwise_user', JSON.stringify(data.user));
+            localStorage.setItem('lingowise_logged_in', 'true');
+            localStorage.setItem('lingowise_user', JSON.stringify(data.user));
             if (data.session) {
-                localStorage.setItem('calcwise_token', data.session.access_token);
+                localStorage.setItem('lingowise_token', data.session.access_token);
             }
             showToast('success', `Welcome, ${firstName}! Redirecting...`);
             setTimeout(() => window.location.href = 'dashboard.html', 1500);
@@ -1149,17 +1164,17 @@ async function handleSignup(e) {
         console.error('Signup error:', error);
         // Fallback for demo
         const user = { firstName, lastName, email };
-        localStorage.setItem('calcwise_user', JSON.stringify(user));
-        localStorage.setItem('calcwise_logged_in', 'true');
+        localStorage.setItem('lingowise_user', JSON.stringify(user));
+        localStorage.setItem('lingowise_logged_in', 'true');
         showToast('success', `Welcome, ${firstName}! (Local Mode)`);
         setTimeout(() => window.location.href = 'dashboard.html', 1500);
     }
 }
 
 function handleLogout() {
-    localStorage.removeItem('calcwise_logged_in');
-    localStorage.removeItem('calcwise_token');
-    localStorage.removeItem('calcwise_user');
+    localStorage.removeItem('lingowise_logged_in');
+    localStorage.removeItem('lingowise_token');
+    localStorage.removeItem('lingowise_user');
     showToast('success', 'Logged out successfully.');
     setTimeout(() => window.location.href = 'index.html', 1000);
 }
@@ -1200,7 +1215,7 @@ function switchTool(toolId, btn) {
 
 // ===== FINANCIAL TOOLS CALCULATORS =====
 function calculatePositionSize() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const balance = parseFloat(document.getElementById('ps-balance').value);
     const riskPct = parseFloat(document.getElementById('ps-risk').value);
     const entry = parseFloat(document.getElementById('ps-entry').value);
@@ -1229,7 +1244,7 @@ function calculatePositionSize() {
 }
 
 function calculateProfitLoss() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const entry = parseFloat(document.getElementById('pl-entry').value);
     const exit = parseFloat(document.getElementById('pl-exit').value);
     const qty = parseFloat(document.getElementById('pl-qty').value);
@@ -1257,7 +1272,7 @@ function calculateProfitLoss() {
 }
 
 function convertCurrency() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const amount = parseFloat(document.getElementById('cc-amount').value);
     const from = document.getElementById('cc-from').value;
     const to = document.getElementById('cc-to').value;
@@ -1289,7 +1304,7 @@ function convertCurrency() {
 }
 
 function calculateCompound() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const principal = parseFloat(document.getElementById('ci-principal').value);
     const monthly = parseFloat(document.getElementById('ci-monthly').value);
     const rate = parseFloat(document.getElementById('ci-rate').value) / 100;
@@ -1325,7 +1340,7 @@ function calculateCompound() {
 }
 
 function calculatePip() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const pair = document.getElementById('pip-pair').value;
     const lotSize = parseInt(document.getElementById('pip-lot').value);
     const pips = parseFloat(document.getElementById('pip-pips').value);
@@ -1348,7 +1363,7 @@ function calculatePip() {
 }
 
 function calculateRiskReward() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const entry = parseFloat(document.getElementById('rr-entry').value);
     const stoploss = parseFloat(document.getElementById('rr-stoploss').value);
     const takeprofit = parseFloat(document.getElementById('rr-takeprofit').value);
@@ -1380,12 +1395,12 @@ function calculateRiskReward() {
 
 // ===== DASHBOARD =====
 async function initDashboard() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const activeCoursesContainer = document.getElementById('activeCoursesContainer');
     if (!activeCoursesContainer) return;
 
     try {
-        const user = JSON.parse(localStorage.getItem('calcwise_user') || '{}');
+        const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
         const userEl = document.getElementById('dashboardUser');
         const nameEl = document.getElementById('userName');
         const firstName = user.firstName || (lang === 'ar' ? 'أيها المتعلّم' : 'Learner');
@@ -1393,11 +1408,25 @@ async function initDashboard() {
         if (userEl) userEl.innerText = `${lang === 'ar' ? 'مرحباً' : 'Hi'}, ${firstName} 👋`;
         if (nameEl) nameEl.innerText = firstName;
 
-        // Statistics initialization (simulated)
+        // Statistics initialization (simulated default values)
         if (document.getElementById('learningTime')) document.getElementById('learningTime').innerText = lang === 'ar' ? '١٢.٥ ساعة' : "12.5 hrs";
         if (document.getElementById('coursesDone')) document.getElementById('coursesDone').innerText = lang === 'ar' ? '٣' : "3";
         if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = (localStorage.getItem('lingowise_vocab_count') || (lang === 'ar' ? "٤٥٠" : "450"));
-        if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = lang === 'ar' ? '٨٢٪' : "82%";
+        
+        // Dynamic Speaking Score from history
+        const speakingHistory = JSON.parse(localStorage.getItem('lingowise_speaking_history') || '[]');
+        if (speakingHistory.length > 0) {
+            const latest = speakingHistory[0];
+            const avg = Math.round((latest.scores.pronunciation + latest.scores.fluency + latest.scores.grammar) / 3);
+            if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = `${avg}%`;
+        } else {
+            if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = lang === 'ar' ? '٠٪' : "0%";
+        }
+
+        // Dynamic Streak
+        const streak = localStorage.getItem('lingowise_streak') || (lang === 'ar' ? '٥' : '5');
+        const streakEl = document.querySelector('[data-i18n="dash-streak-days"]');
+        if (streakEl) streakEl.innerText = lang === 'ar' ? `${streak} أيام` : `${streak} Days`;
 
         // Populate Courses
         updateCoursesUI();
@@ -1416,7 +1445,7 @@ async function initDashboard() {
 function updateCoursesUI() {
     const container = document.getElementById('activeCoursesContainer');
     if (!container) return;
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
 
     const activeCourses = [
         { 
@@ -1447,32 +1476,37 @@ function updateCoursesUI() {
 async function initDailyGoals() {
     const container = document.getElementById('dailyGoalsContainer');
     if (!container) return;
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+
+    // Fetch real progress
+    const vocabCount = (getVocab().length % 10); // Mocking daily new vocab
+    const speakMins = parseInt(localStorage.getItem('lingowise_goal_speak') || '0');
+    const grammarDone = localStorage.getItem('lingowise_goal_grammar') === 'true';
 
     const goals = [
         { 
             title: lang === 'ar' ? 'مفردات جديدة' : 'New Vocabulary', 
-            progress: '10/10', 
-            done: true, 
-            icon: '✓', 
-            color: 'var(--success)',
-            status: lang === 'ar' ? 'مكتمل!' : 'Completed!'
+            progress: `${vocabCount}/10`, 
+            done: vocabCount >= 10, 
+            icon: vocabCount >= 10 ? '✓' : '🔤', 
+            color: vocabCount >= 10 ? 'var(--success)' : 'var(--primary)',
+            status: vocabCount >= 10 ? (lang === 'ar' ? 'مكتمل!' : 'Completed!') : (lang === 'ar' ? 'قيد التنفيذ' : 'In progress')
         },
         { 
             title: lang === 'ar' ? 'ممارسة التحدث' : 'Speaking Practice', 
-            progress: lang === 'ar' ? '٥/١٥ دقيقة' : '5/15 min', 
-            done: false, 
-            icon: '🎙️', 
-            color: 'var(--primary)',
-            status: lang === 'ar' ? 'قيد التنفيذ' : 'In progress'
+            progress: lang === 'ar' ? `${speakMins}/١٥ دقيقة` : `${speakMins}/15 min`, 
+            done: speakMins >= 15, 
+            icon: speakMins >= 15 ? '✓' : '🎙️', 
+            color: speakMins >= 15 ? 'var(--success)' : 'var(--accent-teal)',
+            status: speakMins >= 15 ? (lang === 'ar' ? 'مكتمل!' : 'Completed!') : (lang === 'ar' ? 'قيد التنفيذ' : 'In progress')
         },
         { 
             title: lang === 'ar' ? 'اختبار قواعد' : 'Grammar Quiz', 
-            progress: '0/1', 
-            done: false, 
-            icon: '📝', 
-            color: 'var(--accent-gold)',
-            status: lang === 'ar' ? 'قيد التنفيذ' : 'In progress'
+            progress: grammarDone ? '1/1' : '0/1', 
+            done: grammarDone, 
+            icon: grammarDone ? '✓' : '📝', 
+            color: grammarDone ? 'var(--success)' : 'var(--accent-gold)',
+            status: grammarDone ? (lang === 'ar' ? 'مكتمل!' : 'Completed!') : (lang === 'ar' ? 'قيد التنفيذ' : 'In progress')
         }
     ];
 
@@ -1538,357 +1572,7 @@ function addVocabulary(event) {
     event.target.reset();
 }
 
-async function initWatchlist() {
-    const container = document.getElementById('watchlistContainer');
-    if (!container) return;
-
-    try {
-        const response = await fetch('/api/market/watchlist');
-        if (!response.ok) throw new Error('API failed');
-        const data = await response.json();
-        renderWatchlistItems(data.watchlist, container);
-    } catch (error) {
-        console.warn('Watchlist API failed, using local storage.');
-        const localWatchlist = JSON.parse(localStorage.getItem('calcwise_watchlist')) || [
-            { name: 'Bitcoin', symbol: 'BTC', icon: '₿', bg: 'rgba(240,185,11,0.15)', price: '101,234', change: '+2.4%' },
-            { name: 'Apple Inc.', symbol: 'AAPL', icon: '🏛', bg: 'rgba(108,92,231,0.15)', price: '245.67', change: '-0.8%' },
-            { name: 'Saudi Aramco', symbol: '2222', icon: '🇸🇦', bg: 'rgba(0,184,148,0.15)', price: '32.10', change: '+1.2%' },
-            { name: 'EUR/USD', symbol: 'Forex', icon: '💱', bg: 'rgba(0,210,211,0.15)', price: '1.0845', change: '+0.15%' }
-        ];
-        renderWatchlistItems(localWatchlist, container);
-    }
-}
-
-
-function renderAssetIcon(icon, name, color = '#6C5CE7') {
-    if (!icon) return `<span class="asset-icon" style="background:${color}22;color:${color}">💰</span>`;
-    
-    // Check if icon is a URL
-    if (icon.startsWith('http') || icon.startsWith('/') || icon.includes('.')) {
-        return `
-            <span class="asset-icon" style="background:${color}22; overflow:hidden;">
-                <img src="${icon}" 
-                     style="width:100%;height:100%;object-fit:contain;padding:2px;" 
-                     alt="${name}" 
-                     onerror="this.parentElement.innerHTML='${name ? name[0] : '💰'}'">
-            </span>
-        `;
-    }
-    
-    // Default to emoji/text
-    return `<span class="asset-icon" style="background:${color}22;color:${color}">${icon}</span>`;
-}
-
-function renderWatchlistItems(items, container) {
-    if (!items || !Array.isArray(items)) return;
-    container.innerHTML = items.slice(0, 4).map(item => {
-        const isPositive = item.change && !item.change.startsWith('-');
-        return `
-            <div class="watchlist-item">
-                <div class="asset-name">
-                    ${renderAssetIcon(item.icon, item.name, item.color || item.bg)}
-                    <div>
-                        <div style="font-weight:500;">${item.name}</div>
-                        <div style="font-size:0.78rem;color:var(--text-muted);">${item.symbol}</div>
-                    </div>
-                </div>
-                <div style="text-align:right;">
-                    <div style="font-family:var(--font-mono);font-weight:500;">${item.price}</div>
-                    <div style="font-size:0.78rem;color:${isPositive ? 'var(--success)' : 'var(--danger)'};">${item.change}</div>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-async function initActivity() {
-    const container = document.getElementById('activityContainer');
-    if (!container) return;
-
-    try {
-        const response = await secureFetch('/api/journal');
-        const data = await response.json();
-
-        if (data.success && data.journal.length > 0) {
-            container.innerHTML = data.journal.slice(0, 5).map(j => `
-                <div class="activity-item">
-                    <div class="activity-icon" style="background:${j.pnl >= 0 ? 'var(--success-bg)' : 'var(--danger-bg)'};">${j.pnl >= 0 ? '📈' : '📉'}</div>
-                    <div class="activity-info">
-                        <div class="title">Journaled: ${j.asset} ${j.type}</div>
-                        <div class="time">${j.date}</div>
-                    </div>
-                    <div class="activity-amount" style="color:${j.pnl >= 0 ? 'var(--success)' : 'var(--danger)'};">${j.pnl >= 0 ? '+' : ''}$${j.pnl.toFixed(0)}</div>
-                </div>
-            `).join('');
-        }
-    } catch (error) {
-        console.error('Activity fetch error:', error);
-    }
-}
-
-// ===== SESSION CLOCK =====
-function initSessionClock() {
-    const el = document.getElementById('sessionClock');
-    if (!el) return;
-
-    function updateSessions() {
-        const now = new Date();
-        const hours = now.getUTCHours();
-
-        // Simplified session times (UTC)
-        const sessions = [
-            { name: 'London', start: 8, end: 17, icon: '🇬🇧' },
-            { name: 'New York', start: 13, end: 22, icon: '🇺🇸' },
-            { name: 'Tadawul', start: 7, end: 12, icon: '🇸🇦' },
-            { name: 'Tokyo', start: 0, end: 9, icon: '🇯🇵' },
-            { name: 'Sydney', start: 22, end: 7, icon: '🇦🇺' }
-        ];
-
-        el.innerHTML = sessions.map(s => {
-            let isOpen = false;
-            if (s.start < s.end) {
-                isOpen = hours >= s.start && hours < s.end;
-            } else { // Over midnight
-                isOpen = hours >= s.start || hours < s.end;
-            }
-
-            const statusKey = isOpen ? 'session-open' : 'session-closed';
-            const statusLabel = translations[statusKey] ? translations[statusKey][lang] : (isOpen ? 'OPEN' : 'CLOSED');
-            const sessionName = s.name === 'Tadawul' ? (translations['session-tadawul'] ? translations['session-tadawul'][lang] : 'Tadawul') : s.name;
-
-            return `
-                <div style="display:flex; justify-content:space-between; margin-bottom:8px; color:${isOpen ? 'var(--text-primary)' : 'var(--text-muted)'};">
-                    <span>${s.icon} ${sessionName}</span>
-                    <span style="font-weight:600; color:${isOpen ? 'var(--success)' : 'var(--text-muted)'};">${statusLabel}</span>
-                </div>
-            `;
-        }).join('');
-    }
-
-    updateSessions();
-    setInterval(updateSessions, 60000);
-}
-
-function getHoldings() {
-    const defaults = [
-        { id: 'def-btc', name: 'Bitcoin', symbol: 'BTC', market: 'Crypto', qty: 0.5, avgCost: 68000, currentPrice: 101234, icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: 'var(--accent-gold)' },
-        { id: 'def-eth', name: 'Ethereum', symbol: 'ETH', market: 'Crypto', qty: 5, avgCost: 3200, currentPrice: 4123, icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: 'var(--primary-light)' },
-        { id: 'def-aapl', name: 'Apple Inc.', symbol: 'AAPL', market: 'US Stocks', qty: 20, avgCost: 180, currentPrice: 245.67, icon: 'https://logo.clearbit.com/apple.com', color: 'var(--text-primary)' },
-        { id: 'def-nvda', name: 'NVIDIA', symbol: 'NVDA', market: 'US Stocks', qty: 10, avgCost: 500, currentPrice: 890.50, icon: 'https://logo.clearbit.com/nvidia.com', color: 'var(--success)' },
-        { id: 'def-aramco', name: 'Saudi Aramco', symbol: '2222', market: 'Saudi', qty: 100, avgCost: 28, currentPrice: 32.10, icon: 'https://logo.clearbit.com/saudiaramco.com', color: 'var(--accent-emerald)' },
-        { id: 'def-rajhi', name: 'Al Rajhi Bank', symbol: '1120', market: 'Saudi', qty: 50, avgCost: 75, currentPrice: 82.30, icon: 'https://logo.clearbit.com/alrajhibank.com.sa', color: 'var(--accent-teal)' },
-    ];
-
-    const stored = localStorage.getItem('calcwise_holdings');
-    if (!stored) return defaults;
-
-    let holdings = JSON.parse(stored);
-    
-    // Auto-repair: Give IDs to assets that don't have them
-    let repaired = false;
-    holdings = holdings.map((h, index) => {
-        if (!h.id) {
-            h.id = 'legacy-' + index + '-' + Date.now();
-            repaired = true;
-        }
-        return h;
-    });
-
-    if (repaired) saveHoldings(holdings);
-    return holdings;
-}
-
-function saveHoldings(holdings) {
-    localStorage.setItem('calcwise_holdings', JSON.stringify(holdings));
-}
-
-function renderHoldings(holdings) {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const tbody = document.getElementById('holdingsBody');
-    if (!tbody) return;
-
-    tbody.innerHTML = holdings.map(h => {
-        const avgCost = parseFloat(h.avg_cost || h.avgCost || 0);
-        const currentPrice = parseFloat(h.currentPrice || avgCost || 0);
-        const qty = parseFloat(h.qty || 0);
-        
-        const value = qty * currentPrice;
-        const pnl = (currentPrice - avgCost) * qty;
-        const change = avgCost > 0 ? ((currentPrice - avgCost) / avgCost) * 100 : 0;
-        const isPositive = pnl >= 0;
-
-        const marketKey = 'market-' + (h.market || 'crypto').toLowerCase().replace(' ', '-');
-        const marketName = (translations[marketKey] && translations[marketKey][lang]) ? translations[marketKey][lang] : (h.market || 'Crypto');
-
-        return `
-      <tr>
-        <td>
-          <div class="asset-name">
-            ${renderAssetIcon(h.icon, h.name, h.color)}
-            <div>
-              <div style="font-weight:500;">${h.name || 'Unknown'}</div>
-              <div style="font-size:0.78rem;color:var(--text-muted);">${h.symbol || '---'}</div>
-            </div>
-          </div>
-        </td>
-        <td><span style="font-size:0.82rem;color:var(--text-secondary);">${marketName}</span></td>
-        <td style="font-family:var(--font-mono);">${qty}</td>
-        <td style="font-family:var(--font-mono);">$${avgCost.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
-        <td style="font-family:var(--font-mono);">$${currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
-        <td style="font-family:var(--font-mono);font-weight:600;">$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-        <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};"> ${isPositive ? '+' : ''}$${pnl.toFixed(2)}</td>
-        <td style="font-family:var(--font-mono);color:${isPositive ? 'var(--success)' : 'var(--danger)'};"> ${isPositive ? '↑' : '↓'} ${Math.abs(change).toFixed(2)}%</td>
-        <td style="text-align:right;"><button class="btn btn-ghost btn-sm" onclick="handleDeleteAsset('${h.id}')" style="color:var(--danger);padding:2px 8px;">✕</button></td>
-      </tr>
-    `;
-    }).join('');
-}
-
-function updateStats(holdings) {
-    if (!holdings || !Array.isArray(holdings) || holdings.length === 0) return;
-
-    const totalValue = holdings.reduce((sum, h) => sum + (parseFloat(h.qty || 0) * parseFloat(h.currentPrice || h.avgCost || 0)), 0);
-    const totalCost = holdings.reduce((sum, h) => sum + (parseFloat(h.qty || 0) * parseFloat(h.avg_cost || h.avgCost || 0)), 0);
-    const totalPL = totalValue - totalCost;
-    const totalPLPct = totalCost > 0 ? (totalPL / totalCost) * 100 : 0;
-
-    const el = (id) => document.getElementById(id);
-    if (el('totalValue')) el('totalValue').textContent = `$${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    if (el('totalChange')) {
-        el('totalChange').textContent = `${totalPL >= 0 ? '↑' : '↓'} ${totalPL >= 0 ? '+' : ''}${totalPLPct.toFixed(2)}%`;
-        el('totalChange').className = `stat-change ${totalPL >= 0 ? 'positive' : 'negative'}`;
-    }
-
-    // Simulated daily P/L
-    const dailyPL = totalValue * 0.012;
-    if (el('todayPL')) el('todayPL').textContent = `+$${dailyPL.toFixed(2)}`;
-    if (el('todayPLPct')) el('todayPLPct').textContent = `↑ +1.20%`;
-    if (el('totalHoldings')) el('totalHoldings').textContent = holdings.length;
-
-    // Best performer
-    let best = holdings[0];
-    holdings.forEach(h => {
-        const hAvgCost = h.avg_cost || h.avgCost;
-        const bestAvgCost = best.avg_cost || best.avgCost;
-        const changePct = ((h.currentPrice - hAvgCost) / hAvgCost) * 100;
-        const bestChange = ((best.currentPrice - bestAvgCost) / bestAvgCost) * 100;
-        if (changePct > bestChange) best = h;
-    });
-
-    if (el('bestPerformer')) el('bestPerformer').textContent = best.symbol;
-    const lastBestAvgCost = best.avg_cost || best.avgCost;
-    const bestChangePct = ((best.currentPrice - lastBestAvgCost) / lastBestAvgCost) * 100;
-    if (el('bestPerformerChange')) el('bestPerformerChange').textContent = `↑ +${bestChangePct.toFixed(1)}%`;
-
-    // --- Dynamic Allocation ---
-    const markets = {};
-    holdings.forEach(h => {
-        const val = h.qty * h.currentPrice;
-        markets[h.market] = (markets[h.market] || 0) + val;
-    });
-
-    const marketColors = {
-        'Crypto': 'var(--accent-gold)',
-        'Forex': 'var(--accent-teal)',
-        'US Stocks': 'var(--primary)',
-        'Saudi': 'var(--accent-emerald)'
-    };
-
-    const allocationContainer = document.querySelector('.allocation-chart');
-    if (allocationContainer && totalValue > 0) {
-        let gradientStr = '';
-        let currentDeg = 0;
-        let html = '';
-
-        Object.keys(markets).forEach(market => {
-            const pct = (markets[market] / totalValue) * 100;
-            const deg = (pct / 100) * 360;
-            const color = marketColors[market] || 'var(--text-muted)';
-            
-            gradientStr += `${color} ${currentDeg}deg ${currentDeg + deg}deg,`;
-            currentDeg += deg;
-
-            html += `
-                <div class="allocation-item">
-                    <span class="allocation-dot" style="background:${color};"></span>
-                    <span>${market} — ${pct.toFixed(0)}%</span>
-                </div>
-            `;
-        });
-
-        // Update Pie
-        const pie = document.querySelector('[style*="conic-gradient"]');
-        if (pie) pie.style.background = `conic-gradient(${gradientStr.slice(0, -1)})`;
-        
-        // Update labels
-        allocationContainer.innerHTML = html;
-    }
-}
-
-function renderPortfolioChart() {
-    const chart = document.getElementById('portfolioChart');
-    if (!chart) return;
-
-    // Generate sample performance data
-    const bars = 28;
-    const data = [];
-    let val = 80;
-    for (let i = 0; i < bars; i++) {
-        val += (Math.random() - 0.35) * 10;
-        val = Math.max(20, Math.min(100, val));
-        data.push(val);
-    }
-
-    chart.innerHTML = data.map(v => {
-        const height = v + '%';
-        const isUp = v > 50;
-        return `<div class="bar" style="height:${height};background:${isUp ? 'var(--primary)' : 'var(--danger)'};opacity:0.8;"></div>`;
-    }).join('');
-}
-
-function initAIAssistant() {
-    if (document.getElementById('aiAssistantBtn')) return;
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-
-    const btn = document.createElement('button');
-    btn.id = 'aiAssistantBtn';
-    btn.title = translations['ai-name'] ? translations['ai-name'][lang] : 'LingoWise AI';
-    btn.innerHTML = '🤖<span class="notif-dot"></span>';
-    btn.onclick = toggleAIChat;
-    document.body.appendChild(btn);
-
-    const aiName = translations['ai-name'] ? translations['ai-name'][lang] : 'LingoWise AI';
-    const aiStatus = translations['ai-status'] ? translations['ai-status'][lang] : '● Online · Language Tutor';
-    const aiGreeting = translations['ai-greeting'] ? translations['ai-greeting'][lang] : "👋 Hi! I'm your AI Tutor.";
-    const aiPlaceholder = translations['ai-placeholder'] ? translations['ai-placeholder'][lang] : 'Ask anything...';
-
-    const chat = document.createElement('div');
-    chat.id = 'aiChat';
-    chat.innerHTML = `
-        <div class="ai-chat-header">
-            <div class="ai-avatar">🤖</div>
-            <div class="ai-info">
-                <div class="name">${aiName}</div>
-                <div class="status">${aiStatus}</div>
-            </div>
-            <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
-        </div>
-        <div class="ai-chat-messages" id="aiMessages">
-            <div class="ai-msg bot">${aiGreeting}</div>
-        </div>
-        <div class="ai-quick-replies">
-            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'اشرح المضارع التام' : 'Explain Present Perfect'}')" data-i18n="ai-quick-grammar">Grammar Check</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'نصيحة دراسية' : 'Study Tip'}')" data-i18n="ai-quick-tip">Study Tip</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'ممارسة المحادثة' : 'Practice conversation'}')" data-i18n="ai-quick-speak">Speak Practice</button>
-        </div>
-        <div class="ai-chat-input">
-            <input type="text" id="aiInput" placeholder="${aiPlaceholder}" onkeydown="if(event.key==='Enter') sendAIMessage()">
-            <button onclick="sendAIMessage()">➤</button>
-        </div>
-    `;
-    document.body.appendChild(chat);
-}
-
+// ===== UI HELPERS =====
 function openModal(id) {
     const modal = document.getElementById(id);
     if (modal) modal.classList.add('active');
@@ -1899,150 +1583,6 @@ function closeModal(id) {
     if (modal) modal.classList.remove('active');
 }
 
-/**
- * Direct Asset Addition (from Market Pages)
- */
-async function deepAddAsset(symbol, name, market, icon, color) {
-    if (!localStorage.getItem('calcwise_logged_in')) {
-        showToast('warning', 'Please log in to manage your portfolio.');
-        setTimeout(() => window.location.href = 'login.html', 1500);
-        return;
-    }
-
-    const qty = prompt(`How many ${symbol} tokens/shares do you hold?`, "1");
-    if (qty === null || isNaN(parseFloat(qty))) return;
-
-    const cost = prompt(`What was your average entry price for ${symbol}?`, "0");
-    if (cost === null || isNaN(parseFloat(cost))) return;
-
-    const assetData = {
-        name: name,
-        symbol: symbol,
-        market: market,
-        qty: parseFloat(qty),
-        avgCost: parseFloat(cost),
-        icon: icon,
-        color: color
-    };
-
-    try {
-        const response = await secureFetch('/api/portfolio', {
-            method: 'POST',
-            body: JSON.stringify(assetData)
-        });
-        const data = await response.json();
-        if (data.success) {
-            showToast('success', `${name} added to your portfolio! 🚀`);
-        }
-    } catch (error) {
-        showToast('error', 'Failed to add asset.');
-    }
-}
-
-async function addAsset(e) {
-    e.preventDefault();
-    const market = document.getElementById('asset-market').value;
-    const name = document.getElementById('asset-name').value;
-    const qty = parseFloat(document.getElementById('asset-quantity').value);
-    const cost = parseFloat(document.getElementById('asset-cost').value);
-
-    const form = e.target;
-    const selectedSymbol = form.dataset.selectedSymbol;
-    const selectedIcon = form.dataset.selectedIcon;
-    const selectedColor = form.dataset.selectedColor;
-
-    const marketIcons = { crypto: '₿', forex: '💱', 'us-stocks': '🏛', saudi: '🇸🇦' };
-    const marketNames = { crypto: 'Crypto', forex: 'Forex', 'us-stocks': 'US Stocks', saudi: 'Saudi Market' };
-    const marketColors = { crypto: 'var(--accent-gold)', forex: 'var(--accent-teal)', 'us-stocks': 'var(--primary)', saudi: 'var(--accent-emerald)' };
-
-    const assetData = {
-        name: name,
-        symbol: selectedSymbol || name.substring(0, 4).toUpperCase(),
-        market: marketNames[market] || (market.charAt(0).toUpperCase() + market.slice(1)),
-        qty: qty,
-        avgCost: cost,
-        icon: selectedIcon || marketIcons[market] || '💰',
-        color: selectedColor || marketColors[market] || '#6C5CE7'
-    };
-
-    const id = Date.now().toString();
-    const assetDataWithId = { ...assetData, id: id, currentPrice: cost }; // Initial current price is cost
-
-    try {
-        const response = await secureFetch('/api/portfolio', {
-            method: 'POST',
-            body: JSON.stringify(assetDataWithId)
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            showToast('success', 'Asset added to portfolio! 🚀');
-        } else {
-            throw new Error('API failed');
-        }
-    } catch (error) {
-        console.warn('API save failed, using local fallback:', error);
-        const holdings = getHoldings();
-        holdings.push(assetDataWithId);
-        saveHoldings(holdings);
-        showToast('success', 'Asset saved to local portfolio! 🏠');
-    } finally {
-        closeModal('addAssetModal');
-        form.reset();
-        delete form.dataset.selectedSymbol;
-        delete form.dataset.selectedIcon;
-        delete form.dataset.selectedColor;
-        initDashboard();
-    }
-}
-
-async function refreshDashboard() {
-    await initDashboard();
-    showToast('success', 'Dashboard refreshed with latest data! 📊');
-}
-
-async function handleDeleteAsset(id) {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const confirmMsg = lang === 'ar' ? 'هل أنت متأكد من حذف هذا الأصل؟' : 'Are you sure you want to remove this asset?';
-    if (!confirm(confirmMsg)) return;
-
-    try {
-        const response = await secureFetch(`/api/portfolio/${id}`, { method: 'DELETE' });
-        const data = await response.json();
-
-        if (data.success) {
-            showToast('success', lang === 'ar' ? 'تم حذف الأصل.' : 'Asset removed from portfolio.');
-            initDashboard();
-        } else {
-            throw new Error('API delete failed');
-        }
-    } catch (error) {
-        console.warn('API delete error, using local fallback:', error);
-        let holdings = getHoldings();
-        const initialCount = holdings.length;
-        holdings = holdings.filter(h => h.id !== id);
-        
-        if (holdings.length < initialCount) {
-            saveHoldings(holdings);
-            showToast('success', lang === 'ar' ? 'تم الحذف من التخزين المحلي.' : 'Removed from local portfolio.');
-            initDashboard();
-        } else {
-            showToast('error', lang === 'ar' ? 'فشل الحذف.' : 'Failed to remove asset.');
-        }
-    }
-}
-
-function clearAllAssets() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const msg = lang === 'ar' ? 'هل تريد مسح جميع الممتلكات؟' : 'Are you sure you want to clear all holdings?';
-    if (!confirm(msg)) return;
-
-    saveHoldings([]);
-    showToast('success', lang === 'ar' ? 'تم مسح المحفظة.' : 'Portfolio cleared.');
-    initDashboard();
-}
-
 function updateLastUpdated() {
     const el = document.getElementById('lastUpdated');
     if (el) {
@@ -2050,42 +1590,24 @@ function updateLastUpdated() {
     }
 }
 
-// ===== MODAL CLOSE ON OUTSIDE CLICK =====
+// Global modal background click listener
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('modal-overlay')) {
         e.target.classList.remove('active');
     }
 });
 
-// ===== CHECK URL HASH FOR TOOL TABS =====
-if (window.location.hash) {
-    const toolId = window.location.hash.substring(1);
-    const panel = document.getElementById(toolId);
-    if (panel && panel.classList.contains('tool-panel')) {
-        document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
-        panel.classList.add('active');
-        // Find matching tab
-        document.querySelectorAll('.tool-tab').forEach(t => {
-            if (t.getAttribute('onclick')?.includes(toolId)) {
-                t.classList.add('active');
-            }
-        });
-    }
-}
-
 // ===== BLOG MODAL SYSTEM =====
 function openBlogModal(postId) {
-    console.log('Opening blog modal for post:', postId);
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const currentLang = localStorage.getItem('lingowise_lang') || 'en';
     const modal = document.getElementById('blogModal');
     const contentArea = document.getElementById('blogContentArea');
 
     if (!modal || !contentArea) return;
 
-    const content = translations[`blog-${postId}-content`] ? translations[`blog-${postId}-content`][lang] : '<p>Content coming soon...</p>';
+    const content = translations[`blog-${postId}-content`] ? translations[`blog-${postId}-content`][currentLang] : '<p>Content coming soon...</p>';
     const titleKey = `blog-card-${postId}-title`;
-    const title = translations[titleKey] ? translations[titleKey][lang] : 'Article';
+    const title = translations[titleKey] ? translations[titleKey][currentLang] : 'Article';
 
     contentArea.innerHTML = `
         <div class="blog-full-article">
@@ -2109,141 +1631,59 @@ function closeBlogModal() {
     document.body.style.overflow = 'auto';
 }
 
-// ===== TRADE JOURNAL =====
-async function initJournal() {
-    const journalBody = document.getElementById('journalBody');
-    if (!journalBody) return;
+// ===== LINGOWISE AI ASSISTANT =====
+function initAIAssistant() {
+    if (document.getElementById('aiAssistantBtn')) return;
+    const currentLang = localStorage.getItem('lingowise_lang') || 'en';
 
-    try {
-        const response = await secureFetch('/api/journal');
-        const data = await response.json();
+    // Create the floating button
+    const btn = document.createElement('button');
+    btn.id = 'aiAssistantBtn';
+    btn.title = translations['ai-name'][currentLang];
+    btn.innerHTML = '🤖<span class="notif-dot"></span>';
+    btn.onclick = toggleAIChat;
+    document.body.appendChild(btn);
 
-        if (data.success) {
-            renderJournal(data.journal);
-        }
-
-        // Update User Name
-        const user = JSON.parse(localStorage.getItem('calcwise_user') || '{"firstName": "User"}');
-        const userEl = document.getElementById('dashboardUser');
-        if (userEl) userEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName} 👋`;
-    } catch (error) {
-        console.error('Journal fetch error:', error);
-    }
+    // Create the chat window
+    const chat = document.createElement('div');
+    chat.id = 'aiChat';
+    chat.innerHTML = `
+        <div class="ai-chat-header">
+            <div class="ai-avatar">🤖</div>
+            <div class="ai-info">
+                <div class="name">${translations['ai-name'][currentLang]}</div>
+                <div class="status">${translations['ai-status'][currentLang]}</div>
+            </div>
+            <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
+        </div>
+        <div class="ai-chat-messages" id="aiMessages">
+            <div class="ai-msg bot">${translations['ai-greeting'] ? translations['ai-greeting'][currentLang] : "👋 Hi! I'm your LingoWise AI Tutor."}</div>
+        </div>
+        <div class="ai-quick-replies">
+            <button class="ai-quick-btn" onclick="sendAIMessage('Explain Present Perfect')" data-i18n="ai-quick-grammar">${translations['ai-quick-grammar'][currentLang]}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('Study techniques')" data-i18n="ai-quick-tip">${translations['ai-quick-tip'][currentLang]}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('Practice conversation')" data-i18n="ai-quick-speak">${translations['ai-quick-speak'][currentLang]}</button>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="aiInput" placeholder="${translations['ai-placeholder'][currentLang]}" onkeydown="if(event.key==='Enter') sendAIMessage()">
+            <button onclick="sendAIMessage()">➤</button>
+        </div>
+    `;
+    document.body.appendChild(chat);
 }
 
-function renderJournal(entries) {
-    const tbody = document.getElementById('journalBody');
-    if (!tbody) return;
-
-    if (entries.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:var(--space-xl);color:var(--text-muted);">No trades logged yet. Start your journey today!</td></tr>';
-        return;
-    }
-
-    // --- Calculate Stats ---
-    const totalTrades = entries.length;
-    const wins = entries.filter(j => j.pnl > 0).length;
-    const winRate = (wins / totalTrades) * 100;
-    const totalPnL = entries.reduce((sum, j) => sum + j.pnl, 0);
-    const avgProfit = totalPnL / totalTrades;
-
-    // Find best asset
-    const assetPnL = {};
-    entries.forEach(j => {
-        assetPnL[j.asset] = (assetPnL[j.asset] || 0) + j.pnl;
-    });
-    let bestAsset = '-';
-    let maxPnL = -Infinity;
-    for (const asset in assetPnL) {
-        if (assetPnL[asset] > maxPnL) {
-            maxPnL = assetPnL[asset];
-            bestAsset = asset;
-        }
-    }
-
-    // --- Update UI Stats ---
-    if (el('journalWinRate')) el('journalWinRate').textContent = `${winRate.toFixed(1)}%`;
-    if (el('journalCount')) el('journalCount').textContent = `${totalTrades} Trades Total`;
-    if (el('journalTotalPnL')) el('journalTotalPnL').textContent = `${totalPnL >= 0 ? '+' : ''}$${totalPnL.toLocaleString()}`;
-    if (el('journalAvgProfit')) el('journalAvgProfit').textContent = `${avgProfit >= 0 ? '+' : ''}$${avgProfit.toLocaleString()}`;
-    if (el('journalBestAsset')) el('journalBestAsset').textContent = bestAsset;
-    
-    if (el('journalProfitability')) {
-        el('journalProfitability').textContent = avgProfit > 0 ? 'Highly Profitable' : 'Attention Needed';
-        el('journalProfitability').className = `stat-footer ${avgProfit > 0 ? 'positive' : 'negative'}`;
-    }
-
-    // --- Render Table ---
-    tbody.innerHTML = entries.map(j => `
-        <tr>
-            <td style="font-size:0.85rem;color:var(--text-muted);">${j.date}</td>
-            <td style="font-weight:600;">${j.asset}</td>
-            <td><span class="journal-badge" style="background:${j.type === 'Long' ? 'var(--success-bg)' : 'var(--danger-bg)'};color:${j.type === 'Long' ? 'var(--success)' : 'var(--danger)'};">${j.type}</span></td>
-            <td style="font-family:var(--font-mono);">$${j.entry.toLocaleString()}</td>
-            <td style="font-family:var(--font-mono);">$${j.exit.toLocaleString()}</td>
-            <td style="font-family:var(--font-mono);color:${j.pnl >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:600;">${j.pnl >= 0 ? '+' : ''}$${j.pnl.toLocaleString()}</td>
-            <td style="font-size:0.85rem;color:var(--text-secondary);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${j.notes}">${j.notes}</td>
-            <td style="text-align:right;"><button class="btn btn-ghost btn-sm" onclick="handleDeleteTrade('${j.id}')" style="color:var(--danger);padding:2px 8px;">✕</button></td>
-        </tr>
-    `).join('');
-}
-
-async function handleDeleteTrade(id) {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const msg = lang === 'ar' ? 'هل أنت متأكد من حذف هذا السجل؟' : 'Are you sure you want to delete this trade record?';
-    if (!confirm(msg)) return;
-
-    try {
-        const response = await secureFetch(`/api/journal/${id}`, { method: 'DELETE' });
-        const data = await response.json();
-
-        if (data.success) {
-            showToast('success', lang === 'ar' ? 'تم حذف سجل الصفقة.' : 'Trade record deleted.');
-            initJournal();
-        }
-    } catch (error) {
-        console.error('Delete error:', error);
-        showToast('error', lang === 'ar' ? 'فشل حذف السجل.' : 'Failed to delete record.');
-    }
-}
-
-async function handleJournalSubmit(e) {
-    e.preventDefault();
-    const asset = document.getElementById('trade-asset').value;
-    const type = document.getElementById('trade-type').value;
-    const entry = parseFloat(document.getElementById('trade-entry').value);
-    const exit = parseFloat(document.getElementById('trade-exit').value);
-    const qty = parseFloat(document.getElementById('trade-qty').value);
-    const notes = document.getElementById('trade-notes').value;
-
-    const pnl = (type === 'Long' ? (exit - entry) : (entry - exit)) * qty;
-
-    const tradeData = {
-        asset, type, entry, exit, qty, notes, pnl
-    };
-
-    try {
-        const response = await secureFetch('/api/journal', {
-            method: 'POST',
-            body: JSON.stringify(tradeData)
-        });
-        const data = await response.json();
-
-        if (data.success) {
-            showToast('success', 'Trade logged successfully! 📓');
-            closeModal('addTradeModal');
-            initJournal(); // Refresh
-        }
-    } catch (error) {
-        console.error('Journal save error:', error);
-        showToast('error', 'Failed to save trade record.');
-    }
+function updateAIAssistant() {
+    const currentLang = localStorage.getItem('lingowise_lang') || 'en';
+    const btn = document.getElementById('aiAssistantBtn');
+    const input = document.getElementById('aiInput');
+    if (btn) btn.title = translations['ai-name'][currentLang];
+    if (input) input.placeholder = translations['ai-placeholder'][currentLang];
 }
 
 // ===== LINGOWISE AI ASSISTANT =====
 function initAIAssistant() {
     if (document.getElementById('aiAssistantBtn')) return;
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
 
     const btn = document.createElement('button');
     btn.id = 'aiAssistantBtn';
@@ -2285,7 +1725,7 @@ function initAIAssistant() {
 }
 
 function updateAIAssistant() {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const btn = document.getElementById('aiAssistantBtn');
     const chat = document.getElementById('aiChat');
     const input = document.getElementById('aiInput');
@@ -2349,12 +1789,12 @@ const AI_RESPONSES = {
         ar: '🎙️ <strong>ممارسة التحدث:</strong> سجل صوتك واستمع إليه. الاستمرارية هي السر. تدرب لمدة 15 دقيقة يومياً. <a href="speaking-lab.html" style="color:var(--primary-light)">معمل التحدث ←</a>'
     },
     'ielts|exam|test|toefl|آيلتس|اختبار|امتحان': {
-        en: '📚 <strong>Exam Prep:</strong> Understanding the test format is 50% of the battle. Use practice tests and time yourself. <a href="labs.html" style="color:var(--primary-light)">Live Labs →</a>',
-        ar: '📚 <strong>التحضير للاختبار:</strong> فهم نظام الاختبار هو نصف المعركة. استخدم الاختبارات التجريبية وراقب وقتك. <a href="labs.html" style="color:var(--primary-light)">المختبرات الحية ←</a>'
+        en: '📚 <strong>Exam Prep:</strong> Understanding the test format is 50% of the battle. Use practice tests and time yourself.',
+        ar: '📚 <strong>التحضير للاختبار:</strong> فهم نظام الاختبار هو نصف المعركة. استخدم الاختبارات التجريبية وراقب وقتك.'
     },
     'fluency|level|fluent|طلاقة|مستوى': {
-        en: '🚀 <strong>Fluency Path:</strong> Immersion is great, but structured learning helps you cross the plateau. Join our Live Labs! <a href="labs.html" style="color:var(--primary-light)">Live Labs →</a>',
-        ar: '🚀 <strong>طريق الطلاقة:</strong> الانغماس رائع، لكن التعلم المنظم يساعدك على تجاوز العقبات. انضم لمختبراتنا المباشرة! <a href="labs.html" style="color:var(--primary-light)">المختبرات المباشرة ←</a>'
+        en: '🚀 <strong>Fluency Path:</strong> Immersion is great, but structured learning helps you cross the plateau. Practice daily!',
+        ar: '🚀 <strong>طريق الطلاقة:</strong> الانغماس رائع، لكن التعلم المنظم يساعدك على تجاوز العقبات. مارس اللغة يومياً!'
     },
     'tip|hack|study|نصيحة|دراسة': {
         en: '💡 <strong>Study Tip:</strong> Don\'t just read, use Active Recall. Quiz yourself regularly on what you\'ve learned.',
@@ -2366,9 +1806,89 @@ const AI_RESPONSES = {
     }
 };
 
+// ===== SPEAKING LAB LOGIC =====
+function getSpeakingAnalysis(topicId) {
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+    
+    // Simulate varied metrics
+    const pronunciation = 60 + Math.floor(Math.random() * 35);
+    const fluency = 60 + Math.floor(Math.random() * 35);
+    const grammar = 60 + Math.floor(Math.random() * 35);
+    
+    // Pick a phrase based on "topic" roughly
+    let phraseIdx = 1;
+    if (topicId === 'job') phraseIdx = Math.random() > 0.5 ? 1 : 6;
+    else if (topicId === 'food') phraseIdx = 2;
+    else if (topicId === 'travel') phraseIdx = 3;
+    else phraseIdx = Math.floor(Math.random() * 6) + 1;
+
+    // Pick a smart tip based on lowest score
+    let tipKey = 'speaking-tip-high';
+    const minScore = Math.min(pronunciation, fluency, grammar);
+    
+    if (minScore < 80) {
+        if (minScore === pronunciation) tipKey = 'speaking-tip-low-pron';
+        else if (minScore === fluency) tipKey = 'speaking-tip-low-fluency';
+        else tipKey = 'speaking-tip-low-grammar';
+    }
+
+    // AI Vocabulary Suggestion (based on the phrase)
+    const vocabPool = {
+        1: { word: 'Marketing', translation: lang === 'ar' ? 'تسويق' : 'Marketing', cat: 'Business' },
+        2: { word: 'Specialty', translation: lang === 'ar' ? 'تخصص' : 'Specialty', cat: 'General' },
+        3: { word: 'Excuse', translation: lang === 'ar' ? 'عذر' : 'Excuse', cat: 'General' },
+        4: { word: 'Pressing', translation: lang === 'ar' ? 'ملح' : 'Pressing', cat: 'Academic' },
+        5: { word: 'Repeat', translation: lang === 'ar' ? 'تكرار' : 'Repeat', cat: 'General' },
+        6: { word: 'Adapt', translation: lang === 'ar' ? 'يتكيف' : 'Adapt', cat: 'Business' }
+    };
+
+    // Save session to history
+    const history = JSON.parse(localStorage.getItem('lingowise_speaking_history') || '[]');
+    history.unshift({
+        date: new Date().toISOString(),
+        topic: topicId,
+        scores: { pronunciation, fluency, grammar }
+    });
+    localStorage.setItem('lingowise_speaking_history', JSON.stringify(history.slice(0, 50)));
+
+    // Update Daily Goals (increment speaking progress)
+    let speakProgress = parseInt(localStorage.getItem('lingowise_goal_speak') || '0');
+    speakProgress = Math.min(15, speakProgress + 5); // Each session adds 5 mins
+    localStorage.setItem('lingowise_goal_speak', speakProgress);
+
+    // Update Streak (once per day simplified)
+    const today = new Date().toISOString().split('T')[0];
+    const lastActive = localStorage.getItem('lingowise_last_active');
+    if (lastActive !== today) {
+        let streak = parseInt(localStorage.getItem('lingowise_streak') || '0');
+        localStorage.setItem('lingowise_streak', streak + 1);
+        localStorage.setItem('lingowise_last_active', today);
+    }
+
+    return {
+        transcript: translations[`speaking-phrase-${phraseIdx}`][lang],
+        metrics: { pronunciation, fluency, grammar },
+        tip: translations[tipKey][lang],
+        suggestedVocab: vocabPool[phraseIdx]
+    };
+}
+
 function getAIResponse(msg) {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
     const lowerMsg = msg.toLowerCase();
+    
+    // Grammar check request
+    if (lowerMsg.includes('grammar check') || lowerMsg.includes('check my sentence')) {
+        return lang === 'ar' ? '🤖 بالتأكيد! يرجى كتابة الجملة التي تريد مني فحصها.' 
+                           : '🤖 Sure! Please type the sentence you would like me to check.';
+    }
+
+    // Explain Present Perfect (example of specific grammar help)
+    if (lowerMsg.includes('present perfect')) {
+        return lang === 'ar' ? '🤖 <strong>المضارع التام:</strong> نستخدمه للأحداث التي بدأت في الماضي ولها علاقة بالحاضر. مثال: "I have lived here for 5 years".' 
+                           : '🤖 <strong>Present Perfect:</strong> We use it for actions that started in the past and continue to the present. Example: "I have lived here for 5 years".';
+    }
+
     for (const [keywords, response] of Object.entries(AI_RESPONSES)) {
         if (keywords.split('|').some(k => lowerMsg.includes(k))) {
             return typeof response === 'object' ? (response[lang] || response.en) : response;
@@ -2379,17 +1899,75 @@ function getAIResponse(msg) {
             '🤔 Great question! Check our <a href="blog.html" style="color:var(--primary-light)">blog</a> for in-depth language learning tips.',
             '📊 Try our <a href="vocabulary.html" style="color:var(--primary-light)">Vocabulary Bank</a> to expand your word count!',
             '💡 Practice makes perfect. Have you tried the <a href="speaking-lab.html" style="color:var(--primary-light)">AI Speaking Lab</a> today?',
-            '🎯 Learning a language takes time. Stay consistent and join a <a href="labs.html" style="color:var(--primary-light)">Live Lab</a> for real-time practice.',
+            '🎯 Learning a language takes time. Stay consistent and keep practicing daily.',
         ],
         ar: [
             '🤔 سؤال رائع! اطّلع على <a href="blog.html" style="color:var(--primary-light)">مدونتنا</a> للحصول على نصائح لغوية متعمقة.',
             '📊 جرّب <a href="vocabulary.html" style="color:var(--primary-light)">بنك المفردات</a> لتوسيع عدد كلماتك!',
             '💡 الممارسة تجعل العمل متقناً. هل جربت <a href="speaking-lab.html" style="color:var(--primary-light)">معمل التحدث</a> اليوم؟',
-            '🎯 تعلم اللغة يستغرق وقتاً. كن مستمراً وانضم إلى <a href="labs.html" style="color:var(--primary-light)">المختبرات المباشرة</a> للممارسة الحقيقية.',
+            '🎯 تعلم اللغة يستغرق وقتاً. كن مستمراً ومارس اللغة يومياً.',
         ]
     };
     const arr = defaults[lang] || defaults.en;
     return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// ===== COURSES PAGE =====
+function initCourses() {
+    const container = document.getElementById('coursesGrid');
+    if (!container) return;
+
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+    const params = new URLSearchParams(window.location.search);
+    const filterLevel = params.get('level') || 'all';
+
+    renderCourses(filterLevel);
+
+    // Initialize filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === filterLevel);
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCourses(btn.dataset.level);
+            // Update URL without reload
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?level=' + btn.dataset.level;
+            window.history.pushState({path:newUrl},'',newUrl);
+        });
+    });
+}
+
+function renderCourses(level) {
+    const container = document.getElementById('coursesGrid');
+    if (!container) return;
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+
+    let filtered = COURSE_POOL;
+    if (level !== 'all') {
+        filtered = COURSE_POOL.filter(c => c.level.toLowerCase() === level.toLowerCase());
+    }
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="text-center p-3" style="grid-column: 1/-1;">No courses found in this category.</div>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map(c => `
+        <div class="card course-card reveal active">
+            <div class="course-icon" style="background:${c.color}20; color:${c.color}; border: 1px solid ${c.color}40;">${c.icon}</div>
+            <div class="course-tag" style="background:${c.color}15; color:${c.color}; border: 1px solid ${c.color}30;">${c.level}</div>
+            <h3 class="mt-1">${c.name}</h3>
+            <p class="text-secondary" style="font-size:0.9rem; margin-bottom:var(--space-lg);">Master ${c.category.toLowerCase()} skills with expert-led lessons and interactive practice.</p>
+            <div class="course-meta">
+                <span>⏱️ 12h</span>
+                <span>📚 24 Lessons</span>
+            </div>
+            <div style="display:flex; gap:var(--space-sm); margin-top:var(--space-lg);">
+                <button class="btn btn-primary btn-sm" style="flex:1" data-i18n="course-enroll">${translations['course-enroll'][lang]}</button>
+                <button class="btn btn-ghost btn-sm" data-i18n="course-details">${translations['course-details'][lang]}</button>
+            </div>
+        </div>
+    `).join('');
 }
 
 function sendAIMessage(preset) {
@@ -2417,234 +1995,214 @@ function sendAIMessage(preset) {
     }, 800 + Math.random() * 600);
 }
 
-// ===== ECONOMIC CALENDAR =====
-function initEconomicCalendar() {
-    const container = document.getElementById('economicCalendar');
-    if (!container) return;
+// ===== VOCABULARY SYSTEM =====
+function getVocab() {
+    const defaults = [
+        { id: 'v1', word: 'Resilience', translation: 'المرونة', category: 'General', date: '2026-03-08' },
+        { id: 'v2', word: 'Ambiguous', translation: 'غامض', category: 'General', date: '2026-03-08' },
+        { id: 'v3', word: 'Innovation', translation: 'ابتكار', category: 'Business', date: '2026-03-10' },
+        { id: 'v4', word: 'Proactive', translation: 'مبادر', category: 'Business', date: '2026-03-12' }
+    ];
+    const stored = localStorage.getItem('lingowise_vocab');
+    return stored ? JSON.parse(stored) : defaults;
+}
 
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const today = new Date();
-    const fmt = (h, m) => { const d = new Date(today); d.setHours(h, m, 0); return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
+function saveVocab(vocab) {
+    localStorage.setItem('lingowise_vocab', JSON.stringify(vocab));
+    localStorage.setItem('lingowise_vocab_count', vocab.length);
+}
 
-    const events = [
-        { time: fmt(9, 30), name: lang === 'ar' ? 'الرواتب خارج القطاع الزراعي الأمريكي' : 'US Non-Farm Payrolls', country: '🇺🇸 USD', impact: 'high' },
-        { time: fmt(10, 0),  name: lang === 'ar' ? 'مؤشر أسعار المستهلكين الأمريكي (CPI)' : 'US Consumer Price Index (CPI)', country: '🇺🇸 USD', impact: 'high' },
-        { time: fmt(14, 0),  name: lang === 'ar' ? 'قرار الاحتياطي الفيدرالي بشأن الفائدة' : 'Federal Reserve Interest Decision', country: '🇺🇸 USD', impact: 'high' },
-        { time: fmt(10, 30), name: lang === 'ar' ? 'طلبيات إعانات البطالة الأمريكية' : 'US Initial Jobless Claims', country: '🇺🇸 USD', impact: 'medium' },
-        { time: fmt(12, 0),  name: lang === 'ar' ? 'قرار سعر الفائدة للبنك المركزي الأوروبي' : 'EU ECB Rate Decision', country: '🇪🇺 EUR', impact: 'high' },
-        { time: fmt(8, 30),  name: lang === 'ar' ? 'تقديرات الناتج المحلي الإجمالي البريطاني' : 'UK GDP Monthly Estimate', country: '🇬🇧 GBP', impact: 'medium' },
-        { time: fmt(11, 0),  name: lang === 'ar' ? 'افتتاح السوق السعودية (تاسي)' : 'Saudi TASI Open', country: '🇸🇦 SAR', impact: 'low' },
-        { time: fmt(16, 0),  name: lang === 'ar' ? 'مؤشر PMI التصنيعي ISM الأمريكي' : 'US ISM Manufacturing PMI', country: '🇺🇸 USD', impact: 'medium' },
-    ].sort((a, b) => a.time.localeCompare(b.time));
+function initVocabularyPage() {
+    const grid = document.getElementById('vocabularyGrid');
+    if (!grid) return;
+    renderVocabGrid();
+}
 
-    const highLabel  = translations['econ-impact-high']   ? translations['econ-impact-high'][lang]   : 'High';
-    const medLabel   = translations['econ-impact-medium'] ? translations['econ-impact-medium'][lang]  : 'Medium';
-    const lowLabel   = translations['econ-impact-low']    ? translations['econ-impact-low'][lang]     : 'Low';
+function renderVocabGrid(filterTerm = '', filterCat = 'all') {
+    const grid = document.getElementById('vocabularyGrid');
+    if (!grid) return;
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+    const vocab = getVocab();
 
-    container.innerHTML = events.map(ev => `
-        <div class="calendar-event">
-            <div class="event-impact ${ev.impact}" title="${ev.impact}"></div>
-            <div class="event-info">
-                <div class="event-name">${ev.name}</div>
-                <div class="event-meta">${ev.country} · ${ev.impact === 'high' ? `🔴 ${highLabel}` : ev.impact === 'medium' ? `🟡 ${medLabel}` : `🟢 ${lowLabel}`}</div>
+    let filtered = vocab.filter(v => {
+        const matchesTerm = v.word.toLowerCase().includes(filterTerm.toLowerCase()) || 
+                           v.translation.toLowerCase().includes(filterTerm.toLowerCase());
+        const matchesCat = filterCat === 'all' || v.category.toLowerCase() === filterCat.toLowerCase();
+        return matchesTerm && matchesCat;
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `<div class="text-center p-3" style="grid-column:1/-1; color:var(--text-muted);">${translations['vocab-empty'] ? translations['vocab-empty'][lang] : 'No words found.'}</div>`;
+        return;
+    }
+
+    grid.innerHTML = filtered.map(v => `
+        <div class="card vocab-card reveal active">
+            <button class="delete-btn" onclick="deleteVocab('${v.id}')">✕</button>
+            <div class="vocab-word">${v.word}</div>
+            <div class="vocab-translation">${v.translation}</div>
+            <div class="vocab-footer">
+                <span class="vocab-tag">${v.category}</span>
+                <span class="vocab-date">${v.date}</span>
             </div>
-            <div class="event-time">${ev.time}</div>
         </div>
     `).join('');
 }
 
-// ===== WATCHLIST SYSTEM =====
-function getWatchlist() {
-    const defaults = [
-        { id: 'btc', name: 'Bitcoin', symbol: 'BTC', price: 98450.25, change: 2.45, icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', color: '#f7931a' },
-        { id: 'eth', name: 'Ethereum', symbol: 'ETH', price: 3840.12, change: -1.20, icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', color: '#627eea' },
-        { id: 'aapl', name: 'Apple Inc.', symbol: 'AAPL', price: 245.67, change: 0.85, icon: 'https://logo.clearbit.com/apple.com', color: '#555555' },
-        { id: 'nvda', name: 'NVIDIA', symbol: 'NVDA', price: 142.33, change: 5.12, icon: 'https://logo.clearbit.com/nvidia.com', color: '#76b900' }
-    ];
-    return JSON.parse(localStorage.getItem('calcwise_watchlist') || JSON.stringify(defaults));
-}
+function addVocabulary(e) {
+    if (e) e.preventDefault();
+    const wordInput = document.getElementById('vocab-word');
+    const transInput = document.getElementById('vocab-translation');
+    const catInput = document.getElementById('vocab-category');
+    
+    if (!wordInput || !transInput || !catInput) return;
 
-function saveWatchlist(list) {
-    localStorage.setItem('calcwise_watchlist', JSON.stringify(list));
-}
-
-function initWatchlist() {
-    const grid = document.getElementById('watchlistGrid');
-    if (!grid) return;
-    renderWatchlist();
-}
-
-function renderWatchlist() {
-    const grid = document.getElementById('watchlistGrid');
-    if (!grid) return;
-
-    const list = getWatchlist();
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-
-    if (list.length === 0) {
-        grid.innerHTML = `
-            <div class="empty-watchlist">
-                <div style="font-size:3rem;margin-bottom:var(--space-md);">👁️</div>
-                <h3>${translations['watchlist-empty-msg'][lang]}</h3>
-                <button class="btn btn-primary mt-1" onclick="openModal('addWatchlistModal')">${translations['watchlist-add-btn'][lang]}</button>
-            </div>
-        `;
+    const word = wordInput.value.trim();
+    const translation = transInput.value.trim();
+    const category = catInput.value;
+    
+    if (!word || !translation) {
+        showToast('error', 'Please fill in both word and translation.');
         return;
     }
 
-    grid.innerHTML = list.map(item => {
-        const isPos = item.change >= 0;
-        return `
-            <div class="card watchlist-card reveal">
-                <button class="remove-btn" onclick="removeWatchlistAsset('${item.id}', '${item.name}')">✕</button>
-                <div class="asset-info">
-                    ${renderAssetIcon(item.icon, item.name, item.color)}
-                    <div>
-                        <div style="font-weight:700;font-size:1.1rem;">${item.name}</div>
-                        <div style="color:var(--text-muted);font-size:0.85rem;">${item.symbol}</div>
-                    </div>
-                </div>
-                <div class="price-info">
-                    <div class="price-value">$${item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
-                    <div class="price-change" style="color:${isPos ? 'var(--success)' : 'var(--danger)'}">
-                        ${isPos ? '↑' : '↓'} ${Math.abs(item.change).toFixed(2)}%
-                    </div>
-                </div>
-                <div class="watchlist-chart" id="chart-${item.id}">
-                    <!-- Simplified sparkline placeholder -->
-                    <div style="width:100%;height:100%;display:flex;align-items:flex-end;gap:2px;padding:10px;">
-                        ${Array.from({length: 20}).map(() => `<div style="flex:1;background:${isPos ? 'var(--success)' : 'var(--danger)'};opacity:0.3;height:${Math.random()*100}%;border-radius:2px;"></div>`).join('')}
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-function handleWatchlistSearch(query, isModal = false) {
-    const resultsContainer = document.getElementById(isModal ? 'modalSearchResults' : 'watchlistSearchResults');
-    if (!query) {
-        resultsContainer.style.display = 'none';
-        resultsContainer.innerHTML = '';
-        return;
-    }
-
-    const filtered = ASSET_POOL.filter(a => 
-        a.name.toLowerCase().includes(query.toLowerCase()) || 
-        a.symbol.toLowerCase().includes(query.toLowerCase())
-    );
-
-    if (filtered.length === 0) {
-        resultsContainer.innerHTML = '<div class="search-result-item">No assets found</div>';
-    } else {
-        resultsContainer.innerHTML = filtered.map(a => `
-            <div class="search-result-item" onclick="addWatchlistAsset('${a.id}', '${a.name}', '${a.symbol}', '${a.icon}', '${a.color}')">
-                <div style="display:flex;align-items:center;gap:12px;">
-                    ${renderAssetIcon(a.icon, a.name, a.color)}
-                    <div>
-                        <strong>${a.name}</strong>
-                        <div style="font-size:0.75rem;color:var(--text-muted);">${a.symbol}</div>
-                    </div>
-                </div>
-                <button class="btn btn-ghost btn-sm">+</button>
-            </div>
-        `).join('');
-    }
-    resultsContainer.style.display = 'block';
-}
-
-function handlePortfolioSearch(query) {
-    const resultsContainer = document.getElementById('portfolioSearchResults');
-    const selectedMarket = document.getElementById('asset-market').value;
-    
-    // Filter pool by market first
-    let poolToUse = ASSET_POOL.filter(a => a.market === selectedMarket);
-
-    if (query && query.length >= 1) {
-        poolToUse = poolToUse.filter(a => 
-            a.name.toLowerCase().includes(query.toLowerCase()) || 
-            a.symbol.toLowerCase().includes(query.toLowerCase())
-        );
-    }
-
-    if (poolToUse.length === 0) {
-        resultsContainer.innerHTML = '<div class="search-result-item">No assets found</div>';
-    } else {
-        const title = query ? '' : `<div style="padding:10px var(--space-md); font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid var(--border-subtle);">${lang === 'ar' ? 'أصول مقترحة' : 'Suggested Assets'}</div>`;
-        resultsContainer.innerHTML = title + poolToUse.map(a => `
-            <div class="search-result-item" onclick="selectPortfolioAsset('${a.name}', '${a.symbol}', '${a.market}', '${a.icon}', '${a.color}')">
-                <div style="display:flex;align-items:center;gap:12px;">
-                    ${renderAssetIcon(a.icon, a.name, a.color)}
-                    <div>
-                        <strong>${a.name}</strong>
-                        <div style="font-size:0.75rem;color:var(--text-muted);">${a.symbol}</div>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    }
-    resultsContainer.style.display = 'block';
-}
-
-function selectPortfolioAsset(name, symbol, market, icon, color) {
-    document.getElementById('asset-name').value = name;
-    document.getElementById('asset-market').value = market;
-    document.getElementById('portfolioSearchResults').style.display = 'none';
-    
-    // Store metadata for the submission
-    const form = document.querySelector('#addAssetModal form');
-    form.dataset.selectedSymbol = symbol;
-    form.dataset.selectedIcon = icon;
-    form.dataset.selectedColor = color;
-    
-    // Auto-focus quantity
-    document.getElementById('asset-quantity').focus();
-}
-
-function addWatchlistAsset(id, name, symbol, icon, color) {
-    let list = getWatchlist();
-    if (list.find(a => a.id === id)) {
-        showToast('error', `${name} is already in your watchlist.`);
-        return;
-    }
-
-    const newAsset = {
-        id, name, symbol, icon, color,
-        price: 100 + Math.random() * 1000, // Simulated price
-        change: (Math.random() * 10) - 5 // Simulated change
+    const newEntry = {
+        id: Date.now().toString(),
+        word,
+        translation,
+        category,
+        date: new Date().toISOString().split('T')[0]
     };
 
-    list.push(newAsset);
-    saveWatchlist(list);
-    showToast('success', `${name} added to watchlist! 👁️`);
+    const vocab = getVocab();
+    vocab.unshift(newEntry);
+    saveVocab(vocab);
+
+    showToast('success', 'Word added to your bank! 🔤');
+    closeModal('addWordModal');
     
-    // Clear UI
-    const searchDash = document.getElementById('watchlistSearch');
-    const searchModal = document.getElementById('modalSearchInput');
-    if (searchDash) searchDash.value = '';
-    if (searchModal) searchModal.value = '';
-    
-    const resultsDash = document.getElementById('watchlistSearchResults');
-    if (resultsDash) resultsDash.style.display = 'none';
-    
-    const resultsModal = document.getElementById('modalSearchResults');
-    if (resultsModal) resultsModal.innerHTML = '';
-    
-    closeModal('addWatchlistModal');
-    
-    renderWatchlist(); // Refresh full grid (watchlist.html)
-    initWatchlist();   // Refresh dashboard widget (dashboard.html)
+    wordInput.value = '';
+    transInput.value = '';
+
+    // Refresh whichever UI is present
+    renderVocabGrid();
+    updateVocabUI();
 }
 
-function removeWatchlistAsset(id, name) {
-    const lang = localStorage.getItem('calcwise_lang') || 'en';
-    const confirmMsg = translations['watchlist-remove-confirm'][lang].replace('{name}', name);
+function deleteVocab(id) {
+    if (!confirm('Are you sure you want to delete this word?')) return;
+    let vocab = getVocab();
+    vocab = vocab.filter(v => v.id !== id);
+    saveVocab(vocab);
+    showToast('success', 'Word removed.');
+    renderVocabGrid();
+    updateVocabUI();
+}
+
+function updateVocabUI() {
+    const container = document.getElementById('recentVocabContainer');
+    if (!container) return;
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+    const vocab = getVocab().slice(0, 4);
+
+    container.innerHTML = vocab.map(v => `
+        <div class="vocab-card-mini card text-center p-1" style="background:var(--bg-secondary);">
+            <div style="font-weight:700; font-size:1rem;">${v.word}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${v.translation}</div>
+        </div>
+    `).join('');
     
-    if (confirm(confirmMsg)) {
-        let list = getWatchlist();
-        list = list.filter(a => a.id !== id);
-        saveWatchlist(list);
-        showToast('success', `${name} removed.`);
-        renderWatchlist();
+    // Update count in stats if present
+    const countEl = document.getElementById('vocabMastery');
+    if (countEl) countEl.innerText = getVocab().length;
+}
+
+function handleVocabSearch(query) {
+    const catEl = document.getElementById('vocabFilterCat');
+    const cat = catEl ? catEl.value : 'all';
+    renderVocabGrid(query, cat);
+}
+
+function handleVocabFilter(cat) {
+    const searchEl = document.getElementById('vocabSearch');
+    const query = searchEl ? searchEl.value : '';
+    renderVocabGrid(query, cat);
+}
+// ===== MY COURSES PAGE =====
+function initMyCoursesPage() {
+    const grid = document.getElementById('myCoursesGrid');
+    if (!grid) return;
+    renderMyCoursesGrid();
+}
+
+function renderMyCoursesGrid() {
+    const grid = document.getElementById('myCoursesGrid');
+    if (!grid) return;
+    const lang = localStorage.getItem('lingowise_lang') || 'en';
+
+    // Simulated data
+    const myCourses = [
+        { 
+            id: 'beg-1', 
+            name: lang === 'ar' ? 'أساسيات اللغة الإنجليزية 101' : 'Complete English Foundations 101', 
+            progress: 85, 
+            status: 'in-progress',
+            icon: '🌱',
+            lessons: '20/24'
+        },
+        { 
+            id: 'int-1', 
+            name: lang === 'ar' ? 'إتقان قواعد المستوى المتوسط' : 'Intermediate Grammar Mastery', 
+            progress: 45, 
+            status: 'in-progress',
+            icon: '📝',
+            lessons: '12/28'
+        },
+        { 
+            id: 'gen-1', 
+            name: lang === 'ar' ? 'دورة العناوين اليومية' : 'Daily Conversation Essentials', 
+            progress: 100, 
+            status: 'completed',
+            icon: '🗣️',
+            lessons: '15/15'
+        }
+    ];
+
+    if (myCourses.length === 0) {
+        grid.innerHTML = `
+            <div class="text-center p-3" style="grid-column:1/-1;">
+                <p class="text-muted mb-2">${translations['no-courses-yet'] ? translations['no-courses-yet'][lang] : "You haven't enrolled in any courses yet."}</p>
+                <a href="courses.html" class="btn btn-primary">${translations['browse-btn'] ? translations['browse-btn'][lang] : "Browse All Courses"}</a>
+            </div>
+        `;
+        return;
     }
+
+    grid.innerHTML = myCourses.map(c => `
+        <div class="card reveal active" style="overflow:hidden;">
+            <div style="padding:var(--space-xl);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-md);">
+                    <div style="font-size:2rem;">${c.icon}</div>
+                    <span class="badge" style="background:${c.status === 'completed' ? 'var(--success-bg)' : 'var(--primary-bg)'}; color:${c.status === 'completed' ? 'var(--success)' : 'var(--primary)'};">
+                        ${translations['course-status-' + c.status] ? translations['course-status-' + c.status][lang] : c.status}
+                    </span>
+                </div>
+                <h3>${c.name}</h3>
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--text-muted); margin: var(--space-md) 0 var(--space-xs);">
+                    <span>${translations['course-lessons'] ? translations['course-lessons'][lang] : 'Lessons'}: ${c.lessons}</span>
+                    <span>${c.progress}%</span>
+                </div>
+                <div class="progress-bar" style="height:8px; background:var(--bg-secondary); border-radius:4px; margin-bottom:var(--space-xl);">
+                    <div class="progress-fill" style="width:${c.progress}%; height:100%; background:var(--primary); border-radius:4px;"></div>
+                </div>
+                <div style="display:flex; gap:var(--space-sm);">
+                    ${c.status === 'completed' 
+                        ? `<button class="btn btn-gold btn-sm" style="flex:1">${translations['course-certificate'] ? translations['course-certificate'][lang] : 'Get Certificate'}</button>` 
+                        : `<button class="btn btn-primary btn-sm" style="flex:1">${translations['course-resume'] ? translations['course-resume'][lang] : 'Resume'}</button>`
+                    }
+                    <button class="btn btn-ghost btn-sm">✕</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
 }

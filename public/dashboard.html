@@ -11,125 +11,56 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
     <style>
-        .portfolio-chart-area {
+        .course-progress-item {
+            padding: var(--space-sm) 0;
+        }
+
+        .streak-card {
+            background: linear-gradient(135deg, rgba(255, 171, 0, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border: 1px solid rgba(255, 171, 0, 0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 171, 0, 0.1);
+        }
+
+        .vocab-card-mini {
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .vocab-card-mini:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .daily-goal-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xl);
-        }
-
-        .mini-chart {
-            height: 60px;
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-        }
-
-        .mini-chart .bar {
-            flex: 1;
-            border-radius: 2px 2px 0 0;
-            transition: all var(--transition-fast);
-            min-height: 4px;
-        }
-
-        .mini-chart .bar:hover {
-            opacity: 0.7;
-        }
-
-        .allocation-chart {
-            display: flex;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-
-        .allocation-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            font-size: 0.88rem;
-        }
-
-        .allocation-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .watchlist-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .watchlist-item:last-child {
-            border: none;
-        }
-
-        .add-asset-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            padding: var(--space-md);
-            border: 2px dashed var(--border-default);
             border-radius: var(--radius-md);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            margin-top: var(--space-md);
+            transition: all 0.3s ease;
         }
 
-        .add-asset-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary-light);
-            background: rgba(108, 92, 231, 0.05);
-        }
-
-        .activity-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .activity-item:last-child {
-            border: none;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-sm);
+        .goal-check {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--border-default);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
-        .activity-info {
-            flex: 1;
-        }
-
-        .activity-info .title {
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .activity-info .time {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .activity-amount {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            font-size: 0.9rem;
+        .goal-check.done {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
         }
     </style>
     <!-- Google Analytics -->
@@ -152,7 +83,7 @@
             <div class="nav-links" id="navLinks">
                 <a href="index.html" data-i18n="nav-home">Home</a>
                 <a href="courses.html" data-i18n="nav-courses">Courses</a>
-                <a href="labs.html" data-i18n="nav-labs">Live Labs</a>
+
                 <a href="blog.html" data-i18n="nav-blog">Blog</a>
                 <a href="community.html" data-i18n="nav-community">Community</a>
             </div>
@@ -175,7 +106,7 @@
         <aside class="dashboard-sidebar">
             <div class="sidebar-section">
                 <div class="sidebar-section-title" data-i18n="sidebar-overview">Learning Hub</div>
-                <a href="dashboard.html" class="sidebar-link active"><span class="link-icon">📊</span> <span
+                <a href="dashboard.html" class="sidebar-link active"><span class="link-icon">🎓</span> <span
                         data-i18n="sidebar-dashboard">Dashboard</span></a>
                 <a href="my-courses.html" class="sidebar-link"><span class="link-icon">📚</span> <span
                         data-i18n="sidebar-courses">My Courses</span></a>
@@ -188,8 +119,7 @@
                 <div class="sidebar-section-title" data-i18n="sidebar-resources">Resources</div>
                 <a href="grammar.html" class="sidebar-link"><span class="link-icon">📝</span> <span
                         data-i18n="sidebar-grammar">Grammar Guide</span></a>
-                <a href="labs.html" class="sidebar-link"><span class="link-icon">🎥</span> <span
-                        data-i18n="sidebar-labs">Live Labs</span></a>
+
             </div>
             <div class="sidebar-section">
                 <div class="sidebar-section-title" data-i18n="footer-account">Account</div>
@@ -319,28 +249,7 @@
                 </div>
             </div>
 
-            <!-- UPCOMING LABS -->
-            <div class="card">
-                <h3 style="font-size:1rem; margin-bottom:var(--space-lg);" data-i18n="dash-upcoming-labs">Upcoming Live Labs</h3>
-                <div id="upcomingLabs" style="display:flex; flex-direction:column; gap:var(--space-md);">
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--info-bg);">🎙️</div>
-                        <div class="activity-info">
-                            <div class="title" data-i18n="dash-lab-native">Native Slang & Idioms</div>
-                            <div class="time" data-i18n="dash-lab-starting">Starting in 45 minutes</div>
-                        </div>
-                        <button class="btn btn-primary btn-xs" data-i18n="dash-lab-join">Join Lab</button>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background:var(--warning-bg);">📝</div>
-                        <div class="activity-info">
-                            <div class="title" data-i18n="dash-lab-ielts">IELTS Strategy Intensive</div>
-                            <div class="time" data-i18n="dash-lab-tomorrow">Tomorrow at 6:00 PM</div>
-                        </div>
-                        <button class="btn btn-outline btn-xs" data-i18n="dash-lab-reminder">Set Reminder</button>
-                    </div>
-                </div>
-            </div>
+
         </main>
     </div>
 

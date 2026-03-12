@@ -309,6 +309,21 @@
                         <h4 style="font-size:0.85rem; margin-bottom:var(--space-sm);" data-i18n="ai-quick-tip">AI Coach's Tip:</h4>
                         <p id="aiCoachTip" style="font-size:0.75rem; color:var(--text-secondary);" data-i18n="speaking-initial-tip">Select a topic and start speaking to get personalized tips!</p>
                     </div>
+
+                    <!-- SUGGESTED VOCAB -->
+                    <div id="suggestedVocabCard" class="card" style="padding:var(--space-md); margin-top:var(--space-md); display:none; border:1px solid var(--primary-bg); background:rgba(108, 92, 231, 0.05);">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h4 style="font-size:0.85rem;">Word Suggestion</h4>
+                            <span class="badge" id="suggestedCat" style="font-size:0.65rem;">General</span>
+                        </div>
+                        <div style="margin: var(--space-sm) 0;">
+                            <div id="suggestedWord" style="font-weight:700; font-size:1.1rem; color:var(--primary-light);">...</div>
+                            <div id="suggestedTrans" style="font-size:0.85rem; color:var(--text-secondary);">...</div>
+                        </div>
+                        <button class="btn btn-primary btn-xs" style="width:100%;" id="addVocabBtn">
+                            + Add to Bank
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -334,14 +349,32 @@
     <script src="js/main.js"></script>
     <script>
         let isRecording = false;
+        let selectedTopic = 'general';
+
+        // Add click listeners to topic cards
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                selectedTopic = card.querySelector('h4').getAttribute('data-i18n')?.includes('job') ? 'job' : 
+                               (card.querySelector('h4').getAttribute('data-i18n')?.includes('food') ? 'food' : 
+                               (card.querySelector('h4').getAttribute('data-i18n')?.includes('travel') ? 'travel' : 'general'));
+                
+                // Clear state
+                const transcript = document.getElementById('transcriptArea');
+                if (transcript) transcript.innerHTML = `<span data-i18n="speaking-transcript-hint">${translations['speaking-transcript-hint'][localStorage.getItem('lingowise_lang') || 'en']}</span>`;
+            });
+        });
 
         function startRecording() {
+            if (isRecording) return;
             isRecording = true;
+            
             const btn = document.getElementById('recordBtn');
             const wave = document.getElementById('waveform');
             const status = document.getElementById('statusText');
             const transcript = document.getElementById('transcriptArea');
-            const lang = localStorage.getItem('calcwise_lang') || 'en';
+            const lang = localStorage.getItem('lingowise_lang') || 'en';
 
             btn.classList.add('recording');
             wave.classList.add('active');
@@ -358,36 +391,64 @@
             const wave = document.getElementById('waveform');
             const status = document.getElementById('statusText');
             const transcript = document.getElementById('transcriptArea');
-            const lang = localStorage.getItem('calcwise_lang') || 'en';
+            const lang = localStorage.getItem('lingowise_lang') || 'en';
 
             btn.classList.remove('recording');
             wave.classList.remove('active');
-            status.innerText = translations['speaking-analyzing'] ? translations['speaking-analyzing'][lang] : 'Analyzing...';
+            status.innerText = translations['speaking-analyzing'] ? translations['speaking-analyzing'][lang] : 'Analyzing your speech...';
             status.style.color = 'var(--accent-gold)';
 
-            // Simulate AI Processing
+            // Call refined analysis logic from main.js
             setTimeout(() => {
-                const randomIdx = Math.floor(Math.random() * 3) + 1;
-                const phraseKey = `speaking-phrase-${randomIdx}`;
-                const tipKey = `speaking-tip-${randomIdx}`;
+                const results = getSpeakingAnalysis(selectedTopic);
 
-                transcript.innerText = translations[phraseKey] ? translations[phraseKey][lang] : '...';
+                transcript.innerText = results.transcript;
                 status.innerText = translations['speaking-complete'] ? translations['speaking-complete'][lang] : 'Analysis Complete!';
                 status.style.color = 'var(--success)';
 
-                // Update Metrics
-                updateMetric('pronunciation', 75 + Math.floor(Math.random() * 20));
-                updateMetric('fluency', 80 + Math.floor(Math.random() * 15));
-                updateMetric('grammar', 85 + Math.floor(Math.random() * 10));
+                // Update Metrics with smooth transitions
+                updateMetric('pronunciation', results.metrics.pronunciation);
+                updateMetric('fluency', results.metrics.fluency);
+                updateMetric('grammar', results.metrics.grammar);
 
-                document.getElementById('aiCoachTip').innerText = translations[tipKey] ? translations[tipKey][lang] : '';
+                document.getElementById('aiCoachTip').innerText = results.tip;
+
+                // Show suggested vocab
+                if (results.suggestedVocab) {
+                    const card = document.getElementById('suggestedVocabCard');
+                    document.getElementById('suggestedWord').innerText = results.suggestedVocab.word;
+                    document.getElementById('suggestedTrans').innerText = results.suggestedVocab.translation;
+                    document.getElementById('suggestedCat').innerText = results.suggestedVocab.cat;
+                    card.style.display = 'block';
+
+                    document.getElementById('addVocabBtn').onclick = () => {
+                        const vocab = getVocab();
+                        const newEntry = {
+                            id: Date.now().toString(),
+                            word: results.suggestedVocab.word,
+                            translation: results.suggestedVocab.translation,
+                            category: results.suggestedVocab.cat,
+                            date: new Date().toISOString().split('T')[0]
+                        };
+                        vocab.unshift(newEntry);
+                        saveVocab(vocab);
+                        showToast('success', lang === 'ar' ? 'تمت الإضافة لبنك المفردات!' : 'Added to Vocabulary Bank!');
+                        card.style.display = 'none';
+                    };
+                }
                 
+                // Show toast for accomplishment
+                if (typeof showToast === 'function') {
+                    showToast('success', lang === 'ar' ? 'أداء رائع! استمر في الممارسة.' : 'Great performance! Keep practicing.');
+                }
             }, 1500);
         }
 
         function updateMetric(name, value) {
-            document.getElementById(`${name}Val`).innerText = `${value}%`;
-            document.getElementById(`${name}Fill`).style.width = `${value}%`;
+            const valEl = document.getElementById(`${name}Val`);
+            const fillEl = document.getElementById(`${name}Fill`);
+            if (valEl) valEl.innerText = `${value}%`;
+            if (fillEl) fillEl.style.width = `${value}%`;
         }
     </script>
 </body>

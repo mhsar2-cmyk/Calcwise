@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning — LingoWise</title>
+    <meta name="description"
+        content="Track your English learning progress, resume your courses, and achieve your fluency goals.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    
+    <style>
+        .my-courses-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .stat-card-mini {
+            padding: var(--space-lg);
+            text-align: center;
+        }
+
+        .stat-card-mini h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-card-mini .val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-light);
+        }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-CQ0F5LVG3J");
+    </script>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🎓</div> LingoWise
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <a href="courses.html" data-i18n="nav-courses">Courses</a>
+                <a href="speaking-lab.html" data-i18n="sidebar-speaking">AI Speaking Lab</a>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <a href="dashboard.html" class="btn btn-ghost btn-sm" data-i18n="sidebar-dashboard">Dashboard</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="page-hero"
+        style="margin-top:var(--header-height);padding:var(--space-2xl) 0 var(--space-xl);text-align:center;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h1><span data-i18n="my-courses-title">My</span> <span class="text-gold" data-i18n="my-courses-title-2">Learning</span></h1>
+                <p data-i18n="my-courses-sub">Pick up where you left off and keep track of your achievements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="my-courses-stats reveal">
+                <div class="card stat-card-mini">
+                    <h4 data-i18n="dash-courses-done">Courses Completed</h4>
+                    <div class="val">3</div>
+                </div>
+                <div class="card stat-card-mini">
+                    <h4 data-i18n="dash-learning-time">Learning Time</h4>
+                    <div class="val">12.5h</div>
+                </div>
+                <div class="card stat-card-mini">
+                    <h4 data-i18n="dash-vocab-mastery">Words Mastered</h4>
+                    <div class="val" id="vocabMastery">450</div>
+                </div>
+                <div class="card stat-card-mini">
+                    <h4 data-i18n="dash-speaking-score">Avg. Score</h4>
+                    <div class="val">82%</div>
+                </div>
+            </div>
+
+            <div class="grid grid-3" id="myCoursesGrid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <span data-i18n="footer-copyright">&copy; 2026 LingoWise. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <div class="toast-container" id="toastContainer"></div>
+    <!-- FLOATING THEME TOGGLE -->
+    <div class="floating-toggles"
+        onclick="toggleTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"
+        title="Toggle theme">
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon light-icon">☀️</span>
+    </div>
+</body>
+
+</html>
