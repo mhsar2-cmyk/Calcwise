@@ -514,14 +514,15 @@ function updateDashboardStats() {
 function updateActiveCourses() {
     const container = document.getElementById('activeCoursesContainer');
     if (!container) return;
-    const active = [
-        { id: 'beg-1', name: 'English Foundations', progress: 85, color: 'var(--primary)' },
-        { id: 'int-1', name: 'Master Grammar', progress: 45, color: '#6c5ce7' }
-    ];
+    const activeIds = ['beg-1', 'int-1']; // Dynamic IDs in real app
+    const active = activeIds.map(id => {
+        const c = COURSE_POOL.find(item => item.id === id);
+        return { ...c, progress: id === 'beg-1' ? 85 : 45 };
+    });
     container.innerHTML = active.map(c => `
         <div class="course-progress-item" onclick="playLesson('${c.id}')" style="cursor:pointer;">
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="font-weight:600; font-size:0.9rem;">${c.name}</span>
+                <span style="font-weight:600; font-size:0.9rem;">${c.name[lang]}</span>
                 <span style="color:${c.color}; font-weight:700; font-size:0.85rem;">${c.progress}%</span>
             </div>
             <div style="height:8px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
@@ -549,13 +550,13 @@ function initCourses() {
 function renderCoursesGrid(level) {
     const container = document.getElementById('coursesGrid');
     if (!container) return;
-    const filtered = level === 'all' ? COURSE_POOL : COURSE_POOL.filter(c => c.level.toLowerCase() === level.toLowerCase());
+    const filtered = level === 'all' ? COURSE_POOL : COURSE_POOL.filter(c => c.level.en.toLowerCase() === level.toLowerCase());
     container.innerHTML = filtered.map(c => `
         <div class="card course-card reveal active">
             <div class="course-icon" style="background:${c.color}20; color:${c.color}">${c.icon}</div>
-            <div class="course-tag" style="background:${c.color}15; color:${c.color}">${c.level}</div>
-            <h3>${c.name}</h3>
-            <div class="course-meta">📚 ${c.lessons.length} Lessons • ⏱️ 12h</div>
+            <div class="course-tag" style="background:${c.color}15; color:${c.color}">${c.level[lang]}</div>
+            <h3>${c.name[lang]}</h3>
+            <div class="course-meta">📚 ${c.lessons.length} ${lang === 'ar' ? 'دروس' : 'Lessons'} • ⏱️ 12h</div>
             <button class="btn btn-primary btn-sm w-full mt-2" onclick="playLesson('${c.id}')">${translations['course-enroll'][lang]}</button>
         </div>
     `).join('');
@@ -565,14 +566,14 @@ function playLesson(id) {
     const c = COURSE_POOL.find(item => item.id === id);
     if (!c) return;
     if (!document.getElementById('videoPlayerModal')) injectVideoModal();
-    document.getElementById('playerCourseTitle').innerText = c.name;
+    document.getElementById('playerCourseTitle').innerText = c.name[lang];
     document.getElementById('lessonIframe').src = c.videoUrl;
     const list = document.getElementById('playerLessonList');
     list.innerHTML = c.lessons.map((l, i) => `
         <div class="lesson-item ${i === 0 ? 'active' : ''}" onclick="changeVideo('${c.videoUrl}', this)">
             <div class="lesson-num">${i + 1}</div>
             <div class="lesson-info">
-                <div class="lesson-title">${l.title}</div>
+                <div class="lesson-title">${l.title[lang]}</div>
                 <div class="lesson-duration">⏱️ ${l.duration}</div>
             </div>
         </div>
@@ -698,16 +699,17 @@ function initMyCoursesPage() { renderMyCoursesGrid(); }
 function renderMyCoursesGrid() {
     const grid = document.getElementById('myCoursesGrid');
     if (!grid) return;
-    const myItems = [
-        { id: 'beg-1', name: 'English Foundations', progress: 85, icon: '🌱', status: 'in-progress' },
-        { id: 'int-1', name: 'Master Grammar', progress: 100, icon: '📝', status: 'completed' }
-    ];
+    const myIds = ['beg-1', 'int-1'];
+    const myItems = myIds.map(id => {
+        const c = COURSE_POOL.find(item => item.id === id);
+        return { ...c, progress: id === 'beg-1' ? 85 : 100, status: id === 'beg-1' ? 'in-progress' : 'completed' };
+    });
     grid.innerHTML = myItems.map(c => `
         <div class="card p-3 reveal active">
             <div style="font-size:2.5rem; margin-bottom:15px;">${c.icon}</div>
-            <h3>${c.name}</h3>
+            <h3>${c.name[lang]}</h3>
             <div class="progress-bar mt-2 mb-3" style="height:8px; background:var(--bg-secondary); border-radius:4px;">
-                <div style="width:${c.progress}%; height:100%; background:var(--primary); border-radius:4px;"></div>
+                <div style="width:${c.progress}%; height:100%; background:${c.color}; border-radius:4px;"></div>
             </div>
             <button class="btn btn-primary btn-sm w-full" onclick="playLesson('${c.id}')">${c.status === 'completed' ? translations['course-watch-again'][lang] : translations['course-resume'][lang]}</button>
         </div>
