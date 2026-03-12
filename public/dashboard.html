@@ -11,82 +11,19 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
     <style>
-        .portfolio-chart-area {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xl);
+        .course-progress-item {
+            margin-bottom: var(--space-md);
         }
 
-        .mini-chart {
-            height: 60px;
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
+        .vocab-card-mini {
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: transform 0.2s ease;
         }
 
-        .mini-chart .bar {
-            flex: 1;
-            border-radius: 2px 2px 0 0;
-            transition: all var(--transition-fast);
-            min-height: 4px;
-        }
-
-        .mini-chart .bar:hover {
-            opacity: 0.7;
-        }
-
-        .allocation-chart {
-            display: flex;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-
-        .allocation-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            font-size: 0.88rem;
-        }
-
-        .allocation-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .watchlist-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .watchlist-item:last-child {
-            border: none;
-        }
-
-        .add-asset-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            padding: var(--space-md);
-            border: 2px dashed var(--border-default);
-            border-radius: var(--radius-md);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            margin-top: var(--space-md);
-        }
-
-        .add-asset-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary-light);
-            background: rgba(108, 92, 231, 0.05);
+        .vocab-card-mini:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-light);
         }
 
         .activity-item {
@@ -124,12 +61,6 @@
         .activity-info .time {
             font-size: 0.78rem;
             color: var(--text-muted);
-        }
-
-        .activity-amount {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            font-size: 0.9rem;
         }
     </style>
     <!-- Google Analytics -->
@@ -198,10 +129,10 @@
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-section-title">Current Streak 🔥</div>
+                <div class="sidebar-section-title" data-i18n="dash-streak-title">Current Streak 🔥</div>
                 <div class="streak-card" style="padding:var(--space-md); text-align:center;">
-                    <div style="font-size:2rem; font-weight:800; color:var(--accent-gold);">5 Days</div>
-                    <div style="font-size:0.75rem; color:var(--text-muted);">Keep it up! Reach 7 for a bonus.</div>
+                    <div style="font-size:2rem; font-weight:800; color:var(--accent-gold);" data-i18n="dash-streak-days">5 Days</div>
+                    <div style="font-size:0.75rem; color:var(--text-muted);" data-i18n="dash-streak-sub">Keep it up! Reach 7 for a bonus.</div>
                 </div>
             </div>
         </aside>
@@ -211,7 +142,7 @@
             <div class="dashboard-header">
                 <div>
                     <h1 data-i18n="dash-welcome">Good morning, <span id="userName">Student</span>! ☀️</h1>
-                    <p style="color:var(--text-muted);font-size:0.88rem;">Track your progress and continue your journey.</p>
+                    <p style="color:var(--text-muted);font-size:0.88rem;" data-i18n="dash-welcome-sub">Track your progress and continue your journey.</p>
                 </div>
                 <div style="display:flex;gap:var(--space-sm);">
                     <a href="courses.html" class="btn btn-primary btn-sm" data-i18n="dash-browse-courses">Browse Courses</a>
@@ -223,22 +154,22 @@
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-learning-time">Learning Time ⏱️</div>
                     <div class="stat-value" id="learningTime">12.5 hrs</div>
-                    <div class="stat-change positive">+2.5 hrs this week</div>
+                    <div class="stat-change positive" data-i18n="dash-stat-time-sub">+2.5 hrs this week</div>
                 </div>
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-courses-done">Courses Completed 🏆</div>
                     <div class="stat-value" id="coursesDone">3</div>
-                    <div class="stat-change" style="color:var(--text-muted);">Next: Business English</div>
+                    <div class="stat-change" style="color:var(--text-muted);" data-i18n="dash-stat-courses-sub">Next: Business English</div>
                 </div>
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-vocab-mastery">Vocab Mastery 🔤</div>
                     <div class="stat-value" id="vocabMastery">450</div>
-                    <div class="stat-change positive">↑ 15 new today</div>
+                    <div class="stat-change positive" data-i18n="dash-stat-vocab-sub">↑ 15 new today</div>
                 </div>
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-speaking-score">Speaking Score 🎙️</div>
                     <div class="stat-value" id="speakingScore">82%</div>
-                    <div class="stat-change positive">↑ Improved 5%</div>
+                    <div class="stat-change positive" data-i18n="dash-stat-speak-sub">↑ Improved 5%</div>
                 </div>
             </div>
 
@@ -247,7 +178,7 @@
                 <div class="card" style="padding:0; overflow:hidden;">
                     <div style="padding:var(--space-xl); border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
                         <h3 style="font-size:1rem;" data-i18n="dash-active-courses">Current Courses</h3>
-                        <a href="my-courses.html" class="text-link" style="font-size:0.8rem;">View All</a>
+                        <a href="my-courses.html" class="text-link" style="font-size:0.8rem;" data-i18n="dash-view-all">View All</a>
                     </div>
                     <div id="activeCoursesContainer" style="padding:var(--space-lg); display:flex; flex-direction:column; gap:var(--space-md);">
                         <div class="course-progress-item">
@@ -326,18 +257,18 @@
                     <div class="activity-item">
                         <div class="activity-icon" style="background:var(--info-bg);">🎙️</div>
                         <div class="activity-info">
-                            <div class="title">Native Slang & Idioms</div>
-                            <div class="time">Starting in 45 minutes</div>
+                            <div class="title" data-i18n="dash-lab-native">Native Slang & Idioms</div>
+                            <div class="time" data-i18n="dash-lab-starting">Starting in 45 minutes</div>
                         </div>
-                        <button class="btn btn-primary btn-xs">Join Lab</button>
+                        <button class="btn btn-primary btn-xs" data-i18n="dash-lab-join">Join Lab</button>
                     </div>
                     <div class="activity-item">
                         <div class="activity-icon" style="background:var(--warning-bg);">📝</div>
                         <div class="activity-info">
-                            <div class="title">IELTS Strategy Intensive</div>
-                            <div class="time">Tomorrow at 6:00 PM</div>
+                            <div class="title" data-i18n="dash-lab-ielts">IELTS Strategy Intensive</div>
+                            <div class="time" data-i18n="dash-lab-tomorrow">Tomorrow at 6:00 PM</div>
                         </div>
-                        <button class="btn btn-outline btn-xs">Set Reminder</button>
+                        <button class="btn btn-outline btn-xs" data-i18n="dash-lab-reminder">Set Reminder</button>
                     </div>
                 </div>
             </div>
