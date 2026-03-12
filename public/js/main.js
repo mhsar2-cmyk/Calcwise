@@ -190,12 +190,12 @@ const translations = {
     'page-us-desc': { en: 'Real-time data for S&P 500, NASDAQ, Dow Jones, and thousands of individual stocks.', ar: 'بيانات لحظية لمؤشر S&P 500 وناسداك وداو جونز وآلاف الأسهم الفردية.' },
     'page-saudi-title': { en: 'Saudi Market', ar: 'السوق السعودي' },
     'page-saudi-desc': { en: 'Tadawul (TASI) — Real-time data, charts, and analytics for the Saudi Arabian stock exchange.', ar: 'تداول (تاسي) — بيانات لحظية ورسوم بيانية وتحليلات للسوق المالية السعودية.' },
-    'page-blog-title': { en: 'Finance', ar: 'المدونة' },
-    'page-blog-title-2': { en: 'Blog', ar: 'المالية' },
-    'page-blog-desc': { en: 'Market insights, trading strategies, and financial education written by industry experts.', ar: 'رؤى سوقية واستراتيجيات تداول وتعليم مالي من خبراء الصناعة.' },
-    'page-tools-title': { en: 'Financial', ar: 'الأدوات' },
-    'page-tools-title-2': { en: 'Tools', ar: 'المالية' },
-    'page-tools-desc': { en: 'Free calculators and tools to help you make smarter, data-driven financial decisions.', ar: 'حاسبات وأدوات مجانية لمساعدتك على اتخاذ قرارات مالية أذكى.' },
+    'page-blog-title': { en: 'Learning', ar: 'مدونة' },
+    'page-blog-title-2': { en: 'Blog', ar: 'التعلم' },
+    'page-blog-desc': { en: 'Language tips, study strategies, and expert advice for every level.', ar: 'نصائح لغوية، استراتيجيات دراسية، ونصائح الخبراء لكل المستويات.' },
+    'page-tools-title': { en: 'Learning', ar: 'أدوات' },
+    'page-tools-title-2': { en: 'Tools', ar: 'التعلم' },
+    'page-tools-desc': { en: 'Interactive tools to help you master vocabulary, grammar, and speaking skills.', ar: 'أدوات تفاعلية لمساعدتك في إتقان المفردات والقواعد ومهارات التحدث.' },
 
     // ---- AUTH ----
     'auth-welcome': { en: 'Welcome Back', ar: 'مرحباً بعودتك' },
@@ -820,6 +820,36 @@ const translations = {
 
     // ---- DASHBOARD ADDITIONS ----
     'sidebar-alerts': { en: 'Price Alerts', ar: 'تنبيهات الأسعار' },
+
+    // ---- SPEAKING LAB ----
+    'speaking-hero-sub': { en: 'Improve your fluency and pronunciation with real-time AI feedback.', ar: 'حسن طلاقتك ونطقك مع تقييم فوري من الذكاء الاصطناعي.' },
+    'speaking-topics': { en: 'Practice Topics', ar: 'مواضيع الممارسة' },
+    'topic-1-title': { en: 'Job Interview Preparation', ar: 'التحضير لمقابلة عمل' },
+    'topic-1-desc': { en: 'Practice answering common career questions.', ar: 'تدرب على الإجابة على أسئلة العمل الشائعة.' },
+    'topic-2-title': { en: 'Ordering Food at a Restaurant', ar: 'طلب الطعام في المطعم' },
+    'topic-2-desc': { en: 'Master social interactions in dining.', ar: 'أتقن التعاملات الاجتماعية في المطاعم.' },
+    'topic-3-title': { en: 'Travel & Directions', ar: 'السفر والاتجاهات' },
+    'topic-3-desc': { en: 'Essential phrases for your next trip.', ar: 'عبارات أساسية لرحلتك القادمة.' },
+    'topic-4-title': { en: 'Daily Conversation', ar: 'محادثات يومية' },
+    'topic-4-desc': { en: 'Casual talk with friends and colleagues.', ar: 'حديث غير رسمي مع الأصدقاء والزملاء.' },
+    'speaking-ready': { en: 'Ready to practice? Click the button.', ar: 'مستعد للممارسة؟ اضغط على الزر.' },
+    'speaking-transcript-hint': { en: 'Your speech will appear here...', ar: 'سيظهر كلامك هنا...' },
+    'speaking-hold': { en: 'Hold button to speak', ar: 'استمر في الضغط للتحدث' },
+    'speaking-live-feedback': { en: 'Live Feedback', ar: 'تقييم فوري' },
+    'speaking-initial-tip': { en: 'Select a topic and start speaking to get personalized tips!', ar: 'اختر موضوعاً وابدأ التحدث للحصول على نصائح مخصصة!' },
+    'filter-strategy': { en: 'Fluency', ar: 'الطلاقة' },
+    'sidebar-grammar': { en: 'Grammar Accuracy', ar: 'دقة القواعد' },
+
+    // ---- SPEAKING LAB SIMULATION ----
+    'speaking-listening': { en: 'Listening...', ar: 'جاري الاستماع...' },
+    'speaking-analyzing': { en: 'Analyzing...', ar: 'جاري التحليل...' },
+    'speaking-complete': { en: 'Analysis Complete!', ar: 'اكتمل التحليل!' },
+    'speaking-phrase-1': { en: 'I am highly interested in the marketing manager position at your company.', ar: 'أنا مهتم جداً بمنصب مدير التسويق في شركتكم.' },
+    'speaking-phrase-2': { en: 'Would you like to try the specialty pasta with our homemade white sauce?', ar: 'هل ترغب في تجربة الباستا مع صوص الكريمة الخاص بنا؟' },
+    'speaking-phrase-3': { en: 'Excuse me, could you tell me the fastest way to get to the main square?', ar: 'معذرة، هل يمكنك إخباري بأسرع طريق للوصول إلى الميدان الرئيسي؟' },
+    'speaking-tip-1': { en: "Focus on the 'th' sound in 'the' and 'thirsty'.", ar: "ركز على نطق حرف الـ 'ث' بشكل أوضح." },
+    'speaking-tip-2': { en: 'Try to reduce the pauses between words to improve your flow.', ar: 'حاول تقليل الوقفات بين الكلمات لتحسين الطلاقة.' },
+    'speaking-tip-3': { en: 'Excellent grammar! Try to use more complex sentence structures.', ar: 'قواعد ممتازة! حاول استخدام هياكل جمل أكثر تعقيداً.' },
 };
 
 function initLanguage() {

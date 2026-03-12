@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Speaking Lab — LingoWise</title>
+    <meta name="description" content="Practice your English speaking skills with our advanced AI tutor. Get instant feedback on pronunciation, fluency, and grammar.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <style>
+        .lab-container {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+            min-height: calc(100vh - 300px);
+        }
+
+        @media (max-width: 1200px) {
+            .lab-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .topic-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .topic-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .topic-card:hover, .topic-card.active {
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.1);
+        }
+
+        .topic-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .topic-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .speaking-main {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-visualizer {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-2xl);
+            position: relative;
+        }
+
+        .ai-visualizer::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border: 2px solid var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .ai-avatar-large {
+            font-size: 5rem;
+            z-index: 2;
+        }
+
+        .waveform {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 40px;
+            margin-bottom: var(--space-xl);
+            opacity: 0.5;
+        }
+
+        .waveform.active {
+            opacity: 1;
+        }
+
+        .bar {
+            width: 4px;
+            background: var(--primary-light);
+            border-radius: 2px;
+            height: 10px;
+        }
+
+        .waveform.active .bar {
+            animation: wave 1s infinite ease-in-out;
+        }
+
+        @keyframes wave {
+            0%, 100% { height: 10px; }
+            50% { height: 40px; }
+        }
+
+        .bar:nth-child(2) { animation-delay: 0.1s; }
+        .bar:nth-child(3) { animation-delay: 0.2s; }
+        .bar:nth-child(4) { animation-delay: 0.15s; }
+        .bar:nth-child(5) { animation-delay: 0.25s; }
+
+        .speak-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition-base);
+            margin-top: var(--space-xl);
+        }
+
+        .speak-btn:active, .speak-btn.recording {
+            transform: scale(0.9);
+            background: var(--danger);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .feedback-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .feedback-metric {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+        }
+
+        .metric-title {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .metric-value {
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🎓</div> LingoWise
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <a href="courses.html" data-i18n="nav-courses">Courses</a>
+                <a href="speaking-lab.html" class="active" data-i18n="sidebar-speaking">AI Speaking Lab</a>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option active" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <a href="dashboard.html" class="btn btn-primary btn-sm" data-i18n="sidebar-dashboard">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <section class="section" style="margin-top:var(--header-height);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 data-i18n="sidebar-speaking">AI Speaking Lab 🎙️</h2>
+                <p data-i18n="speaking-hero-sub">Improve your fluency and pronunciation with real-time AI feedback.</p>
+            </div>
+
+            <div class="lab-container">
+                <!-- TOPICS -->
+                <div class="topic-sidebar">
+                    <h3 style="font-size:1.1rem; margin-bottom:var(--space-md);" data-i18n="speaking-topics">Practice Topics</h3>
+                    <div class="topic-list">
+                        <div class="topic-card active">
+                            <h4 data-i18n="topic-1-title">Job Interview Preparation</h4>
+                            <p data-i18n="topic-1-desc">Practice answering common career questions.</p>
+                        </div>
+                        <div class="topic-card">
+                            <h4 data-i18n="topic-2-title">Ordering Food at a Restaurant</h4>
+                            <p data-i18n="topic-2-desc">Master social interactions in dining.</p>
+                        </div>
+                        <div class="topic-card">
+                            <h4 data-i18n="topic-3-title">Travel & Directions</h4>
+                            <p data-i18n="topic-3-desc">Essential phrases for your next trip.</p>
+                        </div>
+                        <div class="topic-card">
+                            <h4 data-i18n="topic-4-title">Daily Conversation</h4>
+                            <p data-i18n="topic-4-desc">Casual talk with friends and colleagues.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN LAB -->
+                <div class="speaking-main">
+                    <div class="ai-visualizer" id="aiVisualizer">
+                        <div class="ai-avatar-large">🤖</div>
+                    </div>
+
+                    <div id="statusText" style="margin-bottom:var(--space-md); color:var(--text-secondary);" data-i18n="speaking-ready">Ready to practice? Click the button.</div>
+
+                    <div class="waveform" id="waveform">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+
+                    <div id="transcriptArea" class="card" style="width:100%; max-width:500px; text-align:center; min-height:80px; display:flex; align-items:center; justify-content:center; padding:var(--space-md); color:var(--text-muted); font-style:italic;">
+                        <span data-i18n="speaking-transcript-hint">Your speech will appear here...</span>
+                    </div>
+
+                    <button class="speak-btn" id="recordBtn" onmousedown="startRecording()" onmouseup="stopRecording()" ontouchstart="startRecording()" ontouchend="stopRecording()">
+                        🎙️
+                    </button>
+                    <p style="margin-top:var(--space-sm); font-size:0.8rem; color:var(--text-muted);" data-i18n="speaking-hold">Hold button to speak</p>
+                </div>
+
+                <!-- FEEDBACK -->
+                <div class="feedback-panel">
+                    <h3 style="font-size:1.1rem; margin-bottom:var(--space-md);" data-i18n="speaking-live-feedback">Live Feedback</h3>
+                    
+                    <div class="feedback-metric">
+                        <div class="metric-header">
+                            <span class="metric-title" data-i18n="dash-speaking-score">Pronunciation</span>
+                            <span class="metric-value" id="pronunciationVal">0%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="pronunciationFill"></div></div>
+                    </div>
+
+                    <div class="feedback-metric">
+                        <div class="metric-header">
+                            <span class="metric-title" data-i18n="filter-strategy">Fluency</span>
+                            <span class="metric-value" id="fluencyVal">0%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="fluencyFill"></div></div>
+                    </div>
+
+                    <div class="feedback-metric">
+                        <div class="metric-header">
+                            <span class="metric-title" data-i18n="sidebar-grammar">Grammar Accuracy</span>
+                            <span class="metric-value" id="grammarVal">0%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="grammarFill"></div></div>
+                    </div>
+
+                    <div class="card" style="padding:var(--space-md); margin-top:var(--space-md);">
+                        <h4 style="font-size:0.85rem; margin-bottom:var(--space-sm);" data-i18n="ai-quick-tip">AI Coach's Tip:</h4>
+                        <p id="aiCoachTip" style="font-size:0.75rem; color:var(--text-secondary);" data-i18n="speaking-initial-tip">Select a topic and start speaking to get personalized tips!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <div class="logo-icon">🎓</div> LingoWise
+                    </a>
+                    <p class="mt-1" data-i18n="footer-tagline">Master English with smart AI-powered practice.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span data-i18n="footer-copyright">&copy; 2026 LingoWise. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let isRecording = false;
+
+        function startRecording() {
+            isRecording = true;
+            const btn = document.getElementById('recordBtn');
+            const wave = document.getElementById('waveform');
+            const status = document.getElementById('statusText');
+            const transcript = document.getElementById('transcriptArea');
+            const lang = localStorage.getItem('calcwise_lang') || 'en';
+
+            btn.classList.add('recording');
+            wave.classList.add('active');
+            status.innerText = translations['speaking-listening'] ? translations['speaking-listening'][lang] : 'Listening...';
+            status.style.color = 'var(--danger)';
+            transcript.innerText = '...';
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+            isRecording = false;
+            
+            const btn = document.getElementById('recordBtn');
+            const wave = document.getElementById('waveform');
+            const status = document.getElementById('statusText');
+            const transcript = document.getElementById('transcriptArea');
+            const lang = localStorage.getItem('calcwise_lang') || 'en';
+
+            btn.classList.remove('recording');
+            wave.classList.remove('active');
+            status.innerText = translations['speaking-analyzing'] ? translations['speaking-analyzing'][lang] : 'Analyzing...';
+            status.style.color = 'var(--accent-gold)';
+
+            // Simulate AI Processing
+            setTimeout(() => {
+                const randomIdx = Math.floor(Math.random() * 3) + 1;
+                const phraseKey = `speaking-phrase-${randomIdx}`;
+                const tipKey = `speaking-tip-${randomIdx}`;
+
+                transcript.innerText = translations[phraseKey] ? translations[phraseKey][lang] : '...';
+                status.innerText = translations['speaking-complete'] ? translations['speaking-complete'][lang] : 'Analysis Complete!';
+                status.style.color = 'var(--success)';
+
+                // Update Metrics
+                updateMetric('pronunciation', 75 + Math.floor(Math.random() * 20));
+                updateMetric('fluency', 80 + Math.floor(Math.random() * 15));
+                updateMetric('grammar', 85 + Math.floor(Math.random() * 10));
+
+                document.getElementById('aiCoachTip').innerText = translations[tipKey] ? translations[tipKey][lang] : '';
+                
+            }, 1500);
+        }
+
+        function updateMetric(name, value) {
+            document.getElementById(`${name}Val`).innerText = `${value}%`;
+            document.getElementById(`${name}Fill`).style.width = `${value}%`;
+        }
+    </script>
+</body>
+
+</html>
