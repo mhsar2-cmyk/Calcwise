@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings — LingoWise</title>
+    <title data-i18n="settings-title">Settings — LingoWise</title>
     <meta name="description" content="Manage your LingoWise account settings: profile, preferences, and learning goals.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
@@ -143,14 +143,25 @@
 <body>
     <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="index.html" class="nav-logo"><div class="logo-icon">🎓</div> LingoWise</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="courses.html">Courses</a>
-                <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🎓</div> LingoWise
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav-home">Home</a>
+                <a href="courses.html" data-i18n="nav-courses">Courses</a>
+                <a href="speaking-lab.html" data-i18n="sidebar-speaking">AI Speaking Lab</a>
+                <a href="blog.html" data-i18n="nav-blog">Blog</a>
             </div>
             <div class="nav-actions">
-                <button class="btn btn-primary btn-sm" onclick="handleLogout()">Log Out</button>
+                <div class="toggle-pill lang-toggle" title="Toggle language">
+                    <span class="toggle-option" data-value="en" onclick="toggleLanguage('en')">EN</span>
+                    <span class="toggle-option active" data-value="ar" onclick="toggleLanguage('ar')">عر</span>
+                </div>
+                <div id="auth-container" style="display:inline-flex; gap:10px;">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span>
             </div>
         </div>
     </nav>
@@ -159,19 +170,19 @@
         <aside class="settings-sidebar">
             <div class="settings-nav">
                 <div class="settings-nav-item active" onclick="showTab('profile')">
-                    <span class="nav-icon">👤</span> Profile
+                    <span class="nav-icon">👤</span> <span data-i18n="settings-profile">Profile</span>
                 </div>
                 <div class="settings-nav-item" onclick="showTab('preferences')">
-                    <span class="nav-icon">⚙️</span> Preferences
+                    <span class="nav-icon">⚙️</span> <span data-i18n="settings-preferences">Preferences</span>
                 </div>
                 <div class="settings-nav-item" onclick="showTab('notifications')">
-                    <span class="nav-icon">🔔</span> Notifications
+                    <span class="nav-icon">🔔</span> <span data-i18n="settings-notifications">Notifications</span>
                 </div>
                 <div class="settings-nav-item" onclick="showTab('data')">
-                    <span class="nav-icon">📊</span> My Learning Data
+                    <span class="nav-icon">📊</span> <span data-i18n="settings-data">My Learning Data</span>
                 </div>
                 <div class="settings-nav-item" onclick="showTab('security')">
-                    <span class="nav-icon">🔐</span> Security
+                    <span class="nav-icon">🔐</span> <span data-i18n="settings-security">Security</span>
                 </div>
             </div>
         </aside>
@@ -180,23 +191,23 @@
             <!-- PROFILE -->
             <div class="settings-section active" id="tab-profile">
                 <div class="settings-card">
-                    <h3>👤 Profile Information</h3>
+                    <h3 data-i18n="settings-profile-title">👤 Profile Information</h3>
                     <div style="display:flex; gap:20px; align-items:center; margin-bottom:20px;">
                         <div class="avatar-circle">U</div>
-                        <button class="btn btn-ghost btn-sm">Change Avatar</button>
+                        <button class="btn btn-ghost btn-sm" data-i18n="settings-change-avatar">Change Avatar</button>
                     </div>
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:15px;">
                         <div class="form-group">
-                            <label>First Name</label>
+                            <label data-i18n="settings-first-name">First Name</label>
                             <input type="text" class="form-control" id="profile-first" value="John">
                         </div>
                         <div class="form-group">
-                            <label>Last Name</label>
+                            <label data-i18n="settings-last-name">Last Name</label>
                             <input type="text" class="form-control" id="profile-last" value="Doe">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>English Level</label>
+                        <label data-i18n="settings-eng-level">English Level</label>
                         <select class="form-control">
                             <option>Beginner (A1-A2)</option>
                             <option selected>Intermediate (B1-B2)</option>
@@ -204,23 +215,23 @@
                             <option>Business Professional</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary" onclick="showToast('success', 'Profile updated!')">Save Changes</button>
+                    <button class="btn btn-primary" onclick="showToast('success', translations['settings-update-success'][lang])" data-i18n="settings-save-btn">Save Changes</button>
                 </div>
             </div>
 
             <!-- PREFERENCES -->
             <div class="settings-section" id="tab-preferences">
                 <div class="settings-card">
-                    <h3>🌐 Language & Display</h3>
+                    <h3 data-i18n="settings-lang-display">🌐 Language & Display</h3>
                     <div class="form-group">
-                        <label>Interface Language</label>
-                        <select class="form-control" onchange="toggleLanguage(this.value)">
+                        <label data-i18n="settings-interface-lang">Interface Language</label>
+                        <select class="form-control" onchange="toggleLanguage(this.value)" id="settingsLangSelect">
                             <option value="en">English</option>
-                            <option value="ar">العربية (Arabic)</option>
+                            <option value="ar" selected>العربية (Arabic)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Target Language</label>
+                        <label data-i18n="settings-target-lang">Target Language</label>
                         <select class="form-control" disabled>
                             <option>English (US/UK)</option>
                         </select>
@@ -231,18 +242,18 @@
             <!-- DATA -->
             <div class="settings-section" id="tab-data">
                 <div class="settings-card">
-                    <h3>📊 Learning Progress</h3>
+                    <h3 data-i18n="settings-learning-progress">📊 Learning Progress</h3>
                     <div class="stat-overview">
                         <div class="stat-box">
-                            <div style="font-size:1.5rem; font-weight:700;">12</div>
-                            <div style="font-size:0.8rem; color:var(--text-muted);">Completed Lessons</div>
+                            <div style="font-size:1.5rem; font-weight:700;" id="settingsLessonsDone">12</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted);" data-i18n="settings-comp-lessons">Completed Lessons</div>
                         </div>
                         <div class="stat-box">
-                            <div style="font-size:1.5rem; font-weight:700;">450</div>
-                            <div style="font-size:0.8rem; color:var(--text-muted);">Words Saved</div>
+                            <div style="font-size:1.5rem; font-weight:700;" id="settingsWordsSaved">450</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted);" data-i18n="settings-words-saved">Words Saved</div>
                         </div>
                         <div style="text-align:center;">
-                             <button class="btn btn-outline btn-sm" onclick="exportLearningData()">Download Progress (JSON)</button>
+                             <button class="btn btn-outline btn-sm" onclick="exportLearningData()" data-i18n="settings-export-btn">Download Progress (JSON)</button>
                         </div>
                     </div>
                 </div>
@@ -260,20 +271,76 @@
         }
 
         function exportLearningData() {
+            const user = JSON.parse(localStorage.getItem('lingowise_user') || '{"first":"John","last":"Doe"}');
+            const vocab = JSON.parse(localStorage.getItem('lingowise_vocab') || '[]');
             const data = {
-                user: "John Doe",
+                user: `${user.first} ${user.last}`,
                 progress: "Intermediate",
-                wordsInBank: 450,
-                completedCourses: ["Beg-101", "Grammar-Int"]
+                wordsInBank: vocab.length,
+                completedCoursesCount: localStorage.getItem('lingowise_courses_done') || '3'
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.download = 'lingowise_progress.json';
             a.click();
-            showToast('success', 'Progress data exported!');
+            showToast('success', translations['settings-export-success'][lang]);
         }
+
+        // Initialize Settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
+            if (user.first) document.getElementById('profile-first').value = user.first;
+            if (user.last) document.getElementById('profile-last').value = user.last;
+            if (user.first) document.querySelector('.avatar-circle').innerText = user.first[0].toUpperCase();
+            
+            document.getElementById('settingsLessonsDone').innerText = localStorage.getItem('lingowise_courses_done') || '3';
+            document.getElementById('settingsWordsSaved').innerText = (JSON.parse(localStorage.getItem('lingowise_vocab') || '[]')).length;
+            
+            const lang = localStorage.getItem('lingowise_lang') || 'en';
+            document.getElementById('settingsLangSelect').value = lang;
+        });
     </script>
     <div class="toast-container" id="toastContainer"></div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <div class="logo-icon">🎓</div> LingoWise
+                    </a>
+                    <p class="mt-1" data-i18n="footer-tagline">Your all-in-one English language learning platform.</p>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footer-learning">Learning Hub</h5>
+                    <a href="courses.html" data-i18n="nav-courses">Courses</a>
+                    <a href="vocabulary.html" data-i18n="sidebar-vocabulary">Vocabulary Bank</a>
+                    <a href="grammar.html" data-i18n="sidebar-grammar">Grammar Guide</a>
+                    <a href="speaking-lab.html" data-i18n="sidebar-speaking">AI Speaking Lab</a>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footer-resources">Resources</h5>
+                    <a href="blog.html" data-i18n="footer-blog">Blog</a>
+                    <a href="community.html" data-i18n="sidebar-community">Community</a>
+                    <a href="about.html" data-i18n="footer-about">About Us</a>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footer-legal">Legal</h5>
+                    <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                    <a href="terms.html" data-i18n="footer-terms">Terms of Service</a>
+                    <a href="contact.html" data-i18n="footer-contact">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span data-i18n="footer-copyright">&copy; 2026 LingoWise. All rights reserved.</span>
+                <div class="footer-social">
+                    <a href="https://twitter.com/lingowise" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://discord.gg/lingowise" target="_blank" title="Discord">💬</a>
+                    <a href="https://github.com/lingowise" target="_blank" title="GitHub">⌨</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
