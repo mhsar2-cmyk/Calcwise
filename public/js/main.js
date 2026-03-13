@@ -387,7 +387,7 @@ const translations = {
     'levels-desc': { en: 'From beginner to professional, we have a path for every learner.', ar: 'من المبتدئ إلى المحترف، لدينا مسار لكل متعلم.' },
     
     'dash-hi': { en: 'Hi', ar: 'مرحباً' },
-    'dash-welcome': { en: 'Good morning, Student! ☀️', ar: 'صباح الخير، أيها الطالب! ☀️' },
+    'dash-welcome': { en: 'Good morning,', ar: 'صباح الخير،' },
     'dash-learning-time': { en: 'Learning Time ⏱️', ar: 'وقت التعلم ⏱️' },
     'dash-courses-done': { en: 'Courses Completed 🏆', ar: 'الدورات المكتملة 🏆' },
     'dash-vocab-mastery': { en: 'Vocab Mastery 🔤', ar: 'إتقان المفردات 🔤' },
@@ -705,7 +705,8 @@ function initDashboard() {
     const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
     const hiEl = document.getElementById('dashboardUser');
     const nameEl = document.getElementById('userName');
-    const defaultName = translations['dash-learner-default'][lang];
+    const defaultName = translations['dash-learner-default']?.[lang] || (lang === 'ar' ? 'أيها الطالب' : 'Student');
+    
     if (hiEl) hiEl.innerText = `${translations['dash-hi'][lang]}, ${user.firstName || defaultName} 👋`;
     if (nameEl) nameEl.innerText = user.firstName || defaultName;
     
