@@ -713,6 +713,7 @@ function initDashboard() {
     updateDashboardStats();
     updateActiveCourses();
     updateVocabUIStrip();
+    initDailyGoals();
 }
 
 function updateDashboardStats() {
@@ -745,7 +746,91 @@ function updateActiveCourses() {
                 <div style="width:${c.progress}%; height:100%; background:${c.color}"></div>
             </div>
         </div>
+        </div>
     `).join('');
+}
+
+// ===== DAILY GOALS LOGIC =====
+function getDailyGoalsDate() {
+    const d = new Date();
+    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+function initDailyGoals() {
+    const today = getDailyGoalsDate();
+    const savedDate = localStorage.getItem('lingowise_goals_date');
+    let goals = JSON.parse(localStorage.getItem('lingowise_goals') || '{"vocab":{"current":6,"target":10},"speaking":{"current":10,"target":15}}');
+    
+    if (savedDate !== today || !goals.vocab) {
+        // Reset goals for the new day
+        goals = {
+            vocab: { current: 0, target: 10 },
+            speaking: { current: 0, target: 15 }
+        };
+        localStorage.setItem('lingowise_goals', JSON.stringify(goals));
+        localStorage.setItem('lingowise_goals_date', today);
+    }
+    
+    renderDailyGoals(goals);
+}
+
+function recordGoalProgress(type, amount) {
+    const today = getDailyGoalsDate();
+    const savedDate = localStorage.getItem('lingowise_goals_date');
+    let goals = JSON.parse(localStorage.getItem('lingowise_goals') || '{"vocab":{"current":0,"target":10},"speaking":{"current":0,"target":15}}');
+    
+    // Ensure goals are strictly for today
+    if (savedDate !== today) {
+        goals = { vocab: { current: 0, target: 10 }, speaking: { current: 0, target: 15 } };
+        localStorage.setItem('lingowise_goals_date', today);
+    }
+    
+    if (goals[type]) {
+        goals[type].current += amount;
+        if (goals[type].current > goals[type].target) {
+            goals[type].current = goals[type].target;
+        }
+        localStorage.setItem('lingowise_goals', JSON.stringify(goals));
+        
+        // Unobtrusive sync if on dashboard
+        if (document.getElementById('dailyGoalsContainer')) {
+            renderDailyGoals(goals);
+        }
+    }
+}
+
+function renderDailyGoals(goals) {
+    const container = document.getElementById('dailyGoalsContainer');
+    if (!container) return;
+    
+    const isVocabDone = goals.vocab.current >= goals.vocab.target;
+    const isSpeakingDone = goals.speaking.current >= goals.speaking.target;
+    
+    const vocabIcon = isVocabDone ? '✓' : `${goals.vocab.current}`;
+    const speakingIcon = isSpeakingDone ? '✓' : `${goals.speaking.current}m`;
+    
+    container.innerHTML = `
+        <div class="daily-goal-item">
+            <div class="goal-check ${isVocabDone ? 'done' : ''}">${vocabIcon}</div>
+            <div style="flex:1;">
+                <div style="font-weight:600; font-size:0.9rem;"><span data-i18n="dash-goal-vocab">${translations['dash-goal-vocab']?.[lang] || 'New Vocabulary'}</span> (${goals.vocab.current}/${goals.vocab.target})</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">
+                    ${isVocabDone ? (translations['dash-goal-done']?.[lang] || 'Completed for today!') : `${goals.vocab.target - goals.vocab.current} words remaining`}
+                </div>
+            </div>
+            ${!isVocabDone ? `<a href="vocabulary.html" class="btn btn-primary btn-sm" style="padding:0.25rem 0.5rem;font-size:0.75rem;">Learn</a>` : ''}
+        </div>
+        <div class="daily-goal-item">
+            <div class="goal-check ${isSpeakingDone ? 'done' : ''}" style="border-color:${isSpeakingDone?'var(--success)':'var(--primary)'}; color:${isSpeakingDone?'white':'var(--primary)'}; background:${isSpeakingDone?'var(--success)':'transparent'};">${speakingIcon}</div>
+            <div style="flex:1;">
+                <div style="font-weight:600; font-size:0.9rem;"><span data-i18n="dash-goal-speak">${translations['dash-goal-speak']?.[lang] || 'Speaking Practice'}</span> (${goals.speaking.current}/${goals.speaking.target} min)</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">
+                    ${isSpeakingDone ? (translations['dash-goal-done']?.[lang] || 'Completed for today!') : `${goals.speaking.target - goals.speaking.current} ${translations['dash-goal-rem']?.[lang] || 'minutes remaining'}`}
+                </div>
+            </div>
+             ${!isSpeakingDone ? `<a href="speaking-lab.html" class="btn btn-primary btn-sm" style="padding:0.25rem 0.5rem;font-size:0.75rem;">Practice</a>` : ''}
+        </div>
+    `;
 }
 
 // ===== COURSES LOGIC =====
@@ -886,6 +971,10 @@ function addVocabulary(e) {
     const vocab = getVocab();
     vocab.unshift({ id: Date.now().toString(), word, translation: trans, category: cat, date: new Date().toISOString().split('T')[0] });
     saveVocab(vocab);
+    
+    // Record Daily Goal Progress
+    recordGoalProgress('vocab', 1);
+
     showToast('success', lang === 'ar' ? 'تمت إضافة الكلمة!' : 'Word added!');
     closeModal('addWordModal');
     if (document.getElementById('vocabularyGrid')) renderVocabGrid();
