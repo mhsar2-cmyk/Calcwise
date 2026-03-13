@@ -1,6 +1,6 @@
 let lang = localStorage.getItem('lingowise_lang') || 'ar';
 
-const COURSE_POOL = [
+let DEFAULT_COURSE_POOL = [
     {
         "id": "beg-1",
         "name": {
@@ -2939,6 +2939,8 @@ const COURSE_POOL = [
     }
 ];
 
+let COURSE_POOL = JSON.parse(localStorage.getItem('admin_courses')) || DEFAULT_COURSE_POOL;
+
 // ===== CORE INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
@@ -3805,7 +3807,7 @@ function changeLesson(courseId, lessonIndex, el) {
     
     const detailsContainer = document.getElementById('lessonContentDetails');
     if(detailsContainer) {
-        detailsContainer.innerHTML = vocabHTML + exerciseHTML;
+        detailsContainer.innerHTML = exerciseHTML + vocabHTML;
     }
 }
 

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — LingoWise</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .admin-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-lg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+        .lesson-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            align-items: center;
+        }
+        .lesson-row:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body style="background: var(--bg-main); color: var(--text-main); padding-top: 80px;">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🎓</div> LingoWise Admin
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Back to Site</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <h1 style="margin-bottom: 2rem;">Course & Lesson Manager</h1>
+        <div style="margin-bottom: 1rem;">
+            <button class="btn btn-outline" onclick="resetToDefault()">Reset to Defaults</button>
+            <button class="btn btn-primary" onclick="saveAllChanges()">Save All Changes</button>
+            <span id="saveStatus" style="margin-left: 15px; color: var(--success); font-weight: bold; display: none;">Saved!</span>
+        </div>
+
+        <div id="courseEditorContainer"></div>
+    </div>
+
+    <!-- Modals for Editing -->
+    <div class="modal-overlay" id="editModal" style="display:none;" onclick="closeAdminModal()">
+        <div class="modal-content" onclick="event.stopPropagation()" style="max-height: 80vh; overflow-y: auto; max-width: 600px;">
+            <h3 id="modalTitle" style="margin-bottom: 1rem;">Edit Lesson</h3>
+            <div class="form-group mb-2">
+                <label>Title (English)</label>
+                <input type="text" id="editTitleEn" class="form-control" style="width: 100%;">
+            </div>
+            <div class="form-group mb-2">
+                <label>Title (Arabic)</label>
+                <input type="text" id="editTitleAr" class="form-control" style="width: 100%;">
+            </div>
+            <div class="form-group mb-2">
+                <label>Duration</label>
+                <input type="text" id="editDuration" class="form-control" style="width: 100%;">
+            </div>
+            <div class="form-group mb-2">
+                <label>Video URL (Optional embed link)</label>
+                <input type="text" id="editVideoUrl" class="form-control" style="width: 100%;" placeholder="https://www.youtube.com/embed/...">
+            </div>
+            <div style="margin-top: 2rem;">
+                <h4>Exercises (JSON Format)</h4>
+                <textarea id="editExercises" class="form-control" style="width: 100%; height: 150px; font-family: monospace;"></textarea>
+                <small style="color: var(--text-muted);">Must be valid JSON array.</small>
+            </div>
+            <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 10px;">
+                <button class="btn btn-outline" onclick="closeAdminModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveLessonEdits()">Save Lesson</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // We will work on a local copy of COURSE_POOL
+        let adminCourses = JSON.parse(JSON.stringify(COURSE_POOL));
+        let currentlyEditingCourse = null;
+        let currentlyEditingLesson = null;
+
+        function renderAdminDashboard() {
+            const container = document.getElementById('courseEditorContainer');
+            container.innerHTML = adminCourses.map((course, cIdx) => `
+                <div class="admin-card">
+                    <div class="admin-header">
+                        <h2 style="font-size: 1.5rem; display:flex; align-items:center; gap: 10px;">
+                            <span>${course.icon}</span> ${course.name.en}
+                        </h2>
+                        <span class="badge" style="background: ${course.color}20; color: ${course.color}; padding: 5px 10px; border-radius: 20px; font-weight:bold;">${course.level.en}</span>
+                    </div>
+                    <div>
+                        <strong style="color:var(--text-muted)">Default Video URL:</strong> 
+                        <input type="text" class="form-control mt-1" style="width: 100%; margin-bottom: 20px;" value="${course.videoUrl || ''}" onchange="updateCourseVideo(${cIdx}, this.value)">
+                    </div>
+                    <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 15px;">
+                        <div class="admin-header" style="margin-bottom: 10px;">
+                            <h3 style="font-size: 1.1rem;">Lessons (${course.lessons.length})</h3>
+                            <button class="btn btn-sm btn-outline" onclick="addNewLesson(${cIdx})">+ Add Lesson</button>
+                        </div>
+                        ${course.lessons.map((lesson, lIdx) => `
+                            <div class="lesson-row">
+                                <div>
+                                    <strong style="font-size: 1.05rem;">${lIdx + 1}. ${lesson.title.en}</strong><br>
+                                    <span style="color: var(--text-muted); font-size: 0.9rem;">⏱ ${lesson.duration} ${lesson.videoUrl ? '| 🎬 Custom Video' : ''} | 📝 ${lesson.exercises ? lesson.exercises.length : 0} Exercises</span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-primary" onclick="openEditLesson(${cIdx}, ${lIdx})">Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="deleteLesson(${cIdx}, ${lIdx})" style="color: var(--danger); border-color: var(--danger);">Delete</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateCourseVideo(cIdx, val) {
+            adminCourses[cIdx].videoUrl = val;
+        }
+
+        function addNewLesson(cIdx) {
+            const newLesson = {
+                id: Date.now(),
+                title: { en: "New Lesson", ar: "درس جديد" },
+                duration: "10:00",
+                vocab: [],
+                exercises: []
+            };
+            adminCourses[cIdx].lessons.push(newLesson);
+            renderAdminDashboard();
+        }
+
+        function deleteLesson(cIdx, lIdx) {
+            if(confirm("Are you sure you want to delete this lesson?")) {
+                adminCourses[cIdx].lessons.splice(lIdx, 1);
+                renderAdminDashboard();
+            }
+        }
+
+        function openEditLesson(cIdx, lIdx) {
+            currentlyEditingCourse = cIdx;
+            currentlyEditingLesson = lIdx;
+            const lesson = adminCourses[cIdx].lessons[lIdx];
+            
+            document.getElementById('editTitleEn').value = lesson.title.en;
+            document.getElementById('editTitleAr').value = lesson.title.ar;
+            document.getElementById('editDuration').value = lesson.duration || '';
+            document.getElementById('editVideoUrl').value = lesson.videoUrl || '';
+            document.getElementById('editExercises').value = JSON.stringify(lesson.exercises || [], null, 2);
+            
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function saveLessonEdits() {
+            if (currentlyEditingCourse === null || currentlyEditingLesson === null) return;
+            const lesson = adminCourses[currentlyEditingCourse].lessons[currentlyEditingLesson];
+            
+            lesson.title.en = document.getElementById('editTitleEn').value;
+            lesson.title.ar = document.getElementById('editTitleAr').value;
+            lesson.duration = document.getElementById('editDuration').value;
+            lesson.videoUrl = document.getElementById('editVideoUrl').value;
+            
+            try {
+                lesson.exercises = JSON.parse(document.getElementById('editExercises').value);
+            } catch(e) {
+                alert("Invalid JSON format for exercises. Please fix and try again.");
+                return;
+            }
+            
+            closeAdminModal();
+            renderAdminDashboard();
+        }
+
+        function saveAllChanges() {
+            localStorage.setItem('admin_courses', JSON.stringify(adminCourses));
+            COURSE_POOL = JSON.parse(JSON.stringify(adminCourses)); // update active memory
+            
+            const status = document.getElementById('saveStatus');
+            status.style.display = 'inline';
+            setTimeout(() => status.style.display = 'none', 3000);
+        }
+
+        function resetToDefault() {
+            if(confirm("Are you sure you want to wipe all your changes and reset to defaults?")) {
+                localStorage.removeItem('admin_courses');
+                adminCourses = JSON.parse(JSON.stringify(DEFAULT_COURSE_POOL));
+                renderAdminDashboard();
+                saveAllChanges();
+                alert("Reset successfully!");
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAdminDashboard();
+            if(document.documentElement.getAttribute('data-theme') !== 'dark') {
+                toggleTheme('dark'); // Admin works nicely in dark mode
+            }
+        });
+    </script>
+</body>
+</html>
