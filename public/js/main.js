@@ -1,86 +1,2941 @@
 let lang = localStorage.getItem('lingowise_lang') || 'ar';
 
 const COURSE_POOL = [
-    { 
-        id: 'beg-1', 
-        name: { en: 'Complete English Foundations', ar: 'أساسيات اللغة الإنجليزية الكاملة' }, 
-        level: { en: 'Beginner', ar: 'مبتدئ' }, 
-        category: { en: 'General', ar: 'عام' }, 
-        icon: '🌱', 
-        color: '#00d2d3',
-        videoUrl: 'https://www.youtube.com/embed/juKDRv6S32I',
-        lessons: [
-            { id: 1, title: { en: 'Introduction to Tenses', ar: 'مقدمة في الأزمنة' }, duration: '12:05' },
-            { id: 2, title: { en: 'Present Simple vs Continuous', ar: 'المضارع البسيط مقابل المستمر' }, duration: '15:20' },
-            { id: 3, title: { en: 'Daily Life Vocabulary', ar: 'مفردات الحياة اليومية' }, duration: '10:45' }
+    {
+        "id": "beg-1",
+        "name": {
+            "en": "Complete English Foundations",
+            "ar": "أساسيات اللغة الإنجليزية الكاملة"
+        },
+        "level": {
+            "en": "Beginner",
+            "ar": "مبتدئ"
+        },
+        "category": {
+            "en": "General",
+            "ar": "عام"
+        },
+        "icon": "🌱",
+        "color": "#00d2d3",
+        "videoUrl": "https://www.youtube.com/embed/juKDRv6S32I",
+        "lessons": [
+            {
+                "id": 1,
+                "title": {
+                    "en": "Alphabet & Phonics",
+                    "ar": "الأبجدية والصوتيات"
+                },
+                "duration": "10:00",
+                "vocab": [
+                    {
+                        "en": "Welcome",
+                        "ar": "أهلاً"
+                    },
+                    {
+                        "en": "Goodbye",
+                        "ar": "مع السلامة"
+                    },
+                    {
+                        "en": "Please",
+                        "ar": "من فضلك"
+                    },
+                    {
+                        "en": "Thank you",
+                        "ar": "شكراً"
+                    },
+                    {
+                        "en": "Excuse me",
+                        "ar": "عذراً"
+                    },
+                    {
+                        "en": "Morning",
+                        "ar": "صباح"
+                    },
+                    {
+                        "en": "Night",
+                        "ar": "مساء"
+                    },
+                    {
+                        "en": "Water",
+                        "ar": "ماء"
+                    },
+                    {
+                        "en": "Food",
+                        "ar": "طعام"
+                    },
+                    {
+                        "en": "Friend",
+                        "ar": "صديق"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 1?",
+                            "ar": "ماذا تعلمت في الدرس 1؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": {
+                    "en": "Numbers & Counting",
+                    "ar": "الأرقام والعد"
+                },
+                "duration": "12:00",
+                "vocab": [
+                    {
+                        "en": "Word 1-2-1",
+                        "ar": "كلمة 1-2-1"
+                    },
+                    {
+                        "en": "Word 1-2-2",
+                        "ar": "كلمة 1-2-2"
+                    },
+                    {
+                        "en": "Word 1-2-3",
+                        "ar": "كلمة 1-2-3"
+                    },
+                    {
+                        "en": "Word 1-2-4",
+                        "ar": "كلمة 1-2-4"
+                    },
+                    {
+                        "en": "Word 1-2-5",
+                        "ar": "كلمة 1-2-5"
+                    },
+                    {
+                        "en": "Word 1-2-6",
+                        "ar": "كلمة 1-2-6"
+                    },
+                    {
+                        "en": "Word 1-2-7",
+                        "ar": "كلمة 1-2-7"
+                    },
+                    {
+                        "en": "Word 1-2-8",
+                        "ar": "كلمة 1-2-8"
+                    },
+                    {
+                        "en": "Word 1-2-9",
+                        "ar": "كلمة 1-2-9"
+                    },
+                    {
+                        "en": "Word 1-2-10",
+                        "ar": "كلمة 1-2-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 2?",
+                            "ar": "ماذا تعلمت في الدرس 2؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": {
+                    "en": "Greetings & Introductions",
+                    "ar": "التحيات والتعارف"
+                },
+                "duration": "14:00",
+                "vocab": [
+                    {
+                        "en": "Word 1-3-1",
+                        "ar": "كلمة 1-3-1"
+                    },
+                    {
+                        "en": "Word 1-3-2",
+                        "ar": "كلمة 1-3-2"
+                    },
+                    {
+                        "en": "Word 1-3-3",
+                        "ar": "كلمة 1-3-3"
+                    },
+                    {
+                        "en": "Word 1-3-4",
+                        "ar": "كلمة 1-3-4"
+                    },
+                    {
+                        "en": "Word 1-3-5",
+                        "ar": "كلمة 1-3-5"
+                    },
+                    {
+                        "en": "Word 1-3-6",
+                        "ar": "كلمة 1-3-6"
+                    },
+                    {
+                        "en": "Word 1-3-7",
+                        "ar": "كلمة 1-3-7"
+                    },
+                    {
+                        "en": "Word 1-3-8",
+                        "ar": "كلمة 1-3-8"
+                    },
+                    {
+                        "en": "Word 1-3-9",
+                        "ar": "كلمة 1-3-9"
+                    },
+                    {
+                        "en": "Word 1-3-10",
+                        "ar": "كلمة 1-3-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 3?",
+                            "ar": "ماذا تعلمت في الدرس 3؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": {
+                    "en": "Introduction to Tenses",
+                    "ar": "مقدمة في الأزمنة"
+                },
+                "duration": "16:00",
+                "vocab": [
+                    {
+                        "en": "Word 1-4-1",
+                        "ar": "كلمة 1-4-1"
+                    },
+                    {
+                        "en": "Word 1-4-2",
+                        "ar": "كلمة 1-4-2"
+                    },
+                    {
+                        "en": "Word 1-4-3",
+                        "ar": "كلمة 1-4-3"
+                    },
+                    {
+                        "en": "Word 1-4-4",
+                        "ar": "كلمة 1-4-4"
+                    },
+                    {
+                        "en": "Word 1-4-5",
+                        "ar": "كلمة 1-4-5"
+                    },
+                    {
+                        "en": "Word 1-4-6",
+                        "ar": "كلمة 1-4-6"
+                    },
+                    {
+                        "en": "Word 1-4-7",
+                        "ar": "كلمة 1-4-7"
+                    },
+                    {
+                        "en": "Word 1-4-8",
+                        "ar": "كلمة 1-4-8"
+                    },
+                    {
+                        "en": "Word 1-4-9",
+                        "ar": "كلمة 1-4-9"
+                    },
+                    {
+                        "en": "Word 1-4-10",
+                        "ar": "كلمة 1-4-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 4?",
+                            "ar": "ماذا تعلمت في الدرس 4؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": {
+                    "en": "Present Simple vs Continuous",
+                    "ar": "المضارع البسيط مقابل المستمر"
+                },
+                "duration": "18:00",
+                "vocab": [
+                    {
+                        "en": "Word 1-5-1",
+                        "ar": "كلمة 1-5-1"
+                    },
+                    {
+                        "en": "Word 1-5-2",
+                        "ar": "كلمة 1-5-2"
+                    },
+                    {
+                        "en": "Word 1-5-3",
+                        "ar": "كلمة 1-5-3"
+                    },
+                    {
+                        "en": "Word 1-5-4",
+                        "ar": "كلمة 1-5-4"
+                    },
+                    {
+                        "en": "Word 1-5-5",
+                        "ar": "كلمة 1-5-5"
+                    },
+                    {
+                        "en": "Word 1-5-6",
+                        "ar": "كلمة 1-5-6"
+                    },
+                    {
+                        "en": "Word 1-5-7",
+                        "ar": "كلمة 1-5-7"
+                    },
+                    {
+                        "en": "Word 1-5-8",
+                        "ar": "كلمة 1-5-8"
+                    },
+                    {
+                        "en": "Word 1-5-9",
+                        "ar": "كلمة 1-5-9"
+                    },
+                    {
+                        "en": "Word 1-5-10",
+                        "ar": "كلمة 1-5-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 5?",
+                            "ar": "ماذا تعلمت في الدرس 5؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "title": {
+                    "en": "Daily Life Vocabulary",
+                    "ar": "مفردات الحياة اليومية"
+                },
+                "duration": "20:00",
+                "vocab": [
+                    {
+                        "en": "Word 1-6-1",
+                        "ar": "كلمة 1-6-1"
+                    },
+                    {
+                        "en": "Word 1-6-2",
+                        "ar": "كلمة 1-6-2"
+                    },
+                    {
+                        "en": "Word 1-6-3",
+                        "ar": "كلمة 1-6-3"
+                    },
+                    {
+                        "en": "Word 1-6-4",
+                        "ar": "كلمة 1-6-4"
+                    },
+                    {
+                        "en": "Word 1-6-5",
+                        "ar": "كلمة 1-6-5"
+                    },
+                    {
+                        "en": "Word 1-6-6",
+                        "ar": "كلمة 1-6-6"
+                    },
+                    {
+                        "en": "Word 1-6-7",
+                        "ar": "كلمة 1-6-7"
+                    },
+                    {
+                        "en": "Word 1-6-8",
+                        "ar": "كلمة 1-6-8"
+                    },
+                    {
+                        "en": "Word 1-6-9",
+                        "ar": "كلمة 1-6-9"
+                    },
+                    {
+                        "en": "Word 1-6-10",
+                        "ar": "كلمة 1-6-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 6?",
+                            "ar": "ماذا تعلمت في الدرس 6؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            }
         ]
     },
-    { 
-        id: 'int-1', 
-        name: { en: 'Mastering English Grammar', ar: 'إتقان قواعد اللغة الإنجليزية' }, 
-        level: { en: 'Intermediate', ar: 'متوسط' }, 
-        category: { en: 'Grammar', ar: 'قواعد' }, 
-        icon: '📝', 
-        color: '#6c5ce7',
-        videoUrl: 'https://www.youtube.com/embed/pSj7S9Wp17A',
-        lessons: [
-            { id: 1, title: { en: 'The Passive Voice', ar: 'المبني للمجهول' }, duration: '18:10' },
-            { id: 2, title: { en: 'Conditional Sentences', ar: 'الجمل الشرطية' }, duration: '22:30' },
-            { id: 3, title: { en: 'Relative Clauses', ar: 'جمل الوصل' }, duration: '14:50' }
+    {
+        "id": "int-1",
+        "name": {
+            "en": "Mastering English Grammar",
+            "ar": "إتقان قواعد اللغة الإنجليزية"
+        },
+        "level": {
+            "en": "Intermediate",
+            "ar": "متوسط"
+        },
+        "category": {
+            "en": "Grammar",
+            "ar": "قواعد"
+        },
+        "icon": "📝",
+        "color": "#6c5ce7",
+        "videoUrl": "https://www.youtube.com/embed/pSj7S9Wp17A",
+        "lessons": [
+            {
+                "id": 1,
+                "title": {
+                    "en": "The Passive Voice",
+                    "ar": "المبني للمجهول"
+                },
+                "duration": "10:00",
+                "vocab": [
+                    {
+                        "en": "Word 2-1-1",
+                        "ar": "كلمة 2-1-1"
+                    },
+                    {
+                        "en": "Word 2-1-2",
+                        "ar": "كلمة 2-1-2"
+                    },
+                    {
+                        "en": "Word 2-1-3",
+                        "ar": "كلمة 2-1-3"
+                    },
+                    {
+                        "en": "Word 2-1-4",
+                        "ar": "كلمة 2-1-4"
+                    },
+                    {
+                        "en": "Word 2-1-5",
+                        "ar": "كلمة 2-1-5"
+                    },
+                    {
+                        "en": "Word 2-1-6",
+                        "ar": "كلمة 2-1-6"
+                    },
+                    {
+                        "en": "Word 2-1-7",
+                        "ar": "كلمة 2-1-7"
+                    },
+                    {
+                        "en": "Word 2-1-8",
+                        "ar": "كلمة 2-1-8"
+                    },
+                    {
+                        "en": "Word 2-1-9",
+                        "ar": "كلمة 2-1-9"
+                    },
+                    {
+                        "en": "Word 2-1-10",
+                        "ar": "كلمة 2-1-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 1?",
+                            "ar": "ماذا تعلمت في الدرس 1؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": {
+                    "en": "Conditional Sentences",
+                    "ar": "الجمل الشرطية"
+                },
+                "duration": "12:00",
+                "vocab": [
+                    {
+                        "en": "Word 2-2-1",
+                        "ar": "كلمة 2-2-1"
+                    },
+                    {
+                        "en": "Word 2-2-2",
+                        "ar": "كلمة 2-2-2"
+                    },
+                    {
+                        "en": "Word 2-2-3",
+                        "ar": "كلمة 2-2-3"
+                    },
+                    {
+                        "en": "Word 2-2-4",
+                        "ar": "كلمة 2-2-4"
+                    },
+                    {
+                        "en": "Word 2-2-5",
+                        "ar": "كلمة 2-2-5"
+                    },
+                    {
+                        "en": "Word 2-2-6",
+                        "ar": "كلمة 2-2-6"
+                    },
+                    {
+                        "en": "Word 2-2-7",
+                        "ar": "كلمة 2-2-7"
+                    },
+                    {
+                        "en": "Word 2-2-8",
+                        "ar": "كلمة 2-2-8"
+                    },
+                    {
+                        "en": "Word 2-2-9",
+                        "ar": "كلمة 2-2-9"
+                    },
+                    {
+                        "en": "Word 2-2-10",
+                        "ar": "كلمة 2-2-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 2?",
+                            "ar": "ماذا تعلمت في الدرس 2؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": {
+                    "en": "Relative Clauses",
+                    "ar": "جمل الوصل"
+                },
+                "duration": "14:00",
+                "vocab": [
+                    {
+                        "en": "Word 2-3-1",
+                        "ar": "كلمة 2-3-1"
+                    },
+                    {
+                        "en": "Word 2-3-2",
+                        "ar": "كلمة 2-3-2"
+                    },
+                    {
+                        "en": "Word 2-3-3",
+                        "ar": "كلمة 2-3-3"
+                    },
+                    {
+                        "en": "Word 2-3-4",
+                        "ar": "كلمة 2-3-4"
+                    },
+                    {
+                        "en": "Word 2-3-5",
+                        "ar": "كلمة 2-3-5"
+                    },
+                    {
+                        "en": "Word 2-3-6",
+                        "ar": "كلمة 2-3-6"
+                    },
+                    {
+                        "en": "Word 2-3-7",
+                        "ar": "كلمة 2-3-7"
+                    },
+                    {
+                        "en": "Word 2-3-8",
+                        "ar": "كلمة 2-3-8"
+                    },
+                    {
+                        "en": "Word 2-3-9",
+                        "ar": "كلمة 2-3-9"
+                    },
+                    {
+                        "en": "Word 2-3-10",
+                        "ar": "كلمة 2-3-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 3?",
+                            "ar": "ماذا تعلمت في الدرس 3؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": {
+                    "en": "Reported Speech",
+                    "ar": "الكلام المنقول"
+                },
+                "duration": "16:00",
+                "vocab": [
+                    {
+                        "en": "Word 2-4-1",
+                        "ar": "كلمة 2-4-1"
+                    },
+                    {
+                        "en": "Word 2-4-2",
+                        "ar": "كلمة 2-4-2"
+                    },
+                    {
+                        "en": "Word 2-4-3",
+                        "ar": "كلمة 2-4-3"
+                    },
+                    {
+                        "en": "Word 2-4-4",
+                        "ar": "كلمة 2-4-4"
+                    },
+                    {
+                        "en": "Word 2-4-5",
+                        "ar": "كلمة 2-4-5"
+                    },
+                    {
+                        "en": "Word 2-4-6",
+                        "ar": "كلمة 2-4-6"
+                    },
+                    {
+                        "en": "Word 2-4-7",
+                        "ar": "كلمة 2-4-7"
+                    },
+                    {
+                        "en": "Word 2-4-8",
+                        "ar": "كلمة 2-4-8"
+                    },
+                    {
+                        "en": "Word 2-4-9",
+                        "ar": "كلمة 2-4-9"
+                    },
+                    {
+                        "en": "Word 2-4-10",
+                        "ar": "كلمة 2-4-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 4?",
+                            "ar": "ماذا تعلمت في الدرس 4؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": {
+                    "en": "Gerunds and Infinitives",
+                    "ar": "المصادر وأسماء الفاعل"
+                },
+                "duration": "18:00",
+                "vocab": [
+                    {
+                        "en": "Word 2-5-1",
+                        "ar": "كلمة 2-5-1"
+                    },
+                    {
+                        "en": "Word 2-5-2",
+                        "ar": "كلمة 2-5-2"
+                    },
+                    {
+                        "en": "Word 2-5-3",
+                        "ar": "كلمة 2-5-3"
+                    },
+                    {
+                        "en": "Word 2-5-4",
+                        "ar": "كلمة 2-5-4"
+                    },
+                    {
+                        "en": "Word 2-5-5",
+                        "ar": "كلمة 2-5-5"
+                    },
+                    {
+                        "en": "Word 2-5-6",
+                        "ar": "كلمة 2-5-6"
+                    },
+                    {
+                        "en": "Word 2-5-7",
+                        "ar": "كلمة 2-5-7"
+                    },
+                    {
+                        "en": "Word 2-5-8",
+                        "ar": "كلمة 2-5-8"
+                    },
+                    {
+                        "en": "Word 2-5-9",
+                        "ar": "كلمة 2-5-9"
+                    },
+                    {
+                        "en": "Word 2-5-10",
+                        "ar": "كلمة 2-5-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 5?",
+                            "ar": "ماذا تعلمت في الدرس 5؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            }
         ]
     },
-    { 
-        id: 'adv-1', 
-        name: { en: 'Advanced Conversation & Fluency', ar: 'المحادثة والطلاقة المتقدمة' }, 
-        level: { en: 'Advanced', ar: 'متقدم' }, 
-        category: { en: 'Speaking', ar: 'تحدث' }, 
-        icon: '🎙️', 
-        color: '#ff9f43',
-        videoUrl: 'https://www.youtube.com/embed/6_fJ_Wv8n9U',
-        lessons: [
-            { id: 1, title: { en: 'Native-like Pronunciation', ar: 'نطق مثل المتحدثين الأصليين' }, duration: '25:00' },
-            { id: 2, title: { en: 'Slang & Idioms', ar: 'العامية والاصطلاحات' }, duration: '19:15' },
-            { id: 3, title: { en: 'Public Speaking in English', ar: 'التحدث أمام الجمهور بالإنجليزية' }, duration: '30:40' }
+    {
+        "id": "adv-1",
+        "name": {
+            "en": "Advanced Conversation & Fluency",
+            "ar": "المحادثة والطلاقة المتقدمة"
+        },
+        "level": {
+            "en": "Advanced",
+            "ar": "متقدم"
+        },
+        "category": {
+            "en": "Speaking",
+            "ar": "تحدث"
+        },
+        "icon": "🎙️",
+        "color": "#ff9f43",
+        "videoUrl": "https://www.youtube.com/embed/6_fJ_Wv8n9U",
+        "lessons": [
+            {
+                "id": 1,
+                "title": {
+                    "en": "Native-like Pronunciation",
+                    "ar": "نطق مثل المتحدثين الأصليين"
+                },
+                "duration": "10:00",
+                "vocab": [
+                    {
+                        "en": "Word 3-1-1",
+                        "ar": "كلمة 3-1-1"
+                    },
+                    {
+                        "en": "Word 3-1-2",
+                        "ar": "كلمة 3-1-2"
+                    },
+                    {
+                        "en": "Word 3-1-3",
+                        "ar": "كلمة 3-1-3"
+                    },
+                    {
+                        "en": "Word 3-1-4",
+                        "ar": "كلمة 3-1-4"
+                    },
+                    {
+                        "en": "Word 3-1-5",
+                        "ar": "كلمة 3-1-5"
+                    },
+                    {
+                        "en": "Word 3-1-6",
+                        "ar": "كلمة 3-1-6"
+                    },
+                    {
+                        "en": "Word 3-1-7",
+                        "ar": "كلمة 3-1-7"
+                    },
+                    {
+                        "en": "Word 3-1-8",
+                        "ar": "كلمة 3-1-8"
+                    },
+                    {
+                        "en": "Word 3-1-9",
+                        "ar": "كلمة 3-1-9"
+                    },
+                    {
+                        "en": "Word 3-1-10",
+                        "ar": "كلمة 3-1-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 1?",
+                            "ar": "ماذا تعلمت في الدرس 1؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": {
+                    "en": "Slang & Idioms",
+                    "ar": "العامية والاصطلاحات"
+                },
+                "duration": "12:00",
+                "vocab": [
+                    {
+                        "en": "Word 3-2-1",
+                        "ar": "كلمة 3-2-1"
+                    },
+                    {
+                        "en": "Word 3-2-2",
+                        "ar": "كلمة 3-2-2"
+                    },
+                    {
+                        "en": "Word 3-2-3",
+                        "ar": "كلمة 3-2-3"
+                    },
+                    {
+                        "en": "Word 3-2-4",
+                        "ar": "كلمة 3-2-4"
+                    },
+                    {
+                        "en": "Word 3-2-5",
+                        "ar": "كلمة 3-2-5"
+                    },
+                    {
+                        "en": "Word 3-2-6",
+                        "ar": "كلمة 3-2-6"
+                    },
+                    {
+                        "en": "Word 3-2-7",
+                        "ar": "كلمة 3-2-7"
+                    },
+                    {
+                        "en": "Word 3-2-8",
+                        "ar": "كلمة 3-2-8"
+                    },
+                    {
+                        "en": "Word 3-2-9",
+                        "ar": "كلمة 3-2-9"
+                    },
+                    {
+                        "en": "Word 3-2-10",
+                        "ar": "كلمة 3-2-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 2?",
+                            "ar": "ماذا تعلمت في الدرس 2؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": {
+                    "en": "Public Speaking in English",
+                    "ar": "التحدث أمام الجمهور بالإنجليزية"
+                },
+                "duration": "14:00",
+                "vocab": [
+                    {
+                        "en": "Word 3-3-1",
+                        "ar": "كلمة 3-3-1"
+                    },
+                    {
+                        "en": "Word 3-3-2",
+                        "ar": "كلمة 3-3-2"
+                    },
+                    {
+                        "en": "Word 3-3-3",
+                        "ar": "كلمة 3-3-3"
+                    },
+                    {
+                        "en": "Word 3-3-4",
+                        "ar": "كلمة 3-3-4"
+                    },
+                    {
+                        "en": "Word 3-3-5",
+                        "ar": "كلمة 3-3-5"
+                    },
+                    {
+                        "en": "Word 3-3-6",
+                        "ar": "كلمة 3-3-6"
+                    },
+                    {
+                        "en": "Word 3-3-7",
+                        "ar": "كلمة 3-3-7"
+                    },
+                    {
+                        "en": "Word 3-3-8",
+                        "ar": "كلمة 3-3-8"
+                    },
+                    {
+                        "en": "Word 3-3-9",
+                        "ar": "كلمة 3-3-9"
+                    },
+                    {
+                        "en": "Word 3-3-10",
+                        "ar": "كلمة 3-3-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 3?",
+                            "ar": "ماذا تعلمت في الدرس 3؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": {
+                    "en": "Complex Arguments",
+                    "ar": "الحجج المعقدة"
+                },
+                "duration": "16:00",
+                "vocab": [
+                    {
+                        "en": "Word 3-4-1",
+                        "ar": "كلمة 3-4-1"
+                    },
+                    {
+                        "en": "Word 3-4-2",
+                        "ar": "كلمة 3-4-2"
+                    },
+                    {
+                        "en": "Word 3-4-3",
+                        "ar": "كلمة 3-4-3"
+                    },
+                    {
+                        "en": "Word 3-4-4",
+                        "ar": "كلمة 3-4-4"
+                    },
+                    {
+                        "en": "Word 3-4-5",
+                        "ar": "كلمة 3-4-5"
+                    },
+                    {
+                        "en": "Word 3-4-6",
+                        "ar": "كلمة 3-4-6"
+                    },
+                    {
+                        "en": "Word 3-4-7",
+                        "ar": "كلمة 3-4-7"
+                    },
+                    {
+                        "en": "Word 3-4-8",
+                        "ar": "كلمة 3-4-8"
+                    },
+                    {
+                        "en": "Word 3-4-9",
+                        "ar": "كلمة 3-4-9"
+                    },
+                    {
+                        "en": "Word 3-4-10",
+                        "ar": "كلمة 3-4-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 4?",
+                            "ar": "ماذا تعلمت في الدرس 4؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": {
+                    "en": "Debate Techniques",
+                    "ar": "تقنيات المناظرة"
+                },
+                "duration": "18:00",
+                "vocab": [
+                    {
+                        "en": "Word 3-5-1",
+                        "ar": "كلمة 3-5-1"
+                    },
+                    {
+                        "en": "Word 3-5-2",
+                        "ar": "كلمة 3-5-2"
+                    },
+                    {
+                        "en": "Word 3-5-3",
+                        "ar": "كلمة 3-5-3"
+                    },
+                    {
+                        "en": "Word 3-5-4",
+                        "ar": "كلمة 3-5-4"
+                    },
+                    {
+                        "en": "Word 3-5-5",
+                        "ar": "كلمة 3-5-5"
+                    },
+                    {
+                        "en": "Word 3-5-6",
+                        "ar": "كلمة 3-5-6"
+                    },
+                    {
+                        "en": "Word 3-5-7",
+                        "ar": "كلمة 3-5-7"
+                    },
+                    {
+                        "en": "Word 3-5-8",
+                        "ar": "كلمة 3-5-8"
+                    },
+                    {
+                        "en": "Word 3-5-9",
+                        "ar": "كلمة 3-5-9"
+                    },
+                    {
+                        "en": "Word 3-5-10",
+                        "ar": "كلمة 3-5-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 5?",
+                            "ar": "ماذا تعلمت في الدرس 5؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            }
         ]
     },
-    { 
-        id: 'bus-1', 
-        name: { en: 'English for Business Professionals', ar: 'الإنجليزية للمحترفين في الأعمال' }, 
-        level: { en: 'Business', ar: 'أعمال' }, 
-        category: { en: 'Workplace', ar: 'مكان العمل' }, 
-        icon: '💼', 
-        color: '#2e86de', 
-        videoUrl: 'https://www.youtube.com/embed/nU0lS9T7mE0', 
-        lessons: [
-            { id: 1, title: { en: 'Business Email Writing', ar: 'كتابة رسائل البريد الإلكتروني للأعمال' }, duration: '10:00' },
-            { id: 2, title: { en: 'Negotiation Phrases', ar: 'عبارات التفاوض' }, duration: '15:00' }
-        ] 
+    {
+        "id": "bus-1",
+        "name": {
+            "en": "English for Business Professionals",
+            "ar": "الإنجليزية للمحترفين في الأعمال"
+        },
+        "level": {
+            "en": "Business",
+            "ar": "أعمال"
+        },
+        "category": {
+            "en": "Workplace",
+            "ar": "مكان العمل"
+        },
+        "icon": "💼",
+        "color": "#2e86de",
+        "videoUrl": "https://www.youtube.com/embed/nU0lS9T7mE0",
+        "lessons": [
+            {
+                "id": 1,
+                "title": {
+                    "en": "Business Email Writing",
+                    "ar": "كتابة رسائل البريد الإلكتروني للأعمال"
+                },
+                "duration": "10:00",
+                "vocab": [
+                    {
+                        "en": "Word 4-1-1",
+                        "ar": "كلمة 4-1-1"
+                    },
+                    {
+                        "en": "Word 4-1-2",
+                        "ar": "كلمة 4-1-2"
+                    },
+                    {
+                        "en": "Word 4-1-3",
+                        "ar": "كلمة 4-1-3"
+                    },
+                    {
+                        "en": "Word 4-1-4",
+                        "ar": "كلمة 4-1-4"
+                    },
+                    {
+                        "en": "Word 4-1-5",
+                        "ar": "كلمة 4-1-5"
+                    },
+                    {
+                        "en": "Word 4-1-6",
+                        "ar": "كلمة 4-1-6"
+                    },
+                    {
+                        "en": "Word 4-1-7",
+                        "ar": "كلمة 4-1-7"
+                    },
+                    {
+                        "en": "Word 4-1-8",
+                        "ar": "كلمة 4-1-8"
+                    },
+                    {
+                        "en": "Word 4-1-9",
+                        "ar": "كلمة 4-1-9"
+                    },
+                    {
+                        "en": "Word 4-1-10",
+                        "ar": "كلمة 4-1-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 1?",
+                            "ar": "ماذا تعلمت في الدرس 1؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": {
+                    "en": "Negotiation Phrases",
+                    "ar": "عبارات التفاوض"
+                },
+                "duration": "12:00",
+                "vocab": [
+                    {
+                        "en": "Word 4-2-1",
+                        "ar": "كلمة 4-2-1"
+                    },
+                    {
+                        "en": "Word 4-2-2",
+                        "ar": "كلمة 4-2-2"
+                    },
+                    {
+                        "en": "Word 4-2-3",
+                        "ar": "كلمة 4-2-3"
+                    },
+                    {
+                        "en": "Word 4-2-4",
+                        "ar": "كلمة 4-2-4"
+                    },
+                    {
+                        "en": "Word 4-2-5",
+                        "ar": "كلمة 4-2-5"
+                    },
+                    {
+                        "en": "Word 4-2-6",
+                        "ar": "كلمة 4-2-6"
+                    },
+                    {
+                        "en": "Word 4-2-7",
+                        "ar": "كلمة 4-2-7"
+                    },
+                    {
+                        "en": "Word 4-2-8",
+                        "ar": "كلمة 4-2-8"
+                    },
+                    {
+                        "en": "Word 4-2-9",
+                        "ar": "كلمة 4-2-9"
+                    },
+                    {
+                        "en": "Word 4-2-10",
+                        "ar": "كلمة 4-2-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 2?",
+                            "ar": "ماذا تعلمت في الدرس 2؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": {
+                    "en": "Meeting Management",
+                    "ar": "إدارة الاجتماعات"
+                },
+                "duration": "14:00",
+                "vocab": [
+                    {
+                        "en": "Word 4-3-1",
+                        "ar": "كلمة 4-3-1"
+                    },
+                    {
+                        "en": "Word 4-3-2",
+                        "ar": "كلمة 4-3-2"
+                    },
+                    {
+                        "en": "Word 4-3-3",
+                        "ar": "كلمة 4-3-3"
+                    },
+                    {
+                        "en": "Word 4-3-4",
+                        "ar": "كلمة 4-3-4"
+                    },
+                    {
+                        "en": "Word 4-3-5",
+                        "ar": "كلمة 4-3-5"
+                    },
+                    {
+                        "en": "Word 4-3-6",
+                        "ar": "كلمة 4-3-6"
+                    },
+                    {
+                        "en": "Word 4-3-7",
+                        "ar": "كلمة 4-3-7"
+                    },
+                    {
+                        "en": "Word 4-3-8",
+                        "ar": "كلمة 4-3-8"
+                    },
+                    {
+                        "en": "Word 4-3-9",
+                        "ar": "كلمة 4-3-9"
+                    },
+                    {
+                        "en": "Word 4-3-10",
+                        "ar": "كلمة 4-3-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 3?",
+                            "ar": "ماذا تعلمت في الدرس 3؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": {
+                    "en": "Presentation Skills",
+                    "ar": "مهارات العرض"
+                },
+                "duration": "16:00",
+                "vocab": [
+                    {
+                        "en": "Word 4-4-1",
+                        "ar": "كلمة 4-4-1"
+                    },
+                    {
+                        "en": "Word 4-4-2",
+                        "ar": "كلمة 4-4-2"
+                    },
+                    {
+                        "en": "Word 4-4-3",
+                        "ar": "كلمة 4-4-3"
+                    },
+                    {
+                        "en": "Word 4-4-4",
+                        "ar": "كلمة 4-4-4"
+                    },
+                    {
+                        "en": "Word 4-4-5",
+                        "ar": "كلمة 4-4-5"
+                    },
+                    {
+                        "en": "Word 4-4-6",
+                        "ar": "كلمة 4-4-6"
+                    },
+                    {
+                        "en": "Word 4-4-7",
+                        "ar": "كلمة 4-4-7"
+                    },
+                    {
+                        "en": "Word 4-4-8",
+                        "ar": "كلمة 4-4-8"
+                    },
+                    {
+                        "en": "Word 4-4-9",
+                        "ar": "كلمة 4-4-9"
+                    },
+                    {
+                        "en": "Word 4-4-10",
+                        "ar": "كلمة 4-4-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 4?",
+                            "ar": "ماذا تعلمت في الدرس 4؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": {
+                    "en": "Networking & Small Talk",
+                    "ar": "التشبيك وأحاديث التعارف"
+                },
+                "duration": "18:00",
+                "vocab": [
+                    {
+                        "en": "Word 4-5-1",
+                        "ar": "كلمة 4-5-1"
+                    },
+                    {
+                        "en": "Word 4-5-2",
+                        "ar": "كلمة 4-5-2"
+                    },
+                    {
+                        "en": "Word 4-5-3",
+                        "ar": "كلمة 4-5-3"
+                    },
+                    {
+                        "en": "Word 4-5-4",
+                        "ar": "كلمة 4-5-4"
+                    },
+                    {
+                        "en": "Word 4-5-5",
+                        "ar": "كلمة 4-5-5"
+                    },
+                    {
+                        "en": "Word 4-5-6",
+                        "ar": "كلمة 4-5-6"
+                    },
+                    {
+                        "en": "Word 4-5-7",
+                        "ar": "كلمة 4-5-7"
+                    },
+                    {
+                        "en": "Word 4-5-8",
+                        "ar": "كلمة 4-5-8"
+                    },
+                    {
+                        "en": "Word 4-5-9",
+                        "ar": "كلمة 4-5-9"
+                    },
+                    {
+                        "en": "Word 4-5-10",
+                        "ar": "كلمة 4-5-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 5?",
+                            "ar": "ماذا تعلمت في الدرس 5؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            }
+        ]
     },
-    { 
-        id: 'ielt-1', 
-        name: { en: 'IELTS Success Masterclass', ar: 'ماستر كلاس النجاح في الآيلتس' }, 
-        level: { en: 'Advanced', ar: 'متقدم' }, 
-        category: { en: 'Exams', ar: 'امتحانات' }, 
-        icon: '🎓', 
-        color: '#ee5253', 
-        videoUrl: 'https://www.youtube.com/embed/juKDRv6S32I', 
-        lessons: [
-            { id: 1, title: { en: 'IELTS Speaking Intro', ar: 'مقدمة تحدث الآيلتس' }, duration: '15:00' },
-            { id: 2, title: { en: 'Writing Task 2 Strategies', ar: 'استراتيجيات مهمة الكتابة 2' }, duration: '25:00' }
-        ] 
+    {
+        "id": "ielt-1",
+        "name": {
+            "en": "IELTS Success Masterclass",
+            "ar": "ماستر كلاس النجاح في الآيلتس"
+        },
+        "level": {
+            "en": "Advanced",
+            "ar": "متقدم"
+        },
+        "category": {
+            "en": "Exams",
+            "ar": "امتحانات"
+        },
+        "icon": "🎓",
+        "color": "#ee5253",
+        "videoUrl": "https://www.youtube.com/embed/juKDRv6S32I",
+        "lessons": [
+            {
+                "id": 1,
+                "title": {
+                    "en": "IELTS Speaking Intro",
+                    "ar": "مقدمة تحدث الآيلتس"
+                },
+                "duration": "10:00",
+                "vocab": [
+                    {
+                        "en": "Word 5-1-1",
+                        "ar": "كلمة 5-1-1"
+                    },
+                    {
+                        "en": "Word 5-1-2",
+                        "ar": "كلمة 5-1-2"
+                    },
+                    {
+                        "en": "Word 5-1-3",
+                        "ar": "كلمة 5-1-3"
+                    },
+                    {
+                        "en": "Word 5-1-4",
+                        "ar": "كلمة 5-1-4"
+                    },
+                    {
+                        "en": "Word 5-1-5",
+                        "ar": "كلمة 5-1-5"
+                    },
+                    {
+                        "en": "Word 5-1-6",
+                        "ar": "كلمة 5-1-6"
+                    },
+                    {
+                        "en": "Word 5-1-7",
+                        "ar": "كلمة 5-1-7"
+                    },
+                    {
+                        "en": "Word 5-1-8",
+                        "ar": "كلمة 5-1-8"
+                    },
+                    {
+                        "en": "Word 5-1-9",
+                        "ar": "كلمة 5-1-9"
+                    },
+                    {
+                        "en": "Word 5-1-10",
+                        "ar": "كلمة 5-1-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 1?",
+                            "ar": "ماذا تعلمت في الدرس 1؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": {
+                    "en": "Speaking Part 2 Strategies",
+                    "ar": "استراتيجيات التحدث الجزء الثاني"
+                },
+                "duration": "12:00",
+                "vocab": [
+                    {
+                        "en": "Word 5-2-1",
+                        "ar": "كلمة 5-2-1"
+                    },
+                    {
+                        "en": "Word 5-2-2",
+                        "ar": "كلمة 5-2-2"
+                    },
+                    {
+                        "en": "Word 5-2-3",
+                        "ar": "كلمة 5-2-3"
+                    },
+                    {
+                        "en": "Word 5-2-4",
+                        "ar": "كلمة 5-2-4"
+                    },
+                    {
+                        "en": "Word 5-2-5",
+                        "ar": "كلمة 5-2-5"
+                    },
+                    {
+                        "en": "Word 5-2-6",
+                        "ar": "كلمة 5-2-6"
+                    },
+                    {
+                        "en": "Word 5-2-7",
+                        "ar": "كلمة 5-2-7"
+                    },
+                    {
+                        "en": "Word 5-2-8",
+                        "ar": "كلمة 5-2-8"
+                    },
+                    {
+                        "en": "Word 5-2-9",
+                        "ar": "كلمة 5-2-9"
+                    },
+                    {
+                        "en": "Word 5-2-10",
+                        "ar": "كلمة 5-2-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 2?",
+                            "ar": "ماذا تعلمت في الدرس 2؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": {
+                    "en": "Writing Task 1 Academic",
+                    "ar": "مهمة الكتابة الأولى أكاديمي"
+                },
+                "duration": "14:00",
+                "vocab": [
+                    {
+                        "en": "Word 5-3-1",
+                        "ar": "كلمة 5-3-1"
+                    },
+                    {
+                        "en": "Word 5-3-2",
+                        "ar": "كلمة 5-3-2"
+                    },
+                    {
+                        "en": "Word 5-3-3",
+                        "ar": "كلمة 5-3-3"
+                    },
+                    {
+                        "en": "Word 5-3-4",
+                        "ar": "كلمة 5-3-4"
+                    },
+                    {
+                        "en": "Word 5-3-5",
+                        "ar": "كلمة 5-3-5"
+                    },
+                    {
+                        "en": "Word 5-3-6",
+                        "ar": "كلمة 5-3-6"
+                    },
+                    {
+                        "en": "Word 5-3-7",
+                        "ar": "كلمة 5-3-7"
+                    },
+                    {
+                        "en": "Word 5-3-8",
+                        "ar": "كلمة 5-3-8"
+                    },
+                    {
+                        "en": "Word 5-3-9",
+                        "ar": "كلمة 5-3-9"
+                    },
+                    {
+                        "en": "Word 5-3-10",
+                        "ar": "كلمة 5-3-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 3?",
+                            "ar": "ماذا تعلمت في الدرس 3؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": {
+                    "en": "Writing Task 2 Strategies",
+                    "ar": "استراتيجيات مهمة الكتابة 2"
+                },
+                "duration": "16:00",
+                "vocab": [
+                    {
+                        "en": "Word 5-4-1",
+                        "ar": "كلمة 5-4-1"
+                    },
+                    {
+                        "en": "Word 5-4-2",
+                        "ar": "كلمة 5-4-2"
+                    },
+                    {
+                        "en": "Word 5-4-3",
+                        "ar": "كلمة 5-4-3"
+                    },
+                    {
+                        "en": "Word 5-4-4",
+                        "ar": "كلمة 5-4-4"
+                    },
+                    {
+                        "en": "Word 5-4-5",
+                        "ar": "كلمة 5-4-5"
+                    },
+                    {
+                        "en": "Word 5-4-6",
+                        "ar": "كلمة 5-4-6"
+                    },
+                    {
+                        "en": "Word 5-4-7",
+                        "ar": "كلمة 5-4-7"
+                    },
+                    {
+                        "en": "Word 5-4-8",
+                        "ar": "كلمة 5-4-8"
+                    },
+                    {
+                        "en": "Word 5-4-9",
+                        "ar": "كلمة 5-4-9"
+                    },
+                    {
+                        "en": "Word 5-4-10",
+                        "ar": "كلمة 5-4-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 4?",
+                            "ar": "ماذا تعلمت في الدرس 4؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": {
+                    "en": "Listening Best Practices",
+                    "ar": "أفضل ممارسات الاستماع"
+                },
+                "duration": "18:00",
+                "vocab": [
+                    {
+                        "en": "Word 5-5-1",
+                        "ar": "كلمة 5-5-1"
+                    },
+                    {
+                        "en": "Word 5-5-2",
+                        "ar": "كلمة 5-5-2"
+                    },
+                    {
+                        "en": "Word 5-5-3",
+                        "ar": "كلمة 5-5-3"
+                    },
+                    {
+                        "en": "Word 5-5-4",
+                        "ar": "كلمة 5-5-4"
+                    },
+                    {
+                        "en": "Word 5-5-5",
+                        "ar": "كلمة 5-5-5"
+                    },
+                    {
+                        "en": "Word 5-5-6",
+                        "ar": "كلمة 5-5-6"
+                    },
+                    {
+                        "en": "Word 5-5-7",
+                        "ar": "كلمة 5-5-7"
+                    },
+                    {
+                        "en": "Word 5-5-8",
+                        "ar": "كلمة 5-5-8"
+                    },
+                    {
+                        "en": "Word 5-5-9",
+                        "ar": "كلمة 5-5-9"
+                    },
+                    {
+                        "en": "Word 5-5-10",
+                        "ar": "كلمة 5-5-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 5?",
+                            "ar": "ماذا تعلمت في الدرس 5؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "title": {
+                    "en": "Reading Comprehension",
+                    "ar": "فهم المقروء"
+                },
+                "duration": "20:00",
+                "vocab": [
+                    {
+                        "en": "Word 5-6-1",
+                        "ar": "كلمة 5-6-1"
+                    },
+                    {
+                        "en": "Word 5-6-2",
+                        "ar": "كلمة 5-6-2"
+                    },
+                    {
+                        "en": "Word 5-6-3",
+                        "ar": "كلمة 5-6-3"
+                    },
+                    {
+                        "en": "Word 5-6-4",
+                        "ar": "كلمة 5-6-4"
+                    },
+                    {
+                        "en": "Word 5-6-5",
+                        "ar": "كلمة 5-6-5"
+                    },
+                    {
+                        "en": "Word 5-6-6",
+                        "ar": "كلمة 5-6-6"
+                    },
+                    {
+                        "en": "Word 5-6-7",
+                        "ar": "كلمة 5-6-7"
+                    },
+                    {
+                        "en": "Word 5-6-8",
+                        "ar": "كلمة 5-6-8"
+                    },
+                    {
+                        "en": "Word 5-6-9",
+                        "ar": "كلمة 5-6-9"
+                    },
+                    {
+                        "en": "Word 5-6-10",
+                        "ar": "كلمة 5-6-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 6?",
+                            "ar": "ماذا تعلمت في الدرس 6؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            }
+        ]
     },
-    { 
-        id: 'acad-1', 
-        name: { en: 'Academic Writing Excellence', ar: 'التميز في الكتابة الأكاديمية' }, 
-        level: { en: 'Advanced', ar: 'متقدم' }, 
-        category: { en: 'Writing', ar: 'كتابة' }, 
-        icon: '✍️', 
-        color: '#54a0ff', 
-        videoUrl: 'https://www.youtube.com/embed/pSj7S9Wp17A', 
-        lessons: [
-            { id: 1, title: { en: 'Academic Essay Structure', ar: 'هيكل المقال الأكاديمي' }, duration: '20:00' },
-            { id: 2, title: { en: 'Citations and Referencing', ar: 'الاقتباسات والمراجع' }, duration: '12:00' }
-        ] 
+    {
+        "id": "acad-1",
+        "name": {
+            "en": "Academic Writing Excellence",
+            "ar": "التميز في الكتابة الأكاديمية"
+        },
+        "level": {
+            "en": "Advanced",
+            "ar": "متقدم"
+        },
+        "category": {
+            "en": "Writing",
+            "ar": "كتابة"
+        },
+        "icon": "✍️",
+        "color": "#54a0ff",
+        "videoUrl": "https://www.youtube.com/embed/pSj7S9Wp17A",
+        "lessons": [
+            {
+                "id": 1,
+                "title": {
+                    "en": "Academic Essay Structure",
+                    "ar": "هيكل المقال الأكاديمي"
+                },
+                "duration": "10:00",
+                "vocab": [
+                    {
+                        "en": "Word 6-1-1",
+                        "ar": "كلمة 6-1-1"
+                    },
+                    {
+                        "en": "Word 6-1-2",
+                        "ar": "كلمة 6-1-2"
+                    },
+                    {
+                        "en": "Word 6-1-3",
+                        "ar": "كلمة 6-1-3"
+                    },
+                    {
+                        "en": "Word 6-1-4",
+                        "ar": "كلمة 6-1-4"
+                    },
+                    {
+                        "en": "Word 6-1-5",
+                        "ar": "كلمة 6-1-5"
+                    },
+                    {
+                        "en": "Word 6-1-6",
+                        "ar": "كلمة 6-1-6"
+                    },
+                    {
+                        "en": "Word 6-1-7",
+                        "ar": "كلمة 6-1-7"
+                    },
+                    {
+                        "en": "Word 6-1-8",
+                        "ar": "كلمة 6-1-8"
+                    },
+                    {
+                        "en": "Word 6-1-9",
+                        "ar": "كلمة 6-1-9"
+                    },
+                    {
+                        "en": "Word 6-1-10",
+                        "ar": "كلمة 6-1-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 1?",
+                            "ar": "ماذا تعلمت في الدرس 1؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": {
+                    "en": "Citations and Referencing",
+                    "ar": "الاقتباسات والمراجع"
+                },
+                "duration": "12:00",
+                "vocab": [
+                    {
+                        "en": "Word 6-2-1",
+                        "ar": "كلمة 6-2-1"
+                    },
+                    {
+                        "en": "Word 6-2-2",
+                        "ar": "كلمة 6-2-2"
+                    },
+                    {
+                        "en": "Word 6-2-3",
+                        "ar": "كلمة 6-2-3"
+                    },
+                    {
+                        "en": "Word 6-2-4",
+                        "ar": "كلمة 6-2-4"
+                    },
+                    {
+                        "en": "Word 6-2-5",
+                        "ar": "كلمة 6-2-5"
+                    },
+                    {
+                        "en": "Word 6-2-6",
+                        "ar": "كلمة 6-2-6"
+                    },
+                    {
+                        "en": "Word 6-2-7",
+                        "ar": "كلمة 6-2-7"
+                    },
+                    {
+                        "en": "Word 6-2-8",
+                        "ar": "كلمة 6-2-8"
+                    },
+                    {
+                        "en": "Word 6-2-9",
+                        "ar": "كلمة 6-2-9"
+                    },
+                    {
+                        "en": "Word 6-2-10",
+                        "ar": "كلمة 6-2-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 2?",
+                            "ar": "ماذا تعلمت في الدرس 2؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": {
+                    "en": "Paraphrasing and Summarizing",
+                    "ar": "إعادة الصياغة والتلخيص"
+                },
+                "duration": "14:00",
+                "vocab": [
+                    {
+                        "en": "Word 6-3-1",
+                        "ar": "كلمة 6-3-1"
+                    },
+                    {
+                        "en": "Word 6-3-2",
+                        "ar": "كلمة 6-3-2"
+                    },
+                    {
+                        "en": "Word 6-3-3",
+                        "ar": "كلمة 6-3-3"
+                    },
+                    {
+                        "en": "Word 6-3-4",
+                        "ar": "كلمة 6-3-4"
+                    },
+                    {
+                        "en": "Word 6-3-5",
+                        "ar": "كلمة 6-3-5"
+                    },
+                    {
+                        "en": "Word 6-3-6",
+                        "ar": "كلمة 6-3-6"
+                    },
+                    {
+                        "en": "Word 6-3-7",
+                        "ar": "كلمة 6-3-7"
+                    },
+                    {
+                        "en": "Word 6-3-8",
+                        "ar": "كلمة 6-3-8"
+                    },
+                    {
+                        "en": "Word 6-3-9",
+                        "ar": "كلمة 6-3-9"
+                    },
+                    {
+                        "en": "Word 6-3-10",
+                        "ar": "كلمة 6-3-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 3?",
+                            "ar": "ماذا تعلمت في الدرس 3؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": {
+                    "en": "Abstract Writing",
+                    "ar": "كتابة الملخص"
+                },
+                "duration": "16:00",
+                "vocab": [
+                    {
+                        "en": "Word 6-4-1",
+                        "ar": "كلمة 6-4-1"
+                    },
+                    {
+                        "en": "Word 6-4-2",
+                        "ar": "كلمة 6-4-2"
+                    },
+                    {
+                        "en": "Word 6-4-3",
+                        "ar": "كلمة 6-4-3"
+                    },
+                    {
+                        "en": "Word 6-4-4",
+                        "ar": "كلمة 6-4-4"
+                    },
+                    {
+                        "en": "Word 6-4-5",
+                        "ar": "كلمة 6-4-5"
+                    },
+                    {
+                        "en": "Word 6-4-6",
+                        "ar": "كلمة 6-4-6"
+                    },
+                    {
+                        "en": "Word 6-4-7",
+                        "ar": "كلمة 6-4-7"
+                    },
+                    {
+                        "en": "Word 6-4-8",
+                        "ar": "كلمة 6-4-8"
+                    },
+                    {
+                        "en": "Word 6-4-9",
+                        "ar": "كلمة 6-4-9"
+                    },
+                    {
+                        "en": "Word 6-4-10",
+                        "ar": "كلمة 6-4-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 4?",
+                            "ar": "ماذا تعلمت في الدرس 4؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": {
+                    "en": "Research Publishing",
+                    "ar": "نشر الأبحاث"
+                },
+                "duration": "18:00",
+                "vocab": [
+                    {
+                        "en": "Word 6-5-1",
+                        "ar": "كلمة 6-5-1"
+                    },
+                    {
+                        "en": "Word 6-5-2",
+                        "ar": "كلمة 6-5-2"
+                    },
+                    {
+                        "en": "Word 6-5-3",
+                        "ar": "كلمة 6-5-3"
+                    },
+                    {
+                        "en": "Word 6-5-4",
+                        "ar": "كلمة 6-5-4"
+                    },
+                    {
+                        "en": "Word 6-5-5",
+                        "ar": "كلمة 6-5-5"
+                    },
+                    {
+                        "en": "Word 6-5-6",
+                        "ar": "كلمة 6-5-6"
+                    },
+                    {
+                        "en": "Word 6-5-7",
+                        "ar": "كلمة 6-5-7"
+                    },
+                    {
+                        "en": "Word 6-5-8",
+                        "ar": "كلمة 6-5-8"
+                    },
+                    {
+                        "en": "Word 6-5-9",
+                        "ar": "كلمة 6-5-9"
+                    },
+                    {
+                        "en": "Word 6-5-10",
+                        "ar": "كلمة 6-5-10"
+                    }
+                ],
+                "exercises": [
+                    {
+                        "question": {
+                            "en": "What did you learn in lesson 5?",
+                            "ar": "ماذا تعلمت في الدرس 5؟"
+                        },
+                        "options": {
+                            "en": [
+                                "A lot",
+                                "Nothing"
+                            ],
+                            "ar": [
+                                "الكثير",
+                                "لا شيء"
+                            ]
+                        },
+                        "answer": 0
+                    },
+                    {
+                        "question": {
+                            "en": "Which of the following is correct?",
+                            "ar": "أي مما يلي صحيح؟"
+                        },
+                        "options": {
+                            "en": [
+                                "Option A",
+                                "Option B",
+                                "Option C"
+                            ],
+                            "ar": [
+                                "الخيار أ",
+                                "الخيار ب",
+                                "الخيار ج"
+                            ]
+                        },
+                        "answer": 1
+                    }
+                ]
+            }
+        ]
     }
 ];
 
@@ -868,10 +3723,10 @@ function playLesson(id) {
     if (!c) return;
     if (!document.getElementById('videoPlayerModal')) injectVideoModal();
     document.getElementById('playerCourseTitle').innerText = c.name[lang];
-    document.getElementById('lessonIframe').src = c.videoUrl;
+    
     const list = document.getElementById('playerLessonList');
     list.innerHTML = c.lessons.map((l, i) => `
-        <div class="lesson-item ${i === 0 ? 'active' : ''}" onclick="changeVideo('${c.videoUrl}', this)">
+        <div class="lesson-item ${i === 0 ? 'active' : ''}" onclick="changeLesson('${c.id}', ${i}, this)">
             <div class="lesson-num">${i + 1}</div>
             <div class="lesson-info">
                 <div class="lesson-title">${l.title[lang]}</div>
@@ -879,13 +3734,129 @@ function playLesson(id) {
             </div>
         </div>
     `).join('');
+    
+    changeLesson(c.id, 0, null);
     openModal('videoPlayerModal');
 }
 
-function changeVideo(url, el) {
-    document.getElementById('lessonIframe').src = url;
-    document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
-    el.classList.add('active');
+function changeLesson(courseId, lessonIndex, el) {
+    const c = COURSE_POOL.find(item => item.id === courseId);
+    if (!c) return;
+    const lesson = c.lessons[lessonIndex];
+    
+    document.getElementById('lessonIframe').src = lesson.videoUrl || c.videoUrl;
+    
+    if (el) {
+        document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
+        el.classList.add('active');
+    } else {
+        const items = document.querySelectorAll('.lesson-item');
+        if (items.length > 0) items[0].classList.add('active');
+    }
+    
+    // Render content
+    let vocabHTML = '';
+    if (lesson.vocab && lesson.vocab.length) {
+        vocabHTML = `
+            <div style="margin-top:20px; text-align: ${lang === 'ar' ? 'right' : 'left'}">
+                <h4 style="font-size:1.1rem; color:var(--primary);">${lang === 'ar' ? 'كلمات الدرس (10 كلمات)' : 'Lesson Vocabulary (10 words)'}</h4>
+                <div class="grid grid-2" style="gap:10px; margin-top:10px;">
+                    ${lesson.vocab.map(v => `
+                        <div class="card p-2" style="background:var(--bg-secondary); padding:var(--space-sm); border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center;">
+                            <strong style="color:var(--text-main);">${v.en}</strong> 
+                            <span style="color:var(--text-muted);font-size:0.9rem;">${v.ar}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="btn btn-outline btn-sm mt-3" onclick="addAllVocabToBank('${courseId}', ${lessonIndex})" style="width:100%; justify-content:center;">
+                    ${lang === 'ar' ? '+ أضف جميع الكلمات إلى بنك المفردات الخاص بي' : '+ Add all words to my bank'}
+                </button>
+            </div>
+        `;
+    }
+    
+    let exerciseHTML = '';
+    if (lesson.exercises && lesson.exercises.length) {
+        exerciseHTML = `
+            <div style="margin-top:40px; text-align: ${lang === 'ar' ? 'right' : 'left'}">
+                <h4 style="font-size:1.1rem; color:var(--primary); margin-bottom:15px;">${lang === 'ar' ? 'تدريبات الدرس' : 'Lesson Exercises'}</h4>
+                <div id="lessonExercises" style="display:flex; flex-direction:column; gap:15px;">
+                    ${lesson.exercises.map((ex, i) => `
+                        <div class="card" style="background:var(--bg-secondary); padding:var(--space-md); border-radius:var(--radius-md);">
+                            <p style="font-weight:600; margin-bottom:10px; color:var(--text-main);">Q${i+1}: ${ex.question[lang]}</p>
+                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                ${ex.options[lang].map((opt, optIdx) => `
+                                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem; color:var(--text-muted);">
+                                        <input type="radio" name="q${lessonIndex}_${i}" value="${optIdx}">
+                                        ${opt}
+                                    </label>
+                                `).join('')}
+                            </div>
+                            <button class="btn btn-primary btn-sm mt-3" onclick="checkAnswer(this, ${ex.answer}, 'q${lessonIndex}_${i}')" style="box-shadow:none;">
+                                ${lang === 'ar' ? 'التحقق من الإجابة' : 'Check Answer'}
+                            </button>
+                            <div class="ex-result mt-2" style="display:none; font-weight:600; font-size:0.9rem;"></div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    const detailsContainer = document.getElementById('lessonContentDetails');
+    if(detailsContainer) {
+        detailsContainer.innerHTML = vocabHTML + exerciseHTML;
+    }
+}
+
+function checkAnswer(btn, correctIdx, radioName) {
+    const selected = document.querySelector(`input[name="${radioName}"]:checked`);
+    const resDiv = btn.nextElementSibling;
+    resDiv.style.display = 'block';
+    if (!selected) {
+        resDiv.innerText = lang === 'ar' ? 'الرجاء اختيار إجابة' : 'Please select an answer';
+        resDiv.style.color = 'var(--text-muted)';
+        return;
+    }
+    if (parseInt(selected.value) === correctIdx) {
+        resDiv.innerText = lang === 'ar' ? '✅ إجابة صحيحة!' : '✅ Correct!';
+        resDiv.style.color = 'var(--success)';
+    } else {
+        resDiv.innerText = lang === 'ar' ? '❌ إجابة خاطئة، حاول مرة أخرى' : '❌ Incorrect, try again';
+        resDiv.style.color = 'var(--danger)';
+    }
+}
+
+function addAllVocabToBank(courseId, lessonIndex) {
+    const c = COURSE_POOL.find(item => item.id === courseId);
+    const lesson = c.lessons[lessonIndex];
+    if(!lesson || !lesson.vocab) return;
+    
+    const myVocab = getVocab();
+    let added = 0;
+    lesson.vocab.forEach(v => {
+        if(!myVocab.find(existing => existing.word.toLowerCase() === v.en.toLowerCase())) {
+            myVocab.unshift({ 
+                id: Date.now().toString() + Math.random(), 
+                word: v.en, 
+                translation: v.ar, 
+                category: c.level.en, 
+                date: new Date().toISOString().split('T')[0] 
+            });
+            added++;
+        }
+    });
+    
+    if(added > 0) {
+        saveVocab(myVocab);
+        if (typeof recordGoalProgress === 'function') recordGoalProgress('vocab', added);
+        showToast('success', lang === 'ar' ? `تمت إضافة ${added} كلمات إلى بنك المفردات!` : `Added ${added} words to your bank!`);
+        // if we are on dashboard or vocabulary page, ensure it updates
+        if (typeof renderVocabGrid === 'function' && document.getElementById('vocabularyGrid')) renderVocabGrid();
+        if (typeof updateVocabUIStrip === 'function') updateVocabUIStrip();
+    } else {
+        showToast('info', lang === 'ar' ? 'الكلمات موجودة مسبقاً.' : 'Words already in your bank.');
+    }
 }
 
 function injectVideoModal() {
@@ -893,17 +3864,25 @@ function injectVideoModal() {
         <div id="videoPlayerModal" class="modal-overlay">
             <div class="modal video-player-content" style="max-width:1100px; padding:0; overflow:hidden;">
                 <div class="player-grid">
-                    <div class="player-main">
+                    <!-- Main Left Column -->
+                    <div class="player-main" style="overflow-y:auto; max-height:85vh; padding-bottom:50px;">
                         <div class="player-header">
-                            <h3 id="playerCourseTitle" style="margin:0; font-size:1.1rem;">Course</h3>
+                            <h3 id="playerCourseTitle" style="margin:0; font-size:1.1rem; flex:1;">Course</h3>
                             <button class="close-modal" onclick="closeModal('videoPlayerModal')" style="font-size:1.2rem; opacity:0.6; cursor:pointer; border:none; background:none; color:white;">✕</button>
                         </div>
                         <div class="video-container">
                             <iframe id="lessonIframe" src="" allowfullscreen frameborder="0"></iframe>
                         </div>
+                        <div id="lessonContentDetails" style="padding:var(--space-xl);">
+                             <!-- Dynamic Exercises and Vocab -->
+                        </div>
                     </div>
-                    <div class="player-sidebar">
-                        <h4 style="margin-bottom:var(--space-md); font-size:0.85rem; opacity:0.7;">COURSE LESSONS</h4>
+                    
+                    <!-- Sidebar Right Column -->
+                    <div class="player-sidebar" style="overflow-y:auto; max-height:85vh;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+                            <h4 style="font-size:0.85rem; opacity:0.7; margin:0;">${lang === 'ar' ? 'دروس الدورة' : 'COURSE LESSONS'}</h4>
+                        </div>
                         <div id="playerLessonList" class="lesson-list"></div>
                     </div>
                 </div>
