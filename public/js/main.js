@@ -3894,15 +3894,25 @@ function renderCoursesGrid(level) {
     const container = document.getElementById('coursesGrid');
     if (!container) return;
     const filtered = level === 'all' ? COURSE_POOL : COURSE_POOL.filter(c => c.level.en.toLowerCase() === level.toLowerCase());
-    container.innerHTML = filtered.map(c => `
-        <div class="card course-card reveal active">
-            <div class="course-icon" style="background:${c.color}20; color:${c.color}">${c.icon}</div>
-            <div class="course-tag" style="background:${c.color}15; color:${c.color}">${c.level[lang]}</div>
-            <h3>${c.name[lang]}</h3>
-            <div class="course-meta">📚 ${c.lessons.length} ${lang === 'ar' ? 'دروس' : 'Lessons'} • ⏱️ 12h</div>
-            <button class="btn btn-primary btn-sm w-full mt-2" onclick="playLesson('${c.id}')">${translations['course-enroll'][lang]}</button>
-        </div>
-    `).join('');
+    container.innerHTML = filtered.map(c => {
+        let levelColor = '#6c5ce7'; // Default
+        const lvl = c.level.en.toLowerCase();
+        if (lvl.includes('beginner')) levelColor = '#00d2d3'; // Teal
+        else if (lvl.includes('intermediate')) levelColor = '#6c5ce7'; // Purple
+        else if (lvl.includes('advanced')) levelColor = '#ff9f43'; // Orange
+        else if (lvl.includes('business')) levelColor = '#2e86de'; // Blue
+
+        return `
+            <div class="card course-card reveal active">
+                <div class="course-icon" style="background:${levelColor}20; color:${levelColor}">${c.icon}</div>
+                <div class="course-tag" style="background:${levelColor}15; color:${levelColor}">${c.level[lang]}</div>
+                <h3>${c.name[lang]}</h3>
+                <div class="course-meta">📚 ${c.lessons.length} ${lang === 'ar' ? 'دروس' : 'Lessons'} • ⏱️ 12h</div>
+                <button class="btn btn-primary btn-sm w-full mt-2" onclick="playLesson('${c.id}')">${translations['course-enroll'][lang]}</button>
+            </div>
+        `;
+    }).join('');
+
 }
 
 function playLesson(id) {
