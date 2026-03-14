@@ -1,5 +1,5 @@
--- LINGOWISE SUPABASE DATABASE SETUP
--- This script replaces the generic setup with a production-ready schema for LingoWise.
+-- LINGOWISE SUPABASE DATABASE SETUP (PRODUCTION VERSION)
+-- This script contains the final schema used by the LingoWise Admin Dashboard.
 -- Copy and paste this into your Supabase SQL Editor.
 
 -- 1. Wipe old tables to ensure a clean slate
@@ -8,33 +8,42 @@ DROP TABLE IF EXISTS public.user_progress CASCADE;
 DROP TABLE IF EXISTS public.learning_stats CASCADE;
 DROP TABLE IF EXISTS public.lessons CASCADE;
 DROP TABLE IF EXISTS public.courses CASCADE;
-DROP TABLE IF EXISTS public.blog_posts CASCADE;
+DROP TABLE IF EXISTS public.app_config CASCADE;
 
--- 2. Create Courses Table
+-- 2. Create Courses Table (JSONB version for multilingual support)
 CREATE TABLE public.courses (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-  title text NOT NULL,
-  level text NOT NULL, -- Beginner, Intermediate, Advanced, Business
-  category text NOT NULL, -- General, Grammar, Speaking, Workplace, Exams
-  icon text, -- Emoji or icon class
-  color text, -- Accent color hex
-  video_url text,
-  description text,
-  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+  name jsonb NOT NULL,      -- {en: "Name", ar: "الاسم"}
+  level jsonb NOT NULL,     -- {en: "Beginner", ar: "مبتدئ"}
+  category jsonb NOT NULL,  -- {en: "General", ar: "عام"}
+  icon text,                -- Emoji or icon class
+  color text,               -- Accent color hex
+  video_url text,           -- Default video URL for the whole course
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at timestamp with time zone DEFAULT timezone('utc'::text, now())
 );
 
--- 3. Create Lessons Table
+-- 3. Create Lessons Table (JSONB version for nested items)
 CREATE TABLE public.lessons (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   course_id uuid REFERENCES public.courses ON DELETE CASCADE NOT NULL,
-  title text NOT NULL,
-  duration text, -- e.g., '12:05'
+  title jsonb NOT NULL,     -- {en: "Title", ar: "العنوان"}
+  duration text,            -- e.g., '12:05'
   order_index integer NOT NULL,
-  content text, -- Future use for structured lesson content
+  video_url text,           -- Specific video for this lesson
+  exercises jsonb DEFAULT '[]', -- Complex exercises array
+  vocab jsonb DEFAULT '[]',     -- 10 vocabulary words array
   created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- 4. Create User Progress Table
+-- 4. Create Global App Config
+CREATE TABLE IF NOT EXISTS public.app_config (
+  key text PRIMARY KEY,
+  value jsonb,
+  updated_at timestamp with time zone DEFAULT now()
+);
+
+-- 5. Create User Progress Table
 CREATE TABLE public.user_progress (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
@@ -46,61 +55,27 @@ CREATE TABLE public.user_progress (
   UNIQUE(user_id, course_id, lesson_id)
 );
 
--- 5. Create Learning Stats Table (For the dashboard metrics)
-CREATE TABLE public.learning_stats (
-  user_id uuid REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
-  total_minutes integer DEFAULT 0,
-  courses_completed integer DEFAULT 0,
-  vocab_mastered integer DEFAULT 0,
-  streak_days integer DEFAULT 0,
-  last_activity timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 6. Create Vocabulary Bank Table (Integrated SRS)
-CREATE TABLE public.vocabulary_bank (
-  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
-  word text NOT NULL,
-  translation text NOT NULL,
-  category text, -- Academic, General, Business
-  mastery_level integer DEFAULT 1, -- 1-5
-  next_review timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
-  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 7. Enable Row Level Security (RLS)
+-- 6. Enable Row Level Security (RLS)
 ALTER TABLE public.courses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.lessons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_progress ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.learning_stats ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.vocabulary_bank ENABLE ROW LEVEL SECURITY;
 
--- 8. Define RLS Policies
+-- 7. Define RLS Policies
 -- Public content
 CREATE POLICY "Public courses are viewable by everyone" ON public.courses FOR SELECT USING (true);
 CREATE POLICY "Public lessons are viewable by everyone" ON public.lessons FOR SELECT USING (true);
 
--- Private user data
-CREATE POLICY "Users can manage their own progress" ON public.user_progress FOR ALL USING (auth.uid() = user_id);
-CREATE POLICY "Users can manage their own stats" ON public.learning_stats FOR ALL USING (auth.uid() = user_id);
-CREATE POLICY "Users can manage their own vocabulary" ON public.vocabulary_bank FOR ALL USING (auth.uid() = user_id);
+-- Admin restrictions (Optional: You can add admin check here if you use Supabase auth roles)
+-- For now, the Node.js API handles the restricted access.
 
--- 9. Seed Production Courses (Matching main.js)
-INSERT INTO public.courses (id, title, level, category, icon, color, video_url)
+-- 8. Seed Sample Courses (Production format)
+INSERT INTO public.courses (id, name, level, category, icon, color, video_url)
 VALUES 
-('c1724000-0000-0000-0000-000000000001', 'Complete English Foundations', 'Beginner', 'General', '🌱', '#00d2d3', 'https://www.youtube.com/embed/juKDRv6S32I'),
-('c1724000-0000-0000-0000-000000000002', 'Mastering English Grammar', 'Intermediate', 'Grammar', '📝', '#6c5ce7', 'https://www.youtube.com/embed/pSj7S9Wp17A'),
-('c1724000-0000-0000-0000-000000000003', 'Advanced Conversation & Fluency', 'Advanced', 'Speaking', '🎙️', '#ff9f43', 'https://www.youtube.com/embed/6_fJ_Wv8n9U'),
-('c1724000-0000-0000-0000-000000000004', 'English for Business Professionals', 'Business', 'Workplace', '💼', '#2e86de', 'https://www.youtube.com/embed/nU0lS9T7mE0'),
-('c1724000-0000-0000-0000-000000000005', 'IELTS Success Masterclass', 'Advanced', 'Exams', '🎓', '#ee5253', 'https://www.youtube.com/embed/juKDRv6S32I'),
-('c1724000-0000-0000-0000-000000000006', 'Academic Writing Excellence', 'Advanced', 'Writing', '✍️', '#54a0ff', 'https://www.youtube.com/embed/pSj7S9Wp17A');
+('c1724000-0000-0000-0000-000000000001', '{"en": "Complete English Foundations", "ar": "أساسيات اللغة الإنجليزية الكاملة"}', '{"en": "Beginner", "ar": "مبتدئ"}', '{"en": "General", "ar": "عام"}', '🌱', '#00d2d3', 'https://www.youtube.com/embed/juKDRv6S32I');
 
--- 10. Seed Sample Lessons for Foundations
-INSERT INTO public.lessons (course_id, title, duration, order_index)
+INSERT INTO public.lessons (course_id, title, duration, order_index, exercises)
 VALUES 
-('c1724000-0000-0000-0000-000000000001', 'Introduction to Tenses', '12:05', 1),
-('c1724000-0000-0000-0000-000000000001', 'Present Simple vs Continuous', '15:20', 2),
-('c1724000-0000-0000-0000-000000000001', 'Daily Life Vocabulary', '10:45', 3);
+('c1724000-0000-0000-0000-000000000001', '{"en": "Alphabet & Phonics", "ar": "الأبجدية والصوتيات"}', '10:00', 1, '[{"question": {"en": "What is the first letter?", "ar": "ما هو الحرف الأول؟"}, "options": {"en": ["A", "B"], "ar": ["أ", "ب"]}, "answer": 0}]');
 
--- 11. Final Notification
+-- 9. Final Notification
 NOTIFY pgrst, 'reload schema';
