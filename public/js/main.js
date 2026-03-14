@@ -3208,8 +3208,8 @@ function checkAuth() {
     const isPrivatePage = href.includes('dashboard.html') || 
                           href.includes('my-courses.html') || 
                           href.includes('vocabulary.html') || 
-                          href.includes('courses.html') || 
                           href.includes('speaking-lab.html');
+
     
     if (isPrivatePage && !isLoggedIn) {
         window.location.replace('login.html');
@@ -3906,7 +3906,13 @@ function renderCoursesGrid(level) {
 }
 
 function playLesson(id) {
+    const isLoggedIn = localStorage.getItem('lingowise_logged_in') === 'true';
+    if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+    }
     const c = COURSE_POOL.find(item => item.id === id);
+
     if (!c) return;
     if (!document.getElementById('videoPlayerModal')) injectVideoModal();
     document.getElementById('playerCourseTitle').innerText = c.name[lang];
