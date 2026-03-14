@@ -3568,7 +3568,7 @@ const translations = {
     'modal-add-word-title': { en: 'Add New Word', ar: 'إضافة كلمة جديدة' },
     'label-word': { en: 'Word / Phrase', ar: 'الكلمة / العبارة' },
     'label-translation': { en: 'Translation', ar: 'الترجمة' },
-    'label-category': { en: 'Category', ar: 'الفئة' },
+
     'btn-save-word': { en: 'Save to Bank', ar: 'حفظ في البنك' },
     'footer-account': { en: 'Account', ar: 'الحساب' },
     'auth-error-match': { en: 'Passwords do not match!', ar: 'كلمات المرور غير متطابقة!' },
@@ -3635,7 +3635,7 @@ const translations = {
     'vocab-hero-title': { en: 'Vocabulary Bank', ar: 'بنك المفردات' },
     'vocab-hero-sub': { en: 'Master words scheduled for review today.', ar: 'أتقن الكلمات المقررة للمراجعة اليوم.' },
     'vocab-review-btn': { en: 'Start Review Session 🔥', ar: 'ابدأ جلسة المراجعة 🔥' },
-    'vocab-filter-all': { en: 'All Categories', ar: 'جميع الفئات' },
+
     'dash-goal-vocab': { en: 'New Vocabulary', ar: 'مفردات جديدة' },
     'dash-goal-speak': { en: 'Speaking Practice', ar: 'ممارسة التحدث' },
     'dash-goal-done': { en: 'Completed for today!', ar: 'اكتمل لهذا اليوم!' },
@@ -4176,14 +4176,13 @@ function saveVocab(v) { localStorage.setItem('lingowise_vocab', JSON.stringify(v
 
 function initVocabularyPage() { renderVocabGrid(); }
 
-function renderVocabGrid(filterTerm = '', filterCat = 'all') {
+function renderVocabGrid(filterTerm = '') {
     const grid = document.getElementById('vocabularyGrid');
     if (!grid) return;
     const items = getVocab().filter(v => {
-        const matchesTerm = v.word.toLowerCase().includes(filterTerm.toLowerCase()) || v.translation.toLowerCase().includes(filterTerm.toLowerCase());
-        const matchesCat = filterCat === 'all' || v.category.toLowerCase() === filterCat.toLowerCase();
-        return matchesTerm && matchesCat;
+        return v.word.toLowerCase().includes(filterTerm.toLowerCase()) || v.translation.toLowerCase().includes(filterTerm.toLowerCase());
     });
+
     
     if (items.length === 0) {
         grid.innerHTML = `<div class="text-center p-3" style="grid-column:1/-1;">${translations['vocab-empty'][lang]}</div>`;
@@ -4191,39 +4190,33 @@ function renderVocabGrid(filterTerm = '', filterCat = 'all') {
     }
     
     grid.innerHTML = items.map(v => {
-        const catKey = `filter-${v.category.toLowerCase()}`;
-        const localizedCat = (translations[catKey] && translations[catKey][lang]) || v.category;
         return `
             <div class="card vocab-card reveal active">
                 <button class="delete-btn" onclick="deleteWord('${v.id}')">✕</button>
                 <div class="vocab-word">${v.word}</div>
                 <div class="vocab-translation">${v.translation}</div>
-                <div class="vocab-footer">
-                    <span class="vocab-tag">${localizedCat}</span>
+                <div class="vocab-footer" style="justify-content: flex-end;">
                     <span class="vocab-date">${v.date}</span>
                 </div>
             </div>
         `;
     }).join('');
+
 }
 
 function handleVocabSearch(q) { 
-    const cat = document.getElementById('vocabFilterCat')?.value || 'all';
-    renderVocabGrid(q, cat); 
+    renderVocabGrid(q); 
 }
-function handleVocabFilter(c) {
-    const q = document.getElementById('vocabSearch')?.value || '';
-    renderVocabGrid(q, c);
-}
+
 
 function addVocabulary(e) {
     if(e) e.preventDefault();
     const word = document.getElementById('vocab-word').value;
     const trans = document.getElementById('vocab-translation').value;
-    const cat = document.getElementById('vocab-category').value;
     if(!word || !trans) return;
     const vocab = getVocab();
-    vocab.unshift({ id: Date.now().toString(), word, translation: trans, category: cat, date: new Date().toISOString().split('T')[0] });
+    vocab.unshift({ id: Date.now().toString(), word, translation: trans, date: new Date().toISOString().split('T')[0] });
+
     saveVocab(vocab);
     
     // Record Daily Goal Progress
