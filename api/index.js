@@ -6,6 +6,10 @@ const { getPortfolio, addAsset, removeAsset } = require('./src/services/portfoli
 const { login, signup } = require('./src/services/auth');
 const { getJournal, addTrade, removeTrade } = require('./src/services/journal');
 const authenticate = require('./src/middleware/auth');
+const { getCourses, saveCoursePool } = require('./src/services/courseService');
+
+const ADMIN_EMAILS = ['admin@calcwises.com', 'mhro@calcwises.com']; // User can add their email here
+
 
 const app = express();
 
@@ -17,6 +21,30 @@ app.use(express.json());
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', platform: 'CalcWise', version: '2.1.0' });
 });
+
+// Course Routes (Public)
+app.get('/api/courses', async (req, res) => {
+    try {
+        const courses = await getCourses();
+        res.json({ success: true, courses });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// Admin Course Update (Protected)
+app.post('/api/admin/courses', authenticate, async (req, res) => {
+    if (!ADMIN_EMAILS.includes(req.user.email)) {
+        return res.status(403).json({ success: false, message: 'Admin privileges required' });
+    }
+    try {
+        await saveCoursePool(req.body);
+        res.json({ success: true, message: 'Course pool updated' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 
 // Real-time Market Prices
 app.get('/api/market/prices', async (req, res) => {

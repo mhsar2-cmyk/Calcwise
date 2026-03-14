@@ -2941,13 +2941,37 @@ let DEFAULT_COURSE_POOL = [
 
 let COURSE_POOL = JSON.parse(localStorage.getItem('admin_courses')) || DEFAULT_COURSE_POOL;
 
+async function syncGlobalCourses() {
+    try {
+        const res = await fetch('/api/courses');
+        const data = await res.json();
+        if (data.success && data.courses && data.courses.length > 0) {
+            COURSE_POOL = data.courses.map(c => ({
+                ...c,
+                id: c.id,
+                videoUrl: c.video_url,
+                lessons: (c.lessons || []).map(l => ({
+                    ...l,
+                    videoUrl: l.video_url
+                }))
+            }));
+            return true;
+        }
+    } catch (e) { console.warn("Live courses unavailable"); }
+    return false;
+}
+
+
 // ===== CORE INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initTheme();
     initLanguage();
     initNavbar();
     initScrollReveal();
     initParticles();
+
+    // Fetch from Supabase before rendering
+    await syncGlobalCourses();
     
     // Page-specific initializers
     if (document.getElementById('activeCoursesContainer')) initDashboard();
@@ -2959,6 +2983,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     initSessionClock();
     updateLastUpdated();
+
 
     // Global Modal Click Background Close
     document.addEventListener('click', (e) => {

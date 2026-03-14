@@ -2718,8 +2718,8 @@ select.form-control {
 .player-grid {
     display: grid;
     grid-template-columns: 1fr 320px;
-    height: 70vh;
-    min-height: 500px;
+    height: 85vh;
+    min-height: 600px;
 }
 
 @media (max-width: 900px) {
@@ -2750,6 +2750,7 @@ select.form-control {
 .video-container {
     background: #000;
     flex: 1;
+    min-height: 400px;
     position: relative;
     overflow: hidden;
 }
