@@ -3809,26 +3809,34 @@ function changeLesson(courseId, lessonIndex, el) {
                 <h4 style="font-size:1.1rem; color:var(--primary); margin-bottom:15px;">${lang === 'ar' ? 'تدريبات الدرس' : 'Lesson Exercises'}</h4>
                 <div id="lessonExercises" style="display:flex; flex-direction:column; gap:15px;">
                     ${lesson.exercises.map((ex, i) => `
-                        <div class="card" style="background:var(--bg-secondary); padding:var(--space-md); border-radius:var(--radius-md);">
-                            <p style="font-weight:600; margin-bottom:10px; color:var(--text-main);">Q${i+1}: ${ex.question[lang]}</p>
+                        <div class="card exercise-card" id="ex-card-${i}" style="background:var(--bg-secondary); padding:var(--space-md); border-radius:var(--radius-md); border: 2px solid transparent; transition: all 0.3s ease;">
+                            <p style="font-weight:600; margin-bottom:10px; color:var(--text-primary);">Q${i+1}: ${ex.question[lang]}</p>
                             <div style="display:flex; flex-direction:column; gap:8px;">
                                 ${ex.options[lang].map((opt, optIdx) => `
-                                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem; color:var(--text-muted);">
-                                        <input type="radio" name="q${lessonIndex}_${i}" value="${optIdx}">
+                                    <label class="ex-option-label" style="display:flex; align-items:center; gap:12px; cursor:pointer; font-size:0.95rem; color:var(--text-secondary); padding: 10px; border-radius: 8px; transition: background 0.2s, color 0.2s; border: 1px solid var(--border-subtle);">
+                                        <input type="radio" name="ex_${i}" value="${optIdx}" style="accent-color: var(--primary); transform: scale(1.1);">
                                         ${opt}
                                     </label>
                                 `).join('')}
                             </div>
-                            <button class="btn btn-primary btn-sm mt-3" onclick="checkAnswer(this, ${ex.answer}, 'q${lessonIndex}_${i}')" style="box-shadow:none;">
-                                ${lang === 'ar' ? 'التحقق من الإجابة' : 'Check Answer'}
-                            </button>
-                            <div class="ex-result mt-2" style="display:none; font-weight:600; font-size:0.9rem;"></div>
+                            <div class="ex-result-indicator mt-2" style="font-weight:700; font-size:0.9rem; display:none; padding: 5px 10px; border-radius: 4px; display: inline-block; margin-top: 15px;"></div>
                         </div>
                     `).join('')}
                 </div>
+
+                
+                <div id="exercisesSummary" class="card mt-4" style="display:none; text-align:center; background:var(--primary-light); padding:var(--space-lg); border:1px solid var(--primary);">
+                    <h3 id="summaryTitle" style="margin-bottom:10px;"></h3>
+                    <p id="summaryText" style="color:var(--text-main); font-size:1.1rem;"></p>
+                </div>
+
+                <button class="btn btn-primary mt-4" onclick="checkAllExercises('${courseId}', ${lessonIndex})" style="width:100%; justify-content:center; height: 50px; font-size: 1.1rem;">
+                    ${lang === 'ar' ? 'التحقق من جميع الإجابات' : 'Check All Answers'}
+                </button>
             </div>
         `;
     }
+
     
     const detailsContainer = document.getElementById('lessonContentDetails');
     if(detailsContainer) {
@@ -3836,23 +3844,76 @@ function changeLesson(courseId, lessonIndex, el) {
     }
 }
 
-function checkAnswer(btn, correctIdx, radioName) {
-    const selected = document.querySelector(`input[name="${radioName}"]:checked`);
-    const resDiv = btn.nextElementSibling;
-    resDiv.style.display = 'block';
-    if (!selected) {
-        resDiv.innerText = lang === 'ar' ? 'الرجاء اختيار إجابة' : 'Please select an answer';
-        resDiv.style.color = 'var(--text-muted)';
-        return;
-    }
-    if (parseInt(selected.value) === correctIdx) {
-        resDiv.innerText = lang === 'ar' ? '✅ إجابة صحيحة!' : '✅ Correct!';
-        resDiv.style.color = 'var(--success)';
+function checkAllExercises(courseId, lessonIndex) {
+    const c = COURSE_POOL.find(item => item.id === courseId);
+    const lesson = c.lessons[lessonIndex];
+    if(!lesson || !lesson.exercises) return;
+
+    let correctCount = 0;
+    const total = lesson.exercises.length;
+    let allAnswered = true;
+
+    lesson.exercises.forEach((ex, i) => {
+        const selected = document.querySelector(`input[name="ex_${i}"]:checked`);
+        const card = document.getElementById(`ex-card-${i}`);
+        const indicator = card.querySelector('.ex-result-indicator');
+        
+        indicator.style.display = 'block';
+        
+        if (!selected) {
+            allAnswered = false;
+            indicator.style.display = 'block';
+            indicator.innerText = lang === 'ar' ? '⚠️ لم يتم اختيار إجابة' : '⚠️ No answer selected';
+            indicator.style.color = 'var(--text-secondary)';
+            indicator.style.background = 'rgba(255,255,255,0.05)';
+            card.style.borderColor = 'var(--border-subtle)';
+        } else if (parseInt(selected.value) === ex.answer) {
+            correctCount++;
+            indicator.style.display = 'block';
+            indicator.innerText = lang === 'ar' ? '✅ إجابة صحيحة!' : '✅ Correct!';
+            indicator.style.color = 'var(--success)';
+            indicator.style.background = 'rgba(46, 213, 115, 0.1)';
+            card.style.borderColor = 'var(--success)';
+            card.style.background = 'rgba(46, 213, 115, 0.05)';
+        } else {
+            indicator.style.display = 'block';
+            indicator.innerText = lang === 'ar' ? '❌ إجابة خاطئة' : '❌ Incorrect';
+            indicator.style.color = 'var(--danger)';
+            indicator.style.background = 'rgba(255, 71, 87, 0.1)';
+            card.style.borderColor = 'var(--danger)';
+            card.style.background = 'rgba(255, 71, 87, 0.05)';
+        }
+    });
+
+    // Show summmary
+    const summary = document.getElementById('exercisesSummary');
+    const title = document.getElementById('summaryTitle');
+    const text = document.getElementById('summaryText');
+    
+    summary.style.display = 'block';
+    
+    const percentage = Math.round((correctCount / total) * 100);
+    
+    if (lang === 'ar') {
+        title.innerText = percentage === 100 ? '🎉 عمل رائع!' : '📊 نتائجك النهائيّة';
+        text.innerHTML = `لقد أجبت بشكل صحيح على <strong>${correctCount}</strong> من أصل <strong>${total}</strong> تدريبات (${percentage}%)`;
     } else {
-        resDiv.innerText = lang === 'ar' ? '❌ إجابة خاطئة، حاول مرة أخرى' : '❌ Incorrect, try again';
-        resDiv.style.color = 'var(--danger)';
+        title.innerText = percentage === 100 ? '🎉 Great Job!' : '📊 Final Results';
+        text.innerHTML = `You got <strong>${correctCount}</strong> out of <strong>${total}</strong> correct (${percentage}%)`;
+    }
+
+
+    summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    if (percentage === 100) {
+        summary.style.background = 'rgba(46, 213, 115, 0.1)';
+        summary.style.borderColor = 'var(--success)';
+    } else {
+        summary.style.background = 'rgba(255, 159, 67, 0.1)';
+        summary.style.borderColor = 'var(--warning)';
     }
 }
+
 
 function addAllVocabToBank(courseId, lessonIndex) {
     const c = COURSE_POOL.find(item => item.id === courseId);
