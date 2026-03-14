@@ -896,19 +896,23 @@ h5 {
 }
 
 .platform-card.crypto:hover {
-  box-shadow: 0 20px 60px rgba(240, 185, 11, 0.15);
+  box-shadow: 0 20px 80px rgba(240, 185, 11, 0.3);
+  border-color: rgba(240, 185, 11, 0.4);
 }
 
 .platform-card.forex:hover {
-  box-shadow: 0 20px 60px rgba(0, 210, 211, 0.15);
+  box-shadow: 0 20px 80px rgba(0, 210, 211, 0.3);
+  border-color: rgba(0, 210, 211, 0.4);
 }
 
 .platform-card.us-stocks:hover {
-  box-shadow: 0 20px 60px rgba(108, 92, 231, 0.15);
+  box-shadow: 0 20px 80px rgba(108, 92, 231, 0.3);
+  border-color: rgba(108, 92, 231, 0.4);
 }
 
 .platform-card.saudi:hover {
-  box-shadow: 0 20px 60px rgba(0, 184, 148, 0.15);
+  box-shadow: 0 20px 80px rgba(0, 184, 148, 0.3);
+  border-color: rgba(0, 184, 148, 0.4);
 }
 
 .platform-icon {
@@ -2016,19 +2020,23 @@ select.form-control {
 }
 
 [data-theme="light"] .platform-card.crypto:hover {
-  box-shadow: 0 20px 60px rgba(240, 185, 11, 0.12);
+  box-shadow: 0 20px 60px rgba(240, 185, 11, 0.25);
+  border-color: rgba(240, 185, 11, 0.3);
 }
 
 [data-theme="light"] .platform-card.forex:hover {
-  box-shadow: 0 20px 60px rgba(0, 210, 211, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 210, 211, 0.25);
+  border-color: rgba(0, 210, 211, 0.3);
 }
 
 [data-theme="light"] .platform-card.us-stocks:hover {
-  box-shadow: 0 20px 60px rgba(108, 92, 231, 0.12);
+  box-shadow: 0 20px 60px rgba(108, 92, 231, 0.25);
+  border-color: rgba(108, 92, 231, 0.3);
 }
 
 [data-theme="light"] .platform-card.saudi:hover {
-  box-shadow: 0 20px 60px rgba(0, 184, 148, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 184, 148, 0.25);
+  border-color: rgba(0, 184, 148, 0.3);
 }
 
 [data-theme="light"] .footer {
