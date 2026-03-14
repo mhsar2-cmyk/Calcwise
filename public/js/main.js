@@ -3275,7 +3275,7 @@ const translations = {
     'dash-courses-done': { en: 'Courses Completed 🏆', ar: 'الدورات المكتملة 🏆' },
     'dash-vocab-mastery': { en: 'Vocab Mastery 🔤', ar: 'إتقان المفردات 🔤' },
     'dash-speaking-score': { en: 'Speaking Score 🎙️', ar: 'درجة التحدث 🎙️' },
-    'dash-progress-mastery': { en: 'Progress Mastery 📊', ar: 'إتقان التعلم 📊' },
+
 
 
     'dash-active-courses': { en: 'Current Courses', ar: 'الدورات الحالية' },
@@ -3684,20 +3684,8 @@ function updateDashboardStats() {
     // Speaking Score (from AI Lab)
     const avgScore = localStorage.getItem('lingowise_avg_speaking') || '0';
     if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = avgScore + "%";
-
-    // Progress Mastery (Lessons Completed vs Total in Joined Courses)
-    let totalJoinedLessons = 0;
-    let totalCompleted = 0;
-    Object.keys(progress.courses).forEach(cid => {
-        const course = COURSE_POOL.find(c => c.id === cid);
-        if (course) {
-            totalJoinedLessons += course.lessons.length;
-            totalCompleted += progress.courses[cid].completedLessons.length;
-        }
-    });
-    const mastery = totalJoinedLessons > 0 ? Math.round((totalCompleted / totalJoinedLessons) * 100) : 0;
-    if (document.getElementById('progressMastery')) document.getElementById('progressMastery').innerText = mastery + "%";
 }
+
 
 
 
