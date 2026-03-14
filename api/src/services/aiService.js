@@ -9,33 +9,46 @@ async function analyzeSpeech(transcript, topic) {
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const prompt = `
-        You are an expert AI Language Coach. Analyze the following English transcript from a student practicing for the topic: "${topic}".
+        You are a World-Class English Language Coach (CELTA/DELTA certified). 
+        Analyze the following transcript from a student practicing the topic: "${topic}".
         
         Transcript: "${transcript}"
         
-        Provide feedback in the following JSON format:
+        Your goal is to provide deep, actionable, and pedagogical feedback.
+        
+        Rules for Analysis:
+        1. Metrics: Be honest but encouraging. 
+           - Pronunciation: Estimate based on phonetic likelyhood of transcription errors.
+           - Fluency: Look for "filler" words or short, choppy sentences.
+           - Grammar: Check for tense consistency, articles, and prepositions.
+        2. Correction: 
+           - Provide the "Natural Version": How a native speaker would actually say it.
+           - Explanation: Explain WHY. Don't just say "it's wrong". Mention the specific grammar rule (e.g., "Present Perfect vs Past Simple").
+        3. Suggested Vocab: Provide a "Power Word"—something that replaces a simple word they used (e.g., if they said "big", suggest "colossal").
+        
+        Provide feedback in this JSON format:
         {
           "metrics": {
-            "pronunciation": <number 0-100, estimate based on transcript clarity>,
-            "fluency": <number 0-100>,
-            "grammar": <number 0-100>
+            "pronunciation": <0-100>,
+            "fluency": <0-100>,
+            "grammar": <0-100>
           },
           "correction": {
             "original": "${transcript}",
-            "corrected": "<corrected version of the transcript with proper grammar and flow>",
-            "explanation": "<short explanation of the main grammatical mistakes in English>",
-            "explanation_ar": "<the same explanation in Arabic>"
+            "corrected": "<natural, polished version>",
+            "explanation": "<detailed pedagogical explanation in English>",
+            "explanation_ar": "<شرح تعليمي مفصل باللغة العربية يوضح القاعدة النحوية المستخدمة>"
           },
-          "tip": "<a helpful, short tip in English regarding their speaking style>",
-          "tip_ar": "<the same tip translated to Arabic>",
+          "tip": "<specific strategy to improve based on this specific attempt>",
+          "tip_ar": "<نصيحة استراتيجية محددة بناءً على هذه المحاولة>",
           "suggestedVocab": {
-            "word": "<a relevant advanced English word for this topic>",
+            "word": "<high-level synonym>",
             "translation": "<Arabic translation>",
-            "cat": "<category like Academic, Business, etc.>"
+            "cat": "<Academic/Professional>",
+            "example": "<short example sentence using the new word>"
           }
         }
         
-        If the transcript is empty or non-sensical, provide a general encouraging response.
         Only return the JSON object.
     `;
 
