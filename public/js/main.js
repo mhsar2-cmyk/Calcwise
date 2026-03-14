@@ -2993,14 +2993,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Learning Time Increment
-    if (document.getElementById('learningTime')) {
-        setInterval(() => {
-            let totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "750");
-            totalMin += 1;
-            localStorage.setItem('lingowise_total_min', totalMin);
-            document.getElementById('learningTime').innerText = (totalMin / 60).toFixed(1) + " hrs";
-        }, 60000);
-    }
+    setInterval(() => {
+        let totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0"); // Start from 0 for new users
+        totalMin += 1;
+        localStorage.setItem('lingowise_total_min', totalMin);
+        const timeEl = document.getElementById('learningTime');
+        const hrsUnit = translations['unit-hrs'] ? translations['unit-hrs'][lang] : 'hrs';
+        if (timeEl) timeEl.innerText = (totalMin / 60).toFixed(1) + " " + hrsUnit;
+    }, 60000);
+
 });
 
 // ===== CORE UTILITIES =====
@@ -3583,6 +3584,44 @@ const translations = {
 };
 
 // ===== DASHBOARD LOGIC =====
+function getProgress() {
+    return JSON.parse(localStorage.getItem('lingowise_progress') || '{"courses":{}}');
+}
+
+function saveProgress(data) {
+    localStorage.setItem('lingowise_progress', JSON.stringify(data));
+    updateDashboardStats();
+}
+
+function markLessonCompleted(courseId, lessonIndex) {
+    const progress = getProgress();
+    if (!progress.courses[courseId]) {
+        progress.courses[courseId] = { completedLessons: [], lastAccessed: new Date().toISOString() };
+    }
+    if (!progress.courses[courseId].completedLessons.includes(lessonIndex)) {
+        progress.courses[courseId].completedLessons.push(lessonIndex);
+        progress.courses[courseId].lastAccessed = new Date().toISOString();
+        saveProgress(progress);
+        
+        // Add a bonus to learning time (lesson duration)
+        const course = COURSE_POOL.find(c => c.id === courseId);
+        const lesson = course?.lessons[lessonIndex];
+        if (lesson && lesson.duration) {
+            const parts = lesson.duration.split(':');
+            if (parts.length === 2) {
+                const mins = parseInt(parts[0]) || 0;
+                let totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
+                totalMin += mins;
+                localStorage.setItem('lingowise_total_min', totalMin);
+            }
+        }
+
+        // Record progress for Daily Goals (lessons count)
+        recordGoalProgress('speaking', 1); // Using speaking slot for general lesson progress
+    }
+}
+
+
 function initDashboard() {
     const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
     const hiEl = document.getElementById('dashboardUser');
@@ -3599,25 +3638,68 @@ function initDashboard() {
 }
 
 function updateDashboardStats() {
+    const progress = getProgress();
     const vocabCount = getVocab().length;
     if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = vocabCount;
-    const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "750");
+    
+    const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
     const hrsUnit = translations['unit-hrs'][lang];
     if (document.getElementById('learningTime')) document.getElementById('learningTime').innerText = `${(totalMin / 60).toFixed(1)} ${hrsUnit}`;
     
-    const streak = localStorage.getItem('lingowise_streak') || '5';
+    const streak = localStorage.getItem('lingowise_streak') || '0';
     const streakEl = document.querySelector('[data-i18n="dash-streak-days"]');
     if (streakEl) streakEl.innerText = lang === 'ar' ? `${streak} أيام` : `${streak} Days`;
+
+    // Count Finished Courses
+    let finishedCourses = 0;
+    Object.keys(progress.courses).forEach(cid => {
+        const course = COURSE_POOL.find(c => c.id === cid);
+        if (course && course.lessons && progress.courses[cid].completedLessons.length >= course.lessons.length) {
+            finishedCourses++;
+        }
+    });
+
+    const finishedEl = document.getElementById('coursesDone');
+    if (finishedEl) finishedEl.innerText = finishedCourses;
+
+    // Mastery Score (Lessons Completed vs Total in Joined Courses)
+    let totalJoinedLessons = 0;
+    let totalCompleted = 0;
+    Object.keys(progress.courses).forEach(cid => {
+        const course = COURSE_POOL.find(c => c.id === cid);
+        if (course) {
+            totalJoinedLessons += course.lessons.length;
+            totalCompleted += progress.courses[cid].completedLessons.length;
+        }
+    });
+    const mastery = totalJoinedLessons > 0 ? Math.round((totalCompleted / totalJoinedLessons) * 100) : 0;
+    if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = mastery + "%";
 }
+
+
 
 function updateActiveCourses() {
     const container = document.getElementById('activeCoursesContainer');
     if (!container) return;
-    const activeIds = ['beg-1', 'int-1']; // Dynamic IDs in real app
-    const active = activeIds.map(id => {
+    
+    const progress = getProgress();
+    const courseIds = Object.keys(progress.courses);
+    
+    if (courseIds.length === 0) {
+        container.innerHTML = `<p style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.9rem;">${lang === 'ar' ? 'لم تلتحق بأي دورات بعد.' : 'No courses joined yet.'}</p>`;
+        return;
+    }
+
+    // Map IDs to course objects with current progress %
+    const active = courseIds.map(id => {
         const c = COURSE_POOL.find(item => item.id === id);
-        return { ...c, progress: id === 'beg-1' ? 85 : 45 };
-    });
+        if (!c) return null;
+        const completed = progress.courses[id].completedLessons.length;
+        const total = c.lessons.length || 1;
+        const percent = Math.round((completed / total) * 100);
+        return { ...c, progress: percent };
+    }).filter(c => c !== null).sort((a, b) => new Date(progress.courses[b.id].lastAccessed) - new Date(progress.courses[a.id].lastAccessed));
+
     container.innerHTML = active.map(c => `
         <div class="course-progress-item" onclick="playLesson('${c.id}')" style="cursor:pointer;">
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
@@ -3628,9 +3710,9 @@ function updateActiveCourses() {
                 <div style="width:${c.progress}%; height:100%; background:${c.color}"></div>
             </div>
         </div>
-        </div>
     `).join('');
 }
+
 
 // ===== DAILY GOALS LOGIC =====
 function getDailyGoalsDate() {
@@ -3641,13 +3723,13 @@ function getDailyGoalsDate() {
 function initDailyGoals() {
     const today = getDailyGoalsDate();
     const savedDate = localStorage.getItem('lingowise_goals_date');
-    let goals = JSON.parse(localStorage.getItem('lingowise_goals') || '{"vocab":{"current":6,"target":10},"speaking":{"current":10,"target":15}}');
+    let goals = JSON.parse(localStorage.getItem('lingowise_goals') || '{"vocab":{"current":0,"target":10},"speaking":{"current":0,"target":15}}');
     
     if (savedDate !== today || !goals.vocab) {
         // Reset goals for the new day
         goals = {
             vocab: { current: 0, target: 10 },
-            speaking: { current: 0, target: 15 }
+            speaking: { current: 0, target: 5 } // Goal: 5 lessons per day
         };
         localStorage.setItem('lingowise_goals', JSON.stringify(goals));
         localStorage.setItem('lingowise_goals_date', today);
@@ -3655,6 +3737,7 @@ function initDailyGoals() {
     
     renderDailyGoals(goals);
 }
+
 
 function recordGoalProgress(type, amount) {
     const today = getDailyGoalsDate();
@@ -3771,7 +3854,18 @@ function changeLesson(courseId, lessonIndex, el) {
     if (!c) return;
     const lesson = c.lessons[lessonIndex];
     
+    // Auto-Enroll / Mark session start
+    const progress = getProgress();
+    if (!progress.courses[courseId]) {
+        progress.courses[courseId] = { completedLessons: [], lastAccessed: new Date().toISOString() };
+        saveProgress(progress);
+    } else {
+        progress.courses[courseId].lastAccessed = new Date().toISOString();
+        saveProgress(progress);
+    }
+
     document.getElementById('lessonIframe').src = lesson.videoUrl || c.videoUrl;
+
     
     if (el) {
         document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
@@ -3908,11 +4002,16 @@ function checkAllExercises(courseId, lessonIndex) {
     if (percentage === 100) {
         summary.style.background = 'rgba(46, 213, 115, 0.1)';
         summary.style.borderColor = 'var(--success)';
+        
+        // Mark lesson as complete if they get 100%
+        markLessonCompleted(courseId, lessonIndex);
+        showToast('success', lang === 'ar' ? 'تم إكمال الدرس بنجاح!' : 'Lesson completed successfully!');
     } else {
         summary.style.background = 'rgba(255, 159, 67, 0.1)';
         summary.style.borderColor = 'var(--warning)';
     }
 }
+
 
 
 function addAllVocabToBank(courseId, lessonIndex) {
@@ -4076,7 +4175,7 @@ function initMyCoursesPage() {
 }
 
 function updateMyCoursesStats() {
-    const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "750");
+    const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
     const hrsUnit = translations['unit-hrs'][lang];
     const timeEl = document.querySelector('#learningTimeVal');
     if (timeEl) timeEl.innerText = `${(totalMin / 60).toFixed(1)}${hrsUnit}`;

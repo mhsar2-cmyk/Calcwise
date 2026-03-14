@@ -131,9 +131,10 @@
             <div class="sidebar-section">
                 <div class="sidebar-section-title" data-i18n="dash-streak-title">Current Streak 🔥</div>
                 <div class="streak-card" style="padding:var(--space-md); text-align:center;">
-                    <div style="font-size:2rem; font-weight:800; color:var(--accent-gold);" data-i18n="dash-streak-days">5 Days</div>
-                    <div style="font-size:0.75rem; color:var(--text-muted);" data-i18n="dash-streak-sub">Keep it up! Reach 7 for a bonus.</div>
+                    <div style="font-size:2rem; font-weight:800; color:var(--accent-gold);" data-i18n="dash-streak-days">0 Days</div>
+                    <div style="font-size:0.75rem; color:var(--text-muted);" data-i18n="dash-streak-sub">Start your journey today!</div>
                 </div>
+
             </div>
         </aside>
 
@@ -153,24 +154,28 @@
             <div class="grid grid-4" style="margin-bottom:var(--space-xl);">
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-learning-time">Learning Time ⏱️</div>
-                    <div class="stat-value" id="learningTime">12.5 hrs</div>
-                    <div class="stat-change positive" data-i18n="dash-stat-time-sub">+2.5 hrs this week</div>
+                    <div class="stat-value" id="learningTime">0 hrs</div>
+                    <div class="stat-change positive" data-i18n="dash-stat-time-sub">+0 hrs this week</div>
                 </div>
+
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-courses-done">Courses Completed 🏆</div>
-                    <div class="stat-value" id="coursesDone">3</div>
-                    <div class="stat-change" style="color:var(--text-muted);" data-i18n="dash-stat-courses-sub">Next: Business English</div>
+                    <div class="stat-value" id="coursesDone">0</div>
+                    <div class="stat-change" style="color:var(--text-muted);" data-i18n="dash-stat-courses-sub">Keep learning!</div>
                 </div>
+
                 <div class="card stat-card">
                     <div class="stat-label" data-i18n="dash-vocab-mastery">Vocab Mastery 🔤</div>
-                    <div class="stat-value" id="vocabMastery">450</div>
-                    <div class="stat-change positive" data-i18n="dash-stat-vocab-sub">↑ 15 new today</div>
+                    <div class="stat-value" id="vocabMastery">0</div>
+                    <div class="stat-change positive" data-i18n="dash-stat-vocab-sub">Start building your bank</div>
                 </div>
+
                 <div class="card stat-card">
-                    <div class="stat-label" data-i18n="dash-speaking-score">Speaking Score 🎙️</div>
-                    <div class="stat-value" id="speakingScore">82%</div>
-                    <div class="stat-change positive" data-i18n="dash-stat-speak-sub">↑ Improved 5%</div>
+                    <div class="stat-label" data-i18n="dash-speaking-score">Progress Mastery 📊</div>
+                    <div class="stat-value" id="speakingScore">0%</div>
+                    <div class="stat-change positive" data-i18n="dash-stat-speak-sub">Overall completion</div>
                 </div>
+
             </div>
 
             <div class="grid grid-2" style="margin-bottom:var(--space-xl);">
@@ -181,25 +186,9 @@
                         <a href="my-courses.html" class="text-link" style="font-size:0.8rem;" data-i18n="dash-view-all">View All</a>
                     </div>
                     <div id="activeCoursesContainer" style="padding:var(--space-lg); display:flex; flex-direction:column; gap:var(--space-md);">
-                        <div class="course-progress-item">
-                            <div style="display:flex; justify-content:space-between; margin-bottom:var(--space-xs);">
-                                <span style="font-weight:600; font-size:0.9rem;">Intermediate Grammar Mastery</span>
-                                <span style="color:var(--primary-light); font-weight:700; font-size:0.85rem;">65%</span>
-                            </div>
-                            <div style="height:8px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
-                                <div style="width:65%; height:100%; background:var(--primary); transition: width 0.3s ease;"></div>
-                            </div>
-                        </div>
-                        <div class="course-progress-item">
-                            <div style="display:flex; justify-content:space-between; margin-bottom:var(--space-xs);">
-                                <span style="font-weight:600; font-size:0.9rem;">Business Writing Essentials</span>
-                                <span style="color:var(--primary-light); font-weight:700; font-size:0.85rem;">42%</span>
-                            </div>
-                            <div style="height:8px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
-                                <div style="width:42%; height:100%; background:var(--primary); transition: width 0.3s ease;"></div>
-                            </div>
-                        </div>
+                        <p style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.9rem;">No courses joined yet.</p>
                     </div>
+
                 </div>
 
                 <!-- DAILY GOALS -->
