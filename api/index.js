@@ -1,5 +1,7 @@
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
+
 const path = require('path');
 const { login, signup } = require('./src/services/auth');
 const authenticate = require('./src/middleware/auth');

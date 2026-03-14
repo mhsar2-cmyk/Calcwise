@@ -1,97 +1,105 @@
 /**
- * Course Management Service
- * Handles relational storage of courses and lessons.
+ * Course Management Service (Direct SQL Version)
+ * Handles storage of courses and lessons using PostgreSQL.
  */
-const supabase = require('../supabase');
+const { pool } = require('../supabase');
 
 /**
  * Fetch all courses with nested lessons
  */
 const getCourses = async () => {
-    if (!supabase) return [];
+    const client = await pool.connect();
+    try {
+        // Fetch all courses
+        const courseRes = await client.query('SELECT * FROM public.courses ORDER BY created_at ASC');
+        const courses = courseRes.rows;
 
-    // Fetch all courses
-    const { data: courses, error: courseError } = await supabase
-        .from('courses')
-        .select('*')
-        .order('created_at', { ascending: true });
+        // Fetch all lessons
+        const lessonRes = await client.query('SELECT * FROM public.lessons ORDER BY order_index ASC');
+        const lessons = lessonRes.rows;
 
-    if (courseError) throw courseError;
-
-    // Fetch all lessons
-    const { data: lessons, error: lessonError } = await supabase
-        .from('lessons')
-        .select('*')
-        .order('order_index', { ascending: true });
-
-    if (lessonError) throw lessonError;
-
-    // Map lessons back to courses
-    return courses.map(course => {
-        return {
-            ...course,
-            lessons: lessons.filter(l => l.course_id === course.id)
-        };
-    });
+        // Map lessons back to courses
+        return courses.map(course => {
+            return {
+                ...course,
+                lessons: lessons.filter(l => l.course_id === course.id)
+            };
+        });
+    } catch (err) {
+        console.error('Error fetching courses:', err.message);
+        throw err;
+    } finally {
+        client.release();
+    }
 };
 
 /**
- * Synchronize the entire course pool from the admin dashboard
- * This is an efficient 'wipe and reload' or 'upsert' logic.
+ * Synchronize the entire course pool
  */
 const saveCoursePool = async (coursePool) => {
-    if (!supabase) throw new Error('Database connection missing');
+    const client = await pool.connect();
+    try {
+        await client.query('BEGIN');
 
-    // 1. Prepare Courses for upsert
-    const coursesToUpsert = coursePool.map((c, idx) => ({
-        id: c.uuid || c.id, // Support existing UUIDs or fall back to client IDs
-        name: c.name,
-        level: c.level,
-        category: c.category || { en: 'General', ar: 'عام' },
-        icon: c.icon,
-        color: c.color,
-        video_url: c.videoUrl || c.video_url,
-        updated_at: new Date().toISOString()
-    }));
+        for (const c of coursePool) {
+            const courseId = c.uuid || c.id;
+            
+            // Upsert Course
+            const courseSql = `
+                INSERT INTO public.courses (id, name, level, category, icon, color, video_url, updated_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
+                ON CONFLICT (id) DO UPDATE SET 
+                    name = EXCLUDED.name,
+                    level = EXCLUDED.level,
+                    category = EXCLUDED.category,
+                    icon = EXCLUDED.icon,
+                    color = EXCLUDED.color,
+                    video_url = EXCLUDED.video_url,
+                    updated_at = NOW()
+            `;
+            await client.query(courseSql, [
+                courseId,
+                JSON.stringify(c.name),
+                JSON.stringify(c.level),
+                JSON.stringify(c.category || { en: 'General', ar: 'عام' }),
+                c.icon,
+                c.color,
+                c.videoUrl || c.video_url
+            ]);
 
-    // Perform upsert (using ID as matching key)
-    const { error: courseError } = await supabase
-        .from('courses')
-        .upsert(coursesToUpsert);
+            // Clear old lessons for this course
+            await client.query('DELETE FROM public.lessons WHERE course_id = $1', [courseId]);
 
-    if (courseError) throw courseError;
-
-    // 2. Prepare Lessons for upsert
-    let allLessonsToUpsert = [];
-    coursePool.forEach(course => {
-        if (course.lessons) {
-            course.lessons.forEach((lesson, idx) => {
-                allLessonsToUpsert.push({
-                    course_id: course.uuid || course.id,
-                    title: lesson.title,
-                    duration: lesson.duration,
-                    order_index: idx + 1,
-                    exercises: lesson.exercises || [],
-                    vocab: lesson.vocab || []
-                });
-            });
+            // Insert new lessons
+            if (c.lessons && c.lessons.length > 0) {
+                for (let i = 0; i < c.lessons.length; i++) {
+                    const l = c.lessons[i];
+                    const lessonSql = `
+                        INSERT INTO public.lessons (course_id, title, duration, order_index, video_url, exercises, vocab)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7)
+                    `;
+                    await client.query(lessonSql, [
+                        courseId,
+                        JSON.stringify(l.title),
+                        l.duration,
+                        i + 1,
+                        l.videoUrl || l.video_url,
+                        JSON.stringify(l.exercises || []),
+                        JSON.stringify(l.vocab || [])
+                    ]);
+                }
+            }
         }
-    });
 
-    // Clear old lessons to avoid duplicates and handle deletions 
-    // (Simple approach for now: clear lessons of the touched courses)
-    const courseIds = coursesToUpsert.map(c => c.id);
-    await supabase.from('lessons').delete().in('course_id', courseIds);
-
-    // Batch insert new ones
-    if (allLessonsToUpsert.length > 0) {
-        const { error: lessonError } = await supabase
-            .from('lessons')
-            .insert(allLessonsToUpsert);
-        if (lessonError) throw lessonError;
+        await client.query('COMMIT');
+        return { success: true };
+    } catch (err) {
+        await client.query('ROLLBACK');
+        console.error('Error saving courses:', err.message);
+        throw err;
+    } finally {
+        client.release();
     }
-
-    return { success: true };
 };
 
 module.exports = { getCourses, saveCoursePool };
