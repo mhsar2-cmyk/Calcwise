@@ -3355,8 +3355,9 @@ const translations = {
     'footer-contact': { en: 'Contact Us', ar: 'تواصل معنا' },
     'footer-blog': { en: 'Blog', ar: 'المدونة' },
     'footer-about': { en: 'About Us', ar: 'من نحن' },
-    'stats-title-1': { en: 'Join a', ar: 'انضم إلى' },
-    'stats-title-2': { en: 'Global Community', ar: 'مجتمع عالمي' },
+    'stats-title-1': { en: 'Achieve', ar: 'حقق' },
+    'stats-title-2': { en: 'Global Excellence', ar: 'التميز العالمي' },
+
     'stats-desc': { en: 'Empowering learners from every corner of the world.', ar: 'تمكين المتعلمين من كل ركن في العالم.' },
     'features-desc': { en: 'Innovative tools designed to make language learning effective and fun', ar: 'أدوات مبتكرة مصممة لجعل تعلم اللغة فعالاً وممتعاً' },
     'tools-section-title-1': { en: 'Powerful', ar: 'أدوات' },
@@ -3437,23 +3438,11 @@ const translations = {
     'about-mission-title': { en: 'Our Mission', ar: 'مهمتنا' },
     'value-transparency-title': { en: 'Accessibility', ar: 'سهولة الوصول' },
     'value-speed-title': { en: 'Innovation', ar: 'الابتكار' },
-    'value-reliability-title': { en: 'Community', ar: 'المجتمع' },
+    'value-reliability-title': { en: 'Accessibility', ar: 'سهولة الوصول' },
     'footer-learning': { en: 'Learning Hub', ar: 'مركز التعلم' },
 
-    // Community Page
-    'community-title': { en: 'Join the Community', ar: 'انضم للمجتمع' },
-    'community-subtitle': { en: 'Connect with thousands of learners.', ar: 'تواصل مع آلاف المتعلمين.' },
-    'community-groups': { en: 'Study Groups', ar: 'مجموعات الدراسة' },
-    'community-events': { en: 'Live Events', ar: 'فعاليات مباشرة' },
-    'comm-hero-title': { en: 'Global', ar: 'مجتمع' },
-    'comm-hero-title-2': { en: 'Community', ar: 'عالمي' },
-    'comm-hero-sub': { en: 'Connect with fellow learners and practice together.', ar: 'تواصل مع زملائك المتعلمين وتدربوا معاً.' },
-    'comm-groups-title': { en: 'Active Study Groups', ar: 'مجموعات الدراسة النشطة' },
-    'comm-members': { en: 'members', ar: 'عضو' },
-    'comm-online': { en: 'Online Now', ar: 'متصل الآن' },
-    'comm-join-btn': { en: 'Join Group', ar: 'انضم للمجموعة' },
-    'comm-events-title': { en: 'Upcoming Live Events', ar: 'الفعاليات المباشرة القادمة' },
-    'comm-event-reminder': { en: 'Set Reminder', ar: 'تعيين تذكير' },
+
+
 
     // Contact & Misc
     'contact-title': { en: 'Get in Touch', ar: 'تواصل معنا' },
@@ -3461,8 +3450,8 @@ const translations = {
     'contact-send': { en: 'Send Message', ar: 'إرسال الرسالة' },
     'contact-name': { en: 'Your Name', ar: 'اسمك' },
     'contact-msg': { en: 'Your Message', ar: 'رسالتك' },
-    'sidebar-community': { en: 'Community', ar: 'المجتمع' },
     'dash-logout': { en: 'Log Out', ar: 'تسجيل الخروج' },
+
     
     // Contact Details
     'contact-office': { en: 'Our Office', ar: 'مكتبنا' },
@@ -3509,9 +3498,9 @@ const translations = {
     'nav-home': { en: 'Home', ar: 'الرئيسية' },
     'nav-courses': { en: 'Courses', ar: 'الدورات' },
     'nav-blog': { en: 'Blog', ar: 'المدونة' },
-    'nav-community': { en: 'Community', ar: 'المجتمع' },
     
     // Grammar
+
     'grammar-hero-title': { en: 'Grammar', ar: 'دليل' },
     'grammar-hero-title-2': { en: 'Guide', ar: 'القواعد' },
     'grammar-hero-sub': { en: 'Essential grammar rules explained simply.', ar: 'قواعد اللغة الأساسية مشروحة ببساطة.' },
