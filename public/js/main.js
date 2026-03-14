@@ -3160,7 +3160,6 @@ function initParticles() {
         const p = document.createElement('div');
         p.className = 'particle';
         p.style.left = Math.random() * 100 + '%';
-        p.style.animationDelay = Math.random() * 8 + 's';
         p.style.animationDuration = (6 + Math.random() * 6) + 's';
         container.appendChild(p);
     }
@@ -3212,6 +3211,7 @@ function checkAuth() {
 
     
     if (isPrivatePage && !isLoggedIn) {
+
         window.location.replace('login.html');
         return;
     }
@@ -3298,6 +3298,7 @@ const translations = {
     
     'dash-hi': { en: 'Hi', ar: 'مرحباً' },
     'dash-welcome': { en: 'Good morning,', ar: 'صباح الخير،' },
+
     'dash-learning-time': { en: 'Learning Time ⏱️', ar: 'وقت التعلم ⏱️' },
     'dash-courses-done': { en: 'Courses Completed 🏆', ar: 'الدورات المكتملة 🏆' },
     'dash-vocab-mastery': { en: 'Vocab Mastery 🔤', ar: 'إتقان المفردات 🔤' },
@@ -3363,6 +3364,17 @@ const translations = {
     'tools-section-title-1': { en: 'Powerful', ar: 'أدوات' },
     'tools-section-title-2': { en: 'Learning Tools', ar: 'تعلم قوية' },
     'tools-section-desc': { en: 'Free tools to help you master vocabulary, grammar, and speaking skills', ar: 'أدوات مجانية لمساعدتك على إتقان المفردات والقواعد ومهارات التحدث' },
+    'feature-1-title': { en: 'AI Speaking Lab ⚡', ar: 'مختبر التحدث الذكي ⚡' },
+    'feature-1-desc': { en: 'Practice real conversations with our AI tutor and get instant feedback on pronunciation.', ar: 'مارس محادثات حقيقية مع مدرسنا الذكي واحصل على تعليقات فورية على نطقك.' },
+    'feature-2-title': { en: 'Progress Trackers 🎓', ar: 'تتبع التقدم 🎓' },
+    'feature-2-desc': { en: 'Visualize your growth with detailed analytics for vocabulary, grammar, and fluency.', ar: 'تصور نموك مع تحليلات مفصلة للمفردات والقواعد والطلاقة.' },
+    'feature-3-title': { en: 'Active Recall ✨', ar: 'الاسترجاع النشط ✨' },
+    'feature-3-desc': { en: 'Spaced repetition system (SRS) for long-term vocabulary retention and mastery.', ar: 'نظام التكرار المتباعد (SRS) لترسيخ المفردات وإتقانها على المدى الطويل.' },
+    'feature-5-title': { en: 'Certified Courses 🔐', ar: 'دورات معتمدة 🔐' },
+    'feature-5-desc': { en: 'Pathways aligned with CEFR standards (A1 to C2) to help you achieve your goals.', ar: 'مسارات متوافقة مع معايير CEFR (A1 إلى C2) لمساعدتك في تحقيق أهدافك.' },
+    'feature-6-title': { en: 'Multi-Device Learning 🌍', ar: 'تعلم عبر أجهزة متعددة 🌍' },
+    'feature-6-desc': { en: 'Learn on the go. Sync your progress across desktop, tablet, and mobile devices.', ar: 'تعلم في أي مكان. زامن تقدمك عبر الكمبيوتر والجهاز اللوحي والهاتف.' },
+
     
     // Blog Page
     'blog-section-title-1': { en: 'Latest from the', ar: 'أحدث المقالات في' },
@@ -3373,6 +3385,11 @@ const translations = {
     'filter-all': { en: 'All', ar: 'الكل' },
     'filter-grammar': { en: 'Grammar', ar: 'القواعد' },
     'filter-education': { en: 'Study Tips', ar: 'نصائح دراسية' },
+    'filter-tools': { en: 'Learning Tools', ar: 'أدوات التعلم' },
+    'blog-read-5m': { en: '5 min read', ar: 'قراءة ٥ دقائق' },
+    'blog-read-6m': { en: '6 min read', ar: 'قراءة ٦ دقائق' },
+    'blog-read-7m': { en: '7 min read', ar: 'قراءة ٧ دقائق' },
+
     'blog-newsletter-title-1': { en: 'Stay', ar: 'ابقَ' },
     'blog-newsletter-title-2': { en: 'Informed', ar: 'على اطلاع' },
     'blog-newsletter-desc': { en: 'Get weekly language learning tips delivered to your inbox.', ar: 'احصل على نصائح تعلم اللغة أسبوعياً في بريدك الوارد.' },
