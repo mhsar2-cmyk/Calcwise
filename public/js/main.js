@@ -3275,6 +3275,9 @@ const translations = {
     'dash-courses-done': { en: 'Courses Completed 🏆', ar: 'الدورات المكتملة 🏆' },
     'dash-vocab-mastery': { en: 'Vocab Mastery 🔤', ar: 'إتقان المفردات 🔤' },
     'dash-speaking-score': { en: 'Speaking Score 🎙️', ar: 'درجة التحدث 🎙️' },
+    'dash-progress-mastery': { en: 'Progress Mastery 📊', ar: 'إتقان التعلم 📊' },
+
+
     'dash-active-courses': { en: 'Current Courses', ar: 'الدورات الحالية' },
     'dash-daily-goals': { en: 'Daily Learning Goals', ar: 'أهداف التعلم اليومية' },
     'dash-recent-vocab': { en: 'Recently Learned Words', ar: 'كلمات تعلمتها مؤخراً' },
@@ -3678,7 +3681,11 @@ function updateDashboardStats() {
     const finishedEl = document.getElementById('coursesDone');
     if (finishedEl) finishedEl.innerText = finishedCourses;
 
-    // Mastery Score (Lessons Completed vs Total in Joined Courses)
+    // Speaking Score (from AI Lab)
+    const avgScore = localStorage.getItem('lingowise_avg_speaking') || '0';
+    if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = avgScore + "%";
+
+    // Progress Mastery (Lessons Completed vs Total in Joined Courses)
     let totalJoinedLessons = 0;
     let totalCompleted = 0;
     Object.keys(progress.courses).forEach(cid => {
@@ -3689,8 +3696,9 @@ function updateDashboardStats() {
         }
     });
     const mastery = totalJoinedLessons > 0 ? Math.round((totalCompleted / totalJoinedLessons) * 100) : 0;
-    if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = mastery + "%";
+    if (document.getElementById('progressMastery')) document.getElementById('progressMastery').innerText = mastery + "%";
 }
+
 
 
 
@@ -4191,6 +4199,7 @@ function initMyCoursesPage() {
 }
 
 function updateMyCoursesStats() {
+    const progress = getProgress();
     const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
     const hrsUnit = translations['unit-hrs'][lang];
     const timeEl = document.querySelector('#learningTimeVal');
@@ -4200,34 +4209,67 @@ function updateMyCoursesStats() {
     const vocabEl = document.querySelector('#myVocabCount');
     if (vocabEl) vocabEl.innerText = vocabCount;
 
-    const score = localStorage.getItem('lingowise_avg_score') || '82%';
-    const scoreEl = document.querySelector('#speakingScoreVal');
-    if (scoreEl) scoreEl.innerText = score;
-
-    const doneCount = localStorage.getItem('lingowise_courses_done') || '3';
+    // Count Finished Courses
+    let finishedCourses = 0;
+    Object.keys(progress.courses).forEach(cid => {
+        const course = COURSE_POOL.find(c => c.id === cid);
+        if (course && course.lessons && progress.courses[cid].completedLessons.length >= course.lessons.length) {
+            finishedCourses++;
+        }
+    });
     const doneEl = document.querySelector('#coursesDoneVal');
-    if (doneEl) doneEl.innerText = doneCount;
+    if (doneEl) doneEl.innerText = finishedCourses;
+
+    // Speaking Score
+    const avgScore = localStorage.getItem('lingowise_avg_speaking') || '0';
+    const scoreEl = document.querySelector('#speakingScoreVal');
+    if (scoreEl) scoreEl.innerText = avgScore + "%";
 }
+
+
 
 function renderMyCoursesGrid() {
     const grid = document.getElementById('myCoursesGrid');
     if (!grid) return;
-    const myIds = ['beg-1', 'int-1'];
-    const myItems = myIds.map(id => {
+    
+    const progress = getProgress();
+    const courseIds = Object.keys(progress.courses);
+    
+    if (courseIds.length === 0) {
+        grid.innerHTML = `<div class="card p-4 text-center" style="grid-column:1/-1; background:var(--bg-secondary); border:1px dashed var(--border-strong);">
+            <p style="color:var(--text-muted);">${lang === 'ar' ? 'لم تلتحق بأي دورات بعد. ابدأ التعلم الآن!' : 'No courses joined yet. Start learning now!'}</p>
+            <a href="courses.html" class="btn btn-primary btn-sm mt-3" style="display:inline-flex;">${translations['nav-courses'][lang]}</a>
+        </div>`;
+        return;
+    }
+
+    const myItems = courseIds.map(id => {
         const c = COURSE_POOL.find(item => item.id === id);
-        return { ...c, progress: id === 'beg-1' ? 85 : 100, status: id === 'beg-1' ? 'in-progress' : 'completed' };
-    });
+        if (!c) return null;
+        const completed = progress.courses[id].completedLessons.length;
+        const total = c.lessons?.length || 1;
+        const percent = Math.round((completed / total) * 100);
+        const isDone = completed >= total;
+        return { ...c, progress: percent, status: isDone ? 'completed' : 'in-progress' };
+    }).filter(c => c !== null);
+
     grid.innerHTML = myItems.map(c => `
         <div class="card p-3 reveal active">
             <div style="font-size:2.5rem; margin-bottom:15px;">${c.icon}</div>
             <h3>${c.name[lang]}</h3>
-            <div class="progress-bar mt-2 mb-3" style="height:8px; background:var(--bg-secondary); border-radius:4px;">
-                <div style="width:${c.progress}%; height:100%; background:${c.color}; border-radius:4px;"></div>
+            <div class="course-meta mb-1" style="font-size:0.8rem; opacity:0.7;">
+                ${c.progress}% ${lang === 'ar' ? 'مكتمل' : 'Completed'}
             </div>
-            <button class="btn btn-primary btn-sm w-full" onclick="playLesson('${c.id}')">${c.status === 'completed' ? translations['course-watch-again'][lang] : translations['course-resume'][lang]}</button>
+            <div class="progress-bar mt-2 mb-3" style="height:8px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
+                <div style="width:${c.progress}%; height:100%; background:${c.color}; border-radius:4px; transition: width 0.5s ease;"></div>
+            </div>
+            <button class="btn btn-primary btn-sm w-full" onclick="playLesson('${c.id}')">
+                ${c.status === 'completed' ? (translations['course-watch-again']?.[lang] || 'Watch Again') : (translations['course-resume']?.[lang] || 'Resume')}
+            </button>
         </div>
     `).join('');
 }
+
 
 // ===== AI ASSISTANT =====
 function initAIAssistant() {
