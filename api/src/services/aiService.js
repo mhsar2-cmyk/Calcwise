@@ -6,7 +6,7 @@ async function analyzeSpeech(transcript, topic) {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const prompt = `
         You are an expert AI Language Coach. Analyze the following English transcript from a student practicing for the topic: "${topic}".
@@ -41,7 +41,8 @@ async function analyzeSpeech(transcript, topic) {
         return JSON.parse(cleanedJson);
     } catch (error) {
         console.error('Gemini Analysis Error:', error);
-        throw new Error('Failed to analyze speech with Gemini');
+        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
+        throw new Error('Failed to analyze speech');
     }
 }
 
@@ -51,7 +52,7 @@ async function chatWithAI(message, history = []) {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const chat = model.startChat({
         history: history.map(h => ({
@@ -72,6 +73,7 @@ async function chatWithAI(message, history = []) {
         return response.text();
     } catch (error) {
         console.error('Gemini Chat Error:', error);
+        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to chat with Gemini');
     }
 }
@@ -82,7 +84,7 @@ async function generateQuiz(topic, content) {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const prompt = `
         As an expert language educator, generate a 3-question multiple choice quiz in English based on the following content related to the topic "${topic}".
@@ -114,6 +116,7 @@ async function generateQuiz(topic, content) {
         return JSON.parse(cleanedJson).quiz;
     } catch (error) {
         console.error('Gemini Quiz Error:', error);
+        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to generate quiz');
     }
 }
@@ -124,7 +127,7 @@ async function extractVocab(content) {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const prompt = `
         Analyze the following text and extract 5 advanced or useful English words for a language learner.
@@ -148,6 +151,7 @@ async function extractVocab(content) {
         return JSON.parse(cleanedJson).vocab;
     } catch (error) {
         console.error('Gemini Vocab Extraction Error:', error);
+        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to extract vocabulary');
     }
 }

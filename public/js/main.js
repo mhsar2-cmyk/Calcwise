@@ -4678,7 +4678,7 @@ function openBlogModal(id) {
         contentArea.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; gap:15px;">
                 <h2 style="margin:0;">${post.title[lang]}</h2>
-                <button class="btn btn-gold btn-sm" onclick="extractAIVocab(\`${post.content.en.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)" style="flex-shrink:0;">
+                <button class="btn btn-gold btn-sm" onclick="extractAIVocab('${id}')" style="flex-shrink:0;">
                     ✨ AI Extract Vocab
                 </button>
             </div>
@@ -4693,7 +4693,11 @@ function openBlogModal(id) {
     }
 }
 
-async function extractAIVocab(content) {
+async function extractAIVocab(id) {
+    const post = BLOG_CONTENT[id];
+    if (!post || !post.content.en) return;
+    const content = post.content.en;
+
     showToast('info', lang === 'ar' ? 'جاري استخراج المفردات الذكية...' : 'Extracting smart vocabulary...');
     try {
         const response = await fetch('/api/ai/extract-vocab', {
@@ -4726,10 +4730,15 @@ async function extractAIVocab(content) {
             } else {
                 showToast('info', lang === 'ar' ? 'الكلمات موجودة بالفعل.' : 'Words already in bank.');
             }
+        } else {
+            throw new Error(data.message);
         }
     } catch (error) {
         console.error('Extract Error:', error);
-        showToast('error', 'Failed to extract vocabulary. Check API key.');
+        const msg = error.message.includes('quota') || error.message.includes('Too Many Requests')
+            ? (lang === 'ar' ? 'عذراً، انتهت حصة الـ API المجانية لهذا اليوم.' : 'Sorry, the free API quota is exhausted for today.')
+            : (lang === 'ar' ? 'فشل استخراج المفردات. تأكد من مفتاح API.' : 'Failed to extract vocabulary. Check API key.');
+        showToast('error', msg);
     }
 }
 
