@@ -3467,6 +3467,15 @@ const translations = {
     'settings-reset-btn': { en: 'Reset Tracker', ar: 'إعادة ضبط المتتبع' },
     'settings-update-success': { en: 'Settings updated successfully!', ar: 'تم تحديث الإعدادات بنجاح!' },
 
+    'vocab-rank-1': { en: 'Explorer 🌱', ar: 'مستكشف 🌱' },
+    'vocab-rank-2': { en: 'Novice 🔎', ar: 'مبتدئ 🔎' },
+    'vocab-rank-3': { en: 'Learner 📚', ar: 'متعلم 📚' },
+    'vocab-rank-4': { en: 'Expert 🎓', ar: 'خبير 🎓' },
+    'vocab-rank-5': { en: 'Master 🏆', ar: 'بروفيسور 🏆' },
+    'vocab-level-up': { en: 'Level Up! New Rank:', ar: 'ارتفع مستواك! الرتبة الجديدة:' },
+    'vocab-xp-short': { en: 'XP', ar: 'نقطة' },
+
+
     'contact-inquiry-partner': { en: 'Partnership', ar: 'شراكة' },
     
     // Common Headings
@@ -3520,9 +3529,12 @@ const translations = {
     'dash-welcome-sub': { en: 'Track your progress and continue your journey.', ar: 'تتبع تقدمك وواصل رحلتك.' },
     'dash-browse-courses': { en: 'Browse Courses', ar: 'تصفح الدورات' },
     'dash-stat-time-sub': { en: '+2.5 hrs this week', ar: '+2.5 ساعة هذا الأسبوع' },
-    'dash-stat-courses-sub': { en: 'Next: Business English', ar: 'التالي: الإنجليزية للأعمال' },
-    'dash-stat-vocab-sub': { en: '↑ 15 new today', ar: '↑ 15 كلمة جديدة اليوم' },
-    'dash-stat-speak-sub': { en: '↑ Improved 5%', ar: '↑ تحسن بنسبة 5%' },
+    'dash-stat-courses-sub': { en: 'Keep it up!', ar: 'استمر في التقدم!' },
+
+    'dash-stat-vocab-sub': { en: 'new words today', ar: 'كلمة جديدة اليوم' },
+
+    'dash-stat-speak-sub': { en: 'Practice in the Lab', ar: 'تدرب في المختبر' },
+
     'dash-view-all': { en: 'View All', ar: 'عرض الكل' },
     'dash-vocab-add': { en: '+ Add Word', ar: '+ إضافة كلمة' },
     'modal-add-word-title': { en: 'Add New Word', ar: 'إضافة كلمة جديدة' },
@@ -3658,8 +3670,24 @@ function initDashboard() {
 
 function updateDashboardStats() {
     const progress = getProgress();
-    const vocabCount = getVocab().length;
-    if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = vocabCount;
+    
+    // Vocab XP & Level System
+    const xp = parseInt(localStorage.getItem('lingowise_vocab_xp') || "0");
+    const levelInfo = getVocabLevel(xp);
+    if (document.getElementById('vocabMastery')) {
+        document.getElementById('vocabMastery').innerText = levelInfo.title;
+        
+        // Dynamic "Words Added Today"
+        const vocab = getVocab();
+        const todayStr = new Date().toISOString().split('T')[0];
+        const addedToday = vocab.filter(v => v.date === todayStr).length;
+        const subEl = document.querySelector('[data-i18n="dash-stat-vocab-sub"]');
+        if (subEl) {
+            subEl.innerText = `↑ ${addedToday} ${translations['dash-stat-vocab-sub'][lang]}`;
+        }
+    }
+
+
     
     const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
     const hrsUnit = translations['unit-hrs'][lang];
@@ -3683,8 +3711,19 @@ function updateDashboardStats() {
 
     // Speaking Score (from AI Lab)
     const avgScore = localStorage.getItem('lingowise_avg_speaking') || '0';
-    if (document.getElementById('speakingScore')) document.getElementById('speakingScore').innerText = avgScore + "%";
+    if (document.getElementById('speakingScore')) {
+        document.getElementById('speakingScore').innerText = avgScore + "%";
+        const subEl = document.querySelector('[data-i18n="dash-stat-speak-sub"]');
+        if (subEl) {
+            if (avgScore === '0') {
+                subEl.innerText = translations['dash-stat-speak-sub'][lang];
+            } else {
+                subEl.innerText = lang === 'ar' ? 'بناءً على آخر تقييم' : 'Based on latest assessment';
+            }
+        }
+    }
 }
+
 
 
 
@@ -4153,8 +4192,12 @@ function addVocabulary(e) {
     // Record Daily Goal Progress
     recordGoalProgress('vocab', 1);
 
-    showToast('success', lang === 'ar' ? 'تمت إضافة الكلمة!' : 'Word added!');
+    // Grant XP (5 per word)
+    addVocabXP(5);
+
+    showToast('success', lang === 'ar' ? 'تمت إضافة الكلمة! (+5 نقاط)' : 'Word added! (+5 XP)');
     closeModal('addWordModal');
+
     if (document.getElementById('vocabularyGrid')) renderVocabGrid();
     updateVocabUIStrip();
 }
@@ -4171,14 +4214,60 @@ function updateVocabUIStrip() {
     const container = document.getElementById('recentVocabContainer');
     if (!container) return;
     const vocab = getVocab().slice(0, 4);
-    container.innerHTML = vocab.map(v => `
-        <div class="vocab-card-mini card p-1" style="background:var(--bg-secondary);">
-            <div style="font-weight:700;">${v.word}</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">${v.translation}</div>
-        </div>
-    `).join('');
-    if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = getVocab().length;
+    if (vocab.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.9rem;">${lang === 'ar' ? 'لم تضف أي كلمات بعد.' : 'No words added yet.'}</p>`;
+    } else {
+        container.innerHTML = vocab.map(v => `
+            <div class="vocab-card-mini card p-1" style="background:var(--bg-secondary);">
+                <div style="font-weight:700;">${v.word}</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">${v.translation}</div>
+            </div>
+        `).join('');
+    }
+
+    
+    const xp = parseInt(localStorage.getItem('lingowise_vocab_xp') || "0");
+    const levelInfo = getVocabLevel(xp);
+    if (document.getElementById('vocabMastery')) document.getElementById('vocabMastery').innerText = levelInfo.title;
 }
+
+function startVocabReview() {
+    const vocab = getVocab();
+    if (vocab.length === 0) {
+        showToast('error', lang === 'ar' ? 'بنك المفردات فارغ! أضف بعض الكلمات أولاً.' : 'Vocab bank is empty! Add some words first.');
+        return;
+    }
+    
+    showToast('success', lang === 'ar' ? 'بدأت جلسة المراجعة! (+10 نقاط)' : 'Review session started! (+10 XP)');
+    addVocabXP(10);
+}
+
+// XP & LEVEL HELPERS
+
+function getVocabLevel(xp) {
+    if (xp >= 1500) return { level: 5, title: translations['vocab-rank-5'][lang], next: Infinity };
+    if (xp >= 700) return { level: 4, title: translations['vocab-rank-4'][lang], next: 1500 };
+    if (xp >= 300) return { level: 3, title: translations['vocab-rank-3'][lang], next: 700 };
+    if (xp >= 100) return { level: 2, title: translations['vocab-rank-2'][lang], next: 300 };
+    return { level: 1, title: translations['vocab-rank-1'][lang], next: 100 };
+}
+
+function addVocabXP(amount) {
+    const oldXp = parseInt(localStorage.getItem('lingowise_vocab_xp') || "0");
+    const newXp = oldXp + amount;
+    localStorage.setItem('lingowise_vocab_xp', newXp);
+    
+    const oldLevel = getVocabLevel(oldXp).level;
+    const newLevelInfo = getVocabLevel(newXp);
+    
+    if (newLevelInfo.level > oldLevel) {
+        showToast('success', `🎊 ${translations['vocab-level-up'][lang]} ${newLevelInfo.title}`);
+    }
+    
+    // Update UI if on dashboard
+    if (document.getElementById('vocabMastery')) updateDashboardStats();
+}
+
 
 // ===== MY COURSES LOGIC =====
 function initMyCoursesPage() { 
@@ -4406,9 +4495,11 @@ function resetLearningTracker() {
         localStorage.removeItem('lingowise_progress');
         localStorage.removeItem('lingowise_total_min');
         localStorage.removeItem('lingowise_vocab');
+        localStorage.removeItem('lingowise_vocab_xp');
         localStorage.removeItem('lingowise_goals');
         localStorage.removeItem('lingowise_streak');
         localStorage.removeItem('lingowise_goals_date');
+
         
         showToast('success', lang === 'ar' ? 'تمت إعادة ضبط جميع البيانات بنجاح!' : 'Successfully reset all progress!');
         
