@@ -4089,7 +4089,11 @@ async function generateAIQuiz(topic, lessonTitle) {
         }
     } catch (error) {
         console.error('Quiz Error:', error);
-        container.innerHTML = `<p style="color:var(--danger)">${lang === 'ar' ? 'فشل توليد الاختبار. يرجى التأكد من مفتاح API.' : 'Failed to generate quiz. Please check your API key.'}</p>`;
+        if (error.message && error.message.toLowerCase().includes('quota')) {
+            container.innerHTML = `<p style="color:var(--warning)">${lang === 'ar' ? 'عذراً، انتهت حصة الذكاء الاصطناعي المجانية.' : 'Sorry, AI quota exhausted.'}</p>`;
+        } else {
+            container.innerHTML = `<p style="color:var(--danger)">${lang === 'ar' ? 'فشل توليد الاختبار. يرجى التأكد من مفتاح API.' : 'Failed to generate quiz. Please check your API key.'}</p>`;
+        }
         btn.disabled = false;
         btn.innerHTML = lang === 'ar' ? 'حاول مرة أخرى' : 'Try Again';
     }
@@ -4575,7 +4579,13 @@ async function sendAIMessage(preset) {
     } catch (error) {
         console.error('AI Chat Error:', error);
         const loadingEl = document.getElementById(loadingId);
-        if (loadingEl) loadingEl.innerHTML = lang === 'ar' ? 'عذراً، حدث خطأ ما. يرجى التأكد من مفتاح API.' : 'Sorry, something went wrong. Please check your API key.';
+        if (loadingEl) {
+            if (error.message && error.message.toLowerCase().includes('quota')) {
+                loadingEl.innerHTML = lang === 'ar' ? 'عذراً، انتهت حصة الـ API المجانية لهذا اليوم.' : 'Sorry, the free API quota is exhausted for today.';
+            } else {
+                loadingEl.innerHTML = lang === 'ar' ? 'عذراً، حدث خطأ ما. يرجى التأكد من مفتاح API.' : 'Sorry, something went wrong. Please check your API key.';
+            }
+        }
     }
     msgs.scrollTop = msgs.scrollHeight;
 }
@@ -4760,7 +4770,8 @@ async function extractAIVocab(id) {
         }
     } catch (error) {
         console.error('Extract Error:', error);
-        const msg = error.message.includes('quota') || error.message.includes('Too Many Requests')
+        const errorMessage = error.message ? error.message.toLowerCase() : '';
+        const msg = errorMessage.includes('quota') || errorMessage.includes('too many requests')
             ? (lang === 'ar' ? 'عذراً، انتهت حصة الـ API المجانية لهذا اليوم.' : 'Sorry, the free API quota is exhausted for today.')
             : (lang === 'ar' ? 'فشل استخراج المفردات. تأكد من مفتاح API.' : 'Failed to extract vocabulary. Check API key.');
         showToast('error', msg);
