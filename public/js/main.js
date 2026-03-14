@@ -4604,7 +4604,14 @@ async function getSpeakingAnalysis(transcript, topicId) {
         return {
             transcript: transcript || "Practice makes perfect when learning English.",
             metrics: { pronunciation: 75, fluency: 70, grammar: 65 },
+            correction: {
+                original: transcript || "I practice English good.",
+                corrected: "I am practicing English well.",
+                explanation: "Use 'well' (adverb) instead of 'good' (adjective) to describe the verb 'practice'.",
+                explanation_ar: "استخدم 'well' (حال) بدلاً من 'good' (صفة) لوصف الفعل 'practice'."
+            },
             tip: "Keep practicing! Ensure your Gemini API key is configured for real feedback.",
+            tip_ar: "استمر في الممارسة! تأكد من تكوين مفتاح Gemini API للحصول على تعليقات حقيقية.",
             suggestedVocab: { word: 'Consistency', translation: lang === 'ar' ? 'الاستمرارية' : 'Consistency', cat: 'Academic' }
         };
     }

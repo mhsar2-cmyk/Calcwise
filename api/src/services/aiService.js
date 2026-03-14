@@ -20,15 +20,22 @@ async function analyzeSpeech(transcript, topic) {
             "fluency": <number 0-100>,
             "grammar": <number 0-100>
           },
-          "tip": "<a helpful, short tip in English>",
+          "correction": {
+            "original": "${transcript}",
+            "corrected": "<corrected version of the transcript with proper grammar and flow>",
+            "explanation": "<short explanation of the main grammatical mistakes in English>",
+            "explanation_ar": "<the same explanation in Arabic>"
+          },
+          "tip": "<a helpful, short tip in English regarding their speaking style>",
           "tip_ar": "<the same tip translated to Arabic>",
           "suggestedVocab": {
-            "word": "<a relevant advanced English word>",
+            "word": "<a relevant advanced English word for this topic>",
             "translation": "<Arabic translation>",
             "cat": "<category like Academic, Business, etc.>"
           }
         }
         
+        If the transcript is empty or non-sensical, provide a general encouraging response.
         Only return the JSON object.
     `;
 

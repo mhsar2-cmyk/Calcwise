@@ -307,6 +307,15 @@
                         <div class="progress-bar"><div class="progress-fill" id="grammarFill"></div></div>
                     </div>
 
+                    <div class="card" id="grammarCorrectionCard" style="padding:var(--space-md); margin-top:var(--space-md); display:none; border-left: 4px solid var(--primary);">
+                        <h4 style="font-size:0.85rem; margin-bottom:var(--space-sm); color:var(--primary);" data-i18n="sidebar-grammar">Grammar & Corrections</h4>
+                        <div style="font-size:0.75rem; margin-bottom:10px;">
+                            <div style="color:var(--text-muted); text-decoration:line-through; margin-bottom:4px;" id="originalSpoken">...</div>
+                            <div style="color:var(--success); font-weight:600; font-size:0.85rem;" id="correctedSpoken">...</div>
+                        </div>
+                        <div id="grammarExplanation" style="font-size:0.75rem; color:var(--text-secondary); background:var(--bg-primary); padding:8px; border-radius:4px;">...</div>
+                    </div>
+
                     <div class="card" style="padding:var(--space-md); margin-top:var(--space-md);">
                         <h4 style="font-size:0.85rem; margin-bottom:var(--space-sm);" data-i18n="ai-quick-tip">AI Coach's Tip:</h4>
                         <p id="aiCoachTip" style="font-size:0.75rem; color:var(--text-secondary);" data-i18n="speaking-initial-tip">Select a topic and start speaking to get personalized tips!</p>
@@ -488,6 +497,15 @@
                 updateMetric('grammar', results.metrics.grammar);
 
                 document.getElementById('aiCoachTip').innerText = lang === 'ar' ? (results.tip_ar || results.tip) : results.tip;
+
+                // Update Corrections
+                if (results.correction) {
+                    const corrCard = document.getElementById('grammarCorrectionCard');
+                    document.getElementById('originalSpoken').innerText = results.correction.original;
+                    document.getElementById('correctedSpoken').innerText = results.correction.corrected;
+                    document.getElementById('grammarExplanation').innerText = lang === 'ar' ? (results.correction.explanation_ar || results.correction.explanation) : results.correction.explanation;
+                    corrCard.style.display = 'block';
+                }
 
                 // Show suggested vocab
                 if (results.suggestedVocab) {
