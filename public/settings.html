@@ -239,18 +239,33 @@
                     <h3 data-i18n="settings-learning-progress">📊 Learning Progress</h3>
                     <div class="stat-overview">
                         <div class="stat-box">
-                            <div style="font-size:1.5rem; font-weight:700;" id="settingsLessonsDone">12</div>
+                            <div style="font-size:1.5rem; font-weight:700;" id="settingsLessonsDone">0</div>
+
                             <div style="font-size:0.8rem; color:var(--text-muted);" data-i18n="settings-comp-lessons">Completed Lessons</div>
                         </div>
                         <div class="stat-box">
-                            <div style="font-size:1.5rem; font-weight:700;" id="settingsWordsSaved">450</div>
+                            <div style="font-size:1.5rem; font-weight:700;" id="settingsWordsSaved">0</div>
+
                             <div style="font-size:0.8rem; color:var(--text-muted);" data-i18n="settings-words-saved">Words Saved</div>
                         </div>
                         <div style="text-align:center;">
                              <button class="btn btn-outline btn-sm" onclick="exportLearningData()" data-i18n="settings-export-btn">Download Progress (JSON)</button>
                         </div>
                     </div>
+
+                    <!-- RESET SECTION -->
+                    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-strong);">
+                        <h4 style="color: var(--danger); font-size: 0.9rem; margin-bottom: 15px;" data-i18n="settings-danger-zone">Danger Zone</h4>
+                        <div class="card" style="background: rgba(255, 107, 107, 0.05); border: 1px dashed var(--danger); padding: var(--space-md); display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="display: block; font-size: 0.9rem;" data-i18n="settings-reset-title">Reset All Progress</strong>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="settings-reset-desc">Clear your learning hours, course history, and vocab bank. This cannot be undone.</span>
+                            </div>
+                            <button class="btn btn-sm" onclick="resetLearningTracker()" style="background: var(--danger); color: white; border: none;" data-i18n="settings-reset-btn">Reset Tracker</button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </main>
     </div>
@@ -265,13 +280,14 @@
         }
 
         function exportLearningData() {
-            const user = JSON.parse(localStorage.getItem('lingowise_user') || '{"first":"John","last":"Doe"}');
+            const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
             const vocab = JSON.parse(localStorage.getItem('lingowise_vocab') || '[]');
+            const progress = JSON.parse(localStorage.getItem('lingowise_progress') || '{"courses":{}}');
             const data = {
-                user: `${user.first} ${user.last}`,
-                progress: "Intermediate",
+                user: `${user.firstName || ''} ${user.lastName || ''}`,
+                totalHours: ((parseFloat(localStorage.getItem('lingowise_total_min') || "0")) / 60).toFixed(1),
                 wordsInBank: vocab.length,
-                completedCoursesCount: localStorage.getItem('lingowise_courses_done') || '3'
+                progressData: progress
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
             const a = document.createElement('a');
@@ -281,19 +297,26 @@
             showToast('success', translations['settings-export-success'][lang]);
         }
 
+
         // Initialize Settings
         document.addEventListener('DOMContentLoaded', () => {
             const user = JSON.parse(localStorage.getItem('lingowise_user') || '{}');
-            if (user.first) document.getElementById('profile-first').value = user.first;
-            if (user.last) document.getElementById('profile-last').value = user.last;
-            if (user.first) document.querySelector('.avatar-circle').innerText = user.first[0].toUpperCase();
+            if (user.firstName) document.getElementById('profile-first').value = user.firstName;
+            if (user.lastName) document.getElementById('profile-last').value = user.lastName;
+            if (user.firstName) document.querySelector('.avatar-circle').innerText = user.firstName[0].toUpperCase();
             
-            document.getElementById('settingsLessonsDone').innerText = localStorage.getItem('lingowise_courses_done') || '3';
+            // Stats sync
+            const progress = JSON.parse(localStorage.getItem('lingowise_progress') || '{"courses":{}}');
+            let completedLessons = 0;
+            Object.values(progress.courses).forEach(c => completedLessons += c.completedLessons.length);
+            
+            document.getElementById('settingsLessonsDone').innerText = completedLessons;
             document.getElementById('settingsWordsSaved').innerText = (JSON.parse(localStorage.getItem('lingowise_vocab') || '[]')).length;
             
-            const lang = localStorage.getItem('lingowise_lang') || 'en';
-            document.getElementById('settingsLangSelect').value = lang;
+            const savedLang = localStorage.getItem('lingowise_lang') || 'ar';
+            document.getElementById('settingsLangSelect').value = savedLang;
         });
+
     </script>
     <div class="toast-container" id="toastContainer"></div>
     <!-- FOOTER -->

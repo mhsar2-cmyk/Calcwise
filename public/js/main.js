@@ -3448,6 +3448,22 @@ const translations = {
     'contact-inquiry-gen': { en: 'General Inquiry', ar: 'استفسار عام' },
     'contact-inquiry-tech': { en: 'Technical Support', ar: 'دعم فني' },
     'contact-inquiry-feedback': { en: 'Course Feedback', ar: 'ملاحظات حول الدورات' },
+    
+    // Settings
+    'settings-title': { en: 'Settings', ar: 'الإعدادات' },
+    'settings-profile': { en: 'Profile', ar: 'الملف الشخصي' },
+    'settings-preferences': { en: 'Preferences', ar: 'التفضيلات' },
+    'settings-data': { en: 'My Learning Data', ar: 'بياناتي التعليمية' },
+    'settings-learning-progress': { en: 'Learning Progress', ar: 'تقدم التعلم' },
+    'settings-comp-lessons': { en: 'Completed Lessons', ar: 'الدروس المكتملة' },
+    'settings-words-saved': { en: 'Words Saved', ar: 'الكلمات المحفوظة' },
+    'settings-export-btn': { en: 'Download Progress (JSON)', ar: 'تحميل التقدم (JSON)' },
+    'settings-danger-zone': { en: 'Danger Zone', ar: 'منطقة الخطر' },
+    'settings-reset-title': { en: 'Reset All Progress', ar: 'إعادة ضبط كل التقدم' },
+    'settings-reset-desc': { en: 'Clear your learning hours, course history, and vocab bank. This cannot be undone.', ar: 'مسح ساعات التعلم، سجل الدورات، وبنك المفردات. لا يمكن التراجع عن هذا الإجراء.' },
+    'settings-reset-btn': { en: 'Reset Tracker', ar: 'إعادة ضبط المتتبع' },
+    'settings-update-success': { en: 'Settings updated successfully!', ar: 'تم تحديث الإعدادات بنجاح!' },
+
     'contact-inquiry-partner': { en: 'Partnership', ar: 'شراكة' },
     
     // Common Headings
@@ -4349,5 +4365,26 @@ function openBlogModal(id) {
 function closeBlogModal() {
     const modal = document.getElementById('blogModal');
     if (modal) modal.classList.remove('active');
+}
+
+function resetLearningTracker() {
+    const msg = lang === 'ar' 
+        ? 'هل أنت متأكد أنك تريد مسح جميع بيانات تقدمك؟ لا يمكن التراجع عن هذا الإجراء.' 
+        : 'Are you sure you want to clear all your progress? This action cannot be undone.';
+    
+    if (confirm(msg)) {
+        localStorage.removeItem('lingowise_progress');
+        localStorage.removeItem('lingowise_total_min');
+        localStorage.removeItem('lingowise_vocab');
+        localStorage.removeItem('lingowise_goals');
+        localStorage.removeItem('lingowise_streak');
+        localStorage.removeItem('lingowise_goals_date');
+        
+        showToast('success', lang === 'ar' ? 'تمت إعادة ضبط جميع البيانات بنجاح!' : 'Successfully reset all progress!');
+        
+        setTimeout(() => {
+            location.reload();
+        }, 1500);
+    }
 }
 
