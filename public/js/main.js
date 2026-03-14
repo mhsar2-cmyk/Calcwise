@@ -2994,13 +2994,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Learning Time Increment
     setInterval(() => {
-        let totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0"); // Start from 0 for new users
+        let totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
         totalMin += 1;
         localStorage.setItem('lingowise_total_min', totalMin);
+        
+        // Track Today's Minutes
+        const today = new Date().toISOString().split('T')[0];
+        const savedDate = localStorage.getItem('lingowise_today_date');
+        let todayMin = parseFloat(localStorage.getItem('lingowise_today_min') || "0");
+        
+        if (savedDate !== today) {
+            todayMin = 1;
+            localStorage.setItem('lingowise_today_date', today);
+        } else {
+            todayMin += 1;
+        }
+        localStorage.setItem('lingowise_today_min', todayMin);
+
         const timeEl = document.getElementById('learningTime');
         const hrsUnit = translations['unit-hrs'] ? translations['unit-hrs'][lang] : 'hrs';
         if (timeEl) timeEl.innerText = (totalMin / 60).toFixed(1) + " " + hrsUnit;
+        
+        // Update subtext if possible
+        const subEl = document.querySelector('[data-i18n="dash-stat-time-sub"]');
+        if (subEl) {
+            const displayMin = todayMin < 60 ? `${todayMin}m` : `${(todayMin/60).toFixed(1)}h`;
+            subEl.innerText = `↑ ${displayMin} ${translations['dash-stat-time-sub'][lang]}`;
+        }
     }, 60000);
+
 
 });
 
@@ -3183,7 +3205,11 @@ function closeModal(id) {
 function checkAuth() {
     const isLoggedIn = localStorage.getItem('lingowise_logged_in') === 'true';
     const href = window.location.href;
-    const isPrivatePage = href.includes('dashboard.html') || href.includes('my-courses.html') || href.includes('vocabulary.html');
+    const isPrivatePage = href.includes('dashboard.html') || 
+                          href.includes('my-courses.html') || 
+                          href.includes('vocabulary.html') || 
+                          href.includes('courses.html') || 
+                          href.includes('speaking-lab.html');
     
     if (isPrivatePage && !isLoggedIn) {
         window.location.replace('login.html');
@@ -3191,6 +3217,7 @@ function checkAuth() {
     }
     updateAuthUI();
 }
+
 
 function handleLogout() {
     localStorage.removeItem('lingowise_logged_in');
@@ -3528,7 +3555,8 @@ const translations = {
     'dash-streak-sub': { en: 'Keep it up! Reach 7 for a bonus.', ar: 'استمر! صل إلى 7 أيام للحصول على مكافأة.' },
     'dash-welcome-sub': { en: 'Track your progress and continue your journey.', ar: 'تتبع تقدمك وواصل رحلتك.' },
     'dash-browse-courses': { en: 'Browse Courses', ar: 'تصفح الدورات' },
-    'dash-stat-time-sub': { en: '+2.5 hrs this week', ar: '+2.5 ساعة هذا الأسبوع' },
+    'dash-stat-time-sub': { en: 'learned today', ar: 'تعلمتها اليوم' },
+
     'dash-stat-courses-sub': { en: 'Keep it up!', ar: 'استمر في التقدم!' },
 
     'dash-stat-vocab-sub': { en: 'new words today', ar: 'كلمة جديدة اليوم' },
@@ -3692,6 +3720,15 @@ function updateDashboardStats() {
     const totalMin = parseFloat(localStorage.getItem('lingowise_total_min') || "0");
     const hrsUnit = translations['unit-hrs'][lang];
     if (document.getElementById('learningTime')) document.getElementById('learningTime').innerText = `${(totalMin / 60).toFixed(1)} ${hrsUnit}`;
+    
+    // Sub-text for time (Today's time)
+    const todayMin = parseFloat(localStorage.getItem('lingowise_today_min') || "0");
+    const timeSubEl = document.querySelector('[data-i18n="dash-stat-time-sub"]');
+    if (timeSubEl) {
+        const displayMin = todayMin < 60 ? `${todayMin}m` : `${(todayMin/60).toFixed(1)}h`;
+        timeSubEl.innerText = `↑ ${displayMin} ${translations['dash-stat-time-sub'][lang]}`;
+    }
+
     
     const streak = localStorage.getItem('lingowise_streak') || '0';
     const streakEl = document.querySelector('[data-i18n="dash-streak-days"]');
@@ -4132,9 +4169,9 @@ function injectVideoModal() {
 
 // ===== VOCABULARY LOGIC =====
 function getVocab() {
-    const defaults = [{ id:'1', word: 'Resilience', translation: 'المرونة', category: 'General', date: '2026-03-10' }];
-    return JSON.parse(localStorage.getItem('lingowise_vocab')) || defaults;
+    return JSON.parse(localStorage.getItem('lingowise_vocab')) || [];
 }
+
 function saveVocab(v) { localStorage.setItem('lingowise_vocab', JSON.stringify(v)); }
 
 function initVocabularyPage() { renderVocabGrid(); }
@@ -4494,7 +4531,10 @@ function resetLearningTracker() {
     if (confirm(msg)) {
         localStorage.removeItem('lingowise_progress');
         localStorage.removeItem('lingowise_total_min');
+        localStorage.removeItem('lingowise_today_min');
+        localStorage.removeItem('lingowise_today_date');
         localStorage.removeItem('lingowise_vocab');
+
         localStorage.removeItem('lingowise_vocab_xp');
         localStorage.removeItem('lingowise_goals');
         localStorage.removeItem('lingowise_streak');
