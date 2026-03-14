@@ -4046,9 +4046,89 @@ function changeLesson(courseId, lessonIndex, el) {
     }
 
     
+    let aiQuizHTML = `
+        <div id="aiQuizSection" style="margin-top:40px; text-align: ${lang === 'ar' ? 'right' : 'left'}">
+            <h4 style="font-size:1.1rem; color:var(--accent-gold); margin-bottom:15px; display:flex; align-items:center; gap:8px;">✨ ${lang === 'ar' ? 'اختبار الذكاء الاصطناعي الديناميكي' : 'AI Dynamic Quiz'}</h4>
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:15px;">
+                ${lang === 'ar' ? 'دع الذكاء الاصطناعي ينشئ لك اختباراً مخصصاً بناءً على هذا الدرس!' : 'Let AI generate a custom quiz for you based on this lesson!'}
+            </p>
+            <div id="aiQuizContainer"></div>
+            <button id="generateQuizBtn" class="btn btn-gold w-full" onclick="generateAIQuiz('${c.name.en}', '${lesson.title.en}')" style="justify-content:center;">
+                ${lang === 'ar' ? 'توليد اختبار ذكي' : 'Generate Smart Quiz'}
+            </button>
+        </div>
+    `;
+
     const detailsContainer = document.getElementById('lessonContentDetails');
     if(detailsContainer) {
-        detailsContainer.innerHTML = exerciseHTML + vocabHTML;
+        detailsContainer.innerHTML = exerciseHTML + vocabHTML + aiQuizHTML;
+    }
+}
+
+async function generateAIQuiz(topic, lessonTitle) {
+    const container = document.getElementById('aiQuizContainer');
+    const btn = document.getElementById('generateQuizBtn');
+    if (!container || !btn) return;
+
+    btn.disabled = true;
+    btn.innerHTML = lang === 'ar' ? 'جاري التوليد... ⏳' : 'Generating... ⏳';
+    container.innerHTML = `<div class="typing-indicator" style="margin:20px 0;"><span></span><span></span><span></span></div>`;
+
+    try {
+        const response = await fetch('/api/ai/quiz', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ topic, content: lessonTitle })
+        });
+        const data = await response.json();
+        if (data.success) {
+            renderAIQuiz(data.quiz);
+            btn.style.display = 'none';
+        } else {
+            throw new Error(data.message);
+        }
+    } catch (error) {
+        console.error('Quiz Error:', error);
+        container.innerHTML = `<p style="color:var(--danger)">${lang === 'ar' ? 'فشل توليد الاختبار. يرجى التأكد من مفتاح API.' : 'Failed to generate quiz. Please check your API key.'}</p>`;
+        btn.disabled = false;
+        btn.innerHTML = lang === 'ar' ? 'حاول مرة أخرى' : 'Try Again';
+    }
+}
+
+function renderAIQuiz(quiz) {
+    const container = document.getElementById('aiQuizContainer');
+    container.innerHTML = quiz.map((q, i) => `
+        <div class="card p-3 mb-3 ai-quiz-card" id="ai-q-card-${i}" style="background:rgba(108, 92, 231, 0.05); border:1px solid var(--primary-light);">
+            <p style="font-weight:600; margin-bottom:10px;">Q${i+1}: ${q.question[lang]}</p>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+                ${q.options[lang].map((opt, optIdx) => `
+                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer; padding:8px; border-radius:6px; border:1px solid var(--border-subtle); transition: all 0.2s;">
+                        <input type="radio" name="ai_ex_${i}" value="${optIdx}" onchange="checkAIAnswer(${i}, ${q.answer}, ${optIdx})">
+                        <span style="font-size:0.9rem;">${opt}</span>
+                    </label>
+                `).join('')}
+            </div>
+            <div class="ai-res-${i}" style="margin-top:10px; font-weight:700; font-size:0.85rem; display:none;"></div>
+        </div>
+    `).join('');
+}
+
+function checkAIAnswer(qIdx, correctIdx, userIdx) {
+    const res = document.querySelector(`.ai-res-${qIdx}`);
+    const card = document.getElementById(`ai-q-card-${qIdx}`);
+    if (!res || !card) return;
+    
+    res.style.display = 'block';
+    if (correctIdx === parseInt(userIdx)) {
+        res.innerHTML = lang === 'ar' ? '✅ إجابة صحيحة!' : '✅ Correct!';
+        res.style.color = 'var(--success)';
+        card.style.borderColor = 'var(--success)';
+        card.style.background = 'rgba(46, 213, 115, 0.05)';
+    } else {
+        res.innerHTML = lang === 'ar' ? '❌ حاول مرة أخرى' : '❌ Incorrect, try again';
+        res.style.color = 'var(--danger)';
+        card.style.borderColor = 'var(--danger)';
+        card.style.background = 'rgba(255, 71, 87, 0.05)';
     }
 }
 
@@ -4415,10 +4495,29 @@ function initAIAssistant() {
 
     const chat = document.createElement('div');
     chat.id = 'aiChat';
+    chat.className = 'card-glass'; // Premium glassmorphism
     chat.innerHTML = `
-        <div class="ai-chat-header"><span>${translations['ai-name'][lang]}</span><button onclick="toggleAIChat()" style="border:none;background:none;color:white;cursor:pointer;">✕</button></div>
-        <div class="ai-chat-messages" id="aiMessages"><div class="ai-msg bot">${translations['ai-greeting'][lang]}</div></div>
-        <div class="ai-chat-input"><input type="text" id="aiInput" placeholder="${translations['ai-placeholder'][lang]}" onkeydown="if(event.key==='Enter') sendAIMessage()"><button onclick="sendAIMessage()">➤</button></div>
+        <div class="ai-chat-header">
+            <div class="ai-info" style="display:flex; align-items:center; gap:10px;">
+                <div class="ai-avatar">🤖</div>
+                <div style="display:flex; flex-direction:column;">
+                    <span class="name">${translations['ai-name'][lang]}</span>
+                    <span class="status">${lang === 'ar' ? 'متصل الآن' : 'Online Now'}</span>
+                </div>
+            </div>
+            <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
+        </div>
+        <div class="ai-chat-messages" id="aiMessages">
+            <div class="ai-msg bot">${translations['ai-greeting'][lang]}</div>
+        </div>
+        <div class="ai-quick-replies">
+            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'كيف أحسن نطقي؟' : 'How to improve pronunciation?'}')">${lang === 'ar' ? 'كيف أحسن نطقي؟' : 'Improve Pronunciation'}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'قواعد الأزمنة' : 'English Tenses'}')">${lang === 'ar' ? 'قواعد الأزمنة' : 'English Tenses'}</button>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="aiInput" placeholder="${translations['ai-placeholder'][lang]}" onkeydown="if(event.key==='Enter') sendAIMessage()">
+            <button onclick="sendAIMessage()">➤</button>
+        </div>
     `;
     document.body.appendChild(chat);
 }
@@ -4429,17 +4528,56 @@ function toggleAIChat() {
     if (dot) dot.style.display = 'none';
 }
 
-function sendAIMessage(preset) {
+let aiChatHistory = [];
+
+async function sendAIMessage(preset) {
     const input = document.getElementById('aiInput');
     const msg = preset || input.value.trim();
     if (!msg) return;
+
     const msgs = document.getElementById('aiMessages');
+    
+    // Add User Message
     msgs.innerHTML += `<div class="ai-msg user">${msg}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+    
     if (input) input.value = '';
-    setTimeout(() => {
-        msgs.innerHTML += `<div class="ai-msg bot">I'm here to help! Whether it's grammar, vocabulary, or speaking practice, I've got you covered.</div>`;
-        msgs.scrollTop = msgs.scrollHeight;
-    }, 1000);
+
+    // Add Loading Indicator
+    const loadingId = 'ai-loading-' + Date.now();
+    msgs.innerHTML += `<div class="ai-msg bot" id="${loadingId}">
+        <div class="typing-indicator"><span></span><span></span><span></span></div>
+    </div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+
+    try {
+        const response = await fetch('/api/ai/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: msg, history: aiChatHistory })
+        });
+        const data = await response.json();
+        
+        // Remove Loading
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) loadingEl.remove();
+
+        if (data.success) {
+            const botMsg = data.response;
+            msgs.innerHTML += `<div class="ai-msg bot">${botMsg}</div>`;
+            aiChatHistory.push({ role: 'user', text: msg });
+            aiChatHistory.push({ role: 'bot', text: botMsg });
+            // Keep only last 10 messages for context
+            if (aiChatHistory.length > 20) aiChatHistory = aiChatHistory.slice(-20);
+        } else {
+            throw new Error(data.message || 'Chat failed');
+        }
+    } catch (error) {
+        console.error('AI Chat Error:', error);
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) loadingEl.innerHTML = lang === 'ar' ? 'عذراً، حدث خطأ ما. يرجى التأكد من مفتاح API.' : 'Sorry, something went wrong. Please check your API key.';
+    }
+    msgs.scrollTop = msgs.scrollHeight;
 }
 
 function updateAIAssistant() {
@@ -4448,15 +4586,28 @@ function updateAIAssistant() {
 }
 
 // ===== SPEAKING LAB HOOKS =====
-function getSpeakingAnalysis(topicId) {
-    const scores = { pronunciation: 70+Math.floor(Math.random()*25), fluency: 65+Math.floor(Math.random()*30), grammar: 60+Math.floor(Math.random()*35) };
-    const phrases = { job: "Leadership and teamwork are my main strengths.", food: "I'll have the vegetarian pizza, please.", travel: "Where is the nearest tourist information center?", general: "Practice makes perfect when learning English." };
-    return {
-        transcript: phrases[topicId] || phrases.general,
-        metrics: scores,
-        tip: "Great job! Try to stress the key words for more natural rhythm.",
-        suggestedVocab: { word: 'Consistency', translation: lang === 'ar' ? 'الاستمرارية' : 'Consistency', cat: 'Academic' }
-    };
+async function getSpeakingAnalysis(transcript, topicId) {
+    try {
+        const response = await fetch('/api/ai/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ transcript, topic: topicId })
+        });
+        const data = await response.json();
+        if (data.success) {
+            return data.analysis;
+        }
+        throw new Error(data.message || 'Analysis failed');
+    } catch (error) {
+        console.error('AI Analysis Error:', error);
+        // Fallback to mock data if API fails (e.g. no key)
+        return {
+            transcript: transcript || "Practice makes perfect when learning English.",
+            metrics: { pronunciation: 75, fluency: 70, grammar: 65 },
+            tip: "Keep practicing! Ensure your Gemini API key is configured for real feedback.",
+            suggestedVocab: { word: 'Consistency', translation: lang === 'ar' ? 'الاستمرارية' : 'Consistency', cat: 'Academic' }
+        };
+    }
 }
 
 // ===== BLOG LOGIC =====
@@ -4525,21 +4676,61 @@ function openBlogModal(id) {
     
     if (modal && contentArea) {
         contentArea.innerHTML = `
-            <h2 style="margin-bottom:20px;">${post.title[lang]}</h2>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; gap:15px;">
+                <h2 style="margin:0;">${post.title[lang]}</h2>
+                <button class="btn btn-gold btn-sm" onclick="extractAIVocab(\`${post.content.en.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)" style="flex-shrink:0;">
+                    ✨ AI Extract Vocab
+                </button>
+            </div>
             <div style="line-height:1.6; font-size:1.1rem; color:var(--text-secondary);">
                 ${post.content[lang]}
             </div>
             <div style="margin-top:30px; padding-top:20px; border-top:1px solid var(--border-subtle);">
-                <button class="btn btn-primary" onclick="closeBlogModal()">Close</button>
+                <button class="btn btn-primary" onclick="closeBlogModal()">${lang === 'ar' ? 'إغلاق' : 'Close'}</button>
             </div>
         `;
         modal.classList.add('active');
     }
 }
 
-function closeBlogModal() {
-    const modal = document.getElementById('blogModal');
-    if (modal) modal.classList.remove('active');
+async function extractAIVocab(content) {
+    showToast('info', lang === 'ar' ? 'جاري استخراج المفردات الذكية...' : 'Extracting smart vocabulary...');
+    try {
+        const response = await fetch('/api/ai/extract-vocab', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content })
+        });
+        const data = await response.json();
+        if (data.success) {
+            const vocab = getVocab();
+            let added = 0;
+            data.vocab.forEach(v => {
+                 if(!vocab.find(existing => existing.word.toLowerCase() === v.en.toLowerCase())) {
+                    vocab.unshift({ 
+                        id: Date.now().toString() + Math.random(), 
+                        word: v.en, 
+                        translation: v.ar, 
+                        category: 'AI Extracted', 
+                        date: new Date().toISOString().split('T')[0] 
+                    });
+                    added++;
+                }
+            });
+            if (added > 0) {
+                saveVocab(vocab);
+                if (typeof recordGoalProgress === 'function') recordGoalProgress('vocab', added);
+                showToast('success', lang === 'ar' ? `تمت إضافة ${added} كلمات ذكية!` : `Added ${added} smart words!`);
+                if (typeof updateVocabUIStrip === 'function') updateVocabUIStrip();
+                if (typeof renderVocabGrid === 'function' && document.getElementById('vocabularyGrid')) renderVocabGrid();
+            } else {
+                showToast('info', lang === 'ar' ? 'الكلمات موجودة بالفعل.' : 'Words already in bank.');
+            }
+        }
+    } catch (error) {
+        console.error('Extract Error:', error);
+        showToast('error', 'Failed to extract vocabulary. Check API key.');
+    }
 }
 
 function resetLearningTracker() {

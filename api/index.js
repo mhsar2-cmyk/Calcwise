@@ -6,6 +6,7 @@ const path = require('path');
 const { login, signup } = require('./src/services/auth');
 const authenticate = require('./src/middleware/auth');
 const { getCourses, saveCoursePool } = require('./src/services/courseService');
+const { analyzeSpeech, chatWithAI, generateQuiz, extractVocab } = require('./src/services/aiService');
 
 const ADMIN_EMAILS = ['admin@calcwises.com', 'mhro@calcwises.com']; // User can add their email here
 
@@ -60,6 +61,49 @@ app.post('/api/auth/login', async (req, res) => {
         res.json({ success: true, ...result });
     } catch (error) {
         res.status(401).json({ success: false, message: error.message });
+    }
+});
+// AI Chat Route
+app.post('/api/ai/chat', async (req, res) => {
+    const { message, history } = req.body;
+    try {
+        const response = await chatWithAI(message, history);
+        res.json({ success: true, response });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// AI Quiz Route
+app.post('/api/ai/quiz', async (req, res) => {
+    const { topic, content } = req.body;
+    try {
+        const quiz = await generateQuiz(topic, content);
+        res.json({ success: true, quiz });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// AI Vocab Extraction Route
+app.post('/api/ai/extract-vocab', async (req, res) => {
+    const { content } = req.body;
+    try {
+        const vocab = await extractVocab(content);
+        res.json({ success: true, vocab });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// AI Analysis Route
+app.post('/api/ai/analyze', async (req, res) => {
+    const { transcript, topic } = req.body;
+    try {
+        const analysis = await analyzeSpeech(transcript, topic);
+        res.json({ success: true, analysis });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 

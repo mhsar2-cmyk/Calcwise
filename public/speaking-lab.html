@@ -375,6 +375,36 @@
     <script>
         let isRecording = false;
         let selectedTopic = 'general';
+        let recognition;
+        let finalTranscript = '';
+
+        // Initialize Speech Recognition
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+                const transcriptDisplay = document.getElementById('transcriptArea');
+                if (transcriptDisplay) {
+                    transcriptDisplay.innerText = finalTranscript + interimTranscript;
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                stopRecording();
+            };
+        }
 
         // Add click listeners to topic cards
         document.querySelectorAll('.topic-card').forEach(card => {
@@ -387,13 +417,18 @@
                 
                 // Clear state
                 const transcript = document.getElementById('transcriptArea');
-                if (transcript) transcript.innerHTML = `<span data-i18n="speaking-transcript-hint">${translations['speaking-transcript-hint'][localStorage.getItem('lingowise_lang') || 'en']}</span>`;
+                if (transcript) {
+                    const hintKey = 'speaking-transcript-hint';
+                    const lang = localStorage.getItem('lingowise_lang') || 'en';
+                    transcript.innerHTML = `<span data-i18n="${hintKey}">${(typeof translations !== 'undefined' && translations[hintKey]) ? translations[hintKey][lang] : 'Your speech will appear here...'}</span>`;
+                }
             });
         });
 
         function startRecording() {
             if (isRecording) return;
             isRecording = true;
+            finalTranscript = '';
             
             const btn = document.getElementById('recordBtn');
             const wave = document.getElementById('waveform');
@@ -403,12 +438,20 @@
 
             btn.classList.add('recording');
             wave.classList.add('active');
-            status.innerText = translations['speaking-listening'] ? translations['speaking-listening'][lang] : 'Listening...';
+            status.innerText = (typeof translations !== 'undefined' && translations['speaking-listening']) ? translations['speaking-listening'][lang] : 'Listening...';
             status.style.color = 'var(--danger)';
             transcript.innerText = '...';
+
+            if (recognition) {
+                try {
+                    recognition.start();
+                } catch (e) {
+                    console.error('Recognition start error:', e);
+                }
+            }
         }
 
-        function stopRecording() {
+        async function stopRecording() {
             if (!isRecording) return;
             isRecording = false;
             
@@ -420,15 +463,23 @@
 
             btn.classList.remove('recording');
             wave.classList.remove('active');
-            status.innerText = translations['speaking-analyzing'] ? translations['speaking-analyzing'][lang] : 'Analyzing your speech...';
+            status.innerText = (typeof translations !== 'undefined' && translations['speaking-analyzing']) ? translations['speaking-analyzing'][lang] : 'Analyzing your speech...';
             status.style.color = 'var(--accent-gold)';
 
-            // Call refined analysis logic from main.js
-            setTimeout(() => {
-                const results = getSpeakingAnalysis(selectedTopic);
+            if (recognition) {
+                try {
+                    recognition.stop();
+                } catch (e) {
+                    console.error('Recognition stop error:', e);
+                }
+            }
 
-                transcript.innerText = results.transcript;
-                status.innerText = translations['speaking-complete'] ? translations['speaking-complete'][lang] : 'Analysis Complete!';
+            // Call refined analysis logic from main.js
+            try {
+                const results = await getSpeakingAnalysis(finalTranscript, selectedTopic);
+
+                transcript.innerText = results.transcript || finalTranscript;
+                status.innerText = (typeof translations !== 'undefined' && translations['speaking-complete']) ? translations['speaking-complete'][lang] : 'Analysis Complete!';
                 status.style.color = 'var(--success)';
 
                 // Update Metrics with smooth transitions
@@ -436,14 +487,13 @@
                 updateMetric('fluency', results.metrics.fluency);
                 updateMetric('grammar', results.metrics.grammar);
 
-                document.getElementById('aiCoachTip').innerText = results.tip;
+                document.getElementById('aiCoachTip').innerText = lang === 'ar' ? (results.tip_ar || results.tip) : results.tip;
 
                 // Show suggested vocab
                 if (results.suggestedVocab) {
                     const card = document.getElementById('suggestedVocabCard');
                     document.getElementById('suggestedWord').innerText = results.suggestedVocab.word;
                     document.getElementById('suggestedTrans').innerText = results.suggestedVocab.translation;
-                    document.getElementById('suggestedCat').innerText = results.suggestedVocab.cat;
                     card.style.display = 'block';
 
                     document.getElementById('addVocabBtn').onclick = () => {
@@ -453,11 +503,12 @@
                             word: results.suggestedVocab.word,
                             translation: results.suggestedVocab.translation,
                             date: new Date().toISOString().split('T')[0]
-
                         };
                         vocab.unshift(newEntry);
                         saveVocab(vocab);
-                        showToast('success', lang === 'ar' ? 'تمت الإضافة لبنك المفردات!' : 'Added to Vocabulary Bank!');
+                        if (typeof showToast === 'function') {
+                            showToast('success', lang === 'ar' ? 'تمت الإضافة لبنك المفردات!' : 'Added to Vocabulary Bank!');
+                        }
                         card.style.display = 'none';
                     };
                 }
@@ -466,7 +517,11 @@
                 if (typeof showToast === 'function') {
                     showToast('success', lang === 'ar' ? 'أداء رائع! استمر في الممارسة.' : 'Great performance! Keep practicing.');
                 }
-            }, 1500);
+            } catch (error) {
+                console.error('Analysis failed:', error);
+                status.innerText = 'Error analyzing speech.';
+                status.style.color = 'var(--danger)';
+            }
         }
 
         function updateMetric(name, value) {
