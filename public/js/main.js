@@ -4506,20 +4506,22 @@ function initAIAssistant() {
                 <div class="ai-avatar">🤖</div>
                 <div style="display:flex; flex-direction:column;">
                     <span class="name">${translations['ai-name'][lang]}</span>
-                    <span class="status">${lang === 'ar' ? 'متصل الآن' : 'Online Now'}</span>
+                    <span class="status">${lang === 'ar' ? 'متصل الآن • مدرس إنجليزي' : 'Online • English Tutor'}</span>
                 </div>
             </div>
             <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
         </div>
         <div class="ai-chat-messages" id="aiMessages">
-            <div class="ai-msg bot">${translations['ai-greeting'][lang]}</div>
+            <div class="ai-msg bot">${lang === 'ar' ? 'مرحباً! 👋 أنا مدرس اللغة الإنجليزية الذكي. اكتب لي بالإنجليزية وسأصحح أخطاءك وأعلمك القواعد الصحيحة! يمكنك أيضاً سؤالي عن أي قاعدة نحوية أو مفردات.' : 'Hi there! 👋 I\'m your AI English tutor. Write to me in English and I\'ll correct your grammar, vocabulary, and help you improve! You can also ask me about any grammar rules or vocabulary.'}</div>
         </div>
-        <div class="ai-quick-replies">
-            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'كيف أحسن نطقي؟' : 'How to improve pronunciation?'}')">${lang === 'ar' ? 'كيف أحسن نطقي؟' : 'Improve Pronunciation'}</button>
-            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'قواعد الأزمنة' : 'English Tenses'}')">${lang === 'ar' ? 'قواعد الأزمنة' : 'English Tenses'}</button>
+        <div class="ai-quick-replies" style="flex-wrap:wrap;">
+            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'كيف أحسن نطقي؟' : 'How to improve pronunciation?'}')">${lang === 'ar' ? '🗣️ تحسين النطق' : '🗣️ Pronunciation'}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'اشرح لي قواعد الأزمنة' : 'Explain English tenses'}')">${lang === 'ar' ? '⏳ الأزمنة' : '⏳ Tenses'}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'صحح لي: I goed to the store yesterday' : 'Correct this: I goed to the store yesterday'}')">${lang === 'ar' ? '✏️ صحح جملتي' : '✏️ Fix my sentence'}</button>
+            <button class="ai-quick-btn" onclick="sendAIMessage('${lang === 'ar' ? 'أعطني 5 كلمات إنجليزية متقدمة' : 'Give me 5 advanced English words'}')">${lang === 'ar' ? '📚 مفردات متقدمة' : '📚 Advanced Words'}</button>
         </div>
         <div class="ai-chat-input">
-            <input type="text" id="aiInput" placeholder="${translations['ai-placeholder'][lang]}" onkeydown="if(event.key==='Enter') sendAIMessage()">
+            <input type="text" id="aiInput" placeholder="${lang === 'ar' ? 'اكتب بالإنجليزية وسأصحح لك...' : 'Type in English and I\'ll help you...'}" onkeydown="if(event.key==='Enter') sendAIMessage()">
             <button onclick="sendAIMessage()">➤</button>
         </div>
     `;
@@ -4533,6 +4535,18 @@ function toggleAIChat() {
 }
 
 let aiChatHistory = [];
+
+function formatAIResponse(text) {
+    // Convert markdown-style formatting to HTML
+    let html = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/❌(.*?)\n/g, '<span style="color:#ff4757;">❌$1</span><br>')
+        .replace(/✅(.*?)\n/g, '<span style="color:#2ed573;">✅$1</span><br>')
+        .replace(/📝(.*?)\n/g, '<span style="color:var(--primary);">📝$1</span><br>')
+        .replace(/\n/g, '<br>');
+    return html;
+}
 
 async function sendAIMessage(preset) {
     const input = document.getElementById('aiInput');
@@ -4568,10 +4582,11 @@ async function sendAIMessage(preset) {
 
         if (data.success) {
             const botMsg = data.response;
-            msgs.innerHTML += `<div class="ai-msg bot">${botMsg}</div>`;
+            const formattedMsg = formatAIResponse(botMsg);
+            msgs.innerHTML += `<div class="ai-msg bot">${formattedMsg}</div>`;
             aiChatHistory.push({ role: 'user', text: msg });
             aiChatHistory.push({ role: 'bot', text: botMsg });
-            // Keep only last 10 messages for context
+            // Keep last 20 messages for context
             if (aiChatHistory.length > 20) aiChatHistory = aiChatHistory.slice(-20);
         } else {
             throw new Error(data.message || 'Chat failed');
@@ -4592,7 +4607,7 @@ async function sendAIMessage(preset) {
 
 function updateAIAssistant() {
     const input = document.getElementById('aiInput');
-    if (input) input.placeholder = translations['ai-placeholder'][lang];
+    if (input) input.placeholder = lang === 'ar' ? 'اكتب بالإنجليزية وسأصحح لك...' : 'Type in English and I\'ll help you...';
 }
 
 // ===== SPEAKING LAB HOOKS =====
@@ -4619,27 +4634,36 @@ async function getSpeakingAnalysis(transcript, topicId) {
     } catch (error) {
         console.error('AI Analysis Error:', error);
         
-        // Dynamic Fallback: Echo transcript so it doesn't look completely static
+        // Rich fallback with detailed mock data
+        const pScore = Math.floor(Math.random() * 20) + 60;
+        const fScore = Math.floor(Math.random() * 20) + 60;
+        const gScore = Math.floor(Math.random() * 20) + 60;
+        const overall = Math.round((pScore + fScore + gScore) / 3);
+        
         return {
-            transcript: transcript || (lang === 'ar' ? "لم يتم اكتشاف نص" : "No speech detected"),
+            transcript: transcript || (lang === 'ar' ? 'لم يتم اكتشاف نص' : 'No speech detected'),
             metrics: { 
-                pronunciation: Math.floor(Math.random() * 20) + 60, 
-                fluency: Math.floor(Math.random() * 20) + 60, 
-                grammar: Math.floor(Math.random() * 20) + 60 
+                pronunciation: pScore, 
+                fluency: fScore, 
+                grammar: gScore,
+                overall: overall
             },
             correction: {
-                original: transcript || "...",
-                corrected: transcript ? `(Demo Correction) ${transcript}...` : "Please check your microphone.",
-                explanation: "Real-time deep analysis requires an active Gemini API key and available quota.",
-                explanation_ar: "التحليل العميق الفوري يتطلب مفتاح Gemini API نشطاً وحصة متاحة."
+                original: transcript || '...',
+                corrected: transcript ? transcript : 'Please check your microphone.',
+                explanation: 'Real-time AI analysis requires an active Gemini API key and available quota. Connect your API key for detailed grammar corrections.',
+                explanation_ar: 'التحليل الفوري بالذكاء الاصطناعي يتطلب مفتاح Gemini API نشطاً وحصة متاحة. قم بتوصيل مفتاح API الخاص بك للحصول على تصحيحات نحوية مفصلة.'
             },
-            tip: "Speak louder and more clearly for better recognition.",
-            tip_ar: "تحدث بصوت أعلى وبوضوح أكبر للحصول على نتائج أفضل.",
+            errors: [],
+            pronunciationNotes: [],
+            strengths: [lang === 'ar' ? 'أنت تحاول التحدث بالإنجليزية - هذه خطوة أولى رائعة!' : 'You are attempting to speak English — that is a great first step!'],
+            tip: 'Connect your Gemini API key for real AI-powered grammar and pronunciation analysis. Speak clearly and use complete sentences for better results.',
+            tip_ar: 'قم بتوصيل مفتاح Gemini API الخاص بك للحصول على تحليل حقيقي مدعوم بالذكاء الاصطناعي. تحدث بوضوح واستخدم جمل كاملة للحصول على نتائج أفضل.',
             suggestedVocab: { 
-                word: 'Articulation', 
-                translation: lang === 'ar' ? 'وضوح النطق' : 'Articulation', 
-                cat: 'Speech' ,
-                example: 'Clear articulation is key to being understood.'
+                word: 'Articulate', 
+                translation: lang === 'ar' ? 'يُعبّر بوضوح' : 'Articulate', 
+                cat: 'Communication' ,
+                example: 'She can articulate her ideas very clearly.'
             }
         };
     }

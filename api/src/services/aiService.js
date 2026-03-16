@@ -4,52 +4,99 @@ async function analyzeSpeech(transcript, topic) {
     if (!process.env.GEMINI_API_KEY) {
         throw new Error('GEMINI_API_KEY is not configured');
     }
+    if (!transcript || transcript.trim().length < 2) {
+        throw new Error('No speech detected');
+    }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const prompt = `
-        You are a World-Class English Language Coach (CELTA/DELTA certified). 
-        Analyze the following transcript from a student practicing the topic: "${topic}".
+        You are a World-Class English Language Coach (CELTA/DELTA certified, 20+ years experience).
+        A student is practicing speaking English on the topic: "${topic}".
         
-        Transcript: "${transcript}"
+        Here is the EXACT transcript from the speech recognition system:
+        "${transcript}"
         
-        Your goal is to provide deep, actionable, and pedagogical feedback.
+        IMPORTANT ANALYSIS RULES:
         
-        Rules for Analysis:
-        1. Metrics: Be honest but encouraging. 
-           - Pronunciation: Estimate based on phonetic likelyhood of transcription errors.
-           - Fluency: Look for "filler" words or short, choppy sentences.
-           - Grammar: Check for tense consistency, articles, and prepositions.
-        2. Correction: 
-           - Provide the "Natural Version": How a native speaker would actually say it.
-           - Explanation: Explain WHY. Don't just say "it's wrong". Mention the specific grammar rule (e.g., "Present Perfect vs Past Simple").
-        3. Suggested Vocab: Provide a "Power Word"—something that replaces a simple word they used (e.g., if they said "big", suggest "colossal").
+        1. GRAMMAR ANALYSIS (be extremely thorough):
+           - Check subject-verb agreement (e.g., "he go" → "he goes")
+           - Check article usage (a/an/the or missing articles)
+           - Check preposition usage (in/on/at/to/for etc.)
+           - Check tense consistency and correctness
+           - Check plural/singular agreement
+           - Check word order
+           - Check pronoun usage
+           - Check conditional structures
+           - Check gerund vs infinitive usage
+           - Check comparative/superlative forms
+           
+        2. PRONUNCIATION ESTIMATION:
+           - Analyze transcription for likely pronunciation errors based on common non-native patterns
+           - Words that recognition might have misheard suggest pronunciation issues
+           - Check for commonly mispronounced words
+           - Note: The transcript comes from speech recognition, so certain transcription oddities indicate pronunciation issues
+           
+        3. FLUENCY ANALYSIS:
+           - Check for filler words (um, uh, like, you know, basically, actually overuse)
+           - Check sentence length and complexity
+           - Check for repetitions or self-corrections
+           - Check for natural connectors and transitions
+           - Check vocabulary range and sophistication
+           
+        4. FOR EACH ERROR FOUND, provide:
+           - The exact error in their speech
+           - The correction
+           - A clear explanation of the grammar rule
+           - An example of correct usage
         
-        Provide feedback in this JSON format:
+        You MUST respond with this EXACT JSON structure (no markdown, no extra text):
         {
           "metrics": {
-            "pronunciation": <0-100>,
-            "fluency": <0-100>,
-            "grammar": <0-100>
+            "pronunciation": <0-100 score>,
+            "fluency": <0-100 score>,
+            "grammar": <0-100 score>,
+            "overall": <0-100 weighted average>
           },
           "correction": {
-            "original": "${transcript}",
-            "corrected": "<natural, polished version>",
-            "explanation": "<detailed pedagogical explanation in English>",
-            "explanation_ar": "<شرح تعليمي مفصل باللغة العربية يوضح القاعدة النحوية المستخدمة>"
+            "original": "<their exact speech>",
+            "corrected": "<the polished, natural version a native speaker would say>",
+            "explanation": "<detailed but concise English explanation of ALL grammar/pronunciation issues found>",
+            "explanation_ar": "<same explanation in Arabic>"
           },
-          "tip": "<specific strategy to improve based on this specific attempt>",
-          "tip_ar": "<نصيحة استراتيجية محددة بناءً على هذه المحاولة>",
+          "errors": [
+            {
+              "type": "grammar|pronunciation|vocabulary|fluency",
+              "original": "<the error phrase>",
+              "corrected": "<the corrected phrase>",
+              "rule": "<the specific rule name, e.g. 'Subject-Verb Agreement'>",
+              "explanation": "<why this is wrong and how to fix it>",
+              "explanation_ar": "<Arabic explanation>"
+            }
+          ],
+          "pronunciationNotes": [
+            {
+              "word": "<word with pronunciation concern>",
+              "phonetic": "<IPA or simplified phonetic guide>",
+              "tip": "<how to pronounce it correctly>",
+              "tip_ar": "<Arabic tip>"
+            }
+          ],
+          "tip": "<specific, actionable strategy to improve based on their biggest weakness>",
+          "tip_ar": "<same tip in Arabic>",
+          "strengths": ["<something they did well>"],
           "suggestedVocab": {
-            "word": "<high-level synonym>",
+            "word": "<a more sophisticated word they could use instead of a simple one they used>",
             "translation": "<Arabic translation>",
-            "cat": "<Academic/Professional>",
-            "example": "<short example sentence using the new word>"
+            "cat": "<Academic/Professional/Daily>",
+            "example": "<example sentence using this word>"
           }
         }
         
-        Only return the JSON object.
+        BE STRICT but ENCOURAGING. Find real errors. Do not fabricate errors that don't exist.
+        If the speech is very short, still provide meaningful analysis.
+        Only return the JSON object, nothing else.
     `;
 
     try {
@@ -58,10 +105,18 @@ async function analyzeSpeech(transcript, topic) {
         const text = response.text();
         
         const cleanedJson = text.replace(/```json|```/g, '').trim();
-        return JSON.parse(cleanedJson);
+        const parsed = JSON.parse(cleanedJson);
+        
+        // Ensure all required fields exist
+        parsed.metrics = parsed.metrics || { pronunciation: 50, fluency: 50, grammar: 50, overall: 50 };
+        parsed.errors = parsed.errors || [];
+        parsed.pronunciationNotes = parsed.pronunciationNotes || [];
+        parsed.strengths = parsed.strengths || [];
+        
+        return parsed;
     } catch (error) {
         console.error('Gemini Analysis Error:', error);
-        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
+        if (error.message && error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to analyze speech');
     }
 }
@@ -74,18 +129,47 @@ async function chatWithAI(message, history = []) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
+    const systemPrompt = `You are LingoWise AI — a friendly, expert English language tutor and conversation partner.
+
+YOUR CORE RESPONSIBILITIES:
+1. **Grammar Correction**: If the user writes in English, ALWAYS check their message for grammar mistakes FIRST. If you find errors:
+   - Show the corrected version
+   - Explain what was wrong using simple terms
+   - Give the grammar rule name
+   
+2. **Teaching**: Explain grammar rules, vocabulary, idioms, and pronunciation clearly with examples.
+
+3. **Conversation Practice**: Engage naturally while gently correcting errors. Don't just fix — teach WHY.
+
+4. **Bilingual Support**: If the user writes in Arabic, respond in Arabic with English examples. If in English, respond primarily in English.
+
+RESPONSE FORMAT RULES:
+- Use clear formatting with line breaks
+- Use emojis sparingly for friendliness (✅ ❌ 💡 📝)
+- Keep responses focused and under 300 words
+- Always end with an encouraging note or follow-up question
+- When correcting, use this pattern:
+  ❌ Their version
+  ✅ Correct version
+  📝 Rule: [explanation]
+
+PERSONALITY:
+- Warm, encouraging, patient
+- Celebrate small wins
+- Make learning fun
+- Never condescending`;
+
     const chat = model.startChat({
         history: history.map(h => ({
             role: h.role === 'bot' ? 'model' : 'user',
             parts: [{ text: h.text }]
         })),
         generationConfig: {
-            maxOutputTokens: 500,
+            maxOutputTokens: 800,
         },
     });
 
     try {
-        const systemPrompt = "You are LingoWise AI, a friendly and helpful language learning assistant. Help the user with English grammar, vocabulary, speaking tips, or general language learning advice. Keep responses concise and encouraging. If they speak Arabic, you can respond in a mix of English and Arabic if helpful.";
         const fullMessage = history.length === 0 ? `${systemPrompt}\n\nUser: ${message}` : message;
         
         const result = await chat.sendMessage(fullMessage);
@@ -93,7 +177,7 @@ async function chatWithAI(message, history = []) {
         return response.text();
     } catch (error) {
         console.error('Gemini Chat Error:', error);
-        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
+        if (error.message && error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to chat with Gemini');
     }
 }
@@ -136,7 +220,7 @@ async function generateQuiz(topic, content) {
         return JSON.parse(cleanedJson).quiz;
     } catch (error) {
         console.error('Gemini Quiz Error:', error);
-        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
+        if (error.message && error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to generate quiz');
     }
 }
@@ -171,7 +255,7 @@ async function extractVocab(content) {
         return JSON.parse(cleanedJson).vocab;
     } catch (error) {
         console.error('Gemini Vocab Extraction Error:', error);
-        if (error.message.includes('429')) throw new Error('API Quota Exceeded');
+        if (error.message && error.message.includes('429')) throw new Error('API Quota Exceeded');
         throw new Error('Failed to extract vocabulary');
     }
 }
