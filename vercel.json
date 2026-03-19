@@ -17,7 +17,10 @@
         },
         {
             "src": "/(.*\\.html)",
-            "dest": "/public/$1"
+            "dest": "/public/$1",
+            "headers": {
+                "X-Robots-Tag": "index, follow"
+            }
         },
         {
             "src": "/(.*\\.xml)",
@@ -36,15 +39,11 @@
             "dest": "/public/$1"
         },
         {
-            "src": "/(.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.ico|.*\\.woff|.*\\.woff2)",
+            "src": "/(.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.ico|.*\\.woff|.*\\.woff2|.*\\.webp)",
             "dest": "/public/$1"
         },
         {
             "src": "/",
-            "dest": "/public/index.html"
-        },
-        {
-            "src": "/(.*)",
             "dest": "/public/index.html"
         }
     ]

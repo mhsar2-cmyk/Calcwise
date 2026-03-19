@@ -3,8 +3,14 @@
 User-agent: *
 Allow: /
 
-# Disallow indexing of private dashboard
+# Disallow indexing of private / auth-required pages
 Disallow: /dashboard.html
+Disallow: /my-courses.html
+Disallow: /settings.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /admin.html
+Disallow: /amp.html
 
 # Sitemaps
 Sitemap: https://www.calcwises.com/sitemap.xml

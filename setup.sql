@@ -59,11 +59,16 @@ CREATE TABLE public.user_progress (
 ALTER TABLE public.courses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.lessons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_progress ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.app_config ENABLE ROW LEVEL SECURITY;
 
 -- 7. Define RLS Policies
 -- Public content
 CREATE POLICY "Public courses are viewable by everyone" ON public.courses FOR SELECT USING (true);
 CREATE POLICY "Public lessons are viewable by everyone" ON public.lessons FOR SELECT USING (true);
+CREATE POLICY "App config is viewable by everyone" ON public.app_config FOR SELECT USING (true);
+
+-- User specific content
+CREATE POLICY "Users can manage their own progress" ON public.user_progress FOR ALL USING (auth.uid() = user_id);
 
 -- Admin restrictions (Optional: You can add admin check here if you use Supabase auth roles)
 -- For now, the Node.js API handles the restricted access.
