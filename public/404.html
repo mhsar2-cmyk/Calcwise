@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found — LingoWise</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="The page you're looking for doesn't exist.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .error-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(108,92,231,0.12) 0%, transparent 70%);
+        }
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .error-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: spin 4s ease-in-out infinite;
+        }
+        @keyframes spin {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        .error-title {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .error-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 480px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+        .error-links {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+        .error-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .error-links a:hover {
+            color: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-emoji">🧭</div>
+        <div class="error-code">404</div>
+        <h1 class="error-title">Oops! Page Not Found</h1>
+        <p class="error-desc">The page you're looking for has been moved, deleted, or never existed. Let's get you back on track!</p>
+        <div class="error-actions">
+            <a href="index.html" class="btn btn-primary btn-lg">← Back to Home</a>
+            <a href="courses.html" class="btn btn-outline btn-lg">Browse Courses</a>
+        </div>
+        <div class="error-links">
+            <a href="blog.html">📝 Blog</a>
+            <a href="speaking-lab.html">🎙️ Speaking Lab</a>
+            <a href="vocabulary.html">🔤 Vocabulary</a>
+            <a href="contact.html">💬 Contact Us</a>
+        </div>
+    </div>
+</body>
+</html>

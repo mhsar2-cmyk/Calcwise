@@ -115,81 +115,37 @@ let DEFAULT_COURSE_POOL = [
                 },
                 "duration": "12:00",
                 "vocab": [
-                    {
-                        "en": "Word 1-2-1",
-                        "ar": "كلمة 1-2-1"
-                    },
-                    {
-                        "en": "Word 1-2-2",
-                        "ar": "كلمة 1-2-2"
-                    },
-                    {
-                        "en": "Word 1-2-3",
-                        "ar": "كلمة 1-2-3"
-                    },
-                    {
-                        "en": "Word 1-2-4",
-                        "ar": "كلمة 1-2-4"
-                    },
-                    {
-                        "en": "Word 1-2-5",
-                        "ar": "كلمة 1-2-5"
-                    },
-                    {
-                        "en": "Word 1-2-6",
-                        "ar": "كلمة 1-2-6"
-                    },
-                    {
-                        "en": "Word 1-2-7",
-                        "ar": "كلمة 1-2-7"
-                    },
-                    {
-                        "en": "Word 1-2-8",
-                        "ar": "كلمة 1-2-8"
-                    },
-                    {
-                        "en": "Word 1-2-9",
-                        "ar": "كلمة 1-2-9"
-                    },
-                    {
-                        "en": "Word 1-2-10",
-                        "ar": "كلمة 1-2-10"
-                    }
+                    { "en": "One", "ar": "واحد" },
+                    { "en": "Ten", "ar": "عشرة" },
+                    { "en": "Hundred", "ar": "مئة" },
+                    { "en": "Thousand", "ar": "ألف" },
+                    { "en": "First", "ar": "الأول" },
+                    { "en": "Half", "ar": "نصف" },
+                    { "en": "Double", "ar": "ضعف" },
+                    { "en": "Total", "ar": "المجموع" },
+                    { "en": "Zero", "ar": "صفر" },
+                    { "en": "Million", "ar": "مليون" }
                 ],
                 "exercises": [
                     {
                         "question": {
-                            "en": "What did you learn in lesson 2?",
-                            "ar": "ماذا تعلمت في الدرس 2؟"
+                            "en": "What is the English word for 'مئة'?",
+                            "ar": "ما هي الكلمة الإنجليزية لـ 'مئة'؟"
                         },
                         "options": {
-                            "en": [
-                                "A lot",
-                                "Nothing"
-                            ],
-                            "ar": [
-                                "الكثير",
-                                "لا شيء"
-                            ]
+                            "en": ["Ten", "Hundred", "Thousand"],
+                            "ar": ["Ten", "Hundred", "Thousand"]
                         },
-                        "answer": 0
+                        "answer": 1
                     },
                     {
                         "question": {
-                            "en": "Which of the following is correct?",
-                            "ar": "أي مما يلي صحيح؟"
+                            "en": "Complete: 'I have ___ apples' (2)",
+                            "ar": "أكمل: 'I have ___ apples' (2)"
                         },
                         "options": {
-                            "en": [
-                                "Option A",
-                                "Option B",
-                                "Option C"
-                            ],
-                            "ar": [
-                                "الخيار أ",
-                                "الخيار ب",
-                                "الخيار ج"
-                            ]
+                            "en": ["too", "two", "to"],
+                            "ar": ["too", "two", "to"]
                         },
                         "answer": 1
                     }
@@ -203,83 +159,39 @@ let DEFAULT_COURSE_POOL = [
                 },
                 "duration": "14:00",
                 "vocab": [
-                    {
-                        "en": "Word 1-3-1",
-                        "ar": "كلمة 1-3-1"
-                    },
-                    {
-                        "en": "Word 1-3-2",
-                        "ar": "كلمة 1-3-2"
-                    },
-                    {
-                        "en": "Word 1-3-3",
-                        "ar": "كلمة 1-3-3"
-                    },
-                    {
-                        "en": "Word 1-3-4",
-                        "ar": "كلمة 1-3-4"
-                    },
-                    {
-                        "en": "Word 1-3-5",
-                        "ar": "كلمة 1-3-5"
-                    },
-                    {
-                        "en": "Word 1-3-6",
-                        "ar": "كلمة 1-3-6"
-                    },
-                    {
-                        "en": "Word 1-3-7",
-                        "ar": "كلمة 1-3-7"
-                    },
-                    {
-                        "en": "Word 1-3-8",
-                        "ar": "كلمة 1-3-8"
-                    },
-                    {
-                        "en": "Word 1-3-9",
-                        "ar": "كلمة 1-3-9"
-                    },
-                    {
-                        "en": "Word 1-3-10",
-                        "ar": "كلمة 1-3-10"
-                    }
+                    { "en": "Hello", "ar": "مرحبا" },
+                    { "en": "Nice to meet you", "ar": "تشرفت بمعرفتك" },
+                    { "en": "My name is", "ar": "اسمي" },
+                    { "en": "How are you?", "ar": "كيف حالك؟" },
+                    { "en": "Good morning", "ar": "صباح الخير" },
+                    { "en": "Good evening", "ar": "مساء الخير" },
+                    { "en": "See you later", "ar": "أراك لاحقاً" },
+                    { "en": "Take care", "ar": "اعتني بنفسك" },
+                    { "en": "Welcome", "ar": "أهلاً وسهلاً" },
+                    { "en": "Have a nice day", "ar": "يوماً سعيداً" }
                 ],
                 "exercises": [
                     {
                         "question": {
-                            "en": "What did you learn in lesson 3?",
-                            "ar": "ماذا تعلمت في الدرس 3؟"
+                            "en": "Which phrase means 'كيف حالك؟'?",
+                            "ar": "أي عبارة تعني 'كيف حالك؟'؟"
                         },
                         "options": {
-                            "en": [
-                                "A lot",
-                                "Nothing"
-                            ],
-                            "ar": [
-                                "الكثير",
-                                "لا شيء"
-                            ]
+                            "en": ["My name is", "How are you?", "Good morning"],
+                            "ar": ["My name is", "How are you?", "Good morning"]
                         },
-                        "answer": 0
+                        "answer": 1
                     },
                     {
                         "question": {
-                            "en": "Which of the following is correct?",
-                            "ar": "أي مما يلي صحيح؟"
+                            "en": "What is the correct response to 'How are you?'",
+                            "ar": "ما هو الرد الصحيح على 'How are you?'"
                         },
                         "options": {
-                            "en": [
-                                "Option A",
-                                "Option B",
-                                "Option C"
-                            ],
-                            "ar": [
-                                "الخيار أ",
-                                "الخيار ب",
-                                "الخيار ج"
-                            ]
+                            "en": ["I'm fine, thanks", "My name is Ali", "See you later"],
+                            "ar": ["أنا بخير، شكراً", "اسمي علي", "أراك لاحقاً"]
                         },
-                        "answer": 1
+                        "answer": 0
                     }
                 ]
             },
@@ -291,83 +203,39 @@ let DEFAULT_COURSE_POOL = [
                 },
                 "duration": "16:00",
                 "vocab": [
-                    {
-                        "en": "Word 1-4-1",
-                        "ar": "كلمة 1-4-1"
-                    },
-                    {
-                        "en": "Word 1-4-2",
-                        "ar": "كلمة 1-4-2"
-                    },
-                    {
-                        "en": "Word 1-4-3",
-                        "ar": "كلمة 1-4-3"
-                    },
-                    {
-                        "en": "Word 1-4-4",
-                        "ar": "كلمة 1-4-4"
-                    },
-                    {
-                        "en": "Word 1-4-5",
-                        "ar": "كلمة 1-4-5"
-                    },
-                    {
-                        "en": "Word 1-4-6",
-                        "ar": "كلمة 1-4-6"
-                    },
-                    {
-                        "en": "Word 1-4-7",
-                        "ar": "كلمة 1-4-7"
-                    },
-                    {
-                        "en": "Word 1-4-8",
-                        "ar": "كلمة 1-4-8"
-                    },
-                    {
-                        "en": "Word 1-4-9",
-                        "ar": "كلمة 1-4-9"
-                    },
-                    {
-                        "en": "Word 1-4-10",
-                        "ar": "كلمة 1-4-10"
-                    }
+                    { "en": "Yesterday", "ar": "أمس" },
+                    { "en": "Tomorrow", "ar": "غداً" },
+                    { "en": "Today", "ar": "اليوم" },
+                    { "en": "Always", "ar": "دائماً" },
+                    { "en": "Never", "ar": "أبداً" },
+                    { "en": "Sometimes", "ar": "أحياناً" },
+                    { "en": "Already", "ar": "بالفعل" },
+                    { "en": "Still", "ar": "لا يزال" },
+                    { "en": "Often", "ar": "غالباً" },
+                    { "en": "Usually", "ar": "عادةً" }
                 ],
                 "exercises": [
                     {
                         "question": {
-                            "en": "What did you learn in lesson 4?",
-                            "ar": "ماذا تعلمت في الدرس 4؟"
+                            "en": "Choose the correct tense: 'She ___ to school every day.'",
+                            "ar": "اختر الزمن الصحيح: 'She ___ to school every day.'"
                         },
                         "options": {
-                            "en": [
-                                "A lot",
-                                "Nothing"
-                            ],
-                            "ar": [
-                                "الكثير",
-                                "لا شيء"
-                            ]
+                            "en": ["go", "goes", "going"],
+                            "ar": ["go", "goes", "going"]
                         },
-                        "answer": 0
+                        "answer": 1
                     },
                     {
                         "question": {
-                            "en": "Which of the following is correct?",
-                            "ar": "أي مما يلي صحيح؟"
+                            "en": "Which word means 'أمس' in English?",
+                            "ar": "ما الكلمة التي تعني 'أمس' بالإنجليزية؟"
                         },
                         "options": {
-                            "en": [
-                                "Option A",
-                                "Option B",
-                                "Option C"
-                            ],
-                            "ar": [
-                                "الخيار أ",
-                                "الخيار ب",
-                                "الخيار ج"
-                            ]
+                            "en": ["Tomorrow", "Today", "Yesterday"],
+                            "ar": ["Tomorrow", "Today", "Yesterday"]
                         },
-                        "answer": 1
+                        "answer": 2
                     }
                 ]
             },
@@ -379,81 +247,37 @@ let DEFAULT_COURSE_POOL = [
                 },
                 "duration": "18:00",
                 "vocab": [
-                    {
-                        "en": "Word 1-5-1",
-                        "ar": "كلمة 1-5-1"
-                    },
-                    {
-                        "en": "Word 1-5-2",
-                        "ar": "كلمة 1-5-2"
-                    },
-                    {
-                        "en": "Word 1-5-3",
-                        "ar": "كلمة 1-5-3"
-                    },
-                    {
-                        "en": "Word 1-5-4",
-                        "ar": "كلمة 1-5-4"
-                    },
-                    {
-                        "en": "Word 1-5-5",
-                        "ar": "كلمة 1-5-5"
-                    },
-                    {
-                        "en": "Word 1-5-6",
-                        "ar": "كلمة 1-5-6"
-                    },
-                    {
-                        "en": "Word 1-5-7",
-                        "ar": "كلمة 1-5-7"
-                    },
-                    {
-                        "en": "Word 1-5-8",
-                        "ar": "كلمة 1-5-8"
-                    },
-                    {
-                        "en": "Word 1-5-9",
-                        "ar": "كلمة 1-5-9"
-                    },
-                    {
-                        "en": "Word 1-5-10",
-                        "ar": "كلمة 1-5-10"
-                    }
+                    { "en": "Right now", "ar": "الآن" },
+                    { "en": "Every day", "ar": "كل يوم" },
+                    { "en": "At the moment", "ar": "في هذه اللحظة" },
+                    { "en": "Work", "ar": "يعمل" },
+                    { "en": "Working", "ar": "يعمل (الآن)" },
+                    { "en": "Study", "ar": "يدرس" },
+                    { "en": "Studying", "ar": "يدرس (الآن)" },
+                    { "en": "Live", "ar": "يعيش" },
+                    { "en": "Play", "ar": "يلعب" },
+                    { "en": "Listen", "ar": "يستمع" }
                 ],
                 "exercises": [
                     {
                         "question": {
-                            "en": "What did you learn in lesson 5?",
-                            "ar": "ماذا تعلمت في الدرس 5؟"
+                            "en": "'I ___ English right now.' Choose the correct form:",
+                            "ar": "'I ___ English right now.' اختر الشكل الصحيح:"
                         },
                         "options": {
-                            "en": [
-                                "A lot",
-                                "Nothing"
-                            ],
-                            "ar": [
-                                "الكثير",
-                                "لا شيء"
-                            ]
+                            "en": ["study", "am studying", "studies"],
+                            "ar": ["study", "am studying", "studies"]
                         },
-                        "answer": 0
+                        "answer": 1
                     },
                     {
                         "question": {
-                            "en": "Which of the following is correct?",
-                            "ar": "أي مما يلي صحيح؟"
+                            "en": "Which sentence uses Present Simple correctly?",
+                            "ar": "أي جملة تستخدم المضارع البسيط بشكل صحيح؟"
                         },
                         "options": {
-                            "en": [
-                                "Option A",
-                                "Option B",
-                                "Option C"
-                            ],
-                            "ar": [
-                                "الخيار أ",
-                                "الخيار ب",
-                                "الخيار ج"
-                            ]
+                            "en": ["He is plays football", "He plays football every week", "He playing football"],
+                            "ar": ["He is plays football", "He plays football every week", "He playing football"]
                         },
                         "answer": 1
                     }
@@ -467,81 +291,37 @@ let DEFAULT_COURSE_POOL = [
                 },
                 "duration": "20:00",
                 "vocab": [
-                    {
-                        "en": "Word 1-6-1",
-                        "ar": "كلمة 1-6-1"
-                    },
-                    {
-                        "en": "Word 1-6-2",
-                        "ar": "كلمة 1-6-2"
-                    },
-                    {
-                        "en": "Word 1-6-3",
-                        "ar": "كلمة 1-6-3"
-                    },
-                    {
-                        "en": "Word 1-6-4",
-                        "ar": "كلمة 1-6-4"
-                    },
-                    {
-                        "en": "Word 1-6-5",
-                        "ar": "كلمة 1-6-5"
-                    },
-                    {
-                        "en": "Word 1-6-6",
-                        "ar": "كلمة 1-6-6"
-                    },
-                    {
-                        "en": "Word 1-6-7",
-                        "ar": "كلمة 1-6-7"
-                    },
-                    {
-                        "en": "Word 1-6-8",
-                        "ar": "كلمة 1-6-8"
-                    },
-                    {
-                        "en": "Word 1-6-9",
-                        "ar": "كلمة 1-6-9"
-                    },
-                    {
-                        "en": "Word 1-6-10",
-                        "ar": "كلمة 1-6-10"
-                    }
+                    { "en": "Breakfast", "ar": "فطور" },
+                    { "en": "Lunch", "ar": "غداء" },
+                    { "en": "Dinner", "ar": "عشاء" },
+                    { "en": "Kitchen", "ar": "مطبخ" },
+                    { "en": "Bedroom", "ar": "غرفة نوم" },
+                    { "en": "Bathroom", "ar": "حمام" },
+                    { "en": "Shower", "ar": "دش" },
+                    { "en": "Clothes", "ar": "ملابس" },
+                    { "en": "Schedule", "ar": "جدول" },
+                    { "en": "Commute", "ar": "التنقل" }
                 ],
                 "exercises": [
                     {
                         "question": {
-                            "en": "What did you learn in lesson 6?",
-                            "ar": "ماذا تعلمت في الدرس 6؟"
+                            "en": "What do you call the first meal of the day?",
+                            "ar": "ماذا تسمي الوجبة الأولى في اليوم؟"
                         },
                         "options": {
-                            "en": [
-                                "A lot",
-                                "Nothing"
-                            ],
-                            "ar": [
-                                "الكثير",
-                                "لا شيء"
-                            ]
+                            "en": ["Lunch", "Dinner", "Breakfast"],
+                            "ar": ["غداء", "عشاء", "فطور"]
                         },
-                        "answer": 0
+                        "answer": 2
                     },
                     {
                         "question": {
-                            "en": "Which of the following is correct?",
-                            "ar": "أي مما يلي صحيح؟"
+                            "en": "Where do you cook food?",
+                            "ar": "أين تطبخ الطعام؟"
                         },
                         "options": {
-                            "en": [
-                                "Option A",
-                                "Option B",
-                                "Option C"
-                            ],
-                            "ar": [
-                                "الخيار أ",
-                                "الخيار ب",
-                                "الخيار ج"
-                            ]
+                            "en": ["Bedroom", "Kitchen", "Bathroom"],
+                            "ar": ["غرفة نوم", "مطبخ", "حمام"]
                         },
                         "answer": 1
                     }
@@ -3150,6 +2930,43 @@ function initScrollReveal() {
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     reveals.forEach(el => observer.observe(el));
+
+    // Animated Counters
+    const counters = document.querySelectorAll('[data-count]');
+    if (counters.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    const suffix = el.dataset.suffix || '';
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    
+                    function animateCounter(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const ease = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.round(target * ease);
+                        
+                        if (target >= 1000) {
+                            el.textContent = Math.round(current / 1000) + 'k' + suffix;
+                        } else {
+                            el.textContent = current + suffix;
+                        }
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animateCounter);
+                        }
+                    }
+                    requestAnimationFrame(animateCounter);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.3 });
+        counters.forEach(el => counterObserver.observe(el));
+    }
 }
 
 function initParticles() {
@@ -3360,9 +3177,39 @@ const translations = {
     'stats-title-2': { en: 'Global Excellence', ar: 'التميز العالمي' },
 
     'stats-desc': { en: 'Empowering learners from every corner of the world.', ar: 'تمكين المتعلمين من كل ركن في العالم.' },
+    'stat-lessons': { en: 'Video Lessons', ar: 'درس فيديو' },
     'features-title-1': { en: 'Why Choose', ar: 'لماذا تختار' },
     'features-title-2': { en: 'LingoWise', ar: 'لينغو وايز' },
     'features-desc': { en: 'Innovative tools designed to make language learning effective and fun', ar: 'أدوات مبتكرة مصممة لجعل تعلم اللغة فعالاً وممتعاً' },
+
+    // How It Works
+    'how-title-1': { en: 'How', ar: 'كيف' },
+    'how-title-2': { en: 'It Works', ar: 'يعمل' },
+    'how-desc': { en: 'Start learning in 3 simple steps', ar: 'ابدأ التعلم في 3 خطوات بسيطة' },
+    'how-step1-title': { en: 'Create Your Profile', ar: 'أنشئ ملفك الشخصي' },
+    'how-step1-desc': { en: 'Sign up free and tell us your current level. Our AI adapts to you.', ar: 'سجل مجاناً وأخبرنا بمستواك الحالي. ذكاؤنا الاصطناعي يتكيف معك.' },
+    'how-step2-title': { en: 'Choose Your Path', ar: 'اختر مسارك' },
+    'how-step2-desc': { en: 'Pick courses, practice speaking, or build vocabulary — all in one place.', ar: 'اختر الدورات، تدرب على التحدث، أو ابنِ مفرداتك — الكل في مكان واحد.' },
+    'how-step3-title': { en: 'Track & Master', ar: 'تتبع وأتقن' },
+    'how-step3-desc': { en: 'Watch your progress grow with daily goals, XP, and achievement badges.', ar: 'شاهد تقدمك ينمو مع الأهداف اليومية والنقاط وشارات الإنجاز.' },
+
+    // Testimonials
+    'testimonials-title-1': { en: 'What Our', ar: 'ماذا يقول' },
+    'testimonials-title-2': { en: 'Learners Say', ar: 'طلابنا' },
+    'testimonials-desc': { en: 'Real stories from real students', ar: 'قصص حقيقية من طلاب حقيقيين' },
+    'testimonial-1-text': { en: '"LingoWise transformed my English learning. The AI Speaking Lab gave me confidence to speak in meetings. I went from B1 to C1 in 6 months!"', ar: '"لينغو وايز غيّر تعلمي للإنجليزية. مختبر التحدث الذكي أعطاني ثقة للتحدث في الاجتماعات. انتقلت من B1 إلى C1 في 6 أشهر!"' },
+    'testimonial-1-name': { en: 'Sarah K.', ar: 'سارة ك.' },
+    'testimonial-1-role': { en: 'Software Engineer, Dubai', ar: 'مهندسة برمجيات، دبي' },
+    'testimonial-2-text': { en: '"The vocabulary bank with spaced repetition is genius. I learn 20 new words per week and actually remember them."', ar: '"بنك المفردات مع التكرار المتباعد عبقري. أتعلم 20 كلمة جديدة أسبوعياً وأتذكرها فعلاً."' },
+    'testimonial-2-name': { en: 'Ahmed M.', ar: 'أحمد م.' },
+    'testimonial-2-role': { en: 'Medical Student, Riyadh', ar: 'طالب طب، الرياض' },
+    'testimonial-3-text': { en: '"As a teacher, I recommend LingoWise to all my students. The grammar guides are clear and exercises are challenging."', ar: '"كمعلمة، أوصي بلينغو وايز لجميع طلابي. أدلة القواعد واضحة والتمارين تحدي حقيقي."' },
+    'testimonial-3-name': { en: 'Layla H.', ar: 'ليلى ه.' },
+    'testimonial-3-role': { en: 'English Teacher, Cairo', ar: 'معلمة إنجليزي، القاهرة' },
+
+    // AI Chat Tool
+    'tool-ai-chat': { en: 'AI Chat Tutor', ar: 'مدرس الذكاء الاصطناعي' },
+    'tool-ai-chat-desc': { en: 'Ask questions, get explanations, and practice with your AI language assistant.', ar: 'اطرح أسئلة، احصل على شروحات، وتدرب مع مساعدك الذكي.' },
 
     'tools-section-title-1': { en: 'Powerful', ar: 'أدوات' },
     'tools-section-title-2': { en: 'Learning Tools', ar: 'تعلم قوية' },

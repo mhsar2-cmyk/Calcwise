@@ -174,28 +174,59 @@
     </div>
   </section>
 
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>🎯 <span data-i18n="how-title-1">How</span> <span class="text-gradient" data-i18n="how-title-2">It Works</span></h2>
+        <p data-i18n="how-desc">Start learning in 3 simple steps</p>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="card feature-card" style="position:relative;">
+          <div style="position:absolute;top:12px;left:12px;width:36px;height:36px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:white;">1</div>
+          <div class="feature-icon">📝</div>
+          <h4 data-i18n="how-step1-title">Create Your Profile</h4>
+          <p data-i18n="how-step1-desc">Sign up free and tell us your current level. Our AI adapts to you.</p>
+        </div>
+        <div class="card feature-card" style="position:relative;">
+          <div style="position:absolute;top:12px;left:12px;width:36px;height:36px;background:var(--gradient-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#1a1a2e;">2</div>
+          <div class="feature-icon">📚</div>
+          <h4 data-i18n="how-step2-title">Choose Your Path</h4>
+          <p data-i18n="how-step2-desc">Pick courses, practice speaking, or build vocabulary — all in one place.</p>
+        </div>
+        <div class="card feature-card" style="position:relative;">
+          <div style="position:absolute;top:12px;left:12px;width:36px;height:36px;background:var(--gradient-teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:white;">3</div>
+          <div class="feature-icon">🏆</div>
+          <h4 data-i18n="how-step3-title">Track & Master</h4>
+          <p data-i18n="how-step3-desc">Watch your progress grow with daily goals, XP, and achievement badges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== LEARNING STATS ===== -->
-  <section class="section"
-    style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <section class="section">
     <div class="container">
       <div class="section-header reveal">
         <h2>⚡ <span data-i18n="stats-title-1">Achieve</span> <span class="text-gold" data-i18n="stats-title-2">Global Excellence</span> 🌍</h2>
-
         <p data-i18n="stats-desc">Empowering learners from every corner of the world.</p>
       </div>
-
-      <div class="grid grid-3 reveal">
+      <div class="grid grid-4 reveal">
         <div class="stat-card card text-center p-2">
-          <div class="stat-value text-gradient h1" data-i18n="stat-learners-val">50k+</div>
+          <div class="stat-value text-gradient h1" data-count="50000" data-suffix="+">0</div>
           <p class="stat-label" data-i18n="stat-learners">Active Learners</p>
         </div>
         <div class="stat-card card text-center p-2">
-          <div class="stat-value text-gradient h1" data-i18n="stat-countries-val">150+</div>
+          <div class="stat-value text-gradient h1" data-count="150" data-suffix="+">0</div>
           <p class="stat-label" data-i18n="stat-countries">Countries Represented</p>
         </div>
         <div class="stat-card card text-center p-2">
-          <div class="stat-value text-gradient h1" data-i18n="stat-satisfaction-val">98%</div>
+          <div class="stat-value text-gradient h1" data-count="98" data-suffix="%">0</div>
           <p class="stat-label" data-i18n="stat-satisfaction">Success Rate</p>
+        </div>
+        <div class="stat-card card text-center p-2">
+          <div class="stat-value text-gradient h1" data-count="500" data-suffix="+">0</div>
+          <p class="stat-label" data-i18n="stat-lessons">Video Lessons</p>
         </div>
       </div>
     </div>
@@ -308,7 +339,7 @@
     </div>
   </section>
 
-  <!-- ===== FINANCIAL TOOLS PREVIEW ===== -->
+  <!-- ===== LEARNING TOOLS ===== -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
@@ -336,7 +367,56 @@
           <p data-i18n="level-beginner-desc">Build a strong foundation with essential vocabulary and basic grammar.</p>
         </a>
 
+        <a href="dashboard.html" class="card tool-card" style="text-decoration:none;">
+          <div class="tool-icon">🤖</div>
+          <h4 data-i18n="tool-ai-chat">AI Chat Tutor</h4>
+          <p data-i18n="tool-ai-chat-desc">Ask questions, get explanations, and practice with your AI language assistant.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>💬 <span data-i18n="testimonials-title-1">What Our</span> <span class="text-gold" data-i18n="testimonials-title-2">Learners Say</span></h2>
+        <p data-i18n="testimonials-desc">Real stories from real students</p>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="card" style="padding:var(--space-2xl);">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-md);">⭐⭐⭐⭐⭐</div>
+          <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.7;margin-bottom:var(--space-lg);font-style:italic;" data-i18n="testimonial-1-text">"LingoWise transformed my English learning. The AI Speaking Lab gave me confidence to speak in meetings. I went from B1 to C1 in 6 months!"</p>
+          <div style="display:flex;align-items:center;gap:var(--space-sm);">
+            <div style="width:40px;height:40px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;">S</div>
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;" data-i18n="testimonial-1-name">Sarah K.</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);" data-i18n="testimonial-1-role">Software Engineer, Dubai</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:var(--space-2xl);">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-md);">⭐⭐⭐⭐⭐</div>
+          <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.7;margin-bottom:var(--space-lg);font-style:italic;" data-i18n="testimonial-2-text">"The vocabulary bank with spaced repetition is genius. I learn 20 new words per week and actually remember them. Much better than flashcard apps."</p>
+          <div style="display:flex;align-items:center;gap:var(--space-sm);">
+            <div style="width:40px;height:40px;background:var(--gradient-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1a1a2e;">A</div>
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;" data-i18n="testimonial-2-name">Ahmed M.</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);" data-i18n="testimonial-2-role">Medical Student, Riyadh</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:var(--space-2xl);">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-md);">⭐⭐⭐⭐⭐</div>
+          <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.7;margin-bottom:var(--space-lg);font-style:italic;" data-i18n="testimonial-3-text">"As a teacher, I recommend LingoWise to all my students. The grammar guides are clear and the exercises are actually challenging. Best platform I've seen."</p>
+          <div style="display:flex;align-items:center;gap:var(--space-sm);">
+            <div style="width:40px;height:40px;background:var(--gradient-teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;">L</div>
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;" data-i18n="testimonial-3-name">Layla H.</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);" data-i18n="testimonial-3-role">English Teacher, Cairo</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
