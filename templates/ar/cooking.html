@@ -1,0 +1,57 @@
+<div class="field-row">
+      <div class="field-group"><label for="cook-val">الكمية</label>
+        <input type="number" id="cook-val" value="1" min="0">
+      </div>
+      <div class="field-group"><label for="cook-from">من وحدة</label>
+        <select id="cook-from">
+          <optgroup label="الحجم (أمريكي)">
+            <option value="cup" selected>كوب (Cup)</option>
+            <option value="tbsp">ملعقة طعام (tbsp)</option>
+            <option value="tsp">ملعقة شاي (tsp)</option>
+            <option value="floz">أونصة سائلة (fl oz)</option>
+          </optgroup>
+          <optgroup label="الحجم (متري)">
+            <option value="ml">مليلتر (ml)</option>
+            <option value="l">لتر (L)</option>
+          </optgroup>
+          <optgroup label="الوزن">
+            <option value="oz">أونصة (oz)</option>
+            <option value="lb">رطل (lb)</option>
+            <option value="g">جرام (g)</option>
+            <option value="kg">كيلوجرام (kg)</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group"><label for="cook-to">إلى وحدة</label>
+      <select id="cook-to">
+        <optgroup label="الحجم (أمريكي)">
+          <option value="cup">كوب (Cup)</option>
+          <option value="tbsp" selected>ملعقة طعام (tbsp)</option>
+          <option value="tsp">ملعقة شاي (tsp)</option>
+          <option value="floz">أونصة سائلة (fl oz)</option>
+        </optgroup>
+        <optgroup label="الحجم (متري)">
+          <option value="ml">مليلتر (ml)</option>
+          <option value="l">لتر (L)</option>
+        </optgroup>
+        <optgroup label="الوزن">
+          <option value="oz">أونصة (oz)</option>
+          <option value="lb">رطل (lb)</option>
+          <option value="g">جرام (g)</option>
+          <option value="kg">كيلوجرام (kg)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <button class="calc-btn" data-action="calcCooking">تحويل القياس</button>
+    <div class="results" id="r-cooking">
+      <h3>الكمية المحولة</h3>
+      <div class="result-highlight"><span class="result-value" id="r-cook-val" style="direction:ltr">—</span>
+        <div class="result-label" id="r-cook-lbl">النتيجة</div>
+      </div>
+      <p class="result-note" style="margin-top:1rem;font-size:0.85rem;">ملاحظة: التحويل بين الحجم (كوب/مل) والوزن
+        (جرام/أونصة) يعتمد على كثافة المكون. هذه الحاسبة تقوم بالتحويلات الصارمة من حجم إلى حجم أو من وزن إلى وزن.</p>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

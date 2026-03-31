@@ -1,0 +1,39 @@
+<div class="field-group"><label for="sal-amount">Enter Your Salary</label>
+      <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="sal-amount"
+          value="75000" min="0"></div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="sal-period">Pay Period</label>
+        <select id="sal-period">
+          <option value="hour">Per Hour</option>
+          <option value="day">Per Day</option>
+          <option value="week">Per Week</option>
+          <option value="month">Per Month</option>
+          <option value="year" selected>Per Year</option>
+        </select>
+      </div>
+      <div class="field-group"><label for="sal-hours">Hours per Week</label><input type="number" id="sal-hours"
+          value="40" min="1"></div>
+    </div>
+    <button class="calc-btn" data-action="calcSalary">Convert</button>
+    <div class="results" id="r-salary">
+      <h3>All Pay Periods</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-sal-hour">$0</span>
+          <div class="result-label">Per Hour</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-day">$0</span>
+          <div class="result-label">Per Day</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-week">$0</span>
+          <div class="result-label">Per Week</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-month">$0</span>
+          <div class="result-label">Per Month</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-year">$0</span>
+          <div class="result-label">Per Year</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

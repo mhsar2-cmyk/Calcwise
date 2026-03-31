@@ -1,0 +1,35 @@
+<div class="field-row">
+      <div class="field-group"><label for="hr-age">العمر</label>
+        <div class="input-wrap has-suffix"><input type="number" id="hr-age" value="30" min="10" max="100"><span
+            class="input-suffix">سنة</span></div>
+      </div>
+      <div class="field-group"><label for="hr-rest">معدل نبضات القلب وقت الراحة</label>
+        <div class="input-wrap has-suffix"><input type="number" id="hr-rest" value="60" min="30" max="120"><span
+            class="input-suffix">نبضة/د</span></div>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcHeartRate">احسب المناطق</button>
+    <div class="results" id="r-heartrate">
+      <h3>مناطق التدريب (طريقة كارفونين)</h3>
+      <div class="result-highlight"><span class="result-value" id="r-hr-max">—</span>
+        <div class="result-label">الحد الأقصى لمعدل ضربات القلب</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-hr-z1" style="color:var(--blue)">—</span>
+          <div class="result-label">إحماء (50-60%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z2" style="color:var(--green)">—</span>
+          <div class="result-label">حرق الدهون (60-70%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z3" style="color:var(--yellow)">—</span>
+          <div class="result-label">هوائي (70-80%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z4" style="color:var(--orange)">—</span>
+          <div class="result-label">لاهوائي (80-90%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z5" style="color:var(--pink)">—</span>
+          <div class="result-label">الحد الأقصى (90-100%)</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

@@ -1,0 +1,50 @@
+<div class="field-group"><label for="bf-gender">الجنس</label>
+      <select id="bf-gender"
+        data-change="document.getElementById('bf-hip-group').style.display = this.value === 'female' ? 'block' : 'none'">
+        <option value="male" selected>ذكر</option>
+        <option value="female">أنثى</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="bf-weight">الوزن</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-weight" value="75"><span
+            class="input-suffix">كجم</span></div>
+      </div>
+      <div class="field-group"><label for="bf-height">الطول</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-height" value="175"><span
+            class="input-suffix">سم</span></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="bf-neck">محيط الرقبة</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-neck" value="38"><span
+            class="input-suffix">سم</span></div>
+      </div>
+      <div class="field-group"><label for="bf-waist">محيط الخصر (при السرة)</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-waist" value="85"><span
+            class="input-suffix">سم</span></div>
+      </div>
+    </div>
+    <div class="field-group" id="bf-hip-group" style="display:none;"><label for="bf-hip">محيط الأرداف (أعرض جزء)</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bf-hip" value="95"><span
+          class="input-suffix">سم</span></div>
+    </div>
+    <button class="calc-btn" data-action="calcBodyFat">احسب</button>
+    <div class="results" id="r-bodyfat">
+      <h3>النتائج المقدرة</h3>
+      <div class="result-highlight"><span class="result-value" id="r-bf-pct">—</span>
+        <div class="result-label">نسبة الدهون في الجسم</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-bf-category">—</span>
+          <div class="result-label" style="color:var(--accent2)">الفئة</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-bf-fatmass">—</span>
+          <div class="result-label">كتلة الدهون</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-bf-leanmass">—</span>
+          <div class="result-label">الكتلة اللادُهنية</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

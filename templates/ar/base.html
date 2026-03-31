@@ -1,0 +1,34 @@
+<div class="field-row">
+      <div class="field-group"><label for="base-val">القيمة</label><input type="text" id="base-val" value="255"
+          style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:1rem;color:var(--text);outline:none;direction:ltr;text-align:left;">
+      </div>
+      <div class="field-group"><label for="base-from">النظام الحالي</label>
+        <select id="base-from">
+          <option value="10" selected>عشري (10)</option>
+          <option value="2">ثنائي (2)</option>
+          <option value="8">ثماني (8)</option>
+          <option value="16">سداسي عشري (16)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcBase">تحويل القيمة</button>
+    <div class="results" id="r-base">
+      <h3>القيم المحولة</h3>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-base-dec" style="direction:ltr">—</span>
+          <div class="result-label">عشري (10)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-base-bin"
+            style="direction:ltr;word-break:break-all">—</span>
+          <div class="result-label">ثنائي (2)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-base-oct" style="direction:ltr">—</span>
+          <div class="result-label">ثماني (8)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-base-hex"
+            style="direction:ltr;text-transform:uppercase">—</span>
+          <div class="result-label">سداسي عشري (16)</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

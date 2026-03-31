@@ -1,0 +1,35 @@
+<div class="field-row">
+      <div class="field-group"><label for="wat-weight">Weight</label>
+        <div class="input-wrap has-suffix"><input type="number" id="wat-weight" value="165" min="0"><span
+            class="input-suffix" id="wat-weight-unit">lbs</span></div>
+      </div>
+      <div class="field-group"><label for="wat-unit">Unit</label>
+        <select id="wat-unit" data-change="document.getElementById('wat-weight-unit').textContent = this.value;">
+          <option value="lbs" selected>Pounds (lbs)</option>
+          <option value="kg">Kilograms (kg)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-group"><label for="wat-activity">Activity Level</label>
+      <select id="wat-activity">
+        <option value="1">Sedentary</option>
+        <option value="1.2" selected>Moderate</option>
+        <option value="1.4">Very Active</option>
+      </select>
+    </div>
+    <button class="calc-btn" data-action="calcWater">Calculate</button>
+    <div class="results" id="r-water">
+      <h3>Daily Water Intake</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-wat-oz">0 oz</span>
+          <div class="result-label">Fluid Ounces</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-wat-cups">0</span>
+          <div class="result-label">Cups</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-wat-liters">0 L</span>
+          <div class="result-label">Liters</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

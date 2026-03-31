@@ -1,0 +1,37 @@
+<div class="field-row">
+      <div class="field-group"><label for="l-amount">مبلغ القرض</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="l-amount"
+            value="15000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="l-rate">معدل الفائدة السنوي</label>
+        <div class="input-wrap has-suffix"><input type="number" id="l-rate" value="8.5" step="0.1" min="0"><span
+            class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="l-term">مدة القرض</label>
+      <select id="l-term">
+        <option value="12">سنة واحدة</option>
+        <option value="24">سنتان</option>
+        <option value="36">٣ سنوات</option>
+        <option value="48">٤ سنوات</option>
+        <option value="60" selected>٥ سنوات</option>
+        <option value="72">٦ سنوات</option>
+        <option value="84">٧ سنوات</option>
+      </select>
+    </div>
+    <button class="calc-btn" data-action="calcLoan">احسب</button>
+    <div class="results" id="r-loan">
+      <h3>النتائج</h3>
+      <div class="result-highlight"><span class="result-value" id="r-l-monthly">0</span>
+        <div class="result-label">الدفعة الشهرية</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-l-total">0</span>
+          <div class="result-label">إجمالي المسدَّد</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-l-interest">0</span>
+          <div class="result-label">إجمالي الفوائد</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

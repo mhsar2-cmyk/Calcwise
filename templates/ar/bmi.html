@@ -1,0 +1,100 @@
+<div class="field-row">
+  <div class="field-group"><label for="bmi-unit">نظام القياس</label>
+    <select id="bmi-unit" data-change="updateBmiFields()">
+      <option value="imperial">إمبراطوري (رطل، قدم/بوصة)</option>
+      <option value="metric" selected>متري (كجم، سم)</option>
+    </select>
+  </div>
+  <div class="field-group"><label for="bmi-gender">الجنس</label>
+    <select id="bmi-gender">
+      <option value="male">ذكر</option>
+      <option value="female">أنثى</option>
+    </select>
+  </div>
+</div>
+<div class="field-row">
+  <div class="field-group"><label for="bmi-age">العمر</label>
+    <div class="input-wrap has-suffix"><input type="number" id="bmi-age" value="30" min="2" max="120"><span
+        class="input-suffix">سنة</span></div>
+  </div>
+</div>
+<div id="bmi-imperial-fields" style="display:none">
+  <div class="field-row">
+    <div class="field-group"><label for="bmi-lbs">الوزن</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bmi-lbs" value="165" min="0"><span
+          class="input-suffix">رطل</span></div>
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field-group"><label for="bmi-ft">الطول (قدم)</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bmi-ft" value="5" min="0" max="8"><span
+          class="input-suffix">قدم</span></div>
+    </div>
+    <div class="field-group"><label for="bmi-in">الطول (بوصة)</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bmi-in" value="8" min="0" max="11"><span
+          class="input-suffix">بوصة</span></div>
+    </div>
+  </div>
+</div>
+<div id="bmi-metric-fields">
+  <div class="field-row">
+    <div class="field-group"><label for="bmi-kg">الوزن</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bmi-kg" value="75" min="0" step="0.1"><span
+          class="input-suffix">كجم</span></div>
+    </div>
+    <div class="field-group"><label for="bmi-cm">الطول</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bmi-cm" value="173" min="0"><span
+          class="input-suffix">سم</span></div>
+    </div>
+  </div>
+</div>
+<div class="field-group" style="margin-top:0.5rem;">
+  <label for="bmi-waist">محيط الخصر <span style="color:var(--muted);font-weight:400;">(اختياري — نسبة الخصر إلى
+      الطول)</span></label>
+  <div class="input-wrap has-suffix"><input type="number" id="bmi-waist" value="" min="0" placeholder="اختياري"><span
+      class="input-suffix" id="bmi-waist-unit">سم</span></div>
+</div>
+<button class="calc-btn" data-action="calcBMI">احسب مؤشر كتلة الجسم</button>
+<div class="results" id="r-bmi">
+  <h3>النتائج</h3>
+  <div class="result-highlight">
+    <span class="result-value" id="r-bmi-val">0</span>
+    <div class="result-label">مؤشر كتلة الجسم</div>
+    <div id="r-bmi-cat"
+      style="margin-top:0.5rem;font-weight:800;font-size:1.1rem;font-family:'IBM Plex Sans Arabic',sans-serif;">
+    </div>
+  </div>
+  <div id="r-bmi-gauge"
+    style="margin:1rem 0;position:relative;height:28px;border-radius:99px;overflow:hidden;background:linear-gradient(90deg,#3B82F6 0%,#10B981 25%,#22d3a0 40%,#F59E0B 60%,#EF4444 80%,#DC2626 100%);">
+    <div id="r-bmi-needle"
+      style="position:absolute;top:-2px;width:4px;height:32px;background:white;border-radius:2px;box-shadow:0 0 6px rgba(0,0,0,0.5);transition:left 0.6s cubic-bezier(0.34,1.56,0.64,1);">
+    </div>
+    <div
+      style="position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-size:0.6rem;color:rgba(255,255,255,0.9);font-weight:700;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,0.3);">
+      <span>نحافة</span><span>طبيعي</span><span>زيادة</span><span>سمنة</span>
+    </div>
+  </div>
+  <div class="result-grid">
+    <div class="result-item"><span class="result-value" id="r-bmi-prime">0</span>
+      <div class="result-label">مؤشر الأولية BMI</div>
+    </div>
+    <div class="result-item"><span class="result-value" id="r-bmi-low">0</span>
+      <div class="result-label" id="r-bmi-low-lbl">الحد الأدنى الصحي</div>
+    </div>
+    <div class="result-item"><span class="result-value" id="r-bmi-high">0</span>
+      <div class="result-label" id="r-bmi-high-lbl">الحد الأقصى الصحي</div>
+    </div>
+  </div>
+  <div id="r-bmi-whr"
+    style="display:none;margin-top:1rem;padding:0.75rem 1rem;background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:12px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:0.85rem;color:var(--muted2);">نسبة الخصر إلى الطول</span>
+      <span id="r-bmi-whr-val" style="font-weight:700;font-size:1.1rem;"></span>
+    </div>
+    <div id="r-bmi-whr-note" style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;"></div>
+  </div>
+  <div id="r-bmi-cat-desc" style="margin-top:0.75rem;font-size:0.85rem;color:var(--muted2);line-height:1.6;"></div>
+  <p class="result-note">مؤشر كتلة الجسم أداة فحص وليس تشخيصاً طبياً. نسبة الخصر إلى الطول تُعد مؤشراً أقوى للمخاطر
+    الصحية — حافظ عليها أقل من 0.5.</p>
+</div>
+<div class="modal-ad">إعلان · 728×90</div>

@@ -1,0 +1,43 @@
+<div class="field-row">
+      <div class="field-group"><label for="tz-time">Time</label>
+        <input type="time" id="tz-time" value="12:00">
+      </div>
+      <div class="field-group"><label for="tz-from">From Zone</label>
+        <select id="tz-from">
+          <option value="-8">Pacific Time (PT) UTC-8</option>
+          <option value="-5">Eastern Time (ET) UTC-5</option>
+          <option value="0" selected>London (GMT) UTC+0</option>
+          <option value="1">Paris/Berlin (CET) UTC+1</option>
+          <option value="3">Riyadh/Moscow (AST/MSK) UTC+3</option>
+          <option value="4">Dubai (GST) UTC+4</option>
+          <option value="5.5">India (IST) UTC+5:30</option>
+          <option value="8">Beijing/Singapore (CST/SGT) UTC+8</option>
+          <option value="9">Tokyo (JST) UTC+9</option>
+          <option value="11">Sydney (AEDT) UTC+11</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group"><label for="tz-to">To Zone</label>
+      <select id="tz-to">
+        <option value="-8">Pacific Time (PT) UTC-8</option>
+        <option value="-5" selected>Eastern Time (ET) UTC-5</option>
+        <option value="0">London (GMT) UTC+0</option>
+        <option value="1">Paris/Berlin (CET) UTC+1</option>
+        <option value="3">Riyadh/Moscow (AST/MSK) UTC+3</option>
+        <option value="4">Dubai (GST) UTC+4</option>
+        <option value="5.5">India (IST) UTC+5:30</option>
+        <option value="8">Beijing/Singapore (CST/SGT) UTC+8</option>
+        <option value="9">Tokyo (JST) UTC+9</option>
+        <option value="11">Sydney (AEDT) UTC+11</option>
+      </select>
+    </div>
+
+    <button class="calc-btn" data-action="calcTimezone">Convert Time</button>
+    <div class="results" id="r-timezone">
+      <h3>Converted Time</h3>
+      <div class="result-highlight"><span class="result-value" id="r-tz-val">—</span>
+        <div class="result-label" id="r-tz-diff">Time Difference</div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

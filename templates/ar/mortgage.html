@@ -1,0 +1,44 @@
+<div class="field-row">
+      <div class="field-group"><label for="m-price">سعر المنزل</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="m-price"
+            value="350000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="m-down">الدفعة المقدمة</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="m-down"
+            value="70000" min="0"></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="m-rate">معدل الفائدة</label>
+        <div class="input-wrap has-suffix"><input type="number" id="m-rate" value="6.8" step="0.1" min="0"><span
+            class="input-suffix">%</span></div>
+      </div>
+      <div class="field-group"><label for="m-term">مدة القرض</label><select id="m-term">
+          <option value="30">٣٠ سنة</option>
+          <option value="20">٢٠ سنة</option>
+          <option value="15">١٥ سنة</option>
+          <option value="10">١٠ سنوات</option>
+        </select></div>
+    </div>
+    <button class="calc-btn" data-action="calcMortgage">احسب الدفعة</button>
+    <div class="results" id="r-mortgage">
+      <h3>النتائج</h3>
+      <div class="result-highlight"><span class="result-value" id="r-m-monthly">0</span>
+        <div class="result-label">الدفعة الشهرية</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-m-total">0</span>
+          <div class="result-label">إجمالي المدفوعات</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-m-interest">0</span>
+          <div class="result-label">إجمالي الفوائد</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-m-loan">0</span>
+          <div class="result-label">مبلغ القرض</div>
+        </div>
+      </div>
+      <div class="result-bar" id="r-m-bar"></div>
+      <p class="result-note">هذا التقدير يشمل أصل الدين والفوائد فقط. أضف ضريبة الملكية (~١.٢٪) وتأمين المالك وPMI إذا
+        كانت الدفعة المقدمة أقل من ٢٠٪.</p>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

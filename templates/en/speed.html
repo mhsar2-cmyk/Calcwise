@@ -1,0 +1,52 @@
+<div class="field-group"><label for="spd-solve">I want to calculate:</label>
+      <select id="spd-solve" data-change="updateSpeedFields()">
+        <option value="speed" selected>Speed</option>
+        <option value="distance">Distance</option>
+        <option value="time">Time</option>
+      </select>
+    </div>
+
+    <div class="field-row" id="spd-inputs">
+      <!-- These fields will be toggled dynamically -->
+      <div class="field-group" id="spd-dist-field"><label for="spd-dist">Distance</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="spd-dist" value="100" min="0">
+          <select id="spd-dist-unit" class="input-suffix standalone"
+            style="width:70px; border:none; background:transparent;">
+            <option value="km" selected>km</option>
+            <option value="mi">mi</option>
+            <option value="m">m</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group" id="spd-time-field"><label for="spd-h">Time</label>
+        <div style="display:flex; gap:0.5rem;">
+          <div class="input-wrap has-suffix" style="flex:1;"><input type="number" id="spd-h" value="1" min="0"
+              placeholder="0"><span class="input-suffix">hr</span></div>
+          <div class="input-wrap has-suffix" style="flex:1;"><input type="number" id="spd-m" value="30" min="0" max="59"
+              placeholder="0"><span class="input-suffix">m</span></div>
+        </div>
+      </div>
+
+      <div class="field-group" id="spd-speed-field" style="display:none;"><label for="spd-speed">Speed</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="spd-speed" value="60" min="0">
+          <select id="spd-speed-unit" class="input-suffix standalone"
+            style="width:85px; border:none; background:transparent;">
+            <option value="kph" selected>km/h</option>
+            <option value="mph">mph</option>
+            <option value="mps">m/s</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" data-action="calcSpeed">Calculate</button>
+    <div class="results" id="r-speed">
+      <h3>Result</h3>
+      <div class="result-highlight"><span class="result-value" id="r-spd-val">—</span>
+        <div class="result-label" id="r-spd-lbl">Speed</div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

@@ -1,0 +1,27 @@
+<div id="gpa-courses">
+      <div style="display:grid;grid-template-columns:1fr 110px 80px;gap:0.5rem;margin-bottom:0.5rem;">
+        <div style="font-size:0.78rem;color:var(--muted);font-family:'IBM Plex Sans Arabic',sans-serif;">المادة</div>
+        <div style="font-size:0.78rem;color:var(--muted);font-family:'IBM Plex Sans Arabic',sans-serif;">الدرجة</div>
+        <div style="font-size:0.78rem;color:var(--muted);font-family:'IBM Plex Sans Arabic',sans-serif;">الساعات</div>
+      </div>
+      <div id="gpa-rows"></div>
+    </div>
+    <button data-action="addGpaRow"
+      style="background:none;border:1px dashed var(--border2);border-radius:8px;padding:0.5rem 1rem;color:var(--muted2);cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:0.88rem;width:100%;margin-bottom:1rem;">+
+      إضافة مادة</button>
+    <button class="calc-btn" data-action="calcGPA">احسب المعدل</button>
+    <div class="results" id="r-gpa">
+      <h3>النتائج</h3>
+      <div class="result-highlight"><span class="result-value" id="r-gpa-val">0.00</span>
+        <div class="result-label">المعدل التراكمي (مقياس 4.0)</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-gpa-credits">0</span>
+          <div class="result-label">إجمالي الساعات</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-gpa-letter">—</span>
+          <div class="result-label">التقدير الحرفي</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

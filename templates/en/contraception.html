@@ -1,0 +1,233 @@
+<style>
+    .contraception-wrap {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .calc-form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .calc-form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+        color: var(--text);
+    }
+
+    .calc-form-group input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--text);
+        background: var(--bg);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .calc-form-group input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+    }
+
+    .calc-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .calc-btn:hover {
+        opacity: 0.9;
+    }
+
+    .calc-btn:active {
+        transform: scale(0.98);
+    }
+
+    .result-box {
+        display: none;
+        margin-top: 2rem;
+        animation: slideUp 0.3s ease;
+    }
+
+    .result-box.show {
+        display: block;
+    }
+
+    .result-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .result-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .result-card-full {
+        grid-column: 1 / -1;
+    }
+
+    .result-val {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text);
+        font-family: "Instrument Serif", serif;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    .result-lbl {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .timeline-container {
+        position: relative;
+        padding: 2rem 0;
+        margin-top: 2rem;
+    }
+
+    .timeline-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--border);
+        transform: translateY(-50%);
+        border-radius: 2px;
+    }
+
+    .timeline-segment {
+        position: absolute;
+        top: 50%;
+        height: 4px;
+        transform: translateY(-50%);
+    }
+
+    .timeline-segment.fertile {
+        background: var(--pink);
+        box-shadow: 0 0 8px var(--pink);
+    }
+
+    .timeline-segment.safe {
+        background: var(--green);
+    }
+
+    .timeline-marker {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 3px solid var(--accent);
+        z-index: 2;
+    }
+
+    .timeline-marker.ovulation {
+        border-color: var(--pink);
+        background: var(--pink);
+        width: 16px;
+        height: 16px;
+    }
+
+    .timeline-marker.period {
+        border-color: #EF4444;
+        background: #EF4444;
+    }
+
+    .timeline-label {
+        position: absolute;
+        top: calc(50% + 15px);
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        color: var(--muted2);
+        white-space: nowrap;
+        font-weight: 500;
+    }
+
+    .timeline-label.top {
+        top: auto;
+        bottom: calc(50% + 15px);
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="contraception-wrap">
+    <div class="calc-form-group">
+        <label for="contra-date">First Day of Last Period</label>
+        <input type="date" id="contra-date" required>
+    </div>
+
+    <div class="calc-form-group">
+        <label for="contra-cycle">Average Cycle Length (Days)</label>
+        <input type="number" id="contra-cycle" value="28" min="20" max="45" step="1">
+        <div style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">Typically 28 days for most women.</div>
+    </div>
+
+    <button class="calc-btn" onclick="calcContraception()">Calculate Safe Days</button>
+
+    <div class="result-box" id="r-contra">
+        <div class="result-grid">
+            <div class="result-card result-card-full"
+                style="background: rgba(236, 72, 153, 0.05); border-color: rgba(236, 72, 153, 0.2);">
+                <span class="result-val" id="r-contra-fertile" style="color: var(--pink);">—</span>
+                <span class="result-lbl">Fertile Window (High Risk)</span>
+            </div>
+
+            <div class="result-card">
+                <span class="result-val" id="r-contra-ovulation">—</span>
+                <span class="result-lbl">Ovulation Day</span>
+            </div>
+
+            <div class="result-card">
+                <span class="result-val" id="r-contra-next">—</span>
+                <span class="result-lbl">Next Period</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Safe Days</h4>
+            <p style="color: var(--green); font-weight: 500;" id="r-contra-safe">—</p>
+            <p style="font-size: 0.85rem; color: var(--muted2); margin-top: 1rem; line-height: 1.5;">
+                <strong>Note:</strong> The calendar method is not 100% reliable for preventing pregnancy, as cycle
+                lengths and ovulation can vary. Sperm can live inside the body for up to 5 days.
+            </p>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="typing-container" dir="rtl">
+    <div class="typing-toolbar"
+        style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 1rem;">
+        <div class="layout-toggle">
+            <span style="font-size: 0.9rem; color: var(--muted2); margin-left: 0.5rem;">تخطيط المفاتيح:</span>
+            <select id="keyboard-layout" class="calc-input"
+                style="width: auto; padding: 0.3rem 1rem; font-size: 0.85rem; display: inline-block;">
+                <option value="pc">ويندوز (PC)</option>
+                <option value="mac">ماك (Mac)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-box">
+            <div class="label">الأخطاء</div>
+            <div class="value" id="errors">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="label">الدقة</div>
+            <div class="value" id="accuracy">100%</div>
+        </div>
+        <div class="stat-box">
+            <div class="label">كلمة/دقيقة (WPM)</div>
+            <div class="value" id="wpm">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="label">الوقت المنقضي</div>
+            <div class="value" id="time-left">00:00</div>
+        </div>
+    </div>
+
+    <div style="position: relative; width: 100%;">
+        <div class="text-display" id="text-display"
+            style="text-align: right; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+            <!-- Text spans will be injected here -->
+        </div>
+
+        <input type="text" class="typing-input" id="typing-input" placeholder="ابدأ الكتابة هنا..." autocomplete="off"
+            autocorrect="off" spellcheck="false" dir="rtl"
+            style="text-align: right; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+    </div>
+
+    <div class="controls">
+        <button class="calc-btn" id="restart-btn">إعادة الاختبار</button>
+    </div>
+
+    <div class="virtual-keyboard" id="keyboard">
+        <div class="keyboard-row" dir="ltr"> <!-- Ensure keys order is Left to Right visually -->
+            <div class="key" data-code="Backquote">ذ</div>
+            <div class="key" data-code="Digit1">١</div>
+            <div class="key" data-code="Digit2">٢</div>
+            <div class="key" data-code="Digit3">٣</div>
+            <div class="key" data-code="Digit4">٤</div>
+            <div class="key" data-code="Digit5">٥</div>
+            <div class="key" data-code="Digit6">٦</div>
+            <div class="key" data-code="Digit7">٧</div>
+            <div class="key" data-code="Digit8">٨</div>
+            <div class="key" data-code="Digit9">٩</div>
+            <div class="key" data-code="Digit0">٠</div>
+            <div class="key" data-code="Minus">-</div>
+            <div class="key" data-code="Equal">=</div>
+            <div class="key special backspace" data-code="Backspace">←</div>
+        </div>
+        <div class="keyboard-row" dir="ltr">
+            <div class="key special tab" data-code="Tab">Tab</div>
+            <div class="key" data-code="KeyQ">ض</div>
+            <div class="key" data-code="KeyW">ص</div>
+            <div class="key" data-code="KeyE">ث</div>
+            <div class="key" data-code="KeyR">ق</div>
+            <div class="key" data-code="KeyT">ف</div>
+            <div class="key" data-code="KeyY">غ</div>
+            <div class="key" data-code="KeyU">ع</div>
+            <div class="key" data-code="KeyI">ه</div>
+            <div class="key" data-code="KeyO">خ</div>
+            <div class="key" data-code="KeyP">ح</div>
+            <div class="key" data-code="BracketLeft">ج</div>
+            <div class="key" data-code="BracketRight">د</div>
+        </div>
+        <div class="keyboard-row" dir="ltr">
+            <div class="key special capslock" data-code="CapsLock">Caps</div>
+            <div class="key" data-code="KeyA">ش</div>
+            <div class="key" data-code="KeyS">س</div>
+            <div class="key" data-code="KeyD">ي</div>
+            <div class="key" data-code="KeyF">ب</div>
+            <div class="key" data-code="KeyG">ل</div>
+            <div class="key" data-code="KeyH">ا</div>
+            <div class="key" data-code="KeyJ">ت</div>
+            <div class="key" data-code="KeyK">ن</div>
+            <div class="key" data-code="KeyL">م</div>
+            <div class="key" data-code="Semicolon">ك</div>
+            <div class="key" data-code="Quote">ط</div>
+            <div class="key" data-code="Backslash">\</div>
+            <div class="key special enter" data-code="Enter">Enter</div>
+        </div>
+        <div class="keyboard-row" dir="ltr">
+            <div class="key special shift" data-code="ShiftLeft">Shift</div>
+            <div class="key" id="key-intl" data-code="IntlBackslash" style="display: none;">ذ</div>
+            <div class="key" data-code="KeyZ">ئ</div>
+            <div class="key" data-code="KeyX">ء</div>
+            <div class="key" data-code="KeyC">ؤ</div>
+            <div class="key" data-code="KeyV">ر</div>
+            <div class="key" data-code="KeyB">لا</div>
+            <div class="key" data-code="KeyN">ى</div>
+            <div class="key" data-code="KeyM">ة</div>
+            <div class="key" data-code="Comma">و</div>
+            <div class="key" data-code="Period">ز</div>
+            <div class="key" data-code="Slash">ظ</div>
+            <div class="key special shift" data-code="ShiftRight">Shift</div>
+        </div>
+        <div class="keyboard-row" dir="ltr">
+            <div class="key special space" data-code="Space"></div>
+        </div>
+    </div>
+
+    <div id="result-summary" class="results hidden" style="margin-top: 0">
+        <h3>تم الاختبار!</h3>
+        <div class="result-highlight"><span class="result-value" id="final-wpm">0</span>
+            <div class="result-label">السرعة النهائية (WPM)</div>
+        </div>
+        <div class="result-grid">
+            <div class="result-item"><span class="result-value" id="final-acc">0%</span>
+                <div class="result-label">الدقة</div>
+            </div>
+            <div class="result-item"><span class="result-value" id="final-err">0</span>
+                <div class="result-label">الأخطاء</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-ad" style="margin-top: 1.5rem">إعلان · 728×90</div>

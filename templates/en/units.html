@@ -1,0 +1,21 @@
+<div class="field-group"><label for="unit-cat">Category</label>
+      <select id="unit-cat" data-change="updateUnitOptions()">
+        <option value="length">Length</option>
+        <option value="weight">Weight / Mass</option>
+        <option value="temp">Temperature</option>
+        <option value="volume">Volume</option>
+        <option value="speed">Speed</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="unit-from">From</label><select id="unit-from"></select></div>
+      <div class="field-group"><label for="unit-to">To</label><select id="unit-to"></select></div>
+    </div>
+    <div class="field-group"><label for="unit-val">Value</label><input type="number" id="unit-val" value="1"
+        data-input="calcUnits()"></div>
+    <div class="results show" id="r-units">
+      <div class="result-highlight"><span class="result-value" id="r-unit-result">0</span>
+        <div class="result-label" id="r-unit-label">Result</div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

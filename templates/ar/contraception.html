@@ -1,0 +1,163 @@
+<style>
+    .contraception-wrap-ar {
+        max-width: 500px;
+        margin: 0 auto;
+        direction: rtl;
+    }
+
+    .calc-form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .calc-form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+        color: var(--text);
+    }
+
+    .calc-form-group input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--text);
+        background: var(--bg);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .calc-form-group input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+    }
+
+    .calc-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .calc-btn:hover {
+        opacity: 0.9;
+    }
+
+    .calc-btn:active {
+        transform: scale(0.98);
+    }
+
+    .result-box {
+        display: none;
+        margin-top: 2rem;
+        animation: slideUp 0.3s ease;
+    }
+
+    .result-box.show {
+        display: block;
+    }
+
+    .result-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .result-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .result-card-full {
+        grid-column: 1 / -1;
+    }
+
+    .result-val {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text);
+        font-family: "IBM Plex Sans Arabic", sans-serif;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    .result-lbl {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 600;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="contraception-wrap-ar">
+    <div class="calc-form-group">
+        <label for="contra-date">أول يوم لآخر دورة شهرية</label>
+        <input type="date" id="contra-date" required>
+    </div>
+
+    <div class="calc-form-group">
+        <label for="contra-cycle">متوسط طول الدورة (أيام)</label>
+        <input type="number" id="contra-cycle" value="28" min="20" max="45" step="1">
+        <div style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem; text-align:right;">عادة ما تكون 28 يوماً
+            لمعظم النساء.</div>
+    </div>
+
+    <button class="calc-btn" onclick="calcContraception()">حساب الأيام الآمنة</button>
+
+    <div class="result-box" id="r-contra">
+        <div class="result-grid">
+            <div class="result-card result-card-full"
+                style="background: rgba(236, 72, 153, 0.05); border-color: rgba(236, 72, 153, 0.2);">
+                <span class="result-val" id="r-contra-fertile" style="color: var(--pink);">—</span>
+                <span class="result-lbl">فترة الخصوبة (مخاطرة عالية)</span>
+            </div>
+
+            <div class="result-card">
+                <span class="result-val" id="r-contra-ovulation">—</span>
+                <span class="result-lbl">يوم التبويض</span>
+            </div>
+
+            <div class="result-card">
+                <span class="result-val" id="r-contra-next">—</span>
+                <span class="result-lbl">الدورة القادمة المتوقعة</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family:'IBM Plex Sans Arabic',sans-serif;">الأيام
+                الآمنة</h4>
+            <p style="color: var(--green); font-weight: 600; font-size: 1.1rem; font-family:'IBM Plex Sans Arabic',sans-serif;"
+                id="r-contra-safe">—</p>
+            <p style="font-size: 0.85rem; color: var(--muted2); margin-top: 1rem; line-height: 1.6;">
+                <strong>ملاحظة:</strong> طريقة التقويم ليست موثوقة بنسبة ١٠٠٪ لمنع الحمل، حيث قد يختلف طول الدورة ووقت
+                التبويض من شهر لآخر. ويمكن للحيوانات المنوية أن تعيش داخل الجسم لمدة تصل إلى ٥ أيام.
+            </p>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="field-row">
+      <div class="field-group"><label for="inf-amount">المبلغ الحالي</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="inf-amount"
+            value="1000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="inf-rate">معدل التضخم المتوقع</label>
+        <div class="input-wrap has-suffix"><input type="number" id="inf-rate" value="3.0" step="0.1"><span
+            class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="inf-years">السنوات</label>
+      <div class="input-wrap has-suffix"><input type="number" id="inf-years" value="10" min="1" max="100"><span
+          class="input-suffix">سنة</span></div>
+    </div>
+    <button class="calc-btn" data-action="calcInflation">احسب</button>
+    <div class="results" id="r-inflation">
+      <h3>نتائج القوة الشرائية</h3>
+      <div class="result-highlight"><span class="result-value" id="r-inf-value">—</span>
+        <div class="result-label">القيمة المستقبلية المعادلة</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem">
+        <div class="result-item"><span class="result-value" id="r-inf-cumulative">—</span>
+          <div class="result-label">التضخم التراكمي</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-inf-lost">—</span>
+          <div class="result-label">فقدان القوة الشرائية</div>
+        </div>
+      </div>
+      <p class="result-note" style="margin-top:1rem">لشراء ما تشتريه <span id="r-inf-amount-note">1,000</span> ر.س
+        اليوم، ستحتاج إلى <strong id="r-inf-future-need" style="color:var(--accent2)">—</strong> في عام <span
+          id="r-inf-future-year"></span>.</p>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

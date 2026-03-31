@@ -1,0 +1,32 @@
+<div class="field-row">
+      <div class="field-group"><label for="stax-price">Price</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="stax-price"
+            value="100" step="0.01" min="0"></div>
+      </div>
+      <div class="field-group"><label for="stax-rate">Tax Rate</label>
+        <div class="input-wrap has-suffix"><input type="number" id="stax-rate" value="8.5" step="0.1" min="0"><span
+            class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="stax-mode">Mode</label>
+      <select id="stax-mode">
+        <option value="add">Add tax to price</option>
+        <option value="remove">Remove tax from price (reverse)</option>
+      </select>
+    </div>
+    <button class="calc-btn" data-action="calcTax">Calculate</button>
+    <div class="results" id="r-tax">
+      <h3>Results</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-tax-pre">$0</span>
+          <div class="result-label">Pre-Tax Price</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-tax-amount">$0</span>
+          <div class="result-label">Tax Amount</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-tax-total">$0</span>
+          <div class="result-label">Total Price</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

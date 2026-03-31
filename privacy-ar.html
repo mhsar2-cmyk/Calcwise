@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سياسة الخصوصية – كالك وايز</title>
+  <meta name="description"
+    content="سياسة الخصوصية لموقع كالك وايز. تعرّف على كيفية تعاملنا مع بياناتك عند استخدام الآلات الحاسبة المجانية.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Amiri:ital@0;1&display=swap"
+    rel="stylesheet">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-JXGRCF9TPP');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5388783007820121"
+    crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #07071a;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface2: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.09);
+      --border2: rgba(108, 99, 255, 0.45);
+      --text: #e8e8f0;
+      --muted: #7070a0;
+      --muted2: #9090b8;
+      --accent: #6c63ff;
+      --accent2: #8b84ff;
+      --accent3: #b3aeff;
+      --green: #22d3a0;
+      --orange: #ff8c42;
+      --pink: #ff6b9d;
+      --blue: #4da6ff;
+      --yellow: #ffd166;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.6);
+      --glow: 0 0 60px rgba(108, 99, 255, 0.25);
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.09);
+      --glass-blur: blur(20px) saturate(160%);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      transition: background 0.3s ease, color 0.3s ease;
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.9;
+      min-height: 100vh;
+      direction: rtl;
+      text-align: right;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 700px 500px at 85% 10%, rgba(108, 99, 255, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 400px at 15% 5%, rgba(77, 166, 255, 0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 400px at 50% 95%, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.4rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .lang-switcher {
+      margin-right: auto;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.9rem;
+      color: var(--muted2);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .lang-btn:hover {
+      border-color: var(--border2);
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .nav-back {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      color: var(--muted2);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .nav-back:hover {
+      border-color: var(--border2);
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(108, 99, 255, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border2);
+      background: var(--surface);
+      padding: 0.35rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--muted2);
+      margin-bottom: 1.5rem;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .page-hero h1 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      letter-spacing: 0;
+    }
+
+    .page-hero h1 em {
+      font-style: italic;
+      color: var(--accent2);
+    }
+
+    .page-hero p {
+      color: var(--muted2);
+      font-size: 1rem;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .updated-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(34, 211, 160, 0.1);
+      border: 1px solid rgba(34, 211, 160, 0.3);
+      border-radius: 100px;
+      padding: 0.3rem 1rem;
+      font-size: 0.82rem;
+      color: var(--green);
+      margin-top: 1rem;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .content-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ── TABLE OF CONTENTS ── */
+    .toc {
+      position: sticky;
+      top: 80px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+
+    .toc h3 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-family: 'Cairo', sans-serif;
+      letter-spacing: 0;
+    }
+
+    .toc ul {
+      list-style: none;
+    }
+
+    .toc ul li {
+      margin-bottom: 0.1rem;
+    }
+
+    .toc ul a {
+      color: var(--muted2);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      display: block;
+      transition: all 0.2s;
+      font-family: 'Cairo', sans-serif;
+      text-align: right;
+    }
+
+    .toc ul a:hover {
+      color: var(--text);
+      background: var(--surface2);
+    }
+
+    /* ── POLICY CONTENT ── */
+    .policy {
+      min-width: 0;
+    }
+
+    .policy-section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .policy-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-number {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-family: 'Cairo', sans-serif;
+      display: inline-block;
+      background: rgba(108, 99, 255, 0.1);
+      padding: 0.2rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    .policy-section h2 {
+      font-family: 'Amiri', serif;
+      font-size: 1.7rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .policy-section p {
+      color: var(--muted2);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      line-height: 2;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-section strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-right: 3px solid var(--accent);
+      border-left: none;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted2);
+    }
+
+    .highlight-box strong {
+      color: var(--accent2);
+    }
+
+    /* ── GREEN BOX ── */
+    .green-box {
+      background: rgba(34, 211, 160, 0.06);
+      border: 1px solid rgba(34, 211, 160, 0.2);
+      border-right: 3px solid var(--green);
+      border-left: none;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .green-box p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted2);
+    }
+
+    .green-box strong {
+      color: var(--green);
+    }
+
+    /* ── LIST ── */
+    .policy-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .policy-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.92rem;
+      color: var(--muted2);
+      align-items: flex-start;
+      font-family: 'Cairo', sans-serif;
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    .policy-list li:last-child {
+      border-bottom: none;
+    }
+
+    .policy-list li::before {
+      content: '←';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+      direction: rtl;
+    }
+
+    .data-table th {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.75rem 1rem;
+      text-align: right;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border2);
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .data-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--muted2);
+      vertical-align: top;
+      text-align: right;
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.8;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: var(--surface);
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(108, 99, 255, 0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-direction: row-reverse;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--surface2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .contact-card p {
+      font-size: 0.85rem;
+      color: var(--muted2);
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.8;
+    }
+
+    .contact-card a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--muted2);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    footer p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: 'Cairo', sans-serif;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .content-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        display: none;
+      }
+
+      .nav-inner {
+        gap: 0.5rem;
+      }
+    }
+  </style>
+
+  <!-- THEME SCRIPT -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('cw-theme');
+      if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="theme.min.css" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+  <nav>
+    <div class="nav-inner">
+      <a href="index-ar.html" class="logo" dir="ltr">Calc<span>Wise</span></a>
+      <div class="lang-switcher">
+        <a href="privacy.html" class="lang-btn">EN</a>
+        <a href="privacy-ar.html" class="lang-btn active">عربي</a>
+      </div>
+      <a href="index.html" class="nav-back">→ العودة إلى الآلات الحاسبة</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-badge">📄 وثيقة قانونية</div>
+    <h1>سياسة <em>الخصوصية</em></h1>
+    <p>كيف يتعامل موقع كالك وايز مع معلوماتك — بلغة بسيطة وواضحة.</p>
+    <div class="updated-badge">✓ آخر تحديث: ٢٨ فبراير ٢٠٢٦</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+
+    <!-- POLICY FIRST (RTL: content on right side visually) -->
+    <div class="policy">
+
+      <!-- 1. نظرة عامة -->
+      <div class="policy-section" id="overview">
+        <div class="section-number">القسم الأول</div>
+        <h2>نظرة عامة</h2>
+        <div class="green-box">
+          <p><strong>الملخص المختصر:</strong> لا يقوم موقع كالك وايز بجمع بياناتك الشخصية أو تخزينها أو بيعها. تتم جميع
+            العمليات الحسابية مباشرةً داخل متصفحك. نحن لا نرى أرقامك أو مدخلاتك أو نتائجك أبداً.</p>
+        </div>
+        <p>تصف سياسة الخصوصية هذه كيفية تعامل موقع كالك وايز ("نحن" أو "لنا") مع المعلومات عند زيارتك لموقع
+          <strong>calcwises.com</strong> ("الموقع"). نحن ملتزمون بحماية خصوصيتك والشفافية الكاملة حول ممارساتنا المتعلقة
+          بالبيانات.</p>
+        <p>باستخدامك لموقع كالك وايز، فإنك توافق على الشروط الموضحة في سياسة الخصوصية هذه. إذا كنت لا توافق على ذلك،
+          يُرجى التوقف عن استخدام الموقع.</p>
+      </div>
+
+      <!-- 2. المعلومات التي نجمعها -->
+      <div class="policy-section" id="information">
+        <div class="section-number">القسم الثاني</div>
+        <h2>المعلومات التي نجمعها</h2>
+        <p>موقع كالك وايز هو تطبيق ويب يعمل على جانب العميل. وهذا يعني أن جميع العمليات الحسابية تُعالَج محلياً في
+          متصفحك — ولا تُرسَل مدخلاتك أبداً إلى خوادمنا.</p>
+
+        <p><strong>المعلومات التي لا نجمعها إطلاقاً:</strong></p>
+        <ul class="policy-list">
+          <li>مدخلات الآلة الحاسبة أو نتائجها (لا تغادر جهازك أبداً)</li>
+          <li>المعلومات الشخصية كالاسم أو البريد الإلكتروني أو العنوان</li>
+          <li>البيانات المالية أو الصحية أو أي بيانات حسابية</li>
+          <li>بيانات اعتماد الحساب (لا يوجد لدينا نظام حسابات أو تسجيل دخول)</li>
+          <li>معلومات الدفع</li>
+        </ul>
+
+        <p><strong>المعلومات التي قد تُجمَع تلقائياً:</strong></p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>نوع البيانات</th>
+              <th>ما هي</th>
+              <th>سبب الجمع</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>عنوان IP</strong></td>
+              <td>عنوان اتصالك بالإنترنت</td>
+              <td>سجلات الخادم القياسية والحماية من الاحتيال</td>
+            </tr>
+            <tr>
+              <td><strong>نوع المتصفح</strong></td>
+              <td>مثل: Chrome أو Safari أو Firefox</td>
+              <td>التحليلات وتحسين الموقع</td>
+            </tr>
+            <tr>
+              <td><strong>الصفحات المزارة</strong></td>
+              <td>الصفحات التي تعرضها على كالك وايز</td>
+              <td>فهم أكثر الآلات الحاسبة شعبية</td>
+            </tr>
+            <tr>
+              <td><strong>عنوان URL المُحيل</strong></td>
+              <td>الموقع الذي جئت منه</td>
+              <td>فهم مصادر الزيارات</td>
+            </tr>
+            <tr>
+              <td><strong>نوع الجهاز</strong></td>
+              <td>جوال أو تابلت أو كمبيوتر مكتبي</td>
+              <td>تحسين تجربة الجوال</td>
+            </tr>
+            <tr>
+              <td><strong>الدولة / المنطقة</strong></td>
+              <td>الموقع الجغرافي التقريبي</td>
+              <td>التوطين والتحليلات</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>تُجمَع هذه البيانات التقنية تلقائياً بواسطة خوادم الويب وأدوات التحليل. ولا تُعرّف بهويتك الشخصية.</p>
+      </div>
+
+      <!-- 3. كيف نستخدم المعلومات -->
+      <div class="policy-section" id="how-we-use">
+        <div class="section-number">القسم الثالث</div>
+        <h2>كيف نستخدم المعلومات</h2>
+        <p>تُستخدم البيانات التقنية المحدودة التي نجمعها فقط للأغراض التالية:</p>
+        <ul class="policy-list">
+          <li>تشغيل موقع كالك وايز وصيانته</li>
+          <li>فهم أي الآلات الحاسبة الأكثر فائدة للزوار</li>
+          <li>تحسين أداء الموقع وسرعته وتجربة المستخدم</li>
+          <li>اكتشاف حركة المرور الاحتيالية أو التعسفية ومنعها</li>
+          <li>الامتثال للالتزامات القانونية</li>
+          <li>قياس فعالية إعلاناتنا (عبر Google AdSense)</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>نحن لا نبيع بياناتك أبداً.</strong> لا نبيع أو نتداول أو نؤجر أو ننقل بأي شكل آخر أي معلومات عن
+            زوارنا إلى أطراف ثالثة لأغراضهم التسويقية.</p>
+        </div>
+      </div>
+
+      <!-- 4. ملفات تعريف الارتباط -->
+      <div class="policy-section" id="cookies">
+        <div class="section-number">القسم الرابع</div>
+        <h2>ملفات تعريف الارتباط (Cookies)</h2>
+        <p>ملفات تعريف الارتباط هي ملفات نصية صغيرة يخزنها متصفحك على جهازك. يستخدم كالك وايز هذه الملفات بالطرق
+          التالية:</p>
+
+        <p><strong>ملفات تعريف الارتباط الأساسية</strong> — مطلوبة لكي يعمل الموقع. لا يمكن تعطيلها.</p>
+        <p><strong>ملفات تعريف الارتباط التحليلية</strong> — تستخدم Google Analytics هذه الملفات لمساعدتنا على فهم كيفية
+          استخدام الزوار للموقع. البيانات المجمعة مجمّعة ومجهولة الهوية.</p>
+        <p><strong>ملفات تعريف الارتباط الإعلانية</strong> — يستخدم Google AdSense هذه الملفات لتقديم إعلانات ذات صلة.
+          قد تتتبع هذه الملفات سلوك تصفحك عبر مواقع الويب لعرض إعلانات مخصصة.</p>
+
+        <p>يمكنك التحكم في ملفات تعريف الارتباط من خلال إعدادات متصفحك. تتيح معظم المتصفحات رفض هذه الملفات أو حذف
+          الملفات الموجودة. لاحظ أن تعطيلها قد يؤثر على وظائف الموقع.</p>
+
+        <p>لإلغاء الاشتراك في ملفات تعريف الارتباط الإعلانية من Google، تفضل بزيارة
+          <strong>google.com/settings/ads</strong> أو قم بتثبيت إضافة إلغاء الاشتراك في Google Analytics للمتصفح.</p>
+      </div>
+
+      <!-- 5. الإعلانات -->
+      <div class="policy-section" id="advertising">
+        <div class="section-number">القسم الخامس</div>
+        <h2>الإعلانات</h2>
+        <p>يستخدم كالك وايز <strong>Google AdSense</strong> لعرض الإعلانات. هذه هي الطريقة التي نُبقي بها الموقع مجانياً
+          للجميع.</p>
+        <p>قد يستخدم Google AdSense ملفات تعريف الارتباط وإشارات الويب لجمع بيانات حول زياراتك لهذا الموقع وغيره من
+          المواقع بهدف تقديم إعلانات ذات صلة. تشمل أنواع البيانات التي قد تجمعها Google ما يلي:</p>
+        <ul class="policy-list">
+          <li>الصفحات والمواقع التي زرتها</li>
+          <li>موقعك الجغرافي التقريبي</li>
+          <li>نوع متصفحك ومعلومات جهازك</li>
+          <li>التفاعل مع الإعلانات (النقرات والمشاهدات)</li>
+        </ul>
+        <p>يمكّن استخدام Google لملفات تعريف الارتباط الإعلانية لها ولشركائها من تقديم إعلانات بناءً على زيارتك لكالك
+          وايز وغيره من المواقع. يمكنك إلغاء الاشتراك في الإعلانات المخصصة على <strong>aboutads.info</strong>.</p>
+        <div class="highlight-box">
+          <p>لا يملك كالك وايز أي وصول إلى أو سيطرة على ملفات تعريف الارتباط التي يضعها Google AdSense. تحكم سياسة
+            خصوصية Google ممارساتهم المتعلقة بالبيانات: <strong>policies.google.com/privacy</strong></p>
+        </div>
+      </div>
+
+      <!-- 6. خدمات الطرف الثالث -->
+      <div class="policy-section" id="third-party">
+        <div class="section-number">القسم السادس</div>
+        <h2>خدمات الطرف الثالث</h2>
+        <p>يستخدم كالك وايز خدمات الطرف الثالث التالية. لكل منها سياسة خصوصية خاصة بها تحكم جمع بياناتها:</p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>الخدمة</th>
+              <th>الغرض</th>
+              <th>سياسة الخصوصية</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google Analytics</strong></td>
+              <td>تحليلات حركة مرور الموقع</td>
+              <td>policies.google.com/privacy</td>
+            </tr>
+            <tr>
+              <td><strong>Google AdSense</strong></td>
+              <td>عرض الإعلانات</td>
+              <td>policies.google.com/privacy</td>
+            </tr>
+            <tr>
+              <td><strong>Google Fonts</strong></td>
+              <td>الخطوط (Cairo, Amiri)</td>
+              <td>policies.google.com/privacy</td>
+            </tr>
+            <tr>
+              <td><strong>Vercel</strong></td>
+              <td>استضافة الموقع وتسليمه</td>
+              <td>vercel.com/legal/privacy-policy</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>لسنا مسؤولين عن ممارسات الخصوصية لخدمات الطرف الثالث هذه. نشجعك على مراجعة سياسات الخصوصية الخاصة بها.</p>
+      </div>
+
+      <!-- 7. خصوصية الأطفال -->
+      <div class="policy-section" id="children">
+        <div class="section-number">القسم السابع</div>
+        <h2>خصوصية الأطفال</h2>
+        <p>موقع كالك وايز مخصص للجماهير العامة ولا يجمع عن قصد معلومات شخصية من الأطفال دون سن الثالثة عشرة (أو دون سن
+          السادسة عشرة في الاتحاد الأوروبي).</p>
+        <p>بما أننا لا نجمع معلومات شخصية من أي مستخدمين، فنحن لا نجمعها عن قصد من الأطفال أيضاً. آلاتنا الحاسبة هي
+          أدوات تعليمية مناسبة لجميع الأعمار.</p>
+        <p>إذا كنت والداً أو وصياً وتعتقد أن طفلك قد زودنا بمعلومات شخصية، يُرجى التواصل معنا على الفور وسنتخذ خطوات
+          لإزالة تلك المعلومات.</p>
+      </div>
+
+      <!-- 8. حقوقك -->
+      <div class="policy-section" id="your-rights">
+        <div class="section-number">القسم الثامن</div>
+        <h2>حقوقك</h2>
+        <p>اعتماداً على موقعك، قد يكون لديك الحقوق التالية فيما يتعلق ببياناتك:</p>
+        <ul class="policy-list">
+          <li><strong>حق الوصول</strong> — طلب نسخة من أي بيانات شخصية نحتفظ بها عنك</li>
+          <li><strong>حق الحذف</strong> — طلب حذف بياناتك الشخصية</li>
+          <li><strong>حق التصحيح</strong> — طلب تصحيح البيانات غير الدقيقة</li>
+          <li><strong>حق الاعتراض</strong> — الاعتراض على معالجة بياناتك لأغراض معينة</li>
+          <li><strong>حق إمكانية النقل</strong> — طلب بياناتك بصيغة قابلة للنقل</li>
+          <li><strong>حق إلغاء الاشتراك</strong> — إلغاء الاشتراك في الإعلانات المخصصة في أي وقت</li>
+        </ul>
+        <p>نظراً لأن كالك وايز لا يجمع بيانات شخصية تتجاوز سجلات الخادم القياسية، فعادةً لا توجد بيانات شخصية للوصول
+          إليها أو حذفها أو تصحيحها. لممارسة أي من هذه الحقوق أو للاستفسار، تواصل معنا باستخدام المعلومات الواردة في
+          القسم الحادي عشر.</p>
+        <div class="green-box">
+          <p><strong>سكان المملكة العربية السعودية ودول الخليج:</strong> نلتزم بنظام حماية البيانات الشخصية المعمول به
+            في المملكة العربية السعودية. لا نبيع بياناتك الشخصية، ويحق لك الاطلاع على ما تم جمعه وطلب حذفه في أي وقت.
+          </p>
+        </div>
+        <p><strong>سكان الاتحاد الأوروبي (اللائحة العامة لحماية البيانات GDPR):</strong> أساسنا القانوني لمعالجة
+          البيانات التقنية هو مصلحتنا المشروعة في تشغيل الموقع وتحسينه. يمكنك التواصل معنا لممارسة حقوقك وفق اللائحة في
+          أي وقت.</p>
+      </div>
+
+      <!-- 9. أمان البيانات -->
+      <div class="policy-section" id="data-security">
+        <div class="section-number">القسم التاسع</div>
+        <h2>أمان البيانات</h2>
+        <p>نتخذ تدابير معقولة لحماية أي معلومات مرتبطة باستخدامك لكالك وايز:</p>
+        <ul class="policy-list">
+          <li>تُشفَّر جميع حركة المرور عبر HTTPS / SSL (القفل في متصفحك)</li>
+          <li>تُعالَج مدخلات الآلة الحاسبة بالكامل في متصفحك ولا تُرسَل أبداً</li>
+          <li>لا نخزن البيانات المالية أو الصحية أو بيانات الحساب الشخصية على أي خادم</li>
+          <li>يحافظ مزود الاستضافة لدينا (Vercel) على ممارسات أمنية بمعايير الصناعة</li>
+        </ul>
+        <p>على الرغم من تطبيقنا لهذه الضمانات، لا توجد طريقة نقل عبر الإنترنت آمنة بنسبة ١٠٠٪. لا يمكننا ضمان الأمان
+          المطلق للمعلومات المرسلة إلى موقعنا أو منه.</p>
+      </div>
+
+      <!-- 10. التغييرات على هذه السياسة -->
+      <div class="policy-section" id="changes">
+        <div class="section-number">القسم العاشر</div>
+        <h2>التغييرات على هذه السياسة</h2>
+        <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر لتعكس التغييرات في ممارساتنا أو التكنولوجيا أو المتطلبات
+          القانونية أو عوامل أخرى.</p>
+        <p>عند إجراء التغييرات، سنقوم بتحديث تاريخ <strong>"آخر تحديث"</strong> في أعلى هذه الصفحة. نشجعك على مراجعة هذه
+          الصفحة بشكل دوري للاطلاع على كيفية حماية معلوماتك.</p>
+        <p>استمرارك في استخدام كالك وايز بعد أي تغييرات يُشكّل قبولاً منك لسياسة الخصوصية المحدّثة.</p>
+      </div>
+
+      <!-- 11. تواصل معنا -->
+      <div class="policy-section" id="contact">
+        <div class="section-number">القسم الحادي عشر</div>
+        <h2>تواصل معنا</h2>
+        <p>إذا كانت لديك أي أسئلة أو مخاوف أو طلبات بشأن سياسة الخصوصية هذه أو ممارساتنا المتعلقة بالبيانات، يُرجى
+          التواصل معنا:</p>
+        <div class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>فريق خصوصية كالك وايز</h4>
+            <p>الموقع: <a href="https://calcwises.com">calcwises.com</a><br>
+              البريد الإلكتروني: <a href="mailto:privacy@calcwises.com">privacy@calcwises.com</a><br>
+              نهدف إلى الرد على جميع الاستفسارات خلال ٥ أيام عمل.</p>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem;">كُتبت سياسة الخصوصية هذه لتكون واضحة ومفهومة. إذا كان هناك أي شيء غير واضح، يُرجى
+          التواصل معنا وسنشرحه بلغة بسيطة.</p>
+      </div>
+
+    </div>
+
+    <!-- TABLE OF CONTENTS (RIGHT SIDE in RTL) -->
+    <aside class="toc">
+      <h3>محتويات الصفحة</h3>
+      <ul>
+        <li><a href="#overview">١. نظرة عامة</a></li>
+        <li><a href="#information">٢. المعلومات التي نجمعها</a></li>
+        <li><a href="#how-we-use">٣. كيف نستخدم المعلومات</a></li>
+        <li><a href="#cookies">٤. ملفات تعريف الارتباط</a></li>
+        <li><a href="#advertising">٥. الإعلانات</a></li>
+        <li><a href="#third-party">٦. خدمات الطرف الثالث</a></li>
+        <li><a href="#children">٧. خصوصية الأطفال</a></li>
+        <li><a href="#your-rights">٨. حقوقك</a></li>
+        <li><a href="#data-security">٩. أمان البيانات</a></li>
+        <li><a href="#changes">١٠. التغييرات على السياسة</a></li>
+        <li><a href="#contact">١١. تواصل معنا</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="privacy-ar.html">سياسة الخصوصية</a>
+      <a href="terms.html">شروط الاستخدام</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <p>© ٢٠٢٦ كالك وايز · calcwises.com · جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    // ── LIGHT/DARK MODE TOGGLE ──
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cw-theme', next);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = next === 'light' ? '☀️' : '🌙';
+    };
+    // Initialize toggle icon
+    setTimeout(() => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const current = document.documentElement.getAttribute('data-theme');
+        btn.textContent = current === 'light' ? '☀️' : '🌙';
+      }
+    }, 100);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<div class="field-row">
+      <div class="field-group"><label for="iw-gender">Gender</label>
+        <select id="iw-gender">
+          <option value="male" selected>Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="field-group"><label for="iw-frame">Body Frame Size</label>
+        <select id="iw-frame">
+          <option value="small">Small (subtract 10%)</option>
+          <option value="medium" selected>Medium (standard)</option>
+          <option value="large">Large (add 10%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="iw-height">Height (cm)</label>
+        <div class="input-wrap has-suffix"><input type="number" id="iw-height" value="175" min="100" max="250"><span
+            class="input-suffix">cm</span></div>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcIdealWeight">Calculate Ideal Weight</button>
+    <div class="results" id="r-idealweight">
+      <h3>Healthy Weight Estimates</h3>
+      <div class="result-highlight"><span class="result-value" id="r-iw-primary">—</span>
+        <div class="result-label">Recommended Range</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-iw-robinson">—</span>
+          <div class="result-label">Robinson Formula</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-iw-miller">—</span>
+          <div class="result-label">Miller Formula</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-iw-devine">—</span>
+          <div class="result-label">Devine Formula</div>
+        </div>
+      </div>
+      <p class="result-note" style="margin-top:1rem;">These are estimates based on standard clinical formulas. Muscle
+        mass is not accounted for.</p>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

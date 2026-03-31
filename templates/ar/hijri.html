@@ -1,0 +1,112 @@
+<div class="hijri-container">
+
+    <!-- Direction Toggle -->
+    <div class="hijri-dir-wrap">
+        <button class="hijri-dir-btn active" id="hd-g2h" onclick="setHijriDirection('g2h')">
+            📅 ميلادي → هجري
+        </button>
+        <button class="hijri-dir-btn" id="hd-h2g" onclick="setHijriDirection('h2g')">
+            🌙 هجري → ميلادي
+        </button>
+    </div>
+
+    <!-- Input Panel: Gregorian → Hijri -->
+    <div id="hijri-panel-g2h">
+        <div class="field-row">
+            <div class="field-group">
+                <label for="hg-day">اليوم</label>
+                <select id="hg-day"></select>
+            </div>
+            <div class="field-group">
+                <label for="hg-month">الشهر</label>
+                <select id="hg-month">
+                    <option value="1">يناير</option>
+                    <option value="2">فبراير</option>
+                    <option value="3">مارس</option>
+                    <option value="4">أبريل</option>
+                    <option value="5">مايو</option>
+                    <option value="6">يونيو</option>
+                    <option value="7">يوليو</option>
+                    <option value="8">أغسطس</option>
+                    <option value="9">سبتمبر</option>
+                    <option value="10">أكتوبر</option>
+                    <option value="11">نوفمبر</option>
+                    <option value="12">ديسمبر</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label for="hg-year">السنة</label>
+                <input type="number" id="hg-year" min="1900" max="2100" placeholder="مثال: 2026">
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Panel: Hijri → Gregorian -->
+    <div id="hijri-panel-h2g" style="display:none">
+        <div class="field-row">
+            <div class="field-group">
+                <label for="hh-day">اليوم</label>
+                <select id="hh-day"></select>
+            </div>
+            <div class="field-group">
+                <label for="hh-month">الشهر الهجري</label>
+                <select id="hh-month">
+                    <option value="1">محرم</option>
+                    <option value="2">صفر</option>
+                    <option value="3">ربيع الأول</option>
+                    <option value="4">ربيع الثاني</option>
+                    <option value="5">جمادى الأولى</option>
+                    <option value="6">جمادى الآخرة</option>
+                    <option value="7">رجب</option>
+                    <option value="8">شعبان</option>
+                    <option value="9">رمضان</option>
+                    <option value="10">شوال</option>
+                    <option value="11">ذو القعدة</option>
+                    <option value="12">ذو الحجة</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label for="hh-year">السنة (هـ)</label>
+                <input type="number" id="hh-year" min="1200" max="1600" placeholder="مثال: 1447">
+            </div>
+        </div>
+    </div>
+
+    <button class="calc-btn" data-action="convertHijri">تحويل التاريخ</button>
+
+    <!-- Result Card -->
+    <div class="hijri-result-card" id="hijri-result" style="display:none">
+        <div class="hijri-result-label" id="hijri-result-label">التاريخ الهجري</div>
+        <div class="hijri-result-date" id="hijri-result-main"></div>
+        <div class="hijri-result-sub" id="hijri-result-sub"></div>
+    </div>
+
+    <!-- Dual Calendar -->
+    <div class="hijri-calendars" id="hijri-calendars" style="display:none">
+        <div class="hijri-cal-wrap">
+            <div class="hijri-cal-title" id="hijri-greg-title"></div>
+            <div class="hijri-cal-header">
+                <span>أح</span><span>اث</span><span>ثل</span><span>أر</span>
+                <span>خم</span><span>جم</span><span>سب</span>
+            </div>
+            <div class="hijri-cal-grid" id="hijri-greg-grid"></div>
+        </div>
+        <div class="hijri-cal-divider">↔</div>
+        <div class="hijri-cal-wrap">
+            <div class="hijri-cal-title" id="hijri-hijr-title"></div>
+            <div class="hijri-cal-header">
+                <span>أح</span><span>اث</span><span>ثل</span><span>أر</span>
+                <span>خم</span><span>جم</span><span>سب</span>
+            </div>
+            <div class="hijri-cal-grid" id="hijri-hijr-grid"></div>
+        </div>
+    </div>
+
+    <!-- Historical Events -->
+    <div class="hijri-events-wrap" id="hijri-events-wrap" style="display:none">
+        <div class="hijri-events-title">📜 أحداث تاريخية في هذا اليوم</div>
+        <div class="hijri-events-list" id="hijri-events-list"></div>
+    </div>
+
+</div>
+<div class="modal-ad">إعلان · 728×90</div>

@@ -1,0 +1,51 @@
+<div class="field-group"><label for="geo-shape">الشكل الهندسي</label>
+      <select id="geo-shape" data-change="updateGeoFields()">
+        <option value="circle" selected>دائرة</option>
+        <option value="rectangle">مستطيل</option>
+        <option value="triangle">مثلث</option>
+      </select>
+    </div>
+
+    <!-- Circle Fields -->
+    <div id="geo-circle-fields">
+      <div class="field-row">
+        <div class="field-group"><label for="geo-r">نصف القطر (نق)</label><input type="number" id="geo-r" value="5"
+            min="0"></div>
+      </div>
+    </div>
+
+    <!-- Rectangle Fields -->
+    <div id="geo-rect-fields" style="display:none;">
+      <div class="field-row">
+        <div class="field-group"><label for="geo-l">الطول</label><input type="number" id="geo-l" value="10" min="0">
+        </div>
+        <div class="field-group"><label for="geo-w">العرض</label><input type="number" id="geo-w" value="5" min="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- Triangle Fields -->
+    <div id="geo-tri-fields" style="display:none;">
+      <div class="field-row">
+        <div class="field-group"><label for="geo-b">القاعدة</label><input type="number" id="geo-b" value="6" min="0">
+        </div>
+        <div class="field-group"><label for="geo-h">الارتفاع</label><input type="number" id="geo-h" value="4" min="0">
+        </div>
+      </div>
+      <p class="result-note" style="margin-top:-0.5rem; margin-bottom:1rem;">حساب المحيط يفترض أن المثلث متساوي الساقين
+        بناءً على الارتفاع والقاعدة.</p>
+    </div>
+
+    <button class="calc-btn" data-action="calcGeometry">احسب</button>
+    <div class="results" id="r-geometry">
+      <h3>النتائج الهندسية</h3>
+      <div class="result-highlight"><span class="result-value" id="r-geo-area" style="direction:ltr">—</span>
+        <div class="result-label">المساحة</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-geo-perim" style="direction:ltr">—</span>
+          <div class="result-label" id="r-geo-perim-lbl">المحيط</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

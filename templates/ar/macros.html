@@ -1,0 +1,28 @@
+<div class="field-row">
+      <div class="field-group"><label for="mac-cal">السعرات اليومية</label><input type="number" id="mac-cal"
+          value="2200" min="0"></div>
+      <div class="field-group"><label for="mac-goal">الهدف</label>
+        <select id="mac-goal">
+          <option value="cut">تخفيف (بروتين عالٍ)</option>
+          <option value="maintain" selected>محافظه (متوازن)</option>
+          <option value="bulk">بناء عضلي (كربوهيدرات أعلى)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcMacros">احسب الماكرو</button>
+    <div class="results" id="r-macros">
+      <h3>النتائج</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-mac-protein" style="color:var(--pink)">0g</span>
+          <div class="result-label">بروتين</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-mac-carbs" style="color:var(--yellow)">0g</span>
+          <div class="result-label">كربوهيدرات</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-mac-fat" style="color:var(--orange)">0g</span>
+          <div class="result-label">دهون</div>
+        </div>
+      </div>
+      <div class="result-bar" id="r-mac-bar"></div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

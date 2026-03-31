@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcWise Blog – Calculator Tips, Guides & Financial Advice</title>
+    <meta name="description"
+        content="Learn how to calculate your mortgage, track your BMI, manage your budget, and more. Free guides and tips from CalcWise.">
+    <link rel="canonical" href="https://calcwises.com/blog.html">
+    <link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html">
+    <link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-JXGRCF9TPP');
+    </script>
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="theme.min.css" />
+
+    <style>
+        :root {
+            --blog-bg: #050510;
+            --accent-gradient: linear-gradient(135deg, #6c63ff, #3f37c9);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--blog-bg);
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* Hero Redesign */
+        .blog-hero {
+            position: relative;
+            padding: 12rem 2rem 10rem;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(108, 99, 255, 0.1), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(63, 55, 201, 0.1), transparent 40%),
+                linear-gradient(135deg, #050510 0%, #0a0a1f 100%);
+            margin-bottom: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            border-bottom: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .blog-hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            color: #ffffff !important;
+        }
+
+        .blog-hero h1 em {
+            font-style: normal;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Navbar adjustment for Blog */
+        .navbar {
+            padding: 1.5rem 2rem;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+
+        /* Categories Bar */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            overflow-x: auto;
+            padding: 0.5rem;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .cat-chip {
+            padding: 0.7rem 1.8rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+        }
+
+        .cat-chip:hover,
+        .cat-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+        }
+
+        /* Container */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Featured Article */
+        .featured-section {
+            margin-bottom: 6rem;
+            position: relative;
+            min-height: 480px;
+        }
+
+        .featured-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 40px;
+        }
+
+        .featured-card {
+            display: none;
+            grid-template-columns: 1fr;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: slideIn 0.8s ease forwards;
+        }
+
+        .featured-card.active {
+            display: block;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            transform: translateY(-50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent2);
+            transform: scale(1.1);
+        }
+
+        .dot-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--glass-border);
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dot.active {
+            width: 32px;
+            background: var(--accent-gradient);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: rgba(108, 99, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-image {
+            display: none;
+        }
+
+        .featured-content {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-content .tag {
+            align-self: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .featured-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            color: #fff !important;
+        }
+
+        .featured-content p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 3rem;
+        }
+
+        .article-card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .article-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(108, 99, 255, 0.3);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-card h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            line-height: 1.3;
+            font-weight: 700;
+            color: #ffffff !important;
+        }
+
+        .article-card p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: rgba(108, 99, 255, 0.12);
+            color: #9d94ff;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .tag.finance {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffca28;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .tag.health {
+            background: rgba(46, 213, 115, 0.1);
+            color: #2ed573;
+            border: 1px solid rgba(46, 213, 115, 0.2);
+        }
+
+        .tag.math {
+            background: rgba(14, 211, 255, 0.1);
+            color: #0ed3ff;
+            border: 1px solid rgba(14, 211, 255, 0.2);
+        }
+
+        .tag.lifestyle {
+            background: rgba(255, 94, 251, 0.1);
+            color: #ff5efb;
+            border: 1px solid rgba(255, 94, 251, 0.2);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+        }
+
+
+        footer {
+            padding: 6rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1rem;
+        }
+
+        footer .links {
+            margin-bottom: 2rem;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            transition: 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+                border-radius: 32px;
+            }
+
+            .featured-image {
+                min-height: 280px;
+            }
+
+            .featured-content {
+                padding: 2.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-box {
+                border-radius: 32px;
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-hero {
+                padding-top: 8rem;
+                min-height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .category-nav {
+                justify-content: flex-start;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Calc<span>Wise</span></a>
+        <div class="nav-links">
+            <a href="index.html">Calculators</a>
+            <a href="about.html">About</a>
+            <a href="blog.html" style="color:var(--accent2); font-weight:800;">Blog</a>
+            <a href="blog-ar.html">العربية</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="blog-hero">
+        <div class="hero-content">
+            <h1>CalcWise <em>Insights</em></h1>
+            <p>Master your finances, health, and productivity with expert-crafted guides and actionable math-driven
+                advice.</p>
+        </div>
+    </header>
+
+    <div class="blog-container">
+
+        <!-- CATEGORIES -->
+        <div class="category-nav">
+            <a href="#" class="cat-chip active" data-filter="all">All Articles</a>
+            <a href="#" class="cat-chip" data-filter="lifestyle">🌙 Lifestyle</a>
+            <a href="#" class="cat-chip" data-filter="finance">💰 Finance</a>
+            <a href="#" class="cat-chip" data-filter="health">🏃 Health</a>
+            <a href="#" class="cat-chip" data-filter="math">📐 Math</a>
+        </div>
+
+        <!-- FEATURED ARTICLE SLIDER -->
+        <section class="featured-section">
+            <div class="featured-slider">
+                <!-- Slide 1 -->
+                <a href="blog/how-to-calculate-mortgage.html" class="featured-card active">
+                    <div class="featured-content">
+                        <span class="tag finance">💰 Finance</span>
+                        <h2>How to Calculate Your Mortgage Payment (and Save Thousands)</h2>
+                        <p>Understand the exact math behind your monthly payment, how to slash long-term interest, and
+                            what the 28% rule really means for your financial future.</p>
+                        <div class="article-meta">
+                            <span>📖 5 min read</span>
+                            <span>Mar 2026</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Slide 2 -->
+                <a href="blog/emergency-fund-guide.html" class="featured-card">
+                    <div class="featured-content">
+                        <span class="tag finance">💰 Finance</span>
+                        <h2>The Ultimate Emergency Fund Guide</h2>
+                        <p>Financial freedom starts with a safety net. Learn how to calculate and build your 6-month
+                            buffer to protect yourself from life's surprises.</p>
+                        <div class="article-meta">
+                            <span>📖 4 min read</span>
+                            <span>Mar 2026</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Slide 3 -->
+                <a href="blog/math-of-hydration.html" class="featured-card">
+                    <div class="featured-content">
+                        <span class="tag health">🏃 Health</span>
+                        <h2>The Math of Hydration</h2>
+                        <p>Stop guessing how much water you need. Use this weight-based formula for peak physical and
+                            mental performance every day.</p>
+                        <div class="article-meta">
+                            <span>📖 3 min read</span>
+                            <span>Mar 2026</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Slide 4 -->
+                <a href="blog/buying-vs-renting-hidden-costs.html" class="featured-card">
+                    <div class="featured-content">
+                        <span class="tag finance">💰 Finance</span>
+                        <h2>Buying vs. Renting: The Hidden Costs</h2>
+                        <p>Maintenance, taxes, and opportunity costs. The true math of homeownership explained so you
+                            can make a smarter decision.</p>
+                        <div class="article-meta">
+                            <span>📖 5 min read</span>
+                            <span>Mar 2026</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Slide 5 -->
+                <a href="blog/strength-vs-cardio-calories.html" class="featured-card">
+                    <div class="featured-content">
+                        <span class="tag health">💪 Fitness</span>
+                        <h2>Strength vs. Cardio: Burn Battle</h2>
+                        <p>Which workout actually burns more calories? The metabolic truth behind your gym time and how
+                            to maximize your results.</p>
+                        <div class="article-meta">
+                            <span>📖 5 min read</span>
+                            <span>Mar 2026</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Slide 6 -->
+                <a href="blog/eisenhower-matrix-guide.html" class="featured-card">
+                    <div class="featured-content">
+                        <span class="tag lifestyle">⚡ Productivity</span>
+                        <h2>The Eisenhower Matrix Guide</h2>
+                        <p>Stop being "busy" and start being "productive" by prioritizing your tasks based on urgency
+                            and long-term importance.</p>
+                        <div class="article-meta">
+                            <span>📖 4 min read</span>
+                            <span>Mar 2026</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="slider-nav">
+                <button class="nav-btn prev">←</button>
+                <button class="nav-btn next">→</button>
+            </div>
+
+            <div class="dot-container">
+                <span class="dot active" data-idx="0"></span>
+                <span class="dot" data-idx="1"></span>
+                <span class="dot" data-idx="2"></span>
+                <span class="dot" data-idx="3"></span>
+                <span class="dot" data-idx="4"></span>
+                <span class="dot" data-idx="5"></span>
+            </div>
+        </section>
+
+        <!-- ARTICLES GRID -->
+        <main class="articles-grid">
+
+            <a href="blog/student-loans-avalanche-vs-snowball.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Student Loans: Avalanche vs. Snowball</h2>
+                    <p>Math vs. Psychology. Find out which debt repayment strategy will get you to freedom faster.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/emergency-fund-guide.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>The Ultimate Emergency Fund Guide</h2>
+                    <p>Financial freedom starts with a safety net. Learn how to calculate and build your 6-month buffer.
+                    </p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/math-of-hydration.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>The Math of Hydration</h2>
+                    <p>Stop guessing how much water you need. Use this weight-based formula for peak performance.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/strength-vs-cardio-calories.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Strength vs. Cardio: The Burn Battle</h2>
+                    <p>Which workout actually burns more calories? The metabolic truth behind your gym time.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/buying-vs-renting-hidden-costs.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Buying vs. Renting: Hidden Costs</h2>
+                    <p>Maintenance, taxes, and opportunity costs. The true math of homeownership explained.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/eisenhower-matrix-guide.html" class="article-card-link" data-category="lifestyle">
+                <article class="article-card">
+                    <span class="tag lifestyle">🌙 Lifestyle</span>
+                    <h2>The Eisenhower Matrix Guide</h2>
+                    <p>Stop being "busy" and start being "productive" by prioritizing tasks based on urgency and
+                        importance.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/compound-interest-explained.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Compound Interest Explained</h2>
+                    <p>Einstein called it the 8th wonder. See how small amounts grow into fortunes over time.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/what-bmi-really-tells-you.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>What BMI Really Tells You</h2>
+                    <p>BMI is a starting point, but it has limits. Learn how to interpret your results correctly.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/how-many-calories-should-you-eat.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Daily Calorie Needs Demystified</h2>
+                    <p>Calculators give estimates, but here's how to fine-tune for your biology and goals.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/sleep-cycles-explained.html" class="article-card-link" data-category="lifestyle">
+                <article class="article-card">
+                    <span class="tag lifestyle">🌙 Lifestyle</span>
+                    <h2>Sleep Cycles: Quality Over Quantity</h2>
+                    <p>Why waking up at the right time matters more than how many hours you clock in.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/the-50-30-20-budgeting-rule.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>The 50/30/20 Budgeting Rule</h2>
+                    <p>Managing your money doesn't have to be hard. This ratio is all you need to know.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/the-rule-of-72-math.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>The Rule of 72 Shortcut</h2>
+                    <p>The smartest mental math trick to predict your long-term investment growth.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/body-fat-vs-bmi-which-is-better.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Body Fat vs. BMI: Which is Better?</h2>
+                    <p>Understand the difference between weight and composition for a healthier lifestyle.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/fuel-efficiency-myths-debunked.html" class="article-card-link" data-category="lifestyle">
+                <article class="article-card">
+                    <span class="tag lifestyle">� Lifestyle</span>
+                    <h2>Fuel Efficiency Myths Debunked</h2>
+                    <p>Stop wasting money at the pump. The real math behind saving fuel while driving.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/how-to-calculate-percentage-change.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>How to Calculate Percentage Change</h2>
+                    <p>A simple guide to understanding increases and decreases in data and finances.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/inflation-impact-on-savings.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Inflation Impact on Your Savings</h2>
+                    <p>How the "hidden tax" of inflation erodes your purchasing power over time.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/intermittent-fasting-for-beginners.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Intermittent Fasting for Beginners</h2>
+                    <p>The science-backed approach to meal timing and its impact on your metabolism.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/macronutrients-explained.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Macronutrients Explained</h2>
+                    <p>Proteins, carbs, and fats. Learn how to balance your plate for optimal health.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/mental-math-tricks.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Mental Math Tricks You Should Know</h2>
+                    <p>Boost your brainpower with these shortcuts for everyday calculations.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/metric-vs-imperial-conversion.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Metric vs. Imperial: The Great Debate</h2>
+                    <p>Everything you need to know about converting between the world's two main systems.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/pregnancy-due-date-expectations.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">� Health</span>
+                    <h2>Pregnancy Due Date Expectations</h2>
+                    <p>How due dates are calculated and why they are often more of a range than a rule.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/salary-vs-hourly-pay.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Salary vs. Hourly Pay: Comparison</h2>
+                    <p>Beyond the monthly check. Which payment structure actually benefits you more?</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/the-pomodoro-technique-for-productivity.html" class="article-card-link"
+                data-category="lifestyle">
+                <article class="article-card">
+                    <span class="tag lifestyle">⚡ Lifestyle</span>
+                    <h2>The Pomodoro Technique Guide</h2>
+                    <p>Boost your productivity with timed work sessions and intentional recovery breaks.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/how-to-calculate-mortgage.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>How to Calculate Your Mortgage</h2>
+                    <p>Take control of your home buying journey by understanding the math of loan payments.</p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/starting-retirement-at-25-vs-35.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Starting Retirement at 25 vs. 35</h2>
+                    <p>See how a 10-year head start can double your retirement nest egg with the power of compounding.
+                    </p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/credit-card-minimum-payment-trap.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>The Minimum Payment Trap</h2>
+                    <p>Learn how banks use math to keep you in debt for decades, and how to break free.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/roi-measuring-investment-success.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>ROI Explained</h2>
+                    <p>Whether it's stocks, real estate, or a new business, knowing your Return on Investment is key.
+                    </p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/how-gpa-is-actually-calculated.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Grade Math: How GPA is Calculated</h2>
+                    <p>Weighted vs. Unweighted? 4.0 vs 5.0? We break down the math behind your academic standing.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/heart-rate-zones-training.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Heart Rate Zones for Training</h2>
+                    <p>Stop guessing your intensity. Learn how to use heart rate zones for fat loss and cardio health.
+                    </p>
+                    <div class="article-meta">
+                        <span>📖 5 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/ideal-weight-vs-healthy-weight.html" class="article-card-link" data-category="health">
+                <article class="article-card">
+                    <span class="tag health">🏃 Health</span>
+                    <h2>Ideal Weight vs. Healthy Weight</h2>
+                    <p>Society has one number, biology has another. Learn why a range is better than a fixed target.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/global-tipping-etiquette-math.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Tipping Etiquette: Global Math</h2>
+                    <p>From 0% in Tokyo to 25% in New York—how to calculate tips without the awkwardness.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/cooking-unit-conversions-math.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Cooking Math: Scaling Recipes</h2>
+                    <p>Don't let imperial vs. metric ruin your dinner. Master the conversions for perfect results.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/science-of-age-chronology.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>The Science of Age</h2>
+                    <p>How your chronological age relates to your biological health and the math of time.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/probability-and-chance-math.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Probability & Chance</h2>
+                    <p>From coin flips to the lottery—learn how to think like a statistician in everyday life.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/typing-speed-career-success.html" class="article-card-link" data-category="lifestyle">
+                <article class="article-card">
+                    <span class="tag lifestyle">⚡ Lifestyle</span>
+                    <h2>Typing Speed & Career Success</h2>
+                    <p>Why your WPM might be the most important skill you never practiced.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/date-difference-math-of-time.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>The Math of Time: Counting Days</h2>
+                    <p>Calculating the exact time between two events for planning and management.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/power-of-consistent-savings.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Small Savings, Big Results</h2>
+                    <p>How $50 a week can turn into a small fortune over a decade with consistency.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/personal-vs-auto-loans.html" class="article-card-link" data-category="finance">
+                <article class="article-card">
+                    <span class="tag finance">💰 Finance</span>
+                    <h2>Personal vs. Auto Loans</h2>
+                    <p>Understand the difference between secured and unsecured debt before you borrow.</p>
+                    <div class="article-meta">
+                        <span>📖 4 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/geometry-in-daily-architecture.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Geometry: Math of the World</h2>
+                    <p>From smartphone screens to pyramids—geometry is the language of design.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+            <a href="blog/scientific-math-language-of-universe.html" class="article-card-link" data-category="math">
+                <article class="article-card">
+                    <span class="tag math">📐 Math</span>
+                    <h2>Scientific Notation Explained</h2>
+                    <p>How math handles the infinitely large and the microscopically small in the universe.</p>
+                    <div class="article-meta">
+                        <span>📖 3 min read</span>
+                        <span>Mar 2026</span>
+                    </div>
+                </article>
+            </a>
+
+        </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="links">
+            <a href="index.html">Calculators</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+        <p>© 2026 CalcWise. All rights reserved. Insights for a smarter life.</p>
+    </footer>
+
+    <script>
+        // Filtering Logic
+        document.querySelectorAll('.cat-chip').forEach(chip => {
+            chip.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Toggle active chip
+                document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+
+                const filter = chip.getAttribute('data-filter');
+                const articles = document.querySelectorAll('.article-card-link');
+
+                articles.forEach(article => {
+                    const category = article.getAttribute('data-category');
+
+                    if (filter === 'all' || category === filter) {
+                        article.style.display = 'block';
+                        article.style.animation = 'fadeIn 0.5s ease forwards';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add fadeIn animation to style
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Featured Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.featured-card');
+        const dots = document.querySelectorAll('.dot');
+        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.prev');
+        let slideInterval;
+
+        function updateSlider(idx) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            currentSlide = idx;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            resetTimer();
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => updateSlider(currentSlide + 1), 6000);
+        }
+
+        nextBtn.addEventListener('click', () => updateSlider(currentSlide + 1));
+        prevBtn.addEventListener('click', () => updateSlider(currentSlide - 1));
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => updateSlider(idx));
+        });
+
+        resetTimer();
+
+        // Theme sync
+        (function () {
+            const saved = localStorage.getItem('cw-theme');
+            if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</body>
+
+</html>

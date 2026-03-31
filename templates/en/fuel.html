@@ -1,0 +1,54 @@
+<div class="field-group"><label for="fuel-unit">Unit System</label>
+      <select id="fuel-unit" data-change="updateFuelFields()">
+        <option value="imperial">Imperial (mi, mpg, $/gal)</option>
+        <option value="metric">Metric (km, L/100km, $/L)</option>
+      </select>
+    </div>
+    <div id="fuel-imperial-fields">
+      <div class="field-row">
+        <div class="field-group"><label for="fuel-dist">Trip Distance</label>
+          <div class="input-wrap has-suffix"><input type="number" id="fuel-dist" value="300" min="0"><span
+              class="input-suffix">mi</span></div>
+        </div>
+        <div class="field-group"><label for="fuel-mpg">Fuel Efficiency</label>
+          <div class="input-wrap has-suffix"><input type="number" id="fuel-mpg" value="32" min="0"><span
+              class="input-suffix">mpg</span></div>
+        </div>
+      </div>
+      <div class="field-group"><label for="fuel-price">Gas Price per Gallon</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="fuel-price"
+            value="3.89" step="0.01" min="0"></div>
+      </div>
+    </div>
+    <div id="fuel-metric-fields" style="display:none">
+      <div class="field-row">
+        <div class="field-group"><label for="fuel-dist-km">Trip Distance</label>
+          <div class="input-wrap has-suffix"><input type="number" id="fuel-dist-km" value="500" min="0"><span
+              class="input-suffix">km</span></div>
+        </div>
+        <div class="field-group"><label for="fuel-l100">Consumption</label>
+          <div class="input-wrap has-suffix"><input type="number" id="fuel-l100" value="7.5" min="0" step="0.1"><span
+              class="input-suffix">L/100km</span></div>
+        </div>
+      </div>
+      <div class="field-group"><label for="fuel-price-l">Fuel Price per Liter</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="fuel-price-l"
+            value="1.50" step="0.01" min="0"></div>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcFuel">Calculate Cost</button>
+    <div class="results" id="r-fuel">
+      <h3>Results</h3>
+      <div class="result-highlight"><span class="result-value" id="r-fuel-cost">$0</span>
+        <div class="result-label">Total Fuel Cost</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-fuel-gallons">0</span>
+          <div class="result-label" id="r-fuel-vol-lbl">Gallons Needed</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-fuel-per100">$0</span>
+          <div class="result-label" id="r-fuel-eff-lbl">Cost per 100 miles</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

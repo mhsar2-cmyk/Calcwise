@@ -1,0 +1,21 @@
+<div class="field-group"><label for="unit-cat">الفئة</label>
+      <select id="unit-cat" data-change="updateUnitOptions()">
+        <option value="length">الطول</option>
+        <option value="weight">الوزن / الكتلة</option>
+        <option value="temp">درجة الحرارة</option>
+        <option value="volume">الحجم</option>
+        <option value="speed">السرعة</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="unit-from">من</label><select id="unit-from"></select></div>
+      <div class="field-group"><label for="unit-to">إلى</label><select id="unit-to"></select></div>
+    </div>
+    <div class="field-group"><label for="unit-val">القيمة</label><input type="number" id="unit-val" value="1"
+        data-input="calcUnits()"></div>
+    <div class="results show" id="r-units">
+      <div class="result-highlight"><span class="result-value" id="r-unit-result">0</span>
+        <div class="result-label" id="r-unit-label">النتيجة</div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

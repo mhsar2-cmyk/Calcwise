@@ -1,0 +1,21 @@
+<div class="field-row">
+      <div class="field-group"><label for="slp-mode">أريد حساب:</label>
+        <select id="slp-mode"
+          data-change="document.getElementById('slp-time-label').textContent = this.value === 'wake' ? 'الوقت الذي أريد الاستيقاظ فيه' : 'الوقت الذي سأذهب فيه للنوم'">
+          <option value="wake" selected>متى يجب أن أنام؟</option>
+          <option value="bed">متى يجب أن أستيقظ؟</option>
+        </select>
+      </div>
+      <div class="field-group"><label for="slp-time">الوقت الذي أريد الاستيقاظ فيه</label>
+        <input type="time" id="slp-time" value="07:00"
+          style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:0.95rem;color:var(--text);outline:none;">
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcSleep">احسب الأوقات المثالية</button>
+    <div class="results" id="r-sleep">
+      <h3>دورات النوم المثالية</h3>
+      <p class="result-note" style="margin-bottom:1rem;">يستغرق الشخص العادي 15 دقيقة ليغفو. تم أخذ ذلك في الاعتبار.
+        اهدف إلى 5-6 دورات (7.5 - 9 ساعات).</p>
+      <div class="result-grid" id="r-slp-cycles"></div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

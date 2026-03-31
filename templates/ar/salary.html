@@ -1,0 +1,39 @@
+<div class="field-group"><label for="sal-amount">أدخل راتبك</label>
+      <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="sal-amount"
+          value="75000" min="0"></div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="sal-period">فترة الدفع</label>
+        <select id="sal-period">
+          <option value="hour">بالساعة</option>
+          <option value="day">يومياً</option>
+          <option value="week">أسبوعياً</option>
+          <option value="month">شهرياً</option>
+          <option value="year" selected>سنوياً</option>
+        </select>
+      </div>
+      <div class="field-group"><label for="sal-hours">ساعات العمل أسبوعياً</label><input type="number" id="sal-hours"
+          value="40" min="1"></div>
+    </div>
+    <button class="calc-btn" data-action="calcSalary">حوّل</button>
+    <div class="results" id="r-salary">
+      <h3>جميع فترات الدفع</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-sal-hour">0</span>
+          <div class="result-label">بالساعة</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-day">0</span>
+          <div class="result-label">يومياً</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-week">0</span>
+          <div class="result-label">أسبوعياً</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-month">0</span>
+          <div class="result-label">شهرياً</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-sal-year">0</span>
+          <div class="result-label">سنوياً</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

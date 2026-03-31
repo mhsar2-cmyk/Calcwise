@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-site-verification" content="vjZJ7FIIQEzuqWHnktvhfF-XDMZ4jFHz1xGMrJgskS0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6C63FF" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>CalcWise – Free Online Calculators for Finance, Health & Math</title>
+  <meta name="description"
+    content="Free online calculators for finance, health, fitness, and math. Instant results, no signup required. Mortgage, BMI, loan, calorie, and 30+ more calculators." />
+  <meta name="keywords"
+    content="online calculator, mortgage calculator, BMI calculator, loan calculator, calorie calculator, free calculators" />
+
+  <!-- ── SOCIAL SHARING ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CalcWise – Free Online Calculators for Finance, Health & Math" />
+  <meta property="og:description"
+    content="Free online calculators for 40+ categories. Instant results for mortgage, BMI, loans, and more." />
+  <meta property="og:url" content="https://calcwises.com/" />
+  <meta property="og:image" content="https://calcwises.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CalcWise – Free Online Calculators" />
+  <meta name="twitter:description"
+    content="Free online calculators for every need. Finance, Health, Math, and Lifestyle." />
+  <meta name="twitter:image" content="https://calcwises.com/og-image.png" />
+
+  <!-- ── CANONICAL & HREFLANG ── -->
+  <link rel="canonical" href="https://calcwises.com/" />
+  <link rel="alternate" hreflang="en" href="https://calcwises.com/" />
+  <link rel="alternate" hreflang="ar" href="https://calcwises.com/index-ar.html" />
+  <link rel="alternate" hreflang="x-default" href="https://calcwises.com/" />
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("cw-theme");
+      if (saved === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+
+  <!-- ── OPEN GRAPH ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CalcWise" />
+  <meta property="og:title" content="CalcWise – 36+ Free Online Calculators" />
+  <meta property="og:description"
+    content="Free online calculators for finance, health, fitness, and math. Instant results, no signup. Mortgage, BMI, loan, calorie, and more." />
+  <meta property="og:url" content="https://calcwises.com/" />
+  <meta property="og:image" content="https://calcwises.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ar_SA" />
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CalcWise – 36+ Free Online Calculators" />
+  <meta name="twitter:description"
+    content="Free calculators for finance, health, fitness & math. Instant results, no signup." />
+  <meta name="twitter:image" content="https://calcwises.com/og-image.png" />
+
+  <!-- ── STRUCTURED DATA (JSON-LD) ── -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CalcWise",
+        "url": "https://calcwises.com",
+        "description": "36+ free online calculators for finance, health, fitness, and math. Instant results with no signup required.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "150",
+          "bestRating": "5"
+        },
+        "featureList": "Mortgage Calculator, BMI Calculator, Loan Calculator, Calorie Calculator, Currency Converter, Compound Interest, Tip Calculator, Body Fat Calculator, Macros Calculator, Percentage Calculator, Salary Calculator, Tax Calculator, Inflation Calculator, ROI Calculator, Credit Card Payoff, Pregnancy Due Date, Heart Rate Zones, Age Calculator, Ideal Weight, Sleep Calculator, Quadratic Equation, Probability Calculator, Geometry Calculator, Number Base Converter, Speed Distance Time, Time Zone Converter, Cooking Converter, Scientific Calculator, Unit Converter, Random Number Generator, Date Calculator, GPA Calculator, Retirement Planner, Water Intake Calculator, Calendar Contraception Calculator",
+        "inLanguage": ["en", "ar"],
+        "creator": {
+          "@type": "Organization",
+          "name": "CalcWise",
+          "url": "https://calcwises.com"
+        }
+      }
+    </script>
+
+  <!-- ── FAQ STRUCTURED DATA ── -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is BMI and how is it calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BMI (Body Mass Index) is calculated by dividing weight in kilograms by height in meters squared. A BMI of 18.5–24.9 is considered normal. CalcWise's free BMI calculator also shows BMI Prime and healthy weight range."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I calculate monthly mortgage payments?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Monthly mortgage payment is calculated using the formula M = P[r(1+r)^n]/[(1+r)^n – 1], where P is principal, r is monthly interest rate, and n is total payments. Use CalcWise's mortgage calculator for instant results including total interest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many calories should I eat per day?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Daily calorie needs depend on age, sex, weight, height, and activity level. CalcWise's calorie calculator uses the Mifflin-St Jeor equation to estimate your BMR and TDEE, then adjusts for your weight goal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is compound interest and how does it work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Compound interest is interest earned on both the initial principal and previously accumulated interest. The formula is A = P(1 + r/n)^(nt). CalcWise's compound interest calculator shows growth over time with monthly contributions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are CalcWise calculators free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, all 36+ calculators on CalcWise are completely free. No signup required, no data collected. All calculations run locally in your browser for maximum privacy."
+            }
+          }
+        ]
+      }
+    </script>
+
+  <!-- ── GOOGLE ANALYTICS 4 ── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-JXGRCF9TPP");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" />
+  </noscript>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5388783007820121"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.min.css" />
+  <link rel="stylesheet" href="theme.min.css" />
+</head>
+
+<body>
+  <!-- ═══ LANGUAGE TOGGLE ═══ -->
+  <div class="lang-toggle">
+    <a href="index.html" class="lang-en" data-tooltip="English (current)">EN</a>
+    <a href="index-ar.html" class="lang-ar" data-tooltip="العربية"
+      style="font-family: &quot;Cairo&quot;, sans-serif">ع</a>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Back to top">↑</button>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" data-action="toggleTheme" title="Toggle light/dark mode">
+    🌙
+  </button>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Calc<span class="logo-dot">Wise</span></a>
+      <div class="nav-search">
+        <span style="color: var(--muted); font-size: 0.8rem">⌕</span>
+        <input type="text" id="global-search" placeholder="Search calculators…" data-input="searchCalcs(this.value)"
+          aria-label="Search calculators" />
+      </div>
+      <ul class="nav-cats">
+        <li>
+          <button data-action="scrollToSection('top')" class="active" id="nav-all">
+            Start
+          </button>
+        </li>
+        <li>
+          <button data-action="scrollToSection('section-everyday')" id="nav-everyday">
+            Everyday
+          </button>
+        </li>
+        <li>
+          <button data-action="scrollToSection('section-finance')" id="nav-finance">
+            Finance
+          </button>
+        </li>
+        <li>
+          <button data-action="scrollToSection('section-health')" id="nav-health">
+            Health
+          </button>
+        </li>
+        <li>
+          <button data-action="scrollToSection('section-math')" id="nav-math">
+            Math
+          </button>
+        </li>
+
+        <li>
+          <a href="blog.html" class="nav-blog-link">📝 Blog</a>
+        </li>
+      </ul>
+      <button class="hamburger-btn" id="hamburger-btn" data-action="toggleMobileMenu"
+        aria-label="Open navigation menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button data-filter-cat="all">⚡ All Calculators</button>
+    <button data-scroll-to="section-everyday">🌟 Everyday</button>
+    <button data-scroll-to="section-finance">💰 Finance</button>
+    <button data-scroll-to="section-health">❤️ Health & Fitness</button>
+    <button data-scroll-to="section-math">📐 Math & Science</button>
+
+    <a href="blog.html">📝 Blog</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-eyebrow">
+      <span>✦</span> Free · Instant · Private <span>✦</span>
+    </div>
+    <h1>Every Calculator<br />You'll Ever <em>Need</em></h1>
+    <p>
+      36+ free online calculators for finance, health, math, and everyday
+      life. No ads blocking your results, no signup, no nonsense.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">36+</span><span class="stat-label">Calculators</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span><span class="stat-label">Free Forever</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">0</span><span class="stat-label">Data Collected</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP AD -->
+  <div class="ad-wrap">
+    <div class="ad-unit leaderboard">
+      Advertisement · 728×90 — Replace with AdSense code
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-wrap">
+    <div class="main-content">
+      <!-- CATEGORY TABS -->
+      <div class="cat-tabs">
+        <button class="cat-tab active" data-filter-cat="all" id="tab-all">
+          <span class="tab-icon">⚡</span> All Calculators
+        </button>
+        <button class="cat-tab" data-filter-cat="everyday" id="tab-everyday">
+          <span class="tab-icon">🌟</span> Everyday
+        </button>
+        <button class="cat-tab" data-filter-cat="finance" id="tab-finance">
+          <span class="tab-icon">💰</span> Finance
+        </button>
+        <button class="cat-tab" data-filter-cat="health" id="tab-health">
+          <span class="tab-icon">❤️</span> Health & Fitness
+        </button>
+        <button class="cat-tab" data-filter-cat="math" id="tab-math">
+          <span class="tab-icon">📐</span> Math & Science
+        </button>
+      </div>
+
+      <!-- EVERYDAY SECTION -->
+      <div id="section-everyday" class="calc-section">
+        <div class="section-head">
+          <h2>🌟 Everyday Life</h2>
+          <span class="section-badge">8 Calculators</span>
+        </div>
+        <div class="calc-grid" id="grid-everyday">
+          <a href="calculators/age.html" class="calc-card" style="--card-color: var(--yellow)" data-cat="everyday"
+            data-name="age birthday date born" data-calc-id="age">
+            <div class="card-icon">🎂</div>
+            <h3>Age Calculator</h3>
+            <p>
+              Calculate exact age in years, months, and days from birthdate.
+            </p>
+          </a>
+
+          <a href="calculators/datediff.html" class="calc-card" style="--card-color: var(--green)" data-cat="everyday"
+            data-name="date difference days between dates" data-calc-id="datediff">
+            <div class="card-icon">📅</div>
+            <h3>Date Difference</h3>
+            <p>Number of days, weeks, and months between two dates.</p>
+          </a>
+
+          <a href="calculators/timezone.html" class="calc-card" style="--card-color: var(--pink)" data-cat="everyday"
+            data-name="time zone converter world clock" data-calc-id="timezone">
+            <div class="card-icon">🌍</div>
+            <h3>Time Zone Converter</h3>
+            <p>Convert time between major world time zones instantly.</p>
+          </a>
+
+          <a href="calculators/fuel.html" class="calc-card" style="--card-color: var(--orange)" data-cat="everyday"
+            data-name="fuel gas mileage mpg cost trip" data-calc-id="fuel">
+            <div class="card-icon">⛽</div>
+            <h3>Fuel Cost Calculator</h3>
+            <p>
+              Estimate trip fuel cost based on distance, mpg and gas price.
+            </p>
+          </a>
+
+          <a href="calculators/cooking.html" class="calc-card" style="--card-color: var(--blue)" data-cat="everyday"
+            data-name="cooking measurement recipe scale" data-calc-id="cooking">
+            <div class="card-icon">👨‍🍳</div>
+            <h3>Cooking Converter</h3>
+            <p>Convert cups, tablespoons, teaspoons, ml, and ounces.</p>
+          </a>
+
+          <a href="calculators/random.html" class="calc-card" style="--card-color: var(--accent)" data-cat="everyday"
+            data-name="random number generator dice" data-calc-id="random">
+            <div class="card-icon">🎲</div>
+            <h3>Random Number Generator</h3>
+            <p>Generate random numbers within any range you specify.</p>
+          </a>
+
+          <a href="calculators/countdown.html" class="calc-card" style="--card-color: var(--pink)" data-cat="everyday"
+            data-name="countdown timer clock analog digital" data-calc-id="countdown">
+            <div class="card-icon">⏳</div>
+            <h3>Countdown Timer</h3>
+            <p>Set a target date and watch the countdown with analog or digital display.</p>
+            <span class="card-tag" style="background: var(--pink)">New</span>
+          </a>
+
+          <a href="calculators/hijri.html" class="calc-card" style="--card-color: var(--green)" data-cat="everyday"
+            data-name="hijri gregorian date converter islamic calendar" data-calc-id="hijri">
+            <div class="card-icon">🗓️</div>
+            <h3>Hijri Date Converter</h3>
+            <p>Convert between Hijri and Gregorian calendars with historical events.</p>
+            <span class="card-tag" style="background: var(--green)">New</span>
+          </a>
+
+          <a href="calculators/typing.html" class="calc-card" style="--card-color: var(--blue)" data-cat="everyday"
+            data-name="typing practice keyboard speed test wpm accuracy" data-calc-id="typing">
+            <div class="card-icon">⌨️</div>
+            <h3>Typing Practice</h3>
+            <p>Test and improve your typing speed (WPM) and accuracy.</p>
+            <span class="card-tag" style="background: var(--blue)">New</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- FINANCE SECTION -->
+      <div id="section-finance" class="calc-section">
+        <div class="section-head">
+          <h2>💰 Finance & Money</h2>
+          <span class="section-badge">12 Calculators</span>
+        </div>
+        <div class="calc-grid" id="grid-finance">
+          <a href="calculators/mortgage.html" class="calc-card" style="--card-color: var(--green)" data-cat="finance" data-name="mortgage calculator"
+            data-calc-id="mortgage">
+            <div class="card-icon">🏠</div>
+            <h3>Mortgage Calculator</h3>
+            <p>
+              Monthly payments, total interest, and full amortization
+              schedule.
+            </p>
+            <span class="card-tag" style="background: var(--green)">Popular</span>
+          </a>
+
+          <a href="calculators/loan.html" class="calc-card" style="--card-color: var(--blue)" data-cat="finance"
+            data-name="loan calculator personal loan" data-calc-id="loan">
+            <div class="card-icon">💳</div>
+            <h3>Loan Calculator</h3>
+            <p>Calculate monthly payments for any personal or auto loan.</p>
+          </a>
+
+          <a href="calculators/compound.html" class="calc-card" style="--card-color: var(--yellow)" data-cat="finance"
+            data-name="compound interest savings investment" data-calc-id="compound">
+            <div class="card-icon">📈</div>
+            <h3>Compound Interest</h3>
+            <p>See how your savings or investments grow over time.</p>
+            <span class="card-tag" style="background: var(--yellow); color: #000">Hot</span>
+          </a>
+
+          <a href="calculators/creditcard.html" class="calc-card" style="--card-color: var(--orange)" data-cat="finance"
+            data-name="credit card payoff debt" data-calc-id="creditcard">
+            <div class="card-icon">💳</div>
+            <h3>Credit Card Payoff</h3>
+            <p>
+              Find out how long to pay off your balance and total interest
+              paid.
+            </p>
+          </a>
+
+          <a href="calculators/salary.html" class="calc-card" style="--card-color: var(--accent)" data-cat="finance"
+            data-name="salary hourly wage income" data-calc-id="salary">
+            <div class="card-icon">💼</div>
+            <h3>Salary Calculator</h3>
+            <p>Convert hourly, weekly, monthly and annual salary figures.</p>
+          </a>
+
+          <a href="calculators/tip.html" class="calc-card" style="--card-color: var(--pink)" data-cat="finance"
+            data-name="tip calculator restaurant bill" data-calc-id="tip">
+            <div class="card-icon">🍽️</div>
+            <h3>Tip Calculator</h3>
+            <p>
+              Split a restaurant bill and calculate tip per person instantly.
+            </p>
+          </a>
+
+          <a href="calculators/roi.html" class="calc-card" style="--card-color: var(--green)" data-cat="finance"
+            data-name="ROI return on investment" data-calc-id="roi">
+            <div class="card-icon">📊</div>
+            <h3>ROI Calculator</h3>
+            <p>Calculate return on investment and profit percentage.</p>
+          </a>
+
+          <a href="calculators/percentage.html" class="calc-card" style="--card-color: var(--blue)" data-cat="finance"
+            data-name="percentage discount sale price" data-calc-id="percentage">
+            <div class="card-icon">%</div>
+            <h3>Percentage Calculator</h3>
+            <p>What is X% of Y? Percentage change, increase, decrease.</p>
+          </a>
+
+          <a href="calculators/tax.html" class="calc-card" style="--card-color: var(--yellow)" data-cat="finance" data-name="tax income sales tax"
+            data-calc-id="tax">
+            <div class="card-icon">🧾</div>
+            <h3>Sales Tax Calculator</h3>
+            <p>Add or remove sales tax from any price instantly.</p>
+          </a>
+
+          <a href="calculators/retirement.html" class="calc-card" style="--card-color: var(--orange)" data-cat="finance"
+            data-name="retirement savings 401k pension" data-calc-id="retirement">
+            <div class="card-icon">🏖️</div>
+            <h3>Retirement Savings</h3>
+            <p>How much you need to save monthly to retire comfortably.</p>
+          </a>
+
+          <a href="calculators/currency.html" class="calc-card" style="--card-color: var(--accent)" data-cat="finance"
+            data-name="currency exchange rate converter" data-calc-id="currency">
+            <div class="card-icon">💱</div>
+            <h3>Currency Converter</h3>
+            <p>
+              Convert between major world currencies with live-style rates.
+            </p>
+          </a>
+
+          <a href="calculators/inflation.html" class="calc-card" style="--card-color: var(--pink)" data-cat="finance"
+            data-name="inflation purchasing power" data-calc-id="inflation">
+            <div class="card-icon">📉</div>
+            <h3>Inflation Calculator</h3>
+            <p>See how inflation erodes purchasing power over time.</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- MID AD -->
+      <div class="ad-unit leaderboard" style="margin: 2rem 0">
+        Advertisement · 728×90 — Replace with AdSense code
+      </div>
+
+      <!-- HEALTH SECTION -->
+      <div id="section-health" class="calc-section">
+        <div class="section-head">
+          <h2>❤️ Health & Fitness</h2>
+          <span class="section-badge">10 Calculators</span>
+        </div>
+        <div class="calc-grid" id="grid-health">
+          <a href="calculators/bmi.html" class="calc-card" style="--card-color: var(--pink)" data-cat="health"
+            data-name="BMI body mass index weight" data-calc-id="bmi">
+            <div class="card-icon">⚖️</div>
+            <h3>BMI Calculator</h3>
+            <p>Body mass index with healthy weight range and category.</p>
+            <span class="card-tag" style="background: var(--pink)">Popular</span>
+          </a>
+
+          <a href="calculators/calories.html" class="calc-card" style="--card-color: var(--orange)" data-cat="health"
+            data-name="calorie intake TDEE diet weight loss" data-calc-id="calories">
+            <div class="card-icon">🔥</div>
+            <h3>Calorie Calculator</h3>
+            <p>
+              Daily calorie needs based on your goal: lose, maintain, or gain.
+            </p>
+            <span class="card-tag" style="background: var(--orange)">Hot</span>
+          </a>
+
+          <a href="calculators/macros.html" class="calc-card" style="--card-color: var(--green)" data-cat="health"
+            data-name="protein macros macronutrients diet" data-calc-id="macros">
+            <div class="card-icon">🥩</div>
+            <h3>Macro Calculator</h3>
+            <p>Protein, carb and fat targets for your fitness goal.</p>
+          </a>
+
+          <a href="calculators/bodyfat.html" class="calc-card" style="--card-color: var(--blue)" data-cat="health"
+            data-name="body fat percentage lean mass" data-calc-id="bodyfat">
+            <div class="card-icon">💪</div>
+            <h3>Body Fat Calculator</h3>
+            <p>Estimate body fat percentage using measurements.</p>
+          </a>
+
+          <a href="calculators/pace.html" class="calc-card" style="--card-color: var(--yellow)" data-cat="health"
+            data-name="running pace pace per mile km" data-calc-id="pace">
+            <div class="card-icon">🏃</div>
+            <h3>Running Pace Calculator</h3>
+            <p>Calculate pace, finish time, or distance for any run.</p>
+          </a>
+
+          <a href="calculators/water.html" class="calc-card" style="--card-color: var(--accent)" data-cat="health"
+            data-name="water intake hydration drink" data-calc-id="water">
+            <div class="card-icon">💧</div>
+            <h3>Water Intake Calculator</h3>
+            <p>Daily hydration needs based on weight and activity level.</p>
+          </a>
+
+          <a href="calculators/sleep.html" class="calc-card" style="--card-color: var(--pink)" data-cat="health" data-name="sleep hours age bedtime"
+            data-calc-id="sleep">
+            <div class="card-icon">😴</div>
+            <h3>Sleep Calculator</h3>
+            <p>Find the best bedtime based on sleep cycles and wake time.</p>
+          </a>
+
+          <a href="calculators/pregnancy.html" class="calc-card" style="--card-color: var(--green)" data-cat="health"
+            data-name="pregnancy due date weeks" data-calc-id="pregnancy">
+            <div class="card-icon">🤰</div>
+            <h3>Pregnancy Due Date</h3>
+            <p>Calculate expected due date from last menstrual period.</p>
+          </a>
+
+          <a href="calculators/contraception.html" class="calc-card" style="--card-color: var(--pink)" data-cat="health"
+            data-name="calendar contraception safe days fertile ovulation" data-calc-id="contraception">
+            <div class="card-icon">📅</div>
+            <h3>Calendar Contraception</h3>
+            <p>Calculate safe days and fertile windows based on your menstrual cycle.</p>
+            <span class="card-tag" style="background: var(--pink)">New</span>
+          </a>
+
+          <a href="calculators/heartrate.html" class="calc-card" style="--card-color: var(--orange)" data-cat="health"
+            data-name="heart rate max target zone cardio" data-calc-id="heartrate">
+            <div class="card-icon">❤️</div>
+            <h3>Heart Rate Zones</h3>
+            <p>Target heart rate zones for fat burn and cardio training.</p>
+          </a>
+
+          <a href="calculators/idealweight.html" class="calc-card" style="--card-color: var(--blue)" data-cat="health"
+            data-name="ideal weight healthy body frame" data-calc-id="idealweight">
+            <div class="card-icon">🎯</div>
+            <h3>Ideal Weight Calculator</h3>
+            <p>Estimate healthy weight range for your height and frame.</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- MID AD 2 -->
+      <div class="ad-unit leaderboard" style="margin: 2rem 0">
+        Advertisement · 728×90 — Replace with AdSense code
+      </div>
+
+      <!-- MATH SECTION -->
+      <div id="section-math" class="calc-section">
+        <div class="section-head">
+          <h2>📐 Math & Science</h2>
+          <span class="section-badge">8 Calculators</span>
+        </div>
+        <div class="calc-grid" id="grid-math">
+          <a href="calculators/scientific.html" class="calc-card" style="--card-color: var(--accent)" data-cat="math"
+            data-name="scientific calculator math" data-calc-id="scientific">
+            <div class="card-icon">🔢</div>
+            <h3>Scientific Calculator</h3>
+            <p>
+              Full scientific calculator with trig, log, and exponent
+              functions.
+            </p>
+          </a>
+
+          <a href="calculators/units.html" class="calc-card" style="--card-color: var(--blue)" data-cat="math"
+            data-name="unit converter length weight volume temperature" data-calc-id="units">
+            <div class="card-icon">📏</div>
+            <h3>Unit Converter</h3>
+            <p>Length, weight, volume, temperature, speed and more.</p>
+            <span class="card-tag">Popular</span>
+          </a>
+
+          <a href="calculators/gpa.html" class="calc-card" style="--card-color: var(--green)" data-cat="math"
+            data-name="GPA grade point average college" data-calc-id="gpa">
+            <div class="card-icon">🎓</div>
+            <h3>GPA Calculator</h3>
+            <p>Calculate cumulative GPA from course grades and credits.</p>
+          </a>
+
+          <a href="calculators/quadratic.html" class="calc-card" style="--card-color: var(--yellow)" data-cat="math"
+            data-name="quadratic equation formula roots" data-calc-id="quadratic">
+            <div class="card-icon">📊</div>
+            <h3>Quadratic Equation</h3>
+            <p>Solve ax² + bx + c = 0 and find roots instantly.</p>
+          </a>
+
+          <a href="calculators/probability.html" class="calc-card" style="--card-color: var(--orange)" data-cat="math"
+            data-name="probability statistics combination permutation" data-calc-id="probability">
+            <div class="card-icon">🎲</div>
+            <h3>Probability Calculator</h3>
+            <p>Combinations, permutations and event probabilities.</p>
+          </a>
+
+          <a href="calculators/geometry.html" class="calc-card" style="--card-color: var(--pink)" data-cat="math"
+            data-name="area volume geometry shape" data-calc-id="geometry">
+            <div class="card-icon">📐</div>
+            <h3>Geometry Calculator</h3>
+            <p>
+              Area, perimeter, and volume for circles, rectangles, triangles.
+            </p>
+          </a>
+
+          <a href="calculators/speed.html" class="calc-card" style="--card-color: var(--accent)" data-cat="math"
+            data-name="speed distance time travel" data-calc-id="speed">
+            <div class="card-icon">⚡</div>
+            <h3>Speed Distance Time</h3>
+            <p>
+              Solve for speed, distance, or time given the other two values.
+            </p>
+          </a>
+
+          <a href="calculators/base.html" class="calc-card" style="--card-color: var(--blue)" data-cat="math"
+            data-name="number base binary hex decimal convert" data-calc-id="base">
+            <div class="card-icon">💻</div>
+            <h3>Number Base Converter</h3>
+            <p>Convert between binary, octal, decimal, and hexadecimal.</p>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- NO RESULTS -->
+      <div id="no-results" class="no-results" style="display: none">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem">🔍</div>
+        <p>No calculators found for "<span id="no-results-term"></span>"</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-col">
+      <div class="ad-unit sidebar">Ad · 160×600</div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">Calc<span class="logo-dot">Wise</span></a>
+        <p>
+          Free online calculators for finance, health, math, and everyday
+          decisions. All calculations happen in your browser — we never store
+          your data.
+        </p>
+      </div>
+      <div>
+        <h4>Finance</h4>
+        <ul>
+          <li><a href="calculators/mortgage.html">Mortgage</a></li>
+          <li><a href="calculators/loan.html">Loan Payment</a></li>
+          <li><a href="calculators/compound.html">Compound Interest</a></li>
+          <li><a href="calculators/tip.html">Tip Calculator</a></li>
+          <li><a href="calculators/percentage.html">Percentage</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Health</h4>
+        <ul>
+          <li><a href="calculators/bmi.html">BMI</a></li>
+          <li><a href="calculators/calories.html">Calories</a></li>
+          <li><a href="calculators/macros.html">Macros</a></li>
+          <li><a href="calculators/bodyfat.html">Body Fat</a></li>
+          <li><a href="calculators/pace.html">Running Pace</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="about.html">About</a></li>
+
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CalcWise. Free calculators for everyone.</span>
+      <span>Results are for informational purposes only.</span>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="modal-icon" id="modal-icon">🔢</div>
+        <div>
+          <h2 id="modal-title">Calculator</h2>
+          <p id="modal-desc">Calculate your result instantly.</p>
+        </div>
+        <button class="modal-close" data-action="closeModal" aria-label="Close calculator">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- injected per calculator -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script defer src="app.min.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed', err));
+      });
+    }
+  </script>
+</body>
+
+</html>

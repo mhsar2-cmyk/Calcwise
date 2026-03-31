@@ -1,0 +1,62 @@
+<div class="field-row">
+      <div class="field-group"><label for="ret-age">Current Age</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-age" value="30" min="18" max="80"><span
+            class="input-suffix">yrs</span></div>
+      </div>
+      <div class="field-group"><label for="ret-retire">Retirement Age</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-retire" value="65" min="40" max="90"><span
+            class="input-suffix">yrs</span></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="ret-current">Current Savings</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ret-current"
+            value="10000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="ret-contrib">Monthly Contribution</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ret-contrib"
+            value="500" min="0"></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="ret-return">Annual Return Rate</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-return" value="7" step="0.1" min="0"
+            max="30"><span class="input-suffix">%</span></div>
+      </div>
+      <div class="field-group"><label for="ret-inflation">Inflation Rate</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-inflation" value="3" step="0.1" min="0"
+            max="20"><span class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="ret-goal">Desired Monthly Income in Retirement</label>
+      <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="ret-goal"
+          value="4000" min="0"></div>
+    </div>
+    <button class="calc-btn" data-action="calcRetirement">Calculate Retirement Plan</button>
+    <div class="results" id="r-retirement">
+      <h3>Results</h3>
+      <div class="result-highlight"><span class="result-value" id="ret-r-nest">$0</span>
+        <div class="result-label">Projected Nest Egg at Retirement</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="ret-r-needed">$0</span>
+          <div class="result-label">Nest Egg Needed</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="ret-r-income">$0</span>
+          <div class="result-label">Monthly Income (Inflation-Adj.)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="ret-r-monthly">$0</span>
+          <div class="result-label">Recommended Monthly Savings</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="ret-r-years">0</span>
+          <div class="result-label">Years to Retirement</div>
+        </div>
+      </div>
+      <div id="ret-r-verdict"
+        style="margin-top:1rem;padding:1rem;border-radius:10px;text-align:center;font-weight:600;font-size:0.95rem;">
+      </div>
+      <p class="result-note">Assumes a <strong>4% safe withdrawal rate</strong> in retirement. Returns are pre-tax
+        approximations. Actual results depend on market performance, tax treatment, and inflation. Consult a financial
+        advisor for personalized guidance.</p>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

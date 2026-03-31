@@ -1,0 +1,37 @@
+<div class="field-row">
+      <div class="field-group"><label for="l-amount">Loan Amount</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="l-amount"
+            value="15000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="l-rate">Annual Interest Rate</label>
+        <div class="input-wrap has-suffix"><input type="number" id="l-rate" value="8.5" step="0.1" min="0"><span
+            class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="l-term">Loan Term</label>
+      <select id="l-term">
+        <option value="12">1 Year</option>
+        <option value="24">2 Years</option>
+        <option value="36">3 Years</option>
+        <option value="48">4 Years</option>
+        <option value="60" selected>5 Years</option>
+        <option value="72">6 Years</option>
+        <option value="84">7 Years</option>
+      </select>
+    </div>
+    <button class="calc-btn" data-action="calcLoan">Calculate</button>
+    <div class="results" id="r-loan">
+      <h3>Results</h3>
+      <div class="result-highlight"><span class="result-value" id="r-l-monthly">$0</span>
+        <div class="result-label">Monthly Payment</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-l-total">$0</span>
+          <div class="result-label">Total Repaid</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-l-interest">$0</span>
+          <div class="result-label">Total Interest</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

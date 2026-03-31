@@ -1,0 +1,61 @@
+<div class="field-row">
+      <div class="field-group"><label for="ret-age">العمر الحالي</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-age" value="30" min="18" max="80"><span
+            class="input-suffix">سنة</span></div>
+      </div>
+      <div class="field-group"><label for="ret-retire">سن التقاعد</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-retire" value="60" min="40" max="90"><span
+            class="input-suffix">سنة</span></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="ret-current">المدخرات الحالية</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="ret-current"
+            value="50000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="ret-contrib">الادخار الشهري</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="ret-contrib"
+            value="2000" min="0"></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="ret-return">معدل العائد السنوي</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-return" value="6" step="0.1" min="0"
+            max="30"><span class="input-suffix">%</span></div>
+      </div>
+      <div class="field-group"><label for="ret-inflation">معدل التضخم السنوي</label>
+        <div class="input-wrap has-suffix"><input type="number" id="ret-inflation" value="3" step="0.1" min="0"
+            max="20"><span class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="ret-goal">الدخل الشهري المطلوب عند التقاعد</label>
+      <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="ret-goal"
+          value="15000" min="0"></div>
+    </div>
+    <button class="calc-btn" data-action="calcRetirement">احسب خطة التقاعد</button>
+    <div class="results" id="r-retirement">
+      <h3>النتائج</h3>
+      <div class="result-highlight"><span class="result-value" id="ret-r-nest">0</span>
+        <div class="result-label">المبلغ المتوقع عند التقاعد</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="ret-r-needed">0</span>
+          <div class="result-label">المبلغ المطلوب للتقاعد</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="ret-r-income">0</span>
+          <div class="result-label">الدخل الشهري (معدّل للتضخم)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="ret-r-monthly">0</span>
+          <div class="result-label">الادخار الشهري الموصى به</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="ret-r-years">0</span>
+          <div class="result-label">سنوات حتى التقاعد</div>
+        </div>
+      </div>
+      <div id="ret-r-verdict"
+        style="margin-top:1rem;padding:1rem;border-radius:10px;text-align:center;font-weight:600;font-size:0.95rem;">
+      </div>
+      <p class="result-note">يعتمد الحساب على <strong>معدل سحب آمن 4٪</strong> سنوياً. تقديرات العوائد قبل الضرائب.
+        النتائج الفعلية تعتمد على أداء السوق والتضخم. استشر مستشاراً مالياً للحصول على خطة مخصصة.</p>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

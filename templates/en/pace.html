@@ -1,0 +1,40 @@
+<div class="field-group"><label for="pace-solve">Solve For</label>
+      <select id="pace-solve" data-change="updatePaceFields()">
+        <option value="pace">Pace (given distance + time)</option>
+        <option value="time">Finish Time (given distance + pace)</option>
+        <option value="distance">Distance (given time + pace)</option>
+      </select>
+    </div>
+    <div class="field-row" id="pace-dist-field">
+      <div class="field-group"><label for="pace-dist">Distance</label>
+        <div class="input-wrap has-suffix"><input type="number" id="pace-dist" value="5" min="0" step="0.1"><span
+            class="input-suffix">km</span></div>
+      </div>
+      <div class="field-group"><label for="pace-unit">Unit</label><select id="pace-unit">
+          <option value="km">Kilometers</option>
+          <option value="mi">Miles</option>
+        </select></div>
+    </div>
+    <div class="field-row" id="pace-time-field">
+      <div class="field-group"><label for="pace-h">Hours</label><input type="number" id="pace-h" value="0" min="0">
+      </div>
+      <div class="field-group"><label for="pace-m">Minutes</label><input type="number" id="pace-m" value="28" min="0">
+      </div>
+      <div class="field-group"><label for="pace-s">Seconds</label><input type="number" id="pace-s" value="0" min="0">
+      </div>
+    </div>
+    <div class="field-group" id="pace-pace-field" style="display:none">
+      <label for="pace-min">Pace (min per km)</label>
+      <div class="field-row">
+        <input type="number" id="pace-min" value="5" min="0">
+        <input type="number" id="pace-sec" value="30" min="0" max="59">
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcPace">Calculate</button>
+    <div class="results" id="r-pace">
+      <h3>Result</h3>
+      <div class="result-highlight"><span class="result-value" id="r-pace-result">—</span>
+        <div class="result-label" id="r-pace-label">Pace</div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

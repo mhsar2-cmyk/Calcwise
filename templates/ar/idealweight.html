@@ -1,0 +1,42 @@
+<div class="field-row">
+      <div class="field-group"><label for="iw-gender">الجنس</label>
+        <select id="iw-gender">
+          <option value="male" selected>ذكر</option>
+          <option value="female">أنثى</option>
+        </select>
+      </div>
+      <div class="field-group"><label for="iw-frame">حجم بنية الجسم</label>
+        <select id="iw-frame">
+          <option value="small">صغير (طرح 10%)</option>
+          <option value="medium" selected>متوسط</option>
+          <option value="large">كبير (إضافة 10%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="iw-height">الطول</label>
+        <div class="input-wrap has-suffix"><input type="number" id="iw-height" value="175" min="100" max="250"><span
+            class="input-suffix">سم</span></div>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcIdealWeight">احسب الوزن المثالي</button>
+    <div class="results" id="r-idealweight">
+      <h3>تقديرات الوزن الصحي</h3>
+      <div class="result-highlight"><span class="result-value" id="r-iw-primary">—</span>
+        <div class="result-label">النطاق الموصى به</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-iw-robinson">—</span>
+          <div class="result-label">معادلة روبنسون</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-iw-miller">—</span>
+          <div class="result-label">معادلة ميلر</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-iw-devine">—</span>
+          <div class="result-label">معادلة ديفاين</div>
+        </div>
+      </div>
+      <p class="result-note" style="margin-top:1rem;">هذه تقديرات بناءً على المعادلات الطبية القياسية ولا تأخذ في
+        الاعتبار الكتلة العضلية.</p>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

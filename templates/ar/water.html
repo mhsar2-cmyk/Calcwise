@@ -1,0 +1,29 @@
+<div class="field-row">
+      <div class="field-group"><label for="wat-weight">الوزن</label>
+        <div class="input-wrap has-suffix"><input type="number" id="wat-weight" value="75" min="0"><span
+            class="input-suffix">كجم</span></div>
+      </div>
+      <div class="field-group"><label for="wat-activity">مستوى النشاط</label>
+        <select id="wat-activity">
+          <option value="1">خامل</option>
+          <option value="1.2" selected>متوسط النشاط</option>
+          <option value="1.4">نشط جداً</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcWaterAR">احسب</button>
+    <div class="results" id="r-water">
+      <h3>الاحتياج اليومي من الماء</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-wat-liters">0 لتر</span>
+          <div class="result-label">لترات</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-wat-cups">0</span>
+          <div class="result-label">أكواب (240مل)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-wat-ml">0 مل</span>
+          <div class="result-label">مليلتر</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

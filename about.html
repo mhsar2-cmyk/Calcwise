@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About CalcWise – Free Online Calculators</title>
+  <meta name="description"
+    content="Learn about CalcWise — a free, privacy-first calculator site with 36+ tools for finance, health, math, and everyday life.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-JXGRCF9TPP');
+  </script>
+  <link rel="stylesheet" href="styles.min.css">
+
+
+  <!-- THEME SCRIPT -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('cw-theme');
+      if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="theme.min.css" />
+</head>
+
+<body>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Calc<span>Wise</span></a>
+      <div class="nav-links">
+        <a href="about-ar.html" class="nav-link">عربي</a>
+        <a href="index.html" class="nav-link">← Back to Calculators</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="about-hero">
+    <div class="hero-badge">👋 Nice to meet you</div>
+    <h1>Built for <em>Everyone</em><br>Who Needs to Calculate</h1>
+    <p>CalcWise is a free, fast, and private calculator tool built to give everyone access to professional-grade
+      calculations — with zero signup, zero cost, and zero data collection.</p>
+  </section>
+
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-box"><span class="stat-box-num">36+</span><span class="stat-box-label">Free Calculators</span>
+      </div>
+      <div class="stat-box"><span class="stat-box-num">4</span><span class="stat-box-label">Categories</span></div>
+      <div class="stat-box"><span class="stat-box-num">2</span><span class="stat-box-label">Languages</span></div>
+      <div class="stat-box"><span class="stat-box-num">0</span><span class="stat-box-label">Data Collected</span></div>
+    </div>
+  </div>
+
+  <div class="about-content">
+
+    <div class="mission-box">
+      <h3>Our Mission</h3>
+      <p>To make professional-grade calculations accessible to everyone — whether you're planning a mortgage in Texas,
+        tracking calories in Riyadh, or solving equations in a classroom anywhere in the world. Free, instant, and
+        private.</p>
+    </div>
+
+    <div class="about-section">
+      <div class="two-col">
+        <div>
+          <h2>What is <em>CalcWise?</em></h2>
+          <p>CalcWise is a free browser-based calculator platform featuring over 36 tools across finance, health,
+            mathematics, and everyday life. Every calculation runs entirely inside your browser — we never see your
+            numbers.</p>
+          <p>We built CalcWise because most online calculators are slow, cluttered with ads that block your results, or
+            require you to sign up just to use basic tools. CalcWise is different: instant, clean, and completely free.
+          </p>
+          <p>Available in both <strong>English and Arabic</strong> — one of the few calculator platforms designed
+            specifically with Arabic-speaking users in mind, with full RTL support and localized units.</p>
+        </div>
+        <div class="col-visual">
+          <div class="value-card">
+            <div class="value-icon" style="background:rgba(108,99,255,0.15)">⚡</div>
+            <div>
+              <h4>Instant Results</h4>
+              <p>No loading, no waiting. Results appear the moment you type.</p>
+            </div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon" style="background:rgba(34,211,160,0.15)">🔒</div>
+            <div>
+              <h4>Private by Design</h4>
+              <p>All calculations happen in your browser. We never see your inputs.</p>
+            </div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon" style="background:rgba(255,209,102,0.15)">🌍</div>
+            <div>
+              <h4>Bilingual</h4>
+              <p>Full English and Arabic support with proper RTL layout.</p>
+            </div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon" style="background:rgba(255,107,157,0.15)">💸</div>
+            <div>
+              <h4>100% Free</h4>
+              <p>No premium plans, no paywalls. Every calculator, always free.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>What Can You <em>Calculate?</em></h2>
+      <p>CalcWise covers the calculations that matter most in real life — from planning your finances to tracking your
+        health.</p>
+      <div class="cat-grid">
+        <div class="cat-card">
+          <div class="cat-card-icon">💰</div>
+          <h4>Finance & Money</h4>
+          <p>Mortgage payments, loan calculator, compound interest, salary converter, ROI, credit card payoff, tax, and
+            more.</p>
+          <span class="cat-count">12 calculators</span>
+        </div>
+        <div class="cat-card">
+          <div class="cat-card-icon">❤️</div>
+          <h4>Health & Fitness</h4>
+          <p>BMI, calories, macros, body fat, running pace, water intake, sleep cycles, pregnancy due date, and heart
+            rate zones.</p>
+          <span class="cat-count">10 calculators</span>
+        </div>
+        <div class="cat-card">
+          <div class="cat-card-icon">📐</div>
+          <h4>Math & Science</h4>
+          <p>Scientific calculator, unit converter, GPA, quadratic equations, probability, geometry, and number base
+            converter.</p>
+          <span class="cat-count">8 calculators</span>
+        </div>
+        <div class="cat-card">
+          <div class="cat-card-icon">🌟</div>
+          <h4>Everyday Life</h4>
+          <p>Age calculator, date difference, time zone converter, fuel cost, cooking measurements, and random number
+            generator.</p>
+          <span class="cat-count">6 calculators</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Privacy <em>First</em></h2>
+      <p>We built CalcWise on a simple principle: a calculator doesn't need to know your salary to calculate your tax.
+        Your inputs are yours. Period.</p>
+      <p>When you type numbers into CalcWise, those numbers never leave your device. Everything runs in JavaScript,
+        entirely in your browser — no server ever processes your mortgage inputs or your health data.</p>
+      <p>We do use Google Analytics to understand general traffic patterns and Google AdSense to serve ads that keep the
+        site free. Read our full <a href="privacy.html" style="color:var(--accent2)">Privacy Policy</a> for details.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Who's <em>Behind CalcWise?</em></h2>
+      <p>CalcWise is an independent project built and maintained by a small team passionate about making useful tools
+        accessible to everyone.</p>
+      <div class="team-card" style="margin-top:1.5rem;">
+        <div class="team-avatar">🧮</div>
+        <div class="team-info">
+          <h3>The CalcWise Team</h3>
+          <div class="role">Independent Developers</div>
+          <p>We're a small independent team who built CalcWise because we were tired of calculator sites covered in
+            pop-ups that require you to sign up just to use basic tools. We wanted something fast, clean, and genuinely
+            useful — so we built it. CalcWise is available in English and Arabic because we believe useful tools should
+            be accessible regardless of language.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Get in <em>Touch</em></h2>
+      <p>Have a suggestion for a new calculator? Found a bug? We'd love to hear from you.</p>
+      <div class="contact-grid">
+        <a href="mailto:hello@calcwises.com" class="contact-item">
+          <span class="contact-item-icon">✉️</span>
+          <h4>General Inquiries</h4>
+          <p>hello@calcwises.com</p>
+        </a>
+        <a href="mailto:privacy@calcwises.com" class="contact-item">
+          <span class="contact-item-icon">🔒</span>
+          <h4>Privacy Questions</h4>
+          <p>privacy@calcwises.com</p>
+        </a>
+        <a href="mailto:legal@calcwises.com" class="contact-item">
+          <span class="contact-item-icon">📋</span>
+          <h4>Legal & Terms</h4>
+          <p>legal@calcwises.com</p>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="about.html">About</a>
+    </div>
+    <p>© 2026 CalcWise · calcwises.com · All rights reserved.</p>
+  </footer>
+  <script>
+    // ── LIGHT/DARK MODE TOGGLE ──
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cw-theme', next);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = next === 'light' ? '☀️' : '🌙';
+    };
+    // Initialize toggle icon
+    setTimeout(() => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const current = document.documentElement.getAttribute('data-theme');
+        btn.textContent = current === 'light' ? '☀️' : '🌙';
+      }
+    }, 100);
+  </script>
+</body>
+
+</html>

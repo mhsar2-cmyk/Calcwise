@@ -1,0 +1,70 @@
+<div class="field-row">
+      <div class="field-group"><label for="preg-lmp">اليوم الأول من آخر دورة</label><input type="date" id="preg-lmp"
+          style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:0.95rem;color:var(--text);outline:none;direction:ltr;text-align:left;">
+      </div>
+      <div class="field-group"><label for="preg-cycle">متوسط طول الدورة</label>
+        <div class="input-wrap has-suffix"><input type="number" id="preg-cycle" value="28" min="20" max="45"><span
+            class="input-suffix">يوم</span></div>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcPregnancy">احسب موعد الولادة</button>
+    <div class="results" id="r-pregnancy">
+      <h3>الموعد المتوقع للولادة</h3>
+      <div class="result-highlight"><span class="result-value" id="r-preg-edd">—</span>
+        <div class="result-label" id="r-preg-days-left">متبقي</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-preg-week">—</span>
+          <div class="result-label">التقدم الحالي</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-preg-trimester">—</span>
+          <div class="result-label">الثلث</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-preg-conception">—</span>
+          <div class="result-label">تاريخ الحمل التقريبي</div>
+        </div>
+      </div>
+      <!-- Fetus Visualization -->
+      <div id="preg-fetus-viz"
+        style="margin-top:1.5rem;background:linear-gradient(135deg, rgba(108,99,255,0.08), rgba(255,107,157,0.08));border:1px solid rgba(108,99,255,0.15);border-radius:16px;padding:1.5rem;text-align:center;display:none;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;">
+          <div id="preg-fetus-svg"
+            style="position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;">
+            <div id="preg-heartbeat-ring"
+              style="position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid rgba(255,107,157,0.3);animation:heartbeatPulse 1.2s ease-in-out infinite;">
+            </div>
+            <div id="preg-fetus-icon"
+              style="font-size:4rem;z-index:1;transition:font-size 0.6s cubic-bezier(0.34,1.56,0.64,1);"></div>
+          </div>
+          <div style="text-align:right;flex:1;min-width:180px;">
+            <div
+              style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">
+              مقارنة الحجم</div>
+            <div id="preg-size-compare"
+              style="font-size:1.3rem;font-weight:700;color:var(--accent2);margin-bottom:0.6rem;"></div>
+            <div
+              style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">
+              الطول والوزن</div>
+            <div id="preg-size-detail"
+              style="font-size:0.95rem;color:var(--text);margin-bottom:0.6rem;direction:ltr;text-align:right;"></div>
+            <div
+              style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:0.3rem;">
+              التطور</div>
+            <div id="preg-dev-note" style="font-size:0.88rem;color:var(--muted2);line-height:1.4;"></div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;direction:ltr;">
+          <div
+            style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-bottom:0.3rem;">
+            <span style="font-family:'IBM Plex Sans Arabic',sans-serif;">الأسبوع ٠</span><span id="preg-progress-week"
+              style="font-family:'IBM Plex Sans Arabic',sans-serif;">الأسبوع ٠</span><span
+              style="font-family:'IBM Plex Sans Arabic',sans-serif;">الأسبوع ٤٠</span></div>
+          <div style="width:100%;height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;">
+            <div id="preg-progress-bar"
+              style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--pink));border-radius:99px;transition:width 1s cubic-bezier(0.34,1.56,0.64,1);">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

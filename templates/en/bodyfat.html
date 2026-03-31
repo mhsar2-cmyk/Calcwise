@@ -1,0 +1,50 @@
+<div class="field-group"><label for="bf-gender">Gender</label>
+      <select id="bf-gender"
+        data-change="document.getElementById('bf-hip-group').style.display = this.value === 'female' ? 'block' : 'none'">
+        <option value="male" selected>Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="bf-weight">Weight</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-weight" value="75"><span
+            class="input-suffix">kg</span></div>
+      </div>
+      <div class="field-group"><label for="bf-height">Height</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-height" value="175"><span
+            class="input-suffix">cm</span></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="bf-neck">Neck</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-neck" value="38"><span
+            class="input-suffix">cm</span></div>
+      </div>
+      <div class="field-group"><label for="bf-waist">Waist (at navel)</label>
+        <div class="input-wrap has-suffix"><input type="number" id="bf-waist" value="85"><span
+            class="input-suffix">cm</span></div>
+      </div>
+    </div>
+    <div class="field-group" id="bf-hip-group" style="display:none;"><label for="bf-hip">Hips (widest)</label>
+      <div class="input-wrap has-suffix"><input type="number" id="bf-hip" value="95"><span
+          class="input-suffix">cm</span></div>
+    </div>
+    <button class="calc-btn" data-action="calcBodyFat">Calculate</button>
+    <div class="results" id="r-bodyfat">
+      <h3>Estimated Results</h3>
+      <div class="result-highlight"><span class="result-value" id="r-bf-pct">—</span>
+        <div class="result-label">Body Fat Percentage</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-bf-category">—</span>
+          <div class="result-label" style="color:var(--accent2)">Category</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-bf-fatmass">—</span>
+          <div class="result-label">Fat Mass</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-bf-leanmass">—</span>
+          <div class="result-label">Lean Body Mass</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

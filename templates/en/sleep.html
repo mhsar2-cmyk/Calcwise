@@ -1,0 +1,21 @@
+<div class="field-row">
+      <div class="field-group"><label for="slp-mode">I want to calculate:</label>
+        <select id="slp-mode"
+          data-change="document.getElementById('slp-time-label').textContent = this.value === 'wake' ? 'Time I need to wake up' : 'Time I want to go to bed'">
+          <option value="wake" selected>When to go to bed</option>
+          <option value="bed">When to wake up</option>
+        </select>
+      </div>
+      <div class="field-group"><label for="slp-time">Time I need to wake up</label>
+        <input type="time" id="slp-time" value="07:00"
+          style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:inherit;font-size:0.95rem;color:var(--text);outline:none;">
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcSleep">Calculate Optimal Times</button>
+    <div class="results" id="r-sleep">
+      <h3>Optimal Sleep Cycles</h3>
+      <p class="result-note" style="margin-bottom:1rem;">It takes the average person 15 minutes to fall asleep. We've
+        factored this into the times below. Aim for 5-6 cycles (7.5-9 hours).</p>
+      <div class="result-grid" id="r-slp-cycles"></div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

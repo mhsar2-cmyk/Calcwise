@@ -1,0 +1,28 @@
+<div class="field-row">
+      <div class="field-group"><label for="roi-invest">Initial Investment</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="roi-invest"
+            value="10000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="roi-final">Final Value</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="roi-final"
+            value="13500" min="0"></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="roi-years">Time Period (Years, optional)</label><input type="number"
+        id="roi-years" value="3" min="0"></div>
+    <button class="calc-btn" data-action="calcROI">Calculate ROI</button>
+    <div class="results" id="r-roi">
+      <h3>Results</h3>
+      <div class="result-highlight"><span class="result-value" id="r-roi-pct">0%</span>
+        <div class="result-label">Total ROI</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-roi-profit">$0</span>
+          <div class="result-label">Net Profit</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-roi-annual">0%</span>
+          <div class="result-label">Annual ROI</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

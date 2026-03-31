@@ -1,0 +1,37 @@
+<div style="margin-bottom:1.5rem;">
+      <div
+        style="font-size:0.8rem;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">
+        What is X% of Y?</div>
+      <div class="field-row">
+        <div class="field-group"><input type="number" id="p1-x" value="15" placeholder="X%"> </div>
+        <div class="field-group">
+          <div class="input-wrap has-prefix"><span class="input-prefix">%</span><input type="number" id="p1-y"
+              value="200" placeholder="of Y"></div>
+        </div>
+      </div>
+      <button class="pct-calc-btn" data-action="calcPct1">= <span id="r-p1"
+          style="color:var(--accent2);font-weight:700;">30</span></button>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <div
+        style="font-size:0.8rem;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">
+        X is what % of Y?</div>
+      <div class="field-row">
+        <div class="field-group"><input type="number" id="p2-x" value="30" placeholder="X"></div>
+        <div class="field-group"><input type="number" id="p2-y" value="200" placeholder="Y"></div>
+      </div>
+      <button class="pct-calc-btn" data-action="calcPct2">= <span id="r-p2"
+          style="color:var(--accent2);font-weight:700;">15%</span></button>
+    </div>
+    <div>
+      <div
+        style="font-size:0.8rem;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">
+        Percentage Change from X to Y</div>
+      <div class="field-row">
+        <div class="field-group"><input type="number" id="p3-x" value="80" placeholder="From"></div>
+        <div class="field-group"><input type="number" id="p3-y" value="100" placeholder="To"></div>
+      </div>
+      <button class="pct-calc-btn" data-action="calcPct3">= <span id="r-p3"
+          style="color:var(--green);font-weight:700;">+25%</span></button>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

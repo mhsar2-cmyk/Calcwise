@@ -1,0 +1,45 @@
+<div class="field-group"><label for="prob-type">Calculation Type</label>
+      <select id="prob-type" data-change="updateProbFields()">
+        <option value="basic" selected>Basic Event Probability</option>
+        <option value="comb">Combinations (nCr)</option>
+        <option value="perm">Permutations (nPr)</option>
+      </select>
+    </div>
+
+    <!-- Basic Event Fields -->
+    <div id="prob-basic-fields">
+      <div class="field-row">
+        <div class="field-group"><label for="prob-fav">Number of Favorable Outcomes</label><input type="number"
+            id="prob-fav" value="1" min="0"></div>
+        <div class="field-group"><label for="prob-total">Total Possible Outcomes</label><input type="number"
+            id="prob-total" value="6" min="1"></div>
+      </div>
+    </div>
+
+    <!-- Comb/Perm Fields -->
+    <div id="prob-cp-fields" style="display:none;">
+      <div class="field-row">
+        <div class="field-group"><label for="prob-n">Total Items (n)</label><input type="number" id="prob-n" value="5"
+            min="0"></div>
+        <div class="field-group"><label for="prob-r">Items Chosen (r)</label><input type="number" id="prob-r" value="3"
+            min="0"></div>
+      </div>
+    </div>
+
+    <button class="calc-btn" data-action="calcProbability">Calculate Probability</button>
+    <div class="results" id="r-probability">
+      <h3>Results</h3>
+      <div class="result-highlight"><span class="result-value" id="r-prob-main">—</span>
+        <div class="result-label" id="r-prob-label">Probability</div>
+      </div>
+
+      <div class="result-grid" id="r-prob-extras" style="margin-top:1rem; display:none;">
+        <div class="result-item"><span class="result-value" id="r-prob-pct">—</span>
+          <div class="result-label">Percentage</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-prob-odds">—</span>
+          <div class="result-label">Odds (Chances)</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

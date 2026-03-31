@@ -1,0 +1,33 @@
+<div class="field-row">
+      <div class="field-group"><label for="inf-amount">Current Amount</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="inf-amount"
+            value="1000" min="0"></div>
+      </div>
+      <div class="field-group"><label for="inf-rate">Expected Inflation Rate</label>
+        <div class="input-wrap has-suffix"><input type="number" id="inf-rate" value="3.0" step="0.1"><span
+            class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="inf-years">Years</label>
+      <div class="input-wrap has-suffix"><input type="number" id="inf-years" value="10" min="1" max="100"><span
+          class="input-suffix">yrs</span></div>
+    </div>
+    <button class="calc-btn" data-action="calcInflation">Calculate</button>
+    <div class="results" id="r-inflation">
+      <h3>Purchasing Power Results</h3>
+      <div class="result-highlight"><span class="result-value" id="r-inf-value">—</span>
+        <div class="result-label">Future Value Equivalent</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem">
+        <div class="result-item"><span class="result-value" id="r-inf-cumulative">—</span>
+          <div class="result-label">Cumulative Inflation</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-inf-lost">—</span>
+          <div class="result-label">Purchasing Power Lost</div>
+        </div>
+      </div>
+      <p class="result-note" style="margin-top:1rem">To buy what $<span id="r-inf-amount-note">1,000</span> buys today,
+        you will need <strong id="r-inf-future-need" style="color:var(--accent2)">—</strong> in <span
+          id="r-inf-future-year"></span>.</p>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

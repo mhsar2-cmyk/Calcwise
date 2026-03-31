@@ -1,0 +1,1282 @@
+[
+  {
+    "id": "mortgage",
+    "cat": "finance",
+    "icon": "🏠",
+    "title": "Mortgage Calculator",
+    "titleAr": "حاسبة الرهن العقاري",
+    "desc": "Estimate monthly payments, total interest paid, and loan cost.",
+    "descAr": "احسب الدفعات الشهرية والفوائد الإجمالية وتكلفة القرض.",
+    "kw": "mortgage calculator, home loan calculator, monthly payment calculator, mortgage interest calculator",
+    "kwAr": "حاسبة الرهن العقاري, حاسبة القرض العقاري, الدفعة الشهرية",
+    "faq": [
+      {
+        "q": "How is monthly mortgage payment calculated?",
+        "a": "Using the formula M = P[r(1+r)^n]/[(1+r)^n – 1], where P is principal, r is monthly rate, n is total payments."
+      },
+      {
+        "q": "What factors affect mortgage payments?",
+        "a": "Loan amount, interest rate, loan term, down payment, property taxes, and insurance all affect your monthly payment."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يتم حساب الدفعة الشهرية للرهن العقاري؟",
+        "a": "باستخدام معادلة الإهلاك التي تأخذ بعين الاعتبار المبلغ الأصلي ومعدل الفائدة ومدة القرض."
+      },
+      {
+        "q": "ما العوامل التي تؤثر على أقساط الرهن؟",
+        "a": "مبلغ القرض ومعدل الفائدة ومدة القرض والدفعة الأولى والضرائب العقارية."
+      }
+    ],
+    "guide": "<h2>How to Use the Mortgage Calculator</h2><p>Buying a home is one of the biggest financial decisions you'll ever make. Our mortgage calculator helps you understand exactly how much you'll pay each month and how much interest you'll pay over the life of the loan. To get started, simply enter your home price, down payment, loan term, and interest rate.</p><h3>Why Use Our Mortgage Calculator?</h3><ul><li><strong>Accurate Amortization:</strong> See how your balance decreases over time.</li><li><strong>Bilingual Support:</strong> Fully supports English and Arabic layouts.</li><li><strong>Privacy-First:</strong> Your financial data never leaves your browser.</li></ul><h3>Key Mortgage Terms Explained</h3><p><strong>Principal:</strong> The actual amount of money you borrowed. <strong>Interest:</strong> The cost of borrowing that money. <strong>PMI:</strong> Private Mortgage Insurance, usually required if your down payment is less than 20%.</p>",
+    "guideAr": "<h2>كيفية استخدام حاسبة الرهن العقاري</h2><p>شراء منزل هو واحد من أكبر القرارات المالية التي ستتخذها على الإطلاق. تساعدك حاسبة الرهن العقاري الخاصة بنا على فهم المبلغ الذي ستدفعه بالضبط كل شهر ومقدار الفائدة التي ستدفعها طوال مدة القرض. للبدء، ما عليك سوى إدخال سعر المنزل والدفعة المقدمة ومدة القرض ومعدل الفائدة.</p><h3>لماذا تستخدم حاسبتنا؟</h3><ul><li><strong>إهلاك دقيق:</strong> تعرف على كيفية انخفاض رصيدك بمرور الوقت.</li><li><strong>دعم ثنائي اللغة:</strong> تدعم بالكامل التنسيقات الإنجليزية والعربية.</li><li><strong>خصوصية تامة:</strong> بياناتك المالية لا تغادر متصفحك أبداً.</li></ul><h3>شروط الرهن العقاري الأساسية</h3><p><strong>أصل القرض:</strong> المبلغ الفعلي الذي اقترضته. <strong>الفائدة:</strong> تكلفة اقتراض ذلك المال. <strong>التأمين:</strong> تأمين الرهن العقاري الخاص، وعادة ما يكون مطلوباً إذا كانت دفعتك المقدمة أقل من 20٪.</p>"
+  },
+  {
+    "id": "loan",
+    "cat": "finance",
+    "icon": "💳",
+    "title": "Loan Calculator",
+    "titleAr": "حاسبة القروض",
+    "desc": "Monthly payments and total cost for any personal or auto loan.",
+    "descAr": "الدفعات الشهرية والتكلفة الإجمالية لأي قرض شخصي أو سيارة.",
+    "kw": "loan calculator, personal loan calculator, auto loan calculator, loan payment",
+    "kwAr": "حاسبة القروض, قرض شخصي, قرض سيارة",
+    "faq": [
+      {
+        "q": "How do I calculate loan payments?",
+        "a": "Loan payments depend on the principal amount, interest rate, and loan term. Our calculator uses standard amortization formulas."
+      },
+      {
+        "q": "What is the difference between fixed and variable rate loans?",
+        "a": "Fixed rate loans have the same interest rate throughout, while variable rate loans can change based on market conditions."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب أقساط القرض؟",
+        "a": "تعتمد الأقساط على المبلg الأصلي ومعدل الفائدة ومدة القرض."
+      },
+      {
+        "q": "ما الفرق بين القرض الثابت والمتغير؟",
+        "a": "القرض الثابت له نفس معدل الفائدة طوال المدة، بينما المتغير يتغير حسب السوق."
+      }
+    ],
+    "guide": "<h2>Plan Your Borrowing with Precision</h2><p>Our Loan Calculator is a versatile tool for personal, auto, or student loans. Understanding the relationship between your loan amount, interest rate, and term is crucial for long-term financial health.</p><h3>How Monthly Payments are Calculated</h3><p>Payments are split into <strong>Principal</strong> (paying back the original debt) and <strong>Interest</strong> (the cost of borrowing). In the early years of a loan, more of your payment goes toward interest.</p><h3>Factors to Consider</h3><ul><li><strong>Loan Term:</strong> Longer terms mean lower monthly payments but significantly higher total interest costs.</li><li><strong>Interest Rate:</strong> Even a 1% difference can save you thousands over time.</li><li><strong>Amortization:</strong> See how your balance drops with every payment.</li></ul>",
+    "guideAr": "<h2>خطط لاقتراضك بدقة</h2><p>تعد حاسبة القروض الخاصة بنا أداة متعددة الاستخدامات للقروض الشخصية أو قروض السيارات أو الطلاب. يعد فهم العلاقة بين مبلغ القرض ومعدل الفائدة والمدة أمراً بالغ الأهمية للصحة المالية طويلة المدى.</p><h3>كيف يتم حساب الدفعات الشهرية</h3><p>يتم تقسيم الدفعات إلى <strong>أصل القرض</strong> (سداد الدين الأصلي) و<strong>الفائدة</strong> (تكلفة الاقتراض). في السنوات الأولى من القرض، يذهب الجزء الأكبر من دفعتك نحو الفائدة.</p><h3>عوامل يجب مراعاتها</h3><ul><li><strong>مدة القرض:</strong> تعني المدد الأطول دفعات شهرية أقل ولكن تكاليف فائدة إجمالية أعلى بكثير.</li><li><strong>معدل الفائدة:</strong> حتى الفرق بنسبة 1٪ يمكن أن يوفر لك الآلاف بمرور الوقت.</li><li><strong>الإهلاك:</strong> تعرف على كيفية انخفاض رصيدك مع كل دفعة.</li></ul>"
+  },
+  {
+    "id": "compound",
+    "cat": "finance",
+    "icon": "📈",
+    "title": "Compound Interest Calculator",
+    "titleAr": "حاسبة الفائدة المركبة",
+    "desc": "Watch your savings grow with the power of compounding.",
+    "descAr": "شاهد كيف تنمو مدخراتك بقوة التراكم.",
+    "kw": "compound interest calculator, savings calculator, investment growth calculator",
+    "kwAr": "حاسبة الفائدة المركبة, حاسبة الادخار, نمو الاستثمار",
+    "faq": [
+      {
+        "q": "What is compound interest?",
+        "a": "Compound interest is interest earned on both the principal and previously accumulated interest, causing exponential growth."
+      },
+      {
+        "q": "How often should interest compound?",
+        "a": "More frequent compounding (daily vs annually) yields slightly higher returns. Most savings accounts compound daily."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هي الفائدة المركبة؟",
+        "a": "هي الفائدة المحسوبة على المبلغ الأصلي والفوائد المتراكمة سابقاً."
+      },
+      {
+        "q": "كم مرة يجب أن تتراكم الفائدة؟",
+        "a": "كلما زاد تكرار التراكم كلما زاد العائد. معظم حسابات التوفير تتراكم يومياً."
+      }
+    ],
+    "guide": "<h2>The Magic of Compounding Interest</h2><p>Einstein famously called compound interest the \"eighth wonder of the world.\" Our calculator helps you visualize how regular contributions and time can turn small savings into substantial wealth.</p><h3>How Compounding Works</h3><p>Compound interest is interest earned on <strong>interest</strong>. By reinvesting your returns, your investment grows exponentially rather than linearly.</p><h3>Maximizing Your Growth</h3><ul><li><strong>Start Early:</strong> Time is the most powerful variable in the compound interest formula.</li><li><strong>Frequent Contributions:</strong> Even small monthly additions boost the final result significantly.</li><li><strong>Compounding Frequency:</strong> The more often interest compounds (daily vs annually), the faster your wealth grows.</li></ul>",
+    "guideAr": "<h2>سحر الفائدة المركبة</h2><p>اشتهر أينشتاين بتسمية الفائدة المركبة \"الأعجوبة الثامنة في العالم\". تساعدك حاسبتنا على تصور كيف يمكن للمساهمات المنتظمة والوقت تحويل المدخرات الصغيرة إلى ثروة كبيرة.</p><h3>كيف يعمل التراكم</h3><p>الفائدة المركبة هي الفائدة المكتسبة على <strong>الفائدة</strong> نفسها. من خلال إعادة استثمار عوائدك، ينمو استثمارك بشكل كبير بدلاً من النمو الخطي.</p><h3>تعظيم نموك</h3><ul><li><strong>ابدأ مبكراً:</strong> الوقت هو أقوى متغير في معادلة الفائدة المركبة.</li><li><strong>المساهمات المتكررة:</strong> حتى الإضافات الشهرية الصغيرة تزيد من النتيجة النهائية بشكل كبير.</li><li><strong>تكرار التراكم:</strong> كلما زاد تكرار تراكم الفائدة (يومياً مقابل سنوياً)، زادت سرعة نمو ثروتك.</li></ul>"
+  },
+  {
+    "id": "creditcard",
+    "cat": "finance",
+    "icon": "💳",
+    "title": "Credit Card Payoff Calculator",
+    "titleAr": "حاسبة سداد بطاقة الائتمان",
+    "desc": "See how long to pay off your balance and total interest cost.",
+    "descAr": "كم من الوقت يستغرق سداد رصيدك والفوائد الإجمالية.",
+    "kw": "credit card payoff calculator, debt calculator, credit card interest",
+    "kwAr": "حاسبة سداد بطاقة الائتمان, حاسبة الديون",
+    "faq": [
+      {
+        "q": "How long will it take to pay off my credit card?",
+        "a": "It depends on your balance, interest rate, and monthly payment. Higher payments significantly reduce payoff time."
+      },
+      {
+        "q": "Should I pay more than the minimum?",
+        "a": "Yes. Paying only the minimum extends your debt for years and costs much more in interest."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم يستغرق سداد بطاقة الائتمان؟",
+        "a": "يعتمد على الرصيد ومعدل الفائدة والدفعة الشهرية."
+      },
+      {
+        "q": "هل يجب أن أدفع أكثر من الحد الأدنى؟",
+        "a": "نعم، دفع الحد الأدنى فقط يمدد الدين لسنوات ويكلف أكثر بكثير."
+      }
+    ]
+  },
+  {
+    "id": "salary",
+    "cat": "finance",
+    "icon": "💼",
+    "title": "Salary Calculator",
+    "titleAr": "حاسبة الراتب",
+    "desc": "Convert between hourly, daily, weekly, monthly, and annual salary.",
+    "descAr": "حوّل بين الأجر بالساعة والأسبوعي والشهري والسنوي.",
+    "kw": "salary calculator, hourly to annual, wage converter, income calculator",
+    "kwAr": "حاسبة الراتب, تحويل الراتب, الأجر بالساعة",
+    "faq": [
+      {
+        "q": "How do I convert hourly wage to annual salary?",
+        "a": "Multiply your hourly rate by hours per week, then by 52 weeks. Example: $20/hr × 40hrs × 52 = $41,600/year."
+      },
+      {
+        "q": "What is the average work year in hours?",
+        "a": "A standard work year is 2,080 hours (40 hours/week × 52 weeks)."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحول الأجر بالساعة إلى راتب سنوي؟",
+        "a": "اضرب أجر الساعة في عدد ساعات العمل أسبوعياً ثم في 52 أسبوعاً."
+      },
+      {
+        "q": "كم ساعة عمل في السنة؟",
+        "a": "سنة العمل القياسية 2,080 ساعة (40 ساعة أسبوعياً × 52 أسبوعاً)."
+      }
+    ]
+  },
+  {
+    "id": "tip",
+    "cat": "finance",
+    "icon": "🍽️",
+    "title": "Tip Calculator",
+    "titleAr": "حاسبة البقشيش",
+    "desc": "Split a bill and calculate tip per person.",
+    "descAr": "قسّم فاتورة المطعم واحسب البقشيش لكل شخص.",
+    "kw": "tip calculator, bill splitter, restaurant tip, gratuity calculator",
+    "kwAr": "حاسبة البقشيش, تقسيم الفاتورة, بقشيش المطعم",
+    "faq": [
+      {
+        "q": "How much should I tip?",
+        "a": "In the US, 15-20% is standard for restaurants. 20% or more for excellent service."
+      },
+      {
+        "q": "How do I split a bill evenly?",
+        "a": "Add the tip to the total bill, then divide by the number of people."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم يجب أن أترك بقشيشاً؟",
+        "a": "في المطاعم، 15-20% هو المعيار. 20% أو أكثر للخدمة الممتازة."
+      },
+      {
+        "q": "كيف أقسم الفاتورة بالتساوي؟",
+        "a": "أضف البقشيش للفاتورة ثم اقسم على عدد الأشخاص."
+      }
+    ]
+  },
+  {
+    "id": "roi",
+    "cat": "finance",
+    "icon": "📊",
+    "title": "ROI Calculator",
+    "titleAr": "حاسبة العائد على الاستثمار",
+    "desc": "Calculate return on investment and profit percentage.",
+    "descAr": "احسب نسبة العائد والربح من أي استثمار.",
+    "kw": "ROI calculator, return on investment, profit calculator, investment return",
+    "kwAr": "حاسبة العائد على الاستثمار, نسبة الربح",
+    "faq": [
+      {
+        "q": "What is ROI?",
+        "a": "ROI (Return on Investment) measures the percentage gain or loss relative to the initial investment cost."
+      },
+      {
+        "q": "What is a good ROI?",
+        "a": "A good ROI varies by industry, but generally 7-10% annually for stocks and 15-20% for business investments."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هو العائد على الاستثمار؟",
+        "a": "هو مقياس نسبة الربح أو الخسارة مقارنة بتكلفة الاستثمار الأصلية."
+      },
+      {
+        "q": "ما هو العائد الجيد على الاستثمار؟",
+        "a": "يختلف حسب المجال، لكن عموماً 7-10% سنوياً للأسهم و15-20% للمشاريع."
+      }
+    ]
+  },
+  {
+    "id": "percentage",
+    "cat": "finance",
+    "icon": "%",
+    "title": "Percentage Calculator",
+    "titleAr": "حاسبة النسبة المئوية",
+    "desc": "Three ways to calculate percentages instantly.",
+    "descAr": "ثلاث طرق لحساب النسب المئوية فوراً.",
+    "kw": "percentage calculator, percent of number, percentage change, percentage increase decrease",
+    "kwAr": "حاسبة النسبة المئوية, حساب النسبة, التغيير بالنسبة المئوية",
+    "faq": [
+      {
+        "q": "How do I calculate percentage of a number?",
+        "a": "Multiply the number by the percentage and divide by 100. Example: 25% of 200 = 200 × 25 / 100 = 50."
+      },
+      {
+        "q": "How do I calculate percentage change?",
+        "a": "Percentage change = ((New - Old) / Old) × 100. A positive result means increase, negative means decrease."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب النسبة المئوية من رقم؟",
+        "a": "اضرب الرقم في النسبة واقسم على 100. مثال: 25% من 200 = 50."
+      },
+      {
+        "q": "كيف أحسب التغيير بالنسبة المئوية؟",
+        "a": "التغيير = ((الجديد - القديم) / القديم) × 100."
+      }
+    ],
+    "guide": "<h2>Master Your Percentage Calculations</h2><p>Percentages are everywhere—from sales discounts and tax rates to statistical growth and investment returns. Our multi-purpose Percentage Calculator handles all common scenarios instantly.</p><h3>Common Use Cases</h3><ul><li><strong>Finding a Percentage:</strong> What is 15% of 200?</li><li><strong>Percentage Change:</strong> Did the value increase or decrease, and by how much?</li><li><strong>Calculating Totals:</strong> If 50 is 20%, what is the 100% total?</li></ul><p>This tool is essential for students, business professionals, and shoppers alike, providing fast and error-free results in seconds.</p>",
+    "guideAr": "<h2>أتقن حسابات النسبة المئوية الخاصة بك</h2><p>النسب المئوية موجودة في كل مكان - من خصومات المبيعات ومعدلات الضرائب إلى النمو الإحصائي وعوائد الاستثمار. تتعامل حاسبة النسبة المئوية متعددة الأغراض لدينا مع جميع السيناريوهات الشائعة فوراً.</p><h3>حالات الاستخدام الشائعة</h3><ul><li><strong>إيجاد النسبة:</strong> ما هو 15٪ من 200؟</li><li><strong>تغيير النسبة:</strong> هل زادت القيمة أم نقصت، وبأي مقدار؟</li><li><strong>حساب الإجماليات:</strong> إذا كان 50 يمثل 20٪، فما هو إجمالي الـ 100٪؟</li></ul><p>تعد هذه الأداة ضرورية للطلاب والمحترفين في مجال الأعمال والمتسوقين على حد سواء، حيث توفر نتائج سريعة وخالية من الأخطاء في ثوانٍ.</p>"
+  },
+  {
+    "id": "tax",
+    "cat": "finance",
+    "icon": "🧾",
+    "title": "Sales Tax Calculator",
+    "titleAr": "حاسبة ضريبة القيمة المضافة",
+    "desc": "Add or remove sales tax from any price.",
+    "descAr": "أضف أو استخرج الضريبة من أي سعر فوراً.",
+    "kw": "sales tax calculator, tax calculator, VAT calculator, tax included price",
+    "kwAr": "حاسبة ضريبة القيمة المضافة, حاسبة الضريبة, حساب VAT",
+    "faq": [
+      {
+        "q": "How do I calculate sales tax?",
+        "a": "Multiply the price by the tax rate percentage divided by 100. Add to original price for total."
+      },
+      {
+        "q": "How do I remove tax from a price?",
+        "a": "Divide the tax-inclusive price by (1 + tax rate/100) to get the pre-tax price."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب ضريبة القيمة المضافة؟",
+        "a": "اضرب السعر في نسبة الضريبة مقسومة على 100 ثم أضفها للسعر الأصلي."
+      },
+      {
+        "q": "كيف أستخرج الضريبة من السعر؟",
+        "a": "اقسم السعر شامل الضريبة على (1 + نسبة الضريبة/100)."
+      }
+    ]
+  },
+  {
+    "id": "retirement",
+    "cat": "finance",
+    "icon": "🏖️",
+    "title": "Retirement Savings Calculator",
+    "titleAr": "حاسبة مدخرات التقاعد",
+    "desc": "Find out how much to save monthly to retire comfortably.",
+    "descAr": "كم تحتاج أن توفر شهرياً لتتقاعد براحة.",
+    "kw": "retirement calculator, retirement savings, 401k calculator, pension calculator",
+    "kwAr": "حاسبة التقاعد, مدخرات التقاعد, التخطيط للتقاعد",
+    "faq": [
+      {
+        "q": "How much do I need to retire?",
+        "a": "A common rule is 25× your annual expenses. Our calculator factors in your age, savings rate, and expected returns."
+      },
+      {
+        "q": "When should I start saving for retirement?",
+        "a": "As early as possible. Starting at 25 vs 35 can mean hundreds of thousands more due to compound interest."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم أحتاج للتقاعد؟",
+        "a": "القاعدة الشائعة هي 25 ضعف مصاريفك السنوية."
+      },
+      {
+        "q": "متى يجب أن أبدأ الادخار للتقاعد؟",
+        "a": "في أقرب وقت ممكن. البدء في سن 25 مقابل 35 يعني مئات الآلاف إضافية."
+      }
+    ]
+  },
+  {
+    "id": "currency",
+    "cat": "finance",
+    "icon": "💱",
+    "title": "Currency Converter",
+    "titleAr": "محول العملات",
+    "desc": "Convert between 30+ currencies with live exchange rates.",
+    "descAr": "حوّل بين عملات العالم الرئيسية بأسعار محدّثة.",
+    "kw": "currency converter, exchange rate calculator, USD to EUR, money converter",
+    "kwAr": "محول العملات, سعر الصرف, تحويل عملات, دولار ريال",
+    "faq": [
+      {
+        "q": "How are exchange rates determined?",
+        "a": "Exchange rates are determined by supply and demand in foreign exchange markets, influenced by economics and geopolitics."
+      },
+      {
+        "q": "When is the best time to exchange currency?",
+        "a": "Rates fluctuate constantly. Monitor trends and exchange when rates are favorable for your currency pair."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يتم تحديد أسعار الصرف؟",
+        "a": "تتحدد بالعرض والطلب في أسواق الصرف الأجنبي."
+      },
+      {
+        "q": "ما أفضل وقت لتحويل العملات؟",
+        "a": "تتقلب الأسعار باستمرار. راقب الاتجاهات وحوّل عندما تكون الأسعار مناسبة."
+      }
+    ]
+  },
+  {
+    "id": "inflation",
+    "cat": "finance",
+    "icon": "📉",
+    "title": "Inflation Calculator",
+    "titleAr": "حاسبة التضخم",
+    "desc": "See how inflation erodes purchasing power over time.",
+    "descAr": "شاهد كيف يؤثر التضخم على قيمة المال مع الوقت.",
+    "kw": "inflation calculator, purchasing power calculator, CPI calculator, inflation rate",
+    "kwAr": "حاسبة التضخم, القوة الشرائية, معدل التضخم",
+    "faq": [
+      {
+        "q": "What is inflation?",
+        "a": "Inflation is the rate at which prices for goods and services increase over time, reducing purchasing power."
+      },
+      {
+        "q": "What is a healthy inflation rate?",
+        "a": "Most economists consider 2% annual inflation healthy for economic growth."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هو التضخم؟",
+        "a": "التضخم هو معدل ارتفاع أسعار السلع والخدمات مع الوقت مما يقلل القوة الشرائية."
+      },
+      {
+        "q": "ما هو معدل التضخم الصحي؟",
+        "a": "يعتبر معظم الاقتصاديين أن 2% سنوياً معدل صحي للنمو الاقتصادي."
+      }
+    ]
+  },
+  {
+    "id": "bmi",
+    "cat": "health",
+    "icon": "⚖️",
+    "title": "BMI Calculator",
+    "titleAr": "حاسبة مؤشر كتلة الجسم",
+    "desc": "Body Mass Index with healthy weight range, BMI Prime, and visual gauge.",
+    "descAr": "مؤشر كتلة الجسم مع نطاق الوزن الصحي والمقياس البصري.",
+    "kw": "BMI calculator, body mass index, healthy weight calculator, BMI chart",
+    "kwAr": "حاسبة مؤشر كتلة الجسم, BMI, الوزن الصحي, مؤشر الكتلة",
+    "faq": [
+      {
+        "q": "What is BMI and how is it calculated?",
+        "a": "BMI = weight(kg) / height(m)². A BMI of 18.5-24.9 is normal. It's a screening tool, not a diagnostic measure."
+      },
+      {
+        "q": "Is BMI accurate for athletes?",
+        "a": "BMI may overestimate body fat in muscular people. Waist-to-height ratio is a better health indicator."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هو مؤشر كتلة الجسم وكيف يُحسب؟",
+        "a": "مؤشر كتلة الجسم = الوزن(كجم) / الطول(م)². المؤشر بين 18.5 و24.9 طبيعي."
+      },
+      {
+        "q": "هل مؤشر كتلة الجسم دقيق للرياضيين؟",
+        "a": "قد يبالغ في تقدير الدهون للأشخاص ذوي العضلات. نسبة الخصر للطول مؤشر أفضل."
+      }
+    ],
+    "guide": "<h2>How to Interpret Your BMI Result</h2><p>Body Mass Index (BMI) is a simple numerical value based on your height and weight. It is used world-wide as a screening tool to determine if a person is in a healthy weight range or at risk for developing chronic health conditions.</p><h3>The Importance of Weight Categorization</h3><p>Maintaining a healthy weight is key to overall longevity. Our BMI calculator and gauge help you quickly visualize where you fall on the World Health Organization's (WHO) classification scale.</p><h3>Limitations of BMI</h3><p>Remember that BMI is only one part of your health picture. It doesn't distinguish between <strong>muscle</strong> and <strong>fat</strong>. If you are extremely muscular or an elite athlete, your BMI might suggest you are overweight when you are actually quite fit. Consider using our <strong>Body Fat Calculator</strong> or <strong>Ideal Weight Calculator</strong> for a secondary measurement.</p>",
+    "guideAr": "<h2>كيفية تفسير نتائج مؤشر كتلة الجسم</h2><p>مؤشر كتلة الجسم (BMI) هو قيمة عددية بسيطة تعتمد على طولك ووزنك. يتم استخدامه في جميع أنحاء العالم كأداة فحص لتحديد ما إذا كان الشخص في نطاق وزن صحي أو معرض لخطر تطوير حالات صحية مزمنة.</p><h3>أهمية تصنيفات الوزن</h3><p>الحفاظ على وزن صحي هو مفتاح طول العمر بشكل عام. تساعدك حاسبة ومقياس مؤشر كتلة الجسم لدينا على تصور مكانك بسرعة وبدقة بناءً على مقاييس منظمة الصحة العالمية (WHO).</p><h3>حدود مؤشر كتلة الجسم</h3><p>تذكر أن مؤشر كتلة الجسم هو جزء واحد فقط من صورتك الصحية. فهو لا يميز بين <strong>العضلات</strong> و<strong>الدهون</strong>. إذا كنت تمتلك كتلة عضلية عالية جداً أو كنت رياضياً محترفاً، فقد يشير مؤشر كتلة الجسم الخاص بك إلى أنك تعاني من زيادة الوزن بينما أنت في الواقع في حالة بدنية جيدة جداً. جرب استخدام <strong>حاسبة نسبة الدهون</strong> أو <strong>حاسبة الوزن المثالي</strong> للحصول على قياس ثانٍ لمزيد من المعلومات.</p>"
+  },
+  {
+    "id": "calories",
+    "cat": "health",
+    "icon": "🔥",
+    "title": "Calorie Calculator",
+    "titleAr": "حاسبة السعرات الحرارية",
+    "desc": "Daily calorie needs based on your body and goal.",
+    "descAr": "الاحتياج اليومي من السعرات بناءً على جسمك وهدفك.",
+    "kw": "calorie calculator, TDEE calculator, daily calorie needs, BMR calculator, weight loss calories",
+    "kwAr": "حاسبة السعرات الحرارية, حاسبة TDEE, الاحتياج اليومي من السعرات",
+    "faq": [
+      {
+        "q": "How many calories should I eat per day?",
+        "a": "It depends on age, sex, weight, height, and activity. Our calculator uses the Mifflin-St Jeor equation for accuracy."
+      },
+      {
+        "q": "What is TDEE?",
+        "a": "Total Daily Energy Expenditure — the total calories you burn per day including exercise and daily activities."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم سعرة حرارية أحتاج يومياً؟",
+        "a": "يعتمد على العمر والجنس والوزن والطول والنشاط. حاسبتنا تستخدم معادلة Mifflin-St Jeor."
+      },
+      {
+        "q": "ما هو TDEE؟",
+        "a": "إجمالي الطاقة المستهلكة يومياً بما في ذلك التمارين والأنشطة اليومية."
+      }
+    ],
+    "guide": "<h2>Calculate Your Daily Calorie Needs</h2><p>Achieving your fitness goals starts with understanding your Total Daily Energy Expenditure (TDEE). Whether you want to lose weight, gain muscle, or maintain your current physique, caloric balance is the primary factor.</p><h3>How Calories are Estimated</h3><p>We use the <strong>Mifflin-St Jeor Equation</strong>, widely considered the most accurate formula for estimating Basel Metabolic Rate (BMR) for most people.</p><h3>The Role of Activity Levels</h3><ul><li><strong>Sedentary:</strong> Desk jobs and little exercise.</li><li><strong>Moderate:</strong> Active lifestyle with 3-5 workouts per week.</li><li><strong>Athlete:</strong> Intense training or physically demanding jobs.</li></ul><p>Adjusting your activity level ensures your calorie target matches your actual energy output.</p>",
+    "guideAr": "<h2>احسب احتياجاتك اليومية من السعرات الحرارية</h2><p>يبدأ تحقيق أهداف اللياقة البدنية الخاصة بك بفهم إجمالي الطاقة المستهلكة يومياً (TDEE). سواء كنت ترغب في إنقاص الوزن، أو اكتساب العضلات، أو الحفاظ على جسمك الحالي، فإن توازن السعرات الحرارية هو العامل الأساسي.</p><h3>كيف يتم تقدير السعرات الحرارية</h3><p>نحن نستخدم <strong>معادلة Mifflin-St Jeor</strong>، والتي تعتبر على نطاق واسع الصيغة الأكثر دقة لتقدير معدل الأيض الأساسي (BMR) لمعظم الناس.</p><h3>دور مستويات النشاط</h3><ul><li><strong>خامل:</strong> وظائف مكتبية وتمارين قليلة.</li><li><strong>متوسط:</strong> أسلوب حياة نشط مع 3-5 تمارين في الأسبوع.</li><li><strong>رياضي:</strong> تدريب مكثف أو وظائف تتطلب مجهوداً بدنياً شاقاً.</li></ul><p>يضمن ضبط مستوى نشاطك أن هدف السعرات الحرارية الخاص بك يتطابق مع إنتاج الطاقة الفعلي.</p>"
+  },
+  {
+    "id": "macros",
+    "cat": "health",
+    "icon": "🥩",
+    "title": "Macro Calculator",
+    "titleAr": "حاسبة الماكرو",
+    "desc": "Protein, carb and fat targets for your fitness goal.",
+    "descAr": "احتياجاتك من البروتين والكربوهيدرات والدهون حسب هدفك.",
+    "kw": "macro calculator, macronutrient calculator, protein calculator, diet calculator",
+    "kwAr": "حاسبة الماكرو, حاسبة البروتين, الكربوهيدرات والدهون",
+    "faq": [
+      {
+        "q": "What are macronutrients?",
+        "a": "Macros are protein, carbohydrates, and fat — the three main nutrients your body needs in large amounts."
+      },
+      {
+        "q": "What macro ratio should I use?",
+        "a": "For cutting: 40/35/25 (protein/carbs/fat). Maintaining: 30/40/30. Bulking: 25/50/25."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هي المغذيات الكبرى؟",
+        "a": "البروتين والكربوهيدرات والدهون — المغذيات الثلاث الرئيسية التي يحتاجها جسمك."
+      },
+      {
+        "q": "ما النسبة المناسبة من الماكرو؟",
+        "a": "للتنشيف: 40/35/25. للثبات: 30/40/30. للتضخيم: 25/50/25."
+      }
+    ]
+  },
+  {
+    "id": "bodyfat",
+    "cat": "health",
+    "icon": "💪",
+    "title": "Body Fat Calculator",
+    "titleAr": "حاسبة نسبة الدهون",
+    "desc": "Estimate body fat percentage using the US Navy method.",
+    "descAr": "تقدير نسبة الدهون في الجسم بطريقة البحرية الأمريكية.",
+    "kw": "body fat calculator, body fat percentage, US Navy method, lean mass calculator",
+    "kwAr": "حاسبة نسبة الدهون, نسبة الدهون في الجسم, الكتلة العضلية",
+    "faq": [
+      {
+        "q": "How is body fat percentage calculated?",
+        "a": "The US Navy method uses neck, waist, and hip measurements along with height to estimate body fat."
+      },
+      {
+        "q": "What is a healthy body fat percentage?",
+        "a": "Men: 10-20% is fit/average. Women: 18-28% is fit/average. Athletes are typically lower."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف تُحسب نسبة الدهون في الجسم؟",
+        "a": "طريقة البحرية الأمريكية تستخدم قياسات الرقبة والخصر والأرداف مع الطول."
+      },
+      {
+        "q": "ما هي نسبة الدهون الصحية؟",
+        "a": "الرجال: 10-20% متوسط. النساء: 18-28% متوسط. الرياضيون عادة أقل."
+      }
+    ]
+  },
+  {
+    "id": "pace",
+    "cat": "health",
+    "icon": "🏃",
+    "title": "Running Pace Calculator",
+    "titleAr": "حاسبة إيقاع الجري",
+    "desc": "Calculate pace, finish time, or distance for any run.",
+    "descAr": "احسب الإيقاع أو وقت الإنهاء أو المسافة لأي سباق.",
+    "kw": "running pace calculator, marathon pace, pace per mile, race time calculator",
+    "kwAr": "حاسبة إيقاع الجري, سرعة الجري, وقت السباق",
+    "faq": [
+      {
+        "q": "How do I calculate my running pace?",
+        "a": "Divide your total time by distance. A 30-minute 5K = 6:00 min/km or 9:39 min/mile."
+      },
+      {
+        "q": "What is a good running pace?",
+        "a": "Beginners: 6-7 min/km. Intermediate: 5-6 min/km. Advanced: under 5 min/km."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب إيقاع الجري؟",
+        "a": "اقسم الوقت الإجمالي على المسافة. 5 كم في 30 دقيقة = 6:00 دقيقة/كم."
+      },
+      {
+        "q": "ما هو إيقاع الجري الجيد؟",
+        "a": "المبتدئون: 6-7 دقيقة/كم. المتوسطون: 5-6 دقيقة/كم. المتقدمون: أقل من 5 دقيقة/كم."
+      }
+    ]
+  },
+  {
+    "id": "water",
+    "cat": "health",
+    "icon": "💧",
+    "title": "Water Intake Calculator",
+    "titleAr": "حاسبة شرب الماء",
+    "desc": "How much water should you drink each day?",
+    "descAr": "كمية الماء اليومية التي تحتاجها بناءً على وزنك ونشاطك.",
+    "kw": "water intake calculator, daily water needs, hydration calculator, how much water to drink",
+    "kwAr": "حاسبة شرب الماء, كمية الماء اليومية, الترطيب",
+    "faq": [
+      {
+        "q": "How much water should I drink daily?",
+        "a": "Generally 30-35ml per kg of body weight. More if you exercise or live in hot climates."
+      },
+      {
+        "q": "Does coffee count as water intake?",
+        "a": "Partially. While coffee has mild diuretic effects, it still contributes to hydration."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم لتر ماء يجب أن أشرب يومياً؟",
+        "a": "عموماً 30-35 مل لكل كجم من وزن الجسم. أكثر مع التمرين أو الحر."
+      },
+      {
+        "q": "هل القهوة تُحسب من شرب الماء؟",
+        "a": "جزئياً. رغم تأثيرها المدر للبول فهي تساهم في الترطيب."
+      }
+    ]
+  },
+  {
+    "id": "sleep",
+    "cat": "health",
+    "icon": "😴",
+    "title": "Sleep Calculator",
+    "titleAr": "حاسبة النوم",
+    "desc": "Find the best bedtime based on sleep cycles and wake time.",
+    "descAr": "أفضل وقت للنوم بناءً على دورات النوم ووقت الاستيقاظ.",
+    "kw": "sleep calculator, sleep cycle calculator, best bedtime, wake up time calculator",
+    "kwAr": "حاسبة النوم, دورات النوم, أفضل وقت للنوم",
+    "faq": [
+      {
+        "q": "How long is one sleep cycle?",
+        "a": "One sleep cycle lasts about 90 minutes, including light sleep, deep sleep, and REM stages."
+      },
+      {
+        "q": "How many hours of sleep do I need?",
+        "a": "Adults need 7-9 hours (4-6 complete sleep cycles) for optimal health and performance."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم تستغرق دورة النوم الواحدة؟",
+        "a": "حوالي 90 دقيقة تشمل النوم الخفيف والعميق ومرحلة REM."
+      },
+      {
+        "q": "كم ساعة نوم أحتاج؟",
+        "a": "البالغون يحتاجون 7-9 ساعات (4-6 دورات نوم كاملة)."
+      }
+    ]
+  },
+  {
+    "id": "pregnancy",
+    "cat": "health",
+    "icon": "🤰",
+    "title": "Pregnancy Due Date Calculator",
+    "titleAr": "حاسبة موعد الولادة",
+    "desc": "Calculate expected due date from last menstrual period.",
+    "descAr": "احسب الموعد المتوقع للولادة من آخر دورة شهرية.",
+    "kw": "pregnancy calculator, due date calculator, pregnancy weeks, expected delivery date",
+    "kwAr": "حاسبة الحمل, موعد الولادة, أسابيع الحمل",
+    "faq": [
+      {
+        "q": "How is the due date calculated?",
+        "a": "Add 280 days (40 weeks) to the first day of your last menstrual period (LMP). This is Naegele's rule."
+      },
+      {
+        "q": "How accurate are due date calculators?",
+        "a": "Only about 5% of babies are born on their due date. Most arrive within 2 weeks before or after."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يُحسب موعد الولادة؟",
+        "a": "بإضافة 280 يوماً (40 أسبوعاً) لأول يوم من آخر دورة شهرية."
+      },
+      {
+        "q": "ما مدى دقة حاسبة موعد الولادة؟",
+        "a": "حوالي 5% فقط من الأطفال يولدون في الموعد المحدد. معظمهم يصلون خلال أسبوعين قبله أو بعده."
+      }
+    ]
+  },
+  {
+    "id": "contraception",
+    "cat": "health",
+    "icon": "📅",
+    "title": "Calendar Contraception Calculator",
+    "titleAr": "حاسبة منع الحمل بالتقويم",
+    "desc": "Calculate safe days and fertile windows based on your menstrual cycle.",
+    "descAr": "حساب الأيام الآمنة وفترة الخصوبة بناءً على دورتك الشهرية.",
+    "kw": "safe days calculator, calendar method, fertile window, safe period calculator, natural contraception",
+    "kwAr": "حاسبة الأيام الآمنة, فترة الخصوبة, منع الحمل الطبيعي, حاسبة التبويض",
+    "faq": [
+      {
+        "q": "How does the calendar method work?",
+        "a": "It tracks your menstrual history to predict when you will ovulate. You are most fertile a few days before and on the day of ovulation."
+      },
+      {
+        "q": "How reliable is the calendar method?",
+        "a": "It is not as reliable as modern contraceptives and works best for women with extremely regular cycles. If avoiding pregnancy is critical, please consult a medical professional."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف تعمل طريقة التقويم (فترة الأمان)؟",
+        "a": "تتتبع تاريخ الدورة الشهرية لتتوقع وقت التبويض. تكونين أكثر خصوبة قبل التبويض بعدة أيام وفي يوم التبويض ذاته."
+      },
+      {
+        "q": "ما مدى موثوقية هذه الطريقة؟",
+        "a": "ليست موثوقة كطرق منع الحمل الحديثة وتفيد أكثر ذوات الدورة المنتظمة جداً. إذا كان منع الحمل ضرورياً، يرجى استشارة طبيب."
+      }
+    ]
+  },
+  {
+    "id": "heartrate",
+    "cat": "health",
+    "icon": "❤️",
+    "title": "Heart Rate Zones Calculator",
+    "titleAr": "حاسبة مناطق معدل ضربات القلب",
+    "desc": "Target heart rate zones for fat burn and cardio training.",
+    "descAr": "مناطق معدل ضربات القلب المستهدفة لحرق الدهون والكارديو.",
+    "kw": "heart rate zones calculator, target heart rate, max heart rate, fat burn zone",
+    "kwAr": "حاسبة معدل ضربات القلب, منطقة حرق الدهون, الكارديو",
+    "faq": [
+      {
+        "q": "How do I calculate my max heart rate?",
+        "a": "The simplest formula: 220 minus your age. A 30-year-old has a max HR of about 190 bpm."
+      },
+      {
+        "q": "What heart rate zone burns the most fat?",
+        "a": "The fat-burning zone is 60-70% of max heart rate. Higher zones burn more total calories."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب أقصى معدل لضربات القلب؟",
+        "a": "أبسط معادلة: 220 ناقص عمرك. شخص عمره 30 سنة أقصى معدل له حوالي 190."
+      },
+      {
+        "q": "ما منطقة حرق الدهون الأفضل؟",
+        "a": "منطقة حرق الدهون هي 60-70% من أقصى معدل. المناطق الأعلى تحرق سعرات أكثر."
+      }
+    ]
+  },
+  {
+    "id": "idealweight",
+    "cat": "health",
+    "icon": "🎯",
+    "title": "Ideal Weight Calculator",
+    "titleAr": "حاسبة الوزن المثالي",
+    "desc": "Estimate healthy weight range for your height and frame.",
+    "descAr": "نطاق الوزن الصحي المناسب لطولك وهيكلك العظمي.",
+    "kw": "ideal weight calculator, healthy weight range, ideal body weight, weight for height",
+    "kwAr": "حاسبة الوزن المثالي, الوزن الصحي, الوزن المناسب للطول",
+    "faq": [
+      {
+        "q": "What is my ideal weight?",
+        "a": "Ideal weight depends on height, frame size, and body composition. Multiple formulas exist including Devine and Robinson."
+      },
+      {
+        "q": "Is ideal weight the same as healthy weight?",
+        "a": "Not exactly. Healthy weight is a range (BMI 18.5-24.9), while ideal weight formulas give a specific target."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هو وزني المثالي؟",
+        "a": "يعتمد على الطول وحجم الهيكل العظمي وتكوين الجسم."
+      },
+      {
+        "q": "هل الوزن المثالي هو نفسه الوزن الصحي؟",
+        "a": "ليس بالضبط. الوزن الصحي نطاق، بينما الوزن المثالي رقم محدد."
+      }
+    ]
+  },
+  {
+    "id": "scientific",
+    "cat": "math",
+    "icon": "🔢",
+    "title": "Scientific Calculator",
+    "titleAr": "الآلة الحاسبة العلمية",
+    "desc": "Full scientific calculator with trig and log functions.",
+    "descAr": "آلة حاسبة علمية كاملة مع دوال المثلثات واللوغاريتم.",
+    "kw": "scientific calculator, online calculator, trig calculator, math calculator",
+    "kwAr": "آلة حاسبة علمية, حاسبة رياضيات, دوال مثلثية",
+    "faq": [
+      {
+        "q": "What functions does this scientific calculator support?",
+        "a": "Sin, cos, tan, log, ln, exponents, square roots, factorials, pi, and more."
+      },
+      {
+        "q": "Can I use this for exams?",
+        "a": "This is an online tool for practice and homework. Check your exam rules for permitted calculators."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما الدوال التي تدعمها الآلة الحاسبة العلمية؟",
+        "a": "sin, cos, tan, log, ln, الأسس, الجذور التربيعية, المضروب وغيرها."
+      },
+      {
+        "q": "هل يمكنني استخدامها في الامتحانات؟",
+        "a": "هذه أداة إلكترونية للتدريب والواجبات. تحقق من قواعد الامتحان."
+      }
+    ],
+    "guide": "<h2>How to Use the Scientific Calculator</h2><p>Our online scientific calculator is designed to provide high-precision results for complex mathematical problems. Whether you are a student working on trigonometry or an engineer performing logarithmic calculations, this tool offers a robust set of functions right in your browser.</p><h3>Supported Math Functions</h3><ul><li><strong>Trigonometry:</strong> Sin, Cos, Tan, and their inverses.</li><li><strong>Logarithms:</strong> Both natural (ln) and base-10 (log).</li><li><strong>Calculus & Algebra:</strong> Squares, power functions (x^y), factorials, and square roots.</li><li><strong>Constants:</strong> Quick access to Pi (π) and Euler's number (e).</li></ul><h3>Calculations in Your Browser</h3><p>One of the best features of CalcWise is that all computations happen locally. This means your math problems are solved instantly without needing to send data to a server, ensuring speed and 100% privacy.</p>",
+    "guideAr": "<h2>كيفية استخدام الآلة الحاسبة العلمية</h2><p>تم تصميم الآلة الحاسبة العلمية عبر الإنترنت لتوفير نتائج عالية الدقة للمشكلات الرياضية المعقدة. سواء كنت طالباً يعمل على حساب المثلثات أو مهندساً يقوم بحسابات لوغاريتمية، فإن هذه الأداة توفر مجموعة قوية من الوظائف مباشرة في متصفحك.</p><h3>الدوال الرياضية المدعومة</h3><ul><li><strong>حساب المثلثات:</strong> Sin، Cos، Tan ومعكوساتها.</li><li><strong>اللوغاريتمات:</strong> كل من اللوغاريتم الطبيعي (ln) واللوغاريتم العشري (log).</li><li><strong>الجبر والتفاضل:</strong> المربعات، دوال القوة (x^y)، المضروب، والجذور التربيعية.</li><li><strong>الثوابت:</strong> وصول سريع لثابت باي (π) وعدد أويلر (e).</li></ul><h3>الحساب في متصفحك</h3><p>واحدة من أفضل ميزات كالك وايز هي أن جميع الحسابات تتم محلياً. وهذا يعني أن مشاكلك الرياضية تُحل فوراً دون الحاجة لإرسال بيانات إلى خادم، مما يضمن السرعة والخصوصية التامة بنسبة 100٪.</p>"
+  },
+  {
+    "id": "units",
+    "cat": "math",
+    "icon": "📏",
+    "title": "Unit Converter",
+    "titleAr": "محول الوحدات",
+    "desc": "Convert between units of length, weight, temperature, and more.",
+    "descAr": "حوّل بين وحدات الطول والوزن والحرارة وغيرها.",
+    "kw": "unit converter, length converter, weight converter, temperature converter, metric converter",
+    "kwAr": "محول الوحدات, تحويل الطول, تحويل الوزن, تحويل الحرارة",
+    "faq": [
+      {
+        "q": "How do I convert Celsius to Fahrenheit?",
+        "a": "Multiply by 9/5 then add 32. Example: 25°C × 9/5 + 32 = 77°F."
+      },
+      {
+        "q": "How many kg in a pound?",
+        "a": "1 pound = 0.453592 kg. 1 kg = 2.20462 pounds."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحول من سيلسيوس إلى فهرنهايت؟",
+        "a": "اضرب في 9/5 ثم أضف 32. مثال: 25°C × 9/5 + 32 = 77°F."
+      },
+      {
+        "q": "كم كيلوغرام في الرطل؟",
+        "a": "1 رطل = 0.453592 كجم. 1 كجم = 2.20462 رطل."
+      }
+    ],
+    "guide": "<h2>Convert Units Instanty</h2><p>Accuracy matters when converting length, weight, or temperature. Our Unit Converter is built for professionals and students who need reliable transformations between metric and imperial systems.</p><h3>Supported Categories</h3><ul><li><strong>Length:</strong> Meters, Kilometers, Miles, Feet, and Inches.</li><li><strong>Weight:</strong> Kilograms, Grams, Pounds, and Ounces.</li><li><strong>Temperature:</strong> Celsius, Fahrenheit, and Kelvin.</li><li><strong>Volume:</strong> Liters, Milliliters, Gallons, and Quarts.</li></ul><h3>Why Use Our Converter?</h3><p>Unlike many online tools, our converter handles floating point precision carefully, giving you the most accurate result possible in real-time as you type.</p>",
+    "guideAr": "<h2>حول الوحدات فوراً</h2><p>الدقة مهمة عند تحويل الطول أو الوزن أو درجة الحرارة. تم بناء محول الوحدات الخاص بنا للمحترفين والطلاب الذين يحتاجون إلى تحويلات موثوقة بين الأنظمة المترية والإمبراطورية.</p><h3>الفئات المدعومة</h3><ul><li><strong>الطول:</strong> الأمتار، الكيلومترات، الأميال، الأقدام، والبوصات.</li><li><strong>الوزن:</strong> الكيلوجرامات، الجرامات، الأرطال، والأونصات.</li><li><strong>درجة الحرارة:</strong> السيلزيوس، الفهرنهايت، والكلفن.</li><li><strong>الحجم:</strong> اللترات، المللترات، الجالونات، والكوارت.</li></ul><h3>لماذا تستخدم محولنا؟</h3><p>على عكس العديد من الأدوات عبر الإنترنت، يتعامل محولنا مع دقة الفاصلة العائمة بعناية، مما يمنحك النتيجة الأكثر دقة الممكنة في الوقت الفعلي أثناء الكتابة.</p>"
+  },
+  {
+    "id": "gpa",
+    "cat": "math",
+    "icon": "🎓",
+    "title": "GPA Calculator",
+    "titleAr": "حاسبة المعدل التراكمي",
+    "desc": "Calculate your GPA from course grades and credit hours.",
+    "descAr": "احسب معدلك التراكمي من درجات المواد والساعات الدراسية.",
+    "kw": "GPA calculator, grade point average, college GPA calculator, cumulative GPA",
+    "kwAr": "حاسبة المعدل التراكمي, GPA, حساب المعدل الجامعي",
+    "faq": [
+      {
+        "q": "How is GPA calculated?",
+        "a": "Multiply each grade's point value by credit hours, sum all, then divide by total credit hours."
+      },
+      {
+        "q": "What GPA scale is used?",
+        "a": "The standard 4.0 scale where A=4.0, B=3.0, C=2.0, D=1.0, F=0.0."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يُحسب المعدل التراكمي؟",
+        "a": "اضرب قيمة كل درجة في عدد الساعات، اجمع الكل، ثم اقسم على إجمالي الساعات."
+      },
+      {
+        "q": "ما مقياس المعدل المستخدم؟",
+        "a": "مقياس 4.0 حيث A=4.0, B=3.0, C=2.0, D=1.0, F=0.0."
+      }
+    ],
+    "guide": "<h2>Calculate Your Academic Success</h2><p>Maintaining a high GPA is key to securing scholarships and university admissions. Our GPA Calculator follows standard credit-hour systems to help you track your progress throughout the semester.</p><h3>How GPA is Weighted</h3><p>Your Grade Point Average is not just an average of your grades. It is a <strong>Weighted Average</strong> based on the number of credit hours (or units) for each course. A 4-unit 'A' impacts your GPA more than a 2-unit 'A'.</p><h3>Using the 4.0 or 5.0 Scale</h3><ul><li><strong>Quality Points:</strong> Each grade (A, B, C, etc.) is assigned a point value.</li><li><strong>Cumulative GPA:</strong> Track your entire academic history by adding previous totals.</li></ul><p>Use this tool to simulate 'what-if' scenarios and see what grades you need in your finals to reach your target GPA.</p>",
+    "guideAr": "<h2>احسب نجاحك الأكاديمي</h2><p>يعد الحفاظ على معدل تراكمي مرتفع مفتاحاً لتأمين المنح الدراسية والقبول الجامعي. تتبع حاسبة المعدل التراكمي (GPA) الخاصة بنا أنظمة الساعات المعتمدة القياسية لمساعدتك في تتبع تقدمك طوال الفصل الدراسي.</p><h3>كيف يتم وزن المعدل التراكمي</h3><p>متوسط درجة التقدير ليس مجرد متوسط لدرجاتك. إنه **متوسط مرجح** يعتمد على عدد الساعات المعتمدة (أو الوحدات) لكل مقرر. يؤثر الحصول على \"A\" في مادة من 4 ساعات على معدلك التراكمي أكثر من الحصول عليها في مادة من ساعتين.</p><h3>استخدام مقياس 4.0 أو 5.0</h3><ul><li><strong>نقاط الجودة:</strong> يتم تعيين قيمة نقطية لكل درجة (A، B، C، إلخ).</li><li><strong>المعدل التراكمي:</strong> تتبع تاريخك الأكاديمي بأكمله عن طريق إضافة الإجماليات السابقة.</li></ul><p>استخدم هذه الأداة لمحاكاة سيناريوهات \"ماذا لو\" ومعرفة الدرجات التي تحتاجها في امتحاناتك النهائية للوصول إلى المعدل التراكمي المستهدف.</p>"
+  },
+  {
+    "id": "quadratic",
+    "cat": "math",
+    "icon": "📊",
+    "title": "Quadratic Equation Solver",
+    "titleAr": "حل المعادلة التربيعية",
+    "desc": "Solve ax² + bx + c = 0 and find roots instantly.",
+    "descAr": "حل معادلات ax² + bx + c = 0 وإيجاد الجذور فوراً.",
+    "kw": "quadratic equation solver, quadratic formula, find roots, ax2+bx+c",
+    "kwAr": "حل المعادلة التربيعية, الصيغة التربيعية, إيجاد الجذور",
+    "faq": [
+      {
+        "q": "What is the quadratic formula?",
+        "a": "x = (-b ± √(b²-4ac)) / 2a. It finds the roots of any quadratic equation ax² + bx + c = 0."
+      },
+      {
+        "q": "What does the discriminant tell us?",
+        "a": "If b²-4ac > 0: two real roots. If = 0: one root. If < 0: no real roots (complex numbers)."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هي الصيغة التربيعية؟",
+        "a": "x = (-b ± √(b²-4ac)) / 2a تجد جذور أي معادلة تربيعية."
+      },
+      {
+        "q": "ماذا يخبرنا المميز؟",
+        "a": "إذا b²-4ac > 0: جذران حقيقيان. إذا = 0: جذر واحد. إذا < 0: لا جذور حقيقية."
+      }
+    ]
+  },
+  {
+    "id": "probability",
+    "cat": "math",
+    "icon": "🎲",
+    "title": "Probability Calculator",
+    "titleAr": "حاسبة الاحتمالات",
+    "desc": "Combinations, permutations and event probabilities.",
+    "descAr": "التوافيق والتبديلات واحتمالات الأحداث.",
+    "kw": "probability calculator, combinations calculator, permutations, statistics calculator",
+    "kwAr": "حاسبة الاحتمالات, التوافيق, التبديلات, الإحصاء",
+    "faq": [
+      {
+        "q": "What is the difference between combinations and permutations?",
+        "a": "Combinations: order doesn't matter (choosing a team). Permutations: order matters (arranging in a line)."
+      },
+      {
+        "q": "How do I calculate probability?",
+        "a": "Probability = favorable outcomes / total possible outcomes. Values range from 0 (impossible) to 1 (certain)."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما الفرق بين التوافيق والتبديلات؟",
+        "a": "التوافيق: الترتيب غير مهم (اختيار فريق). التبديلات: الترتيب مهم (ترتيب في صف)."
+      },
+      {
+        "q": "كيف أحسب الاحتمال؟",
+        "a": "الاحتمال = النتائج المواتية / إجمالي النتائج الممكنة. من 0 (مستحيل) إلى 1 (مؤكد)."
+      }
+    ]
+  },
+  {
+    "id": "geometry",
+    "cat": "math",
+    "icon": "📐",
+    "title": "Geometry Calculator",
+    "titleAr": "حاسبة الهندسة",
+    "desc": "Area, perimeter, and volume for circles, rectangles, triangles.",
+    "descAr": "المساحة والمحيط والحجم للدوائر والمثلثات والمستطيلات.",
+    "kw": "geometry calculator, area calculator, perimeter calculator, circle area, triangle area",
+    "kwAr": "حاسبة الهندسة, حساب المساحة, حساب المحيط, مساحة الدائرة",
+    "faq": [
+      {
+        "q": "How do I calculate the area of a circle?",
+        "a": "Area = π × r². For a circle with radius 5: A = 3.14159 × 25 = 78.54 square units."
+      },
+      {
+        "q": "How do I find the area of a triangle?",
+        "a": "Area = ½ × base × height. For a triangle with base 10 and height 6: A = ½ × 10 × 6 = 30."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب مساحة الدائرة؟",
+        "a": "المساحة = π × نق². لدائرة نصف قطرها 5: المساحة = 78.54 وحدة مربعة."
+      },
+      {
+        "q": "كيف أحسب مساحة المثلث؟",
+        "a": "المساحة = ½ × القاعدة × الارتفاع."
+      }
+    ]
+  },
+  {
+    "id": "speed",
+    "cat": "math",
+    "icon": "⚡",
+    "title": "Speed Distance Time Calculator",
+    "titleAr": "حاسبة السرعة والمسافة والزمن",
+    "desc": "Solve for speed, distance, or time given the other two values.",
+    "descAr": "احسب أياً من الثلاثة إذا عرفت القيمتين الأخريين.",
+    "kw": "speed calculator, distance calculator, time calculator, speed distance time formula",
+    "kwAr": "حاسبة السرعة, حاسبة المسافة, حاسبة الزمن",
+    "faq": [
+      {
+        "q": "What is the speed distance time formula?",
+        "a": "Speed = Distance / Time. Distance = Speed × Time. Time = Distance / Speed."
+      },
+      {
+        "q": "How do I convert km/h to m/s?",
+        "a": "Divide km/h by 3.6. Example: 90 km/h ÷ 3.6 = 25 m/s."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما هي معادلة السرعة والمسافة والزمن؟",
+        "a": "السرعة = المسافة / الزمن. المسافة = السرعة × الزمن. الزمن = المسافة / السرعة."
+      },
+      {
+        "q": "كيف أحول كم/ساعة إلى م/ثانية؟",
+        "a": "اقسم كم/ساعة على 3.6. مثال: 90 كم/ساعة ÷ 3.6 = 25 م/ثانية."
+      }
+    ]
+  },
+  {
+    "id": "base",
+    "cat": "math",
+    "icon": "💻",
+    "title": "Number Base Converter",
+    "titleAr": "محول أنظمة الأعداد",
+    "desc": "Convert between binary, octal, decimal, and hexadecimal.",
+    "descAr": "حوّل بين النظام الثنائي والثماني والعشري والسداسي عشر.",
+    "kw": "number base converter, binary converter, hex converter, decimal to binary",
+    "kwAr": "محول أنظمة الأعداد, تحويل ثنائي, تحويل سداسي عشري",
+    "faq": [
+      {
+        "q": "How do I convert decimal to binary?",
+        "a": "Repeatedly divide by 2 and read remainders bottom-up. Example: 13 = 1101 in binary."
+      },
+      {
+        "q": "What is hexadecimal?",
+        "a": "Base-16 numbering using 0-9 and A-F. Common in programming for colors (#FF5733) and memory addresses."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحول من عشري إلى ثنائي؟",
+        "a": "اقسم على 2 بشكل متكرر واقرأ البواقي من الأسفل للأعلى. مثال: 13 = 1101."
+      },
+      {
+        "q": "ما هو النظام السداسي عشري؟",
+        "a": "نظام أساسه 16 يستخدم 0-9 وA-F. شائع في البرمجة للألوان وعناوين الذاكرة."
+      }
+    ]
+  },
+  {
+    "id": "age",
+    "cat": "everyday",
+    "icon": "🎂",
+    "title": "Age Calculator",
+    "titleAr": "حاسبة العمر",
+    "desc": "Exact age in years, months, and days from your birthdate.",
+    "descAr": "احسب عمرك بالسنوات والأشهر والأيام من تاريخ ميلادك.",
+    "kw": "age calculator, how old am I, birthday calculator, age in days",
+    "kwAr": "حاسبة العمر, كم عمري, حاسبة تاريخ الميلاد",
+    "faq": [
+      {
+        "q": "How do I calculate my exact age?",
+        "a": "Subtract your birth date from today's date. Our calculator shows years, months, days, and days until next birthday."
+      },
+      {
+        "q": "How many days old am I?",
+        "a": "Enter your birthdate and our calculator will show your exact age in days, along with years and months."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب عمري بالضبط؟",
+        "a": "اطرح تاريخ ميلادك من تاريخ اليوم. حاسبتنا تعرض السنوات والأشهر والأيام."
+      },
+      {
+        "q": "كم يوماً عمري؟",
+        "a": "أدخل تاريخ ميلادك وستعرض الحاسبة عمرك بالأيام والسنوات والأشهر."
+      }
+    ],
+    "guide": "<h2>Calculate Your Age Exactly</h2><p>Knowing your exact age in years, months, and days is useful for legal documents, fitness planning, or just curiosity. Our Age Calculator provides a precise breakdown down to the day.</p><h3>More Than Just Years</h3><p>While most people know their age in years, our tool also shows you:</p><ul><li><strong>Total Days:</strong> See exactly how many thousands of days you've been on Earth.</li><li><strong>Next Birthday:</strong> A countdown to your next big celebration.</li><li><strong>Zodiac & Milestones:</strong> Contextual info about your birth date.</li></ul><h3>Privacy and Accuracy</h3><p>Your birthdate is sensitive information. That's why we never store it. All calculations happen on your device, ensuring your privacy while providing instant results.</p>",
+    "guideAr": "<h2>احسب عمرك بدقة</h2><p>معرفة عمرك بالضبط بالسنوات والأشهر والأيام أمر مفيد للوثائق الرسمية، أو تخطيط اللياقة البدنية، أو لمجرد الفضول. توفر حاسبة العمر لدينا تفصيلاً دقيقاً حتى مستوى اليوم.</p><h3>أكثر من مجرد سنوات</h3><p>بينما يعرف معظم الناس أعمارهم بالسنوات، تعرض لك أداتنا أيضاً:</p><ul><li><strong>إجمالي الأيام:</strong> تعرف بالضبط كم ألف يوم قضيتها على الأرض.</li><li><strong>عيد الميلاد القادم:</strong> عد تنازلي لاحتفالك القادم.</li><li><strong>دقة عالية:</strong> حساب دقيق يأخذ في الاعتبار السنوات الكبيسة وأطوال الأشهر.</li></ul><h3>الخصوصية والدقة</h3><p>تاريخ ميلادك هو معلومة حساسة. لهذا السبب نحن لا نقوم بتخزينه أبداً. جميع الحسابات تتم على جهازك الخاص، مما يضمن خصوصيتك مع توفير نتائج فورية.</p>"
+  },
+  {
+    "id": "datediff",
+    "cat": "everyday",
+    "icon": "📅",
+    "title": "Date Difference Calculator",
+    "titleAr": "حاسبة الفرق بين تاريخين",
+    "desc": "Number of days, weeks, and months between two dates.",
+    "descAr": "عدد الأيام والأسابيع والأشهر بين أي تاريخين.",
+    "kw": "date difference calculator, days between dates, date calculator, how many days until",
+    "kwAr": "حاسبة الفرق بين تاريخين, عدد الأيام بين تاريخين",
+    "faq": [
+      {
+        "q": "How do I calculate days between two dates?",
+        "a": "Subtract the earlier date from the later date. Our calculator handles months and leap years automatically."
+      },
+      {
+        "q": "Does this account for leap years?",
+        "a": "Yes, our calculator correctly accounts for leap years and varying month lengths."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب الأيام بين تاريخين؟",
+        "a": "اطرح التاريخ الأقدم من الأحدث. حاسبتنا تتعامل مع الأشهر والسنوات الكبيسة."
+      },
+      {
+        "q": "هل تأخذ بعين الاعتبار السنوات الكبيسة؟",
+        "a": "نعم، حاسبتنا تحسب السنوات الكبيسة وأطوال الأشهر المختلفة بدقة."
+      }
+    ],
+    "guide": "<h2>How to Use the Date Difference Calculator</h2><p>Measuring the time between two specific dates is essential for project management, event planning, and tracking personal milestones. Our tool makes it easy to subtract one date from another to get an exact result.</p><h3>Units of Measurement</h3><p>You can see the difference between dates expressed in different formats:</p><ul><li><strong>Days:</strong> The total number of 24-hour periods.</li><li><strong>Weeks:</strong> Total full weeks plus remaining days.</li><li><strong>Months & Years:</strong> A human-readable breakdown for long-term tracking.</li></ul><h3>Use Cases</h3><p>This tool is perfect for calculating project deadlines, wedding countdowns, or the time elapsed since a historic event. It handles all calendar complexities like Leap Years automatically.</p>",
+    "guideAr": "<h2>كيفية استخدام حاسبة الفرق بين تاريخين</h2><p>يعد قياس الوقت بين تاريخين محددين أمراً ضرورياً لإدارة المشاريع، وتخطيط الفعاليات، وتتبع الإنجازات الشخصية. تجعل أداتنا من السهل طرح تاريخ من آخر للحصول على نتيجة دقيقة.</p><h3>وحدات القياس</h3><p>يمكنك رؤية الفرق بين التواريخ معبراً عنه بتنسيقات مختلفة:</p><ul><li><strong>الأيام:</strong> إجمالي عدد الفترات المكونة من 24 ساعة.</li><li><strong>الأسابيع:</strong> إجمالي الأسابيع الكاملة بالإضافة إلى الأيام المتبقية.</li><li><strong>الأشهر والسنوات:</strong> تفصيل سهل القراءة للتتبع طويل الأمد.</li></ul><h3>حالات الاستخدام</h3><p>هذه الأداة مثالية لحساب المواعيد النهائية للمشاريع، والعد التنازلي لحفلات الزفاف، أو الوقت المنقضي منذ حدث تاريخي. وهي تتعامل مع جميع تعقيدات التقويم مثل السنوات الكبيسة تلقائياً.</p>"
+  },
+  {
+    "id": "timezone",
+    "cat": "everyday",
+    "icon": "🌍",
+    "title": "Time Zone Converter",
+    "titleAr": "محول المناطق الزمنية",
+    "desc": "Convert time between major world cities instantly.",
+    "descAr": "حوّل الوقت بين المناطق الزمنية الرئيسية حول العالم.",
+    "kw": "time zone converter, world clock, time difference calculator, EST to PST",
+    "kwAr": "محول المناطق الزمنية, فارق التوقيت, الساعة العالمية",
+    "faq": [
+      {
+        "q": "How do time zones work?",
+        "a": "The world is divided into 24 time zones, each roughly 15° of longitude. UTC is the reference standard."
+      },
+      {
+        "q": "What is UTC?",
+        "a": "Coordinated Universal Time — the primary time standard. Other zones are expressed as UTC+/- hours."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف تعمل المناطق الزمنية؟",
+        "a": "العالم مقسم إلى 24 منطقة زمنية، كل منها حوالي 15 درجة طولية. UTC هو المرجع."
+      },
+      {
+        "q": "ما هو UTC؟",
+        "a": "التوقيت العالمي المنسق — المعيار الزمني الأساسي."
+      }
+    ]
+  },
+  {
+    "id": "fuel",
+    "cat": "everyday",
+    "icon": "⛽",
+    "title": "Fuel Cost Calculator",
+    "titleAr": "حاسبة تكلفة الوقود",
+    "desc": "Estimate trip fuel cost based on distance, mpg and gas price.",
+    "descAr": "تقدير تكلفة وقود الرحلة بناءً على المسافة واستهلاك الوقود.",
+    "kw": "fuel cost calculator, gas calculator, trip fuel cost, mpg calculator, gas mileage",
+    "kwAr": "حاسبة تكلفة الوقود, حاسبة البنزين, تكلفة رحلة بالسيارة",
+    "faq": [
+      {
+        "q": "How do I calculate fuel cost for a trip?",
+        "a": "Divide distance by fuel efficiency (mpg or km/l), then multiply by fuel price per unit."
+      },
+      {
+        "q": "What is good fuel economy?",
+        "a": "30+ MPG (or 7.8 L/100km or less) is considered good for a passenger car."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف أحسب تكلفة الوقود لرحلة؟",
+        "a": "اقسم المسافة على استهلاك الوقود ثم اضرب في سعر اللتر."
+      },
+      {
+        "q": "ما هو استهلاك الوقود الجيد؟",
+        "a": "7.8 لتر/100كم أو أقل يعتبر جيداً لسيارة ركاب."
+      }
+    ],
+    "guide": "<h2>Calculate Your Trip Fuel Expenses</h2><p>Rising fuel prices make trip planning more important than ever. Our Fuel Cost Calculator helps you estimate exactly how much you'll spend on gas for your next commute or road trip.</p><h3>The Calculation Formula</h3><p>We take your <strong>Distance</strong>, divide it by your vehicle's <strong>Fuel Efficiency</strong> (MPG or L/100km), and multiply by the current <strong>Fuel Price</strong>.</p><h3>Tips to Save on Fuel</h3><ul><li><strong>Efficient Driving:</strong> Smooth acceleration and consistent speeds improve MPG.</li><li><strong>Vehicle Maintenance:</strong> Properly inflated tires and regular oil changes keep your car efficient.</li><li><strong>Load Weight:</strong> Carrying excess weight inside the car increases fuel consumption.</li></ul>",
+    "guideAr": "<h2>احسب مصاريف وقود رحلتك</h2><p>ارتفاع أسعار الوقود يجعل تخطيط الرحلات أكثر أهمية من أي وقت مضى. تساعدك حاسبة تكلفة الوقود لدينا على تقدير المبلغ الذي ستنفقه بالضبط على البنزين لرحلتك القادمة أو سفرك.</p><h3>معادلة الحساب</h3><p>نأخذ **المسافة** المقطوعة، ونقسمها على **كفاءة الوقود** في سيارتك (ميل لكل جالون أو لتر/100كم)، ونضربها في **سعر الوقود** الحالي.</p><h3>نصائح للتوفير في الوقود</h3><ul><li><strong>القيادة الكفؤة:</strong> التسارع السلس والسرعات الثابتة يحسنان استهلاك الوقود.</li><li><strong>صيانة السيارة:</strong> الإطارات المنفوخة بشكل صحيح وتغيير الزيت بانتظام يحافظان على كفاءة سيارتك.</li><li><strong>وزن الحمولة:</strong> يؤدي حمل وزن زائد داخل السيارة إلى زيادة استهلاك الوقود.</li></ul>"
+  },
+  {
+    "id": "cooking",
+    "cat": "everyday",
+    "icon": "👨‍🍳",
+    "title": "Cooking Converter",
+    "titleAr": "محول قياسات الطبخ",
+    "desc": "Convert cups, tablespoons, teaspoons, ml, and ounces.",
+    "descAr": "حوّل بين الأكواب والملاعق والمل والأونصة.",
+    "kw": "cooking converter, cups to ml, tablespoon to teaspoon, recipe converter, kitchen measurement",
+    "kwAr": "محول قياسات الطبخ, تحويل أكواب, ملاعق إلى مل",
+    "faq": [
+      {
+        "q": "How many ml in a cup?",
+        "a": "1 US cup = 236.588 ml. 1 metric cup = 250 ml."
+      },
+      {
+        "q": "How many teaspoons in a tablespoon?",
+        "a": "1 tablespoon = 3 teaspoons = approximately 15 ml."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كم مل في الكوب؟",
+        "a": "1 كوب أمريكي = 236.588 مل. 1 كوب متري = 250 مل."
+      },
+      {
+        "q": "كم ملعقة صغيرة في ملعقة كبيرة؟",
+        "a": "1 ملعقة كبيرة = 3 ملاعق صغيرة = حوالي 15 مل."
+      }
+    ]
+  },
+  {
+    "id": "random",
+    "cat": "everyday",
+    "icon": "🎲",
+    "title": "Random Number Generator",
+    "titleAr": "مولّد الأرقام العشوائية",
+    "desc": "Generate random numbers within any range.",
+    "descAr": "ولّد أرقاماً عشوائية ضمن أي نطاق تحدده.",
+    "kw": "random number generator, RNG, random picker, dice roller, random integer",
+    "kwAr": "مولد أرقام عشوائية, رقم عشوائي, قرعة",
+    "faq": [
+      {
+        "q": "How does a random number generator work?",
+        "a": "Our RNG uses JavaScript's Math.random() to generate pseudo-random numbers within your specified range."
+      },
+      {
+        "q": "Are the numbers truly random?",
+        "a": "They are pseudo-random, generated by algorithms. For most purposes like games and decisions, they work perfectly."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يعمل مولد الأرقام العشوائية؟",
+        "a": "يستخدم دالة Math.random() لتوليد أرقام شبه عشوائية ضمن النطاق المحدد."
+      },
+      {
+        "q": "هل الأرقام عشوائية حقاً؟",
+        "a": "هي شبه عشوائية تولدها خوارزميات. تعمل بشكل ممتاز للألعاب والقرارات."
+      }
+    ]
+  },
+  {
+    "id": "countdown",
+    "cat": "everyday",
+    "icon": "⏳",
+    "title": "Countdown Timer",
+    "titleAr": "العد التنازلي",
+    "desc": "Set a target date and watch the countdown with analog or digital display.",
+    "descAr": "حدد تاريخاً مستهدفاً وشاهد العد التنازلي بالعرض الرقمي أو التناظري.",
+    "kw": "countdown timer, countdown calculator, days until, event countdown, analog clock countdown, digital countdown",
+    "kwAr": "عد تنازلي, حاسبة العد التنازلي, كم يوم تبقى, مؤقت, ساعة تنازلية",
+    "faq": [
+      {
+        "q": "How does a countdown timer work?",
+        "a": "Enter a target date and time, press Start, and the timer counts down the remaining days, hours, minutes, and seconds in real time."
+      },
+      {
+        "q": "Can I see the countdown on an analog clock?",
+        "a": "Yes! Toggle to Analog mode to see a classic clock face with rotating hands and a progress ring showing remaining time."
+      },
+      {
+        "q": "What happens when the countdown reaches zero?",
+        "a": "The timer stops and displays a celebration message. The progress bar also fills completely to indicate the event has arrived."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يعمل العد التنازلي؟",
+        "a": "أدخل التاريخ والوقت المستهدف، اضغط ابدأ، وسيعرض الوقت المتبقي بالأيام والساعات والدقائق والثواني لحظة بلحظة."
+      },
+      {
+        "q": "هل يمكنني رؤية العد التنازلي على ساعة تناظرية؟",
+        "a": "نعم! اختر وضع التناظري لرؤية وجه ساعة كلاسيكي بعقارب دوارة وحلقة تقدم تُظهر الوقت المتبقي."
+      },
+      {
+        "q": "ماذا يحدث عندما يصل العد التنازلي إلى الصفر؟",
+        "a": "يتوقف المؤقت ويعرض رسالة احتفالية. يمتلئ شريط التقدم بالكامل للإشارة إلى وصول الحدث."
+      }
+    ]
+  },
+  {
+    "id": "hijri",
+    "cat": "everyday",
+    "icon": "🗓️",
+    "title": "Hijri Date Converter",
+    "titleAr": "تحويل التاريخ الهجري",
+    "desc": "Convert dates between Hijri and Gregorian calendars, view dual calendars, and explore historical events.",
+    "descAr": "حوّل التواريخ بين الهجري والميلادي، وشاهد التقويم المزدوج، واستعرض الأحداث التاريخية.",
+    "kw": "hijri date converter, Islamic calendar converter, Gregorian to Hijri, Hijri to Gregorian, hijri calculator, islamic date",
+    "kwAr": "تحويل التاريخ الهجري, تحويل هجري ميلادي, التقويم الهجري, محول التاريخ الإسلامي",
+    "faq": [
+      {
+        "q": "How accurate is the Hijri date conversion?",
+        "a": "Our converter uses the standard astronomical Julian Day Number algorithm, accurate for dates between approximately 1300–1500 AH (1882–2077 CE)."
+      },
+      {
+        "q": "What is the Hijri calendar?",
+        "a": "The Hijri (Islamic) calendar is a lunar calendar of 12 months in a year of 354 or 355 days. It began with the Prophet Muhammad's migration (Hijra) from Mecca to Medina in 622 CE."
+      },
+      {
+        "q": "Can I convert any historical date?",
+        "a": "Yes — enter any Gregorian date from 1900–2100 or any Hijri date from 1200–1600 AH. Historical events on the selected date are shown below."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "ما مدى دقة تحويل التاريخ الهجري؟",
+        "a": "يستخدم محولنا خوارزمية رقم اليوم اليولياني الفلكي القياسية، وهي دقيقة للتواريخ بين 1300–1500 هـ تقريباً."
+      },
+      {
+        "q": "ما هو التقويم الهجري؟",
+        "a": "التقويم الهجري تقويم قمري مؤلف من 12 شهراً. بدأ بهجرة النبي محمد ﷺ من مكة إلى المدينة عام 622م."
+      },
+      {
+        "q": "هل يمكنني تحويل أي تاريخ تاريخي؟",
+        "a": "نعم — أدخل أي تاريخ ميلادي من 1900–2100 أو أي تاريخ هجري من 1200–1600 هـ. تظهر الأحداث التاريخية للتاريخ المختار أدناه."
+      }
+    ]
+  },
+  {
+    "id": "typing",
+    "cat": "everyday",
+    "icon": "⌨️",
+    "title": "Typing Practice",
+    "titleAr": "التدريب على الطباعة",
+    "desc": "Test and improve your typing speed (WPM) and accuracy.",
+    "descAr": "اختبر وحسّن سرعتك ودقتك في الطباعة.",
+    "kw": "typing practice, typing speed test, WPM calculator, typing accuracy test",
+    "kwAr": "التدريب على الطباعة, اختبار الطباعة, سرعة الطباعة, تحسين الطباعة, الكلمات في الدقيقة",
+    "faq": [
+      {
+        "q": "How is WPM calculated?",
+        "a": "WPM (Words Per Minute) is calculated by taking the total number of correctly typed characters divided by 5 (average word length), then divided by the elapsed time in minutes."
+      },
+      {
+        "q": "What is a good typing speed?",
+        "a": "The average typing speed is around 40 WPM. Professionals can type 70-80 WPM, and advanced typists can reach over 100 WPM."
+      }
+    ],
+    "faqAr": [
+      {
+        "q": "كيف يتم حساب عدد الكلمات في الدقيقة (WPM)؟",
+        "a": "يتم حساب عدد الكلمات في الدقيقة (WPM) عن طريق قسمة العدد الإجمالي للأحرف المكتوبة بشكل صحيح على 5 (متوسط طول الكلمة)، ثم قسمته على الوقت المنقضي بالدقائق."
+      },
+      {
+        "q": "ما هي سرعة الطباعة الجيدة؟",
+        "a": "متوسط سرعة الطباعة حوالي 40 كلمة في الدقيقة. يمكن للمحترفين طباعة 70-80 كلمة في الدقيقة، ويمكن للطباعين المتقدمين الوصول إلى أكثر من 100 كلمة في الدقيقة."
+      }
+    ]
+  }
+]

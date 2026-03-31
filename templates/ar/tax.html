@@ -1,0 +1,32 @@
+<div class="field-row">
+      <div class="field-group"><label for="stax-price">السعر</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">ر.س</span><input type="number" id="stax-price"
+            value="100" step="0.01" min="0"></div>
+      </div>
+      <div class="field-group"><label for="stax-rate">نسبة الضريبة</label>
+        <div class="input-wrap has-suffix"><input type="number" id="stax-rate" value="15" step="0.1" min="0"><span
+            class="input-suffix">%</span></div>
+      </div>
+    </div>
+    <div class="field-group"><label for="stax-mode">الوضع</label>
+      <select id="stax-mode">
+        <option value="add">إضافة الضريبة إلى السعر</option>
+        <option value="remove">استخراج الضريبة من السعر (عكسي)</option>
+      </select>
+    </div>
+    <button class="calc-btn" data-action="calcTax">احسب</button>
+    <div class="results" id="r-tax">
+      <h3>النتائج</h3>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-tax-pre">0</span>
+          <div class="result-label">السعر قبل الضريبة</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-tax-amount">0</span>
+          <div class="result-label">مبلغ الضريبة</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-tax-total">0</span>
+          <div class="result-label">السعر الإجمالي</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

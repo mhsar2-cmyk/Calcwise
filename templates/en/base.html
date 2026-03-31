@@ -1,0 +1,32 @@
+<div class="field-row">
+      <div class="field-group"><label for="base-val">Value</label><input type="text" id="base-val" value="255"
+          style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.7rem;font-family:inherit;font-size:1rem;color:var(--text);outline:none;">
+      </div>
+      <div class="field-group"><label for="base-from">From Base</label>
+        <select id="base-from">
+          <option value="10" selected>Decimal (Base 10)</option>
+          <option value="2">Binary (Base 2)</option>
+          <option value="8">Octal (Base 8)</option>
+          <option value="16">Hexadecimal (Base 16)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcBase">Convert</button>
+    <div class="results" id="r-base">
+      <h3>Converted Values</h3>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-base-dec">—</span>
+          <div class="result-label">Decimal (10)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-base-bin" style="word-break:break-all">—</span>
+          <div class="result-label">Binary (2)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-base-oct">—</span>
+          <div class="result-label">Octal (8)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-base-hex" style="text-transform:uppercase">—</span>
+          <div class="result-label">Hexadecimal (16)</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

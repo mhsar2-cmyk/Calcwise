@@ -1,0 +1,6 @@
+# CalcWise - https://calcwises.com
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://calcwises.com/sitemap.xml

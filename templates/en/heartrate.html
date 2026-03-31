@@ -1,0 +1,35 @@
+<div class="field-row">
+      <div class="field-group"><label for="hr-age">Age</label>
+        <div class="input-wrap has-suffix"><input type="number" id="hr-age" value="30" min="10" max="100"><span
+            class="input-suffix">yrs</span></div>
+      </div>
+      <div class="field-group"><label for="hr-rest">Resting Heart Rate</label>
+        <div class="input-wrap has-suffix"><input type="number" id="hr-rest" value="60" min="30" max="120"><span
+            class="input-suffix">bpm</span></div>
+      </div>
+    </div>
+    <button class="calc-btn" data-action="calcHeartRate">Calculate Zones</button>
+    <div class="results" id="r-heartrate">
+      <h3>Training Zones (Karvonen Method)</h3>
+      <div class="result-highlight"><span class="result-value" id="r-hr-max">—</span>
+        <div class="result-label">Maximum Heart Rate (BPM)</div>
+      </div>
+      <div class="result-grid" style="margin-top:1rem;">
+        <div class="result-item"><span class="result-value" id="r-hr-z1" style="color:var(--blue)">—</span>
+          <div class="result-label">Warm Up (50-60%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z2" style="color:var(--green)">—</span>
+          <div class="result-label">Fat Burn (60-70%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z3" style="color:var(--yellow)">—</span>
+          <div class="result-label">Aerobic (70-80%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z4" style="color:var(--orange)">—</span>
+          <div class="result-label">Anaerobic (80-90%)</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-hr-z5" style="color:var(--pink)">—</span>
+          <div class="result-label">Maximum (90-100%)</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>

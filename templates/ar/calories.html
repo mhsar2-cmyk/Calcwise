@@ -1,0 +1,74 @@
+<div class="field-row">
+      <div class="field-group"><label for="cal-unit">نظام القياس</label>
+        <select id="cal-unit" data-change="updateCalFields()">
+          <option value="imperial">إمبراطوري (رطل، بوصة)</option>
+          <option value="metric" selected>متري (كجم، سم)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group"><label for="cal-age">العمر</label>
+        <div class="input-wrap has-suffix"><input type="number" id="cal-age" value="30" min="1" max="120"><span
+            class="input-suffix">سنة</span></div>
+      </div>
+      <div class="field-group"><label for="cal-sex">الجنس</label><select id="cal-sex">
+          <option value="male">ذكر</option>
+          <option value="female">أنثى</option>
+        </select></div>
+    </div>
+    <div id="cal-imperial-fields" style="display:none">
+      <div class="field-row">
+        <div class="field-group"><label for="cal-weight">الوزن</label>
+          <div class="input-wrap has-suffix"><input type="number" id="cal-weight" value="165" min="0"><span
+              class="input-suffix">رطل</span></div>
+        </div>
+        <div class="field-group"><label for="cal-height">الطول</label>
+          <div class="input-wrap has-suffix"><input type="number" id="cal-height" value="68" min="0"><span
+              class="input-suffix">بوصة</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="cal-metric-fields">
+      <div class="field-row">
+        <div class="field-group"><label for="cal-weight-kg">الوزن</label>
+          <div class="input-wrap has-suffix"><input type="number" id="cal-weight-kg" value="75" min="0" step="0.1"><span
+              class="input-suffix">كجم</span></div>
+        </div>
+        <div class="field-group"><label for="cal-height-cm">الطول</label>
+          <div class="input-wrap has-suffix"><input type="number" id="cal-height-cm" value="173" min="0"><span
+              class="input-suffix">سم</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="field-group"><label for="cal-activity">مستوى النشاط</label>
+      <select id="cal-activity">
+        <option value="1.2">خامل (بدون رياضة تقريباً)</option>
+        <option value="1.375">خفيف (١-٣ أيام/أسبوع)</option>
+        <option value="1.55" selected>متوسط (٣-٥ أيام/أسبوع)</option>
+        <option value="1.725">نشط (٦-٧ أيام/أسبوع)</option>
+        <option value="1.9">نشط جداً (عمل بدني أو تدريب مزدوج)</option>
+      </select>
+    </div>
+    <div class="field-group"><label for="cal-goal">الهدف</label>
+      <select id="cal-goal">
+        <option value="-500">إنقاص الوزن (سعرات - ٥٠٠)</option>
+        <option value="0" selected>الحفاظ على الوزن</option>
+        <option value="500">زيادة الوزن (سعرات + ٥٠٠)</option>
+      </select>
+    </div>
+    <button class="calc-btn" data-action="calcCalories">احسب</button>
+    <div class="results" id="r-calories">
+      <h3>النتائج</h3>
+      <div class="result-highlight"><span class="result-value" id="r-cal-target">0</span>
+        <div class="result-label">هدف السعرات اليومي</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-value" id="r-cal-bmr">0</span>
+          <div class="result-label">معدل الأيض الأساسي</div>
+        </div>
+        <div class="result-item"><span class="result-value" id="r-cal-tdee">0</span>
+          <div class="result-label">TDEE (المحافظه)</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

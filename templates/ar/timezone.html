@@ -1,0 +1,43 @@
+<div class="field-row">
+      <div class="field-group"><label for="tz-time">الوقت</label>
+        <input type="time" id="tz-time" value="12:00">
+      </div>
+      <div class="field-group"><label for="tz-from">من المنطقة</label>
+        <select id="tz-from">
+          <option value="-8">توقيت المحيط الهادئ (PT) UTC-8</option>
+          <option value="-5">التوقيت الشرقي (ET) UTC-5</option>
+          <option value="0" selected>لندن (GMT) UTC+0</option>
+          <option value="1">باريس/برلين (CET) UTC+1</option>
+          <option value="3">الرياض/موسكو (AST/MSK) UTC+3</option>
+          <option value="4">دبي (GST) UTC+4</option>
+          <option value="5.5">الهند (IST) UTC+5:30</option>
+          <option value="8">بكين/سنغافورة (CST/SGT) UTC+8</option>
+          <option value="9">طوكيو (JST) UTC+9</option>
+          <option value="11">سيدني (AEDT) UTC+11</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group"><label for="tz-to">إلى المنطقة</label>
+      <select id="tz-to">
+        <option value="-8">توقيت المحيط الهادئ (PT) UTC-8</option>
+        <option value="-5" selected>التوقيت الشرقي (ET) UTC-5</option>
+        <option value="0">لندن (GMT) UTC+0</option>
+        <option value="1">باريس/برلين (CET) UTC+1</option>
+        <option value="3">الرياض/موسكو (AST/MSK) UTC+3</option>
+        <option value="4">دبي (GST) UTC+4</option>
+        <option value="5.5">الهند (IST) UTC+5:30</option>
+        <option value="8">بكين/سنغافورة (CST/SGT) UTC+8</option>
+        <option value="9">طوكيو (JST) UTC+9</option>
+        <option value="11">سيدني (AEDT) UTC+11</option>
+      </select>
+    </div>
+
+    <button class="calc-btn" data-action="calcTimezone">تحويل الوقت</button>
+    <div class="results" id="r-timezone">
+      <h3>الوقت المحول</h3>
+      <div class="result-highlight"><span class="result-value" id="r-tz-val" style="direction:ltr">—</span>
+        <div class="result-label" id="r-tz-diff">فرق التوقيت</div>
+      </div>
+    </div>
+    <div class="modal-ad">إعلان · 728×90</div>

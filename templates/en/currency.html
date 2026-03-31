@@ -1,0 +1,118 @@
+<style>
+      .cur-swap-btn {
+        background: rgba(108, 99, 255, 0.15);
+        border: 1px solid rgba(108, 99, 255, 0.35);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        color: var(--accent2);
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+
+      .cur-swap-btn:hover {
+        background: rgba(108, 99, 255, 0.3);
+        transform: rotate(180deg);
+      }
+
+      .cur-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.75rem;
+      }
+
+      .cur-row .field-group {
+        flex: 1;
+      }
+
+      .cur-rate-tag {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+
+      .cur-rate-tag span {
+        color: var(--accent2);
+        font-weight: 600;
+      }
+
+      .cur-multi {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+      }
+
+      .cur-multi-item {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        padding: 0.6rem 0.75rem;
+      }
+
+      .cur-multi-item .cur-code {
+        font-size: 0.72rem;
+        color: var(--muted);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .cur-multi-item .cur-val {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-top: 0.1rem;
+      }
+
+      .cur-status {
+        font-size: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .cur-status.live {
+        color: var(--green);
+      }
+
+      .cur-status.cached {
+        color: var(--yellow);
+      }
+
+      .cur-status.offline {
+        color: var(--muted);
+      }
+    </style>
+    <div class="cur-status" id="cur-status">⏳ Loading live rates…</div>
+    <div class="cur-row">
+      <div class="field-group">
+        <label for="cur-amount">Amount</label>
+        <input type="number" id="cur-amount" value="100" min="0" step="any">
+      </div>
+      <div class="field-group">
+        <label for="cur-from">From</label>
+        <select id="cur-from"></select>
+      </div>
+      <button class="cur-swap-btn" data-action="swapCurrency" title="Swap">⇄</button>
+      <div class="field-group">
+        <label for="cur-to">To</label>
+        <select id="cur-to"></select>
+      </div>
+    </div>
+    <p class="cur-rate-tag" id="cur-rate-tag">1 USD = <span id="cur-rate-display">—</span></p>
+    <button class="calc-btn" data-action="convertCurrency" style="margin-top:0.75rem">Convert</button>
+    <div class="results" id="r-currency">
+      <h3>Results</h3>
+      <div class="result-highlight"><span class="result-value" id="cur-r-main">—</span>
+        <div class="result-label" id="cur-r-label">Result</div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem;margin-bottom:0.75rem">Also converts to popular
+        currencies:</p>
+      <div class="cur-multi" id="cur-multi-grid"></div>
+      <p class="result-note">Rates provided by <strong>Frankfurter (ECB data)</strong> and updated daily on business
+        days. Not suitable for financial transactions.</p>
+    </div>
+    <div class="modal-ad">Advertisement · 728×90</div>
