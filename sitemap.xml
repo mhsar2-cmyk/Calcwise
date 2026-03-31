@@ -8,7 +8,7 @@
     <loc>https://calcwises.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/index-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -16,7 +16,7 @@
     <loc>https://calcwises.com/index-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/index-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -25,7 +25,7 @@
     <loc>https://calcwises.com/about.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/about.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/about-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -33,7 +33,7 @@
     <loc>https://calcwises.com/about-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/about-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/about.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -42,7 +42,7 @@
     <loc>https://calcwises.com/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/privacy-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -50,7 +50,7 @@
     <loc>https://calcwises.com/privacy-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/privacy-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/privacy.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -59,7 +59,7 @@
     <loc>https://calcwises.com/terms.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/terms.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/terms-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -67,7 +67,7 @@
     <loc>https://calcwises.com/terms-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/terms-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/terms.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -76,7 +76,7 @@
     <loc>https://calcwises.com/blog.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -84,7 +84,7 @@
     <loc>https://calcwises.com/blog-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -95,7 +95,7 @@
     <loc>https://calcwises.com/blog/body-fat-vs-bmi-which-is-better.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/body-fat-vs-bmi-which-is-better.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/body-fat-vs-bmi-which-is-better-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -103,7 +103,7 @@
     <loc>https://calcwises.com/blog/body-fat-vs-bmi-which-is-better-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/body-fat-vs-bmi-which-is-better-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/body-fat-vs-bmi-which-is-better.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -112,7 +112,7 @@
     <loc>https://calcwises.com/blog/buying-vs-renting-hidden-costs.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/buying-vs-renting-hidden-costs.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/buying-vs-renting-hidden-costs-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -120,7 +120,7 @@
     <loc>https://calcwises.com/blog/buying-vs-renting-hidden-costs-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/buying-vs-renting-hidden-costs-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/buying-vs-renting-hidden-costs.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -129,7 +129,7 @@
     <loc>https://calcwises.com/blog/compound-interest-explained.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/compound-interest-explained.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/compound-interest-explained-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -137,7 +137,7 @@
     <loc>https://calcwises.com/blog/compound-interest-explained-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/compound-interest-explained-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/compound-interest-explained.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -146,7 +146,7 @@
     <loc>https://calcwises.com/blog/cooking-unit-conversions-math.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/cooking-unit-conversions-math.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/cooking-unit-conversions-math-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -154,7 +154,7 @@
     <loc>https://calcwises.com/blog/cooking-unit-conversions-math-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/cooking-unit-conversions-math-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/cooking-unit-conversions-math.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -163,7 +163,7 @@
     <loc>https://calcwises.com/blog/credit-card-minimum-payment-trap.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/credit-card-minimum-payment-trap.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/credit-card-minimum-payment-trap-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -171,7 +171,7 @@
     <loc>https://calcwises.com/blog/credit-card-minimum-payment-trap-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/credit-card-minimum-payment-trap-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/credit-card-minimum-payment-trap.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -180,7 +180,7 @@
     <loc>https://calcwises.com/blog/date-difference-math-of-time.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/date-difference-math-of-time.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/date-difference-math-of-time-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -188,7 +188,7 @@
     <loc>https://calcwises.com/blog/date-difference-math-of-time-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/date-difference-math-of-time-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/date-difference-math-of-time.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -197,7 +197,7 @@
     <loc>https://calcwises.com/blog/eisenhower-matrix-guide.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/eisenhower-matrix-guide.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/eisenhower-matrix-guide-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -205,7 +205,7 @@
     <loc>https://calcwises.com/blog/eisenhower-matrix-guide-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/eisenhower-matrix-guide-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/eisenhower-matrix-guide.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -214,7 +214,7 @@
     <loc>https://calcwises.com/blog/emergency-fund-guide.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/emergency-fund-guide.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/emergency-fund-guide-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -222,7 +222,7 @@
     <loc>https://calcwises.com/blog/emergency-fund-guide-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/emergency-fund-guide-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/emergency-fund-guide.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -231,7 +231,7 @@
     <loc>https://calcwises.com/blog/fuel-efficiency-myths-debunked.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/fuel-efficiency-myths-debunked.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/fuel-efficiency-myths-debunked-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -239,7 +239,7 @@
     <loc>https://calcwises.com/blog/fuel-efficiency-myths-debunked-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/fuel-efficiency-myths-debunked-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/fuel-efficiency-myths-debunked.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -248,7 +248,7 @@
     <loc>https://calcwises.com/blog/geometry-in-daily-architecture.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/geometry-in-daily-architecture.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/geometry-in-daily-architecture-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -256,7 +256,7 @@
     <loc>https://calcwises.com/blog/geometry-in-daily-architecture-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/geometry-in-daily-architecture-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/geometry-in-daily-architecture.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -265,7 +265,7 @@
     <loc>https://calcwises.com/blog/global-tipping-etiquette-math.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/global-tipping-etiquette-math.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/global-tipping-etiquette-math-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -273,7 +273,7 @@
     <loc>https://calcwises.com/blog/global-tipping-etiquette-math-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/global-tipping-etiquette-math-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/global-tipping-etiquette-math.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -282,7 +282,7 @@
     <loc>https://calcwises.com/blog/heart-rate-zones-training.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/heart-rate-zones-training.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/heart-rate-zones-training-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -290,7 +290,7 @@
     <loc>https://calcwises.com/blog/heart-rate-zones-training-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/heart-rate-zones-training-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/heart-rate-zones-training.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -299,7 +299,7 @@
     <loc>https://calcwises.com/blog/how-gpa-is-actually-calculated.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-gpa-is-actually-calculated.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-gpa-is-actually-calculated-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -307,7 +307,7 @@
     <loc>https://calcwises.com/blog/how-gpa-is-actually-calculated-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-gpa-is-actually-calculated-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-gpa-is-actually-calculated.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -316,7 +316,7 @@
     <loc>https://calcwises.com/blog/how-many-calories-should-you-eat.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-many-calories-should-you-eat.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-many-calories-should-you-eat-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -324,7 +324,7 @@
     <loc>https://calcwises.com/blog/how-many-calories-should-you-eat-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-many-calories-should-you-eat-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-many-calories-should-you-eat.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -333,7 +333,7 @@
     <loc>https://calcwises.com/blog/how-to-calculate-mortgage.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-to-calculate-mortgage.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-to-calculate-mortgage-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -341,7 +341,7 @@
     <loc>https://calcwises.com/blog/how-to-calculate-mortgage-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-to-calculate-mortgage-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-to-calculate-mortgage.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -350,7 +350,7 @@
     <loc>https://calcwises.com/blog/how-to-calculate-percentage-change.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-to-calculate-percentage-change.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-to-calculate-percentage-change-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -358,7 +358,7 @@
     <loc>https://calcwises.com/blog/how-to-calculate-percentage-change-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/how-to-calculate-percentage-change-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/how-to-calculate-percentage-change.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -367,7 +367,7 @@
     <loc>https://calcwises.com/blog/ideal-weight-vs-healthy-weight.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/ideal-weight-vs-healthy-weight.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/ideal-weight-vs-healthy-weight-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -375,7 +375,7 @@
     <loc>https://calcwises.com/blog/ideal-weight-vs-healthy-weight-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/ideal-weight-vs-healthy-weight-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/ideal-weight-vs-healthy-weight.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -384,7 +384,7 @@
     <loc>https://calcwises.com/blog/inflation-impact-on-savings.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/inflation-impact-on-savings.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/inflation-impact-on-savings-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -392,7 +392,7 @@
     <loc>https://calcwises.com/blog/inflation-impact-on-savings-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/inflation-impact-on-savings-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/inflation-impact-on-savings.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -401,7 +401,7 @@
     <loc>https://calcwises.com/blog/intermittent-fasting-for-beginners.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/intermittent-fasting-for-beginners.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/intermittent-fasting-for-beginners-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -409,7 +409,7 @@
     <loc>https://calcwises.com/blog/intermittent-fasting-for-beginners-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/intermittent-fasting-for-beginners-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/intermittent-fasting-for-beginners.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -418,7 +418,7 @@
     <loc>https://calcwises.com/blog/macronutrients-explained.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/macronutrients-explained.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/macronutrients-explained-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -426,7 +426,7 @@
     <loc>https://calcwises.com/blog/macronutrients-explained-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/macronutrients-explained-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/macronutrients-explained.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -435,7 +435,7 @@
     <loc>https://calcwises.com/blog/math-of-hydration.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/math-of-hydration.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/math-of-hydration-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -443,7 +443,7 @@
     <loc>https://calcwises.com/blog/math-of-hydration-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/math-of-hydration-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/math-of-hydration.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -452,7 +452,7 @@
     <loc>https://calcwises.com/blog/mental-math-tricks.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/mental-math-tricks.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/mental-math-tricks-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -460,7 +460,7 @@
     <loc>https://calcwises.com/blog/mental-math-tricks-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/mental-math-tricks-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/mental-math-tricks.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -469,7 +469,7 @@
     <loc>https://calcwises.com/blog/metric-vs-imperial-conversion.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/metric-vs-imperial-conversion.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/metric-vs-imperial-conversion-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -477,7 +477,7 @@
     <loc>https://calcwises.com/blog/metric-vs-imperial-conversion-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/metric-vs-imperial-conversion-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/metric-vs-imperial-conversion.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -486,7 +486,7 @@
     <loc>https://calcwises.com/blog/personal-vs-auto-loans.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/personal-vs-auto-loans.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/personal-vs-auto-loans-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -494,7 +494,7 @@
     <loc>https://calcwises.com/blog/personal-vs-auto-loans-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/personal-vs-auto-loans-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/personal-vs-auto-loans.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -503,7 +503,7 @@
     <loc>https://calcwises.com/blog/power-of-consistent-savings.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/power-of-consistent-savings.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/power-of-consistent-savings-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -511,7 +511,7 @@
     <loc>https://calcwises.com/blog/power-of-consistent-savings-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/power-of-consistent-savings-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/power-of-consistent-savings.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -520,7 +520,7 @@
     <loc>https://calcwises.com/blog/pregnancy-due-date-expectations.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/pregnancy-due-date-expectations.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/pregnancy-due-date-expectations-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -528,7 +528,7 @@
     <loc>https://calcwises.com/blog/pregnancy-due-date-expectations-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/pregnancy-due-date-expectations-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/pregnancy-due-date-expectations.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -537,7 +537,7 @@
     <loc>https://calcwises.com/blog/probability-and-chance-math.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/probability-and-chance-math.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/probability-and-chance-math-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -545,7 +545,7 @@
     <loc>https://calcwises.com/blog/probability-and-chance-math-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/probability-and-chance-math-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/probability-and-chance-math.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -554,7 +554,7 @@
     <loc>https://calcwises.com/blog/roi-measuring-investment-success.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/roi-measuring-investment-success.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/roi-measuring-investment-success-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -562,7 +562,7 @@
     <loc>https://calcwises.com/blog/roi-measuring-investment-success-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/roi-measuring-investment-success-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/roi-measuring-investment-success.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -571,7 +571,7 @@
     <loc>https://calcwises.com/blog/salary-vs-hourly-pay.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/salary-vs-hourly-pay.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/salary-vs-hourly-pay-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -579,7 +579,7 @@
     <loc>https://calcwises.com/blog/salary-vs-hourly-pay-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/salary-vs-hourly-pay-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/salary-vs-hourly-pay.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -588,7 +588,7 @@
     <loc>https://calcwises.com/blog/science-of-age-chronology.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/science-of-age-chronology.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/science-of-age-chronology-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -596,7 +596,7 @@
     <loc>https://calcwises.com/blog/science-of-age-chronology-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/science-of-age-chronology-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/science-of-age-chronology.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -605,7 +605,7 @@
     <loc>https://calcwises.com/blog/scientific-math-language-of-universe.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/scientific-math-language-of-universe.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/scientific-math-language-of-universe-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -613,7 +613,7 @@
     <loc>https://calcwises.com/blog/scientific-math-language-of-universe-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/scientific-math-language-of-universe-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/scientific-math-language-of-universe.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -622,7 +622,7 @@
     <loc>https://calcwises.com/blog/sleep-cycles-explained.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/sleep-cycles-explained.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/sleep-cycles-explained-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -630,7 +630,7 @@
     <loc>https://calcwises.com/blog/sleep-cycles-explained-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/sleep-cycles-explained-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/sleep-cycles-explained.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -639,7 +639,7 @@
     <loc>https://calcwises.com/blog/starting-retirement-at-25-vs-35.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/starting-retirement-at-25-vs-35.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/starting-retirement-at-25-vs-35-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -647,7 +647,7 @@
     <loc>https://calcwises.com/blog/starting-retirement-at-25-vs-35-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/starting-retirement-at-25-vs-35-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/starting-retirement-at-25-vs-35.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -656,7 +656,7 @@
     <loc>https://calcwises.com/blog/strength-vs-cardio-calories.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/strength-vs-cardio-calories.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/strength-vs-cardio-calories-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -664,7 +664,7 @@
     <loc>https://calcwises.com/blog/strength-vs-cardio-calories-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/strength-vs-cardio-calories-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/strength-vs-cardio-calories.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -673,7 +673,7 @@
     <loc>https://calcwises.com/blog/student-loans-avalanche-vs-snowball.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/student-loans-avalanche-vs-snowball.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/student-loans-avalanche-vs-snowball-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -681,7 +681,7 @@
     <loc>https://calcwises.com/blog/student-loans-avalanche-vs-snowball-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/student-loans-avalanche-vs-snowball-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/student-loans-avalanche-vs-snowball.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -690,7 +690,7 @@
     <loc>https://calcwises.com/blog/the-50-30-20-budgeting-rule.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/the-50-30-20-budgeting-rule.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/the-50-30-20-budgeting-rule-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -698,7 +698,7 @@
     <loc>https://calcwises.com/blog/the-50-30-20-budgeting-rule-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/the-50-30-20-budgeting-rule-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/the-50-30-20-budgeting-rule.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -707,7 +707,7 @@
     <loc>https://calcwises.com/blog/the-pomodoro-technique-for-productivity.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/the-pomodoro-technique-for-productivity.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/the-pomodoro-technique-for-productivity-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -715,7 +715,7 @@
     <loc>https://calcwises.com/blog/the-pomodoro-technique-for-productivity-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/the-pomodoro-technique-for-productivity-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/the-pomodoro-technique-for-productivity.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -724,7 +724,7 @@
     <loc>https://calcwises.com/blog/the-rule-of-72-math.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/the-rule-of-72-math.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/the-rule-of-72-math-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -732,7 +732,7 @@
     <loc>https://calcwises.com/blog/the-rule-of-72-math-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/the-rule-of-72-math-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/the-rule-of-72-math.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -741,7 +741,7 @@
     <loc>https://calcwises.com/blog/typing-speed-career-success.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/typing-speed-career-success.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/typing-speed-career-success-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -749,7 +749,7 @@
     <loc>https://calcwises.com/blog/typing-speed-career-success-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/typing-speed-career-success-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/typing-speed-career-success.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -758,7 +758,7 @@
     <loc>https://calcwises.com/blog/what-bmi-really-tells-you.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/what-bmi-really-tells-you.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/what-bmi-really-tells-you-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -766,7 +766,7 @@
     <loc>https://calcwises.com/blog/what-bmi-really-tells-you-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/blog/what-bmi-really-tells-you-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/blog/what-bmi-really-tells-you.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -777,7 +777,7 @@
     <loc>https://calcwises.com/calculators/mortgage.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/mortgage.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/mortgage-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -785,7 +785,7 @@
     <loc>https://calcwises.com/calculators/mortgage-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/mortgage-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/mortgage.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -794,7 +794,7 @@
     <loc>https://calcwises.com/calculators/loan.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/loan.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/loan-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -802,7 +802,7 @@
     <loc>https://calcwises.com/calculators/loan-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/loan-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/loan.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -811,7 +811,7 @@
     <loc>https://calcwises.com/calculators/compound.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/compound.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/compound-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -819,7 +819,7 @@
     <loc>https://calcwises.com/calculators/compound-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/compound-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/compound.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -828,7 +828,7 @@
     <loc>https://calcwises.com/calculators/creditcard.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/creditcard.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/creditcard-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -836,7 +836,7 @@
     <loc>https://calcwises.com/calculators/creditcard-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/creditcard-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/creditcard.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -845,7 +845,7 @@
     <loc>https://calcwises.com/calculators/salary.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/salary.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/salary-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -853,7 +853,7 @@
     <loc>https://calcwises.com/calculators/salary-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/salary-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/salary.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -862,7 +862,7 @@
     <loc>https://calcwises.com/calculators/tip.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/tip.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/tip-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -870,7 +870,7 @@
     <loc>https://calcwises.com/calculators/tip-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/tip-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/tip.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -879,7 +879,7 @@
     <loc>https://calcwises.com/calculators/roi.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/roi.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/roi-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -887,7 +887,7 @@
     <loc>https://calcwises.com/calculators/roi-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/roi-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/roi.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -896,7 +896,7 @@
     <loc>https://calcwises.com/calculators/percentage.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/percentage.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/percentage-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -904,7 +904,7 @@
     <loc>https://calcwises.com/calculators/percentage-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/percentage-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/percentage.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -913,7 +913,7 @@
     <loc>https://calcwises.com/calculators/tax.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/tax.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/tax-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -921,7 +921,7 @@
     <loc>https://calcwises.com/calculators/tax-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/tax-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/tax.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -930,7 +930,7 @@
     <loc>https://calcwises.com/calculators/retirement.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/retirement.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/retirement-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -938,7 +938,7 @@
     <loc>https://calcwises.com/calculators/retirement-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/retirement-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/retirement.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -947,7 +947,7 @@
     <loc>https://calcwises.com/calculators/currency.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/currency.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/currency-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -955,7 +955,7 @@
     <loc>https://calcwises.com/calculators/currency-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/currency-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/currency.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -964,7 +964,7 @@
     <loc>https://calcwises.com/calculators/inflation.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/inflation.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/inflation-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -972,7 +972,7 @@
     <loc>https://calcwises.com/calculators/inflation-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/inflation-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/inflation.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -981,7 +981,7 @@
     <loc>https://calcwises.com/calculators/bmi.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/bmi.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/bmi-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -989,7 +989,7 @@
     <loc>https://calcwises.com/calculators/bmi-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/bmi-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/bmi.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -998,7 +998,7 @@
     <loc>https://calcwises.com/calculators/calories.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/calories.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/calories-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1006,7 +1006,7 @@
     <loc>https://calcwises.com/calculators/calories-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/calories-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/calories.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1015,7 +1015,7 @@
     <loc>https://calcwises.com/calculators/macros.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/macros.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/macros-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1023,7 +1023,7 @@
     <loc>https://calcwises.com/calculators/macros-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/macros-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/macros.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1032,7 +1032,7 @@
     <loc>https://calcwises.com/calculators/bodyfat.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/bodyfat.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/bodyfat-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1040,7 +1040,7 @@
     <loc>https://calcwises.com/calculators/bodyfat-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/bodyfat-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/bodyfat.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1049,7 +1049,7 @@
     <loc>https://calcwises.com/calculators/pace.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/pace.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/pace-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1057,7 +1057,7 @@
     <loc>https://calcwises.com/calculators/pace-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/pace-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/pace.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1066,7 +1066,7 @@
     <loc>https://calcwises.com/calculators/water.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/water.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/water-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1074,7 +1074,7 @@
     <loc>https://calcwises.com/calculators/water-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/water-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/water.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1083,7 +1083,7 @@
     <loc>https://calcwises.com/calculators/sleep.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/sleep.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/sleep-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1091,7 +1091,7 @@
     <loc>https://calcwises.com/calculators/sleep-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/sleep-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/sleep.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1100,7 +1100,7 @@
     <loc>https://calcwises.com/calculators/pregnancy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/pregnancy.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/pregnancy-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1108,7 +1108,7 @@
     <loc>https://calcwises.com/calculators/pregnancy-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/pregnancy-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/pregnancy.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1117,7 +1117,7 @@
     <loc>https://calcwises.com/calculators/contraception.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/contraception.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/contraception-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1125,7 +1125,7 @@
     <loc>https://calcwises.com/calculators/contraception-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/contraception-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/contraception.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1134,7 +1134,7 @@
     <loc>https://calcwises.com/calculators/heartrate.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/heartrate.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/heartrate-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1142,7 +1142,7 @@
     <loc>https://calcwises.com/calculators/heartrate-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/heartrate-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/heartrate.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1151,7 +1151,7 @@
     <loc>https://calcwises.com/calculators/idealweight.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/idealweight.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/idealweight-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1159,7 +1159,7 @@
     <loc>https://calcwises.com/calculators/idealweight-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/idealweight-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/idealweight.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1168,7 +1168,7 @@
     <loc>https://calcwises.com/calculators/scientific.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/scientific.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/scientific-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1176,7 +1176,7 @@
     <loc>https://calcwises.com/calculators/scientific-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/scientific-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/scientific.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1185,7 +1185,7 @@
     <loc>https://calcwises.com/calculators/units.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/units.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/units-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1193,7 +1193,7 @@
     <loc>https://calcwises.com/calculators/units-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/units-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/units.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1202,7 +1202,7 @@
     <loc>https://calcwises.com/calculators/gpa.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/gpa.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/gpa-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1210,7 +1210,7 @@
     <loc>https://calcwises.com/calculators/gpa-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/gpa-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/gpa.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1219,7 +1219,7 @@
     <loc>https://calcwises.com/calculators/quadratic.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/quadratic.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/quadratic-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1227,7 +1227,7 @@
     <loc>https://calcwises.com/calculators/quadratic-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/quadratic-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/quadratic.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1236,7 +1236,7 @@
     <loc>https://calcwises.com/calculators/probability.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/probability.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/probability-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1244,7 +1244,7 @@
     <loc>https://calcwises.com/calculators/probability-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/probability-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/probability.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1253,7 +1253,7 @@
     <loc>https://calcwises.com/calculators/geometry.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/geometry.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/geometry-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1261,7 +1261,7 @@
     <loc>https://calcwises.com/calculators/geometry-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/geometry-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/geometry.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1270,7 +1270,7 @@
     <loc>https://calcwises.com/calculators/speed.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/speed.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/speed-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1278,7 +1278,7 @@
     <loc>https://calcwises.com/calculators/speed-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/speed-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/speed.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1287,7 +1287,7 @@
     <loc>https://calcwises.com/calculators/base.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/base.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/base-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1295,7 +1295,7 @@
     <loc>https://calcwises.com/calculators/base-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/base-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/base.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1304,7 +1304,7 @@
     <loc>https://calcwises.com/calculators/age.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/age.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/age-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1312,7 +1312,7 @@
     <loc>https://calcwises.com/calculators/age-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/age-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/age.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1321,7 +1321,7 @@
     <loc>https://calcwises.com/calculators/datediff.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/datediff.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/datediff-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1329,7 +1329,7 @@
     <loc>https://calcwises.com/calculators/datediff-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/datediff-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/datediff.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1338,7 +1338,7 @@
     <loc>https://calcwises.com/calculators/timezone.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/timezone.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/timezone-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1346,7 +1346,7 @@
     <loc>https://calcwises.com/calculators/timezone-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/timezone-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/timezone.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1355,7 +1355,7 @@
     <loc>https://calcwises.com/calculators/fuel.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/fuel.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/fuel-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1363,7 +1363,7 @@
     <loc>https://calcwises.com/calculators/fuel-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/fuel-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/fuel.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1372,7 +1372,7 @@
     <loc>https://calcwises.com/calculators/cooking.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/cooking.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/cooking-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1380,7 +1380,7 @@
     <loc>https://calcwises.com/calculators/cooking-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/cooking-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/cooking.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1389,7 +1389,7 @@
     <loc>https://calcwises.com/calculators/random.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/random.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/random-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1397,7 +1397,7 @@
     <loc>https://calcwises.com/calculators/random-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/random-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/random.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1406,7 +1406,7 @@
     <loc>https://calcwises.com/calculators/countdown.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/countdown.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/countdown-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1414,7 +1414,7 @@
     <loc>https://calcwises.com/calculators/countdown-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/countdown-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/countdown.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1423,7 +1423,7 @@
     <loc>https://calcwises.com/calculators/hijri.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/hijri.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/hijri-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1431,7 +1431,7 @@
     <loc>https://calcwises.com/calculators/hijri-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/hijri-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/hijri.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1440,7 +1440,7 @@
     <loc>https://calcwises.com/calculators/typing.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/typing.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/typing-ar.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1448,7 +1448,7 @@
     <loc>https://calcwises.com/calculators/typing-ar.html</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://calcwises.com/calculators/typing-ar.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://calcwises.com/calculators/typing.html"/>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
