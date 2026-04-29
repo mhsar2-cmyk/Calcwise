@@ -1,4 +1,4 @@
-const CACHE_NAME = "calcwise-v1772760428303";
+const CACHE_NAME = "calcwise-v1772760428304";
 const ASSETS = [
   "/",
   "/index.html",
@@ -212,6 +212,21 @@ self.addEventListener("fetch", (e) => {
 
   // Bypass SW for API calls (local python backend)
   if (url.pathname.startsWith("/extract") || url.port === "8000") {
+    return;
+  }
+
+  // MUST bypass non-GET requests, otherwise cache.put throws an error
+  if (e.request.method !== "GET") {
+    return;
+  }
+
+  // Bypass SW for analytics and ads so they are not cached stale
+  if (
+    url.hostname.includes("google-analytics.com") ||
+    url.hostname.includes("googletagmanager.com") ||
+    url.hostname.includes("googlesyndication.com") ||
+    url.hostname.includes("doubleclick.net")
+  ) {
     return;
   }
 
