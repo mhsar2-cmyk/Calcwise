@@ -98,8 +98,8 @@ function generateEN(c) {
   <script>
     (function(){const s=localStorage.getItem("cw-theme");if(s==="light")document.documentElement.setAttribute("data-theme","light");})();
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-JXGRCF9TPP");</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-CQ0F5LVG3J");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5388783007820121" crossorigin="anonymous"></script>
@@ -304,8 +304,8 @@ function generateAR(c) {
   <script>
     (function(){const s=localStorage.getItem("cw-theme");if(s==="light")document.documentElement.setAttribute("data-theme","light");})();
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-JXGRCF9TPP");</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-CQ0F5LVG3J");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5388783007820121" crossorigin="anonymous"></script>

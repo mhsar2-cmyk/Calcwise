@@ -1,4 +1,4 @@
-const CACHE_NAME = "calcwise-v1772760428304";
+const CACHE_NAME = "calcwise-v1772350258000";
 const ASSETS = [
   "/",
   "/index.html",
@@ -223,9 +223,13 @@ self.addEventListener("fetch", (e) => {
   // Bypass SW for analytics and ads so they are not cached stale
   if (
     url.hostname.includes("google-analytics.com") ||
+    url.hostname.includes("analytics.google.com") ||
     url.hostname.includes("googletagmanager.com") ||
     url.hostname.includes("googlesyndication.com") ||
-    url.hostname.includes("doubleclick.net")
+    url.hostname.includes("doubleclick.net") ||
+    url.hostname.includes("googleadservices.com") ||
+    url.hostname.includes("google.com") && url.pathname.startsWith("/pagead") ||
+    url.hostname.includes("stats.g.doubleclick.net")
   ) {
     return;
   }

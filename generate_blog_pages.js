@@ -2145,12 +2145,12 @@ function generatePageEN(article) {
     <p>© 2026 CalcWise · <a href="../privacy.html" style="color:inherit">Privacy</a> · <a href="../terms.html" style="color:inherit">Terms</a></p>
   </footer>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-JXGRCF9TPP');
+      gtag('config', 'G-CQ0F5LVG3J');
     </script>
     <script>
       (function () {
@@ -2333,12 +2333,12 @@ function generatePageAR(article) {
     <p>© ٢٠٢٦ كالك وايز · <a href="../privacy-ar.html" style="color:inherit">الخصوصية</a> · <a href="../terms-ar.html" style="color:inherit">الشروط</a></p>
   </footer>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXGRCF9TPP"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0F5LVG3J"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-JXGRCF9TPP');
+      gtag('config', 'G-CQ0F5LVG3J');
     </script>
     <script>
       (function () {
